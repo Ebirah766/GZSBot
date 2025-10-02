@@ -84,11 +84,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "South America": 0,
             "Oceania": 0,
         },
-        # Optional for paging (example):
-        # "images": [
-        #     {"label": "Georgia Aquarium", "url": "https://.../whaleshark_ga.jpg"},
-        #     {"label": "Okinawa Churaumi", "url": "https://.../whaleshark_okinawa.jpg"}
-        # ]
+        # "images": [...]
     },
     "Mango Stem Borer": {
         "common": "Mango Stem Borer",
@@ -316,7 +312,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://example.com/default.jpg",
         "holdings": {
             "North America": 0,
-            # <<< CHANGED: list for Europe so it renders as a region header with lines under it
             "Europe": ["0.0.1.0 (South African) - Shropshire Hills Zoo"],
             "Asia": 0,
             "Africa": 0,
@@ -343,7 +338,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://example.com/default.jpg",
         "holdings": {
             "North America": 0,
-            # <<< CHANGED: list for Europe + fixed syntax/newline issue
             "Europe": ["1.3 (Fjord) - Shropshire Hills Zoo"],
             "Asia": 0,
             "Africa": 0,
@@ -362,15 +356,9 @@ def norm(s: str) -> str:
     return _normalizer.sub("", s.lower())
 
 def build_index():
-    """
-    Build a lookup index from normalized user input -> canonical species key (common name).
-    Includes both common names (dict keys) and scientific names.
-    """
     idx: Dict[str, str] = {}
     for common_key, entry in species_data.items():
-        # Index the common name (the dict key)
         idx[norm(common_key)] = common_key
-        # Index the scientific name if present
         sci = entry.get("scientific")
         if isinstance(sci, str) and sci.strip():
             idx[norm(sci)] = common_key
@@ -379,10 +367,6 @@ def build_index():
 species_index = build_index()
 
 def resolve_species_key(user_query: str):
-    """
-    Try exact normalized match first (common or scientific).
-    Otherwise, offer a fuzzy suggestion (returns (None, suggestion_key)) or (None, None).
-    """
     n = norm(user_query)
     if n in species_index:
         return species_index[n]
@@ -410,16 +394,6 @@ def get_entry_or_message(user_query: str) -> Tuple[Optional[Dict[str, Any]], Opt
 _zims_number_re = re.compile(r"\d+")
 
 def zims_to_count(raw: Any) -> int:
-    """
-    Accept either an int or a ZIMS-style string like '1.2.0' or '2.4'.
-    Returns the sum of all integer groups found.
-      5           -> 5
-      '5'         -> 5
-      '2.4'       -> 6
-      '1.1.1.1'   -> 4
-      '1.2 (loan)'=> 3 (digits only)
-    Non-numeric / empty -> 0
-    """
     if isinstance(raw, int):
         return raw
     if isinstance(raw, float):
@@ -430,10 +404,6 @@ def zims_to_count(raw: Any) -> int:
     return sum(int(n) for n in nums) if nums else 0
 
 def build_institution_index() -> Dict[str, str]:
-    """
-    Scan all species to collect institution names.
-    Returns normalized_name -> display_name mapping.
-    """
     idx: Dict[str, str] = {}
     for entry in species_data.values():
         inst_map = entry.get("institutions") or {}
@@ -442,16 +412,12 @@ def build_institution_index() -> Dict[str, str]:
     return idx
 
 def resolve_institution_name(query: str) -> Tuple[Optional[str], Optional[str]]:
-    """
-    Returns (exact_match_name, suggestion_name). Only one will be non-None.
-    """
     idx = build_institution_index()
     if not idx:
         return None, None
     qn = norm(query)
     if qn in idx:
         return idx[qn], None
-    # fuzzy
     candidates = list(idx.keys())
     close = difflib.get_close_matches(qn, candidates, n=1, cutoff=0.75)
     if close:
@@ -459,10 +425,6 @@ def resolve_institution_name(query: str) -> Tuple[Optional[str], Optional[str]]:
     return None, None
 
 def get_holdings_for_institution(inst_name: str):
-    """
-    Gather a list of (common, scientific, raw_value, computed_count) for a given institution name.
-    Accepts ZIMS strings or ints; only returns items with computed_count > 0.
-    """
     items = []
     total = 0
     for sp_key, entry in species_data.items():
@@ -476,7 +438,6 @@ def get_holdings_for_institution(inst_name: str):
             common = entry.get("common", sp_key)
             items.append((common, sci, raw, count))
             total += count
-    # DEFAULT: sort alphabetically by common name
     items.sort(key=lambda t: t[0].lower())
     return items, total
 
@@ -486,7 +447,6 @@ def format_institution_holdings(inst_name: str):
         return f"**{inst_name}** has no recorded holdings yet.", 0, 0
 
     def fmt(raw, count):
-        # Show "raw → count" if raw is a string with dots/extra text; otherwise just the count
         if isinstance(raw, str) and ('.' in raw or not raw.isdigit()):
             return f"{raw} \u2192 {count}"
         return str(count)
@@ -540,22 +500,37 @@ def list_to_chunks(lines: List[str], header_prefix: str, per_message_limit: int 
 
 def format_holdings(holdings: Dict[str, Any]) -> str:
     """
-    Renders region holdings. Supports:
-      - int/str: shows 'Region: value'
-      - list[str]: shows 'Region:' on its own line, then each item as '• item'
+    Always render each region as a header line, then bullet items.
+    If the value is 0 or empty, show 'Region: 0'.
+    Accepted shapes per region value:
+      - list[str] -> header + bullets
+      - str/int (non-zero/truthy) -> header + one bullet with that text
+      - 0 / "0" / "" / None -> 'Region: 0'
     """
     lines: List[str] = []
     for region in REGIONS:
         value = holdings.get(region, None)
         if value is None or value == "":
+            # treat as 0 / skip to explicit zero
+            lines.append(f"**{region}:** 0")
             continue
+
         if isinstance(value, list):
-            if not value:
-                continue
-            lines.append(f"**{region}:**")
-            lines.extend([f"• {item}" for item in value])
+            items = [str(x).strip() for x in value if str(x).strip()]
+            if items:
+                lines.append(f"**{region}:**")
+                lines.extend([f"• {item}" for item in items])
+            else:
+                lines.append(f"**{region}:** 0")
         else:
-            lines.append(f"**{region}:** {value}")
+            # Normalize singular values
+            # If numeric zero or string "0" -> show zero inline
+            if (isinstance(value, (int, float)) and int(value) == 0) or (isinstance(value, str) and value.strip() == "0"):
+                lines.append(f"**{region}:** 0")
+            else:
+                lines.append(f"**{region}:**")
+                lines.append(f"• {str(value).strip()}")
+
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
 # >>> CHANGED: add image_index param + optional images pager support <<<
@@ -594,7 +569,6 @@ class SpeciesPager(discord.ui.View):
         self.entry = entry
         self.index = start_index
         self.images = entry.get("images") or []
-        # If no paging needed, disable the buttons (view will still be attached harmlessly)
         if len(self.images) <= 1:
             for child in self.children:
                 if isinstance(child, discord.ui.Button):
@@ -624,12 +598,6 @@ async def cmd_card(ctx: commands.Context, *, name: str):
     """
     Render a rich embed UI card for a species with image, taxonomy, description,
     and holdings by region.
-
-    Accepts either common names or scientific (binomial) names.
-    Examples:
-      ;card Whale Shark
-      ;card Rhincodon typus
-      ;species Galeocerdo cuvier
     """
     try:
         entry, msg = get_entry_or_message(name)
@@ -640,7 +608,6 @@ async def cmd_card(ctx: commands.Context, *, name: str):
         images = entry.get("images") or []
         embed = build_species_embed(entry, image_index=0)
 
-        # >>> CHANGED: attach view only when there are multiple images <<<
         if isinstance(images, list) and len(images) > 1:
             view = SpeciesPager(entry=entry, start_index=0)
             await ctx.send(embed=embed, view=view)
@@ -655,10 +622,6 @@ async def cmd_card(ctx: commands.Context, *, name: str):
 async def cmd_holdings(ctx: commands.Context, *, institution: str):
     """
     Show all species and counts recorded for a specific zoo/aquarium.
-    Counts can be integers or ZIMS notation like '1.2.0' (we'll sum the parts).
-    Usage:
-      ;holdings Georgia Aquarium
-      ;holdings Okinawa Churaumi Aquarium
     """
     try:
         exact, suggestion = resolve_institution_name(institution)
