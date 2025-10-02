@@ -317,7 +317,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             # <<< CHANGED: list for Europe so it renders as a region header with lines under it
-            "Europe": ["Shropshire Hills Zoo (0.0.1.0 [South African])"],
+            "Europe": ["0.0.1.0 (South African) - Shropshire Hills Zoo"],
             "Asia": 0,
             "Africa": 0,
             "South America": 0,
@@ -344,7 +344,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             # <<< CHANGED: list for Europe + fixed syntax/newline issue
-            "Europe": ["Shropshire Hills Zoo 1.3 (Fjord)"],
+            "Europe": ["1.3 (Fjord) - Shropshire Hills Zoo"],
             "Asia": 0,
             "Africa": 0,
             "South America": 0,
