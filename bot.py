@@ -574,10 +574,11 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
-            },
+        },
         "institutions": {
             "Credit River Zoo": "1.0"
-           
+        },
+    },
     "American White Ibis": {
         "common": "American White Ibis",
         "scientific": "Eudocimus albus",
@@ -594,29 +595,30 @@ species_data: Dict[str, Dict[str, Any]] = {
              "Africa": 0,
              "South America": 0,
             "Oceania": 0,
-            },
+        },
         "institutions": {
             "Credit River Zoo": "3.0"
-
-            "American White Ibis": {
-                "common": "American White Ibis",
-                "scientific": "Eudocimus albus",
-                "info": "The American white ibis can be found in coastal areas of North and South America. They gather in massive colonies during breeding season by the waterside and defend their nesting sites fiercely.",
-                "type": "Bird",
-                "order": "Pelecaniformes",
-                "family": "Threskiornithidae",
-                "genus": "Eudocimus",
-                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/395236.jpg",
-                "holdings": {
-                    "North America": "3.0 - Credit River Zoo",
-                    "Asia": 0,
-                     "Europe": 0,
-                     "Africa": 0,
-                     "South America": 0,
-                    "Oceania": 0,
-                    },
-                "institutions": {
-                    "Credit River Zoo": "3.0"
+        },
+    },
+    "Roseate Spoonbill": {
+        "common": "Roseate Spoonbill",
+        "scientific": "Platalea ajaja",
+        "info": "The roseate spoonbill, much like the flamingo, feeds on crustaceans in the water column by lapping them up. Their pink feather coloration comes from the astaxanthin in the crustaceans they consume.",
+        "type": "Bird",
+        "order": "Pelecaniformes",
+        "family": "Threskiornithidae",
+        "genus": "Platalea",
+        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/561817.jpg",
+        "holdings": {
+             "North America": "0.2 - Credit River Zoo",
+            "Asia": 0,
+                "Europe": 0,
+             "Africa": 0,
+                "South America": 0,
+            "Oceania": 0,
+            },
+        "institutions": {
+            "Credit River Zoo": "0.2"
         },
     },
 }
