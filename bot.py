@@ -346,174 +346,195 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Shropshire Hills Zoo": "1.3 [Fjord]"
-            },
-            },
-            "Common Fallow Deer": {
-                "common": "Common Fallow Deer",
-                "scientific": "Dama dama",
-                "info": "A very widespread and common deer species thought to have originated in the Mediterranean region, the common fallow deer is a mainstay in temperate and semi-arid environments across Eurasia.",
-                "type": "Mammal",
-                "order": "Artiodactyla",
-                "family": "Cervidae",
-                "genus": "Dama",
-                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Fallow_deer_in_field.jpg/1280px-Fallow_deer_in_field.jpg",
-                "holdings": {
-                    "North America": "0",
-                    "Asia": 0,
-                    "Europe": "1.3 - Shropshire Hills Zoo",
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                },
-                "institutions": {
-                    "Shropshire Hills Zoo": "1.3"
-                    },
-                    },
-                    "Red Deer": {
-                        "common": "Red Deer",
-                        "scientific": "Cervus elaphus",
-                        "info": "The red deer is one of the largest deer species. Common throughout Europe, western Asia, and north Africa, males have impressive antlers which are grown and shed seasonally. They were introduced to various locations for hunting purposes.",
-                        "type": "Mammal",
-                        "order": "Artiodactyla",
-                        "family": "Cervidae",
-                        "genus": "Cervus",
-                        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/68001185/large.jpg",
-                        "holdings": {
-                            "North America": "0",
-                            "Asia": 0,
-                            "Europe": "2.0 - Shropshire Hills Zoo",
-                            "Africa": 0,
-                            "South America": 0,
-                            "Oceania": 0,
-                        },
-                        "institutions": {
-                            "Shropshire Hills Zoo": "2.0"
-                    },
-                    },
-                    "Golden Lion Tamarin": {
-                        "common": "Golden Lion Tamarin",
-                        "scientific": "Leontopithecus rosalia",
-                        "info": "The golden lion tamarin is a highly endangered tamarin species endemic to the Atlantic coastal forests in southeastern Brazil. A large captive population is maintained in several countries as a safety net population.",
-                        "type": "Mammal",
-                        "order": "Primates",
-                        "family": "Callitrichidae",
-                        "genus": "Leontopithecus",
-                        "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
-                        "holdings": {
-                            "North America": "0",
-                            "Asia": 0,
-                            "Europe": "1.1 - Shropshire Hills Zoo",
-                            "Africa": 0,
-                            "South America": 0,
-                            "Oceania": 0,
-                        },
-                        "institutions": {
-                            "Shropshire Hills Zoo": "1.1"
-                            },
-                            },
-                        "Przewalski's Horse": {
-                            "common": "Przewalski's Horse",
-                            "scientific": "Equus przewalskii",
-                            "info": "The ancestor of the domestic horse, the Przewalski's horse once ranged across much of central, east, and north Asia. They were once highly endangered and are one of the first major captive breeding success stories.",
-                            "type": "Mammal",
-                            "order": "Perissodactyla",
-                            "family": "Equidae",
-                            "genus": "Equus",
-                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/398125195/large.jpg",
-                            "holdings": {
-                                "North America": "0",
-                                "Asia": 0,
-                                "Europe": "0.1.0.1 - Shropshire Hills Zoo",
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0,
-                            },
-                        "institutions": {
-                            "Shropshire Hills Zoo": "0.1.0.1"
-                            },
-                            },
-                            "Red-Eyed Crocodile Skink": {
-                                "common": "Red-Eyed Crocodile Skink",
-                                "scientific": "Tribolonotus gracilis",
-                                "info": "A skink that is endemic to New Guinea, the red-eyed crocodile skink has obtained high popularity in the private reptile trade recently. They are rather sensitive if wild caught and captive-bred specimens are hardier.",
-                                "type": "Reptile",
-                                "order": "Squamata",
-                                "family": "Egerniidae",
-                                "genus": "Tribolonotus",
-                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Red-Eyed_Crocodile_Skink.jpg",
-                                "holdings": {
-                                    "North America": "0",
-                                    "Asia": 0,
-                                    "Europe": "1.1 - Shropshire Hills Zoo",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                },
-                                 "institutions": {
-                                    "Shropshire Hills Zoo": "1.1"
-                                },
-                                },
-                                "European Wildcat": {
-                                    "common": "European Wildcat",
-                                    "scientific": "Felis silvestris",
-                                    "info": "A nocturnal wild felid that can be found from the United Kingdom to Azerbaijan. They are endangered in certain regions due to hybridization with domestic and feral cats.",
-                                    "type": "Mammal",
-                                    "order": "Carnivora",
-                                    "family": "Felidae",
-                                    "genus": "Felis",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/309949.jpg",
-                                    "holdings": {
-                                        "North America": "0",
-                                        "Asia": 0,
-                                        "Europe": "0.1 - Shropshire Hills Zoo",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                        "Shropshire Hills Zoo": "0.1"
-                                },
-                                },
-                                "Arctic Fox": {
-                                    "common": "Arctic Fox",
-                                    "scientific": "Vulpes lagopus",
-                                    "info": "The Arctic fox is found only in the Arctic, and is highly adapted for its environment, with thick fur and specialized physiological adaptations to handle the extreme cold.",
-                                    "type": "Mammal",
-                                    "order": "Carnivora",
-                                    "family": "Canidae",
-                                    "genus": "Vulpes",
-                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/388749029/original.jpg",
-                                    "holdings": {
-                                        "North America": "0",
-                                        "Asia": 0,
-                                        "Europe": "1.0 - Shropshire Hills Zoo",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                        "Shropshire Hills Zoo": "1.0"
-                                    },
-                                },
-                                "Asian Small-Clawed Otter": {
-                                    "common": "Asian Small-Clawed Otter",
-                                    "scientific": "Aonyx cinereus",
-                                    "info": "The Asian small-clawed otter is the smallest species of otter. They are exceptionally common in zoos due to a need for captive breeding, as the species is listed as Vulnerable in the wild.",
-                                    "type": "Mammal",
-                                    "order": "Carnivora",
-                                    "family": "Mustelidae",
-                                    "genus": "Aonyx",
-                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Otter_-_melbourne_zoo.jpg/1280px-Otter_-_melbourne_zoo.jpg",
-                                    "holdings": {
-                                        "North America": "0",
-                                        "Asia": 0,
-                                        "Europe": "1.1 - Shropshire Hills Zoo",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                        "Shropshire Hills Zoo": "1.1"
+        },
+    },
+    "Common Fallow Deer": {
+        "common": "Common Fallow Deer",
+        "scientific": "Dama dama",
+        "info": "A very widespread and common deer species thought to have originated in the Mediterranean region, the common fallow deer is a mainstay in temperate and semi-arid environments across Eurasia.",
+        "type": "Mammal",
+        "order": "Artiodactyla",
+        "family": "Cervidae",
+        "genus": "Dama",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Fallow_deer_in_field.jpg/1280px-Fallow_deer_in_field.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "1.3 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "1.3"
+        },
+    },
+    "Red Deer": {
+        "common": "Red Deer",
+        "scientific": "Cervus elaphus",
+        "info": "The red deer is one of the largest deer species. Common throughout Europe, western Asia, and north Africa, males have impressive antlers which are grown and shed seasonally. They were introduced to various locations for hunting purposes.",
+        "type": "Mammal",
+        "order": "Artiodactyla",
+        "family": "Cervidae",
+        "genus": "Cervus",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/68001185/large.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "2.0 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "2.0"
+        },
+    },
+    "Golden Lion Tamarin": {
+        "common": "Golden Lion Tamarin",
+        "scientific": "Leontopithecus rosalia",
+        "info": "The golden lion tamarin is a highly endangered tamarin species endemic to the Atlantic coastal forests in southeastern Brazil. A large captive population is maintained in several countries as a safety net population.",
+        "type": "Mammal",
+        "order": "Primates",
+        "family": "Callitrichidae",
+        "genus": "Leontopithecus",
+        "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "1.1 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "1.1"
+        },
+    },
+    "Przewalski's Horse": {
+        "common": "Przewalski's Horse",
+        "scientific": "Equus przewalskii",
+        "info": "The ancestor of the domestic horse, the Przewalski's horse once ranged across much of central, east, and north Asia. They were once highly endangered and are one of the first major captive breeding success stories.",
+        "type": "Mammal",
+        "order": "Perissodactyla",
+        "family": "Equidae",
+        "genus": "Equus",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/398125195/large.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "0.1.0.1 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "0.1.0.1"
+        },
+    },
+    "Red-Eyed Crocodile Skink": {
+        "common": "Red-Eyed Crocodile Skink",
+        "scientific": "Tribolonotus gracilis",
+        "info": "A skink that is endemic to New Guinea, the red-eyed crocodile skink has obtained high popularity in the private reptile trade recently. They are rather sensitive if wild caught and captive-bred specimens are hardier.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Egerniidae",
+        "genus": "Tribolonotus",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Red-Eyed_Crocodile_Skink.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "1.1 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "1.1"
+        },
+    },
+    "European Wildcat": {
+        "common": "European Wildcat",
+        "scientific": "Felis silvestris",
+        "info": "A nocturnal wild felid that can be found from the United Kingdom to Azerbaijan. They are endangered in certain regions due to hybridization with domestic and feral cats.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Felis",
+        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/309949.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "0.1 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "0.1"
+        },
+    },
+    "Arctic Fox": {
+        "common": "Arctic Fox",
+        "scientific": "Vulpes lagopus",
+        "info": "The Arctic fox is found only in the Arctic, and is highly adapted for its environment, with thick fur and specialized physiological adaptations to handle the extreme cold.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Vulpes",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/388749029/original.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "1.0 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "1.0"
+        },
+    },
+    "Asian Small-Clawed Otter": {
+        "common": "Asian Small-Clawed Otter",
+        "scientific": "Aonyx cinereus",
+        "info": "The Asian small-clawed otter is the smallest species of otter. They are exceptionally common in zoos due to a need for captive breeding, as the species is listed as Vulnerable in the wild.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Mustelidae",
+        "genus": "Aonyx",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Otter_-_melbourne_zoo.jpg/1280px-Otter_-_melbourne_zoo.jpg",
+        "holdings": {
+            "North America": "0",
+            "Asia": 0,
+            "Europe": "1.1 - Shropshire Hills Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "1.1"
+        },
+    },
+    "Elegant Crested Tinamou": {
+        "common": "Elegant Crested Tinamou",
+        "scientific": "Eudromia elegans",
+        "info": "The elegant crested tinamou is a partridge-like bird native to Argentina's grasslands. During wintertime they live in groups and cover large territories together in search of food.",
+        "type": "Bird",
+        "order": "Tinamiformes",
+        "family": "Tinamidae",
+        "genus": "Eudromia",
+        "image_url": "https://static.inaturalist.org/photos/28265534/large.jpg",
+        "holdings": {
+            "North America": "2.2 - Credit River Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Credit River Zoo": "2.2"
         },
     },
 }
