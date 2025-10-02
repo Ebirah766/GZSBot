@@ -703,6 +703,28 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Credit River Zoo": "0.4"
+
+            },
+            },
+    "Red-Rumped Agouti": {
+        "common": "Red-Rumped Agouti",
+        "scientific": "Dasyprocta leporina",
+        "info": "The red-rumped agouti is an abundant rodent native to northeastern South America. They have been known to follow troops of monkeys in search of dropped food, benefitting off their diligent foraging..",
+        "type": "Mammal",
+        "order": "Rodentia",
+        "family": "Dasyproctidae",
+        "genus": "Dasyprocta",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Red-rumped_Agouti_%2817380318590%29.jpg",
+        "holdings": {
+            "North America": "0.2 - Credit River Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+                },
+        "institutions": {
+            "Credit River Zoo": "0.2"
         },
     },
 }
