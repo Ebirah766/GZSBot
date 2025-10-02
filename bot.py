@@ -493,6 +493,25 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                         "Shropshire Hills Zoo": "1.0"
+                                        "Arctic Fox": {
+                                            "common": "Arctic Fox",
+                                            "scientific": "Vulpes lagopus",
+                                            "info": "The Arctic fox is found only in the Arctic, and is highly adapted for its environment, with thick fur and specialized physiological adaptations to handle the extreme cold.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Canidae",
+                                            "genus": "Vulpes",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/388749029/original.jpg",
+                                            "holdings": {
+                                                "North America": "0",
+                                                "Asia": 0,
+                                                "Europe": "1.0 - Shropshire Hills Zoo",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Shropshire Hills Zoo": "1.0"
         },
     },
 }
