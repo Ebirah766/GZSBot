@@ -745,7 +745,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
         "institutions": {
             "Credit River Zoo": "2.0"
-
+        },
+    },
     "Jaguar": {
         "common": "Jaguar",
         "scientific": "Panthera onca",
@@ -756,35 +757,36 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Panthera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Jaguar_%28Panthera_onca_palustris%29_male_Three_Brothers_River_2_%28cropped%29.jpg",
         "holdings": {
-            "North America": "1.1 - Mint Park Zoo",
+            "North America": 0,
             "Asia": 0,
-            "Europe": 0,
+            "Europe": "1.1 - Mint Park Zoo",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
-                        },
+        },
         "institutions": {
             "Mint Park Zoo": "1.1"
-
-    "Jaguar": {
-         "common": "Jaguar",
-                "scientific": "Panthera onca",
-                "info": "The jaguar is the third largest of the big cats. One of the world's charismatic megafauna, they can be found in North and South America, and are an apex predator in their range, with strong commands of arboreal, terrestrial, and aquatic habitats.",
-                "type": "Mammal",
-                "order": "Carnivora",
-                "family": "Felidae",
-                "genus": "Panthera",
-                "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Jaguar_%28Panthera_onca_palustris%29_male_Three_Brothers_River_2_%28cropped%29.jpg",
-                "holdings": {
-                    "North America": "1.1 - Mint Park Zoo",
-                    "Asia": 0,
-                    "Europe": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                                },
-                "institutions": {
-                    "Mint Park Zoo": "1.1"
+        },
+    },
+    "White-Nosed Coati": {
+        "common": "White-Nosed Coati",
+        "scientific": "Nasua narica",
+        "info": "The white-nosed coati ranges from the southwestern United States to Colombia. It is a highly adaptable species, able to live in a range of habitats, as well as being able to eat many types of food.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Procyonidae",
+        "genus": "Nasua",
+        "image_url": "https://static.inaturalist.org/photos/358875225/large.jpg",
+        "holdings": {
+            "North America": 0,
+            "Asia": 0,
+            "Europe": "1.3 - Mint Park Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+                    "Mint Park Zoo": "1.3"
         },
     },
 }
