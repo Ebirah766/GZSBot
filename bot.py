@@ -316,7 +316,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://example.com/default.jpg",
         "holdings": {
             "North America": 0,
-            "Europe": "Shropshire Hills Zoo (0.0.1.0 [South African])",
+            # <<< CHANGED: list for Europe so it renders as a region header with lines under it
+            "Europe": ["Shropshire Hills Zoo (0.0.1.0 [South African])"],
             "Asia": 0,
             "Africa": 0,
             "South America": 0,
@@ -342,8 +343,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://example.com/default.jpg",
         "holdings": {
             "North America": 0,
-            "Europe": 
-            "Shropshire Hills Zoo 1.3 (Fjord)",
+            # <<< CHANGED: list for Europe + fixed syntax/newline issue
+            "Europe": ["Shropshire Hills Zoo 1.3 (Fjord)"],
             "Asia": 0,
             "Africa": 0,
             "South America": 0,
@@ -538,12 +539,23 @@ def list_to_chunks(lines: List[str], header_prefix: str, per_message_limit: int 
     return out
 
 def format_holdings(holdings: Dict[str, Any]) -> str:
-    lines = []
+    """
+    Renders region holdings. Supports:
+      - int/str: shows 'Region: value'
+      - list[str]: shows 'Region:' on its own line, then each item as '• item'
+    """
+    lines: List[str] = []
     for region in REGIONS:
         value = holdings.get(region, None)
         if value is None or value == "":
             continue
-        lines.append(f"**{region}:** {value}")
+        if isinstance(value, list):
+            if not value:
+                continue
+            lines.append(f"**{region}:**")
+            lines.extend([f"• {item}" for item in value])
+        else:
+            lines.append(f"**{region}:** {value}")
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
 # >>> CHANGED: add image_index param + optional images pager support <<<
