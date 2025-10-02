@@ -96,7 +96,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Batocera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Batocera_maculata_%2833312343742%29.jpg/1200px-Batocera_maculata_%2833312343742%29.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (2)",
+            "North America": "2 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -117,7 +117,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Macaca",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Rhesus_macaque_%28Macaca_mulatta_mulatta%29%2C_male%2C_Gokarna.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (2.4)",
+            "North America": "2.4 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -138,7 +138,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Musca",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/79611144/original.jpeg",
         "holdings": {
-            "North America": "Cube Zoological Park (100)",
+            "North America": "100 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -159,7 +159,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Sus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg/1280px-Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (1.1)",
+            "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -180,7 +180,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Neogale",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/American_Mink.jpg/1280px-American_Mink.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (1.0)",
+            "North America": "1.0 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -201,7 +201,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Bubalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Water_buffalo_at_Rinca.jpg/1280px-Water_buffalo_at_Rinca.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (2.4)",
+            "North America": "2.4 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -222,7 +222,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Micropterus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88108052/original.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (5)",
+            "North America": "5 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -243,7 +243,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Python",
         "image_url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (0.1)",
+            "North America": "0.1 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -264,7 +264,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Athene",
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/205515041/1200",
         "holdings": {
-            "North America": "Cube Zoological Park (1.1)",
+            "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -285,7 +285,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Crotalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Adult_Crotalus_adamanteus.jpg/1280px-Adult_Crotalus_adamanteus.jpg",
         "holdings": {
-            "North America": "Cube Zoological Park (1.0)",
+            "North America": "1.0 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
