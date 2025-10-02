@@ -346,6 +346,27 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Shropshire Hills Zoo": "1.3 [Fjord]"
+            },
+            },
+            "Common Fallow Deer": {
+                "common": "Common Fallow Deer",
+                "scientific": "Dama dama",
+                "info": "A very widespread and common deer species thought to have originated in the Mediterranean region, the common fallow deer is a mainstay in temperate and semi-arid environments across Eurasia.",
+                "type": "Mammal",
+                "order": "Artiodactyla",
+                "family": "Cervidae",
+                "genus": "Dama",
+                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Fallow_deer_in_field.jpg/1280px-Fallow_deer_in_field.jpg",
+                "holdings": {
+                    "North America": "0",
+                    "Asia": 0,
+                    "Europe": "1.3 - Shropshire Hills Zoo",
+                    "Africa": 0,
+                    "South America": 0,
+                    "Oceania": 0,
+                },
+                "institutions": {
+                    "Shropshire Hills Zoo": "1.3"
         },
     },
 }
