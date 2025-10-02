@@ -776,7 +776,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Carnivora",
         "family": "Procyonidae",
         "genus": "Nasua",
-        "image_url": "https://static.inaturalist.org/photos/358875225/large.jpg",
+        "image_url": "https://www.zoochat.com/community/media/white-nosed-coati-nasua-narica.228154/full",
         "holdings": {
             "North America": 0,
             "Asia": 0,
