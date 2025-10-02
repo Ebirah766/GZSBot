@@ -747,6 +747,27 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Credit River Zoo": "2.0"
         },
     },
+    "Jaguar": {
+        "common": "Jaguar",
+        "scientific": "Panthera onca",
+        "info": "The jaguar is the third largest of the big cats. One of the world's charismatic megafauna, they can be found in North and South America, and are an apex predator in their range, with strong commands of arboreal, terrestrial, and aquatic habitats.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Panthera",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Jaguar_%28Panthera_onca_palustris%29_male_Three_Brothers_River_2_%28cropped%29.jpg",
+        "holdings": {
+            "North America": "1.1 - Mint Park Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+                        },
+        "institutions": {
+            "Mint Park Zoo": "1.1"
+        },
+    },
 }
 
 # --- Normalization helpers ---------------------------------------------------
