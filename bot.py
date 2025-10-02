@@ -335,7 +335,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Equidae",
         "genus": "Equus",
         "images": [
-            {"label": "Fjord", "url": "https://horse-canada.s3.ca-central-1.amazonaws.com/wp-content/uploads/2020/07/07074110/fjord-web.jpg"},
+            {"label": "Fjord", "url": "https://madbarn.com/wp-content/uploads/2023/07/Fjord-Horse-Breed-Guide-1.jpg"},
             {"label": "Variant 2 caption", "url": "https://example.com/variant2.jpg"},
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
         ],
