@@ -303,7 +303,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Cheetah": {
         "common": "Cheetah",
         "scientific": "Acinonyx jubatus",
-        "info": "The cheetah is one of the smaller big cat species, and the fastest amongst them. They are one of the most well-known and beloved species of animals, commonly displayed in zoos, though they are difficult to breed",
+        "info": "The cheetah is one of the smaller big cat species, and the fastest amongst them. They are one of the most well-known and beloved species of animals, commonly displayed in zoos, though they are difficult to breed.",
         "type": "Mammal",
         "order": "Carnivora",
         "family": "Felidae",
@@ -315,7 +315,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "image_url": "https://example.com/default.jpg",
         "holdings": {
-            "North America": "Example Zoo (1.2)",
+            "North America": "Shropshire Hills Zoo (0.0.1.0 [South African])",
             "Europe": 0,
             "Asia": 0,
             "Africa": 0,
@@ -323,7 +323,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Example Zoo": "1.2"
+            "Shropshire Hills Zoo": "0.0.1.0 [South African]"
         },
     },
 }
