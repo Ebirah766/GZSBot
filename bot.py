@@ -535,6 +535,26 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Credit River Zoo": "2.2"
+            
+            "Elegant Crested Tinamou": {
+                "common": "Elegant Crested Tinamou",
+                "scientific": "Eudromia elegans",
+                "info": "The elegant crested tinamou is a partridge-like bird native to Argentina's grasslands. During wintertime they live in groups and cover large territories together in search of food.",
+                "type": "Bird",
+                "order": "Tinamiformes",
+                "family": "Tinamidae",
+                "genus": "Eudromia",
+                "image_url": "https://static.inaturalist.org/photos/28265534/large.jpg",
+                "holdings": {
+                    "North America": "2.2 - Credit River Zoo",
+                    "Asia": 0,
+                    "Europe": 0,
+                    "Africa": 0,
+                    "South America": 0,
+                    "Oceania": 0,
+                },
+                "institutions": {
+                    "Credit River Zoo": "2.2"
         },
     },
 }
