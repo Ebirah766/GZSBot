@@ -5,6 +5,7 @@ import logging
 import pathlib
 import difflib
 import re
+import json  # <<< ADDED
 from typing import Dict, Any, Tuple, Optional, List
 
 # --- Logging setup -----------------------------------------------------------
@@ -1032,6 +1033,355 @@ class SpeciesPager(discord.ui.View):
             return await interaction.response.defer()
         self.index = (self.index + 1) % len(self.images)
         await self._refresh(interaction)
+
+# ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
+# ---------- Persistence ----------
+_ZOO_DATA_PATH = pathlib.Path(__file__).with_name("zoo_progress.json")
+
+def _load_zoo_data() -> dict:
+    if _ZOO_DATA_PATH.exists():
+        try:
+            return json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"users": {}, "ownership": {}}
+
+def _save_zoo_data(data: dict) -> None:
+    _ZOO_DATA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+# ---------- Canonical species name ----------
+def _canonical_species_name(user_input: str) -> Optional[str]:
+    """
+    Resolve to the canonical species key stored in species_data (common-name key).
+    Accepts scientific names and close matches (uses your existing resolver).
+    """
+    resolved = resolve_species_key(user_input)
+    if isinstance(resolved, tuple):
+        _exact, suggestion_key = resolved
+        return suggestion_key
+    return resolved
+
+# ---------- User struct ----------
+def _ensure_user_struct(data: dict, user_id: int) -> dict:
+    users = data.setdefault("users", {})
+    u = users.get(str(user_id))
+    if not u:
+        u = {"active_zoo": None, "zoos": {}}
+        users[str(user_id)] = u
+    return u
+
+def _get_active_zoo_or_msg(ctx, user_struct: dict):
+    zoo = user_struct.get("active_zoo")
+    if not zoo:
+        return None, f"{ctx.author.mention} you don’t have an active zoo yet. Set one with `;zoo set <name>`"
+    return zoo, None
+
+def _percent(numerator: int, denominator: int) -> float:
+    return (numerator / denominator * 100.0) if denominator > 0 else 0.0
+
+# ---------- Ownership ----------
+DEFAULT_ZOO_LIMIT = 2  # change this default if you like
+
+def _norm_zoo(name: str) -> str:
+    return " ".join(name.strip().split()).lower()
+
+def _get_user_ownership(data: dict, user_id: int) -> dict:
+    ownership = data.setdefault("ownership", {})
+    rec = ownership.get(str(user_id))
+    if not rec:
+        rec = {"limit": DEFAULT_ZOO_LIMIT, "zoos": []}
+        ownership[str(user_id)] = rec
+    # dedupe by normalized name while keeping original case
+    seen = set()
+    cleaned = []
+    for z in rec["zoos"]:
+        nz = _norm_zoo(z)
+        if nz not in seen:
+            seen.add(nz)
+            cleaned.append(z)
+    rec["zoos"] = cleaned
+    return rec
+
+def _owns_zoo(ownership: dict, zoo_name: str) -> bool:
+    target = _norm_zoo(zoo_name)
+    return any(_norm_zoo(z) == target for z in ownership.get("zoos", []))
+
+def _find_cased_zoo_name(ownership: dict, zoo_name: str) -> Optional[str]:
+    target = _norm_zoo(zoo_name)
+    for z in ownership.get("zoos", []):
+        if _norm_zoo(z) == target:
+            return z
+    return None
+
+def _is_admin(ctx) -> bool:
+    if ctx.guild is None:
+        return True  # allow in DMs
+    author = ctx.author
+    return (author == ctx.guild.owner) or getattr(author.guild_permissions, "manage_guild", False)
+
+# ------------- ;zoo command with ownership -------------
+@bot.command(name="zoo")
+async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
+    """
+    ;zoo set <name>         -> set your active zoo (must own it)
+    ;zoo status             -> show current zoo list and progress
+    ;zoo clear              -> clear your active zoo (keeps data)
+    ;zoo list               -> list your local 'data buckets' (not ownership)
+    ;zoo myzoos             -> show zoos you OWN + your limit usage
+
+    Admin subcommands:
+    ;zoo owner add @user <zoo>
+    ;zoo owner remove @user <zoo>
+    ;zoo owner limit @user <n>
+    ;zoo owner list [@user]
+    """
+    data = _load_zoo_data()
+    user = _ensure_user_struct(data, ctx.author.id)
+    ownership = _get_user_ownership(data, ctx.author.id)
+
+    if subcommand is None:
+        await ctx.send(
+            "Usage:\n"
+            "`;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`\n"
+            "**Admin:** `;zoo owner add @user <zoo>`, `;zoo owner remove @user <zoo>`, "
+            "`;zoo owner limit @user <n>`, `;zoo owner list [@user]`"
+        )
+        return
+
+    sub = subcommand.lower()
+
+    # --- ownership admin ---
+    if sub == "owner":
+        if not _is_admin(ctx):
+            await ctx.send("🚫 You need **Manage Server** to use owner management.")
+            return
+        if not rest:
+            await ctx.send(
+                "Owner admin usage:\n"
+                "`;zoo owner add @user <zoo>`\n"
+                "`;zoo owner remove @user <zoo>`\n"
+                "`;zoo owner limit @user <n>`\n"
+                "`;zoo owner list [@user]`"
+            )
+            return
+
+        parts = rest.split()
+        sub2 = parts[0].lower()
+
+        def _extract_member_and_tail():
+            if ctx.message.mentions:
+                member = ctx.message.mentions[0]
+                mention_str = f"<@{member.id}>"
+                tail = rest
+                for k in ("add", "remove", "limit", "list"):
+                    tail = tail.replace(k, "", 1)
+                tail = tail.replace(mention_str, "", 1).strip()
+                return member, tail
+            return None, None
+
+        if sub2 == "add":
+            member, tail = _extract_member_and_tail()
+            if not member or not tail:
+                await ctx.send("Usage: `;zoo owner add @user <zoo>`")
+                return
+            target_data = _load_zoo_data()
+            target_own = _get_user_ownership(target_data, member.id)
+            zoo_name = " ".join(tail.split())
+            if not _owns_zoo(target_own, zoo_name):
+                if len(target_own["zoos"]) >= int(target_own.get("limit", DEFAULT_ZOO_LIMIT)):
+                    await ctx.send(f"⚠️ {member.mention} is at their limit (**{target_own['limit']}** zoos). Increase with `;zoo owner limit @user <n>`.")
+                    return
+                target_own["zoos"].append(zoo_name)
+                _save_zoo_data(target_data)
+            await ctx.send(f"✅ Granted **{zoo_name}** ownership to {member.mention}.")
+            return
+
+        if sub2 == "remove":
+            member, tail = _extract_member_and_tail()
+            if not member or not tail:
+                await ctx.send("Usage: `;zoo owner remove @user <zoo>`")
+                return
+            target_data = _load_zoo_data()
+            target_own = _get_user_ownership(target_data, member.id)
+            nz = _norm_zoo(tail)
+            before = len(target_own["zoos"])
+            target_own["zoos"] = [z for z in target_own["zoos"] if _norm_zoo(z) != nz]
+            _save_zoo_data(target_data)
+            if len(target_own["zoos"]) < before:
+                await ctx.send(f"✅ Removed **{tail}** from {member.mention}'s ownership.")
+            else:
+                await ctx.send(f"ℹ️ {member.mention} didn’t own **{tail}**.")
+            return
+
+        if sub2 == "limit":
+            member, tail = _extract_member_and_tail()
+            if not member or not tail or not tail.split()[0].isdigit():
+                await ctx.send("Usage: `;zoo owner limit @user <n>`")
+                return
+            n = int(tail.split()[0])
+            target_data = _load_zoo_data()
+            target_own = _get_user_ownership(target_data, member.id)
+            target_own["limit"] = max(0, n)
+            _save_zoo_data(target_data)
+            await ctx.send(f"✅ Set {member.mention}'s zoo limit to **{n}**.")
+            return
+
+        if sub2 == "list":
+            member = ctx.message.mentions[0] if ctx.message.mentions else ctx.author
+            target_own = _get_user_ownership(data, member.id)
+            used = len(target_own["zoos"])
+            if used == 0:
+                await ctx.send(f"{member.mention} owns no zoos. (Limit: {target_own['limit']})")
+            else:
+                await ctx.send(
+                    f"{member.mention} owns ({used}/{target_own['limit']}):\n- " +
+                    "\n- ".join(target_own["zoos"])
+                )
+            return
+
+        await ctx.send("Unknown owner subcommand. Try: `add`, `remove`, `limit`, or `list`.")
+        return
+
+    # --- myzoos (user helper) ---
+    if sub == "myzoos":
+        used = len(ownership["zoos"])
+        if used == 0:
+            await ctx.send(f"You own no zoos. (Limit: {ownership['limit']})")
+        else:
+            await ctx.send(
+                f"You own ({used}/{ownership['limit']}):\n- " +
+                "\n- ".join(ownership["zoos"])
+            )
+        return
+
+    # --- regular subcommands (enforced) ---
+    if sub == "set":
+        if not rest:
+            await ctx.send("Give your zoo a name: `;zoo set Mint Park Zoo`")
+            return
+        requested = " ".join(rest.split())
+        if not _owns_zoo(ownership, requested):
+            await ctx.send(f"🚫 You don’t own **{requested}**. Ask an admin to grant ownership with `;zoo owner add @you {requested}`.")
+            return
+        cased = _find_cased_zoo_name(ownership, requested) or requested
+        user["active_zoo"] = cased
+        user["zoos"].setdefault(cased, [])
+        _save_zoo_data(data)
+        await ctx.send(f"✅ Active zoo set to **{cased}**.")
+        return
+
+    if sub == "status":
+        zoo, msg = _get_active_zoo_or_msg(ctx, user)
+        if msg:
+            await ctx.send(msg); return
+        if not _owns_zoo(ownership, zoo):
+            await ctx.send(f"🚫 You no longer own **{zoo}**. Pick a zoo you own with `;zoo set <name>`.")
+            return
+        housed = user["zoos"].get(zoo, [])
+        total_catalog = len(species_data)
+        housed_valid = [s for s in housed if _canonical_species_name(s)]
+        pct = _percent(len(housed_valid), total_catalog)
+        bar_len = 20
+        filled = round(pct / 100 * bar_len)
+        bar = "█" * filled + "—" * (bar_len - filled)
+        housed_preview = ", ".join(housed_valid[:20]) + (" …" if len(housed_valid) > 20 else "")
+        await ctx.send(
+            f"**{zoo}** — {len(housed_valid)}/{total_catalog} species ({pct:.1f}%)\n"
+            f"`{bar}`\n"
+            f"**Housed:** {housed_preview if housed_valid else '_None yet_'}"
+        )
+        return
+
+    if sub == "clear":
+        user["active_zoo"] = None
+        _save_zoo_data(data)
+        await ctx.send("Cleared your active zoo. Set a new one with `;zoo set <name>`.")
+        return
+
+    if sub == "list":
+        zoos = list(user["zoos"].keys())
+        if not zoos:
+            await ctx.send("You don’t have any zoo data yet. Create data by `;zoo set <owned zoo>` then `;house ...`.")
+            return
+        await ctx.send("Your zoo data buckets:\n- " + "\n- ".join(zoos))
+        return
+
+    await ctx.send("Unknown subcommand. Try `;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, or admin `;zoo owner ...`.")
+
+# ------------- ;house / ;unhouse -------------
+@bot.command(name="house")
+async def house_cmd(ctx, *, species_name: str = None):
+    """
+    Add a species to your active zoo’s housed list.
+    Usage: ;house Whale Shark
+    """
+    if not species_name:
+        await ctx.send("Usage: `;house <species name>` (e.g., `;house Whale Shark`)")
+        return
+
+    data = _load_zoo_data()
+    user = _ensure_user_struct(data, ctx.author.id)
+    ownership = _get_user_ownership(data, ctx.author.id)
+
+    zoo, msg = _get_active_zoo_or_msg(ctx, user)
+    if msg:
+        await ctx.send(msg); return
+    if not _owns_zoo(ownership, zoo):
+        await ctx.send(f"🚫 You don’t own **{zoo}**. Switch with `;zoo set <owned zoo>`.")
+        return
+
+    canonical = _canonical_species_name(species_name)
+    if not canonical:
+        await ctx.send(f"❌ I don’t recognize **{species_name}**. Make sure it’s in the catalog.")
+        return
+
+    housed = user["zoos"].setdefault(zoo, [])
+    if canonical in housed:
+        await ctx.send(f"ℹ️ **{canonical}** is already housed at **{zoo}**.")
+    else:
+        housed.append(canonical)
+        _save_zoo_data(data)
+        total_catalog = len(species_data)
+        pct = _percent(len([s for s in housed if _canonical_species_name(s)]), total_catalog)
+        await ctx.send(f"✅ Added **{canonical}** to **{zoo}**. Progress: {pct:.1f}%")
+
+@bot.command(name="unhouse")
+async def unhouse_cmd(ctx, *, species_name: str = None):
+    """
+    Remove a species from your active zoo’s housed list.
+    Usage: ;unhouse Whale Shark
+    """
+    if not species_name:
+        await ctx.send("Usage: `;unhouse <species name>`")
+        return
+
+    data = _load_zoo_data()
+    user = _ensure_user_struct(data, ctx.author.id)
+    ownership = _get_user_ownership(data, ctx.author.id)
+
+    zoo, msg = _get_active_zoo_or_msg(ctx, user)
+    if msg:
+        await ctx.send(msg); return
+    if not _owns_zoo(ownership, zoo):
+        await ctx.send(f"🚫 You don’t own **{zoo}**. Switch with `;zoo set <owned zoo>`.")
+        return
+
+    canonical = _canonical_species_name(species_name)
+    if not canonical:
+        await ctx.send(f"❌ I don’t recognize **{species_name}**.")
+        return
+
+    housed = user["zoos"].setdefault(zoo, [])
+    if canonical in housed:
+        housed.remove(canonical)
+        _save_zoo_data(data)
+        total_catalog = len(species_data)
+        pct = _percent(len([s for s in housed if _canonical_species_name(s)]), total_catalog)
+        await ctx.send(f"✅ Removed **{canonical}** from **{zoo}**. Progress: {pct:.1f}%")
+    else:
+        await ctx.send(f"ℹ️ **{canonical}** isn’t currently housed at **{zoo}**.")
+
+# ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
 @bot.command(name="card", aliases=["species"])
