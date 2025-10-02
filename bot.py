@@ -453,25 +453,25 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "Shropshire Hills Zoo": "1.1"
                                 },
                                 },
-                                "Red-Eyed Crocodile Skink": {
-                                    "common": "Red-Eyed Crocodile Skink",
-                                    "scientific": "Tribolonotus gracilis",
-                                    "info": "A skink that is endemic to New Guinea, the red-eyed crocodile skink has obtained high popularity in the private reptile trade recently. They are rather sensitive if wild caught and captive-bred specimens are hardier.",
-                                    "type": "Reptile",
-                                    "order": "Squamata",
-                                    "family": "Egerniidae",
-                                    "genus": "Tribolonotus",
-                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Red-Eyed_Crocodile_Skink.jpg",
+                                "European Wildcat": {
+                                    "common": "European Wildcat",
+                                    "scientific": "Felis silvestris",
+                                    "info": "A nocturnal wild felid that can be found from the United Kingdom to Azerbaijan. They are endangered in certain regions due to hybridization with domestic and feral cats.",
+                                    "type": "Mammal",
+                                    "order": "Carnivora",
+                                    "family": "Felidae",
+                                    "genus": "Felis",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/309949.jpg",
                                     "holdings": {
                                         "North America": "0",
                                         "Asia": 0,
-                                        "Europe": "1.1 - Shropshire Hills Zoo",
+                                        "Europe": "0.1 - Shropshire Hills Zoo",
                                         "Africa": 0,
-                                             "South America": 0,
-                                             "Oceania": 0,
-                                         },
-                                          "institutions": {
-                                             "Shropshire Hills Zoo": "1.1"
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                        "Shropshire Hills Zoo": "0.1"
         },
     },
 }
