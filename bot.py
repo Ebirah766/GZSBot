@@ -367,6 +367,27 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
                 "institutions": {
                     "Shropshire Hills Zoo": "1.3"
+                    },
+                    },
+                    "Red Deer": {
+                        "common": "Red Deer",
+                        "scientific": "Cervus elaphus",
+                        "info": "The red deer is one of the largest deer species. Common throughout Europe, western Asia, and north Africa, males have impressive antlers which are grown and shed seasonally. They were introduced to various locations for hunting purposes.",
+                        "type": "Mammal",
+                        "order": "Artiodactyla",
+                        "family": "Cervidae",
+                        "genus": "Cervus",
+                        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/68001185/large.jpg",
+                        "holdings": {
+                            "North America": "0",
+                            "Asia": 0,
+                            "Europe": "2.0 - Shropshire Hills Zoo",
+                            "Africa": 0,
+                            "South America": 0,
+                            "Oceania": 0,
+                        },
+                        "institutions": {
+                            "Shropshire Hills Zoo": "2.0"
         },
     },
 }
