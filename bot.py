@@ -342,7 +342,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://example.com/default.jpg",
         "holdings": {
             "North America": 0,
-            "Europe": "Shropshire Hills Zoo (1.3 [Fjord])",
+            "Europe": 
+            "Shropshire Hills Zoo 1.3 (Fjord)",
             "Asia": 0,
             "Africa": 0,
             "South America": 0,
