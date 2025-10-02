@@ -300,16 +300,16 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Cube Zoological Park": "1.0"
         },
     },
-    "Example Species": {
-        "common": "Example Species",
-        "scientific": "Genus species",
-        "info": "A short description of the species.",
+    "Cheetah": {
+        "common": "Cheetah",
+        "scientific": "Acinonyx jubatus",
+        "info": "The cheetah is one of the smaller big cat species, and the fastest amongst them. They are one of the most well-known and beloved species of animals, commonly displayed in zoos, though they are difficult to breed",
         "type": "Mammal",
         "order": "Carnivora",
-        "family": "Exampleidae",
-        "genus": "Genus",
+        "family": "Felidae",
+        "genus": "Acinonyx",
         "images": [
-            {"label": "Variant 1 caption", "url": "https://example.com/variant1.jpg"},
+            {"label": "South African cheetah", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/1280px-Male_cheetah_facing_left_in_South_Africa.jpg"},
             {"label": "Variant 2 caption", "url": "https://example.com/variant2.jpg"},
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
         ],
