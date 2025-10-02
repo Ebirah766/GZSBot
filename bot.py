@@ -388,6 +388,27 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
                         "institutions": {
                             "Shropshire Hills Zoo": "2.0"
+                        },
+                        },
+                        "Golden Lion Tamarin": {
+                            "common": "Golden Lion Tamarin",
+                            "scientific": "Leontopithecus rosalia",
+                            "info": "The golden lion tamarin is a highly endangered tamarin species endemic to the Atlantic coastal forests in southeastern Brazil. A large captive population is maintained in several countries as a safety net population.",
+                            "type": "Mammal",
+                            "order": "Primates",
+                            "family": "Callitrichidae",
+                            "genus": "Leontopithecus",
+                            "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
+                            "holdings": {
+                                "North America": "0",
+                                "Asia": 0,
+                                "Europe": "1.1 - Shropshire Hills Zoo",
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0,
+                            },
+                            "institutions": {
+                                "Shropshire Hills Zoo": "1.1"
         },
     },
 }
