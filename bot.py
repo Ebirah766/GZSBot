@@ -324,7 +324,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     },
     "Domestic Horse": {
         "common": "Domestic Horse",
-        "scientific": "Equus ferus caballus",
+        "scientific": "Equus caballus",
         "info": "The domestic horse is one of the most famous domesticated animals. Originating in Central Asia, they have spread to every continent in both domestic and feral forms.",
         "type": "Mammal",
         "order": "Perissodactyla",
@@ -388,27 +388,48 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
                         "institutions": {
                             "Shropshire Hills Zoo": "2.0"
+                    },
+                    },
+                    "Golden Lion Tamarin": {
+                        "common": "Golden Lion Tamarin",
+                        "scientific": "Leontopithecus rosalia",
+                        "info": "The golden lion tamarin is a highly endangered tamarin species endemic to the Atlantic coastal forests in southeastern Brazil. A large captive population is maintained in several countries as a safety net population.",
+                        "type": "Mammal",
+                        "order": "Primates",
+                        "family": "Callitrichidae",
+                        "genus": "Leontopithecus",
+                        "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
+                        "holdings": {
+                            "North America": "0",
+                            "Asia": 0,
+                            "Europe": "1.1 - Shropshire Hills Zoo",
+                            "Africa": 0,
+                            "South America": 0,
+                            "Oceania": 0,
                         },
-                        },
-                        "Golden Lion Tamarin": {
-                            "common": "Golden Lion Tamarin",
-                            "scientific": "Leontopithecus rosalia",
-                            "info": "The golden lion tamarin is a highly endangered tamarin species endemic to the Atlantic coastal forests in southeastern Brazil. A large captive population is maintained in several countries as a safety net population.",
+                        "institutions": {
+                            "Shropshire Hills Zoo": "1.1"
+                            },
+                            },
+                        "Przewalski's Horse": {
+                            "common": "Przewalski's Horse",
+                            "scientific": "Equus przewalskii",
+                            "info": "The ancestor of the domestic horse, the Przewalski's horse once ranged across much of central, east, and north Asia. They were once highly endangered and are one of the first major captive breeding success stories.",
                             "type": "Mammal",
-                            "order": "Primates",
-                            "family": "Callitrichidae",
-                            "genus": "Leontopithecus",
-                            "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
+                            "order": "Perissodactyla",
+                            "family": "Equidae",
+                            "genus": "Equus",
+                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/398125195/large.jpg",
                             "holdings": {
                                 "North America": "0",
                                 "Asia": 0,
-                                "Europe": "1.1 - Shropshire Hills Zoo",
+                                "Europe": "0.1.0.1 - Shropshire Hills Zoo",
                                 "Africa": 0,
                                 "South America": 0,
                                 "Oceania": 0,
                             },
                             "institutions": {
-                                "Shropshire Hills Zoo": "1.1"
+                                "Shropshire Hills Zoo": "0.1.0.1"
         },
     },
 }
