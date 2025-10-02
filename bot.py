@@ -574,11 +574,10 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
-        },
+            },
         "institutions": {
             "Credit River Zoo": "1.0"
-        },
-    },
+           
     "American White Ibis": {
         "common": "American White Ibis",
         "scientific": "Eudocimus albus",
@@ -598,6 +597,26 @@ species_data: Dict[str, Dict[str, Any]] = {
             },
         "institutions": {
             "Credit River Zoo": "3.0"
+
+            "American White Ibis": {
+                "common": "American White Ibis",
+                "scientific": "Eudocimus albus",
+                "info": "The American white ibis can be found in coastal areas of North and South America. They gather in massive colonies during breeding season by the waterside and defend their nesting sites fiercely.",
+                "type": "Bird",
+                "order": "Pelecaniformes",
+                "family": "Threskiornithidae",
+                "genus": "Eudocimus",
+                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/395236.jpg",
+                "holdings": {
+                    "North America": "3.0 - Credit River Zoo",
+                    "Asia": 0,
+                     "Europe": 0,
+                     "Africa": 0,
+                     "South America": 0,
+                    "Oceania": 0,
+                    },
+                "institutions": {
+                    "Credit River Zoo": "3.0"
         },
     },
 }
