@@ -616,11 +616,11 @@ species_data: Dict[str, Dict[str, Any]] = {
              "Africa": 0,
                 "South America": 0,
             "Oceania": 0,
-            },
+        },
         "institutions": {
             "Credit River Zoo": "0.2"
-            },
-            },
+        },
+    },
     "Linnaeus's Two-Toed Sloth": {
         "common": "Linnaeus's Two-Toed Sloth",
         "scientific": "Cholowepus didactylus",
@@ -637,29 +637,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                 "Africa": 0,
                 "South America": 0,
             "Oceania": 0,
-            },
+        },
         "institutions": {
             "Credit River Zoo": "0.1"
-
-    "Linnaeus's Two-Toed Sloth": {
-        "common": "Linnaeus's Two-Toed Sloth",
-        "scientific": "Cholowepus didactylus",
-        "info": "Linnaeus's two-toed sloth is the largest extant sloth species. They live in the rainforests of northern South America, and are closely related to the extinct giant ground sloths.",
+        },
+    },
+    "White-Faced Saki": {
+        "common": "White-Faced Saki",
+        "scientific": "Pithecia pithecia",
+        "info": "The white-faced saki is a distinctive species of New World Monkey native to a small area of South America. The male possesses the distinctive white face, while the female has uniformly black-silver fur.",
         "type": "Mammal",
-        "order": "Pilosa",
-        "family": "Choloepodidae",
-        "genus": "Choloepus",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cholepus_didactylus_-_Flickr_-_Dick_Culbert.jpg",
-                "holdings": {
-                    "North America": "0.1 - Credit River Zoo",
-                      "Asia": 0,
-                    "Europe": 0,
-                        "Africa": 0,
-                        "South America": 0,
-                    "Oceania": 0,
-                    },
-                "institutions": {
-                    "Credit River Zoo": "0.1"
+        "order": "Primates",
+        "family": "Pitheciidae",
+        "genus": "Pithecia",
+        "image_url": "https://www.marwell.org.uk/wp-content/uploads/2021/07/White-faced-saki-Pithecia-pithecia-Marwell-Zoo.jpg",
+        "holdings": {
+            "North America": "1.1 - Credit River Zoo",
+                "Asia": 0,
+                "Europe": 0,
+                "Africa": 0,
+                "South America": 0,
+                "Oceania": 0,
+            },
+        "institutions": {
+            "Credit River Zoo": "1.1"
         },
     },
 }
