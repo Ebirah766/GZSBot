@@ -535,26 +535,27 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Credit River Zoo": "2.2"
-            
-            "Elegant Crested Tinamou": {
-                "common": "Elegant Crested Tinamou",
-                "scientific": "Eudromia elegans",
-                "info": "The elegant crested tinamou is a partridge-like bird native to Argentina's grasslands. During wintertime they live in groups and cover large territories together in search of food.",
-                "type": "Bird",
-                "order": "Tinamiformes",
-                "family": "Tinamidae",
-                "genus": "Eudromia",
-                "image_url": "https://static.inaturalist.org/photos/28265534/large.jpg",
-                "holdings": {
-                    "North America": "2.2 - Credit River Zoo",
-                    "Asia": 0,
-                    "Europe": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                },
-                "institutions": {
-                    "Credit River Zoo": "2.2"
+        },
+    },
+    "American Flamingo": {
+        "common": "American Flamingo",
+        "scientific": "Phoenicopterus ruber",
+        "info": "Perhaps the most well-known and iconic flamingo species, the American flamingo can be found in North and South America as well as the Galapagos Islands. When they feed they turn their beaks upside down and filter feed with their beaks.",
+        "type": "Bird",
+        "order": "Phoenicopteriformes",
+        "family": "Phoenicopteridae",
+        "genus": "Phoenicopterus",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/258687300/large.jpg",
+        "holdings": {
+            "North America": "5.5 - Credit River Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+         },
+        "institutions": {
+            "Credit River Zoo": "5.5"
         },
     },
 }
