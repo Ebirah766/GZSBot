@@ -703,13 +703,12 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Credit River Zoo": "0.4"
-
-            },
-            },
+        },
+    },
     "Red-Rumped Agouti": {
         "common": "Red-Rumped Agouti",
         "scientific": "Dasyprocta leporina",
-        "info": "The red-rumped agouti is an abundant rodent native to northeastern South America. They have been known to follow troops of monkeys in search of dropped food, benefitting off their diligent foraging..",
+        "info": "The red-rumped agouti is an abundant rodent native to northeastern South America. They have been known to follow troops of monkeys in search of dropped food, benefitting off their diligent foraging.",
         "type": "Mammal",
         "order": "Rodentia",
         "family": "Dasyproctidae",
@@ -725,6 +724,27 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
         "institutions": {
             "Credit River Zoo": "0.2"
+        },
+    },
+    "Yellow-Naped Amazon": {
+        "common": "Yellow-Naped Amazon",
+        "scientific": "Amazona auropalliata",
+        "info": "This amazon species is critically endangered due to deforestation and massive capture for the private trade. They are native to Central America and the last stronghold for their population is in Costa Rica.",
+        "type": "Bird",
+        "order": "Psittaciformes",
+        "family": "Psittacidae",
+        "genus": "Amazona",
+        "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/44406711/1200",
+        "holdings": {
+            "North America": "2.0 - Credit River Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+                        },
+        "institutions": {
+            "Credit River Zoo": "2.0"
         },
     },
 }
