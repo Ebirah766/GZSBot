@@ -300,40 +300,56 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Cube Zoological Park": "1.0"
         },
     },
-        "Cheetah": {
-            "common": "Cheetah",
-            "scientific": "Acinonyx jubatus",
-            "info": "The cheetah is one of the smaller big cat species, and the fastest amongst them. They are one of the most well-known and beloved species of animals, commonly displayed in zoos, though they are difficult to breed.",
-            "type": "Mammal",
-            "order": "Carnivora",
-            "family": "Felidae",
-            "genus": "Acinonyx",
-
-            # ✅ Variants with captions + images
-            "images": [
-            {"South African cheetah": "Variant 1 caption", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/1280px-Male_cheetah_facing_left_in_South_Africa.jpg"},
+    "Cheetah": {
+        "common": "Cheetah",
+        "scientific": "Acinonyx jubatus",
+        "info": "The cheetah is one of the smaller big cat species, and the fastest amongst them. They are one of the most well-known and beloved species of animals, commonly displayed in zoos, though they are difficult to breed.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Acinonyx",
+        "images": [
+            {"label": "South African cheetah", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/1280px-Male_cheetah_facing_left_in_South_Africa.jpg"},
             {"label": "Variant 2 caption", "url": "https://example.com/variant2.jpg"},
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
-    ],
-
-            # Optional fallback image (used if no variants, or for old messages)
-            "image_url": "https://example.com/default.jpg",
-
-            # Regional holdings
-    "holdings": {
-        "North America": "Shropshire Hills Zoo (0.0.1.0 [South African])",
-        "Europe": 0,
-        "Asia": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
+        ],
+        "image_url": "https://example.com/default.jpg",
+        "holdings": {
+            "North America": 0,
+            "Europe": "Shropshire Hills Zoo (0.0.1.0 [South African])",
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "0.0.1.0 [South African]"
+        },
     },
-
-    # Optional per-institution breakdown
-    "institutions": {
-        "Shropshire Hills Zoo": "0.0.1.0 [South African]"
-    },
-},
+    "Domestic Horse": {
+        "common": "Domestic Horse",
+        "scientific": "Equus ferus caballus",
+        "info": "The domestic horse is one of the most famous domesticated animals. Originating in Central Asia, they have spread to every continent in both domestic and feral forms.",
+        "type": "Mammal",
+        "order": "Perissodactyla",
+        "family": "Equidae",
+        "genus": "Equus",
+        "images": [
+            {"label": "Fjord", "url": "https://horse-canada.s3.ca-central-1.amazonaws.com/wp-content/uploads/2020/07/07074110/fjord-web.jpg"},
+            {"label": "Variant 2 caption", "url": "https://example.com/variant2.jpg"},
+            {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
+        ],
+        "image_url": "https://example.com/default.jpg",
+        "holdings": {
+            "North America": 0,
+            "Europe": "Shropshire Hills Zoo (1.3 [Fjord])",
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Shropshire Hills Zoo": "1.3 [Fjord]"
         },
     },
 }
