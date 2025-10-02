@@ -658,51 +658,51 @@ species_data: Dict[str, Dict[str, Any]] = {
                 "Africa": 0,
                 "South America": 0,
                 "Oceania": 0,
-            },
+        },
         "institutions": {
             "Credit River Zoo": "1.1"
-            },
-            },
-            "White-Faced Saki": {
-                "common": "White-Faced Saki",
-                "scientific": "Pithecia pithecia",
-                "info": "The white-faced saki is a distinctive species of New World Monkey native to a small area of South America. The male possesses the distinctive white face, while the female has uniformly black-silver fur.",
-                "type": "Mammal",
-                "order": "Primates",
-                "family": "Pitheciidae",
-                "genus": "Pithecia",
-                "image_url": "https://www.marwell.org.uk/wp-content/uploads/2021/07/White-faced-saki-Pithecia-pithecia-Marwell-Zoo.jpg",
-                "holdings": {
-                    "North America": "1.1 - Credit River Zoo",
-                        "Asia": 0,
-                        "Europe": 0,
-                        "Africa": 0,
-                        "South America": 0,
-                        "Oceania": 0,
-                    },
-                "institutions": {
-                    "Credit River Zoo": "1.1"},
-                    
-            },
-                    "Cotton-Top Tamarin": {
-                        "common": "Cotton-Top Tamarin",
-                        "scientific": "Saguinus oedipus",
-                        "info": "A small, critically endangered New World monkey, the cotton-top tamarin is the subject of an extensive international breeding program. Their native range consists of a small patch of rainforest in Colombia.",
-                        "type": "Mammal",
-                        "order": "Primates",
-                        "family": "Callitrichidae",
-                        "genus": "Saguinus",
-                        "image_url": "https://dwazoo.com/wp-content/uploads/2023/01/cotton2-scaled.jpg",
-                        "holdings": {
-                            "North America": "1.3 - Credit River Zoo",
-                                "Asia": 0,
-                                "Europe": 0,
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0,
-                            },
-                        "institutions": {
-                            "Credit River Zoo": "1.3"
+        },
+    },
+    "Cotton-Top Tamarin": {
+        "common": "Cotton-Top Tamarin",
+        "scientific": "Saguinus oedipus",
+        "info": "A small, critically endangered New World monkey, the cotton-top tamarin is the subject of an extensive international breeding program. Their native range consists of a small patch of rainforest in Colombia.",
+        "type": "Mammal",
+        "order": "Primates",
+        "family": "Callitrichidae",
+        "genus": "Saguinus",
+        "image_url": "https://dwazoo.com/wp-content/uploads/2023/01/cotton2-scaled.jpg",
+        "holdings": {
+            "North America": "1.3 - Credit River Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Credit River Zoo": "1.3"
+        },
+    },
+    "Black-Bellied Whistling Duck": {
+        "common": "Black-Bellied Whistling Duck",
+        "scientific": "Dendrocygna autumnalis",
+        "info": "The black-bellied whistling duck is a medium to large sized duck species with a loud call. They live in large groups, and are monogamous, unusual for ducks.",
+        "type": "Bird",
+        "order": "Anseriformes",
+        "family": "Anatidae",
+        "genus": "Dendrocygna",
+        "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/03/Dendrocygna-autumnalis-fulgens-2.jpg",
+        "holdings": {
+            "North America": "0.4 - Credit River Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Credit River Zoo": "0.4"
         },
     },
 }
