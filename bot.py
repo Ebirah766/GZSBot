@@ -663,35 +663,42 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
         log.exception("Error in ;holdings")
         await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
 
-        @bot.command(name="type")
-        async def cmd_type(ctx: commands.Context, *, name: str):
-            try:
-                # special case: list ALL species
-                if name.strip().lower() == "all":
-                    names = sorted(species_data.keys(), key=lambda s: s.lower())
-                    lines = [f"- {n}" for n in names]
-                    for chunk in list_to_chunks(lines, header_prefix=f"**All Species in Database ({len(names)} total)**"):
-                        await ctx.send(chunk)
-                    return
+@bot.command(name="type")
+async def cmd_type(ctx: commands.Context, *, name: str):
+    try:
+        # --- special case: list ALL species in the DB ---
+        if name and name.strip().lower() == "all":
+            names = sorted(species_data.keys(), key=lambda s: s.lower())
+            if not names:
+                await ctx.send("No species are stored yet.")
+                return
+            lines = [f"- {n}" for n in names]
+            for chunk in list_to_chunks(lines, header_prefix=f"**All Species in Database ({len(names)} total)**"):
+                await ctx.send(chunk)
+            return
 
-                entry, msg = get_entry_or_message(name)
-                if not msg:
-                    value = entry.get("type")
-                    if value:
-                        await ctx.send(f"**{entry['common']}** is a **{value}**.")
-                    else:
-                        await ctx.send(f"No type information stored for **{entry['common']}**.")
-                    return
-                display, species_names = match_type_or_order(name, field="type")
-                if display and species_names:
-                    lines = [f"- {n}" for n in species_names]
-                    for chunk in list_to_chunks(lines, header_prefix=f"**Species in type {display}**"):
-                        await ctx.send(chunk)
-                    return
-                await ctx.send(msg)
-            except Exception:
-                log.exception("Error in ;type")
-                await ctx.send(f"Sorry, something went wrong processing **{name}**.")
+        # --- normal behavior (single species or a type category) ---
+        entry, msg = get_entry_or_message(name)
+        if not msg:
+            value = entry.get("type")
+            if value:
+                await ctx.send(f"**{entry['common']}** is a **{value}**.")
+            else:
+                await ctx.send(f"No type information stored for **{entry['common']}**.")
+            return
+
+        # If not a species, try interpreting the input as a type name
+        display, species_names = match_type_or_order(name, field="type")
+        if display and species_names:
+            lines = [f"- {n}" for n in species_names]
+            for chunk in list_to_chunks(lines, header_prefix=f"**Species in type {display}**"):
+                await ctx.send(chunk)
+            return
+
+        await ctx.send(msg)
+    except Exception:
+        log.exception("Error in ;type")
+        await ctx.send(f"Sorry, something went wrong processing **{name}**.")
 
 @bot.command(name="order")
 async def cmd_order(ctx: commands.Context, *, name: str):
