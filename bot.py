@@ -535,8 +535,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Credit River Zoo": "2.2"
-        },
-    },
+            
     "American Flamingo": {
         "common": "American Flamingo",
         "scientific": "Phoenicopterus ruber",
@@ -554,6 +553,26 @@ species_data: Dict[str, Dict[str, Any]] = {
             "South America": 0,
             "Oceania": 0,
          },
+        "institutions": {
+            "Credit River Zoo": "5.5"
+
+    "Southern Screamer": {
+        "common": "American Flamingo",
+        "scientific": "Phoenicopterus ruber",
+        "info": "Perhaps the most well-known and iconic flamingo species, the American flamingo can be found in North and South America as well as the Galapagos Islands. When they feed they turn their beaks upside down and filter feed with their beaks.",
+        "type": "Bird",
+        "order": "Phoenicopteriformes",
+        "family": "Phoenicopteridae",
+        "genus": "Phoenicopterus",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/258687300/large.jpg",
+        "holdings": {
+            "North America": "5.5 - Credit River Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
         "institutions": {
             "Credit River Zoo": "5.5"
         },
