@@ -624,7 +624,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Linnaeus's Two-Toed Sloth": {
         "common": "Linnaeus's Two-Toed Sloth",
         "scientific": "Choloepus didactylus",
-        "info": "Linnaeus's two-toed sloth is the largest extant sloth species. They live in the rainforests of northern South America, and are closely related to the extinct giant ground sloths.",
+        "info": "Linnaeus's two-toed sloth is the largest extant sloth species. They live in the rainforests of northern South America and are closely related to the extinct giant ground sloths.",
         "type": "Mammal",
         "order": "Pilosa",
         "family": "Choloepodidae",
