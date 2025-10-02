@@ -300,40 +300,30 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Cube Zoological Park": "1.0"
         },
     },
-        "Example Species": {
-            "common": "Example Species",
-            "scientific": "Genus species",
-            "info": "A short description of the species.",
-            "type": "Mammal",
-            "order": "Carnivora",
-            "family": "Exampleidae",
-            "genus": "Genus",
-
-            # ✅ Variants with captions + images
-            "images": [
+    "Example Species": {
+        "common": "Example Species",
+        "scientific": "Genus species",
+        "info": "A short description of the species.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Exampleidae",
+        "genus": "Genus",
+        "images": [
             {"label": "Variant 1 caption", "url": "https://example.com/variant1.jpg"},
             {"label": "Variant 2 caption", "url": "https://example.com/variant2.jpg"},
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
-    ],
-
-            # Optional fallback image (used if no variants, or for old messages)
-            "image_url": "https://example.com/default.jpg",
-
-            # Regional holdings
-    "holdings": {
-        "North America": "Example Zoo (1.2)",
-        "Europe": 0,
-        "Asia": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-    },
-
-    # Optional per-institution breakdown
-    "institutions": {
-        "Example Zoo": "1.2"
-    },
-},
+        ],
+        "image_url": "https://example.com/default.jpg",
+        "holdings": {
+            "North America": "Example Zoo (1.2)",
+            "Europe": 0,
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Example Zoo": "1.2"
         },
     },
 }
