@@ -953,7 +953,6 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
     for region in REGIONS:
         value = holdings.get(region, None)
         if value is None or value == "":
-            # treat as 0 / skip to explicit zero
             lines.append(f"**{region}:** 0")
             continue
 
@@ -965,8 +964,6 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
             else:
                 lines.append(f"**{region}:** 0")
         else:
-            # Normalize singular values
-            # If numeric zero or string "0" -> show zero inline
             if (isinstance(value, (int, float)) and int(value) == 0) or (isinstance(value, str) and value.strip() == "0"):
                 lines.append(f"**{region}:** 0")
             else:
@@ -1044,7 +1041,8 @@ def _load_zoo_data() -> dict:
             return json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
         except Exception:
             pass
-    return {"users": {}, "ownership": {}}
+    # >>> NEW: add "directory" bucket for metadata like location
+    return {"users": {}, "ownership": {}, "directory": {}}
 
 def _save_zoo_data(data: dict) -> None:
     _ZOO_DATA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -1119,6 +1117,100 @@ def _is_admin(ctx) -> bool:
     author = ctx.author
     return (author == ctx.guild.owner) or getattr(author.guild_permissions, "manage_guild", False)
 
+# >>> NEW: helpers to find owners & metadata and build UI ---------------------
+def _find_all_owners(data: dict, zoo_name: str) -> List[int]:
+    """Return list of user IDs who own this zoo name."""
+    owners: List[int] = []
+    target = _norm_zoo(zoo_name)
+    for uid, rec in data.get("ownership", {}).items():
+        for z in rec.get("zoos", []):
+            if _norm_zoo(z) == target:
+                owners.append(int(uid))
+                break
+    return owners
+
+def _get_housed_list_for_owner(data: dict, owner_id: int, zoo_name: str) -> List[str]:
+    """Return housed species for a given owner's zoo bucket."""
+    user = data.get("users", {}).get(str(owner_id))
+    if not user:
+        return []
+    return list(user.get("zoos", {}).get(zoo_name, []))
+
+def _bar(pct: float, length: int = 20) -> str:
+    filled = round(pct / 100 * length)
+    return "█" * filled + "—" * (length - filled)
+
+def _get_zoo_meta(data: dict, zoo_name: str) -> dict:
+    directory = data.setdefault("directory", {})
+    entry = directory.get(zoo_name)
+    if not entry:
+        entry = {"location": None, "image_url": None}
+        directory[zoo_name] = entry
+    return entry
+
+def _set_zoo_meta_field(data: dict, zoo_name: str, field: str, value: Optional[str]) -> None:
+    entry = _get_zoo_meta(data, zoo_name)
+    entry[field] = value
+
+def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discord.Embed:
+    owners = _find_all_owners(data, zoo_name)
+    owner_mentions = []
+    for uid in owners:
+        member = None
+        if ctx.guild:
+            member = ctx.guild.get_member(uid)
+        owner_mentions.append(member.mention if member else f"<@{uid}>")
+    owner_text = ", ".join(owner_mentions) if owner_mentions else "_Unassigned_"
+
+    # choose housed list: prefer current user if they own it; else first owner
+    housed_list: List[str] = []
+    if str(ctx.author.id) in data.get("ownership", {}) and _owns_zoo(_get_user_ownership(data, ctx.author.id), zoo_name):
+        housed_list = _get_housed_list_for_owner(data, ctx.author.id, zoo_name)
+    elif owners:
+        housed_list = _get_housed_list_for_owner(data, owners[0], zoo_name)
+
+    total_catalog = len(species_data)
+    housed_valid = [s for s in housed_list if _canonical_species_name(s)]
+    pct = _percent(len(housed_valid), total_catalog)
+
+    # Cataloged holdings (counts) from institutions (if present)
+    holdings_lines, total_inds, sp_count = format_institution_holdings(zoo_name)
+    if isinstance(holdings_lines, list):
+        # pick first chunk header removed; embed a compact slice
+        # flatten the first chunk after header line
+        preview_block = holdings_lines[0].split("\n", 1)[1] if holdings_lines else ""
+        catalog_preview = "\n".join(preview_block.splitlines()[:10]) + ("\n… (use `;holdings {}` for more)".format(zoo_name) if sp_count > 10 else "")
+    else:
+        catalog_preview = "_No cataloged holdings recorded in species_data._"
+
+    meta = _get_zoo_meta(data, zoo_name)
+    location = meta.get("location") or "_Unknown_"
+    image_url = meta.get("image_url")
+
+    e = discord.Embed(
+        title=zoo_name,
+        description=f"**Location:** {location}\n**Owner(s):** {owner_text}",
+        color=discord.Color.green()
+    )
+    e.add_field(
+        name="Housed Progress",
+        value=f"{len(housed_valid)}/{total_catalog} species ({pct:.1f}%)\n`{_bar(pct)}`",
+        inline=False
+    )
+
+    if housed_valid:
+        preview = ", ".join(housed_valid[:20]) + (" …" if len(housed_valid) > 20 else "")
+        e.add_field(name="Housed Species (your checklist)", value=preview, inline=False)
+    else:
+        e.add_field(name="Housed Species (your checklist)", value="_None yet_ • Add with `;house <species>`", inline=False)
+
+    e.add_field(name="Cataloged Holdings (counts)", value=catalog_preview, inline=False)
+
+    if image_url:
+        e.set_thumbnail(url=image_url)
+
+    return e
+
 # ------------- ;zoo command with ownership -------------
 @bot.command(name="zoo")
 async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
@@ -1128,6 +1220,9 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
     ;zoo clear              -> clear your active zoo (keeps data)
     ;zoo list               -> list your local 'data buckets' (not ownership)
     ;zoo myzoos             -> show zoos you OWN + your limit usage
+    ;zoo view [name]        -> UI card for active zoo or provided name
+    ;zoo meta location <text>      -> set location for your active zoo
+    ;zoo meta image <url>          -> set thumbnail image for your active zoo
 
     Admin subcommands:
     ;zoo owner add @user <zoo>
@@ -1142,7 +1237,8 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
     if subcommand is None:
         await ctx.send(
             "Usage:\n"
-            "`;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`\n"
+            "`;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, `;zoo view [name]`\n"
+            "`;zoo meta location <text>` • `;zoo meta image <url>`\n"
             "**Admin:** `;zoo owner add @user <zoo>`, `;zoo owner remove @user <zoo>`, "
             "`;zoo owner limit @user <n>`, `;zoo owner list [@user]`"
         )
@@ -1254,6 +1350,52 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
             )
         return
 
+    # >>> NEW: meta tools (location/image) ------------------------------------
+    if sub == "meta":
+        if not rest:
+            await ctx.send("Usage: `;zoo meta location <text>` • `;zoo meta image <url>`")
+            return
+
+        parts = rest.split(maxsplit=1)
+        if len(parts) < 2:
+            await ctx.send("Usage: `;zoo meta location <text>` • `;zoo meta image <url>`")
+            return
+        field, value = parts[0].lower(), parts[1].strip()
+
+        # must have an active zoo you own
+        zoo, msg = _get_active_zoo_or_msg(ctx, user)
+        if msg:
+            await ctx.send(msg); return
+        if not _owns_zoo(ownership, zoo):
+            await ctx.send(f"🚫 You don’t own **{zoo}**. Switch with `;zoo set <owned zoo>`.")
+            return
+
+        if field not in ("location", "image"):
+            await ctx.send("Unknown meta field. Use `location` or `image`.")
+            return
+
+        data = _load_zoo_data()
+        _set_zoo_meta_field(data, zoo, "location" if field == "location" else "image_url", value)
+        _save_zoo_data(data)
+        await ctx.send(f"✅ Updated **{field}** for **{zoo}**.")
+        return
+
+    # >>> NEW: view UI card ----------------------------------------------------
+    if sub == "view":
+        target_zoo = None
+        if rest and rest.strip():
+            target_zoo = " ".join(rest.split())
+        else:
+            z, msg = _get_active_zoo_or_msg(ctx, user)
+            if msg:
+                await ctx.send(msg); return
+            target_zoo = z
+
+        # allow viewing even if you don't own it; UI will still show owner(s)
+        e = _build_zoo_embed(ctx, target_zoo, data)
+        await ctx.send(embed=e)
+        return
+
     # --- regular subcommands (enforced) ---
     if sub == "set":
         if not rest:
@@ -1306,7 +1448,7 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
         await ctx.send("Your zoo data buckets:\n- " + "\n- ".join(zoos))
         return
 
-    await ctx.send("Unknown subcommand. Try `;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, or admin `;zoo owner ...`.")
+    await ctx.send("Unknown subcommand. Try `;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, `;zoo view [name]`, `;zoo meta ...`, or admin `;zoo owner ...`.")
 
 # ------------- ;house / ;unhouse -------------
 @bot.command(name="house")
