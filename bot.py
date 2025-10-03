@@ -1162,83 +1162,82 @@ def _set_zoo_meta_field(data: dict, zoo_name: str, field: str, value: Optional[s
     entry = _get_zoo_meta(data, zoo_name)
     entry[field] = value
 
-    def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discord.Embed:
-        owners = _find_all_owners(data, zoo_name)
-        owner_mentions = []
-        for uid in owners:
-            member = None
-            if ctx.guild:
-                member = ctx.guild.get_member(uid)
-            owner_mentions.append(member.mention if member else f"<@{uid}>")
-        owner_text = ", ".join(owner_mentions) if owner_mentions else "_Unassigned_"
+def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discord.Embed:
+    owners = _find_all_owners(data, zoo_name)
+    owner_mentions = []
+    for uid in owners:
+        member = None
+        if ctx.guild:
+            member = ctx.guild.get_member(uid)
+        owner_mentions.append(member.mention if member else f"<@{uid}>")
+    owner_text = ", ".join(owner_mentions) if owner_mentions else "_Unassigned_"
 
-        # choose housed list: prefer current user if they own it; else first owner
-        housed_list: List[str] = []
-        if str(ctx.author.id) in data.get("ownership", {}) and _owns_zoo(_get_user_ownership(data, ctx.author.id), zoo_name):
-            housed_list = _get_housed_list_for_owner(data, ctx.author.id, zoo_name)
-        elif owners:
-            housed_list = _get_housed_list_for_owner(data, owners[0], zoo_name)
+    # choose housed list: prefer current user if they own it; else first owner
+    housed_list: List[str] = []
+    if str(ctx.author.id) in data.get("ownership", {}) and _owns_zoo(_get_user_ownership(data, ctx.author.id), zoo_name):
+        housed_list = _get_housed_list_for_owner(data, ctx.author.id, zoo_name)
+    elif owners:
+        housed_list = _get_housed_list_for_owner(data, owners[0], zoo_name)
 
-        housed_valid = [s for s in housed_list if _canonical_species_name(s)]
+    housed_valid = [s for s in housed_list if _canonical_species_name(s)]
 
-        # Progress based on cataloged species
-        catalog_set = _catalog_species_for_zoo(zoo_name)
-        denom = len(catalog_set)
-        num = len([s for s in housed_valid if s in catalog_set])
-        pct = _percent(num, denom)
+    # Progress based on cataloged species
+    catalog_set = _catalog_species_for_zoo(zoo_name)
+    denom = len(catalog_set)
+    num = len([s for s in housed_valid if s in catalog_set])
+    pct = _percent(num, denom)
 
-        # >>> CHANGED: build a cataloged holdings preview with ✅ next to housed species
-        items, total_inds = get_holdings_for_institution(zoo_name)
-        def _fmt(raw, count):
-            if isinstance(raw, str) and ('.' in raw or not raw.isdigit()):
-                return f"{raw} \u2192 {count}"
-            return str(count)
+    # >>> CHANGED: build a cataloged holdings preview with ✅ next to housed species
+    items, total_inds = get_holdings_for_institution(zoo_name)
+    def _fmt(raw, count):
+        if isinstance(raw, str) and ('.' in raw or not raw.isdigit()):
+            return f"{raw} \u2192 {count}"
+        return str(count)
 
-        marked_lines: List[str] = []
-        for (common, sci, raw, count) in items:
-            mark = "✅ " if common in housed_valid else ""
-            if sci:
-                marked_lines.append(f"- {mark}**{common}** (*{sci}*): {_fmt(raw, count)}")
-            else:
-                marked_lines.append(f"- {mark}**{common}**: {_fmt(raw, count)}")
-
-        # Show a compact preview (first 10 lines) and hint to use ;holdings for full list
-        if marked_lines:
-            preview = "\n".join(marked_lines[:10])
-            if len(marked_lines) > 10:
-                preview += f"\n… (use `;holdings {zoo_name}` for more)"
-            catalog_preview = preview
-            sp_count = len(items)
+    marked_lines: List[str] = []
+    for (common, sci, raw, count) in items:
+        mark = "✅ " if common in housed_valid else ""
+        if sci:
+            marked_lines.append(f"- {mark}**{common}** (*{sci}*): {_fmt(raw, count)}")
         else:
-            catalog_preview = "_No cataloged holdings recorded in species_data._"
-            sp_count = 0
+            marked_lines.append(f"- {mark}**{common}**: {_fmt(raw, count)}")
 
-        meta = _get_zoo_meta(data, zoo_name)
-        location = meta.get("location") or "_Unknown_"
-        image_url = meta.get("image_url")
+    # Show a compact preview (first 10 lines) and hint to use ;holdings for full list
+    if marked_lines:
+        preview = "\n".join(marked_lines[:10])
+        if len(marked_lines) > 10:
+            preview += f"\n… (use `;holdings {zoo_name}` for more)"
+        catalog_preview = preview
+        sp_count = len(items)
+    else:
+        catalog_preview = "_No cataloged holdings recorded in species_data._"
+        sp_count = 0
 
-        e = discord.Embed(
-            title=zoo_name,
-            description=f"**Location:** {location}\n**Owner(s):** {owner_text}",
-            color=discord.Color.green()
-        )
-        e.add_field(
-            name="Housed Progress",
-            value=f"{num}/{denom} cataloged species housed ({pct:.1f}%)\n`{_bar(pct)}`",
-            inline=False
-        )
-        # >>> CHANGED: single field that shows catalog with checkmarks (no separate checklist field)
-        e.add_field(
-            name=f"Cataloged Holdings (✅ = housed) • Species: {sp_count}",
-            value=catalog_preview,
-            inline=False
-        )
+    meta = _get_zoo_meta(data, zoo_name)
+    location = meta.get("location") or "_Unknown_"
+    image_url = meta.get("image_url")
 
-        if image_url:
-            e.set_thumbnail(url=image_url)
+    e = discord.Embed(
+        title=zoo_name,
+        description=f"**Location:** {location}\n**Owner(s):** {owner_text}",
+        color=discord.Color.green()
+    )
+    e.add_field(
+        name="Housed Progress",
+        value=f"{num}/{denom} cataloged species housed ({pct:.1f}%)\n`{_bar(pct)}`",
+        inline=False
+    )
+    # >>> CHANGED: single field that shows catalog with checkmarks (no separate checklist field)
+    e.add_field(
+        name=f"Cataloged Holdings (✅ = housed) • Species: {sp_count}",
+        value=catalog_preview,
+        inline=False
+    )
 
-        return e
+    if image_url:
+        e.set_thumbnail(url=image_url)
 
+    return e
 
 # ------------- ;zoo command with ownership -------------
 @bot.command(name="zoo")
