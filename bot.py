@@ -1471,7 +1471,7 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
 @bot.command(name="house")
 async def house_cmd(ctx, *, species_name: str = None):
     """
-    Add a species to your active zoo’s housed list.
+    Add a species to your active zoo’s housed list (ONLY if your zoo actually holds it).
     Usage: ;house Whale Shark
     """
     if not species_name:
@@ -1494,18 +1494,26 @@ async def house_cmd(ctx, *, species_name: str = None):
         await ctx.send(f"❌ I don’t recognize **{species_name}**. Make sure it’s in the catalog.")
         return
 
+    # >>> NEW: enforce 'in holdings' check for this zoo
+    catalog_set = _catalog_species_for_zoo(zoo)
+    if canonical not in catalog_set:
+        await ctx.send(
+            f"🚫 **{canonical}** isn’t in **{zoo}**’s holdings, so it can’t be housed. "
+            f"See what you hold with `;holdings {zoo}`."
+        )
+        return
+
     housed = user["zoos"].setdefault(zoo, [])
     if canonical in housed:
         await ctx.send(f"ℹ️ **{canonical}** is already housed at **{zoo}**.")
     else:
         housed.append(canonical)
         _save_zoo_data(data)
-        # >>> CHANGED: use zoo catalog denominator for progress
-        catalog_set = _catalog_species_for_zoo(zoo)
+        # progress uses zoo catalog denominator (unchanged)
         denom = len(catalog_set)
         num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
         pct = _percent(num, denom)
-        await ctx.send(f"✅ Added **{canonical}** to **{zoo}**. Progress: {pct:.1f}%")
+        await ctx.send(f"✅ Added **{canonical}** to **{zoo}**. Progress: {num}/{denom} ({pct:.1f}%)")
 
 @bot.command(name="unhouse")
 async def unhouse_cmd(ctx, *, species_name: str = None):
@@ -1537,12 +1545,12 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
     if canonical in housed:
         housed.remove(canonical)
         _save_zoo_data(data)
-        # >>> CHANGED: use zoo catalog denominator for progress
+        # use zoo catalog denominator for progress
         catalog_set = _catalog_species_for_zoo(zoo)
         denom = len(catalog_set)
         num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
         pct = _percent(num, denom)
-        await ctx.send(f"✅ Removed **{canonical}** from **{zoo}**. Progress: {pct:.1f}%")
+        await ctx.send(f"✅ Removed **{canonical}** from **{zoo}**. Progress: {num}/{denom} ({pct:.1f}%)")
     else:
         await ctx.send(f"ℹ️ **{canonical}** isn’t currently housed at **{zoo}**.")
 
