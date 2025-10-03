@@ -6,7 +6,7 @@ import pathlib
 import difflib
 import re
 import json  # <<< ADDED
-from typing import Dict, Any, Tuple, Optional, List
+from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
@@ -903,6 +903,16 @@ def format_institution_holdings(inst_name: str):
     )
     return text_blocks, total, len(items)
 
+# >>> NEW: cataloged species helpers (denominator for progress)
+def _catalog_species_for_zoo(zoo_name: str) -> Set[str]:
+    """
+    Returns the set of canonical species names that are cataloged (have a non-zero
+    'institutions[zoo_name]' entry) for the given zoo.
+    """
+    items, _total = get_holdings_for_institution(zoo_name)
+    # items: List[Tuple[common, sci, raw, count]]
+    return {common for (common, _sci, _raw, _count) in items}
+
 # --- Category / group utilities ---------------------------------------------
 def all_types():
     return sorted({e.get("type") for e in species_data.values() if e.get("type")})
@@ -1169,9 +1179,13 @@ def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discor
     elif owners:
         housed_list = _get_housed_list_for_owner(data, owners[0], zoo_name)
 
-    total_catalog = len(species_data)
     housed_valid = [s for s in housed_list if _canonical_species_name(s)]
-    pct = _percent(len(housed_valid), total_catalog)
+
+    # >>> CHANGED: progress denominator is the zoo's cataloged species
+    catalog_set = _catalog_species_for_zoo(zoo_name)
+    denom = len(catalog_set)
+    num = len([s for s in housed_valid if s in catalog_set])
+    pct = _percent(num, denom)
 
     # Cataloged holdings (counts) from institutions (if present)
     holdings_lines, total_inds, sp_count = format_institution_holdings(zoo_name)
@@ -1194,7 +1208,7 @@ def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discor
     )
     e.add_field(
         name="Housed Progress",
-        value=f"{len(housed_valid)}/{total_catalog} species ({pct:.1f}%)\n`{_bar(pct)}`",
+        value=f"{num}/{denom} cataloged species housed ({pct:.1f}%)\n`{_bar(pct)}`",
         inline=False
     )
 
@@ -1420,15 +1434,18 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
             await ctx.send(f"🚫 You no longer own **{zoo}**. Pick a zoo you own with `;zoo set <name>`.")
             return
         housed = user["zoos"].get(zoo, [])
-        total_catalog = len(species_data)
         housed_valid = [s for s in housed if _canonical_species_name(s)]
-        pct = _percent(len(housed_valid), total_catalog)
+        # >>> CHANGED: denominator is species cataloged for this zoo
+        catalog_set = _catalog_species_for_zoo(zoo)
+        denom = len(catalog_set)
+        num = len([s for s in housed_valid if s in catalog_set])
+        pct = _percent(num, denom)
         bar_len = 20
         filled = round(pct / 100 * bar_len)
         bar = "█" * filled + "—" * (bar_len - filled)
         housed_preview = ", ".join(housed_valid[:20]) + (" …" if len(housed_valid) > 20 else "")
         await ctx.send(
-            f"**{zoo}** — {len(housed_valid)}/{total_catalog} species ({pct:.1f}%)\n"
+            f"**{zoo}** — {num}/{denom} cataloged species housed ({pct:.1f}%)\n"
             f"`{bar}`\n"
             f"**Housed:** {housed_preview if housed_valid else '_None yet_'}"
         )
@@ -1483,8 +1500,11 @@ async def house_cmd(ctx, *, species_name: str = None):
     else:
         housed.append(canonical)
         _save_zoo_data(data)
-        total_catalog = len(species_data)
-        pct = _percent(len([s for s in housed if _canonical_species_name(s)]), total_catalog)
+        # >>> CHANGED: use zoo catalog denominator for progress
+        catalog_set = _catalog_species_for_zoo(zoo)
+        denom = len(catalog_set)
+        num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
+        pct = _percent(num, denom)
         await ctx.send(f"✅ Added **{canonical}** to **{zoo}**. Progress: {pct:.1f}%")
 
 @bot.command(name="unhouse")
@@ -1517,8 +1537,11 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
     if canonical in housed:
         housed.remove(canonical)
         _save_zoo_data(data)
-        total_catalog = len(species_data)
-        pct = _percent(len([s for s in housed if _canonical_species_name(s)]), total_catalog)
+        # >>> CHANGED: use zoo catalog denominator for progress
+        catalog_set = _catalog_species_for_zoo(zoo)
+        denom = len(catalog_set)
+        num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
+        pct = _percent(num, denom)
         await ctx.send(f"✅ Removed **{canonical}** from **{zoo}**. Progress: {pct:.1f}%")
     else:
         await ctx.send(f"ℹ️ **{canonical}** isn’t currently housed at **{zoo}**.")
