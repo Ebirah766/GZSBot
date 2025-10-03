@@ -1395,11 +1395,21 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
         return
 
     # >>> NEW: view UI card ----------------------------------------------------
+    # >>> NEW: view UI card ----------------------------------------------------
     if sub == "view":
         target_zoo = None
         if rest and rest.strip():
-            target_zoo = " ".join(rest.split())
+            # Validate provided zoo name against known institutions
+            exact, suggestion = resolve_institution_name(rest.strip())
+            if not exact and suggestion:
+                await ctx.send(f"No exact entry for **{rest.strip()}**. Did you mean **{suggestion}**?")
+                return
+            if not exact and not suggestion:
+                await ctx.send(f"No institutions recorded yet or no match for **{rest.strip()}**.")
+                return
+            target_zoo = exact  # use canonical/cased institution name
         else:
+            # Fall back to active zoo (unchanged behavior)
             z, msg = _get_active_zoo_or_msg(ctx, user)
             if msg:
                 await ctx.send(msg); return
