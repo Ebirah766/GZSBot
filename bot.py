@@ -1254,6 +1254,67 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
             )
         return
 
+    # --- info UI (ADDED) ---
+    if sub == "info":
+        # `;zoo info` -> show info for active zoo
+        # `;zoo info <name>` -> show that zoo instead
+        target = (rest or "").strip()
+        data_refreshed = _load_zoo_data()
+        user_ref = _ensure_user_struct(data_refreshed, ctx.author.id)
+        if not target:
+            zoo, msg = _get_active_zoo_or_msg(ctx, user_ref)
+            if msg:
+                await ctx.send(msg); return
+            target = zoo
+        embed = _build_zoo_info_embed(ctx, data_refreshed, target)
+        await ctx.send(embed=embed)
+        return
+
+    # --- meta admin (ADDED) ---
+    if sub == "meta":
+        if not _is_admin(ctx):
+            await ctx.send("🚫 You need **Manage Server** to edit zoo metadata.")
+            return
+        if not rest:
+            await ctx.send(
+                "Meta usage:\n"
+                "`;zoo meta set <zoo> location <text>`\n"
+                "`;zoo meta clear <zoo> location`"
+            )
+            return
+        parts = rest.split(None, 2)  # e.g., ['set', '<zoo> location <text>']
+        action = parts[0].lower()
+        if action == "set":
+            if len(parts) < 2:
+                await ctx.send("Usage: `;zoo meta set <zoo> location <text>`"); return
+            tail = parts[1]
+            if " location " not in (" " + tail + " "):
+                await ctx.send("Usage: `;zoo meta set <zoo> location <text>`"); return
+            zoo_part, loc_part = tail.split(" location ", 1)
+            zoo_name = " ".join(zoo_part.split()).strip()
+            loc_text = (loc_part or "").strip()
+            if not zoo_name or not loc_text:
+                await ctx.send("Usage: `;zoo meta set <zoo> location <text>`"); return
+            data2 = _load_zoo_data()
+            _set_zoo_location(data2, zoo_name, loc_text)
+            _save_zoo_data(data2)
+            await ctx.send(f"✅ Set location for **{zoo_name}** → **{loc_text}**")
+            return
+        if action == "clear":
+            if len(parts) < 2:
+                await ctx.send("Usage: `;zoo meta clear <zoo> location`"); return
+            tail = parts[1]
+            if " location" not in tail:
+                await ctx.send("Usage: `;zoo meta clear <zoo> location`"); return
+            zoo_name = tail.replace(" location", "").strip()
+            data2 = _load_zoo_data()
+            _set_zoo_location(data2, zoo_name, None)
+            _save_zoo_data(data2)
+            await ctx.send(f"✅ Cleared location for **{zoo_name}**")
+            return
+        await ctx.send("Unknown meta action. Use `set` or `clear`.")
+        return
+
     # --- regular subcommands (enforced) ---
     if sub == "set":
         if not rest:
@@ -1306,7 +1367,7 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
         await ctx.send("Your zoo data buckets:\n- " + "\n- ".join(zoos))
         return
 
-    await ctx.send("Unknown subcommand. Try `;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, or admin `;zoo owner ...`.")
+    await ctx.send("Unknown subcommand. Try `;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, or admin `;zoo owner ...`. You can also try `;zoo info` and `;zoo meta ...`.")
 
 # ------------- ;house / ;unhouse -------------
 @bot.command(name="house")
@@ -1381,7 +1442,100 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
     else:
         await ctx.send(f"ℹ️ **{canonical}** isn’t currently housed at **{zoo}**.")
 
-# ============================  END ADDED: ZOO/OWNERSHIP  ============================
+# ==============================  ADDED: ZOO INFO + META  ==============================
+def _zoo_meta(data: dict) -> dict:
+    """Container for zoo metadata like location. Shape:
+    {"items": [{"name": "<display name>", "location": "<text>"}]}
+    """
+    meta = data.setdefault("zoo_meta", {})
+    meta.setdefault("items", [])
+    return meta
+
+def _get_meta_item_by_name(data: dict, zoo_name: str) -> Optional[dict]:
+    meta = _zoo_meta(data)
+    target = _norm_zoo(zoo_name)
+    for item in meta["items"]:
+        if _norm_zoo(item.get("name", "")) == target:
+            return item
+    return None
+
+def _set_zoo_location(data: dict, zoo_name: str, location: Optional[str]) -> dict:
+    """Create/update an item for this zoo's metadata; set/clear location."""
+    meta = _zoo_meta(data)
+    item = _get_meta_item_by_name(data, zoo_name)
+    if not item:
+        item = {"name": " ".join(zoo_name.split())}
+        meta["items"].append(item)
+    if location is None or str(location).strip() == "":
+        item.pop("location", None)
+    else:
+        item["location"] = str(location).strip()
+    return item
+
+def _get_zoo_location(data: dict, zoo_name: str) -> Optional[str]:
+    item = _get_meta_item_by_name(data, zoo_name)
+    return item.get("location") if item else None
+
+def _all_owners_for_zoo(data: dict, zoo_name: str) -> List[int]:
+    """Scan ownership map to find all user_ids that own this zoo."""
+    owners: List[int] = []
+    ownership = data.get("ownership", {})
+    tgt = _norm_zoo(zoo_name)
+    for uid, rec in ownership.items():
+        for z in rec.get("zoos", []):
+            if _norm_zoo(z) == tgt:
+                try:
+                    owners.append(int(uid))
+                except Exception:
+                    pass
+                break
+    return owners
+
+def _all_housed_species_for_zoo(data: dict, zoo_name: str) -> List[str]:
+    """Aggregate UNIQUE canonical species across all users' 'zoos' buckets that match this zoo name."""
+    tgt = _norm_zoo(zoo_name)
+    users = data.get("users", {})
+    species_set = set()
+    for _uid, urec in users.items():
+        for zname, housed_list in (urec.get("zoos") or {}).items():
+            if _norm_zoo(zname) == tgt:
+                for s in housed_list:
+                    canon = _canonical_species_name(s)
+                    if canon:
+                        species_set.add(canon)
+    return sorted(species_set, key=lambda s: s.lower())
+
+def _mention_or_id(ctx, user_id: int) -> str:
+    """Pretty-print an owner for embeds."""
+    if ctx.guild:
+        m = ctx.guild.get_member(user_id)
+        if m:
+            return m.mention
+    return f"<@{user_id}>"
+
+def _build_zoo_info_embed(ctx, data: dict, zoo_name: str) -> discord.Embed:
+    owners = _all_owners_for_zoo(data, zoo_name)
+    owners_txt = ", ".join([_mention_or_id(ctx, uid) for uid in owners]) if owners else "_None assigned_"
+    loc = _get_zoo_location(data, zoo_name) or "_Unknown_"
+    housed = _all_housed_species_for_zoo(data, zoo_name)
+    total_catalog = len(species_data)
+    pct = (len(housed) / total_catalog * 100.0) if total_catalog > 0 else 0.0
+    bar_len = 20
+    filled = round(pct / 100 * bar_len)
+    bar = "█" * filled + "—" * (bar_len - filled)
+    e = discord.Embed(
+        title=f"{zoo_name}",
+        description=f"`{bar}`  **{len(housed)}/{total_catalog}** species ({pct:.1f}%)",
+        color=discord.Color.green()
+    )
+    e.add_field(name="Owner(s)", value=owners_txt, inline=False)
+    e.add_field(name="Location", value=loc, inline=False)
+    if housed:
+        preview = ", ".join(housed[:10]) + (" …" if len(housed) > 10 else "")
+        e.add_field(name="Housed (preview)", value=preview, inline=False)
+    e.set_footer(text="Use ;zoo info <name> • Admins: ;zoo meta set <name> location <text>")
+    return e
+# ============================  END ADDED: ZOO INFO + META  ============================
 
 # --- Commands ----------------------------------------------------------------
 @bot.command(name="card", aliases=["species"])
