@@ -177,7 +177,7 @@ def format_institution_holdings(inst_name: str):
         (f"- **{c}** (*{sci}*): {fmt(raw, n)}" if sci else f"- **{c}**: {fmt(raw, n)}")
         for (c, sci, raw, n) in items
     ]
-    # >>> CHANGED: species count derived from the exact set built above
+    # species count derived from the exact set built above
     species_set = {c for (c, _sci, _raw, _n) in items}
     text_blocks = list_to_chunks(
         lines,
@@ -313,14 +313,11 @@ class SpeciesPager(discord.ui.View):
         self.index = (self.index + 1) % len(self.images)
         await self._refresh(interaction)
 
-# ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
-# [UNCHANGED: your ownership/progress system and ;zoo command block remains exactly as you had it]
-# ... (no edits in this large section) ...
+# ==============================  (Your ownership/progress section not included in this file)  ==============================
 
 # --- Commands ----------------------------------------------------------------
 @bot.command(name="card", aliases=["species"])
 async def cmd_card(ctx: commands.Context, *, name: str):
-    # [UNCHANGED]
     try:
         entry, msg = get_entry_or_message(name)
         if msg:
@@ -364,10 +361,31 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
         log.exception("Error in ;holdings")
         await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
 
-# >>> NEW: institution-derived species embed (count + alphabetized list)
-@bot.command(name="inst", help="Show species at an institution, derived from its holdings. Usage: ;inst <name>")
-async def cmd_inst(ctx: commands.Context, *, institution: str):
+# >>> NEW: Unified ;zoo command (species & count subcommands)
+@bot.command(name="zoo")
+async def zoo_cmd(ctx: commands.Context, subcommand: Optional[str] = None, *, institution: Optional[str] = None):
+    """
+    ;zoo species <institution>  -> show species list + derived count (from holdings)
+    ;zoo count <institution>    -> show derived species count only
+    """
     try:
+        if not subcommand:
+            await ctx.send(
+                "Usage:\n"
+                "`;zoo species <institution>` — list species at a zoo based on holdings\n"
+                "`;zoo count <institution>` — show species count derived from holdings"
+            )
+            return
+
+        sub = subcommand.lower().strip()
+        if sub not in {"species", "count"}:
+            await ctx.send("Unknown subcommand. Use `species` or `count`.")
+            return
+
+        if not institution or not institution.strip():
+            await ctx.send(f"Usage: `;zoo {sub} <institution>`")
+            return
+
         exact, suggestion = resolve_institution_name(institution)
         if not exact and suggestion:
             await ctx.send(f"No exact entry for **{institution}**. Did you mean **{suggestion}**?")
@@ -376,6 +394,12 @@ async def cmd_inst(ctx: commands.Context, *, institution: str):
             await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
             return
 
+        if sub == "count":
+            count = institution_species_count(exact, species_data)
+            await ctx.send(f"**{exact}** has **{count}** species (derived from holdings).")
+            return
+
+        # sub == "species"
         species = sorted(institution_species_set(exact, species_data), key=lambda s: s.lower())
         count = len(species)
         if count == 0:
@@ -405,31 +429,23 @@ async def cmd_inst(ctx: commands.Context, *, institution: str):
             name = "Species" if len(chunks) == 1 else f"Species (part {i})"
             embed.add_field(name=name, value=text, inline=False)
         await ctx.send(embed=embed)
-    except Exception:
-        log.exception("Error in ;inst")
-        await ctx.send(f"Sorry, something went wrong building the species list for **{institution}**.")
 
-# >>> NEW: quick count-only command
-@bot.command(name="inst_count", help="Show only the species count for an institution. Usage: ;inst_count <name>")
+    except Exception:
+        log.exception("Error in ;zoo")
+        await ctx.send("Sorry, something went wrong with that `;zoo` request.")
+
+# >>> Kept: compatibility aliases that delegate to ;zoo
+@bot.command(name="inst", help="Alias of ;zoo species")
+async def cmd_inst(ctx: commands.Context, *, institution: str):
+    await zoo_cmd(ctx, subcommand="species", institution=institution)
+
+@bot.command(name="inst_count", help="Alias of ;zoo count")
 async def cmd_inst_count(ctx: commands.Context, *, institution: str):
-    try:
-        exact, suggestion = resolve_institution_name(institution)
-        if not exact and suggestion:
-            await ctx.send(f"No exact entry for **{institution}**. Did you mean **{suggestion}**?")
-            return
-        if not exact:
-            await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
-            return
+    await zoo_cmd(ctx, subcommand="count", institution=institution)
 
-        count = institution_species_count(exact, species_data)
-        await ctx.send(f"**{exact}** has **{count}** species (derived from holdings).")
-    except Exception:
-        log.exception("Error in ;inst_count")
-        await ctx.send(f"Sorry, something went wrong counting species for **{institution}**.")
-
+# --- The rest of your taxonomy/utility commands (unchanged) ------------------
 @bot.command(name="type")
 async def cmd_type(ctx: commands.Context, *, name: str):
-    # [UNCHANGED]
     try:
         if name and name.strip().lower() == "all":
             names = sorted(species_data.keys(), key=lambda s: s.lower())
@@ -464,7 +480,6 @@ async def cmd_type(ctx: commands.Context, *, name: str):
 
 @bot.command(name="order")
 async def cmd_order(ctx: commands.Context, *, name: str):
-    # [UNCHANGED]
     try:
         entry, msg = get_entry_or_message(name)
         if not msg:
@@ -487,7 +502,6 @@ async def cmd_order(ctx: commands.Context, *, name: str):
 
 @bot.command(name="family")
 async def cmd_family(ctx: commands.Context, *, name: str):
-    # [UNCHANGED]
     try:
         entry, msg = get_entry_or_message(name)
         if not msg:
@@ -510,7 +524,6 @@ async def cmd_family(ctx: commands.Context, *, name: str):
 
 @bot.command(name="genus")
 async def cmd_genus(ctx: commands.Context, *, name: str):
-    # [UNCHANGED]
     try:
         entry, msg = get_entry_or_message(name)
         if not msg:
@@ -533,7 +546,6 @@ async def cmd_genus(ctx: commands.Context, *, name: str):
 
 @bot.command(name="types")
 async def cmd_types(ctx: commands.Context):
-    # [UNCHANGED]
     try:
         types = all_types()
         if not types:
@@ -548,7 +560,6 @@ async def cmd_types(ctx: commands.Context):
 
 @bot.command(name="orders")
 async def cmd_orders(ctx: commands.Context):
-    # [UNCHANGED]
     try:
         orders = all_orders()
         if not orders:
@@ -563,7 +574,6 @@ async def cmd_orders(ctx: commands.Context):
 
 @bot.command(name="specieslist")
 async def cmd_specieslist(ctx: commands.Context):
-    # [UNCHANGED]
     try:
         names = sorted(species_data.keys(), key=lambda s: s.lower())
         lines = [f"- {n}" for n in names]
