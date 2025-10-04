@@ -478,7 +478,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Arctic Fox": {
         "common": "Arctic Fox",
         "scientific": "Vulpes lagopus",
-        "info": "The Arctic fox is found only in the Arctic, and is highly adapted for its environment, with thick fur and specialized physiological adaptations to handle the extreme cold.",
+        "info": "The Arctic fox is found only in the northern polar regions, and is highly adapted for its environment, with thick fur and specialized physiological adaptations to handle the extreme cold.",
         "type": "Mammal",
         "order": "Carnivora",
         "family": "Canidae",
