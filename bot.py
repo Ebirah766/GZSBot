@@ -1012,9 +1012,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Elaphe",
         "images": [
             {"label": "Ridley's Cave Racer (ridleyi)", "url": "https://static.thainationalparks.com/img/species/2021/12/20/397706/elaphe-taeniurus-ridleyi-w-1500.jpg"}
-        ],
-        "region": "Asia",
-        "holdings": {
+            "region": "Asia",
+    ],      "holdings": {
             "North America": "1.1 [ridleyi] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
@@ -1392,6 +1391,27 @@ species_data: Dict[str, Dict[str, Any]] = {
             "South America": 0,
             "Oceania": 0,
                 },
+        "institutions": {
+            "High Uintahs Zoo": "0.1"
+
+    "North American Porcupine": {
+         "common": "North American Porcupine",
+        "scientific": "Erethizon dorsatum",
+        "info": "One of two big cats native to the Americas, the mountain lion is highly adaptable and found in a variety of habitats, including mountains, deserts, and rainforests. They are one of the most iconic and beloved species found in the Americas.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Felidae",
+        "genus": "Puma",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/9834553/original.jpg",
+        "region": "North America, South America",
+        "holdings": {
+            "North America": "0.1 - High Uintahs Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+                        },
         "institutions": {
             "High Uintahs Zoo": "0.1"
         }
