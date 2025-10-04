@@ -1050,6 +1050,28 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.1 [Blue], 0.1 [Yellow]"
+
+            }
+            },
+    "Mangrove Pit Viper": {
+        "common": "Mangrove Pit Viper",
+        "scientific": "Trimeresurus purpureomaculatus",
+        "info": "This venomous snake is native to South and Southeast Asia, from Bangladesh to Indonesia. Its unpredictable nature should be taken seriously, and its venom is highly toxic. Its coloration, like many Trimeresurus species, is highly variable.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Viperidae",
+        "genus": "Trimeresurus",
+        "image_url": "https://static.thainationalparks.com/img/species/2017/07/05/317565/trimeresurus-purpureomaculatus-w-1500.jpg",
+        "holdings": {
+            "North America": "0.3 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "0.3"
         }
     }
 }
