@@ -1004,6 +1004,28 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.1"
+
+    }
+    },
+    "Black-Tailed Horned Pit Viper": {
+        "common": "Black-Tailed Horned Pit Viper",
+        "scientific": "Mixcoatlus melanurus",
+        "info": "This endangered pit viper is native only to the mountains of southern Mexico. Its distinctive horns lend it the local common name of 'necazcoatl', literally meaning 'eared-serpent'.",
+        "type": "Reptile",
+        "order": "Viperidae",
+        "family": "Colubridae",
+        "genus": "Mixcoatlus",
+        "image_url": "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/472999940_1672789173595713_1159118854601384928_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=YyUXLve42EkQ7kNvwHMtkmm&_nc_oc=AdlhzbHYMdP3n5QDbIe_fTpkWElKyz9d-Sxms3dbhBjG3oqODk1EfDlFaRL9asJovN66Z8G14SBgdBHI0i_WETrs&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=-hPNVuACjUTMk4Fuhlr6FA&oh=00_AffBxXIQB08HmECVF9ik8EnML5NASV72_7HaRDh2smC2qw&oe=68E7034D",
+        "holdings": {
+            "North America": "0.2 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "0.2"
         }
     }
 }
