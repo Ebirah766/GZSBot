@@ -1205,6 +1205,53 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.1 [Java]"
+
+    }
+    },
+    "Monocled Cobra": {
+        "common": "Monocled Cobra",
+        "scientific": "Naja kaouthia",
+        "info": "The monocled cobra is perhaps the most recognizable species of venomous snake in the world. Ranging throughout South-east Asia, these snakes dwell in all types of habitat - from forests to farmland.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Elapidae",
+        "genus": "Naja",
+        "images": [
+            {"label": "Wild type", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/491146798_1081368080686123_7102814473061028418_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dB_BPqbQrvgQ7kNvwHBWXOq&_nc_oc=Adl1lq2CaO7I_YK-PHlI7Ktskdbp_EN2ozE4azVJgWZdVzP4R5o1o9f-Xcm10MsQONM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=lfz1apkHFuI_dmAdS9v5VA&oh=00_AffAfUf6YWEMRyAQffeHdVRUJ3s4PtJZF4cXosCvcEeqAQ&oe=68E7251E"},
+            {"label": "Leucistic", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/510343141_9936717456440041_3752577244402236551_n.jpg?stp=dst-jpg_p843x403_tt6&_nc_cat=107&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=fTmB3GAJFVkQ7kNvwEDuJ19&_nc_oc=AdnmGnVQfKM0NTljvtzn1JN0g1vCZCOE6U1Dgi-JK2ekB_uqV9ilC0nUW_LT5yFa9ZM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=r9UN0pTHtEO9xWBJGuJxJg&oh=00_AfegHTmllnIDkiBl44dtRWx877XeyA8qaUBljjAPlb_rTQ&oe=68E6FB38"}
+        ],
+            "holdings": {
+            "North America": "1.0 [Wild type], 0.1 [Leucistic] - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.0 [Wild type], 0.1 [Leucistic]"
+
+    }
+    },
+    "Eastern Coral Snake": {
+    "common": "Eastern Coral Snake",
+    "scientific": "Micrurus fulvius",
+    "info": "The eastern coral snake is a highly venomous snake species native to the southeastern United States. Its highly venomous nature has lent it the occasional common name 'American cobra'.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Elapidae",
+        "genus": "Micrurus",
+                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/105813097/large.jpeg",
+                "holdings": {
+                    "North America": "2.0 - Jupiter Reptile Zoo",
+                    "Asia": 0,
+                    "Europe": 0,
+                    "Africa": 0,
+                    "South America": 0,
+                    "Oceania": 0,
+                },
+                "institutions": {
+                    "Jupiter Reptile Zoo": "2.0"
         }
     }
 }
