@@ -10,6 +10,52 @@ from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
 import builtins
 
+# Render holdings with one line per holder (split comma-separated values into bullets)
+REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
+
+def format_holdings_lines(holdings):
+    """
+    holdings: dict like {"North America": "1.1 - Zoo A, 0.3 - Zoo B", "Europe": 0, ...}
+    Produces:
+      North America:
+      • 1.1 - Zoo A
+      • 0.3 - Zoo B
+      Europe: 0
+    """
+    if not isinstance(holdings, dict):
+        return "None recorded"
+
+    lines = []
+    for region in REGION_ORDER:
+        v = holdings.get(region, 0)
+
+        # treat simple zeros uniformly
+        if v in (0, "0", 0.0, None):
+            lines.append(f"**{region}:** 0")
+            continue
+
+        # list/tuple/set -> one per line
+        if isinstance(v, (list, tuple, set)):
+            items = [str(x).strip() for x in v if str(x).strip()]
+        # string -> split by commas
+        elif isinstance(v, str):
+            items = [s.strip() for s in v.split(",") if s.strip()]
+        else:
+            # anything else -> just print it
+            lines.append(f"**{region}:** {v}")
+            continue
+
+        if not items:
+            lines.append(f"**{region}:** 0")
+        elif len(items) == 1:
+            lines.append(f"**{region}:** {items[0]}")
+        else:
+            lines.append(f"**{region}:**")
+            lines.extend([f"• {it}" for it in items])
+
+    return "\n".join(lines) or "None recorded"
+
+
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
 logging.basicConfig(
@@ -2401,75 +2447,87 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
-        # --- Commands ----------------------------------------------------------------
-        @bot.command(name="species", aliases=["card"])
-        async def cmd_card(ctx: commands.Context, *, name: str):
-            """
-            Render a rich embed UI card for a species with image, taxonomy, description,
-            and holdings by region.
-            """
-            try:
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
+# --- Commands ----------------------------------------------------------------
+@bot.command(name="species", aliases=["card"])
+async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
+    """
+    Render a rich embed UI card for a species with image, taxonomy, description,
+    and holdings by region.
 
-                images = entry.get("images") or []
-                embed = build_species_embed(entry, image_index=0)
+    - Gracefully handles missing names: `;species` -> usage hint (no crash)
+    - Uses build_species_embed (no _build_zoo_embed confusion)
+    - Uses SpeciesPager if multiple images exist
+    """
+    try:
+        # Handle missing argument cleanly
+        if not name or not str(name).strip():
+            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
+            return
 
-                # --- ensure holdings render as a vertical list (not comma-separated) ---
-                holdings = entry.get("holdings") or {}
-                if isinstance(holdings, dict) and holdings:
-                    holdings_text = "\n".join([f"• **{region}:** {value}" for region, value in holdings.items()]) or "None recorded"
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
 
-                    # If build_species_embed already added a 'Holdings' field, replace it
-                    idx = next((i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == "holdings"), None)
-                    if idx is not None:
-                        embed.set_field_at(idx, name="Holdings", value=holdings_text, inline=False)
-                    else:
-                        embed.add_field(name="Holdings", value=holdings_text, inline=False)
-                else:
-                    # Ensure we still show something if there are no holdings
-                    idx = next((i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == "holdings"), None)
-                    if idx is not None:
-                        embed.set_field_at(idx, name="Holdings", value="None recorded", inline=False)
+        images = entry.get("images") or []
+        embed = build_species_embed(entry, image_index=0)
 
-                if isinstance(images, list) and len(images) > 1:
-                    view = SpeciesPager(entry=entry, start_index=0)
-                    await ctx.send(embed=embed, view=view)
-                else:
-                    await ctx.send(embed=embed)
+        # Ensure holdings show vertically and match field name used by build_species_embed
+        holdings = entry.get("holdings") or {}
+        if isinstance(holdings, dict):
+            # Reformat to consistent vertical style
+            holdings_text = format_holdings(holdings)
 
-            except Exception:
-                log.exception("Error in ;card")
-                await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
+            # Replace the field if build_species_embed already added it
+            # (build_species_embed uses "Holdings by Region")
+            target_field_name = "Holdings by Region"
+            idx = next(
+                (i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == target_field_name.lower()),
+                None
+            )
+            if idx is not None:
+                embed.set_field_at(idx, name=target_field_name, value=holdings_text, inline=False)
+            else:
+                embed.add_field(name=target_field_name, value=holdings_text, inline=False)
 
-        @bot.command(name="holdings")
-        async def cmd_holdings(ctx: commands.Context, *, institution: str):
-            """
-            Show all species and counts recorded for a specific zoo/aquarium.
-            """
-            try:
-                exact, suggestion = resolve_institution_name(institution)
-                if not exact and suggestion:
-                    await ctx.send(f"No exact entry for **{institution}**. Did you mean **{suggestion}**?")
-                    return
-                if not exact and not suggestion:
-                    await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
-                    return
+        # Use the pager if there are multiple images
+        if isinstance(images, list) and len(images) > 1:
+            view = SpeciesPager(entry=entry, start_index=0)
+            await ctx.send(embed=embed, view=view)
+        else:
+            await ctx.send(embed=embed)
 
-                blocks, total, sp_count = format_institution_holdings(exact)
-                if isinstance(blocks, str):
-                    await ctx.send(blocks)
-                else:
-                    for b in blocks:
-                        await ctx.send(b)
-            except Exception:
-                log.exception("Error in ;holdings")
-                await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
+    except Exception:
+        log.exception("Error in ;species")
+        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
 
-        @bot.command(name="type")
-        async def cmd_type(ctx: commands.Context, *, name: str):
+
+@bot.command(name="holdings")
+async def cmd_holdings(ctx: commands.Context, *, institution: str):
+    """
+    Show all species and counts recorded for a specific zoo/aquarium.
+    """
+    try:
+        exact, suggestion = resolve_institution_name(institution)
+        if not exact and suggestion:
+            await ctx.send(f"No exact entry for **{institution}**. Did you mean **{suggestion}**?")
+            return
+        if not exact and not suggestion:
+            await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
+            return
+
+        blocks, total, sp_count = format_institution_holdings(exact)
+        if isinstance(blocks, str):
+            await ctx.send(blocks)
+        else:
+            for b in blocks:
+                await ctx.send(b)
+    except Exception:
+        log.exception("Error in ;holdings")
+        await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
+
+@bot.command(name="type")
+async def cmd_type(ctx: commands.Context, *, name: str):
             try:
                 # --- special case: list ALL species in the DB, send as a .txt file ---
                 if name and name.strip().lower() == "all":
