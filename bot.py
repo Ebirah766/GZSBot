@@ -945,7 +945,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Striped Skunk": {
         "common": "Striped Skunk",
         "scientific": "Mephitis mephitis",
-        "info": "The striped skunk is the most well-known and widespread skunk species. A peaceful nocturnal mesopredator, the striped skunk is known for its defense mechanism, where it sprays a foul-smelling liquid at threats.",
+        "info": "The striped skunk is the most well-known and widespread skunk species. A skittish nocturnal mesopredator, the striped skunk is known for its defense mechanism, where it sprays a foul-smelling liquid at threats.",
         "type": "Mammal",
         "order": "Carnivora",
         "family": "Mephitidae",
