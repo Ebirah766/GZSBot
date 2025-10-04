@@ -8,6 +8,7 @@ import re
 import json  # <<< ADDED
 from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
+import builtins
 
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
@@ -1634,30 +1635,28 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
 @bot.command(name="type")
 async def cmd_type(ctx: commands.Context, *, name: str):
     try:
-            if name and name.strip().lower() == "all":
-                # Build a text file (include scientific names when available)
-                entries = sorted(species_data.items(), key=lambda kv: kv[0].lower())
-                if not entries:
-                    await ctx.send("No species are stored yet.")
-                    return
-
-                lines = []
-                for common, entry in entries:
-                    sci = entry.get("scientific")
-                    if isinstance(sci, str) and sci.strip():
-                        lines.append(f"{common} — {sci}")
-                    else:
-                        lines.append(f"{common}")
-
-                content = "All Species in Database (" + str(len(lines)) + " total)\n\n" + "\n".join(lines)
-
-                # Send as a .txt attachment
-                buf = io.BytesIO(content.encode("utf-8"))
-                buf.seek(0)  # <<< ensure the buffer is at the start
-                file = discord.File(buf, filename="species_all.txt")
-                await ctx.send("Here’s a text file with all species:", file=file)
+        # --- special case: list ALL species in the DB, send as a .txt file ---
+        if name and name.strip().lower() == "all":
+            entries = builtins.sorted(species_data.items(), key=lambda kv: kv[0].lower())
+            if not entries:
+                await ctx.send("No species are stored yet.")
                 return
 
+            lines = []
+            for common, entry in entries:
+                sci = entry.get("scientific")
+                if isinstance(sci, str) and sci.strip():
+                    lines.append(f"{common} — {sci}")
+                else:
+                    lines.append(f"{common}")
+
+            content = f"All Species in Database ({len(lines)} total)\n\n" + "\n".join(lines)
+
+            buf = io.BytesIO(content.encode("utf-8"))
+            buf.seek(0)
+            file = discord.File(buf, filename="species_all.txt")
+            await ctx.send("Here’s a text file with all species:", file=file)
+            return
 
         # --- normal behavior (single species or a type category) ---
         entry, msg = get_entry_or_message(name)
@@ -1681,6 +1680,7 @@ async def cmd_type(ctx: commands.Context, *, name: str):
     except Exception:
         log.exception("Error in ;type")
         await ctx.send(f"Sorry, something went wrong processing **{name}**.")
+
 
 @bot.command(name="order")
 async def cmd_order(ctx: commands.Context, *, name: str):
