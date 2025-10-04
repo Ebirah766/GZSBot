@@ -814,27 +814,48 @@ species_data: Dict[str, Dict[str, Any]] = {
         }
     },
     "Geoffroy's Spider Monkey": {
-            "common": "Geoffroy's Spider Monkey",
-            "scientific": "Ateles geoffroyi",
-            "info": "The Geoffroy's spider monkey is one of the largest New World monkeys, often weighing up to 20lbs. Found exclusively in Central America, this species is considered by some primatologists to be the third most intelligent primate species.",
-            "type": "Mammal",
-            "order": "Primates",
-            "family": "Atelidae",
-            "genus": "Ateles",
-            "images": [
-                {"label": "Mexican Spider Monkey (vellerosus)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg/1280px-Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg"}
-            ],
-            "holdings": {
-                "North America": 0,
-                "Asia": 0,
-                "Europe": "1.2 - Mint Park Zoo",
-                "Africa": 0,
-                "South America": 0,
-                "Oceania": 0,
-                    },
-            "institutions": {
-                        "Mint Park Zoo": "1.2"
+        "common": "Geoffroy's Spider Monkey",
+        "scientific": "Ateles geoffroyi",
+        "info": "The Geoffroy's spider monkey is one of the largest New World monkeys, often weighing up to 20lbs. Found exclusively in Central America, this species is considered by some primatologists to be the third most intelligent primate species.",
+        "type": "Mammal",
+        "order": "Primates",
+        "family": "Atelidae",
+        "genus": "Ateles",
+        "images": [
+            {"label": "Mexican Spider Monkey (vellerosus)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg/1280px-Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg"}
+        ],
+        "holdings": {
+            "North America": 0,
+            "Asia": 0,
+            "Europe": "1.2 - Mint Park Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
         },
+        "institutions": {
+            "Mint Park Zoo": "1.2"
+        }
+    },
+    "Seba's short-tailed bat": {
+        "common": "Seba's short-tailed bat",
+        "scientific": "Carollia perspicillata",
+        "info": "The Seba's short-taield bat is a common and widespread bat species that feeds on fruit. It is a generalist and will also consume nectar, pollen, and insects. They have a long lifespan, living up to 10 years.",
+        "type": "Mammal",
+        "order": "Chiroptera",
+        "family": "Phyllostomidae",
+        "genus": "Carollia",
+        "image_url": "https://www.marylandzoo.org/wp-content/uploads/2017/10/bat_web.jpg",
+        "holdings": {
+            "North America": 0,
+            "Asia": 0,
+            "Europe": "25 - Mint Park Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Mint Park Zoo": "25"
+        }
     },
 }
 
