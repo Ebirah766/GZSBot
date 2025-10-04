@@ -308,21 +308,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Acinonyx",
         "images": [
-            {"label": "South African cheetah", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/1280px-Male_cheetah_facing_left_in_South_Africa.jpg"},
+            {"label": "South African cheetah (jubatus)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/1280px-Male_cheetah_facing_left_in_South_Africa.jpg"},
             {"label": "Variant 2 caption", "url": "https://example.com/variant2.jpg"},
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
         ],
         "image_url": "https://example.com/default.jpg",
         "holdings": {
             "North America": 0,
-            "Europe": ["0.0.1.0 (South African) - Shropshire Hills Zoo"],
+            "Europe": ["0.0.1.0 (jubatus) - Shropshire Hills Zoo"],
             "Asia": 0,
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Shropshire Hills Zoo": "0.0.1.0 [South African]"
+            "Shropshire Hills Zoo": "0.0.1.0 [jubatus]"
         },
     },
     "Domestic Horse": {
@@ -789,7 +789,30 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-                    "Mint Park Zoo": "1.3"
+            "Mint Park Zoo": "1.3"
+        }
+    },
+    "Geoffroy's Spider Monkey": {
+            "common": "Geoffroy's Spider Monkey",
+            "scientific": "Ateles geoffroyi",
+            "info": "The Geoffroy's spider monkey is one of the largest New World monkeys, often weighing up to 20lbs. Found exclusively in Central America, this species is considered by some primatologists to be the third most intelligent primate species.",
+            "type": "Mammal",
+            "order": "Primates",
+            "family": "Atelidae",
+            "genus": "Ateles",
+            "images": [
+                {"label": "Mexican Spider Monkey (vellerosus)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg/1280px-Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg"}
+            ],
+            "holdings": {
+                "North America": 0,
+                "Asia": 0,
+                "Europe": "1.2 - Mint Park Zoo",
+                "Africa": 0,
+                "South America": 0,
+                "Oceania": 0,
+            },
+            "institutions": {
+                        "Mint Park Zoo": "1.2"
         },
     },
 }
