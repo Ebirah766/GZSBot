@@ -1438,26 +1438,26 @@ species_data: Dict[str, Dict[str, Any]] = {
 
             }
             },
-    "Bobcat": {
-        "common": "Bobcat",
-                "scientific": "Lynx rufus",
-                "info": "One of four lynx species, the bobcat can be found throughout North America. It is a specialized lagomorph hunter, though it will take other prey if possible. They are likely the most abundant and common lynx species.",
-                "type": "Mammal",
-                "order": "Carnivora",
-                "family": "Felidae",
-                "genus": "Lynx",
-                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/60028871/original.jpg",
-                "region": "North America",
-                "holdings": {
-                    "North America": "1.1 - High Uintahs Zoo",
-                    "Asia": 0,
-                    "Europe": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                                },
-                "institutions": {
-                    "High Uintahs Zoo": "1.1"
+    "Gray Fox": {
+        "common": "Gray Fox",
+        "scientific": "Urocyon cinereoargenteus",
+        "info": "The gray fox is found in both North and South America in a wide variety of habitats. Adaptable like most foxes, it plays a role as an important mesopredator, keeping rodent populations from getting too high.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Urocyon",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Gray_fox.jpg/1280px-Gray_fox.jpg",
+        "region": "North America, South America",
+        "holdings": {
+            "North America": "1.1 - High Uintahs Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+                        },
+        "institutions": {
+            "High Uintahs Zoo": "1.1"
         }
     }
 }
