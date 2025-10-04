@@ -1139,6 +1139,27 @@ species_data: Dict[str, Dict[str, Any]] = {
         "institutions": {
             "Jupiter Reptile Zoo": "1.1"
         }
+    },
+    "Egyptian Cobra": {
+        "common": "Egyptian Cobra",
+        "scientific": "Naja haje",
+        "info": "One of the most venomous snakes in North Africa, the Egyptian cobra is prefers to prey on toads, which is unusual for a venomous snake. They are crepuscular/nocturnal and bask during the early morning to regain energy.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Elapidae",
+        "genus": "Naja",
+        "image_url": "https://static.inaturalist.org/photos/12833129/large.jpg",
+        "holdings": {
+            "North America": "1.1 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.1"
+        }
     }
 }
 
