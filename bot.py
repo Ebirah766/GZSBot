@@ -1012,8 +1012,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Elaphe",
         "images": [
             {"label": "Ridley's Cave Racer (ridleyi)", "url": "https://static.thainationalparks.com/img/species/2021/12/20/397706/elaphe-taeniurus-ridleyi-w-1500.jpg"}
-            "region": "Asia",
-    ],      "holdings": {
+        ],
+        "region": "Asia",
+        "holdings": {
             "North America": "1.1 [ridleyi] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
@@ -1330,7 +1331,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Chinese Crocodile Lizard": {
         "common": "Chinese Crocodile Lizard",
         "scientific": "Shinisaurus crocodilurus",
-        "info": "This living fossil species of lizard can be found exclusively in southern China and northern Vietnam. They are semi-aquatic, claiming a section of pond or stream for themselves, and feeding upon small animals like insects, small fish, and frogs.",
+        "info": "This living fossil species of lizard can be found exclusively in southern China and northern Vietnam. They are semi-aquatic, claiming a section of pond or stream for themselves, and feed upon small animals like insects, small fish, and frogs.",
         "type": "Reptile",
         "order": "Squamata",
         "family": "Shinisauridae",
