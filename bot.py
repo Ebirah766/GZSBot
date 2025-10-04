@@ -1181,6 +1181,30 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "2.0"
+
+        }
+    },
+    "Pygmy Rattlesnake": {
+        "common": "Pygmy Rattlesnake",
+        "scientific": "Sistrurus miliarius",
+        "info": "One of the smallest rattlesnake species, the pygmy rattlesnake is endemic to the south and southeastern United States. It has multiple subspecies which have distinctive coloration, which makes them easy to identify.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Viperidae",
+                "genus": "Sistrurus",
+                "images": [
+                    {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://static.inaturalist.org/photos/392077465/large.jpeg"}
+                ],
+                "holdings": {
+                    "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
+                    "Asia": 0,
+                    "Europe": 0,
+                    "Africa": 0,
+                    "South America": 0,
+                    "Oceania": 0,
+                },
+                "institutions": {
+                    "Jupiter Reptile Zoo": "1.2 [barbouri]"
         }
     }
 }
