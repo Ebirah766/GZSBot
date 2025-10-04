@@ -48,6 +48,56 @@ log.info("Python exe: %s", sys.executable)
 log.info("CWD: %s", os.getcwd())
 log.info("DISCORD_TOKEN present? %s", "Yes" if os.getenv("DISCORD_TOKEN") else "No")
 
+# Order is optional; adjust to your project’s standard:
+REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
+
+def format_holdings_lines(holdings: Dict[str, Any]) -> str:
+    """
+    Render holdings with one line per holder, not comma-separated.
+    Accepts values like:
+      - 0, "0", 0.0
+      - "1.1 - Zoo A, 0.3 - Zoo B"  -> split into bullets
+      - ["1.1 - Zoo A", "0.3 - Zoo B"]  -> bullets
+    """
+    lines: List[str] = []
+    for region in REGION_ORDER:
+        v = holdings.get(region, 0)
+
+        # Normalize simple zeros
+        if v in (0, "0", 0.0, None):
+            lines.append(f"**{region}:** 0")
+            continue
+
+        # If it's a list/tuple/set, show one per line
+        if isinstance(v, (list, tuple, set)):
+            items = [str(x).strip() for x in v if str(x).strip()]
+            if not items:
+                lines.append(f"**{region}:** 0")
+            elif len(items) == 1:
+                lines.append(f"**{region}:** {items[0]}")
+            else:
+                lines.append(f"**{region}:**")
+                lines.extend([f"• {it}" for it in items])
+            continue
+
+        # If it's a string, split by commas into items
+        if isinstance(v, str):
+            items = [s.strip() for s in v.split(",") if s.strip()]
+            if not items:
+                lines.append(f"**{region}:** 0")
+            elif len(items) == 1:
+                lines.append(f"**{region}:** {items[0]}")
+            else:
+                lines.append(f"**{region}:**")
+                lines.extend([f"• {it}" for it in items])
+            continue
+
+        # Fallback: just print whatever it is
+        lines.append(f"**{region}:** {v}")
+
+    return "\n".join(lines)
+
+
 # --- Species DB --------------------------------------------------------------
 REGIONS = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
@@ -275,8 +325,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/205515041/1200",
         "region": "North America, South America",
         "holdings": {
-            "North America": "1.1 - Cube Zoological Park", 
-            "0.3 - High Uintahs Zoo",
+            "North America": "1.1 - Cube Zoological Park, 0.3 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -284,7 +333,8 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "1.1"
+            "Cube Zoological Park": "1.1",
+            "High Uintahs Zoo": "0.3"
         },
     },
     "Eastern Diamondback Rattlesnake": {
