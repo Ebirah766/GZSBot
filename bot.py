@@ -1435,6 +1435,29 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
         "institutions": {
             "High Uintahs Zoo": "1.1"
+
+            }
+            },
+    "Bobcat": {
+        "common": "Bobcat",
+                "scientific": "Lynx rufus",
+                "info": "One of four lynx species, the bobcat can be found throughout North America. It is a specialized lagomorph hunter, though it will take other prey if possible. They are likely the most abundant and common lynx species.",
+                "type": "Mammal",
+                "order": "Carnivora",
+                "family": "Felidae",
+                "genus": "Lynx",
+                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/60028871/original.jpg",
+                "region": "North America",
+                "holdings": {
+                    "North America": "1.1 - High Uintahs Zoo",
+                    "Asia": 0,
+                    "Europe": 0,
+                    "Africa": 0,
+                    "South America": 0,
+                    "Oceania": 0,
+                                },
+                "institutions": {
+                    "High Uintahs Zoo": "1.1"
         }
     }
 }
