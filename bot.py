@@ -1243,7 +1243,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Micrurus",
                 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/105813097/large.jpeg",
                 "holdings": {
-                    "North America": "2.0 - Jupiter Reptile Zoo",
+                    "North America": "1.1 - Jupiter Reptile Zoo",
                     "Asia": 0,
                     "Europe": 0,
                     "Africa": 0,
@@ -1251,7 +1251,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                     "Oceania": 0,
                 },
                 "institutions": {
-                    "Jupiter Reptile Zoo": "2.0"
+                    "Jupiter Reptile Zoo": "1.1"
         }
     }
 }
