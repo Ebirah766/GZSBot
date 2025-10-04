@@ -1094,8 +1094,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "0.1"
-
-    }
+        }
     },
     "Pygmy Rattlesnake": {
         "common": "Pygmy Rattlesnake",
@@ -1107,7 +1106,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Sistrurus",
         "images": [
             {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://static.inaturalist.org/photos/392077465/large.jpeg"}
-    ],    "holdings": {
+        ],
+        "holdings": {
             "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
@@ -1117,29 +1117,27 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.2 [barbouri]"
-
-    }
+        }
     },
-    "Pygmy Rattlesnake": {
-        "common": "Pygmy Rattlesnake",
-        "scientific": "Sistrurus miliarius",
-        "info": "One of the smallest rattlesnake species, the pygmy rattlesnake is endemic to the south and southeastern United States. It has multiple subspecies which have distinctive coloration, which makes them easy to identify.",
+    "Sri Lankan Pit Viper": {
+        "common": "Sri Lankan Pit Viper",
+        "scientific": "Craspedocephalus trigonocephalus",
+        "info": "These venomous snakes are arboreal and nocturnal, occasionally coming down to the ground to feed on animals such as lizards, frogs, small mammals, and birds. When agitated, this species will shake its tail tip, not unlike a rattlesnake.",
         "type": "Reptile",
         "order": "Squamata",
         "family": "Viperidae",
-        "genus": "Sistrurus",
-        "images": [
-                    {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://static.inaturalist.org/photos/392077465/large.jpeg"}
-            ],    "holdings": {
-                    "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
-                    "Asia": 0,
-                    "Europe": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                },
-                "institutions": {
-                    "Jupiter Reptile Zoo": "1.2 [barbouri]"
+        "genus": "Craspedocephalus",
+        "image_url": "https://static.inaturalist.org/photos/352173492/large.jpg",
+        "holdings": {
+            "North America": "1.1 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.1"
         }
     }
 }
