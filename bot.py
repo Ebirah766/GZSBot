@@ -1461,26 +1461,27 @@ species_data: Dict[str, Dict[str, Any]] = {
 
             }
             },
-    "Gray Fox": {
-    "common": "Gray Fox",
-    "scientific": "Urocyon cinereoargenteus",
-    "info": "The gray fox is found in both North and South America in a wide variety of habitats. Adaptable like most foxes, it plays a role as an important mesopredator, keeping rodent populations from getting too high.",
-    "type": "Mammal",
-    "order": "Carnivora",
-    "family": "Canidae",
-    "genus": "Urocyon",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Gray_fox.jpg/1280px-Gray_fox.jpg",
+    
+    "Turkey Vulture": {
+    "common": "Turkey Vulture",
+    "scientific": "Cathartes aura",
+    "info": "Turkey vultures are the most widespread New World vulture species. An abundant and highly adaptable animal, turkey vultures can be found in most areas of the Americas, except certain mountainous regions of South America and taiga/polar areas of North America.",
+    "type": "Bird",
+    "order": "Accipitriformes",
+    "family": "Cathartidae",
+    "genus": "Cathartes",
+    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/171981785/original.jpg",
     "region": "North America, South America",
     "holdings": {
-            North America": "1.1 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
+        "North America": "2.0 - High Uintahs Zoo",
+        "Asia": 0,
+        "Europe": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
                         },
-            "institutions": {
-            "High Uintahs Zoo": "1.1"
+    "institutions": {
+            "High Uintahs Zoo": "2.0"
         }
     }
 }
