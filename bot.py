@@ -49,7 +49,7 @@ log.info("CWD: %s", os.getcwd())
 log.info("DISCORD_TOKEN present? %s", "Yes" if os.getenv("DISCORD_TOKEN") else "No")
 
 # --- Species DB --------------------------------------------------------------
-REGIONS = ["North America", "Europe", "Asia", "Africa", "South America", "Oceania"]
+REGIONS = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
 species_data: Dict[str, Dict[str, Any]] = {
     "Lion": {
@@ -1297,6 +1297,48 @@ species_data: Dict[str, Dict[str, Any]] = {
     }
 }
 
+# --- Region helpers (derived from user-maintained `region` field) ------------
+_region_normalizer = re.compile(r"[^a-z]+")
+
+def normalize_region_name(s: str) -> str:
+    """Lowercase and strip non-letters so 'NorthAmerica', 'north america', 'NORTH-AMERICA' all normalize."""
+    return _region_normalizer.sub("", s.lower())
+
+# Map normalized -> canonical region
+REGION_CANON: Dict[str, str] = {normalize_region_name(r): r for r in REGIONS}
+
+def _region_list(entry: Dict[str, Any]) -> List[str]:
+    """Return the user-maintained region list (canonicalized to the canonical names where possible)."""
+    raw = entry.get("region")  # user-editable field
+    out: List[str] = []
+    if isinstance(raw, list):
+        for item in raw:
+            if not isinstance(item, str):
+                continue
+            key = normalize_region_name(item)
+            if key in REGION_CANON:
+                out.append(REGION_CANON[key])
+            elif item.strip():
+                # Keep unknown strings as-is so you can spot/fix typos later
+                out.append(item.strip())
+    elif isinstance(raw, str) and raw.strip():
+        # allow comma-delimited string if user prefers
+        for piece in raw.split(","):
+            key = normalize_region_name(piece)
+            if key in REGION_CANON:
+                out.append(REGION_CANON[key])
+            elif piece.strip():
+                out.append(piece.strip())
+    return out
+
+def ensure_region_field_for_all() -> None:
+    """Ensure every species has a blank 'region' field the user can fill."""
+    for entry in species_data.values():
+        entry.setdefault("region", [])  # user can edit these in code later
+
+# Initialize the region field at import time
+ensure_region_field_for_all()
+
 # --- Normalization helpers ---------------------------------------------------
 _normalizer = re.compile(r"[^a-z0-9]+")
 def norm(s: str) -> str:
@@ -1496,6 +1538,12 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
         val = entry.get(label.lower())
         if val:
             e.add_field(name=label, value=val, inline=True)
+
+    # <<< NEW: Regions line drawn from user-maintained entry['region'] >>>
+    region_list = _region_list(entry)
+    region_text = ", ".join(region_list) if region_list else "_None set_"
+    e.add_field(name="Region(s)", value=region_text, inline=False)
+
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
     holdings = entry.get("holdings", {})
