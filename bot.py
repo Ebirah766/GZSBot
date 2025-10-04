@@ -1508,7 +1508,11 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
     """
     lines: List[str] = []
     for region in REGIONS:
+        if region == "Antarctica":
+            continue  # hide Antarctica from holdings display
+
         value = holdings.get(region, None)
+        
         if value is None or value == "":
             lines.append(f"**{region}:** 0")
             continue
