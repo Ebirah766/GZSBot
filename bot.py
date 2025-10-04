@@ -792,6 +792,27 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Mint Park Zoo": "1.3"
         }
     },
+    "Chacoan Peccary": {
+        "common": "Chacoan Peccary",
+        "scientific": "Catagonus wagneri",
+        "info": "The Chacoan peccary is one of three extant species of peccaries. For 4 decades it was thought to be extinct and is one of the most well-known examples of a Lazarus taxa. It is an endangered species due to expansion of ranching in its native range.",
+        "type": "Mammal",
+        "order": "Artiodactyla",
+        "family": "Tayassuidae",
+        "genus": "Catagonus",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Catagonus_wagneri_1_-_Phoenix_Zoo.jpg/1280px-Catagonus_wagneri_1_-_Phoenix_Zoo.jpg",
+        "holdings": {
+            "North America": 0,
+            "Asia": 0,
+            "Europe": "2.2 - Mint Park Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Mint Park Zoo": "2.2"
+        }
+    },
     "Geoffroy's Spider Monkey": {
             "common": "Geoffroy's Spider Monkey",
             "scientific": "Ateles geoffroyi",
@@ -810,7 +831,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                 "Africa": 0,
                 "South America": 0,
                 "Oceania": 0,
-            },
+                    },
             "institutions": {
                         "Mint Park Zoo": "1.2"
         },
