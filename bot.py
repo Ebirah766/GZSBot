@@ -275,8 +275,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/205515041/1200",
         "region": "North America, South America",
         "holdings": {
-            "North America": "1.1 - Cube Zoological Park", 
-            "0.3 - High Uintahs Zoo",
+            "North America": "1.1 - Cube Zoological Park, 0.3 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -284,7 +283,8 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "1.1"
+            "Cube Zoological Park": "1.1",
+            "High Uintahs Zoo": "0.3"
         },
     },
     "Eastern Diamondback Rattlesnake": {
@@ -2351,121 +2351,121 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
-        # --- Commands ----------------------------------------------------------------
-        @bot.command(name="species", aliases=["card"])
-        async def cmd_card(ctx: commands.Context, *, name: str):
-            """
-            Render a rich embed UI card for a species with image, taxonomy, description,
-            and holdings by region.
-            """
-            try:
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
+# --- Commands ----------------------------------------------------------------
+@bot.command(name="species", aliases=["card"])
+async def cmd_card(ctx: commands.Context, *, name: str):
+    """
+    Render a rich embed UI card for a species with image, taxonomy, description,
+    and holdings by region.
+    """
+    try:
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
 
-                images = entry.get("images") or []
-                embed = build_species_embed(entry, image_index=0)
+        images = entry.get("images") or []
+        embed = build_species_embed(entry, image_index=0)
 
-                # --- ensure holdings render as a vertical list (not comma-separated) ---
-                holdings = entry.get("holdings") or {}
-                if isinstance(holdings, dict) and holdings:
-                    holdings_text = "\n".join([f"• **{region}:** {value}" for region, value in holdings.items()]) or "None recorded"
+        # --- ensure holdings render as a vertical list (not comma-separated) ---
+        holdings = entry.get("holdings") or {}
+        if isinstance(holdings, dict) and holdings:
+            holdings_text = "\n".join([f"• **{region}:** {value}" for region, value in holdings.items()]) or "None recorded"
 
-                    # If build_species_embed already added a 'Holdings' field, replace it
-                    idx = next((i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == "holdings"), None)
-                    if idx is not None:
-                        embed.set_field_at(idx, name="Holdings", value=holdings_text, inline=False)
-                    else:
-                        embed.add_field(name="Holdings", value=holdings_text, inline=False)
+            # If build_species_embed already added a 'Holdings' field, replace it
+            idx = next((i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == "holdings"), None)
+            if idx is not None:
+                embed.set_field_at(idx, name="Holdings", value=holdings_text, inline=False)
+            else:
+                embed.add_field(name="Holdings", value=holdings_text, inline=False)
+        else:
+            # Ensure we still show something if there are no holdings
+            idx = next((i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == "holdings"), None)
+            if idx is not None:
+                embed.set_field_at(idx, name="Holdings", value="None recorded", inline=False)
+
+        if isinstance(images, list) and len(images) > 1:
+            view = SpeciesPager(entry=entry, start_index=0)
+            await ctx.send(embed=embed, view=view)
+        else:
+            await ctx.send(embed=embed)
+
+    except Exception:
+        log.exception("Error in ;card")
+        await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
+
+@bot.command(name="holdings")
+async def cmd_holdings(ctx: commands.Context, *, institution: str):
+    """
+    Show all species and counts recorded for a specific zoo/aquarium.
+    """
+    try:
+        exact, suggestion = resolve_institution_name(institution)
+        if not exact and suggestion:
+            await ctx.send(f"No exact entry for **{institution}**. Did you mean **{suggestion}**?")
+            return
+        if not exact and not suggestion:
+            await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
+            return
+
+        blocks, total, sp_count = format_institution_holdings(exact)
+        if isinstance(blocks, str):
+            await ctx.send(blocks)
+        else:
+            for b in blocks:
+                await ctx.send(b)
+    except Exception:
+        log.exception("Error in ;holdings")
+        await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
+
+@bot.command(name="type")
+async def cmd_type(ctx: commands.Context, *, name: str):
+    try:
+        # --- special case: list ALL species in the DB, send as a .txt file ---
+        if name and name.strip().lower() == "all":
+            entries = builtins.sorted(species_data.items(), key=lambda kv: kv[0].lower())
+            if not entries:
+                await ctx.send("No species are stored yet.")
+                return
+
+            lines = []
+            for common, entry in entries:
+                sci = entry.get("scientific")
+                if isinstance(sci, str) and sci.strip():
+                    lines.append(f"{common} — {sci}")
                 else:
-                    # Ensure we still show something if there are no holdings
-                    idx = next((i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == "holdings"), None)
-                    if idx is not None:
-                        embed.set_field_at(idx, name="Holdings", value="None recorded", inline=False)
+                    lines.append(f"{common}")
 
-                if isinstance(images, list) and len(images) > 1:
-                    view = SpeciesPager(entry=entry, start_index=0)
-                    await ctx.send(embed=embed, view=view)
-                else:
-                    await ctx.send(embed=embed)
+            content = f"All Species in Database ({len(lines)} total)\n\n" + "\n".join(lines)
 
-            except Exception:
-                log.exception("Error in ;card")
-                await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
+            buf = io.BytesIO(content.encode("utf-8"))
+            buf.seek(0)
+            file = discord.File(buf, filename="species_all.txt")
+            await ctx.send("Here’s a text file with all species:", file=file)
+            return
 
-        @bot.command(name="holdings")
-        async def cmd_holdings(ctx: commands.Context, *, institution: str):
-            """
-            Show all species and counts recorded for a specific zoo/aquarium.
-            """
-            try:
-                exact, suggestion = resolve_institution_name(institution)
-                if not exact and suggestion:
-                    await ctx.send(f"No exact entry for **{institution}**. Did you mean **{suggestion}**?")
-                    return
-                if not exact and not suggestion:
-                    await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
-                    return
+        # --- normal behavior (single species or a type category) ---
+        entry, msg = get_entry_or_message(name)
+        if not msg:
+            value = entry.get("type")
+            if value:
+                await ctx.send(f"**{entry['common']}** is a **{value}**.")
+            else:
+                await ctx.send(f"No type information stored for **{entry['common']}**.")
+            return
 
-                blocks, total, sp_count = format_institution_holdings(exact)
-                if isinstance(blocks, str):
-                    await ctx.send(blocks)
-                else:
-                    for b in blocks:
-                        await ctx.send(b)
-            except Exception:
-                log.exception("Error in ;holdings")
-                await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
+        # If not a species, try interpreting the input as a type name
+        display, species_names = match_type_or_order(name, field="type")
+        if display and species_names:
+            lines = [f"- {n}" for n in species_names]
+            for chunk in list_to_chunks(lines, header_prefix=f"**Species in type {display}**"):
+                await ctx.send(chunk)
+            return
 
-        @bot.command(name="type")
-        async def cmd_type(ctx: commands.Context, *, name: str):
-            try:
-                # --- special case: list ALL species in the DB, send as a .txt file ---
-                if name and name.strip().lower() == "all":
-                    entries = builtins.sorted(species_data.items(), key=lambda kv: kv[0].lower())
-                    if not entries:
-                        await ctx.send("No species are stored yet.")
-                        return
-
-                    lines = []
-                    for common, entry in entries:
-                        sci = entry.get("scientific")
-                        if isinstance(sci, str) and sci.strip():
-                            lines.append(f"{common} — {sci}")
-                        else:
-                            lines.append(f"{common}")
-
-                    content = f"All Species in Database ({len(lines)} total)\n\n" + "\n".join(lines)
-
-                    buf = io.BytesIO(content.encode("utf-8"))
-                    buf.seek(0)
-                    file = discord.File(buf, filename="species_all.txt")
-                    await ctx.send("Here’s a text file with all species:", file=file)
-                    return
-
-                # --- normal behavior (single species or a type category) ---
-                entry, msg = get_entry_or_message(name)
-                if not msg:
-                    value = entry.get("type")
-                    if value:
-                        await ctx.send(f"**{entry['common']}** is a **{value}**.")
-                    else:
-                        await ctx.send(f"No type information stored for **{entry['common']}**.")
-                    return
-
-                # If not a species, try interpreting the input as a type name
-                display, species_names = match_type_or_order(name, field="type")
-                if display and species_names:
-                    lines = [f"- {n}" for n in species_names]
-                    for chunk in list_to_chunks(lines, header_prefix=f"**Species in type {display}**"):
-                        await ctx.send(chunk)
-                    return
-
-                await ctx.send(msg)
-            except Exception:
-                log.exception("Error in ;type")
-                await ctx.send(f"Sorry, something went wrong processing **{name}**.")
+        await ctx.send(msg)
+    except Exception:
+        log.exception("Error in ;type")
+        await ctx.send(f"Sorry, something went wrong processing **{name}**.")
 
 
 
