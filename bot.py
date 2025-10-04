@@ -962,6 +962,28 @@ species_data: Dict[str, Dict[str, Any]] = {
         "institutions": {
             "Mint Park Zoo": "0.1"
         }
+    },
+    "Beauty Rat Snake": {
+        "common": "Beauty Rat Snake",
+        "scientific": "Elaphe taeniura",
+        "info": "A semi-arboreal species of snake native to Asia, the beauty rat snake has several recognized subspecies, with many different colorations. As a result, it can be difficult to identify them at a glance, unless one is well-versed in snakes.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Colubridae",
+        "genus": "Elaphe",
+        "images": [
+            {"label": "Ridley's Cave Racer (ridleyi)", "url": "https://static.thainationalparks.com/img/species/2021/12/20/397706/elaphe-taeniurus-ridleyi-w-1500.jpg"}
+    ],      "holdings": {
+            "North America": "1.1 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.1"
+        }
     }
 }
 
