@@ -1193,10 +1193,10 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Craspedocephalus",
         "images": [
-            {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://cdn.discordapp.com/attachments/1035388569419780176/1424050571932860416/large.png?ex=68e289f1&is=68e13871&hm=2a402427e2c62c390696e2a1653ea5cfb0c4ba8fc6368beb5425d7cf516c8911"}
+            {"label": "Java locality", "url": "https://cdn.discordapp.com/attachments/1035388569419780176/1424050571932860416/large.png?ex=68e289f1&is=68e13871&hm=2a402427e2c62c390696e2a1653ea5cfb0c4ba8fc6368beb5425d7cf516c8911"}
         ],
         "holdings": {
-            "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
+            "North America": "1.1 [Java] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1204,7 +1204,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.2 [barbouri]"
+            "Jupiter Reptile Zoo": "1.1 [Java]"
         }
     }
 }
