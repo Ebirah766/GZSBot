@@ -984,6 +984,27 @@ species_data: Dict[str, Dict[str, Any]] = {
         "institutions": {
             "Jupiter Reptile Zoo": "1.1 [ridleyi]"
         }
+    },
+    "Eastern Indigo Snake": {
+        "common": "Eastern Indigo Snake",
+        "scientific": "Drymarchon couperi",
+        "info": "Of all snakes native to the United States, the eastern indigo snake is the longest. This large colubrid is a high-ranking predator, feeding upon anything that can fit in its mouth, even venomous rattlesnakes, as it is immune to their venom.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Colubridae",
+        "genus": "Drymarchon",
+        "image_url": "https://www.fws.gov/sites/default/files/styles/facebook_1200x630/public/banner_images/2022-07/eastern-indigo-snake.jpg?h=f7c62170&itok=2StGVxab",
+        "holdings": {
+            "North America": "1.1 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.1"
+        }
     }
 }
 
