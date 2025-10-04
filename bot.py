@@ -1012,8 +1012,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Elaphe",
         "images": [
             {"label": "Ridley's Cave Racer (ridleyi)", "url": "https://static.thainationalparks.com/img/species/2021/12/20/397706/elaphe-taeniurus-ridleyi-w-1500.jpg"}
-            "region": "Asia",
-    ],      "holdings": {
+        ],
+        "region": "Asia",
+        "holdings": {
             "North America": "1.1 [ridleyi] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
@@ -1045,8 +1046,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.1"
-
-    }
+        }
     },
     "Black-Tailed Horned Pit Viper": {
         "common": "Black-Tailed Horned Pit Viper",
@@ -1207,8 +1207,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.1"
-
-    }
+        }
     },
     "Western Mangrove Cat Snake": {
         "common": "Western Mangrove Cat Snake",
@@ -1397,15 +1396,15 @@ species_data: Dict[str, Dict[str, Any]] = {
     "North American Porcupine": {
          "common": "North American Porcupine",
         "scientific": "Erethizon dorsatum",
-        "info": "One of two big cats native to the Americas, the mountain lion is highly adaptable and found in a variety of habitats, including mountains, deserts, and rainforests. They are one of the most iconic and beloved species found in the Americas.",
+        "info": "The North American porcupine is a large, aboreal rodent native to North America, from northern Canada to central Mexico. It is the second largest rodent in North America after the North America beaver..",
         "type": "Mammal",
-        "order": "Carnivora",
-        "family": "Felidae",
-        "genus": "Puma",
-        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/9834553/original.jpg",
-        "region": "North America, South America",
+        "order": "Rodentia",
+        "family": "Erethizontidae",
+        "genus": "Erethizon",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Erethizon_dorsatum_-_Prince_Rupert.jpg",
+        "region": "North America",
         "holdings": {
-            "North America": "0.1 - High Uintahs Zoo",
+            "North America": "1.1 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1413,7 +1412,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
                         },
         "institutions": {
-            "High Uintahs Zoo": "0.1"
+            "High Uintahs Zoo": "1.1"
         }
     }
 }
