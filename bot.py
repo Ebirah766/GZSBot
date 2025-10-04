@@ -142,6 +142,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Muscidae",
         "genus": "Musca",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/79611144/original.jpeg",
+        "region": "North America, South America, Europe, Asia, Africa, Oceania",
         "holdings": {
             "North America": "100 - Cube Zoological Park",
             "Asia": 0,
@@ -2466,7 +2467,7 @@ async def region_command(ctx, *, region: str = ""):
 
     # Collect matches. SPECIES is assumed to be your species dict.
     matches = []
-        for key, sp in species_data.items():
+    for key, sp in species_data.items():
         try:
             regs = _extract_species_regions(sp)
             if wanted in regs:
