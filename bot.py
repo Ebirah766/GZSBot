@@ -1412,6 +1412,29 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
         "institutions": {
             "High Uintahs Zoo": "1.1"
+
+            }
+            },
+    "North American Porcupine": {
+        "common": "North American Porcupine",
+        "scientific": "Erethizon dorsatum",
+        "info": "The North American porcupine is a large, aboreal rodent native to North America, from northern Canada to central Mexico. It is the second largest rodent in North America after the North America beaver..",
+        "type": "Mammal",
+        "order": "Rodentia",
+        "family": "Erethizontidae",
+        "genus": "Erethizon",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Erethizon_dorsatum_-_Prince_Rupert.jpg",
+        "region": "North America",
+        "holdings": {
+            "North America": "1.1 - High Uintahs Zoo",
+                    "Asia": 0,
+                    "Europe": 0,
+                    "Africa": 0,
+                    "South America": 0,
+                    "Oceania": 0,
+                                },
+                "institutions": {
+                    "High Uintahs Zoo": "1.1"
         }
     }
 }
