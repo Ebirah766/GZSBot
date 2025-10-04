@@ -1346,9 +1346,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.2"
-
-                }
-            },
+        }
+    },
     "Bighorn Sheep": {
         "common": "Bighorn Sheep",
         "scientific": "Ovis canadensis",
@@ -1369,9 +1368,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "High Uintahs Zoo": "0.4"
-
-            }
-                    },
+        }
+    },
     "Mountain Lion": {
         "common": "Mountain Lion",
         "scientific": "Puma concolor",
@@ -1392,7 +1390,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
         "institutions": {
             "High Uintahs Zoo": "0.1"
-
+        }
+    },
     "North American Porcupine": {
          "common": "North American Porcupine",
         "scientific": "Erethizon dorsatum",
