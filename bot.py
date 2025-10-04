@@ -989,7 +989,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mephitidae",
         "genus": "Mephitis",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/61292683/large.jpg",
-        
+        "region": "North America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -1012,7 +1012,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Elaphe",
         "images": [
             {"label": "Ridley's Cave Racer (ridleyi)", "url": "https://static.thainationalparks.com/img/species/2021/12/20/397706/elaphe-taeniurus-ridleyi-w-1500.jpg"}
-    ],      "holdings": {
+        ],
+        "region": "Asia",
+        "holdings": {
             "North America": "1.1 [ridleyi] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
@@ -1033,6 +1035,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Colubridae",
         "genus": "Drymarchon",
         "image_url": "https://www.fws.gov/sites/default/files/styles/facebook_1200x630/public/banner_images/2022-07/eastern-indigo-snake.jpg?h=f7c62170&itok=2StGVxab",
+        "region": "North America",
         "holdings": {
             "North America": "1.1 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1055,6 +1058,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Mixcoatlus",
         "image_url": "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/472999940_1672789173595713_1159118854601384928_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=YyUXLve42EkQ7kNvwHMtkmm&_nc_oc=AdlhzbHYMdP3n5QDbIe_fTpkWElKyz9d-Sxms3dbhBjG3oqODk1EfDlFaRL9asJovN66Z8G14SBgdBHI0i_WETrs&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=-hPNVuACjUTMk4Fuhlr6FA&oh=00_AffBxXIQB08HmECVF9ik8EnML5NASV72_7HaRDh2smC2qw&oe=68E7034D",
+        "region": "North America",
         "holdings": {
             "North America": "0.2 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1079,6 +1083,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Blue variant", "url": "https://media-animals.earth.com/images/2022/08/17/9637093228780143/trimeresurusinsularis_2552449653879538.jpg"},
             {"label": "Yellow variant", "url": "https://alephrocco.com/wp-content/uploads/2018/06/41776996854_0265ab2332_k.jpg"}
         ],
+        "region": "Asia",
         "holdings": {
             "North America": "1.1 [Blue], 0.1 [Yellow] - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1101,6 +1106,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Trimeresurus",
         "image_url": "https://static.thainationalparks.com/img/species/2017/07/05/317565/trimeresurus-purpureomaculatus-w-1500.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "0.3 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1123,6 +1129,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Tropidolaemus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg/1280px-Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "0.1 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1146,6 +1153,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://static.inaturalist.org/photos/392077465/large.jpeg"}
         ],
+        "region": "North America",
         "holdings": {
             "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1167,6 +1175,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Craspedocephalus",
         "image_url": "https://static.inaturalist.org/photos/352173492/large.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "1.1 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1188,6 +1197,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Elapidae",
         "genus": "Naja",
         "image_url": "https://static.inaturalist.org/photos/12833129/large.jpg",
+        "region": "Africa",
         "holdings": {
             "North America": "1.1 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1210,6 +1220,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Colubridae",
         "genus": "Boiga",
         "image_url": "https://static.thainationalparks.com/img/species/2016/09/24/207594/boiga-melanota-w-1500.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "2.0 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1234,6 +1245,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Java locality", "url": "https://cdn.discordapp.com/attachments/1035388569419780176/1424050571932860416/large.png?ex=68e289f1&is=68e13871&hm=2a402427e2c62c390696e2a1653ea5cfb0c4ba8fc6368beb5425d7cf516c8911"}
         ],
+        "region": "Asia",
         "holdings": {
             "North America": "1.1 [Java] - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1250,7 +1262,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Monocled Cobra": {
         "common": "Monocled Cobra",
         "scientific": "Naja kaouthia",
-        "info": "The monocled cobra is perhaps the most recognizable species of venomous snake in the world. Ranging throughout South-east Asia, these snakes dwell in all types of habitat - from forests to farmland.",
+        "info": "The monocled cobra is perhaps the most recognizable species of venomous snake in the world. Ranging throughout Southeast Asia, these snakes dwell in all types of habitat from forests to farmland.",
         "type": "Reptile",
         "order": "Squamata",
         "family": "Elapidae",
@@ -1259,7 +1271,8 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Wild type", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/491146798_1081368080686123_7102814473061028418_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dB_BPqbQrvgQ7kNvwHBWXOq&_nc_oc=Adl1lq2CaO7I_YK-PHlI7Ktskdbp_EN2ozE4azVJgWZdVzP4R5o1o9f-Xcm10MsQONM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=lfz1apkHFuI_dmAdS9v5VA&oh=00_AffAfUf6YWEMRyAQffeHdVRUJ3s4PtJZF4cXosCvcEeqAQ&oe=68E7251E"},
             {"label": "Leucistic", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/510343141_9936717456440041_3752577244402236551_n.jpg?stp=dst-jpg_p843x403_tt6&_nc_cat=107&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=fTmB3GAJFVkQ7kNvwEDuJ19&_nc_oc=AdnmGnVQfKM0NTljvtzn1JN0g1vCZCOE6U1Dgi-JK2ekB_uqV9ilC0nUW_LT5yFa9ZM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=r9UN0pTHtEO9xWBJGuJxJg&oh=00_AfegHTmllnIDkiBl44dtRWx877XeyA8qaUBljjAPlb_rTQ&oe=68E6FB38"}
         ],
-            "holdings": {
+        "region": "Asia",
+        "holdings": {
             "North America": "1.0 [Wild type], 0.1 [Leucistic] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
@@ -1280,6 +1293,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Elapidae",
         "genus": "Micrurus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/105813097/large.jpeg",
+        "region": "North America",
         "holdings": {
             "North America": "1.1 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1301,6 +1315,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Pythonidae",
         "genus": "Python",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "0.1 - Jupiter Reptile Zoo",
             "Asia": 0,
@@ -1322,6 +1337,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Shinisauridae",
         "genus": "Shinisaurus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Shinisaurus_crocodilurus_10.jpg/1280px-Shinisaurus_crocodilurus_10.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "1.2 - Jupiter Reptile Zoo",
             "Asia": 0,
