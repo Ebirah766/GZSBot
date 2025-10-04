@@ -1072,6 +1072,28 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "0.3"
+
+    }
+    },
+    "Wagler's Pit Viper": {
+        "common": "Wagler's Pit Viper",
+        "scientific": "Tropidolaemus wagleri",
+        "info": "The Wagler's pit viper is also called the Wagler's temple viper, due to its abundance around the Temple of the Azure Cloud in Malaysia. This temple is also known as the Snake Temple due to this species' abundance in the area.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Viperidae",
+        "genus": "Tropidolaemus",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg/1280px-Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg",
+        "holdings": {
+            "North America": "0.1 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "0.1"
         }
     }
 }
