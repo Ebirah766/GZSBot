@@ -1482,6 +1482,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
     "institutions": {
             "High Uintahs Zoo": "2.0"
+
+        }
+        },
+
+    "Northern Flying Squirrel": {
+    "common": "Northern Flying Squirrel",
+    "scientific": "Glaucomys sabrinus",
+    "info": "Turkey vultures are the most widespread New World vulture species. An abundant and highly adaptable animal, turkey vultures can be found in most areas of the Americas, except certain mountainous regions of South America and taiga/polar areas of North America.",
+    "type": "Bird",
+    "order": "Accipitriformes",
+    "family": "Cathartidae",
+    "genus": "Cathartes",
+    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/171981785/original.jpg",
+    "region": "North America, South America",
+    "holdings": {
+        "North America": "2.0 - High Uintahs Zoo",
+        "Asia": 0,
+        "Europe": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+                    },
+    "institutions": {
+        "High Uintahs Zoo": "2.0"
         }
     }
 }
