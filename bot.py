@@ -2193,7 +2193,7 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-@bot.command(name="card", aliases=["species"])
+@bot.command(name="species", aliases=["card"])
 async def cmd_card(ctx: commands.Context, *, name: str):
     """
     Render a rich embed UI card for a species with image, taxonomy, description,
