@@ -2496,41 +2496,6 @@ async def cmd_specieslist(ctx: commands.Context):
             log.exception("Unhandled error in ;region")
             await ctx.send("⚠️ An unexpected error occurred while processing `;region`. Check logs for details.")
 
-    # Collect matches. SPECIES is assumed to be your species dict.
-    matches = []
-    for key, sp in SPECIES.items():  # ← rename SPECIES if your dict is named differently
-        try:
-            regs = _extract_species_regions(sp)
-            if wanted in regs:
-                # prefer common name if present, else fall back to dict key
-                common = sp.get("common") or key
-                sci = sp.get("scientific") or ""
-                if sci:
-                    matches.append(f"- {common} (*{sci}*)")
-                else:
-                    matches.append(f"- {common}")
-        except Exception:
-            # Be resilient to any odd entries
-            continue
-
-    matches.sort(key=lambda s: s.lower())
-    count = len(matches)
-
-    if count == 0:
-        await ctx.send(f"No species marked with native region **{wanted}** yet.")
-        return
-
-    # Build neat output with chunking for Discord’s 2000-char limit
-    header = f"**Species native to {wanted}** — {count} found"
-    lines = [header, ""] + matches
-    chunks = _chunk_lines(lines)
-
-    for i, chunk in enumerate(chunks):
-        if i == 0:
-            await ctx.send(chunk)
-        else:
-            await ctx.send(chunk)
-
 # --- Error handling ----------------------------------------------------------
 @bot.event
 async def on_command_error(ctx: commands.Context, error: Exception):
