@@ -1605,6 +1605,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         }
     }
 }
+SPECIES = species_data
 
 # --- Region helpers (derived from user-maintained `region` field) ------------
 _region_normalizer = re.compile(r"[^a-z]+")
@@ -2447,36 +2448,34 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-        @bot.command(name="species", aliases=["card"])
-        async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-            """
-            Render a rich embed UI card for a species with image, taxonomy, description,
-            and holdings by region.
-            """
-            try:
-                if not name or not str(name).strip():
-                    await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-                    return
+@bot.command(name="species", aliases=["card"])
+async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
+    """
+    Render a rich embed UI card for a species with image, taxonomy, description,
+    and holdings by region.
+    """
+    try:
+        if not name or not str(name).strip():
+            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
+            return
 
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
 
-                # Build embed (this already uses format_holdings)
-                images = entry.get("images") or []
-                embed = build_species_embed(entry, image_index=0)
+        images = entry.get("images") or []
+        embed = build_species_embed(entry, image_index=0)
 
-                # Send with pager if multiple images
-                if isinstance(images, list) and len(images) > 1:
-                    view = SpeciesPager(entry=entry, start_index=0)
-                    await ctx.send(embed=embed, view=view)
-                else:
-                    await ctx.send(embed=embed)
+        if isinstance(images, list) and len(images) > 1:
+            view = SpeciesPager(entry=entry, start_index=0)
+            await ctx.send(embed=embed, view=view)
+        else:
+            await ctx.send(embed=embed)
 
-            except Exception:
-                log.exception("Error in ;species")
-                await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
+    except Exception:
+        log.exception("Error in ;species")
+        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
 
 
 @bot.command(name="holdings")
@@ -2503,54 +2502,52 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
         log.exception("Error in ;holdings")
         await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
 
+
 @bot.command(name="type")
 async def cmd_type(ctx: commands.Context, *, name: str):
-            try:
-                # --- special case: list ALL species in the DB, send as a .txt file ---
-                if name and name.strip().lower() == "all":
-                    entries = builtins.sorted(species_data.items(), key=lambda kv: kv[0].lower())
-                    if not entries:
-                        await ctx.send("No species are stored yet.")
-                        return
+    try:
+        # Special case: list ALL species in the DB, send as a .txt file
+        if name and name.strip().lower() == "all":
+            entries = builtins.sorted(species_data.items(), key=lambda kv: kv[0].lower())
+            if not entries:
+                await ctx.send("No species are stored yet.")
+                return
 
-                    lines = []
-                    for common, entry in entries:
-                        sci = entry.get("scientific")
-                        if isinstance(sci, str) and sci.strip():
-                            lines.append(f"{common} — {sci}")
-                        else:
-                            lines.append(f"{common}")
+            lines = []
+            for common, entry in entries:
+                sci = entry.get("scientific")
+                lines.append(f"{common} — {sci}" if (isinstance(sci, str) and sci.strip()) else f"{common}")
 
-                    content = f"All Species in Database ({len(lines)} total)\n\n" + "\n".join(lines)
+            content = f"All Species in Database ({len(lines)} total)\n\n" + "\n".join(lines)
+            buf = io.BytesIO(content.encode("utf-8"))
+            buf.seek(0)
+            file = discord.File(buf, filename="species_all.txt")
+            await ctx.send("Here’s a text file with all species:", file=file)
+            return
 
-                    buf = io.BytesIO(content.encode("utf-8"))
-                    buf.seek(0)
-                    file = discord.File(buf, filename="species_all.txt")
-                    await ctx.send("Here’s a text file with all species:", file=file)
-                    return
+        # Normal behavior (single species or a type category)
+        entry, msg = get_entry_or_message(name)
+        if not msg:
+            value = entry.get("type")
+            if value:
+                await ctx.send(f"**{entry['common']}** is a **{value}**.")
+            else:
+                await ctx.send(f"No type information stored for **{entry['common']}**.")
+            return
 
-                # --- normal behavior (single species or a type category) ---
-                entry, msg = get_entry_or_message(name)
-                if not msg:
-                    value = entry.get("type")
-                    if value:
-                        await ctx.send(f"**{entry['common']}** is a **{value}**.")
-                    else:
-                        await ctx.send(f"No type information stored for **{entry['common']}**.")
-                    return
+        # If not a species, try interpreting the input as a type name
+        display, species_names = match_type_or_order(name, field="type")
+        if display and species_names:
+            lines = [f"- {n}" for n in species_names]
+            for chunk in list_to_chunks(lines, header_prefix=f"**Species in type {display}**"):
+                await ctx.send(chunk)
+            return
 
-                # If not a species, try interpreting the input as a type name
-                display, species_names = match_type_or_order(name, field="type")
-                if display and species_names:
-                    lines = [f"- {n}" for n in species_names]
-                    for chunk in list_to_chunks(lines, header_prefix=f"**Species in type {display}**"):
-                        await ctx.send(chunk)
-                    return
+        await ctx.send(msg)
+    except Exception:
+        log.exception("Error in ;type")
+        await ctx.send(f"Sorry, something went wrong processing **{name}**.")
 
-                await ctx.send(msg)
-            except Exception:
-                log.exception("Error in ;type")
-                await ctx.send(f"Sorry, something went wrong processing **{name}**.")
 
 
 
@@ -2933,18 +2930,7 @@ async def token_admin_cmd(ctx, action: str = None, member: discord.Member = None
         new_bal = _set_balance(data, member.id, n)
         await ctx.send(f"✅ Set {member.mention}'s balance to **{new_bal}**.")
 
-
-if __name__ == "__main__":
-    # >>> ADDED: start keep-alive web server before running the bot <<<
-    keep_alive()
-
-    token = os.getenv("DISCORD_TOKEN")
-    if not token:
-        log.error("DISCORD_TOKEN not set in environment or .env")
-        sys.exit(1)
-    bot.run(token)
-
-@bot.command(name="help")
+@bot.command(name="commands")
 async def help_command(ctx):
     """Displays a list of all available commands and their descriptions."""
     help_text = (
@@ -2964,3 +2950,13 @@ async def help_command(ctx):
         "\n*(Use commands with care — names with multiple words should be in quotes!)*"
     )
     await ctx.send(help_text)
+
+if __name__ == "__main__":
+    # >>> ADDED: start keep-alive web server before running the bot <<<
+    keep_alive()
+
+    token = os.getenv("DISCORD_TOKEN")
+    if not token:
+        log.error("DISCORD_TOKEN not set in environment or .env")
+        sys.exit(1)
+    bot.run(token)
