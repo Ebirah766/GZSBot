@@ -2681,3 +2681,24 @@ if __name__ == "__main__":
         log.error("DISCORD_TOKEN not set in environment or .env")
         sys.exit(1)
     bot.run(token)
+
+@bot.command(name="help")
+async def help_command(ctx):
+    """Displays a list of all available commands and their descriptions."""
+    help_text = (
+        "**Available Commands:**\n\n"
+        "**;card [species name]** – Shows an info card with image, taxonomy, and holdings for a species.\n"
+        "**;type [type name]** – Lists all species belonging to a specific animal type (e.g. Mammal, Fish).\n"
+        "**;order [order name]** – Lists species under a given taxonomic order.\n"
+        "**;family [family name]** – Lists species belonging to a particular family.\n"
+        "**;genus [genus name]** – Lists species belonging to a particular genus.\n"
+        "**;region [region name]** – Lists species found in that region (e.g. Europe, Asia, North America).\n"
+        "**;type all** – Lists all species in the database.\n"
+        "**;addtokens [@user] [amount]** – Adds tokens to a user.\n"
+        "**;removetokens [@user] [amount]** – Removes tokens from a user.\n"
+        "**;tokens [@user]** – Shows how many tokens a user currently has.\n"
+        "**;house [zoo name]** – Displays information about a specific zoo/institution.\n"
+        "**;regionlist** – Lists all available regions.\n"
+        "\n*(Use commands with care — names with multiple words should be in quotes!)*"
+    )
+    await ctx.send(help_text)
