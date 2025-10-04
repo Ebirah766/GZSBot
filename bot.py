@@ -1348,6 +1348,29 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.2"
+
+                }
+            },
+    "Bighorn Sheep": {
+        "common": "Bighorn Sheep",
+        "scientific": "Ovis canadensis",
+        "info": "The bighorn sheep is an iconic species of sheep found throughout alpine regions of western North America, from Canada to Mexico. Several subspecies exist, each adapted for a specific region and climate.",
+        "type": "Mammal",
+        "order": "Artiodactyla",
+        "family": "Bovidae",
+        "genus": "Ovis",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/New_Mexico_Bighorn_Sheep.JPG/1280px-New_Mexico_Bighorn_Sheep.JPG",
+        "region": "North America",
+        "holdings": {
+            "North America": "0.4 - High Uintahs Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "High Uintahs Zoo": "0.4"
         }
     }
 }
