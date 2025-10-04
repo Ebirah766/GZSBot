@@ -922,25 +922,25 @@ species_data: Dict[str, Dict[str, Any]] = {
                 "Mint Park Zoo": "1.1"
                 }
                     },
-        "Tayra": {
-            "common": "Tayra",
-            "scientific": "Eira barbara",
-            "info": "Tayras are one of the larger mustelid species. Found throughout Central and South America, they are known to cache food like plantains for later, making them one of the few animals to do so.",
+        "Raccoon": {
+            "common": "Raccoon",
+            "scientific": "Procyon lotor",
+            "info": "The most iconic procyonid, the raccoon is a nocturnal generalist and scavenger that is adapted to a wide range of habitats, including human-inhabited areas. They have been introduced to Europe and Asia and have become established there.",
             "type": "Mammal",
             "order": "Carnivora",
-            "family": "Mustelidae",
-            "genus": "Eira",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tayra_-_Male%2C_Brazil_%28cropped%29.jpg/1280px-Tayra_-_Male%2C_Brazil_%28cropped%29.jpg",
+            "family": "Procyonidae",
+            "genus": "Procyon",
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/1280px-Raccoon_in_Central_Park_%2835264%29.jpg",
             "holdings": {
                 "North America": 0,
                 "Asia": 0,
-                "Europe": "1.1 - Mint Park Zoo",
+                "Europe": "2.2 - Mint Park Zoo",
                 "Africa": 0,
                 "South America": 0,
                 "Oceania": 0,
-                    },
-                    "institutions": {
-                        "Mint Park Zoo": "1.1"
+            },
+            "institutions": {
+                "Mint Park Zoo": "2.2"
         }
     },
 }
