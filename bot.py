@@ -7,6 +7,7 @@ import difflib
 import re
 import json  # <<< ADDED
 from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
+import io  # <<< ADDED
 
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
@@ -1633,16 +1634,29 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
 @bot.command(name="type")
 async def cmd_type(ctx: commands.Context, *, name: str):
     try:
-        # --- special case: list ALL species in the DB ---
         if name and name.strip().lower() == "all":
-            names = sorted(species_data.keys(), key=lambda s: s.lower())
-            if not names:
+            # Build# Build a text file (include scientific names when available)
+            entries = sorted= sorted(species_data.items(), key=lambda kv: kv[0].lower())
+            if not entries:
                 await ctx.send("No species are stored yet.")
                 return
-            lines = [f"- {n}" for n in names]
-            for chunk in list_to_chunks(lines, header_prefix=f"**All Species in Database ({len(names)} total)**"):
-                await ctx.send(chunk)
+
+            lines = []
+            for common, entry in entries:
+                sci = entry.get("scientific")
+                if isinstance(sci, str) and sci.strip():
+                    lines.append(f"{common} — {sci}")
+                else:
+                    lines.append(f"{common}")
+
+            content = "All Species in Database (" + str(len(lines)) + " total)\n\n" + "\n".join(lines)
+
+            # Send as a .txt attachment
+            buf = io.BytesIO(content.encode("utf-8"))
+            file = discord.File(buf, filename="species_all.txt")
+            await ctx.send("Here’s a text file with all species:", file=file)
             return
+
 
         # --- normal behavior (single species or a type category) ---
         entry, msg = get_entry_or_message(name)
