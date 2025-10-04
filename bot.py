@@ -164,6 +164,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Suidae",
         "genus": "Sus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg/1280px-Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg",
+        "region": "Europe, Asia",
         "holdings": {
             "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
@@ -185,6 +186,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mustelidae",
         "genus": "Neogale",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/American_Mink.jpg/1280px-American_Mink.jpg",
+        "region": "North America",
         "holdings": {
             "North America": "1.0 - Cube Zoological Park",
             "Asia": 0,
@@ -206,6 +208,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Bovidae",
         "genus": "Bubalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Water_buffalo_at_Rinca.jpg/1280px-Water_buffalo_at_Rinca.jpg",
+        "region": "Europe, Asia",
         "holdings": {
             "North America": "2.4 - Cube Zoological Park",
             "Asia": 0,
@@ -2467,7 +2470,7 @@ async def region_command(ctx, *, region: str = ""):
 
     # Collect matches. SPECIES is assumed to be your species dict.
     matches = []
-    for key, sp in species_data.items():
+        for key, sp in species_data.items():
         try:
             regs = _extract_species_regions(sp)
             if wanted in regs:
