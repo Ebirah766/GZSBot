@@ -2285,6 +2285,111 @@ async def on_ready():
     log.info("Logged in as %s (%s)", bot.user, bot.user.id)
     log.info("Bot is ready.")
 
+# ==============================  TOKENS SYSTEM  ==============================
+_TOKENS_PATH = pathlib.Path(__file__).with_name("tokens.json")
+DEFAULT_TOKENS = 10
+
+def _load_tokens() -> dict:
+    if _TOKENS_PATH.exists():
+        try:
+            return json.loads(_TOKENS_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"balances": {}}  # { "balances": { "<user_id>": int } }
+
+def _save_tokens(data: dict) -> None:
+    _TOKENS_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+def _ensure_balance(data: dict, user_id: int) -> int:
+    bal = data.setdefault("balances", {}).get(str(user_id))
+    if bal is None:
+        data["balances"][str(user_id)] = DEFAULT_TOKENS
+        _save_tokens(data)
+        return DEFAULT_TOKENS
+    return int(bal)
+
+def _set_balance(data: dict, user_id: int, new_val: int) -> int:
+    new_val = max(0, int(new_val))
+    data.setdefault("balances", {})[str(user_id)] = new_val
+    _save_tokens(data)
+    return new_val
+
+def _add_balance(data: dict, user_id: int, delta: int) -> int:
+    cur = _ensure_balance(data, user_id)
+    return _set_balance(data, user_id, cur + int(delta))
+
+# ---- Commands ----
+@bot.command(name="tokens")
+async def tokens_cmd(ctx, member: discord.Member = None):
+    """
+    Check token balance.
+    - ;tokens             -> your balance
+    - ;tokens @user       -> admin can view others
+    """
+    target = member or ctx.author
+    if member and (member.id != ctx.author.id) and not _is_admin(ctx):
+        await ctx.send("🚫 Only admins can view other members’ balances.")
+        return
+    data = _load_tokens()
+    bal = _ensure_balance(data, target.id)
+    who = target.mention if member else "You"
+    await ctx.send(f"{who} have **{bal}** token(s).")
+
+@bot.command(name="token")
+async def token_admin_cmd(ctx, action: str = None, member: discord.Member = None, amount: int = None):
+    """
+    Admin token management.
+    - ;token add @user <n>
+    - ;token remove @user <n>
+    - ;token set @user <n>     (optional convenience)
+    """
+    if not _is_admin(ctx):
+        await ctx.send("🚫 You need **Manage Server** to modify tokens.")
+        return
+
+    valid_actions = {"add", "remove", "set"}
+    if action is None or action.lower() not in valid_actions or member is None or amount is None:
+        await ctx.send(
+            "Usage:\n"
+            "`;token add @user <n>`\n"
+            "`;token remove @user <n>`\n"
+            "`;token set @user <n>`"
+        )
+        return
+
+    action = action.lower()
+    try:
+        n = int(amount)
+    except Exception:
+        await ctx.send("Amount must be an integer.")
+        return
+
+    data = _load_tokens()
+
+    if action == "add":
+        if n <= 0:
+            await ctx.send("Add amount must be a positive integer.")
+            return
+        new_bal = _add_balance(data, member.id, n)
+        await ctx.send(f"✅ Added **{n}** tokens to {member.mention}. New balance: **{new_bal}**.")
+
+    elif action == "remove":
+        if n <= 0:
+            await ctx.send("Remove amount must be a positive integer.")
+            return
+        cur = _ensure_balance(data, member.id)
+        new_bal = _set_balance(data, member.id, cur - n)
+        removed = cur - new_bal
+        await ctx.send(f"✅ Removed **{removed}** tokens from {member.mention}. New balance: **{new_bal}**.")
+
+    elif action == "set":
+        if n < 0:
+            await ctx.send("Set amount must be zero or positive.")
+            return
+        new_bal = _set_balance(data, member.id, n)
+        await ctx.send(f"✅ Set {member.mention}'s balance to **{new_bal}**.")
+
+
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
     keep_alive()
