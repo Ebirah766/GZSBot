@@ -208,7 +208,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Bovidae",
         "genus": "Bubalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Water_buffalo_at_Rinca.jpg/1280px-Water_buffalo_at_Rinca.jpg",
-        "region": "Europe, Asia",
         "holdings": {
             "North America": "2.4 - Cube Zoological Park",
             "Asia": 0,
@@ -230,6 +229,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Centrarchidae",
         "genus": "Micropterus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88108052/original.jpg",
+        "region": "North America",
         "holdings": {
             "North America": "5 - Cube Zoological Park",
             "Asia": 0,
@@ -251,6 +251,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Pythonidae",
         "genus": "Python",
         "image_url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "0.1 - Cube Zoological Park",
             "Asia": 0,
@@ -272,6 +273,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Strigidae",
         "genus": "Athene",
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/205515041/1200",
+        "region": "North America, South America",
         "holdings": {
             "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
@@ -293,6 +295,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Crotalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Adult_Crotalus_adamanteus.jpg/1280px-Adult_Crotalus_adamanteus.jpg",
+        "region": "North America",
         "holdings": {
             "North America": "1.0 - Cube Zoological Park",
             "Asia": 0,
@@ -319,6 +322,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
         ],
         "image_url": "https://example.com/default.jpg",
+        "region": "Asia, Africa",
         "holdings": {
             "North America": 0,
             "Europe": ["0.0.1.0 (jubatus) - Shropshire Hills Zoo"],
@@ -366,6 +370,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cervidae",
         "genus": "Dama",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Fallow_deer_in_field.jpg/1280px-Fallow_deer_in_field.jpg",
+        "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -387,6 +392,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cervidae",
         "genus": "Cervus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/68001185/large.jpg",
+        "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -408,6 +414,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Callitrichidae",
         "genus": "Leontopithecus",
         "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
+        "region": "South America",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -429,6 +436,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Equidae",
         "genus": "Equus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/398125195/large.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -450,6 +458,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Egerniidae",
         "genus": "Tribolonotus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Red-Eyed_Crocodile_Skink.jpg",
+        "region": "Oceania",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -471,6 +480,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Felis",
         "image_url": "https://www.biolib.cz/IMG/GAL/BIG/309949.jpg",
+        "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -492,6 +502,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Canidae",
         "genus": "Vulpes",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/388749029/original.jpg",
+        "region": "North America, Europe, Asia",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -513,6 +524,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mustelidae",
         "genus": "Aonyx",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Otter_-_melbourne_zoo.jpg/1280px-Otter_-_melbourne_zoo.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "0",
             "Asia": 0,
@@ -534,6 +546,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Tinamidae",
         "genus": "Eudromia",
         "image_url": "https://static.inaturalist.org/photos/28265534/large.jpg",
+        "region": "South America",
         "holdings": {
             "North America": "2.2 - Credit River Zoo",
             "Asia": 0,
@@ -555,6 +568,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Phoenicopteridae",
         "genus": "Phoenicopterus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/258687300/large.jpg",
+        "region": "North America, South America",
         "holdings": {
             "North America": "5.5 - Credit River Zoo",
             "Asia": 0,
@@ -576,6 +590,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Anhimidae",
         "genus": "Chauna",
         "image_url": "https://www.ecoregistros.org/site/images/dataimages/2018/10/02/289707/chaja-1.jpg",
+        "region": "South America",
         "holdings": {
             "North America": "1.0 - Credit River Zoo",
             "Asia": 0,
@@ -597,6 +612,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Threskiornithidae",
         "genus": "Eudocimus",
         "image_url": "https://www.biolib.cz/IMG/GAL/BIG/395236.jpg",
+        "region": "North America, South America",
         "holdings": {
             "North America": "3.0 - Credit River Zoo",
             "Asia": 0,
@@ -618,6 +634,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Threskiornithidae",
         "genus": "Platalea",
         "image_url": "https://www.biolib.cz/IMG/GAL/BIG/561817.jpg",
+        "region": "North America, South America",
         "holdings": {
              "North America": "0.2 - Credit River Zoo",
             "Asia": 0,
@@ -639,6 +656,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Choloepodidae",
         "genus": "Choloepus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cholepus_didactylus_-_Flickr_-_Dick_Culbert.jpg",
+        "region": "South America",
         "holdings": {
             "North America": "0.1 - Credit River Zoo",
               "Asia": 0,
@@ -660,6 +678,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Pitheciidae",
         "genus": "Pithecia",
         "image_url": "https://www.marwell.org.uk/wp-content/uploads/2021/07/White-faced-saki-Pithecia-pithecia-Marwell-Zoo.jpg",
+        "region": "South America",
         "holdings": {
             "North America": "1.1 - Credit River Zoo",
                 "Asia": 0,
@@ -681,6 +700,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Callitrichidae",
         "genus": "Saguinus",
         "image_url": "https://dwazoo.com/wp-content/uploads/2023/01/cotton2-scaled.jpg",
+        "region": "South America",
         "holdings": {
             "North America": "1.3 - Credit River Zoo",
             "Asia": 0,
@@ -702,6 +722,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Anatidae",
         "genus": "Dendrocygna",
         "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/03/Dendrocygna-autumnalis-fulgens-2.jpg",
+        "region": "North America, South America",
         "holdings": {
             "North America": "0.4 - Credit River Zoo",
             "Asia": 0,
@@ -723,6 +744,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Dasyproctidae",
         "genus": "Dasyprocta",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Red-rumped_Agouti_%2817380318590%29.jpg",
+        "region": "South America",
         "holdings": {
             "North America": "0.2 - Credit River Zoo",
             "Asia": 0,
@@ -744,6 +766,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Psittacidae",
         "genus": "Amazona",
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/44406711/1200",
+        "region": "North America",
         "holdings": {
             "North America": "2.0 - Credit River Zoo",
             "Asia": 0,
@@ -765,6 +788,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Panthera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Jaguar_%28Panthera_onca_palustris%29_male_Three_Brothers_River_2_%28cropped%29.jpg",
+        "region": "North America, South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -786,6 +810,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Procyonidae",
         "genus": "Nasua",
         "image_url": "https://www.zoochat.com/community/media/white-nosed-coati-nasua-narica.228154/full",
+        "region": "North America, South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -807,6 +832,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Tayassuidae",
         "genus": "Catagonus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Catagonus_wagneri_1_-_Phoenix_Zoo.jpg/1280px-Catagonus_wagneri_1_-_Phoenix_Zoo.jpg",
+        "region": "South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -830,6 +856,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Mexican Spider Monkey (vellerosus)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg/1280px-Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg"}
         ],
+        "region": "North America, South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -2470,7 +2497,7 @@ async def region_command(ctx, *, region: str = ""):
 
     # Collect matches. SPECIES is assumed to be your species dict.
     matches = []
-        for key, sp in species_data.items():
+    for key, sp in species_data.items():
         try:
             regs = _extract_species_regions(sp)
             if wanted in regs:
