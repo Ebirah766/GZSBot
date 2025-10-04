@@ -1274,6 +1274,27 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 },
                                 "institutions": {
                                     "Jupiter Reptile Zoo": "0.1"
+
+                                    "Blood Python": {
+                                        "common": "Blood Python",
+                                        "scientific": "Python brongersmai",
+                                        "info": "The blood python is native to the Sumatra and Malay Peninsula. It is best known for its vivid red, orange, and brown coloration, which makes it one of the most striking species in the python family.",
+                                            "type": "Reptile",
+                                            "order": "Squamata",
+                                            "family": "Pythonidae",
+                                            "genus": "Python",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
+                                                    "holdings": {
+                                                        "North America": "0.1 - Jupiter Reptile Zoo",
+                                                        "Asia": 0,
+                                                        "Europe": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "Jupiter Reptile Zoo": "0.1"
+                    
         }
     }
 }
