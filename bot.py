@@ -855,6 +855,27 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Mint Park Zoo": "25"
+    }
+    },
+    "Nine-banded armadillo": {
+        "common": "Nine-banded armadillo",
+        "scientific": "Dasypus novemcinctus",
+        "info": "The nine-banded armadillo is the most common and by far most widespread armadillo species. Its range is actively expanding as the species migrates northward, being seen in the central United States more frequently than in the past.",
+        "type": "Mammal",
+        "order": "Cingulata",
+        "family": "Dasypodidae",
+        "genus": "Carollia",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88373350/original.jpeg",
+        "holdings": {
+            "North America": 0,
+            "Asia": 0,
+            "Europe": "1.1 - Mint Park Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Mint Park Zoo": "1.1"
         }
     },
 }
