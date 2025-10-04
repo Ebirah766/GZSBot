@@ -878,6 +878,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Phyllostomidae",
         "genus": "Carollia",
         "image_url": "https://www.marylandzoo.org/wp-content/uploads/2017/10/bat_web.jpg",
+        "region": "North America, South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -899,6 +900,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Dasypodidae",
         "genus": "Carollia",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88373350/original.jpeg",
+        "region": "North America, South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -921,6 +923,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Tapiridae",
         "genus": "Tapirus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/73961577/original.jpeg",
+        "region": "South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -936,12 +939,13 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Tayra": {
         "common": "Tayra",
         "scientific": "Eira barbara",
-        "info": "Tayras are one of the larger mustelid species. Found throughout Central and South America, they are known to cache food like plantains for later, making them one of the few animals to do so.",
+        "info": "Tayras are one of the larger mustelid species. Found throughout Central and South America, they are known to cache food such as fruit for later, making them one of the few animals to do so.",
         "type": "Mammal",
         "order": "Carnivora",
         "family": "Mustelidae",
         "genus": "Eira",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tayra_-_Male%2C_Brazil_%28cropped%29.jpg/1280px-Tayra_-_Male%2C_Brazil_%28cropped%29.jpg",
+        "region": "North America, South America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -963,6 +967,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Procyonidae",
         "genus": "Procyon",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/1280px-Raccoon_in_Central_Park_%2835264%29.jpg",
+        "region": "North America",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -984,6 +989,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mephitidae",
         "genus": "Mephitis",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/61292683/large.jpg",
+        
         "holdings": {
             "North America": 0,
             "Asia": 0,
