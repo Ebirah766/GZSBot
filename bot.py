@@ -1231,12 +1231,12 @@ species_data: Dict[str, Dict[str, Any]] = {
         "institutions": {
             "Jupiter Reptile Zoo": "1.0 [Wild type], 0.1 [Leucistic]"
 
-    }
-    },
-    "Eastern Coral Snake": {
-    "common": "Eastern Coral Snake",
-    "scientific": "Micrurus fulvius",
-    "info": "The eastern coral snake is a highly venomous snake species native to the southeastern United States. Its highly venomous nature has lent it the occasional common name 'American cobra'.",
+        }
+        },
+        "Eastern Coral Snake": {
+        "common": "Eastern Coral Snake",
+        "scientific": "Micrurus fulvius",
+        "info": "The eastern coral snake is a highly venomous snake species native to the southeastern United States. Its highly venomous nature has lent it the occasional common name 'American cobra'.",
         "type": "Reptile",
         "order": "Squamata",
         "family": "Elapidae",
@@ -1252,6 +1252,28 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
                 "institutions": {
                     "Jupiter Reptile Zoo": "1.1"
+
+            }
+            },
+            "Brongersma's Blood Python": {
+                    "common": "Brongersma's Blood Python",
+                    "scientific": "Python brongersmai",
+                    "info": "The blood python is native to the Sumatra and Malay Peninsula. It is best known for its vivid red, orange, and brown coloration, which makes it on of the most striking species in the python family.",
+                        "type": "Reptile",
+                        "order": "Squamata",
+                        "family": "Pythonidae",
+                        "genus": "Python",
+                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
+                                "holdings": {
+                                    "North America": "0.1 - Jupiter Reptile Zoo",
+                                    "Asia": 0,
+                                    "Europe": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                },
+                                "institutions": {
+                                    "Jupiter Reptile Zoo": "0.1"
         }
     }
 }
