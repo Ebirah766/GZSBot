@@ -941,6 +941,26 @@ species_data: Dict[str, Dict[str, Any]] = {
             },
             "institutions": {
                 "Mint Park Zoo": "2.2"
+
+                "Raccoon": {
+                    "common": "Raccoon",
+                    "scientific": "Procyon lotor",
+                    "info": "The most iconic procyonid, the raccoon is a nocturnal generalist and scavenger that is adapted to a wide range of habitats, including human-inhabited areas. They have been introduced to Europe and Asia and have become established there.",
+                    "type": "Mammal",
+                    "order": "Carnivora",
+                    "family": "Procyonidae",
+                    "genus": "Procyon",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/1280px-Raccoon_in_Central_Park_%2835264%29.jpg",
+                    "holdings": {
+                        "North America": 0,
+                        "Asia": 0,
+                        "Europe": "2.2 - Mint Park Zoo",
+                        "Africa": 0,
+                        "South America": 0,
+                        "Oceania": 0,
+                    },
+                    "institutions": {
+                        "Mint Park Zoo": "2.2"
         }
     },
 }
