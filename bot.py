@@ -13,47 +13,47 @@ import builtins
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
-def format_holdings_lines(holdings):
+def format_holdings(holdings: Dict[str, Any]) -> str:
     """
-    holdings: dict like {"North America": "1.1 - Zoo A, 0.3 - Zoo B", "Europe": 0, ...}
-    Produces:
-      North America:
-      • 1.1 - Zoo A
-      • 0.3 - Zoo B
-      Europe: 0
+    Always render each region as a header line, then bullet items.
+    Accepts per-region values like:
+      - 0 / "0" / 0.0 / "" / None       -> 'Region: 0'
+      - "1.1 - Zoo A, 0.3 - Zoo B"      -> header + bullets (split by commas)
+      - ["1.1 - Zoo A", "0.3 - Zoo B"]  -> header + bullets
+      - other scalars                    -> header + one bullet
     """
-    if not isinstance(holdings, dict):
-        return "None recorded"
-
-    lines = []
+    lines: List[str] = []
     for region in REGION_ORDER:
-        v = holdings.get(region, 0)
+        if region == "Antarctica":
+            continue  # hidden in UI
 
-        # treat simple zeros uniformly
-        if v in (0, "0", 0.0, None):
+        value = holdings.get(region, None)
+
+        # Normalize "empty"
+        if value in (None, "", 0, "0", 0.0):
             lines.append(f"**{region}:** 0")
             continue
 
-        # list/tuple/set -> one per line
-        if isinstance(v, (list, tuple, set)):
-            items = [str(x).strip() for x in v if str(x).strip()]
-        # string -> split by commas
-        elif isinstance(v, str):
-            items = [s.strip() for s in v.split(",") if s.strip()]
+        # Build a list of items to render
+        if isinstance(value, (list, tuple, set)):
+            items = [str(x).strip() for x in value if str(x).strip()]
+        elif isinstance(value, str):
+            # Split comma-separated strings into bullets
+            items = [s.strip() for s in value.split(",") if s.strip()]
         else:
-            # anything else -> just print it
-            lines.append(f"**{region}:** {v}")
-            continue
+            items = [str(value).strip()]
 
+        # Render
         if not items:
             lines.append(f"**{region}:** 0")
         elif len(items) == 1:
             lines.append(f"**{region}:** {items[0]}")
         else:
             lines.append(f"**{region}:**")
-            lines.extend([f"• {it}" for it in items])
+            lines.extend(f"• {it}" for it in items)
 
-    return "\n".join(lines) or "None recorded"
+    return "\n".join(lines) if lines else "_No holdings data provided_"
+
 
 
 # --- Logging setup -----------------------------------------------------------
@@ -1817,7 +1817,7 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
       - 0 / "0" / "" / None -> 'Region: 0'
     """
     lines: List[str] = []
-    for region in REGIONS:
+    for region in REGION_ORDER:
         if region == "Antarctica":
             continue  # hide Antarctica from holdings display
 
