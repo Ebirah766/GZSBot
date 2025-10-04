@@ -120,6 +120,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cercopithecidae",
         "genus": "Macaca",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Rhesus_macaque_%28Macaca_mulatta_mulatta%29%2C_male%2C_Gokarna.jpg",
+        "region": "Asia",
         "holdings": {
             "North America": "2.4 - Cube Zoological Park",
             "Asia": 0,
@@ -2465,7 +2466,7 @@ async def region_command(ctx, *, region: str = ""):
 
     # Collect matches. SPECIES is assumed to be your species dict.
     matches = []
-    for key, sp in species_data.items():
+        for key, sp in species_data.items():
         try:
             regs = _extract_species_regions(sp)
             if wanted in regs:
