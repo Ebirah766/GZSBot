@@ -2343,158 +2343,161 @@ async def cmd_specieslist(ctx: commands.Context):
         log.exception("Error in ;specieslist")
         await ctx.send("Sorry, I couldn't list species right now.")
 
-    # --- Region helpers ----------------------------------------------------------
-    _REGION_ALIASES = {
-        # canonical: lower-case
-        "north america": "North America",
-        "na": "North America",
-        "n america": "North America",
-        "n. america": "North America",
-        "usa": "North America",
-        "us": "North America",
-        "canada": "North America",
+# --- Region helpers ----------------------------------------------------------
+_REGION_ALIASES = {
+    # canonical: lower-case
+    "north america": "North America",
+    "na": "North America",
+    "n america": "North America",
+    "n. america": "North America",
+    "usa": "North America",
+    "us": "North America",
+    "canada": "North America",
 
-        "south america": "South America",
-        "sa": "South America",
-        "s america": "South America",
-        "s. america": "South America",
-        "latam": "South America",
+    "south america": "South America",
+    "sa": "South America",
+    "s america": "South America",
+    "s. america": "South America",
+    "latam": "South America",
 
-        "europe": "Europe",
-        "eu": "Europe",
+    "europe": "Europe",
+    "eu": "Europe",
 
-        "asia": "Asia",
+    "asia": "Asia",
 
-        "africa": "Africa",
+    "africa": "Africa",
 
-        "oceania": "Oceania",
-        "australia": "Oceania",
-        "aus": "Oceania",
-        "australasia": "Oceania",
-        "nz": "Oceania",
-        "new zealand": "Oceania",
+    "oceania": "Oceania",
+    "australia": "Oceania",
+    "aus": "Oceania",
+    "australasia": "Oceania",
+    "nz": "Oceania",
+    "new zealand": "Oceania",
 
-        # Keep if you want backwards-compat
-        "antarctica": "Antarctica",
-    }
+    # If you’ve decided to drop Antarctica in UI, you can keep this alias
+    # here for backwards-compat, or remove it entirely.
+    "antarctica": "Antarctica",
+}
 
-    _CANONICAL_REGIONS = {
-        "North America",
-        "South America",
-        "Europe",
-        "Asia",
-        "Africa",
-        "Oceania",
-        "Antarctica",
-    }
+_CANONICAL_REGIONS = {
+    "North America",
+    "South America",
+    "Europe",
+    "Asia",
+    "Africa",
+    "Oceania",
+    "Antarctica",  # remove if you no longer want it recognized
+}
 
-    def _canonicalize_region_query(text: str) -> Optional[str]:
-        if not text:
-            return None
-        t = text.strip().lower()
-        # direct match
-        if t in _REGION_ALIASES:
-            return _REGION_ALIASES[t]
-        # normalize punctuation/spacing
-        t2 = t.replace(".", "").replace("_", " ").replace("-", " ").strip()
-        if t2 in _REGION_ALIASES:
-            return _REGION_ALIASES[t2]
-        # title-case direct if already canonical
-        tt = text.strip().title()
-        if tt in _CANONICAL_REGIONS:
-            return tt
+def _canonicalize_region_query(text: str) -> Optional[str]:
+    if not text:
         return None
+    t = text.strip().lower()
+    # direct match
+    if t in _REGION_ALIASES:
+        return _REGION_ALIASES[t]
+    # try to normalize spacing/punctuation
+    t2 = t.replace(".", "").replace("_", " ").replace("-", " ").strip()
+    if t2 in _REGION_ALIASES:
+        return _REGION_ALIASES[t2]
+    # title-case direct if already canonical
+    tt = text.strip().title()
+    if tt in _CANONICAL_REGIONS:
+        return tt
+    return None
 
-    def _extract_species_regions(sp: Dict[str, Any]) -> Set[str]:
-        """
-        Returns a set of canonical region strings from a species entry.
-        Accepts:
-          sp["region"] as:
-            - string: "Asia, Europe"
-            - list/tuple/set: ["Asia", "Europe"]
-          Tolerates empty/missing/messy values.
-        """
-        regions: Set[str] = set()
-        value = sp.get("region")
-        if not value:
-            return regions
-
-        if isinstance(value, (list, tuple, set)):
-            candidates = [str(x) for x in value]
-        else:
-            # string -> split on commas or slashes
-            candidates = re.split(r"[,/]", str(value))
-
-        for c in candidates:
-            can = _canonicalize_region_query(c)
-            if can:
-                regions.add(can)
+def _extract_species_regions(sp: dict) -> set:
+    """
+    Returns a set of canonical region strings from the species dict.
+    Accepts:
+      sp["region"] as:
+        - string: "Asia, Europe"
+        - list:   ["Asia", "Europe"]
+      Also tolerates empty/missing.
+    """
+    regions = set()
+    value = sp.get("region")
+    if not value:
         return regions
+    # list
+    if isinstance(value, (list, tuple, set)):
+        candidates = [str(x) for x in value]
+    else:
+        # string -> split on commas or slashes
+        candidates = re.split(r"[,/]", str(value))
+    for c in candidates:
+        can = _canonicalize_region_query(c)
+        if can:
+            regions.add(can)
+    return regions
 
-    def _chunk_lines(lines: List[str], max_chars: int = 1900) -> List[str]:
-        """Discord has a 2000 char limit; keep a buffer for formatting."""
-        chunks: List[str] = []
-        buf = ""
-        for line in lines:
-            if len(buf) + len(line) + 1 > max_chars:
-                chunks.append(buf)
-                buf = line
-            else:
-                buf = (buf + "\n" + line) if buf else line
-        if buf:
+def _chunk_lines(lines: list[str], max_chars: int = 1900) -> list[str]:
+    """Discord has a 2000 char limit; keep a buffer for code fences/formatting."""
+    chunks = []
+    buf = ""
+    for line in lines:
+        if len(buf) + len(line) + 1 > max_chars:
             chunks.append(buf)
-        return chunks
+            buf = line
+        else:
+            buf = (buf + "\n" + line) if buf else line
+    if buf:
+        chunks.append(buf)
+    return chunks
 
-    # --- Command: ;region --------------------------------------------------------
-    @bot.command(
-        name="region",
-        help="List species by native region. Usage: ;region <region>\nRegions: North America, South America, Europe, Asia, Africa, Oceania"
-    )
-    async def region_command(ctx, *, region: str = ""):
+# --- Command: ;region --------------------------------------------------------
+@bot.command(name="region", help="List species by native region. Usage: ;region <region>\nRegions: North America, South America, Europe, Asia, Africa, Oceania")
+async def region_command(ctx, *, region: str = ""):
+    if not region:
+        await ctx.send(
+            "Please provide a region: `;region <region>`\n"
+            "Options: North America, South America, Europe, Asia, Africa, Oceania"
+        )
+        return
+
+    wanted = _canonicalize_region_query(region)
+    if not wanted:
+        await ctx.send(
+            f"I didn't recognize `{region}`.\n"
+            "Try one of: North America, South America, Europe, Asia, Africa, Oceania"
+        )
+        return
+
+    # Collect matches. SPECIES is assumed to be your species dict.
+    matches = []
+    for key, sp in SPECIES.items():  # ← rename SPECIES if your dict is named differently
         try:
-            if not region:
-                await ctx.send(
-                    "Please provide a region: `;region <region>`\n"
-                    "Options: North America, South America, Europe, Asia, Africa, Oceania"
-                )
-                return
-
-            wanted = _canonicalize_region_query(region)
-            if not wanted:
-                await ctx.send(
-                    f"I didn't recognize `{region}`.\n"
-                    "Try one of: North America, South America, Europe, Asia, Africa, Oceania"
-                )
-                return
-
-            # Collect matches from your real DB
-            matches: List[str] = []
-            for key, sp in species_data.items():
-                try:
-                    regs = _extract_species_regions(sp)
-                    if wanted in regs:
-                        common = sp.get("common") or key
-                        sci = sp.get("scientific") or ""
-                        matches.append(f"- {common} (*{sci}*)" if sci else f"- {common}")
-                except Exception as inner_e:
-                    log.warning("Skipping species '%s' due to error in region parsing: %s", key, inner_e)
-                    continue
-
-            matches.sort(key=lambda s: s.lower())
-            count = len(matches)
-
-            if count == 0:
-                await ctx.send(f"No species marked with native region **{wanted}** yet.")
-                return
-
-            header = f"**Species native to {wanted}** — {count} found"
-            lines = [header, ""] + matches
-            for chunk in _chunk_lines(lines):
-                await ctx.send(chunk)
-
+            regs = _extract_species_regions(sp)
+            if wanted in regs:
+                # prefer common name if present, else fall back to dict key
+                common = sp.get("common") or key
+                sci = sp.get("scientific") or ""
+                if sci:
+                    matches.append(f"- {common} (*{sci}*)")
+                else:
+                    matches.append(f"- {common}")
         except Exception:
-            log.exception("Unhandled error in ;region")
-            await ctx.send("⚠️ An unexpected error occurred while processing `;region`. Check logs for details.")
+            # Be resilient to any odd entries
+            continue
+
+    matches.sort(key=lambda s: s.lower())
+    count = len(matches)
+
+    if count == 0:
+        await ctx.send(f"No species marked with native region **{wanted}** yet.")
+        return
+
+    # Build neat output with chunking for Discord’s 2000-char limit
+    header = f"**Species native to {wanted}** — {count} found"
+    lines = [header, ""] + matches
+    chunks = _chunk_lines(lines)
+
+    for i, chunk in enumerate(chunks):
+        if i == 0:
+            await ctx.send(chunk)
+        else:
+            await ctx.send(chunk)
+
 
 # --- Error handling ----------------------------------------------------------
 @bot.event
