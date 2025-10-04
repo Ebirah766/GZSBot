@@ -1230,10 +1230,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.0 [Wild type], 0.1 [Leucistic]"
-
         }
-        },
-        "Eastern Coral Snake": {
+    },
+    "Eastern Coral Snake": {
         "common": "Eastern Coral Snake",
         "scientific": "Micrurus fulvius",
         "info": "The eastern coral snake is a highly venomous snake species native to the southeastern United States. Its highly venomous nature has lent it the occasional common name 'American cobra'.",
@@ -1241,60 +1240,59 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Squamata",
         "family": "Elapidae",
         "genus": "Micrurus",
-                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/105813097/large.jpeg",
-                "holdings": {
-                    "North America": "1.1 - Jupiter Reptile Zoo",
-                    "Asia": 0,
-                    "Europe": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                },
-                "institutions": {
-                    "Jupiter Reptile Zoo": "1.1"
-
-            }
-            },
-            "Blood Python": {
-                    "common": "Blood Python",
-                    "scientific": "Python brongersmai",
-                    "info": "The blood python is native to the Sumatra and Malay Peninsula. It is best known for its vivid red, orange, and brown coloration, which makes it one of the most striking species in the python family.",
-                        "type": "Reptile",
-                        "order": "Squamata",
-                        "family": "Pythonidae",
-                        "genus": "Python",
-                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
-                                "holdings": {
-                                    "North America": "0.1 - Jupiter Reptile Zoo",
-                                    "Asia": 0,
-                                    "Europe": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                },
-                                "institutions": {
-                                    "Jupiter Reptile Zoo": "0.1"
-
-                                    "Blood Python": {
-                                        "common": "Blood Python",
-                                        "scientific": "Python brongersmai",
-                                        "info": "The blood python is native to the Sumatra and Malay Peninsula. It is best known for its vivid red, orange, and brown coloration, which makes it one of the most striking species in the python family.",
-                                            "type": "Reptile",
-                                            "order": "Squamata",
-                                            "family": "Pythonidae",
-                                            "genus": "Python",
-                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
-                                                    "holdings": {
-                                                        "North America": "0.1 - Jupiter Reptile Zoo",
-                                                        "Asia": 0,
-                                                        "Europe": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "Jupiter Reptile Zoo": "0.1"
-                    
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/105813097/large.jpeg",
+        "holdings": {
+            "North America": "1.1 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.1"
+        }
+    },
+    "Blood Python": {
+        "common": "Blood Python",
+        "scientific": "Python brongersmai",
+        "info": "The blood python is native to the Sumatra and Malay Peninsula. It is best known for its vivid red, orange, and brown coloration, which makes it one of the most striking species in the python family.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Pythonidae",
+        "genus": "Python",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
+        "holdings": {
+            "North America": "0.1 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "0.1"
+        }
+    },
+    "Chinese Crocodile Lizard": {
+        "common": "Chinese Crocodile Lizard",
+        "scientific": "Shinisaurus crocodilurus",
+        "info": "This living fossil species can be found exclusively in southern China and northern Vietnam. They are semi-aquatic, claiming a section of pond or stream for themselves, and feeding upon small animals like insects, small fish, and frogs.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Shinisauridae",
+        "genus": "Shinisaurus",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Shinisaurus_crocodilurus_10.jpg/1280px-Shinisaurus_crocodilurus_10.jpg",
+        "holdings": {
+            "North America": "1.2 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.2"
         }
     }
 }
