@@ -1497,22 +1497,22 @@ def list_to_chunks(lines: List[str], header_prefix: str, per_message_limit: int 
         out.append(header + chunk)
     return out
 
-def format_holdings(holdings: Dict[str, Any]) -> str:
-    """
-    Always render each region as a header line, then bullet items.
-    If the value is 0 or empty, show 'Region: 0'.
-    Accepted shapes per region value:
-      - list[str] -> header + bullets
-      - str/int (non-zero/truthy) -> header + one bullet with that text
-      - 0 / "0" / "" / None -> 'Region: 0'
-    """
-    lines: List[str] = []
-    for region in REGIONS:
-        if region == "Antarctica":
-            continue  # hide Antarctica from holdings display
+        def format_holdings(holdings: Dict[str, Any]) -> str:
+            """
+            Always render each region as a header line, then bullet items.
+            If the value is 0 or empty, show 'Region: 0'.
+            Accepted shapes per region value:
+              - list[str] -> header + bullets
+              - str/int (non-zero/truthy) -> header + one bullet with that text
+              - 0 / "0" / "" / None -> 'Region: 0'
+            """
+            lines: List[str] = []
+            for region in REGIONS:
+                if region == "Antarctica":
+                    continue  # hide Antarctica from holdings display
 
-        value = holdings.get(region, None)
-        
+                value = holdings.get(region, None)
+                
         if value is None or value == "":
             lines.append(f"**{region}:** 0")
             continue
