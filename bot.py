@@ -275,7 +275,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/205515041/1200",
         "region": "North America, South America",
         "holdings": {
-            "North America": "1.1 - Cube Zoological Park, 0.3 - High Uintahs Zoo",
+            "North America": "1.1 - Cube Zoological Park", 
+            "0.3 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -283,8 +284,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "1.1",
-            "High Uintahs Zoo": "0.3"
+            "Cube Zoological Park": "1.1"
         },
     },
     "Eastern Diamondback Rattlesnake": {
