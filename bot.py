@@ -1159,6 +1159,28 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Jupiter Reptile Zoo": "1.1"
+
+    }
+    },
+    "Western Mangrove Cat Snake": {
+        "common": "Western Mangrove Cat Snake",
+        "scientific": "Boiga melanota",
+        "info": "This mildly venomous catsnake can be found in Thailand, Malaysia, Singapore, and Sumatra. Once subsumed under Boiga dendrophila, it was split from that species in 2020.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Colubridae",
+        "genus": "Boiga",
+        "image_url": "https://static.thainationalparks.com/img/species/2016/09/24/207594/boiga-melanota-w-1500.jpg",
+        "holdings": {
+            "North America": "2.0 - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "2.0"
         }
     }
 }
