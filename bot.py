@@ -15,7 +15,7 @@ REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "O
 
 def format_holdings(holdings: Dict[str, Any]) -> str:
     """
-    Always render each region as a header line, then bullet items.
+    Render each region as a header line, then bullets (always bullets, even for one item).
     Accepts per-region values like:
       - 0 / "0" / 0.0 / "" / None       -> 'Region: 0'
       - "1.1 - Zoo A, 0.3 - Zoo B"      -> header + bullets (split by commas)
@@ -43,16 +43,15 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
         else:
             items = [str(value).strip()]
 
-        # Render
+        # Render (always bullets for consistency)
         if not items:
             lines.append(f"**{region}:** 0")
-        elif len(items) == 1:
-            lines.append(f"**{region}:** {items[0]}")
         else:
             lines.append(f"**{region}:**")
             lines.extend(f"• {it}" for it in items)
 
     return "\n".join(lines) if lines else "_No holdings data provided_"
+
 
 
 
@@ -2448,58 +2447,36 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-@bot.command(name="species", aliases=["card"])
-async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-    """
-    Render a rich embed UI card for a species with image, taxonomy, description,
-    and holdings by region.
+        @bot.command(name="species", aliases=["card"])
+        async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
+            """
+            Render a rich embed UI card for a species with image, taxonomy, description,
+            and holdings by region.
+            """
+            try:
+                if not name or not str(name).strip():
+                    await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
+                    return
 
-    - Gracefully handles missing names: `;species` -> usage hint (no crash)
-    - Uses build_species_embed (no _build_zoo_embed confusion)
-    - Uses SpeciesPager if multiple images exist
-    """
-    try:
-        # Handle missing argument cleanly
-        if not name or not str(name).strip():
-            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-            return
+                entry, msg = get_entry_or_message(name)
+                if msg:
+                    await ctx.send(msg)
+                    return
 
-        entry, msg = get_entry_or_message(name)
-        if msg:
-            await ctx.send(msg)
-            return
+                # Build embed (this already uses format_holdings)
+                images = entry.get("images") or []
+                embed = build_species_embed(entry, image_index=0)
 
-        images = entry.get("images") or []
-        embed = build_species_embed(entry, image_index=0)
+                # Send with pager if multiple images
+                if isinstance(images, list) and len(images) > 1:
+                    view = SpeciesPager(entry=entry, start_index=0)
+                    await ctx.send(embed=embed, view=view)
+                else:
+                    await ctx.send(embed=embed)
 
-        # Ensure holdings show vertically and match field name used by build_species_embed
-        holdings = entry.get("holdings") or {}
-        if isinstance(holdings, dict):
-            # Reformat to consistent vertical style
-            holdings_text = format_holdings(holdings)
-
-            # Replace the field if build_species_embed already added it
-            # (build_species_embed uses "Holdings by Region")
-            target_field_name = "Holdings by Region"
-            idx = next(
-                (i for i, f in enumerate(embed.fields) if str(f.name).strip().lower() == target_field_name.lower()),
-                None
-            )
-            if idx is not None:
-                embed.set_field_at(idx, name=target_field_name, value=holdings_text, inline=False)
-            else:
-                embed.add_field(name=target_field_name, value=holdings_text, inline=False)
-
-        # Use the pager if there are multiple images
-        if isinstance(images, list) and len(images) > 1:
-            view = SpeciesPager(entry=entry, start_index=0)
-            await ctx.send(embed=embed, view=view)
-        else:
-            await ctx.send(embed=embed)
-
-    except Exception:
-        log.exception("Error in ;species")
-        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
+            except Exception:
+                log.exception("Error in ;species")
+                await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
 
 
 @bot.command(name="holdings")
