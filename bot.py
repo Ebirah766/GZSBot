@@ -974,7 +974,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Ridley's Cave Racer (ridleyi)", "url": "https://static.thainationalparks.com/img/species/2021/12/20/397706/elaphe-taeniurus-ridleyi-w-1500.jpg"}
     ],      "holdings": {
-            "North America": "1.1 - Jupiter Reptile Zoo",
+            "North America": "1.1 [ridleyi] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -982,7 +982,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1"
+            "Jupiter Reptile Zoo": "1.1 [ridleyi]"
         }
     }
 }
