@@ -2465,7 +2465,7 @@ async def region_command(ctx, *, region: str = ""):
 
     # Collect matches. SPECIES is assumed to be your species dict.
     matches = []
-    for key, sp in SPECIES.items():  # ← rename SPECIES if your dict is named differently
+    for key, sp in species_data.items():
         try:
             regs = _extract_species_regions(sp)
             if wanted in regs:
