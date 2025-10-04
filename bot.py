@@ -836,8 +836,8 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Mint Park Zoo": "1.2"
         }
     },
-    "Seba's short-tailed bat": {
-        "common": "Seba's short-tailed bat",
+    "Seba's Short-Tailed bat": {
+        "common": "Seba's Short-Tailed bat",
         "scientific": "Carollia perspicillata",
         "info": "The Seba's short-taield bat is a common and widespread bat species that feeds on fruit. It is a generalist and will also consume nectar, pollen, and insects. They have a long lifespan, living up to 10 years.",
         "type": "Mammal",
@@ -857,8 +857,8 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Mint Park Zoo": "25"
     }
     },
-    "Nine-banded armadillo": {
-        "common": "Nine-banded armadillo",
+    "Nine-Banded Armadillo": {
+        "common": "Nine-Banded Armadillo",
         "scientific": "Dasypus novemcinctus",
         "info": "The nine-banded armadillo is the most common and by far most widespread armadillo species. Its range is actively expanding as the species migrates northward, being seen in the central United States more frequently than in the past.",
         "type": "Mammal",
@@ -876,6 +876,28 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Mint Park Zoo": "1.1"
+
+    }
+    },
+    "South American Tapir": {
+        "common": "South American Tapir",
+        "scientific": "Tapirus terrestris",
+        "info": "The South American tapir is one of the 4 extant species of tapir. Native to large swathes of South America, this species is listed as Vulnerable on the IUCN Red List due to extensive habitat loss and poaching.",
+        "type": "Mammal",
+        "order": "Perissodactyla",
+        "family": "Tapiridae",
+        "genus": "Tapirus",
+        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/73961577/original.jpeg",
+        "holdings": {
+            "North America": 0,
+            "Asia": 0,
+            "Europe": "2.0 - Mint Park Zoo",
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Mint Park Zoo": "2.0"
         }
     },
 }
