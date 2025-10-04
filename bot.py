@@ -2687,7 +2687,7 @@ async def help_command(ctx):
     """Displays a list of all available commands and their descriptions."""
     help_text = (
         "**Available Commands:**\n\n"
-        "**;card [species name]** – Shows an info card with image, taxonomy, and holdings for a species.\n"
+        "**;species [species name]** – Shows an info card with image, taxonomy, and holdings for a species.\n"
         "**;type [type name]** – Lists all species belonging to a specific animal type (e.g. Mammal, Fish).\n"
         "**;order [order name]** – Lists species under a given taxonomic order.\n"
         "**;family [family name]** – Lists species belonging to a particular family.\n"
