@@ -1489,15 +1489,15 @@ species_data: Dict[str, Dict[str, Any]] = {
     "Northern Flying Squirrel": {
     "common": "Northern Flying Squirrel",
     "scientific": "Glaucomys sabrinus",
-    "info": "Turkey vultures are the most widespread New World vulture species. An abundant and highly adaptable animal, turkey vultures can be found in most areas of the Americas, except certain mountainous regions of South America and taiga/polar areas of North America.",
-    "type": "Bird",
-    "order": "Accipitriformes",
-    "family": "Cathartidae",
-    "genus": "Cathartes",
-    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/171981785/original.jpg",
+    "info": "One of three North American flying squirrel species, the northern flying squirrel can be found from Alaska to the Carolinas. It can live in a variety of habitats, and unusual for a squirrel, its major food source is fungi of various species.",
+    "type": "Mammal",
+    "order": "Rodentia",
+    "family": "Sciuridae",
+    "genus": "Glaucomys",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg/1280px-Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg",
     "region": "North America, South America",
     "holdings": {
-        "North America": "2.0 - High Uintahs Zoo",
+        "North America": "1.1 - High Uintahs Zoo",
         "Asia": 0,
         "Europe": 0,
         "Africa": 0,
@@ -1505,7 +1505,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "Oceania": 0,
                     },
     "institutions": {
-        "High Uintahs Zoo": "2.0"
+        "High Uintahs Zoo": "1.1"
         }
     }
 }
