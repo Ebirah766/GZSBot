@@ -1184,27 +1184,27 @@ species_data: Dict[str, Dict[str, Any]] = {
 
         }
     },
-    "Pygmy Rattlesnake": {
-        "common": "Pygmy Rattlesnake",
-        "scientific": "Sistrurus miliarius",
-        "info": "One of the smallest rattlesnake species, the pygmy rattlesnake is endemic to the south and southeastern United States. It has multiple subspecies which have distinctive coloration, which makes them easy to identify.",
+    "Flat-Nosed Pit Viper": {
+        "common": "Flat-Nosed Pit Viper",
+        "scientific": "Craspedocephalus puniceus",
+        "info": "A venomous snake native to Southeast Asia, the flat-nosed pit viper has a notoriously bad temper and strong venom which makes it a very dangerous species",
         "type": "Reptile",
         "order": "Squamata",
         "family": "Viperidae",
-                "genus": "Sistrurus",
-                "images": [
-                    {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://static.inaturalist.org/photos/392077465/large.jpeg"}
-                ],
-                "holdings": {
-                    "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
-                    "Asia": 0,
-                    "Europe": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                },
-                "institutions": {
-                    "Jupiter Reptile Zoo": "1.2 [barbouri]"
+        "genus": "Sistrurus",
+        "images": [
+            {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://static.inaturalist.org/photos/392077465/large.jpeg"}
+        ],
+        "holdings": {
+            "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Jupiter Reptile Zoo": "1.2 [barbouri]"
         }
     }
 }
