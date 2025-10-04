@@ -1258,7 +1258,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Blood Python": {
                     "common": "Blood Python",
                     "scientific": "Python brongersmai",
-                    "info": "The blood python is native to the Sumatra and Malay Peninsula. It is best known for its vivid red, orange, and brown coloration, which makes it on of the most striking species in the python family.",
+                    "info": "The blood python is native to the Sumatra and Malay Peninsula. It is best known for its vivid red, orange, and brown coloration, which makes it one of the most striking species in the python family.",
                         "type": "Reptile",
                         "order": "Squamata",
                         "family": "Pythonidae",
