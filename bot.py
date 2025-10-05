@@ -4273,97 +4273,6 @@ async def on_ready():
             new_bal = _set_balance(data, member.id, n)
             await ctx.send(f"✅ Set **{member.display_name}** default balance to **{new_bal}**.")
 
-
-    @bot.command(name="commands", aliases=["help", "h"])
-    async def help_command(ctx):
-        """Displays grouped help for all commands with usage examples."""
-        sections = [
-            (
-                "📚 Species & Taxonomy",
-                [
-                    "**;species <name>** — Show a species card with image, taxonomy, and region holdings.",
-                    "**;specieslist** — List every species stored (chunked for Discord).",
-                    "**;type <type>** — List species in a type (e.g., Mammal, Fish).",
-                    "**;type all** — Get a downloadable text file of *all* species in the database.",
-                    "**;order <order>** — List species in a taxonomic order (e.g., Carnivora).",
-                    "**;family <family>** — List species in a family (e.g., Felidae).",
-                    "**;genus <genus>** — List species in a genus (e.g., Felis).",
-                    "**;types** — Show all available type categories.",
-                    "**;orders** — Show all available orders.",
-                    "**;region <region>** — List species native to a region (North America, South America, Europe, Asia, Africa, Oceania).",
-                ],
-            ),
-            (
-                "🏛️ Institutions (Directory & Catalog)",
-                [
-                    "**;holdings <Zoo Name>** — Show all cataloged species and counts recorded for that institution.",
-                    "**;zooadd <Zoo Name>** — Add a zoo to the canonical directory.",
-                    "**;zoolist** (alias **;zoos**) — Show all valid zoo names in the directory.",
-                    "**;zooremove <Zoo Name>** — Remove a zoo from the directory.",
-                    "**;zoo view [Zoo Name]** — Show the zoo’s UI card (owners, progress bar, and catalog preview).",
-                    "**;zoo status [Zoo Name]** — Show your housed progress for a zoo you own.",
-                    "**;zoo myzoos** — List the zoos you own and your ownership limit usage.",
-                    "**;zoo meta [Zoo] location <text>** — Set the location shown on the zoo card.",
-                    "**;zoo meta [Zoo] image <url>** — Set the thumbnail image shown on the zoo card.",
-                    "**;zoo list** — Show your personal data buckets (your stored zoo keys).",
-                    "_Deprecated:_ **;zoo set / ;zoo clear** — No longer required (ownership flow auto-selects).",
-                ],
-            ),
-            (
-                "👑 Ownership Admin (Manage Server required)",
-                [
-                    "**;zoo owner add @user <Zoo Name>** — Grant ownership of a zoo.",
-                    "**;zoo owner remove @user <Zoo Name>** — Revoke ownership of a zoo.",
-                    "**;zoo owner limit @user <n>** — Set how many zoos a user may own.",
-                    "**;zoo owner list [@user]** — Show which zoos a user owns and their limit.",
-                ],
-            ),
-            (
-                "🏠 Housing (your ‘housed’ checklist)",
-                [
-                    "**;house <Species>** — Mark a species as housed at your owned zoo (auto-picks if you own one).",
-                    "**;house <Species> at <Zoo Name>** — Specify the zoo explicitly.",
-                    "**;house <Zoo Name> :: <Species>** — Alternate syntax when names contain ‘at’.",
-                    "**;unhouse <…>** — Remove a species from your housed list (same argument patterns).",
-                    "_Note:_ You can only house species that appear in that zoo’s **;holdings**.",
-                ],
-            ),
-            (
-                "🪙 Tokens (per-zoo balances + global back-compat)",
-                [
-                    "**;tokens <Zoo Name>** — Show **your** token balance for that specific zoo.",
-                    "**;token add <user> <n> [Zoo Name]** — Admin: add tokens (global if no zoo provided).",
-                    "**;token remove <user> <n> [Zoo Name]** — Admin: remove tokens (global if no zoo provided).",
-                    "**;token set <user> <n> [Zoo Name]** — Admin: set tokens (global if no zoo provided).",
-                ],
-            ),
-            (
-                "💡 Tips",
-                [
-                    "• For multi-word names, just type them normally (e.g., `;holdings Mint Park Zoo`).",
-                    "• Use **;zoolist** to see valid directory names before **;holdings**, **;tokens**, or **;zoo view**.",
-                    "• If a name isn’t an exact match, commands often suggest the closest match.",
-                ],
-            ),
-        ]
-
-        # Send in chunks to respect Discord’s 2000-char limit
-        header = "**Available Commands**\n"
-        blocks = []
-        cur = header
-        for title, lines in sections:
-            block = f"\n__{title}__\n" + "\n".join(f"- {ln}" for ln in lines) + "\n"
-            if len(cur) + len(block) > 1900:
-                blocks.append(cur)
-                cur = block
-            else:
-                cur += block
-        if cur.strip():
-            blocks.append(cur)
-
-        for i, b in enumerate(blocks):
-            await ctx.send(b)
-
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
     keep_alive()
@@ -4373,6 +4282,98 @@ if __name__ == "__main__":
         log.error("DISCORD_TOKEN not set in environment or .env")
         sys.exit(1)
     bot.run(token)
+
+
+
+@bot.command(name="commands", aliases=["help", "h"])
+async def help_command(ctx):
+    """Displays grouped help for all commands with usage examples."""
+    sections = [
+        (
+            "📚 Species & Taxonomy",
+            [
+                "**;species <name>** — Show a species card with image, taxonomy, and region holdings.",
+                "**;specieslist** — List every species stored (chunked for Discord).",
+                "**;type <type>** — List species in a type (e.g., Mammal, Fish).",
+                "**;type all** — Get a downloadable text file of *all* species in the database.",
+                "**;order <order>** — List species in a taxonomic order (e.g., Carnivora).",
+                "**;family <family>** — List species in a family (e.g., Felidae).",
+                "**;genus <genus>** — List species in a genus (e.g., Felis).",
+                "**;types** — Show all available type categories.",
+                "**;orders** — Show all available orders.",
+                "**;region <region>** — List species native to a region (North America, South America, Europe, Asia, Africa, Oceania).",
+            ],
+        ),
+        (
+            "🏛️ Institutions (Directory & Catalog)",
+            [
+                "**;holdings <Zoo Name>** — Show all cataloged species and counts recorded for that institution.",
+                "**;zooadd <Zoo Name>** — Add a zoo to the canonical directory.",
+                "**;zoolist** (alias **;zoos**) — Show all valid zoo names in the directory.",
+                "**;zooremove <Zoo Name>** — Remove a zoo from the directory.",
+                "**;zoo view [Zoo Name]** — Show the zoo’s UI card (owners, progress bar, and catalog preview).",
+                "**;zoo status [Zoo Name]** — Show your housed progress for a zoo you own.",
+                "**;zoo myzoos** — List the zoos you own and your ownership limit usage.",
+                "**;zoo meta [Zoo] location <text>** — Set the location shown on the zoo card.",
+                "**;zoo meta [Zoo] image <url>** — Set the thumbnail image shown on the zoo card.",
+                "**;zoo list** — Show your personal data buckets (your stored zoo keys).",
+                "_Deprecated:_ **;zoo set / ;zoo clear** — No longer required (ownership flow auto-selects).",
+            ],
+        ),
+        (
+            "👑 Ownership Admin (Manage Server required)",
+            [
+                "**;zoo owner add @user <Zoo Name>** — Grant ownership of a zoo.",
+                "**;zoo owner remove @user <Zoo Name>** — Revoke ownership of a zoo.",
+                "**;zoo owner limit @user <n>** — Set how many zoos a user may own.",
+                "**;zoo owner list [@user]** — Show which zoos a user owns and their limit.",
+            ],
+        ),
+        (
+            "🏠 Housing (your ‘housed’ checklist)",
+            [
+                "**;house <Species>** — Mark a species as housed at your owned zoo (auto-picks if you own one).",
+                "**;house <Species> at <Zoo Name>** — Specify the zoo explicitly.",
+                "**;house <Zoo Name> :: <Species>** — Alternate syntax when names contain ‘at’.",
+                "**;unhouse <…>** — Remove a species from your housed list (same argument patterns).",
+                "_Note:_ You can only house species that appear in that zoo’s **;holdings**.",
+            ],
+        ),
+        (
+            "🪙 Tokens (per-zoo balances + global back-compat)",
+            [
+                "**;tokens <Zoo Name>** — Show **your** token balance for that specific zoo.",
+                "**;token add <user> <n> [Zoo Name]** — Admin: add tokens (global if no zoo provided).",
+                "**;token remove <user> <n> [Zoo Name]** — Admin: remove tokens (global if no zoo provided).",
+                "**;token set <user> <n> [Zoo Name]** — Admin: set tokens (global if no zoo provided).",
+            ],
+        ),
+        (
+            "💡 Tips",
+            [
+                "• For multi-word names, just type them normally (e.g., `;holdings Mint Park Zoo`).",
+                "• Use **;zoolist** to see valid directory names before **;holdings**, **;tokens**, or **;zoo view**.",
+                "• If a name isn’t an exact match, commands often suggest the closest match.",
+            ],
+        ),
+    ]
+
+    # Send in chunks to respect Discord’s 2000-char limit
+    header = "**Available Commands**\n"
+    blocks = []
+    cur = header
+    for title, lines in sections:
+        block = f"\n__{title}__\n" + "\n".join(f"- {ln}" for ln in lines) + "\n"
+        if len(cur) + len(block) > 1900:
+            blocks.append(cur)
+            cur = block
+        else:
+            cur += block
+    if cur.strip():
+        blocks.append(cur)
+
+    for i, b in enumerate(blocks):
+        await ctx.send(b)
 
 @bot.command(name="zooremove", aliases=["zdel", "zoodrop"])
 async def zooremove_cmd(ctx, *, name: str):
