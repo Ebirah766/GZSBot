@@ -24,6 +24,17 @@
           "Common Fallow Deer"
         ]
       }
+    },
+    "339392105803939841": {
+      "active_zoo": null,
+      "zoos": {
+        "Jupiter Reptile Zoo": [
+          "Black-Tailed Horned Pit Viper",
+          "Indonesian Pit Viper",
+          "Chinese Crocodile Lizard",
+          "Flat-Nosed Pit Viper"
+        ]
+      }
     }
   },
   "ownership": {
@@ -61,6 +72,12 @@
       "limit": 2,
       "zoos": [
         "High Uintahs Zoo"
+      ]
+    },
+    "925098800895385681": {
+      "limit": 2,
+      "zoos": [
+        "Sapporo Reptile Center and National Aquarium"
       ]
     }
   }

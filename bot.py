@@ -1649,6 +1649,123 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
 "institutions": {
 "High Uintahs Zoo": "1.0"
+
+}
+},
+
+"Arapaima": {
+"common": "Arapaima",
+"scientific": "Arapaima gigas",
+"info": "The largest bonytongue fish, the arapaima is an apex predator in the Amazon ecosystem. These massive fish protect their young vigorously until they are a substantial size, and can live up to 20 years.",
+"type": "Fish",
+"order": "Osteoglossiformes",
+"family": "Arapaimidae",
+"genus": "Arapaima",
+"image_url": "https://www.biolib.cz/IMG/GAL/BIG/493019.jpg",
+"region": "South America",
+"holdings": {
+"North America": 0,
+"Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+        },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "0.4"
+
+    }
+    },
+    
+"Japanese Eagle Ray": {
+"common": "Japanese Eagle Ray",
+"scientific": "Myliobatis tobijei",
+"info": "The Japanese eagle ray is a large species of eagle ray that can grow up to 5 feet in length. It is a demersal species, feeding on benthic animals such as crustaceans, fish, and on occasion, benthic plants.",
+"type": "Fish",
+"order": "Myliobatiformes",
+"family": "Myliobatidae",
+"genus": "Myliobatis",
+"image_url": "https://www.marinepia.or.jp/picturebook/public/image/upload/594/main01.jpg",
+"region": "Asia",
+"holdings": {
+"North America": 0,
+"Asia": "0.3 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+            },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "0.3"
+
+}
+},
+
+"Spotted Garden Eel": {
+"common": "Spotted Garden Eel",
+"scientific": "Heteroconger hassi",
+"info": "Probably the most famous species of garden eel, the spotted garden eel is found throughout the Indo-Pacific, commonly in large aggregations in sandy areas. They rarely, if ever leave their burrows after they dig them.",
+"type": "Fish",
+"order": "Anguilliformes",
+"family": "Congridae",
+"genus": "Heteroconger",
+"image_url": "https://images.reeflifesurvey.com/0/species_f4_57f745ed20d77.w1000.h666.jpg",
+"region": "Asia, Africa, Oceania",
+"holdings": {
+"North America": 0,
+"Asia": "2.4 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "2.4"
+
+}
+},
+
+"Silver Arowana": {
+"common": "Silver Arowana",
+"scientific": "Osteoglossum bicirrhosum",
+"info": "The silver arowana is a species of bonytongue fish native to South America. It is well known for its powerful jumping ability, which allows it to jump out of the water to hunt its preferred prey.",
+"type": "Fish",
+"order": "Osteoglossiformes",
+"family": "Osteoglossidae",
+"genus": "Osteoglossum",
+"image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Osteoglossum_bicirrhosum_in_Minsk_Zoo.jpg",
+"region": "South America",
+"holdings": {
+"North America": 0,
+"Asia": "1.1 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "1.1"
+
+"Red-Bellied Piranha": {
+"common": "Red-Bellied Piranha",
+"scientific": "Pygocentrus nattereri",
+"info": "This iconic species of freshwater fish is native to South America, and has an unjust reputation for being an aggressive man-eater. In reality, they are typically solitary and only congregate and aggressively feed during the dry season.",
+"type": "Fish",
+"order": "Characiformes",
+"family": "Serrasalmidae",
+"genus": "Pygocentrus",
+"image_url": "https://www.biolib.cz/IMG/GAL/BIG/382042.jpg",
+"region": "South America",
+"holdings": {
+"North America": 0,
+"Asia": "2.2 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "2.2"
         }
     }
 }
