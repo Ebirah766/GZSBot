@@ -1615,7 +1615,7 @@ def normalize_region_name(s: str) -> str:
     return _region_normalizer.sub("", s.lower())
 
 # Map normalized -> canonical region
-REGION_CANON: Dict[str, str] = {normalize_region_name(r): r for r in REGIONS}
+REGION_CANON: Dict[str, str] = {normalize_region_name(r): r for r in REGION_ORDER}
 
 def _region_list(entry: Dict[str, Any]) -> List[str]:
     """Return the user-maintained region list (canonicalized to the canonical names where possible)."""
@@ -1822,7 +1822,7 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
             continue  # hide Antarctica from holdings display
 
         value = holdings.get(region, None)
-        
+
         if value is None or value == "":
             lines.append(f"**{region}:** 0")
             continue
@@ -1860,8 +1860,18 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
 
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
-    holdings = entry.get("holdings", {})
-    e.add_field(name="Holdings by Region", value=format_holdings(holdings), inline=False)
+
+    # --- Holdings by region (bulleted) ---
+    holdings = entry.get("holdings") or {}
+    any_listed = False
+    for region in REGION_ORDER:
+        value = holdings_to_bullets(holdings.get(region))
+        if value != "—":
+            any_listed = True
+            e.add_field(name=region, value=value, inline=False)
+
+    if not any_listed:
+        e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
 
     images = entry.get("images") or []
     if isinstance(images, list) and len(images) > 0:
@@ -1907,6 +1917,7 @@ class SpeciesPager(discord.ui.View):
             return await interaction.response.defer()
         self.index = (self.index + 1) % len(self.images)
         await self._refresh(interaction)
+
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
 # ---------- Persistence ----------
@@ -2105,6 +2116,32 @@ def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discor
         e.set_thumbnail(url=image_url)
 
     return e
+
+# --- Holdings formatting helpers --------------------------------------------
+
+REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
+
+def _normalize_holding_items(raw) -> list[str]:
+    """Turn a region's 'holdings' value into a clean list of holders."""
+    if raw is None:
+        return []
+    if raw == 0:
+        return []
+    if isinstance(raw, str) and raw.strip() in {"", "0", "0.0"}:
+        return []
+    if isinstance(raw, list):
+        items = raw
+    else:
+        items = [s.strip() for s in re.split(r"[;,]\s*", str(raw))]
+
+    cleaned = [it for it in items if it and it not in {"0", "0.0", "-"}]
+    return cleaned
+
+def holdings_to_bullets(raw) -> str:
+    """Return a bullet list string for a region, or '—' if none."""
+    items = _normalize_holding_items(raw)
+    return "\n".join(f"• {it}" for it in items) if items else "—"
+
 
 # ------------- ;zoo command with ownership -------------
 @bot.command(name="zoo")
