@@ -3958,21 +3958,21 @@ async def on_ready():
         _save_tokens(data)
         return int(u[_GLOBAL_KEY])
 
-            # Remove/disable any other @bot.command(name="tokens") first.
+    # Remove/disable any other @bot.command(name="tokens") first.
 
-            @bot.command(name="tokens")
-            async def tokens_cmd(ctx, *, zoo: str = None):
-                """
-                ;tokens <Zoo Name>
-                Shows YOUR token balance for that specific zoo.
-                (No admin required. Multi-word zoo names are supported.)
-                """
-                if not zoo:
-                    await ctx.send("Usage: `;tokens <Zoo Name>` (example: `;tokens Lowell Lagoon`)")
-                    return
+    @bot.command(name="tokens")
+    async def tokens_cmd(ctx, *, zoo: str = None):
+        """
+        ;tokens <Zoo Name>
+        Shows YOUR token balance for that specific zoo.
+        (No admin required. Multi-word zoo names are supported.)
+        """
+        if not zoo:
+            await ctx.send("Usage: `;tokens <Zoo Name>` (example: `;tokens Lowell Lagoon`)")
+            return
 
-                amt = get_user_zoo_tokens(ctx.author.id, zoo)
-                await ctx.send(f"💰 Your **{zoo}** tokens: **{amt}**.")
+        amt = get_user_zoo_tokens(ctx.author.id, zoo)
+        await ctx.send(f"💰 Your **{zoo}** tokens: **{amt}**.")
 
 
     @bot.command(name="token")
