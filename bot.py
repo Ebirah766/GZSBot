@@ -142,6 +142,118 @@ def format_holdings_lines(holdings: Dict[str, Any]) -> str:
 
     return "\n".join(lines)
 
+# --- Token System (per-user, per-zoo) ---------------------------------------
+TOKENS_FILE = pathlib.Path("tokens.json")
+TOKENS_START = 10
+_GLOBAL_KEY = "__global__"   # fallback while you migrate; optional
+
+def _read_json(path: pathlib.Path) -> dict:
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            try:
+                return json.load(f)
+            except Exception:
+                return {}
+    return {}
+
+def _write_json(path: pathlib.Path, data: dict):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+def _ensure_structure(data: dict) -> dict:
+    """
+    Accepts your current shape:
+      {"balances": {"334...": 10, "385...": 10}}
+    and normalizes to:
+      {"balances": {"334...": {"__global__": 10}, "385...": {"__global__": 10}}}
+    while preserving any already-per-zoo dicts.
+    """
+    if not isinstance(data, dict):
+        data = {}
+    balances = data.get("balances") or {}
+    if not isinstance(balances, dict):
+        balances = {}
+    normalized: dict = {}
+    for uid, val in balances.items():
+        if isinstance(val, dict):
+            # already per-zoo
+            normalized[str(uid)] = val
+        elif isinstance(val, int):
+            # migrate flat int -> per-zoo dict with a global fallback key
+            normalized[str(uid)] = {_GLOBAL_KEY: int(val)}
+        else:
+            # unknown content -> start clean
+            normalized[str(uid)] = {_GLOBAL_KEY: TOKENS_START}
+    data["balances"] = normalized
+    return data
+
+def _load_tokens() -> dict:
+    data = _read_json(TOKENS_FILE)
+    return _ensure_structure(data)
+
+def _save_tokens(data: dict):
+    data = _ensure_structure(data)
+    _write_json(TOKENS_FILE, data)
+
+def _get_user_dict(data: dict, uid: int) -> dict:
+    uid_s = str(uid)
+    if "balances" not in data:
+        data["balances"] = {}
+    if uid_s not in data["balances"] or not isinstance(data["balances"][uid_s], dict):
+        data["balances"][uid_s] = {_GLOBAL_KEY: TOKENS_START}
+    return data["balances"][uid_s]
+
+def get_user_zoo_tokens(uid: int, zoo: str | None) -> int:
+    """
+    If zoo is provided, return that zoo balance.
+    If not provided, return the global/default (for display & fallback).
+    When a zoo has no explicit balance yet, fall back to the user's global (or TOKENS_START).
+    """
+    data = _load_tokens()
+    u = _get_user_dict(data, uid)
+    if zoo:
+        return int(u.get(zoo, u.get(_GLOBAL_KEY, TOKENS_START)))
+    return int(u.get(_GLOBAL_KEY, TOKENS_START))
+
+def set_user_zoo_tokens(uid: int, zoo: str, amount: int):
+    data = _load_tokens()
+    u = _get_user_dict(data, uid)
+    u[zoo] = max(0, int(amount))
+    _save_tokens(data)
+
+def add_user_zoo_tokens(uid: int, zoo: str, delta: int):
+    current = get_user_zoo_tokens(uid, zoo)
+    set_user_zoo_tokens(uid, zoo, current + int(delta))
+
+def spend_user_zoo_tokens(uid: int, zoo: str, amount: int) -> bool:
+    """
+    Atomically attempt to spend `amount` tokens from (uid, zoo).
+    If sufficient, deduct and return True. Otherwise, no change and return False.
+    """
+    current = get_user_zoo_tokens(uid, zoo)
+    if amount <= 0:
+        return True
+    if current < amount:
+        return False
+    set_user_zoo_tokens(uid, zoo, current - amount)
+    return True
+
+def list_user_zoos_with_balances(uid: int) -> list[tuple[str, int]]:
+    """
+    Returns a list of (zoo_name, tokens) excluding the __global__ key.
+    """
+    data = _load_tokens()
+    u = _get_user_dict(data, uid)
+    out = []
+    for k, v in u.items():
+        if k == _GLOBAL_KEY:
+            continue
+        try:
+            out.append((k, int(v)))
+        except Exception:
+            pass
+    return sorted(out, key=lambda kv: kv[0].lower())
+
 
 # --- Species DB --------------------------------------------------------------
 REGIONS = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
@@ -3682,38 +3794,251 @@ async def on_ready():
     log.info("Logged in as %s (%s)", bot.user, bot.user.id)
     log.info("Bot is ready.")
 
-# ==============================  TOKENS SYSTEM  ==============================
-_TOKENS_PATH = pathlib.Path(__file__).with_name("tokens.json")
-DEFAULT_TOKENS = 10
+    # --- Token System (per-user, per-zoo) ---------------------------------------
+    TOKENS_FILE = pathlib.Path("tokens.json")
+    TOKENS_START = 10
+    _GLOBAL_KEY = "__global__"   # fallback bucket for each user
 
-def _load_tokens() -> dict:
-    if _TOKENS_PATH.exists():
-        try:
-            return json.loads(_TOKENS_PATH.read_text(encoding="utf-8"))
-        except Exception:
-            pass
-    return {"balances": {}}  # { "balances": { "<user_id>": int } }
+    def _tokens_read(path: pathlib.Path) -> dict:
+        if path.exists():
+            with open(path, "r", encoding="utf-8") as f:
+                try:
+                    return json.load(f)
+                except Exception:
+                    return {}
+        return {}
 
-def _save_tokens(data: dict) -> None:
-    _TOKENS_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    def _tokens_write(path: pathlib.Path, data: dict):
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
 
-def _ensure_balance(data: dict, user_id: int) -> int:
-    bal = data.setdefault("balances", {}).get(str(user_id))
-    if bal is None:
-        data["balances"][str(user_id)] = DEFAULT_TOKENS
+    def _tokens_ensure_structure(data: dict) -> dict:
+        """
+        Accepts your current shape:
+          {"balances": {"334...": 10, "385...": 10}}
+        and normalizes to:
+          {"balances": {"334...": {"__global__": 10}, "385...": {"__global__": 10}}}
+        while preserving any already-per-zoo dicts.
+        """
+        if not isinstance(data, dict):
+            data = {}
+        balances = data.get("balances") or {}
+        if not isinstance(balances, dict):
+            balances = {}
+        normalized: dict = {}
+        for uid, val in balances.items():
+            uid_s = str(uid)
+            if isinstance(val, dict):
+                normalized[uid_s] = val
+            elif isinstance(val, int):
+                normalized[uid_s] = {_GLOBAL_KEY: int(val)}
+            else:
+                normalized[uid_s] = {_GLOBAL_KEY: TOKENS_START}
+        data["balances"] = normalized
+        return data
+
+    def _load_tokens() -> dict:
+        data = _tokens_read(TOKENS_FILE)
+        return _tokens_ensure_structure(data)
+
+    def _save_tokens(data: dict):
+        data = _tokens_ensure_structure(data)
+        _tokens_write(TOKENS_FILE, data)
+
+    def _get_user_bucket(data: dict, uid: int) -> dict:
+        uid_s = str(uid)
+        if "balances" not in data or not isinstance(data["balances"], dict):
+            data["balances"] = {}
+        if uid_s not in data["balances"] or not isinstance(data["balances"][uid_s], dict):
+            data["balances"][uid_s] = {_GLOBAL_KEY: TOKENS_START}
+        return data["balances"][uid_s]
+
+    # -------- Per-zoo API --------
+    def get_user_zoo_tokens(uid: int, zoo: str | None) -> int:
+        """
+        If zoo is provided, return that zoo's balance.
+        If zoo is None, return the user's global/default balance.
+        If the zoo doesn't exist yet, fall back to global/default (or TOKENS_START).
+        """
+        data = _load_tokens()
+        u = _get_user_bucket(data, uid)
+        if zoo:
+            return int(u.get(zoo, u.get(_GLOBAL_KEY, TOKENS_START)))
+        return int(u.get(_GLOBAL_KEY, TOKENS_START))
+
+    def set_user_zoo_tokens(uid: int, zoo: str, amount: int):
+        data = _load_tokens()
+        u = _get_user_bucket(data, uid)
+        u[zoo] = max(0, int(amount))
         _save_tokens(data)
-        return DEFAULT_TOKENS
-    return int(bal)
 
-def _set_balance(data: dict, user_id: int, new_val: int) -> int:
-    new_val = max(0, int(new_val))
-    data.setdefault("balances", {})[str(user_id)] = new_val
-    _save_tokens(data)
-    return new_val
+    def add_user_zoo_tokens(uid: int, zoo: str, delta: int):
+        current = get_user_zoo_tokens(uid, zoo)
+        set_user_zoo_tokens(uid, zoo, current + int(delta))
 
-def _add_balance(data: dict, user_id: int, delta: int) -> int:
-    cur = _ensure_balance(data, user_id)
-    return _set_balance(data, user_id, cur + int(delta))
+    def spend_user_zoo_tokens(uid: int, zoo: str, amount: int) -> bool:
+        """
+        Attempt to spend `amount` from (uid, zoo). Return True if sufficient and deducted.
+        """
+        if amount <= 0:
+            return True
+        current = get_user_zoo_tokens(uid, zoo)
+        if current < amount:
+            return False
+        set_user_zoo_tokens(uid, zoo, current - amount)
+        return True
+
+    def list_user_zoos_with_balances(uid: int) -> list[tuple[str, int]]:
+        """Return (zoo, tokens) for all explicit zoos (excludes __global__)."""
+        data = _load_tokens()
+        u = _get_user_bucket(data, uid)
+        out = []
+        for k, v in u.items():
+            if k == _GLOBAL_KEY:
+                continue
+            try:
+                out.append((k, int(v)))
+            except Exception:
+                pass
+        return sorted(out, key=lambda kv: kv[0].lower())
+
+    # -------- Back-compat shims for your existing helpers --------
+    def _ensure_balance(data: dict, uid: int) -> int:
+        """Return the user's GLOBAL balance (existing behavior)."""
+        u = _get_user_bucket(data, uid)
+        return int(u.get(_GLOBAL_KEY, TOKENS_START))
+
+    def _add_balance(data: dict, uid: int, n: int) -> int:
+        """Add to GLOBAL balance (existing behavior)."""
+        u = _get_user_bucket(data, uid)
+        cur = int(u.get(_GLOBAL_KEY, TOKENS_START))
+        u[_GLOBAL_KEY] = max(0, cur + int(n))
+        _save_tokens(data)
+        return int(u[_GLOBAL_KEY])
+
+    def _set_balance(data: dict, uid: int, amount: int) -> int:
+        """Set GLOBAL balance (existing behavior)."""
+        u = _get_user_bucket(data, uid)
+        u[_GLOBAL_KEY] = max(0, int(amount))
+        _save_tokens(data)
+        return int(u[_GLOBAL_KEY])
+
+    # --- Commands (updated to support optional [zoo name]) -----------------------
+
+    @bot.command(name="tokens")
+    async def tokens_cmd(ctx, member: discord.Member = None, *, zoo: str = None):
+        """
+        Check token balance.
+        - ;tokens                          -> your default & per-zoo summary
+        - ;tokens <zoo name>               -> your balance for a specific zoo
+        - ;tokens @user                    -> (admin) view user's default & per-zoo
+        - ;tokens @user <zoo name>         -> (admin) view user's zoo balance
+        """
+        # Target: self or mentioned user (admin required to view others)
+        target = member or ctx.author
+        if member and (member.id != ctx.author.id) and not _is_admin(ctx):
+            await ctx.send("🚫 Only admins can view other members’ balances.")
+            return
+
+        if zoo:
+            amt = get_user_zoo_tokens(target.id, zoo)
+            name = target.mention if member else "You"
+            await ctx.send(f"💰 {name} — **{zoo}** has **{amt}** token(s).")
+            return
+
+        # Summary view (default + all explicit zoos)
+        default_amt = get_user_zoo_tokens(target.id, None)
+        per_zoos = list_user_zoos_with_balances(target.id)
+        owner = target.mention if member else "Your"
+        if per_zoos:
+            lines = [f"**Default (fallback):** {default_amt}"] + [
+                f"• **{name}** — {amt}" for name, amt in per_zoos
+            ]
+            await ctx.send(f"💰 {owner} token balances:\n" + "\n".join(lines))
+        else:
+            await ctx.send(f"💰 {owner} default token balance is **{default_amt}**.\n"
+                           f"(No per-zoo balances yet; they will be created the first time they’re used.)")
+
+    @bot.command(name="token")
+    async def token_admin_cmd(ctx, action: str = None, member: discord.Member = None, amount: int = None, *, zoo: str = None):
+        """
+        Admin token management.
+        - ;token add @user <n> [zoo name]
+        - ;token remove @user <n> [zoo name]
+        - ;token set @user <n> [zoo name]
+          If [zoo name] is omitted, the user’s GLOBAL (default) pool is modified.
+        """
+        if not _is_admin(ctx):
+            await ctx.send("🚫 You need **Manage Server** to modify tokens.")
+            return
+
+        valid_actions = {"add", "remove", "set"}
+        if action is None or action.lower() not in valid_actions or member is None or amount is None:
+            await ctx.send(
+                "Usage:\n"
+                "`;token add @user <n> [zoo name]`\n"
+                "`;token remove @user <n> [zoo name]`\n"
+                "`;token set @user <n> [zoo name]`"
+            )
+            return
+
+        action = action.lower()
+        try:
+            n = int(amount)
+        except Exception:
+            await ctx.send("Amount must be an integer.")
+            return
+
+        data = _load_tokens()
+
+        if zoo:
+            # Operate on a specific zoo
+            if action == "add":
+                if n <= 0:
+                    await ctx.send("Add amount must be a positive integer.")
+                    return
+                add_user_zoo_tokens(member.id, zoo, n)
+                new_bal = get_user_zoo_tokens(member.id, zoo)
+                await ctx.send(f"✅ Added **{n}** tokens to {member.mention} for **{zoo}**. New balance: **{new_bal}**.")
+            elif action == "remove":
+                if n <= 0:
+                    await ctx.send("Remove amount must be a positive integer.")
+                    return
+                add_user_zoo_tokens(member.id, zoo, -n)
+                new_bal = get_user_zoo_tokens(member.id, zoo)
+                await ctx.send(f"✅ Removed **{n}** tokens from {member.mention} for **{zoo}**. New balance: **{new_bal}**.")
+            elif action == "set":
+                if n < 0:
+                    await ctx.send("Set amount must be zero or positive.")
+                    return
+                set_user_zoo_tokens(member.id, zoo, n)
+                await ctx.send(f"✅ Set {member.mention}'s **{zoo}** balance to **{n}**.")
+            return
+
+        # No zoo provided -> operate on GLOBAL (back-compat)
+        if action == "add":
+            if n <= 0:
+                await ctx.send("Add amount must be a positive integer.")
+                return
+            new_bal = _add_balance(data, member.id, n)
+            await ctx.send(f"✅ Added **{n}** tokens to {member.mention}. New default balance: **{new_bal}**.")
+
+        elif action == "remove":
+            if n <= 0:
+                await ctx.send("Remove amount must be a positive integer.")
+                return
+            cur = _ensure_balance(data, member.id)
+            new_bal = _set_balance(data, member.id, cur - n)
+            removed = cur - new_bal
+            await ctx.send(f"✅ Removed **{removed}** tokens from {member.mention}. New default balance: **{new_bal}**.")
+
+        elif action == "set":
+            if n < 0:
+                await ctx.send("Set amount must be zero or positive.")
+                return
+            new_bal = _set_balance(data, member.id, n)
+            await ctx.send(f"✅ Set {member.mention}'s default balance to **{new_bal}**.")
+
 
 # ---- Commands ----
 @bot.command(name="tokens")
