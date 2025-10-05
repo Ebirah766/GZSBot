@@ -1602,6 +1602,53 @@ species_data: Dict[str, Dict[str, Any]] = {
                     },
     "institutions": {
         "High Uintahs Zoo": "1.1"
+
+        }
+        },
+        
+    "Domestic Donkey": {
+    "common": "Domestic Donkey",
+    "scientific": "Equus africanus asinus",
+    "info": "The domestic donkey is one of two domesticated equids. These animals are mostly used as beasts of burden or pack animals, and are especially commonly used in underdeveloped countries.",
+    "type": "Mammal",
+    "order": "Perissodactyla",
+    "family": "Equidae",
+    "genus": "Equus",
+    "image_url": "https://static.wikia.nocookie.net/project-zoo/images/9/90/Perry-miniature-donkey-in-Palo-Alto-CA-2016.jpg/revision/latest/scale-to-width-down/4559?cb=20200320040740",
+    "holdings": {
+        "North America": "4.0 - High Uintahs Zoo",
+        "Asia": 0,
+        "Europe": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+                        },
+    "institutions": {
+        "High Uintahs Zoo": "4.0"
+
+        }
+        },
+
+"Common Raven": {
+"common": "Common Raven",
+"scientific": "Corvus corax",
+"info": "The common raven is one of the largest corvids. Native to a wide range of habitats, this passerine bird is regarded for its high intelligence, and it is considered one of the most intelligent of all birds.",
+"type": "Bird",
+"order": "Passeriformes",
+"family": "Corvidae",
+"genus": "Corvus",
+"image_url": "https://media-animals.earth.com/images/2022/08/17/6615221388313479/corvuscorax_31777344837356836.jpg",
+"region": "North America, Europe, Asia, Africa",
+"holdings": {
+"North America": "1.0 - High Uintahs Zoo",
+"Asia": 0,
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"High Uintahs Zoo": "1.0"
         }
     }
 }
@@ -2147,32 +2194,60 @@ def holdings_to_bullets(raw) -> str:
 @bot.command(name="zoo")
 async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
     """
-    ;zoo set <name>         -> set your active zoo (must own it)
-    ;zoo status             -> show current zoo list and progress
-    ;zoo clear              -> clear your active zoo (keeps data)
-    ;zoo list               -> list your local 'data buckets' (not ownership)
-    ;zoo myzoos             -> show zoos you OWN + your limit usage
-    ;zoo view [name]        -> UI card for active zoo or provided name
-    ;zoo meta location <text>      -> set location for your active zoo
-    ;zoo meta image <url>          -> set thumbnail image for your active zoo
+    Ownership-first flow (no ;zoo set needed)
+
+    User subcommands:
+    ;zoo status [zoo]      -> show catalog progress for your zoo (auto-picks if you own exactly one)
+    ;zoo myzoos            -> show zoos you OWN + your limit usage
+    ;zoo view [name]       -> UI card for provided zoo; if omitted and you own exactly one, shows that
+    ;zoo meta [zoo] location <text>  -> set location      (auto-picks if one owned)
+    ;zoo meta [zoo] image <url>      -> set thumbnail URL (auto-picks if one owned)
 
     Admin subcommands:
     ;zoo owner add @user <zoo>
     ;zoo owner remove @user <zoo>
     ;zoo owner limit @user <n>
     ;zoo owner list [@user]
+
+    (Deprecated but kept for compatibility)
+    ;zoo set / ;zoo clear -> no longer required; we auto-select your zoo.
     """
     data = _load_zoo_data()
     user = _ensure_user_struct(data, ctx.author.id)
     ownership = _get_user_ownership(data, ctx.author.id)
 
+    def _auto_pick_owned_or_msg(owned_list, provided: str | None, need_ownership: bool = True):
+        """Return (zoo_name, err_msg). If provided is given, validate (and ownership if need_ownership)."""
+        if provided and provided.strip():
+            nz = _norm_zoo(provided.strip())
+            # If we require ownership, check against list. If not, allow any known institution name resolution.
+            if need_ownership:
+                for z in owned_list:
+                    if _norm_zoo(z) == nz:
+                        return z, None
+                return None, f"🚫 You don’t own **{provided.strip()}**."
+            # not requiring ownership: just use canonical resolution if available
+            exact, suggestion = resolve_institution_name(provided.strip())
+            if exact:
+                return exact, None
+            if suggestion:
+                return None, f"No exact entry for **{provided.strip()}**. Did you mean **{suggestion}**?"
+            return None, f"No institutions recorded yet or no match for **{provided.strip()}**."
+        # no provided zoo: auto pick if one, else prompt
+        if len(owned_list) == 0:
+            return None, "You don’t own any zoos — ask an admin to assign you as an owner."
+        if len(owned_list) > 1:
+            return None, "You own multiple zoos. Please specify one (e.g., `;zoo status Mint Park Zoo`)."
+        return owned_list[0], None
+
     if subcommand is None:
         await ctx.send(
             "Usage:\n"
-            "`;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, `;zoo view [name]`\n"
-            "`;zoo meta location <text>` • `;zoo meta image <url>`\n"
+            "`;zoo status [zoo]`, `;zoo myzoos`, `;zoo view [name]`\n"
+            "`;zoo meta [zoo] location <text>` • `;zoo meta [zoo] image <url>`\n"
             "**Admin:** `;zoo owner add @user <zoo>`, `;zoo owner remove @user <zoo>`, "
-            "`;zoo owner limit @user <n>`, `;zoo owner list [@user]`"
+            "`;zoo owner limit @user <n>`, `;zoo owner list [@user]`\n"
+            "_Note: `;zoo set/clear` are no longer required._"
         )
         return
 
@@ -2282,42 +2357,65 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
             )
         return
 
-    # >>> NEW: meta tools (location/image) ------------------------------------
+    # >>> meta tools (location/image) -----------------------------------------
     if sub == "meta":
         if not rest:
-            await ctx.send("Usage: `;zoo meta location <text>` • `;zoo meta image <url>`")
+            await ctx.send("Usage: `;zoo meta [zoo] location <text>` • `;zoo meta [zoo] image <url>`")
             return
 
-        parts = rest.split(maxsplit=1)
-        if len(parts) < 2:
-            await ctx.send("Usage: `;zoo meta location <text>` • `;zoo meta image <url>`")
-            return
-        field, value = parts[0].lower(), parts[1].strip()
+        # Allow either:
+        #   "location <value>" (auto-pick owned zoo)
+        #   "image <value>"    (auto-pick)
+        #   "<zoo> location <value>" or "<zoo> image <value>"
+        low = rest.lower()
+        split_idx = None
+        field = None
+        for key in (" location ", " image "):
+            i = low.find(key)
+            if i != -1:
+                split_idx = i
+                field = key.strip()
+                break
 
-        # must have an active zoo you own
-        zoo, msg = _get_active_zoo_or_msg(ctx, user)
-        if msg:
-            await ctx.send(msg); return
-        if not _owns_zoo(ownership, zoo):
-            await ctx.send(f"🚫 You don’t own **{zoo}**. Switch with `;zoo set <owned zoo>`.")
-            return
+        if field is None:
+            # maybe starts with the field
+            first_word = rest.split(maxsplit=1)[0].lower()
+            if first_word in ("location", "image"):
+                field = first_word
+                value = rest.split(maxsplit=1)[1] if len(rest.split(maxsplit=1)) > 1 else ""
+                zoo_name, err = _auto_pick_owned_or_msg(ownership["zoos"], None, need_ownership=True)
+                if err:
+                    await ctx.send(err); return
+            else:
+                await ctx.send("Usage: `;zoo meta [zoo] location <text>` • `;zoo meta [zoo] image <url>`")
+                return
+        else:
+            zoo_part = rest[:split_idx].strip()
+            value = rest[split_idx + len(field) + 1:].strip()
+            if zoo_part:
+                zoo_name, err = _auto_pick_owned_or_msg(ownership["zoos"], zoo_part, need_ownership=True)
+                if err:
+                    await ctx.send(err); return
+            else:
+                zoo_name, err = _auto_pick_owned_or_msg(ownership["zoos"], None, need_ownership=True)
+                if err:
+                    await ctx.send(err); return
 
         if field not in ("location", "image"):
             await ctx.send("Unknown meta field. Use `location` or `image`.")
             return
 
         data = _load_zoo_data()
-        _set_zoo_meta_field(data, zoo, "location" if field == "location" else "image_url", value)
+        _set_zoo_meta_field(data, zoo_name, "location" if field == "location" else "image_url", value)
         _save_zoo_data(data)
-        await ctx.send(f"✅ Updated **{field}** for **{zoo}**.")
+        await ctx.send(f"✅ Updated **{field}** for **{zoo_name}**.")
         return
 
-    # >>> NEW: view UI card ----------------------------------------------------
-    # >>> NEW: view UI card ----------------------------------------------------
+    # >>> view UI card ---------------------------------------------------------
     if sub == "view":
-        target_zoo = None
+        # Allow viewing any institution (doesn't require ownership).
+        # If no name provided, auto-pick if user owns exactly one.
         if rest and rest.strip():
-            # Validate provided zoo name against known institutions
             exact, suggestion = resolve_institution_name(rest.strip())
             if not exact and suggestion:
                 await ctx.send(f"No exact entry for **{rest.strip()}**. Did you mean **{suggestion}**?")
@@ -2325,104 +2423,128 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
             if not exact and not suggestion:
                 await ctx.send(f"No institutions recorded yet or no match for **{rest.strip()}**.")
                 return
-            target_zoo = exact  # use canonical/cased institution name
+            target_zoo = exact
         else:
-            # Fall back to active zoo (unchanged behavior)
-            z, msg = _get_active_zoo_or_msg(ctx, user)
-            if msg:
-                await ctx.send(msg); return
-            target_zoo = z
-
-        # allow viewing even if you don't own it; UI will still show owner(s)
+            target_zoo, err = _auto_pick_owned_or_msg(ownership["zoos"], None, need_ownership=False)
+            if err:
+                await ctx.send("Please provide a zoo name to view (e.g., `;zoo view Mint Park Zoo`).")
+                return
         e = _build_zoo_embed(ctx, target_zoo, data)
         await ctx.send(embed=e)
         return
 
-    # --- regular subcommands (enforced) ---
-    if sub == "set":
-        if not rest:
-            await ctx.send("Give your zoo a name: `;zoo set Mint Park Zoo`")
-            return
-        requested = " ".join(rest.split())
-        if not _owns_zoo(ownership, requested):
-            await ctx.send(f"🚫 You don’t own **{requested}**. Ask an admin to grant ownership with `;zoo owner add @you {requested}`.")
-            return
-        cased = _find_cased_zoo_name(ownership, requested) or requested
-        user["active_zoo"] = cased
-        user["zoos"].setdefault(cased, [])
-        _save_zoo_data(data)
-        await ctx.send(f"✅ Active zoo set to **{cased}**.")
-        return
-
+    # --- status ---------------------------------------------------------------
     if sub == "status":
-        zoo, msg = _get_active_zoo_or_msg(ctx, user)
-        if msg:
-            await ctx.send(msg); return
-        if not _owns_zoo(ownership, zoo):
-            await ctx.send(f"🚫 You no longer own **{zoo}**. Pick a zoo you own with `;zoo set <name>`.")
-            return
-        housed = user["zoos"].get(zoo, [])
+        # `;zoo status [zoo]`
+        zoo_name, err = _auto_pick_owned_or_msg(ownership["zoos"], rest, need_ownership=True)
+        if err:
+            await ctx.send(err); return
+        housed = user["zoos"].get(zoo_name, [])
         housed_valid = [s for s in housed if _canonical_species_name(s)]
-        # >>> CHANGED: denominator is species cataloged for this zoo
-        catalog_set = _catalog_species_for_zoo(zoo)
+        catalog_set = _catalog_species_for_zoo(zoo_name)
         denom = len(catalog_set)
         num = len([s for s in housed_valid if s in catalog_set])
         pct = _percent(num, denom)
         bar_len = 20
-        filled = round(pct / 100 * bar_len)
+        filled = round((pct / 100) * bar_len) if denom else 0
         bar = "█" * filled + "—" * (bar_len - filled)
         housed_preview = ", ".join(housed_valid[:20]) + (" …" if len(housed_valid) > 20 else "")
         await ctx.send(
-            f"**{zoo}** — {num}/{denom} cataloged species housed ({pct:.1f}%)\n"
+            f"**{zoo_name}** — {num}/{denom} cataloged species housed ({pct:.1f}%)\n"
             f"`{bar}`\n"
             f"**Housed:** {housed_preview if housed_valid else '_None yet_'}"
         )
         return
 
-    if sub == "clear":
-        user["active_zoo"] = None
-        _save_zoo_data(data)
-        await ctx.send("Cleared your active zoo. Set a new one with `;zoo set <name>`.")
-        return
-
+    # --- list (data buckets, unchanged) --------------------------------------
     if sub == "list":
-        zoos = list(user["zoos"].keys())
-        if not zoos:
-            await ctx.send("You don’t have any zoo data yet. Create data by `;zoo set <owned zoo>` then `;house ...`.")
+        zoos_ = list(user["zoos"].keys())
+        if not zoos_:
+            await ctx.send("You don’t have any zoo data yet. Use `;house <species> at <Your Zoo>` to create one.")
             return
-        await ctx.send("Your zoo data buckets:\n- " + "\n- ".join(zoos))
+        await ctx.send("Your zoo data buckets:\n- " + "\n- ".join(zoos_))
         return
 
-    await ctx.send("Unknown subcommand. Try `;zoo set <name>`, `;zoo status`, `;zoo clear`, `;zoo list`, `;zoo myzoos`, `;zoo view [name]`, `;zoo meta ...`, or admin `;zoo owner ...`.")
+    # --- deprecated set/clear -------------------------------------------------
+    if sub == "set":
+        await ctx.send("ℹ️ `;zoo set` is no longer required. Actions auto-select your owned zoo. If you own multiple, specify it (e.g., `;house Whale Shark at Mint Park Zoo`).")
+        return
+
+    if sub == "clear":
+        await ctx.send("ℹ️ `;zoo clear` is no longer needed. There is no active zoo anymore.")
+        return
+
+    await ctx.send("Unknown subcommand. Try `;zoo status [zoo]`, `;zoo myzoos`, `;zoo view [name]`, `;zoo meta [zoo] location …`, or admin `;zoo owner …`.")
 
 # ------------- ;house / ;unhouse -------------
+def _parse_house_args(arg: str):
+    """
+    Supports:
+      "<species>"                      (no zoo specified)
+      "<species> at <zoo>"
+      "<zoo> :: <species>"
+    Returns (zoo or None, species or None).
+    """
+    if not arg:
+        return None, None
+    s = arg.strip()
+    # "<zoo> :: <species>"
+    if "::" in s:
+        left, right = s.split("::", 1)
+        return left.strip(), right.strip()
+    # "<species> at <zoo>"  (use last ' at ' to be resilient to species with 'at')
+    low = s.lower()
+    idx = low.rfind(" at ")
+    if idx != -1:
+        species = s[:idx].strip()
+        zoo = s[idx + 4 :].strip()
+        if species and zoo:
+            return zoo, species
+    return None, s
+
 @bot.command(name="house")
 async def house_cmd(ctx, *, species_name: str = None):
     """
-    Add a species to your active zoo’s housed list (ONLY if your zoo actually holds it).
-    Usage: ;house Whale Shark
+    Add a species to your owned zoo’s housed list (ONLY if your zoo actually holds it).
+    Usage:
+      ;house Whale Shark
+      ;house Whale Shark at Mint Park Zoo
+      ;house Mint Park Zoo :: Whale Shark
     """
     if not species_name:
-        await ctx.send("Usage: `;house <species name>` (e.g., `;house Whale Shark`)")
+        await ctx.send("Usage: `;house <species>` or `;house <species> at <zoo>`")
         return
 
     data = _load_zoo_data()
     user = _ensure_user_struct(data, ctx.author.id)
     ownership = _get_user_ownership(data, ctx.author.id)
 
-    zoo, msg = _get_active_zoo_or_msg(ctx, user)
-    if msg:
-        await ctx.send(msg); return
-    if not _owns_zoo(ownership, zoo):
-        await ctx.send(f"🚫 You don’t own **{zoo}**. Switch with `;zoo set <owned zoo>`.")
-        return
+    provided_zoo, sp_part = _parse_house_args(species_name)
+    # pick/validate zoo
+    if provided_zoo:
+        zoo, err = (provided_zoo, None)
+        # must own it:
+        if not _owns_zoo(ownership, zoo):
+            await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
+            return
+        # normalize to owned casing if possible
+        cased = _find_cased_zoo_name(ownership, zoo) or provided_zoo
+        zoo = cased
+    else:
+        zoo, err = (None, None)
+        if len(ownership["zoos"]) == 0:
+            await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
+            return
+        if len(ownership["zoos"]) > 1:
+            await ctx.send("You own multiple zoos. Please specify one: `;house <species> at <zoo>` or `;house <zoo> :: <species>`.")
+            return
+        zoo = ownership["zoos"][0]
 
-    canonical = _canonical_species_name(species_name)
+    canonical = _canonical_species_name(sp_part)
     if not canonical:
-        await ctx.send(f"❌ I don’t recognize **{species_name}**. Make sure it’s in the catalog.")
+        await ctx.send(f"❌ I don’t recognize **{sp_part}**. Make sure it’s in the catalog.")
         return
 
-    # >>> NEW: enforce 'in holdings' check for this zoo
     catalog_set = _catalog_species_for_zoo(zoo)
     if canonical not in catalog_set:
         await ctx.send(
@@ -2437,7 +2559,6 @@ async def house_cmd(ctx, *, species_name: str = None):
     else:
         housed.append(canonical)
         _save_zoo_data(data)
-        # progress uses zoo catalog denominator (unchanged)
         denom = len(catalog_set)
         num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
         pct = _percent(num, denom)
@@ -2446,34 +2567,44 @@ async def house_cmd(ctx, *, species_name: str = None):
 @bot.command(name="unhouse")
 async def unhouse_cmd(ctx, *, species_name: str = None):
     """
-    Remove a species from your active zoo’s housed list.
-    Usage: ;unhouse Whale Shark
+    Remove a species from your owned zoo’s housed list.
+    Usage:
+      ;unhouse Whale Shark
+      ;unhouse Whale Shark at Mint Park Zoo
+      ;unhouse Mint Park Zoo :: Whale Shark
     """
     if not species_name:
-        await ctx.send("Usage: `;unhouse <species name>`")
+        await ctx.send("Usage: `;unhouse <species>` or `;unhouse <species> at <zoo>`")
         return
 
     data = _load_zoo_data()
     user = _ensure_user_struct(data, ctx.author.id)
     ownership = _get_user_ownership(data, ctx.author.id)
 
-    zoo, msg = _get_active_zoo_or_msg(ctx, user)
-    if msg:
-        await ctx.send(msg); return
-    if not _owns_zoo(ownership, zoo):
-        await ctx.send(f"🚫 You don’t own **{zoo}**. Switch with `;zoo set <owned zoo>`.")
-        return
+    provided_zoo, sp_part = _parse_house_args(species_name)
+    if provided_zoo:
+        if not _owns_zoo(ownership, provided_zoo):
+            await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
+            return
+        zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
+    else:
+        if len(ownership["zoos"]) == 0:
+            await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
+            return
+        if len(ownership["zoos"]) > 1:
+            await ctx.send("You own multiple zoos. Please specify one: `;unhouse <species> at <zoo>` or `;unhouse <zoo> :: <species>`.")
+            return
+        zoo = ownership["zoos"][0]
 
-    canonical = _canonical_species_name(species_name)
+    canonical = _canonical_species_name(sp_part)
     if not canonical:
-        await ctx.send(f"❌ I don’t recognize **{species_name}**.")
+        await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
         return
 
     housed = user["zoos"].setdefault(zoo, [])
     if canonical in housed:
         housed.remove(canonical)
         _save_zoo_data(data)
-        # use zoo catalog denominator for progress
         catalog_set = _catalog_species_for_zoo(zoo)
         denom = len(catalog_set)
         num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
@@ -2481,6 +2612,9 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
         await ctx.send(f"✅ Removed **{canonical}** from **{zoo}**. Progress: {num}/{denom} ({pct:.1f}%)")
     else:
         await ctx.send(f"ℹ️ **{canonical}** isn’t currently housed at **{zoo}**.")
+
+# ============================  END ADDED: ZOO/OWNERSHIP  ============================
+
 
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
@@ -2495,21 +2629,21 @@ async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
         if not name or not str(name).strip():
             await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
             return
-
+        
         entry, msg = get_entry_or_message(name)
         if msg:
             await ctx.send(msg)
             return
-
+        
         images = entry.get("images") or []
         embed = build_species_embed(entry, image_index=0)
-
+        
         if isinstance(images, list) and len(images) > 1:
             view = SpeciesPager(entry=entry, start_index=0)
             await ctx.send(embed=embed, view=view)
         else:
             await ctx.send(embed=embed)
-
+        
     except Exception:
         log.exception("Error in ;species")
         await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
@@ -2528,7 +2662,7 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
         if not exact and not suggestion:
             await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
             return
-
+        
         blocks, total, sp_count = format_institution_holdings(exact)
         if isinstance(blocks, str):
             await ctx.send(blocks)
