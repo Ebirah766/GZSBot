@@ -348,6 +348,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Wild type", "url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg"},
             {"label": "Piebald", "url": "https://community.morphmarket.com/uploads/db1442/original/3X/c/c/cce5c7bf05ff8c269b109b74a6981690acbc3075.jpeg"}
+        ],
         "region": "Asia",
         "holdings": {
             "North America": "0.1 (Wild type) - Cube Zoological Park",
@@ -358,7 +359,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "0.1 [Wild type]"
+            "Cube Zoological Park": "0.1 [Wild type]",
             "Sapporo Reptile Center and National Aquarium": "1.0 [Piebald]"
         },
     },
