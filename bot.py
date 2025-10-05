@@ -4235,3 +4235,25 @@ if __name__ == "__main__":
         log.error("DISCORD_TOKEN not set in environment or .env")
         sys.exit(1)
     bot.run(token)
+
+@bot.command(name="zooremove")
+async def zooremove_cmd(ctx, *, name: str):
+    """
+    ;zooremove <Zoo Name>
+    Removes a zoo from the directory.
+    (By default, admin-only for safety.)
+    """
+    # 🧱 Optional: make it admin-only
+    if not _is_admin(ctx):
+        await ctx.send("🚫 Only admins can remove zoos from the directory.")
+        return
+
+    if not name:
+        await ctx.send("Usage: `;zooremove <Zoo Name>`")
+        return
+
+    success = remove_zoo_from_directory(name)
+    if success:
+        await ctx.send(f"🗑️ Removed **{name}** from the zoo directory.")
+    else:
+        await ctx.send(f"⚠️ Zoo **{name}** was not found in the directory.")
