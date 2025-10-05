@@ -604,7 +604,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cervidae",
         "genus": "Cervus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/68001185/large.jpg",
-        "region": "Europe, Asia",
+        "region": "Europe, Asia, Africa",
         "holdings": {
             "North America": "0",
             "Asia": 0,
