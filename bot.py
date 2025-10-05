@@ -2533,6 +2533,41 @@ def get_entry_or_message(user_query: str) -> Tuple[Optional[Dict[str, Any]], Opt
     key = resolved
     return species_data[key], None
 
+# --- Member resolver (mention / ID / name / nickname) -----------------------
+from discord.ext import commands as _cmds  # if not already imported with alias
+
+async def _try_resolve_member(ctx, text: str):
+    """
+    Resolve a member from mention, ID, username, or nickname.
+    Returns discord.Member or None.
+    """
+    if not text:
+        return None
+
+    # Fast path: built-in converter (handles mentions, IDs, exact name#discrim)
+    conv = _cmds.MemberConverter()
+    try:
+        m = await conv.convert(ctx, text)
+        return m
+    except Exception:
+        pass
+
+    # Fallback: case-insensitive search by display_name or name (partial match)
+    if ctx.guild:
+        t = text.lower()
+        candidates = []
+        for m in ctx.guild.members:
+            dn = (m.display_name or "").lower()
+            un = (m.name or "").lower()
+            if t == dn or t == un:
+                return m
+            if t in dn or t in un:
+                candidates.append(m)
+        if candidates:
+            # pick the first partial match
+            return candidates[0]
+    return None
+
 # --- ZIMS parsing + Institution helpers -------------------------------------
 _zims_number_re = re.compile(r"\d+")
 
@@ -3924,38 +3959,67 @@ async def on_ready():
         return int(u[_GLOBAL_KEY])
 
     @bot.command(name="tokens")
-    async def tokens_cmd(ctx, member: discord.Member = None, *, zoo: str = None):
-        """
-        Check token balance.
-        - ;tokens                          -> your default & per-zoo summary
-        - ;tokens <zoo name>               -> your balance for a specific zoo
-        - ;tokens @user                    -> (admin) view user's default & per-zoo
-        - ;tokens @user <zoo name>         -> (admin) view user's zoo balance
-        """
-        target = member or ctx.author
-        if member and (member.id != ctx.author.id) and not _is_admin(ctx):
-            await ctx.send("🚫 Only admins can view other members’ balances.")
-            return
+            async def tokens_cmd(ctx, *args):
+                """
+                Flexible viewer:
+                - ;tokens                            -> your default & per-zoo summary
+                - ;tokens <zoo>                      -> your balance for that zoo
+                - ;tokens <user>                     -> (admin) that user’s summary (no ping required)
+                - ;tokens <user> <zoo>               -> (admin) that user’s balance for a zoo
 
-        if zoo:
-            amt = get_user_zoo_tokens(target.id, zoo)
-            name = target.mention if member else "You"
-            await ctx.send(f"💰 {name} — **{zoo}** has **{amt}** token(s).")
-            return
+                <user> can be a mention, ID, username, or nickname.
+                <zoo> can have spaces (we'll join remaining args).
+                """
+                target = ctx.author
+                zoo = None
 
-        default_amt = get_user_zoo_tokens(target.id, None)
-        per_zoos = list_user_zoos_with_balances(target.id)
-        owner = target.mention if member else "Your"
-        if per_zoos:
-            lines = [f"**Default (fallback):** {default_amt}"] + [
-                f"• **{name}** — {amt}" for name, amt in per_zoos
-            ]
-            await ctx.send(f"💰 {owner} token balances:\n" + "\n".join(lines))
-        else:
-            await ctx.send(
-                f"💰 {owner} default token balance is **{default_amt}**.\n"
-                f"(No per-zoo balances yet; they will be created the first time they’re used.)"
-            )
+                if not args:
+                    # ;tokens
+                    pass
+                elif len(args) == 1:
+                    # Could be a user OR a zoo
+                    maybe_user = await _try_resolve_member(ctx, args[0])
+                    if maybe_user:
+                        target = maybe_user
+                    else:
+                        zoo = args[0]
+                else:
+                    # First token = user, rest = zoo name
+                    maybe_user = await _try_resolve_member(ctx, args[0])
+                    if maybe_user:
+                        target = maybe_user
+                        zoo = " ".join(args[1:])
+                    else:
+                        # No user found -> assume it's your own zoo with spaces
+                        target = ctx.author
+                        zoo = " ".join(args)
+
+                # Admin gate if viewing someone else
+                if target.id != ctx.author.id and not _is_admin(ctx):
+                    await ctx.send("🚫 Only admins can view other members’ balances.")
+                    return
+
+                if zoo:
+                    amt = get_user_zoo_tokens(target.id, zoo)
+                    name = target.mention if target.id != ctx.author.id else "You"
+                    await ctx.send(f"💰 {name} — **{zoo}** has **{amt}** token(s).")
+                    return
+
+                # Summary view (default + all explicit zoos)
+                default_amt = get_user_zoo_tokens(target.id, None)
+                per_zoos = list_user_zoos_with_balances(target.id)
+                owner = target.mention if target.id != ctx.author.id else "Your"
+                if per_zoos:
+                    lines = [f"**Default (fallback):** {default_amt}"] + [
+                        f"• **{name}** — {amt}" for name, amt in per_zoos
+                    ]
+                    await ctx.send(f"💰 {owner} token balances:\n" + "\n".join(lines))
+                else:
+                    await ctx.send(
+                        f"💰 {owner} default token balance is **{default_amt}**.\n"
+                        f"(No per-zoo balances yet; they will be created the first time they’re used.)"
+                    )
+
 
     @bot.command(name="token")
     async def token_admin_cmd(ctx, action: str = None, member: discord.Member = None, amount: int = None, *, zoo: str = None):
