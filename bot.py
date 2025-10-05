@@ -2533,63 +2533,6 @@ def get_entry_or_message(user_query: str) -> Tuple[Optional[Dict[str, Any]], Opt
     key = resolved
     return species_data[key], None
 
-# ---------- Helpers for ownership + zoo/species checks ----------
-def _owned_zoos(data: dict, user_id: int) -> List[str]:
-    """Return a unique, sorted list of zoos the user owns.
-    Supports either ownership stored as {user_id: [zoos]} OR {zoo: [user_ids]/user_id}."""
-    uid = str(user_id)
-    res: Set[str] = set()
-    own = data.get("ownership", {}) or {}
-
-    # Case A: { "<uid>": ["Zoo A", "Zoo B"] }
-    if uid in own and isinstance(own[uid], list):
-        res.update([z for z in own[uid] if isinstance(z, str)])
-
-    # Case B: { "Zoo A": ["<uid>", ...] } or "Zoo A": "<uid>"
-    for zoo, owners in own.items():
-        if not isinstance(zoo, str):
-            continue
-        if isinstance(owners, list):
-            if uid in owners:
-                res.add(zoo)
-        elif isinstance(owners, str) and owners == uid:
-            res.add(zoo)
-
-    return sorted(res)
-
-def _ensure_user_zoo_node(data: dict, user_id: int, zoo_name: str) -> dict:
-    """Ensure the nested dict path for a user's zoo exists and return it."""
-    uid = str(user_id)
-    users = data.setdefault("users", {})
-    u = users.setdefault(uid, {})
-    zoos = u.setdefault("zoos", {})
-    node = zoos.setdefault(zoo_name, {})
-    node.setdefault("species", {})  # where we store housed species flags/details
-    return node
-
-def _zoo_has_species(data: dict, user_id: int, zoo_name: str, species_key: str) -> bool:
-    """Check if this user's zoo already tracks the species (by key)."""
-    uid = str(user_id)
-    user = (data.get("users") or {}).get(uid) or {}
-    zoos = user.get("zoos") or {}
-    node = zoos.get(zoo_name) or {}
-    species_map = node.get("species") or {}
-    return species_key in species_map
-
-def _store_housed_species(data: dict, user_id: int, zoo_name: str, species_key: str, payload: Optional[dict] = None) -> None:
-    """Mark a species as housed at a specific zoo for this user.
-    payload can hold counts/notes later; for now we store True or a dict."""
-    node = _ensure_user_zoo_node(data, user_id, zoo_name)
-    species_map = node["species"]
-    if payload is None:
-        species_map[species_key] = True
-    else:
-        species_map[species_key] = payload
-
-def _format_choice_list(choices: List[str]) -> str:
-    return "\n".join(f"{i+1}. {name}" for i, name in enumerate(choices))
-
-
 # --- Member resolver (mention / ID / name / nickname) -----------------------
 from discord.ext import commands as _cmds  # if not already imported with alias
 
@@ -3572,146 +3515,115 @@ def _parse_house_args(arg: str):
     return None, s
 
 @bot.command(name="house")
-        async def cmd_house(ctx: commands.Context, *, name: str):
-            """
-            ;house <species>
-            Record that your zoo houses a species. If you own multiple zoos that already list
-            this species, you'll be prompted to choose which zoo to update.
-            """
-            try:
-                # 1) Resolve species by your existing lookup helper
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
+async def house_cmd(ctx, *, species_name: str = None):
+    """
+    Add a species to your owned zoo’s housed list (ONLY if your zoo actually holds it).
+    Usage:
+      ;house Whale Shark
+      ;house Whale Shark at Mint Park Zoo
+      ;house Mint Park Zoo :: Whale Shark
+    """
+    if not species_name:
+        await ctx.send("Usage: `;house <species>` or `;house <species> at <zoo>`")
+        return
 
-                # Use the canonical common name as our key (you can switch to scientific if preferred)
-                species_key = entry.get("common") or entry.get("scientific") or name
+    data = _load_zoo_data()
+    user = _ensure_user_struct(data, ctx.author.id)
+    ownership = _get_user_ownership(data, ctx.author.id)
 
-                # 2) Load zoo data + figure out what the caller owns
-                data = _load_zoo_data()
-                user_zoos = _owned_zoos(data, ctx.author.id)
+    provided_zoo, sp_part = _parse_house_args(species_name)
+    # pick/validate zoo
+    if provided_zoo:
+        zoo, err = (provided_zoo, None)
+        # must own it:
+        if not _owns_zoo(ownership, zoo):
+            await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
+            return
+        # normalize to owned casing if possible
+        cased = _find_cased_zoo_name(ownership, zoo) or provided_zoo
+        zoo = cased
+    else:
+        zoo, err = (None, None)
+        if len(ownership["zoos"]) == 0:
+            await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
+            return
+        if len(ownership["zoos"]) > 1:
+            await ctx.send("You own multiple zoos. Please specify one: `;house <species> at <zoo>` or `;house <zoo> :: <species>`.")
+            return
+        zoo = ownership["zoos"][0]
 
-                if not user_zoos:
-                    await ctx.send("You don't own any zoos yet. Ask an admin to assign you one with `;zoo owner add @you <Zoo Name>`.")
-                    return
+    canonical = _canonical_species_name(sp_part)
+    if not canonical:
+        await ctx.send(f"❌ I don’t recognize **{sp_part}**. Make sure it’s in the catalog.")
+        return
 
-                # 3) Which of their zoos already have this species recorded?
-                zoos_with_species = [z for z in user_zoos if _zoo_has_species(data, ctx.author.id, z, species_key)]
+    catalog_set = _catalog_species_for_zoo(zoo)
+    if canonical not in catalog_set:
+        await ctx.send(
+            f"🚫 **{canonical}** isn’t in **{zoo}**’s holdings, so it can’t be housed. "
+            f"See what you hold with `;holdings {zoo}`."
+        )
+        return
 
-                # If they have this species in multiple zoos, prompt for which one to house/update
-                target_zoo: Optional[str] = None
-                if len(zoos_with_species) > 1:
-                    menu = _format_choice_list(zoos_with_species)
-                    prompt = (
-                        f"You have **{species_key}** listed in multiple zoos. "
-                        f"Reply with the number or name of the zoo to update:\n{menu}\n\n"
-                        f"(Type `cancel` to abort.)"
-                    )
-                    await ctx.send(prompt)
+    housed = user["zoos"].setdefault(zoo, [])
+    if canonical in housed:
+        await ctx.send(f"ℹ️ **{canonical}** is already housed at **{zoo}**.")
+    else:
+        housed.append(canonical)
+        _save_zoo_data(data)
+        denom = len(catalog_set)
+        num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
+        pct = _percent(num, denom)
+        await ctx.send(f"✅ Added **{canonical}** to **{zoo}**. Progress: {num}/{denom} ({pct:.1f}%)")
 
-                    def check(m: discord.Message) -> bool:
-                        return m.author.id == ctx.author.id and m.channel == ctx.channel
+@bot.command(name="unhouse")
+async def unhouse_cmd(ctx, *, species_name: str = None):
+    """
+    Remove a species from your owned zoo’s housed list.
+    Usage:
+      ;unhouse Whale Shark
+      ;unhouse Whale Shark at Mint Park Zoo
+      ;unhouse Mint Park Zoo :: Whale Shark
+    """
+    if not species_name:
+        await ctx.send("Usage: `;unhouse <species>` or `;unhouse <species> at <zoo>`")
+        return
 
-                    try:
-                        reply = await bot.wait_for("message", check=check, timeout=60)
-                    except asyncio.TimeoutError:
-                        await ctx.send("Timed out waiting for your choice. No changes made.")
-                        return
+    data = _load_zoo_data()
+    user = _ensure_user_struct(data, ctx.author.id)
+    ownership = _get_user_ownership(data, ctx.author.id)
 
-                    text = reply.content.strip()
-                    if text.lower() == "cancel":
-                        await ctx.send("Okay, canceled.")
-                        return
+    provided_zoo, sp_part = _parse_house_args(species_name)
+    if provided_zoo:
+        if not _owns_zoo(ownership, provided_zoo):
+            await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
+            return
+        zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
+    else:
+        if len(ownership["zoos"]) == 0:
+            await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
+            return
+        if len(ownership["zoos"]) > 1:
+            await ctx.send("You own multiple zoos. Please specify one: `;unhouse <species> at <zoo>` or `;unhouse <zoo> :: <species>`.")
+            return
+        zoo = ownership["zoos"][0]
 
-                    # Accept number
-                    chosen: Optional[str] = None
-                    if text.isdigit():
-                        idx = int(text) - 1
-                        if 0 <= idx < len(zoos_with_species):
-                            chosen = zoos_with_species[idx]
-                    # Or accept name (case-insensitive)
-                    if chosen is None:
-                        lowered = text.lower()
-                        for z in zoos_with_species:
-                            if z.lower() == lowered:
-                                chosen = z
-                                break
+    canonical = _canonical_species_name(sp_part)
+    if not canonical:
+        await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
+        return
 
-                    if chosen is None:
-                        await ctx.send("I couldn't match that choice to any of your zoos. No changes made.")
-                        return
-
-                    target_zoo = chosen
-
-                elif len(zoos_with_species) == 1:
-                    # Unambiguous — they have the species in exactly one of their zoos
-                    target_zoo = zoos_with_species[0]
-                else:
-                    # Species isn't in any of their zoos yet — default to active zoo if you track one,
-                    # otherwise if they own multiple zoos, ask which zoo to add to.
-                    # Try to use your existing active-zoo getter if you have it:
-                    chosen_active: Optional[str] = None
-                    try:
-                        chosen_active = get_active_zoo_for_user(ctx.author.id)  # If you have this helper
-                    except Exception:
-                        chosen_active = None
-
-                    if chosen_active and chosen_active in user_zoos:
-                        target_zoo = chosen_active
-                    elif len(user_zoos) == 1:
-                        target_zoo = user_zoos[0]
-                    else:
-                        menu = _format_choice_list(user_zoos)
-                        prompt = (
-                            f"Which of your zoos should **{species_key}** be housed at?\n"
-                            f"{menu}\n\nReply with the number or name (or `cancel`)."
-                        )
-                        await ctx.send(prompt)
-
-                        def check2(m: discord.Message) -> bool:
-                            return m.author.id == ctx.author.id and m.channel == ctx.channel
-
-                        try:
-                            reply = await bot.wait_for("message", check=check2, timeout=60)
-                        except asyncio.TimeoutError:
-                            await ctx.send("Timed out waiting for your choice. No changes made.")
-                            return
-
-                        text = reply.content.strip()
-                        if text.lower() == "cancel":
-                            await ctx.send("Okay, canceled.")
-                            return
-
-                        chosen: Optional[str] = None
-                        if text.isdigit():
-                            idx = int(text) - 1
-                            if 0 <= idx < len(user_zoos):
-                                chosen = user_zoos[idx]
-                        if chosen is None:
-                            lowered = text.lower()
-                            for z in user_zoos:
-                                if z.lower() == lowered:
-                                    chosen = z
-                                    break
-
-                        if chosen is None:
-                            await ctx.send("I couldn't match that choice to any of your zoos. No changes made.")
-                            return
-
-                        target_zoo = chosen
-
-                # 4) Update JSON for the chosen zoo
-                # (If you track counts, replace payload=True with your structure, e.g. {"m": 1, "f": 1})
-                _store_housed_species(data, ctx.author.id, target_zoo, species_key, payload=True)
-                _save_zoo_data(data)
-
-                await ctx.send(f"✅ **{species_key}** recorded as housed at **{target_zoo}**.")
-
-            except Exception:
-                log.exception("Error in ;house")
-                await ctx.send(f"Sorry, something went wrong housing **{name}**.")
-
+    housed = user["zoos"].setdefault(zoo, [])
+    if canonical in housed:
+        housed.remove(canonical)
+        _save_zoo_data(data)
+        catalog_set = _catalog_species_for_zoo(zoo)
+        denom = len(catalog_set)
+        num = len([s for s in housed if _canonical_species_name(s) and s in catalog_set])
+        pct = _percent(num, denom)
+        await ctx.send(f"✅ Removed **{canonical}** from **{zoo}**. Progress: {num}/{denom} ({pct:.1f}%)")
+    else:
+        await ctx.send(f"ℹ️ **{canonical}** isn’t currently housed at **{zoo}**.")
 
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
