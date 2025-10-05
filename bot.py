@@ -1773,16 +1773,112 @@ species_data: Dict[str, Dict[str, Any]] = {
 }
 },
 
-"Red-Bellied Piranha": {
-"common": "Red-Bellied Piranha",
-"scientific": "Pygocentrus nattereri",
-"info": "This iconic species of freshwater fish is native to South America, and has an unjust reputation for being an aggressive man-eater. In reality, they are typically solitary and only congregate and aggressively feed during the dry season.",
-"type": "Fish",
-"order": "Characiformes",
-"family": "Serrasalmidae",
-"genus": "Pygocentrus",
-"image_url": "https://www.biolib.cz/IMG/GAL/BIG/382042.jpg",
-"region": "South America",
+"Axolotl": {
+"common": "Axolotl",
+"scientific": "Ambystoma mexicanum",
+"info": "One of the most famous and beloved salamanders, the axolotl is (or was) endemic to a few lakes in the Mexico City area. It is heavily endangered due to development in its former range, and may be extinct in the wild.",
+"type": "Amphibian",
+"order": "Urodela",
+"family": "Ambystomatidae",
+"genus": "Ambystoma",
+"image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/1920px-Axolotl_ganz.jpg",
+"region": "North America",
+"holdings": {
+"North America": 0,
+"Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "1.0"
+
+}
+},
+    
+"American Alligator": {
+"common": "American Alligator",
+"scientific": "Alligator mississippiensis",
+"info": "One of the world's charismatic megafauna, the American alligator is found exclusively in the subtropical parts of North America. It was thought to be endemic to the United States, but there are unconfirmed sightings in northern Mexico.",
+"type": "Reptile",
+"order": "Crocodilia",
+"family": "Alligatoridae",
+"genus": "Alligator",
+"image_url": "https://a-z-animals.com/media/animals/images/original/Alligator_mississippiensis_1-1.jpg",
+"region": "North America",
+"holdings": {
+"North America": 0,
+"Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "0.1"
+
+}
+},
+
+"Chinese Alligator": {
+"common": "Chinese Alligator",
+"scientific": "Alligator sinensis",
+"info": "The smaller of the two extant species of alligator, the Chinese alligator is critically endangered due to extensive habitat loss. Unlike the American alligator, they typically feed on small animals like snails and clams.",
+"type": "Reptile",
+"order": "Crocodilia",
+"family": "Alligatoridae",
+"genus": "Alligator",
+"image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/ChineseAlligator15.JPG/1280px-ChineseAlligator15.JPG",
+"region": "Asia",
+"holdings": {
+"North America": 0,
+"Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "0.1"
+
+}
+},
+
+"Veiled Chameleon": {
+"common": "Veiled Chameleon",
+"scientific": "Chamaeleo calyptratus",
+"info": "This is one of the most well-known and commonly kept chameleon species. Native to the Arabian Peninsula, this species is born pastel green and without its distinctive casque, which it grows later in life.",
+"type": "Reptile",
+"order": "Squamata",
+"family": "Chamaeleonidae",
+"genus": "Chamaeleo",
+"image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Yemen_Chameleon.jpg/1280px-Yemen_Chameleon.jpg",
+"region": "Asia",
+"holdings": {
+"North America": 0,
+"Asia": "1.2 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "1.2"
+
+}
+},
+
+"Fly River Turtle": {
+"common": "Fly River Turtle",
+"scientific": "Carettochelys insculpta",
+"info": "Perhaps the most unique of all freshwater turtles, the Fly River turtle also goes by the common name of 'pig-nosed turtle' for its distinctive nose, which it uses to breathe in air when fully submerged.",
+"type": "Reptile",
+"order": "Testudines",
+"family": "Carettochelyidae",
+"genus": "Carettochelys",
+"image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Carettochelys_insculpta_01.JPG/1920px-Carettochelys_insculpta_01.JPG",
+"region": "Oceania",
 "holdings": {
 "North America": 0,
 "Asia": "2.2 - Sapporo Reptile Center and National Aquarium ",
