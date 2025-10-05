@@ -345,18 +345,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Squamata",
         "family": "Pythonidae",
         "genus": "Python",
-        "image_url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg",
+        "images": [
+            {"label": "Wild type", "url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg"},
+            {"label": "Piebald", "url": "https://community.morphmarket.com/uploads/db1442/original/3X/c/c/cce5c7bf05ff8c269b109b74a6981690acbc3075.jpeg"}
         "region": "Asia",
         "holdings": {
-            "North America": "0.1 - Cube Zoological Park",
-            "Asia": 0,
+            "North America": "0.1 (Wild type) - Cube Zoological Park",
+            "Asia": "1.0 (Piebald) - Sapporo Reptile Center and National Aquarium",
             "Europe": 0,
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "0.1"
+            "Cube Zoological Park": "0.1 [Wild type]"
+            "Sapporo Reptile Center and National Aquarium": "1.0 [Piebald]"
         },
     },
     "Glaucomys sabrinus": {
@@ -1367,7 +1370,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "region": "Asia",
         "holdings": {
-            "North America": "1.0 [Wild type], 0.1 [Leucistic] - Jupiter Reptile Zoo",
+            "North America": "1.0 [Wild type] 0.1 [Leucistic] - Jupiter Reptile Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1913,6 +1916,79 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
 "institutions": {
 "Sapporo Reptile Center and National Aquarium": "1.0"
+
+    }
+    },
+    
+"Green Iguana": {
+"common": "Green Iguana",
+"scientific": "Iguana iguana",
+"info": "The most well-known of iguanas, the green iguana is a large lizard native to tropical regions of the Americas. They are primarily herbivorous, and debate exists about whether they ever intentionally consume animal protein.",
+"type": "Reptile",
+"order": "Squamata",
+"family": "Iguanidae",
+"genus": "Iguana",
+"image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/356025444/original.jpg",
+"region": "North America, South America",
+"holdings": {
+"North America": 0,
+"Asia": "1.2 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "1.2"
+
+        }
+        },
+
+"Alligator Snapping Turtle": {
+"common": "Alligator Snapping Turtle",
+"scientific": "Macrochelys temminckii",
+"info": "One of the largest freshwater turtle species, the alligator snapping turtle is an apex predator in its range, feeding upon anything it can catch. It is an ambush predator, using its worm-like tongue to lure in prey, but will opportunistically take prey in other ways.",
+"type": "Reptile",
+"order": "Testudines",
+"family": "Chelydridae",
+"genus": "Macrochelys",
+"image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/12726192/original.jpg",
+"region": "North America",
+"holdings": {
+"North America": 0,
+"Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "1.0"
+
+    }
+    },
+    "Green Tree Python": {
+        "common": "Green Tree Python",
+        "scientific": "Morelia viridis",
+        "info": "The green tree python is an arboreal snake species native to Australasia. Interestingly, it has convergently evolved with the emerald tree boas of South America (in their behavior and habitat), but is not closely related to them at all.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Pythonidae",
+        "genus": "Morelia",
+        "images": [
+            {"label": "High Blue", "url": "https://community.morphmarket.com/uploads/db1442/original/3X/e/a/ea18e345c3aa76c632b2227dc66a70d4cd7ad613.jpeg"},
+        ],
+        "region": "Asia",
+        "holdings": {
+            "North America": 0,
+            "Asia": "1.1 (High Blue) - Sapporo Reptile Center and National Aquarium",
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Sapporo Reptile Center and National Aquarium": "1.1 [High Blue]"
         }
     }
 }
