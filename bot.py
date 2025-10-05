@@ -363,7 +363,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Sapporo Reptile Center and National Aquarium": "1.0 [Piebald]"
         },
     },
-    "Glaucomys sabrinus": {
+    "Burrowing Owl": {
         "common": "Burrowing Owl",
         "scientific": "Athene cunicularia",
         "info": "The burrowing owl is one of the smallest species of owls. Despite their common name, they do not burrow themselves, but rather appropriate other animal burrows.",
