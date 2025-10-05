@@ -359,7 +359,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Cube Zoological Park": "0.1"
         },
     },
-    "Burrowing Owl": {
+    "Glaucomys sabrinus": {
         "common": "Burrowing Owl",
         "scientific": "Athene cunicularia",
         "info": "The burrowing owl is one of the smallest species of owls. Despite their common name, they do not burrow themselves, but rather appropriate other animal burrows.",
@@ -1591,7 +1591,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "family": "Sciuridae",
     "genus": "Glaucomys",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg/1280px-Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg",
-    "region": "North America, South America",
+    "region": "North America",
     "holdings": {
         "North America": "1.1 - High Uintahs Zoo",
         "Asia": 0,
