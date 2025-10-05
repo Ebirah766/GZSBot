@@ -3571,146 +3571,146 @@ def _parse_house_args(arg: str):
             return zoo, species
     return None, s
 
-        @bot.command(name="house")
-        async def cmd_house(ctx: commands.Context, *, name: str):
-            """
-            ;house <species>
-            Record that your zoo houses a species. If you own multiple zoos that already list
-            this species, you'll be prompted to choose which zoo to update.
-            """
+@bot.command(name="house")
+async def cmd_house(ctx: commands.Context, *, name: str):
+    """
+    ;house <species>
+    Record that your zoo houses a species. If you own multiple zoos that already list
+    this species, you'll be prompted to choose which zoo to update.
+    """
+    try:
+        # 1) Resolve species by your existing lookup helper
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
+
+        # Use the canonical common name as our key (you can switch to scientific if preferred)
+        species_key = entry.get("common") or entry.get("scientific") or name
+
+        # 2) Load zoo data + figure out what the caller owns
+        data = _load_zoo_data()
+        user_zoos = _owned_zoos(data, ctx.author.id)
+
+        if not user_zoos:
+            await ctx.send("You don't own any zoos yet. Ask an admin to assign you one with `;zoo owner add @you <Zoo Name>`.")
+            return
+
+        # 3) Which of their zoos already have this species recorded?
+        zoos_with_species = [z for z in user_zoos if _zoo_has_species(data, ctx.author.id, z, species_key)]
+
+        # If they have this species in multiple zoos, prompt for which one to house/update
+        target_zoo: Optional[str] = None
+        if len(zoos_with_species) > 1:
+            menu = _format_choice_list(zoos_with_species)
+            prompt = (
+                f"You have **{species_key}** listed in multiple zoos. "
+                f"Reply with the number or name of the zoo to update:\n{menu}\n\n"
+                f"(Type `cancel` to abort.)"
+            )
+            await ctx.send(prompt)
+
+            def check(m: discord.Message) -> bool:
+                return m.author.id == ctx.author.id and m.channel == ctx.channel
+
             try:
-                # 1) Resolve species by your existing lookup helper
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
+                reply = await bot.wait_for("message", check=check, timeout=60)
+            except asyncio.TimeoutError:
+                await ctx.send("Timed out waiting for your choice. No changes made.")
+                return
 
-                # Use the canonical common name as our key (you can switch to scientific if preferred)
-                species_key = entry.get("common") or entry.get("scientific") or name
+            text = reply.content.strip()
+            if text.lower() == "cancel":
+                await ctx.send("Okay, canceled.")
+                return
 
-                # 2) Load zoo data + figure out what the caller owns
-                data = _load_zoo_data()
-                user_zoos = _owned_zoos(data, ctx.author.id)
+            # Accept number
+            chosen: Optional[str] = None
+            if text.isdigit():
+                idx = int(text) - 1
+                if 0 <= idx < len(zoos_with_species):
+                    chosen = zoos_with_species[idx]
+            # Or accept name (case-insensitive)
+            if chosen is None:
+                lowered = text.lower()
+                for z in zoos_with_species:
+                    if z.lower() == lowered:
+                        chosen = z
+                        break
 
-                if not user_zoos:
-                    await ctx.send("You don't own any zoos yet. Ask an admin to assign you one with `;zoo owner add @you <Zoo Name>`.")
-                    return
+            if chosen is None:
+                await ctx.send("I couldn't match that choice to any of your zoos. No changes made.")
+                return
 
-                # 3) Which of their zoos already have this species recorded?
-                zoos_with_species = [z for z in user_zoos if _zoo_has_species(data, ctx.author.id, z, species_key)]
+            target_zoo = chosen
 
-                # If they have this species in multiple zoos, prompt for which one to house/update
-                target_zoo: Optional[str] = None
-                if len(zoos_with_species) > 1:
-                    menu = _format_choice_list(zoos_with_species)
-                    prompt = (
-                        f"You have **{species_key}** listed in multiple zoos. "
-                        f"Reply with the number or name of the zoo to update:\n{menu}\n\n"
-                        f"(Type `cancel` to abort.)"
-                    )
-                    await ctx.send(prompt)
-
-                    def check(m: discord.Message) -> bool:
-                        return m.author.id == ctx.author.id and m.channel == ctx.channel
-
-                    try:
-                        reply = await bot.wait_for("message", check=check, timeout=60)
-                    except asyncio.TimeoutError:
-                        await ctx.send("Timed out waiting for your choice. No changes made.")
-                        return
-
-                    text = reply.content.strip()
-                    if text.lower() == "cancel":
-                        await ctx.send("Okay, canceled.")
-                        return
-
-                    # Accept number
-                    chosen: Optional[str] = None
-                    if text.isdigit():
-                        idx = int(text) - 1
-                        if 0 <= idx < len(zoos_with_species):
-                            chosen = zoos_with_species[idx]
-                    # Or accept name (case-insensitive)
-                    if chosen is None:
-                        lowered = text.lower()
-                        for z in zoos_with_species:
-                            if z.lower() == lowered:
-                                chosen = z
-                                break
-
-                    if chosen is None:
-                        await ctx.send("I couldn't match that choice to any of your zoos. No changes made.")
-                        return
-
-                    target_zoo = chosen
-
-                elif len(zoos_with_species) == 1:
-                    # Unambiguous — they have the species in exactly one of their zoos
-                    target_zoo = zoos_with_species[0]
-                else:
-                    # Species isn't in any of their zoos yet — default to active zoo if you track one,
-                    # otherwise if they own multiple zoos, ask which zoo to add to.
-                    # Try to use your existing active-zoo getter if you have it:
-                    chosen_active: Optional[str] = None
-                    try:
-                        chosen_active = get_active_zoo_for_user(ctx.author.id)  # If you have this helper
-                    except Exception:
-                        chosen_active = None
-
-                    if chosen_active and chosen_active in user_zoos:
-                        target_zoo = chosen_active
-                    elif len(user_zoos) == 1:
-                        target_zoo = user_zoos[0]
-                    else:
-                        menu = _format_choice_list(user_zoos)
-                        prompt = (
-                            f"Which of your zoos should **{species_key}** be housed at?\n"
-                            f"{menu}\n\nReply with the number or name (or `cancel`)."
-                        )
-                        await ctx.send(prompt)
-
-                        def check2(m: discord.Message) -> bool:
-                            return m.author.id == ctx.author.id and m.channel == ctx.channel
-
-                        try:
-                            reply = await bot.wait_for("message", check=check2, timeout=60)
-                        except asyncio.TimeoutError:
-                            await ctx.send("Timed out waiting for your choice. No changes made.")
-                            return
-
-                        text = reply.content.strip()
-                        if text.lower() == "cancel":
-                            await ctx.send("Okay, canceled.")
-                            return
-
-                        chosen: Optional[str] = None
-                        if text.isdigit():
-                            idx = int(text) - 1
-                            if 0 <= idx < len(user_zoos):
-                                chosen = user_zoos[idx]
-                        if chosen is None:
-                            lowered = text.lower()
-                            for z in user_zoos:
-                                if z.lower() == lowered:
-                                    chosen = z
-                                    break
-
-                        if chosen is None:
-                            await ctx.send("I couldn't match that choice to any of your zoos. No changes made.")
-                            return
-
-                        target_zoo = chosen
-
-                # 4) Update JSON for the chosen zoo
-                # (If you track counts, replace payload=True with your structure, e.g. {"m": 1, "f": 1})
-                _store_housed_species(data, ctx.author.id, target_zoo, species_key, payload=True)
-                _save_zoo_data(data)
-
-                await ctx.send(f"✅ **{species_key}** recorded as housed at **{target_zoo}**.")
-
+        elif len(zoos_with_species) == 1:
+            # Unambiguous — they have the species in exactly one of their zoos
+            target_zoo = zoos_with_species[0]
+        else:
+            # Species isn't in any of their zoos yet — default to active zoo if you track one,
+            # otherwise if they own multiple zoos, ask which zoo to add to.
+            # Try to use your existing active-zoo getter if you have it:
+            chosen_active: Optional[str] = None
+            try:
+                chosen_active = get_active_zoo_for_user(ctx.author.id)  # If you have this helper
             except Exception:
-                log.exception("Error in ;house")
-                await ctx.send(f"Sorry, something went wrong housing **{name}**.")
+                chosen_active = None
+
+            if chosen_active and chosen_active in user_zoos:
+                target_zoo = chosen_active
+            elif len(user_zoos) == 1:
+                target_zoo = user_zoos[0]
+            else:
+                menu = _format_choice_list(user_zoos)
+                prompt = (
+                    f"Which of your zoos should **{species_key}** be housed at?\n"
+                    f"{menu}\n\nReply with the number or name (or `cancel`)."
+                )
+                await ctx.send(prompt)
+
+                def check2(m: discord.Message) -> bool:
+                    return m.author.id == ctx.author.id and m.channel == ctx.channel
+
+                try:
+                    reply = await bot.wait_for("message", check=check2, timeout=60)
+                except asyncio.TimeoutError:
+                    await ctx.send("Timed out waiting for your choice. No changes made.")
+                    return
+
+                text = reply.content.strip()
+                if text.lower() == "cancel":
+                    await ctx.send("Okay, canceled.")
+                    return
+
+                chosen: Optional[str] = None
+                if text.isdigit():
+                    idx = int(text) - 1
+                    if 0 <= idx < len(user_zoos):
+                        chosen = user_zoos[idx]
+                if chosen is None:
+                    lowered = text.lower()
+                    for z in user_zoos:
+                        if z.lower() == lowered:
+                            chosen = z
+                            break
+
+                if chosen is None:
+                    await ctx.send("I couldn't match that choice to any of your zoos. No changes made.")
+                    return
+
+                target_zoo = chosen
+
+        # 4) Update JSON for the chosen zoo
+        # (If you track counts, replace payload=True with your structure, e.g. {"m": 1, "f": 1})
+        _store_housed_species(data, ctx.author.id, target_zoo, species_key, payload=True)
+        _save_zoo_data(data)
+
+        await ctx.send(f"✅ **{species_key}** recorded as housed at **{target_zoo}**.")
+
+    except Exception:
+        log.exception("Error in ;house")
+        await ctx.send(f"Sorry, something went wrong housing **{name}**.")
 
 
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
