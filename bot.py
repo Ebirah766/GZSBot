@@ -1676,7 +1676,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 "Oceania": 0,
         },
 "institutions": {
-"Sapporo Reptile Center and National Aquarium": "0.4"
+"Sapporo Reptile Center and National Aquarium": "0.1"
 
     }
     },
@@ -1979,7 +1979,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "High Blue", "url": "https://community.morphmarket.com/uploads/db1442/original/3X/e/a/ea18e345c3aa76c632b2227dc66a70d4cd7ad613.jpeg"},
         ],
-        "region": "Asia",
+        "region": "Oceania",
         "holdings": {
             "North America": 0,
             "Asia": "1.1 (High Blue) - Sapporo Reptile Center and National Aquarium",
@@ -1990,7 +1990,351 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Sapporo Reptile Center and National Aquarium": "1.1 [High Blue]"
+
+            }
+            },
+
+"Spotfin Betta": {
+"common": "Spotfin Betta",
+"scientific": "Betta macrostoma",
+"info": "A large betta species growing up to 4 inches, the spotfin betta is endemic to the island of Borneo. Prized for its size and beauty, this species is heavily poached from the wild for the private aquarium trade, and is listed as Vulnerable on the IUCN Red List.",
+"type": "Fish",
+"order": "Anabantiformes",
+"family": "Osphronemidae",
+"genus": "Betta",
+"image_url": "https://www.fishi-pedia.com/wp-content/uploads/2016/09/1781411_793531127324260_5255704950338882941_o.jpg",
+"region": "Asia",
+"holdings": {
+"North America": "1.1 - New York Aquarium ",
+"Asia": 0,
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+        },
+"institutions": {
+"New York Aquarium": "1.1"
+
+    }
+    },
+
+"Krabi Mouth-Brooding Betta": {
+"common": "Krabi Mouth-Brooding Betta",
+"scientific": "Betta simplex",
+"info": "This heavily endangered betta species is endemic to one location in Krabi Province, Thailand. Thankfully it is very hardy in captivity and breeds well, leading to a captive population in public aquaria and private collections.",
+"type": "Fish",
+"order": "Anabantiformes",
+"family": "Osphronemidae",
+"genus": "Betta",
+"image_url": "https://media-animals.earth.com/images/2018/12/18/15475565562648463/bettasimplex.jpg",
+"region": "Asia",
+"holdings": {
+"North America": "3.3 - New York Aquarium ",
+"Asia": 0,
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+        },
+"institutions": {
+"New York Aquarium": "3.3"
+
+    }
+    },
+    
+    "Bluefin Nothobranchius": {
+        "common": "Bluefin Nothobranchius",
+        "scientific": "Nothobranchius rachovii",
+        "info": "Probably the most popular Nothobranchius killifish to keep in captivity, the bluefin nothobranchius is native exclusively to Mozambique. Like all Nothobranchius, they live in annual pools where they lay their eggs in the mud just before the dry season.",
+        "type": "Fish",
+        "order": "Cyprinodontiformes",
+        "family": "Nothobranchiidae",
+        "genus": "Nothobranchius",
+        "images": [
+            {"label": "Beira locality", "url": "https://scontent-atl3-3.xx.fbcdn.net/v/t39.30808-6/511261235_23997244009907137_7942919226440147774_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cf85f3&_nc_ohc=BfAABtDfAKUQ7kNvwFKTAhG&_nc_oc=AdnQQaH7Tle9DKYa2hJF21A5DrBmN5kuMnTiW3d3FcXhBlF1WwFbmoY9x0keasyhz9FSFW-isWpsW61M9hJ6QMbk&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&_nc_gid=5s6uw2AlUR0CSWWz4WhRDQ&oh=00_Afe0ekUvmE195L5k8hdBa8UDgLrJeCykFkEsACA44IqAjQ&oe=68E848E0"},
+        ],
+        "region": "Africa",
+        "holdings": {
+            "North America": "3.3 (Beira) - New York Aquarium",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "New York Aquarium": "3.3 [Beira]"
+
+            }
+            },
+            
+    "Redtail Nothobranchius": {
+        "common": "Redtail Nothobranchius",
+        "scientific": "Nothobranchius guentheri",
+        "info": "This endangered Nothobranchius species is endemic to Zanzibar in Tanzania. It is endangered due to habitat loss in its native range, and is a voracious predator of mosquito larvae. Scientists are looking into introducing this species to other parts of Africa to help control mosquito populations.",
+        "type": "Fish",
+        "order": "Cyprinodontiformes",
+        "family": "Nothobranchiidae",
+        "genus": "Nothobranchius",
+        "images": [
+            {"label": "Zanzibar locality", "url": "https://killis.org.uk/wp-content/uploads/2023/10/Nothobranchius-guentheri-Zanzibar.jpg"},
+        ],
+        "region": "Africa",
+        "holdings": {
+            "North America": "3.3 (Zanzibar) - New York Aquarium",
+            "Asia": 0,
+            "Europe": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+            "institutions": {
+            "New York Aquarium": "3.3 [Zanzibar]"
+
+                }
+                },
+                
+        "Common Carp": {
+        "common": "Common Carp",
+        "scientific": "Cyprinus carpio",
+        "info": "An extremely hardy cyprinid, the common carp is famous (or infamous) for its adaptability. A generalist, common carp will eat just about anything, and can survive adverse conditions so well that they are one of the most notorious invasive species globally.",
+        "type": "Fish",
+        "order": "Cypriniformes",
+        "family": "Cyprinidae",
+        "genus": "Cyprinus",
+        "image_url": "https://cdn.britannica.com/34/199834-050-ACEB68C7/Carp.jpg",
+        "region": "Europe, Asia",
+        "holdings": {
+        "North America": "10 - New York Aquarium ",
+        "Asia": 0,
+        "Europe": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+                },
+        "institutions": {
+        "New York Aquarium": "10"
+
+            }
+            },
+            
+        "Brook Trout": {
+        "common": "Brook Trout",
+        "scientific": "Salvelinus fontinalis",
+        "info": "Technically a char and not a trout, the brook trout can be found natively in eastern North America, in the United States and Canada. They have been introduced to various locations outside of their native, and are paradoxically threatened in their native range due to pollution, habitat loss, invasive species, and damming.",
+        "type": "Fish",
+        "order": "Salmoniformes",
+        "family": "Salmonidae",
+        "genus": "Salvelinus",
+        "image_url": "https://media-animals.earth.com/images/2022/08/17/9385017317518864/salvelinusfontinalis_6479630421282603.jpg",
+        "region": "North America",
+        "holdings": {
+        "North America": "20 - New York Aquarium ",
+        "Asia": 0,
+        "Europe": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+                },
+        "institutions": {
+        "New York Aquarium": "20"
+
+            }
+            },
+
+    "Brown Trout": {
+    "common": "Brown Trout",
+    "scientific": "Salmo trutta",
+    "info": "A familiar fish to anglers globally, the brown trout is the most widely distributed member of its genus. They have been introduced to many different locations, including North America, Australia, New Zealand, India, and even the Kerguelen Islands.",
+    "type": "Fish",
+    "order": "Salmoniformes",
+    "family": "Salmonidae",
+    "genus": "Salmo",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Salmo_trutta_Ozeaneum_Stralsund_HBP_2010-07-02.jpg/1280px-Salmo_trutta_Ozeaneum_Stralsund_HBP_2010-07-02.jpg",
+    "region": "Europe, Asia, Africa",
+    "holdings": {
+    "North America": "20 - New York Aquarium ",
+    "Asia": 0,
+    "Europe": 0,
+    "Africa": 0,
+    "South America": 0,
+    "Oceania": 0,
+        },
+    "institutions": {
+    "New York Aquarium": "20"
+
         }
+        },
+        
+        "Rainbow Trout": {
+        "common": "Rainbow Trout",
+        "scientific": "Oncorhynchus mykiss",
+        "info": "One of the most renowned gamefish in the world, the rainbow trout, like many of its cousins, has been introduced to areas outside of its native range, such as Europe, South America, and New Zealand. They are an intensely studied species with several ecotypes, including the endangered steelhead.",
+        "type": "Fish",
+        "order": "Salmoniformes",
+        "family": "Salmonidae",
+        "genus": "Oncorhynchus",
+        "image_url": "https://www.fishi-pedia.com/wp-content/uploads/2024/12/Oncorhynchus-mykiss-BCH-FISHI-Aquarium-scaled.jpg",
+        "region": "North America, Asia",
+        "holdings": {
+        "North America": "20 - New York Aquarium ",
+        "Asia": 0,
+        "Europe": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+            },
+        "institutions": {
+        "New York Aquarium": "20"
+
+            }
+            },
+
+    "China Rockfish": {
+    "common": "China Rockfish",
+    "scientific": "Sebastes nebulosus",
+    "info": "The China rockfish can be found not in China, but rather the eastern Pacific Ocean, from Alaska to southern California. Typical for rockfish, it inhabits reefs between 3 and 128 meters, but is rarely seen below 92 meters.",
+    "type": "Fish",
+    "order": "Perciformes",
+    "family": "Scorpaenidae",
+    "genus": "Sebastes",
+    "image_url": "https://www.oceanlight.com/stock-photo/china-rockfish-picture-14041-900602.jpg",
+    "region": "North America",
+    "holdings": {
+    "North America": "6 - New York Aquarium ",
+    "Asia": 0,
+    "Europe": 0,
+    "Africa": 0,
+    "South America": 0,
+    "Oceania": 0,
+        },
+    "institutions": {
+    "New York Aquarium": "6"
+
+        }
+        },
+
+"Copper Rockfish": {
+"common": "Copper Rockfish",
+"scientific": "Sebastes caurinus",
+"info": "A relatively common rockfish of the Eastern Pacific, this widespread species can be found from Alaska to Mexico. They are long-lived fish, with the oldest known individual living to 55 years old.",
+"type": "Fish",
+"order": "Perciformes",
+"family": "Scorpaenidae",
+"genus": "Sebastes",
+"image_url": "https://images.reeflifesurvey.com/0/species_08_59db3e38ba0e4.w1000.h666.jpg",
+"region": "North America",
+"holdings": {
+"North America": "6 - New York Aquarium ",
+"Asia": 0,
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+},
+"institutions": {
+    "New York Aquarium": "6"
+
+    }
+    },
+
+"Swell Shark": {
+"common": "Swell Shark",
+"scientific": "Cephaloscyllium ventriosum",
+"info": "A catshark native to the Eastern Pacific, the swell shark is known for its unique defensive mechanism. When captured by a predator, it jams itself into a rock crevice and sucks in water, making it difficult for the predator to extract.",
+"type": "Fish",
+"order": "Carcharhiniformes",
+"family": "Scyliorhinidae",
+"genus": "Cephaloscyllium",
+"image_url": "https://www.sharksandrays.com/wp-content/uploads/2020/11/California-Swellshark-020.jpg",
+"region": "North America, South America",
+"holdings": {
+"North America": "1.1 - New York Aquarium ",
+"Asia": 0,
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+    },
+"institutions": {
+"New York Aquarium": "1.1"
+
+        }
+        },
+
+"Ocellaris Clownfish": {
+"common": "Ocellaris Clownfish",
+"scientific": "Amphiprion ocellaris",
+"info": "One of the most famous of all fish, the ocellaris clownfish is hardy, brightly colored species that is very popular in aquariums, both private and public. Like all clownfish it associates with anemones for protection, and it typically can be found in the magnificent sea anemone and 2 species of carpet anemones.",
+"type": "Fish",
+"order": "Blenniiformes",
+"family": "Pomacentridae",
+"genus": "Amphiprion",
+"image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg/1280px-Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg",
+"region": "Asia, Oceania",
+"holdings": {
+"North America": "16.16 - New York Aquarium ",
+"Asia": 0,
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+    },
+"institutions": {
+"New York Aquarium": "16.16"
+
+    }
+    },
+
+"Giant Pacific Octopus": {
+"common": "Giant Pacific Octopus",
+"scientific": "Enteroctopus dofleini",
+"info": "Sometimes referred to by the acronym GPO, the giant Pacific octopus is the largest species of octopus in the world. Its arm span is 14ft typically, and larger individuals had an arm span of 20ft. They are high-ranking predators, feeding on a variety of fish and crustaceans, and can be found from the intertidal zone to 6,000ft down in the ocean.",
+"type": "Invertebrate",
+"order": "Octopoda",
+"family": "Enteroctopodidae",
+"genus": "Enteroctopus",
+"image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/357027043/original.jpg",
+"region": "North America, Asia",
+"holdings": {
+"North America": "1.0 - New York Aquarium ",
+"Asia": 0,
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+    },
+"institutions": {
+"New York Aquarium": "1.0"
+
+        },
+    },
+    "Pore Coral": {
+        "common": "Pore Coral",
+        "scientific": "Montipora grisea",
+        "info": "This encrusting SPS coral is typically brown or green in color, but also appears in blue or pink shades as well. This species has slightly exsert corallites, with bumps surrounding the corallites known as thecal papillae. It is a common species and lives in upper reef slopes.",
+        "type": "Invertebrate",
+        "order": "Scleractinia",
+        "family": "Acroporidae",
+        "genus": "Montipora",
+        "images": [
+            {"label": "Brown form", "url": "https://www.coralsoftheworld.org/media/images/0257_C04_03.jpg"},
+            {"label": "Green form", "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Montipora_grisea_2.jpg"},
+            {"label": "Pink form", "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Montipora_grisea.jpg"},
+        ],
+        "image_url": "https://example.com/default.jpg",
+        "region": "Asia, Africa, Oceania",
+        "holdings": {
+            "North America": "1 [Brown form] 1 [Green form] 1 [Pink form] - New York Aquarium",
+            "Europe": 0,
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "New York Aquarium": "1 [Brown form], 1 [Green form], 1 [Pink form]"
+        },
     }
 }
 SPECIES = species_data
