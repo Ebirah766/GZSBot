@@ -2844,6 +2844,146 @@ def _get_active_zoo_or_msg(ctx, user_struct: dict):
 def _percent(numerator: int, denominator: int) -> float:
     return (numerator / denominator * 100.0) if denominator > 0 else 0.0
 
+# ---------- Zoo Directory (canonical list of valid zoos) --------------------
+
+# (Optional) One-time seed list you can customize. If directory is empty,
+# we’ll auto-seed from this the first time you call get_all_zoo_names().
+ZOO_DIRECTORY_SEED: list[str] = [
+    # Fill these with your real names; examples:
+    "OceanWorld",
+    "Lowell Lagoon",
+    "Maritime Rookery",
+    "Frost Park Zoo",
+    "Cabot Aquarium",
+]
+
+_directory_normalizer = re.compile(r"\s+")
+
+def _norm_zoo_key(name: str) -> str:
+    """Normalize for keys: lowercased, single spaces, trim."""
+    return _directory_normalizer.sub(" ", (name or "").strip().lower())
+
+def _get_directory(data: dict) -> dict:
+    """Return the directory (name -> metadata dict)."""
+    return data.setdefault("directory", {})
+
+def _seed_directory_if_empty(data: dict) -> None:
+    """If directory is empty and seed list exists, seed it."""
+    directory = _get_directory(data)
+    if directory:
+        return
+    if not ZOO_DIRECTORY_SEED:
+        return
+    # Seed with empty metadata
+    for name in ZOO_DIRECTORY_SEED:
+        key = _norm_zoo_key(name)
+        directory[key] = {"name": name, "location": None, "image": None}
+    _save_zoo_data(data)
+
+def add_zoo_to_directory(name: str, *, location: str | None = None, image: str | None = None) -> bool:
+    """
+    Add a zoo to the directory. Returns True if created, False if it already existed.
+    """
+    if not name or not name.strip():
+        raise ValueError("Zoo name is required")
+    data = _load_zoo_data()
+    directory = _get_directory(data)
+    key = _norm_zoo_key(name)
+    if key in directory:
+        return False
+    directory[key] = {"name": name.strip(), "location": location, "image": image}
+    _save_zoo_data(data)
+    return True
+
+def remove_zoo_from_directory(name: str) -> bool:
+    """Remove by name. Returns True if removed, False if not present."""
+    data = _load_zoo_data()
+    directory = _get_directory(data)
+    key = _norm_zoo_key(name)
+    if key in directory:
+        del directory[key]
+        _save_zoo_data(data)
+        return True
+    return False
+
+def set_zoo_meta(name: str, *, location: str | None = None, image: str | None = None) -> bool:
+    """Update location/image for an existing zoo. Returns True if updated."""
+    data = _load_zoo_data()
+    directory = _get_directory(data)
+    key = _norm_zoo_key(name)
+    node = directory.get(key)
+    if not node:
+        return False
+    if location is not None:
+        node["location"] = location
+    if image is not None:
+        node["image"] = image
+    _save_zoo_data(data)
+    return True
+
+def is_valid_zoo_name(name: str) -> bool:
+    """Case/space-insensitive check against directory."""
+    data = _load_zoo_data()
+    _seed_directory_if_empty(data)
+    directory = _get_directory(data)
+    return _norm_zoo_key(name) in directory
+
+def get_all_zoo_names() -> list[str]:
+    """
+    Return canonical zoo names from directory (pretty-cased).
+    Auto-seeds from ZOO_DIRECTORY_SEED if directory is empty.
+    """
+    data = _load_zoo_data()
+    _seed_directory_if_empty(data)
+    directory = _get_directory(data)
+    # keep stored pretty names
+    names = [entry.get("name") or raw for raw, entry in directory.items()]
+    # Sort case-insensitively by display name
+    return sorted(names, key=lambda s: (s or "").lower())
+
+# ---------- Simple commands to manage/show the directory --------------------
+
+@bot.command(name="zooadd")
+async def zooadd_cmd(ctx, *, name: str):
+    """
+    ;zooadd <Zoo Name>
+    Add a zoo to the canonical directory (no metadata). Anyone can use or restrict with your admin check.
+    """
+    # If you want admin-only, uncomment:
+    # if not _is_admin(ctx):
+    #     await ctx.send("🚫 Admins only.")
+    #     return
+
+    created = add_zoo_to_directory(name)
+    if created:
+        await ctx.send(f"✅ Added **{name}** to the zoo directory.")
+    else:
+        await ctx.send(f"ℹ️ **{name}** is already in the zoo directory.")
+
+@bot.command(name="zoolist", aliases=["zoos"])
+async def zoolist_cmd(ctx):
+    """
+    ;zoolist
+    Show all valid zoo names (from the directory).
+    """
+    names = get_all_zoo_names()
+    if not names:
+        await ctx.send("No zoos in the directory yet.")
+        return
+    # Discord likes shorter messages; chunk if needed
+    chunk = []
+    lines_sent = 0
+    for nm in names:
+        line = f"• {nm}"
+        if sum(len(s) + 1 for s in chunk) + len(line) > 1800:
+            await ctx.send("\n".join(chunk))
+            chunk = []
+            lines_sent += 1
+        chunk.append(line)
+    if chunk:
+        await ctx.send("\n".join(chunk))
+
+
 # ---------- Ownership ----------
 DEFAULT_ZOO_LIMIT = 2  # change this default if you like
 
@@ -3964,15 +4104,27 @@ async def on_ready():
     async def tokens_cmd(ctx, *, zoo: str = None):
         """
         ;tokens <Zoo Name>
-        Shows YOUR token balance for that specific zoo.
-        (No admin required. Multi-word zoo names are supported.)
+        Shows YOUR token balance for that specific valid zoo (from the directory).
         """
         if not zoo:
-            await ctx.send("Usage: `;tokens <Zoo Name>` (example: `;tokens Lowell Lagoon`)")
+            await ctx.send("Usage: `;tokens <Zoo Name>` (example: `;tokens Lowell Lagoon`)\nUse `;zoolist` to see valid names.")
             return
 
-        amt = get_user_zoo_tokens(ctx.author.id, zoo)
-        await ctx.send(f"💰 Your **{zoo}** tokens: **{amt}**.")
+        if not is_valid_zoo_name(zoo):
+            valid = get_all_zoo_names()
+            await ctx.send("🚫 Invalid zoo name.\n" + ("Valid zoos: " + ", ".join(valid) if valid else "No zoos have been added yet. Use `;zooadd <Name>` to add one."))
+            return
+
+        # Use the canonical pretty-cased name for display
+        # (normalize to fetch exact display name from directory)
+        data = _load_zoo_data()
+        directory = _get_directory(data)
+        canonical = directory.get(_norm_zoo_key(zoo), {}).get("name", zoo)
+
+        amt = get_user_zoo_tokens(ctx.author.id, canonical)
+        await ctx.send(f"💰 Your **{canonical}** tokens: **{amt}**.")
+
+
 
 
     @bot.command(name="token")
