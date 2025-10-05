@@ -57,5 +57,46 @@
       ]
     }
   },
-  "directory": {}
+  "directory": {
+    "credit river zoo": {
+      "name": "Credit River Zoo",
+      "location": null,
+      "image": null
+    },
+    "cube zoological park": {
+      "name": "Cube Zoological Park",
+      "location": null,
+      "image": null
+    },
+    "high uintahs zoo": {
+      "name": "High Uintahs Zoo",
+      "location": null,
+      "image": null
+    },
+    "jupiter reptile zoo": {
+      "name": "Jupiter Reptile Zoo",
+      "location": null,
+      "image": null
+    },
+    "new york aquarium": {
+      "name": "New York Aquarium",
+      "location": null,
+      "image": null
+    },
+    "mint park zoo": {
+      "name": "Mint Park Zoo",
+      "location": null,
+      "image": null
+    },
+    "shropshire hills zoo": {
+      "name": "Shropshire Hills Zoo",
+      "location": null,
+      "image": null
+    },
+    "sapporo reptile center and national aquarium": {
+      "name": "Sapporo Reptile Center and National Aquarium",
+      "location": null,
+      "image": null
+    }
+  }
 }
