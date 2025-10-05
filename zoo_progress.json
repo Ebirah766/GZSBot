@@ -86,5 +86,12 @@
         "New York Aquarium"
       ]
     }
+  },
+  "directory": {
+    "credit river zoo ;zooadd cube zoological park ;zooadd high uintahs zoo": {
+      "name": "Credit River Zoo\n;zooadd Cube Zoological Park\n;zooadd High Uintahs Zoo",
+      "location": null,
+      "image": null
+    }
   }
 }
