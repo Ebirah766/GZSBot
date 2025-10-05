@@ -25,12 +25,6 @@
         "Jupiter Reptile Zoo"
       ]
     },
-    "385221957550866443": {
-      "limit": 2,
-      "zoos": [
-        "New York Aquarium"
-      ]
-    },
     "815216371327434782": {
       "limit": 2,
       "zoos": [
@@ -48,48 +42,13 @@
       "zoos": [
         "Sapporo Reptile Center and National Aquarium"
       ]
+    },
+    "385221957550866443": {
+      "limit": 2,
+      "zoos": [
+        "New York Aquarium"
+      ]
     }
   },
-  "directory": {
-    "credit river zoo": {
-      "name": "Credit River Zoo",
-      "location": null,
-      "image": null
-    },
-    "cube zoological park": {
-      "name": "Cube Zoological Park",
-      "location": null,
-      "image": null
-    },
-    "high uintahs zoo": {
-      "name": "High Uintahs Zoo",
-      "location": null,
-      "image": null
-    },
-    "jupiter reptile zoo": {
-      "name": "Jupiter Reptile Zoo",
-      "location": null,
-      "image": null
-    },
-    "new york aquarium": {
-      "name": "New York Aquarium",
-      "location": null,
-      "image": null
-    },
-    "mint park zoo": {
-      "name": "Mint Park Zoo",
-      "location": null,
-      "image": null
-    },
-    "shropshire hills zoo": {
-      "name": "Shropshire Hills Zoo",
-      "location": null,
-      "image": null
-    },
-    "sapporo reptile center and national aquarium": {
-      "name": "Sapporo Reptile Center and National Aquarium",
-      "location": null,
-      "image": null
-    }
-  }
+  "directory": {}
 }
