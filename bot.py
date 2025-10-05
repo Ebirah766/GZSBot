@@ -4101,7 +4101,7 @@ async def on_ready():
     # Remove/disable any other @bot.command(name="tokens") first.
 
     @bot.command(name="tokens")
-    async def tokens_cmd(ctx, *, zoo: str = None):
+    async def tokens_cmd(ctx, *, zoo: str | None = None):
         """
         ;tokens <Zoo Name>
         Shows YOUR token balance for that specific valid zoo (from the directory).
