@@ -2850,11 +2850,14 @@ def _percent(numerator: int, denominator: int) -> float:
 # we’ll auto-seed from this the first time you call get_all_zoo_names().
 ZOO_DIRECTORY_SEED: list[str] = [
     # Fill these with your real names; examples:
-    "OceanWorld",
-    "Lowell Lagoon",
-    "Maritime Rookery",
-    "Frost Park Zoo",
-    "Cabot Aquarium",
+    "Credit River Zoo",
+    "Cube Zoological Park",
+    "High Uintahs Zoo",
+    "Jupiter Reptile Zoo",
+    "New York Aquarium",
+    "Mint Park Zoo",
+    "Shropshire Hills Zoo",
+    "Sapporo Reptile Center and National Aquarium",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
@@ -3023,6 +3026,43 @@ def _is_admin(ctx) -> bool:
         return True  # allow in DMs
     author = ctx.author
     return (author == ctx.guild.owner) or getattr(author.guild_permissions, "manage_guild", False)
+
+# --- Member resolver (mention / ID / name / nickname) -----------------------
+from discord.ext import commands as _cmds  # if not already imported
+
+async def _try_resolve_member(ctx, text: str):
+    """
+    Resolve a member from mention, ID, username, or nickname.
+    Returns discord.Member or None.
+    """
+    if not text:
+        return None
+
+    # Built-in converter handles mentions, IDs, and exact 'name#discrim'
+    try:
+        return await _cmds.MemberConverter().convert(ctx, text)
+    except Exception:
+        pass
+
+    # Fallback: case-insensitive partial match on display name / username
+    if ctx.guild:
+        t = text.lower().strip()
+        exact = None
+        partial = []
+        for m in ctx.guild.members:
+            dn = (m.display_name or "").lower()
+            un = (m.name or "").lower()
+            if t == dn or t == un:
+                exact = m
+                break
+            if t in dn or t in un:
+                partial.append(m)
+        if exact:
+            return exact
+        if partial:
+            return partial[0]
+    return None
+
 
 # >>> NEW: helpers to find owners & metadata and build UI ---------------------
 def _find_all_owners(data: dict, zoo_name: str) -> List[int]:
@@ -4125,70 +4165,99 @@ async def on_ready():
         await ctx.send(f"💰 Your **{canonical}** tokens: **{amt}**.")
 
 
-
-
     @bot.command(name="token")
-    async def token_admin_cmd(ctx, action: str = None, member: discord.Member = None, amount: int = None, *, zoo: str = None):
+    async def token_admin_cmd(ctx, action: str = None, *, rest: str = None):
         """
-        Admin token management.
-        - ;token add @user <n> [zoo name]
-        - ;token remove @user <n> [zoo name]
-        - ;token set @user <n> [zoo name]
-          If [zoo name] is omitted, the user’s GLOBAL (default) pool is modified.
+        Admin token management (no mention needed).
+        Syntax:
+          ;token add <user> <n> [zoo name...]
+          ;token remove <user> <n> [zoo name...]
+          ;token set <user> <n> [zoo name...]
+
+        <user> can be mention, ID, username, or nickname.
+        [zoo name] is optional; multi-word is supported.
+        If [zoo name] is omitted, modifies the user's GLOBAL (default) pool.
         """
         if not _is_admin(ctx):
             await ctx.send("🚫 You need **Manage Server** to modify tokens.")
             return
 
         valid = {"add", "remove", "set"}
-        if action is None or action.lower() not in valid or member is None or amount is None:
+        if not action or action.lower() not in valid or not rest:
             await ctx.send(
                 "Usage:\n"
-                "`;token add @user <n> [zoo name]`\n"
-                "`;token remove @user <n> [zoo name]`\n"
-                "`;token set @user <n> [zoo name]`"
+                "`;token add <user> <n> [zoo name]`\n"
+                "`;token remove <user> <n> [zoo name]`\n"
+                "`;token set <user> <n> [zoo name]`"
             )
             return
 
         action = action.lower()
+
+        # Parse: <user text> <amount int> [zoo name...]
+        import re
+        m = re.search(r"\b-?\d+\b", rest)
+        if not m:
+            await ctx.send("❗ I couldn't find the amount. Example: `;token add Luke 5 OceanWorld`")
+            return
+
+        user_text = rest[:m.start()].strip()
+        amount_text = m.group(0)
+        zoo_text = rest[m.end():].strip() or None
+
+        member = await _try_resolve_member(ctx, user_text)
+        if not member:
+            await ctx.send(f"❗ I couldn't find a user matching `{user_text}`.")
+            return
+
         try:
-            n = int(amount)
+            n = int(amount_text)
         except Exception:
             await ctx.send("Amount must be an integer.")
             return
 
-        data = _load_tokens()
+        # If a zoo name is provided, operate on that specific zoo
+        if zoo_text:
+            # Optional: validate against your directory; uncomment to require valid zoos.
+            # if not is_valid_zoo_name(zoo_text):
+            #     valid = get_all_zoo_names()
+            #     await ctx.send("🚫 Invalid zoo name.\n" + ("Valid zoos: " + ", ".join(valid) if valid else "No zoos defined yet."))
+            #     return
 
-        if zoo:
             if action == "add":
                 if n <= 0:
                     await ctx.send("Add amount must be a positive integer.")
                     return
-                add_user_zoo_tokens(member.id, zoo, n)
-                new_bal = get_user_zoo_tokens(member.id, zoo)
-                await ctx.send(f"✅ Added **{n}** tokens to {member.mention} for **{zoo}**. New balance: **{new_bal}**.")
-            elif action == "remove":
+                add_user_zoo_tokens(member.id, zoo_text, n)
+                new_bal = get_user_zoo_tokens(member.id, zoo_text)
+                await ctx.send(f"✅ Added **{n}** to **{member.display_name}** for **{zoo_text}**. New balance: **{new_bal}**.")
+                return
+
+            if action == "remove":
                 if n <= 0:
                     await ctx.send("Remove amount must be a positive integer.")
                     return
-                add_user_zoo_tokens(member.id, zoo, -n)
-                new_bal = get_user_zoo_tokens(member.id, zoo)
-                await ctx.send(f"✅ Removed **{n}** tokens from {member.mention} for **{zoo}**. New balance: **{new_bal}**.")
-            elif action == "set":
+                add_user_zoo_tokens(member.id, zoo_text, -n)
+                new_bal = get_user_zoo_tokens(member.id, zoo_text)
+                await ctx.send(f"✅ Removed **{n}** from **{member.display_name}** for **{zoo_text}**. New balance: **{new_bal}**.")
+                return
+
+            if action == "set":
                 if n < 0:
                     await ctx.send("Set amount must be zero or positive.")
                     return
-                set_user_zoo_tokens(member.id, zoo, n)
-                await ctx.send(f"✅ Set {member.mention}'s **{zoo}** balance to **{n}**.")
-            return
+                set_user_zoo_tokens(member.id, zoo_text, n)
+                await ctx.send(f"✅ Set **{member.display_name}** — **{zoo_text}** to **{n}**.")
+                return
 
-        # No zoo -> operate on GLOBAL
+        # No zoo provided -> operate on GLOBAL (back-compat)
+        data = _load_tokens()
         if action == "add":
             if n <= 0:
                 await ctx.send("Add amount must be a positive integer.")
                 return
             new_bal = _add_balance(data, member.id, n)
-            await ctx.send(f"✅ Added **{n}** tokens to {member.mention}. New default balance: **{new_bal}**.")
+            await ctx.send(f"✅ Added **{n}** to **{member.display_name}**. New default balance: **{new_bal}**.")
         elif action == "remove":
             if n <= 0:
                 await ctx.send("Remove amount must be a positive integer.")
@@ -4196,13 +4265,13 @@ async def on_ready():
             cur = _ensure_balance(data, member.id)
             new_bal = _set_balance(data, member.id, cur - n)
             removed = cur - new_bal
-            await ctx.send(f"✅ Removed **{removed}** tokens from {member.mention}. New default balance: **{new_bal}**.")
+            await ctx.send(f"✅ Removed **{removed}** from **{member.display_name}**. New default balance: **{new_bal}**.")
         elif action == "set":
             if n < 0:
                 await ctx.send("Set amount must be zero or positive.")
                 return
             new_bal = _set_balance(data, member.id, n)
-            await ctx.send(f"✅ Set {member.mention}'s default balance to **{new_bal}**.")
+            await ctx.send(f"✅ Set **{member.display_name}** default balance to **{new_bal}**.")
 
 
 @bot.command(name="commands")
