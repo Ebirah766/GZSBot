@@ -1,5 +1,12 @@
 {
-  "users": {},
+  "users": {
+    "385221957550866443": {
+      "active_zoo": null,
+      "zoos": {
+        "New York Aquarium": []
+      }
+    }
+  },
   "ownership": {
     "415622277854396428": {
       "limit": 2,
