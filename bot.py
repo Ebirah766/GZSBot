@@ -3958,67 +3958,21 @@ async def on_ready():
         _save_tokens(data)
         return int(u[_GLOBAL_KEY])
 
-    @bot.command(name="tokens")
-            async def tokens_cmd(ctx, *args):
+            # Remove/disable any other @bot.command(name="tokens") first.
+
+            @bot.command(name="tokens")
+            async def tokens_cmd(ctx, *, zoo: str = None):
                 """
-                Flexible viewer:
-                - ;tokens                            -> your default & per-zoo summary
-                - ;tokens <zoo>                      -> your balance for that zoo
-                - ;tokens <user>                     -> (admin) that user’s summary (no ping required)
-                - ;tokens <user> <zoo>               -> (admin) that user’s balance for a zoo
-
-                <user> can be a mention, ID, username, or nickname.
-                <zoo> can have spaces (we'll join remaining args).
+                ;tokens <Zoo Name>
+                Shows YOUR token balance for that specific zoo.
+                (No admin required. Multi-word zoo names are supported.)
                 """
-                target = ctx.author
-                zoo = None
-
-                if not args:
-                    # ;tokens
-                    pass
-                elif len(args) == 1:
-                    # Could be a user OR a zoo
-                    maybe_user = await _try_resolve_member(ctx, args[0])
-                    if maybe_user:
-                        target = maybe_user
-                    else:
-                        zoo = args[0]
-                else:
-                    # First token = user, rest = zoo name
-                    maybe_user = await _try_resolve_member(ctx, args[0])
-                    if maybe_user:
-                        target = maybe_user
-                        zoo = " ".join(args[1:])
-                    else:
-                        # No user found -> assume it's your own zoo with spaces
-                        target = ctx.author
-                        zoo = " ".join(args)
-
-                # Admin gate if viewing someone else
-                if target.id != ctx.author.id and not _is_admin(ctx):
-                    await ctx.send("🚫 Only admins can view other members’ balances.")
+                if not zoo:
+                    await ctx.send("Usage: `;tokens <Zoo Name>` (example: `;tokens Lowell Lagoon`)")
                     return
 
-                if zoo:
-                    amt = get_user_zoo_tokens(target.id, zoo)
-                    name = target.mention if target.id != ctx.author.id else "You"
-                    await ctx.send(f"💰 {name} — **{zoo}** has **{amt}** token(s).")
-                    return
-
-                # Summary view (default + all explicit zoos)
-                default_amt = get_user_zoo_tokens(target.id, None)
-                per_zoos = list_user_zoos_with_balances(target.id)
-                owner = target.mention if target.id != ctx.author.id else "Your"
-                if per_zoos:
-                    lines = [f"**Default (fallback):** {default_amt}"] + [
-                        f"• **{name}** — {amt}" for name, amt in per_zoos
-                    ]
-                    await ctx.send(f"💰 {owner} token balances:\n" + "\n".join(lines))
-                else:
-                    await ctx.send(
-                        f"💰 {owner} default token balance is **{default_amt}**.\n"
-                        f"(No per-zoo balances yet; they will be created the first time they’re used.)"
-                    )
+                amt = get_user_zoo_tokens(ctx.author.id, zoo)
+                await ctx.send(f"💰 Your **{zoo}** tokens: **{amt}**.")
 
 
     @bot.command(name="token")
