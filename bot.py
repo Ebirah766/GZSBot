@@ -1872,7 +1872,31 @@ species_data: Dict[str, Dict[str, Any]] = {
 "Fly River Turtle": {
 "common": "Fly River Turtle",
 "scientific": "Carettochelys insculpta",
-"info": "Perhaps the most unique of all freshwater turtles, the Fly River turtle also goes by the common name of 'pig-nosed turtle' for its distinctive nose, which it uses to breathe in air when fully submerged.",
+"info": "Perhaps the most unique of all freshwater turtles, the Fly River turtle also goes by the common name of 'pig-nosed turtle' for its distinctive nose, which it uses to breathe in air when fully submerged."
+"type": "Reptile",
+"order": "Testudines",
+"family": "Carettochelyidae",
+"genus": "Carettochelys",
+"image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Carettochelys_insculpta_01.JPG/1920px-Carettochelys_insculpta_01.JPG",
+"region": "Oceania",
+"holdings": {
+"North America": 0,
+"Asia": "2.2 - Sapporo Reptile Center and National Aquarium ",
+"Europe": 0,
+"Africa": 0,
+"South America": 0,
+"Oceania": 0,
+                },
+"institutions": {
+"Sapporo Reptile Center and National Aquarium": "2.2"
+
+}
+},
+
+"Argentine Black and White Tegu": {
+"common": "Argentine Black and White Tegu",
+"scientific": "Carettochelys insculpta",
+"info": "Perhaps the most unique of all freshwater turtles, the Fly River turtle also goes by the common name of 'pig-nosed turtle' for its distinctive nose, which it uses to breathe in air when fully submerged."
 "type": "Reptile",
 "order": "Testudines",
 "family": "Carettochelyidae",
