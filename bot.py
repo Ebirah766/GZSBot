@@ -4283,8 +4283,6 @@ if __name__ == "__main__":
         sys.exit(1)
     bot.run(token)
 
-
-
 @bot.command(name="commands", aliases=["help", "h"])
 async def help_command(ctx):
     """Displays grouped help for all commands with usage examples."""
