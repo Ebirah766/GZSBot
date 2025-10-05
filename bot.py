@@ -4236,24 +4236,46 @@ if __name__ == "__main__":
         sys.exit(1)
     bot.run(token)
 
-@bot.command(name="zooremove")
+@bot.command(name="zooremove", aliases=["zdel", "zoodrop"])
 async def zooremove_cmd(ctx, *, name: str):
     """
     ;zooremove <Zoo Name>
     Removes a zoo from the directory.
-    (By default, admin-only for safety.)
+    (Currently open to everyone for testing.)
     """
-    # 🧱 Optional: make it admin-only
-    if not _is_admin(ctx):
-        await ctx.send("🚫 Only admins can remove zoos from the directory.")
-        return
+    try:
+        # If you want admin-only later, uncomment:
+        # if not _is_admin(ctx):
+        #     await ctx.send("🚫 Only admins can remove zoos from the directory.")
+        #     return
 
-    if not name:
-        await ctx.send("Usage: `;zooremove <Zoo Name>`")
-        return
+        if not name or not name.strip():
+            await ctx.send("Usage: `;zooremove <Zoo Name>`\nTip: `;zoolist` to see valid names.")
+            return
 
-    success = remove_zoo_from_directory(name)
-    if success:
-        await ctx.send(f"🗑️ Removed **{name}** from the zoo directory.")
-    else:
-        await ctx.send(f"⚠️ Zoo **{name}** was not found in the directory.")
+        data = _load_zoo_data()
+        _seed_directory_if_empty(data)
+        directory = _get_directory(data)
+
+        key = _norm_zoo_key(name)
+        if key not in directory:
+            # Suggest a close match
+            import difflib
+            candidates = [entry.get("name") or k for k, entry in directory.items()]
+            sug = difflib.get_close_matches(name, candidates, n=1, cutoff=0.6)
+            msg = f"⚠️ Zoo **{name}** was not found."
+            if sug:
+                msg += f" Did you mean **{sug[0]}**?"
+            msg += "\nUse `;zoolist` to see valid names."
+            await ctx.send(msg)
+            return
+
+        display_name = directory[key].get("name") or name
+        del directory[key]
+        _save_zoo_data(data)
+
+        await ctx.send(f"🗑️ Removed **{display_name}** from the zoo directory.")
+
+    except Exception:
+        log.exception("Error in ;zooremove")
+        await ctx.send("❌ Unexpected error removing the zoo. Check the console logs.")
