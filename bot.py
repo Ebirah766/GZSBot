@@ -3386,11 +3386,11 @@ except Exception:
 
 # Probability per label (tweak as you like)
 BREEDING_PROB = {
-    "Very Easy": 0.60,
-    "Easy": 0.40,
-    "Average": 0.25,
-    "Below Average": 0.12,
-    "Difficult": 0.05,
+    "Very Easy": 0.30,
+    "Easy": 0.20,
+    "Average": 0.10,
+    "Below Average": 0.6,
+    "Difficult": 0.01,
     "Impossible": 0.00,
 }
 DEFAULT_BREEDING_LABEL = "Average"
