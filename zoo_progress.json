@@ -5,6 +5,31 @@
       "zoos": {
         "New York Aquarium": []
       }
+    },
+    "334493340282126337": {
+      "active_zoo": null,
+      "zoos": {
+        "Shropshire Hills Zoo": [
+          "Common Fallow Deer"
+        ]
+      }
+    },
+    "616302253908688908": {
+      "active_zoo": null,
+      "zoos": {
+        "Cube Zoological Park": [
+          "American Mink",
+          "Rhesus Macaque",
+          "Mango Stem Borer",
+          "Housefly",
+          "Eastern Diamondback Rattlesnake",
+          "Burrowing Owl",
+          "Wild Boar",
+          "Florida Bass",
+          "Burmese Python",
+          "Water Buffalo"
+        ]
+      }
     }
   },
   "ownership": {
