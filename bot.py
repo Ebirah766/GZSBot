@@ -2557,6 +2557,57 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
                         "institutions": {
                             "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
+
+                            }
+                            },
+                            
+                        "Giant Green Anemone": {
+                        "common": "Giant Green Anemone",
+                        "scientific": "Anthopleura xanthogrammica",
+                        "info": "A large sea anemone native to the Eastern Pacific, the giant green anemone is found in the intertidal zone. Well adapted for its habitat, this species has a powerful foot that allows it to remain anchored while waves crash. The main food source seems to be detached mussels. but it eats a variety of animals, including juvenile seabirds.",
+                        "type": "Invertebrate",
+                        "order": "Actiniaria",
+                        "family": "Actiniidae",
+                        "genus": "Anthopleura",
+                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Anthopleura_xanthogrammica_1.jpg/1024px-Anthopleura_xanthogrammica_1.jpg",
+                        "region": "North America",
+                        "holdings": {
+                        "North America": "3 - New York Aquarium ",
+                        "Asia": 0,
+                        "Europe": 0,
+                        "Africa": 0,
+                        "South America": 0,
+                        "Oceania": 0,
+                            },
+                        "institutions": {
+                        "New York Aquarium": "3"
+
+                            }
+                            },
+
+                            "Flower Tube Anemone": {
+                            "common": "Flower Tube Anemone",
+                            "scientific": "Cerianthus filiformis",
+                            "info": "One of many species of tube-dwelling anemones, the flower tube anemone varies in color, making it difficult to identify to species level. They are filter feeders that excrete a mucus layer to surround their bases while they rest in the sand.",
+                            "type": "Invertebrate",
+                            "order": "Ceriantharia",
+                            "family": "Cerianthidae",
+                            "genus": "Cerianthus",
+                                "images": [
+                                    {"label": "White form", "url": "https://reefguide.org/pix/cerianthusfiliformis1.jpg"},
+                                    {"label": "Purple form", "url": "https://scuba.spanglers.com/im/f/2018/12/2018-12-16b-a20214.jpg"}
+                                ],
+                            "region": "Asia, Oceania",
+                            "holdings": {
+                            "North America": "3 [White form] 3 [Purple form] - New York Aquarium ",
+                            "Asia": 0,
+                            "Europe": 0,
+                            "Africa": 0,
+                            "South America": 0,
+                            "Oceania": 0,
+                                },
+                            "institutions": {
+                            "New York Aquarium": "3 [White form], 3 [Purple form] - New York Aquarium"
         },
     }
 }
