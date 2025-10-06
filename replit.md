@@ -2,6 +2,14 @@
 
 This is a Discord bot application built using discord.py that manages a virtual zoo and token economy system. The bot allows users to create and manage zoos, collect animals, and participate in a token-based economy. The application is designed to run on Replit's infrastructure with built-in web server functionality to maintain uptime.
 
+# Recent Changes
+
+**2025-10-06**: Fixed critical indentation errors in bot.py:
+- Corrected SpeciesPager class indentation (was nested inside function, moved to top level)
+- Removed duplicate build_species_embed function definition that was missing total_images parameter
+- Fixed token_admin_cmd function indentation (reduced from 16 to 8 spaces)
+- Bot now compiles successfully and runs without syntax errors
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
