@@ -82,180 +82,181 @@ from keep_alive import keep_alive
 import discord
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
-from discord import ui
 
 # --- Intents -----------------------------------------------------------------
 intents = discord.Intents.default()
 intents.message_content = True
 
 # ---------- Image utilities + pager (drop-in) ----------
+import discord
+from discord import ui
 
-# ------------------- IMAGE GATHERING + COERCION (drop-in) -------------------
-def _coerce_image_item(item):
-    """Accept str or {'url'|'image'|'src', 'caption'|'title'|'alt'} -> (url, caption)"""
-    if isinstance(item, str):
-        return item, None
-    if isinstance(item, dict):
-        url = item.get("url") or item.get("image") or item.get("src")
-        cap = item.get("caption") or item.get("title") or item.get("alt")
-        return url, cap
-    return None, None
+    # ------------------- IMAGE GATHERING + COERCION (drop-in) -------------------
+    def _coerce_image_item(item):
+        """Accept str or {'url'|'image'|'src', 'caption'|'title'|'alt'} -> (url, caption)"""
+        if isinstance(item, str):
+            return item, None
+        if isinstance(item, dict):
+            url = item.get("url") or item.get("image") or item.get("src")
+            cap = item.get("caption") or item.get("title") or item.get("alt")
+            return url, cap
+        return None, None
 
-def gather_all_images(entry: dict) -> list:
-    """
-    Return a full list of image items with NO slicing.
-    Pulls from:
-      - entry['images'] (list of str/dict)
-      - entry['image'] / entry['image_url'] (single)
-      - entry['variants'][*]['image'|'url'|'src'] (if present)
-    """
-    out = []
-    # 1) main list
-    imgs = entry.get("images")
-    if isinstance(imgs, list):
-        out.extend(imgs)
+    def gather_all_images(entry: dict) -> list:
+        """
+        Return a full list of image items with NO slicing.
+        Pulls from:
+          - entry['images'] (list of str/dict)
+          - entry['image'] / entry['image_url'] (single)
+          - entry['variants'][*]['image'|'url'|'src'] (if present)
+        """
+        out = []
+        # 1) main list
+        imgs = entry.get("images")
+        if isinstance(imgs, list):
+            out.extend(imgs)
 
-    # 2) singletons
-    for k in ("image", "image_url", "thumbnail"):
-        if entry.get(k):
-            out.append(entry[k])
+        # 2) singletons
+        for k in ("image", "image_url", "thumbnail"):
+            if entry.get(k):
+                out.append(entry[k])
 
-    # 3) variants
-    variants = entry.get("variants")
-    if isinstance(variants, list):
-        for v in variants:
-            if isinstance(v, dict):
-                vurl = v.get("url") or v.get("image") or v.get("src")
-                if vurl:
-                    item = {"url": vurl, "caption": v.get("name") or v.get("title")}
-                    out.append(item)
+        # 3) variants
+        variants = entry.get("variants")
+        if isinstance(variants, list):
+            for v in variants:
+                if isinstance(v, dict):
+                    vurl = v.get("url") or v.get("image") or v.get("src")
+                    if vurl:
+                        item = {"url": vurl, "caption": v.get("name") or v.get("title")}
+                        out.append(item)
 
-    # Filter out Nones and dupes while preserving order
-    seen = set()
-    cleaned = []
-    for it in out:
-        url, cap = _coerce_image_item(it)
-        if not url:
-            continue
-        key = str(url).strip()
-        if key and key not in seen:
-            seen.add(key)
-            cleaned.append({"url": url, "caption": cap})
-    return cleaned
+        # Filter out Nones and dupes while preserving order
+        seen = set()
+        cleaned = []
+        for it in out:
+            url, cap = _coerce_image_item(it)
+            if not url:
+                continue
+            key = str(url).strip()
+            if key and key not in seen:
+                seen.add(key)
+                cleaned.append({"url": url, "caption": cap})
+        return cleaned
 
 
-def build_species_embed(entry: dict, image_index: int = 0, *, images: list = None) -> discord.Embed:
-    name = entry.get("common") or entry.get("name") or entry.get("scientific") or "Unknown species"
-    scientific = entry.get("scientific")
-    info = entry.get("info") or entry.get("description") or ""
-    type_ = entry.get("type") or entry.get("class") or ""
-    order = entry.get("order") or ""
-    family = entry.get("family") or ""
-    genus = entry.get("genus") or ""
+            def build_species_embed(entry: dict, image_index: int = 0, *, images: list = None) -> discord.Embed:
+                name = entry.get("common") or entry.get("name") or entry.get("scientific") or "Unknown species"
+                scientific = entry.get("scientific")
+                info = entry.get("info") or entry.get("description") or ""
+                type_ = entry.get("type") or entry.get("class") or ""
+                order = entry.get("order") or ""
+                family = entry.get("family") or ""
+                genus = entry.get("genus") or ""
 
-    embed = discord.Embed(title=name, description=info or discord.Embed.Empty, color=0x2b7ce5)
-    if scientific:
-        embed.add_field(name="Scientific", value=scientific, inline=True)
-    if type_:
-        embed.add_field(name="Type", value=type_, inline=True)
-    if order:
-        embed.add_field(name="Order", value=order, inline=True)
-    if family:
-        embed.add_field(name="Family", value=family, inline=True)
-    if genus:
-        embed.add_field(name="Genus", value=genus, inline=True)
+                embed = discord.Embed(title=name, description=info or discord.Embed.Empty, color=0x2b7ce5)
+                if scientific:
+                    embed.add_field(name="Scientific", value=scientific, inline=True)
+                if type_:
+                    embed.add_field(name="Type", value=type_, inline=True)
+                if order:
+                    embed.add_field(name="Order", value=order, inline=True)
+                if family:
+                    embed.add_field(name="Family", value=family, inline=True)
+                if genus:
+                    embed.add_field(name="Genus", value=genus, inline=True)
 
-    imgs = images if isinstance(images, list) else (entry.get("images") or [])
-    if imgs:
-        i = max(0, min(image_index, len(imgs) - 1))
-        url, cap = _coerce_image_item(imgs[i])
-        if url:
-            embed.set_image(url=url)
-            footer_parts = [f"Image {i+1}/{len(imgs)}"]
-            if cap:
-                footer_parts.append(str(cap))
-            embed.set_footer(text=" — ".join(footer_parts))
+                imgs = images if isinstance(images, list) else (entry.get("images") or [])
+                if imgs:
+                    i = max(0, min(image_index, len(imgs) - 1))
+                    url, cap = _coerce_image_item(imgs[i])
+                    if url:
+                        embed.set_image(url=url)
+                        footer_parts = [f"Image {i+1}/{len(imgs)}"]
+                        if cap:
+                            footer_parts.append(str(cap))
+                        embed.set_footer(text=" — ".join(footer_parts))
 
-    thumb = entry.get("thumbnail") or entry.get("image_url")
-    if thumb and not embed.thumbnail.url:
-        try:
-            embed.set_thumbnail(url=thumb)
-        except Exception:
-            pass
+                thumb = entry.get("thumbnail") or entry.get("image_url")
+                if thumb and not embed.thumbnail.url:
+                    try:
+                        embed.set_thumbnail(url=thumb)
+                    except Exception:
+                        pass
 
-    return embed
+                return embed
 
-class JumpToIndexModal(ui.Modal, title="Jump to image #"):
-    idx = ui.TextInput(label="Image number (1-based)", placeholder="e.g., 17", required=True, max_length=6)
-    def __init__(self, pager): super().__init__(); self.pager = pager
-    async def on_submit(self, interaction: discord.Interaction):
-        try:
-            n = int(str(self.idx.value).strip())
-        except Exception:
-            await interaction.response.send_message("Please enter a valid integer.", ephemeral=True); return
-        if not (1 <= n <= len(self.pager.images)):
-            await interaction.response.send_message(f"Out of range. Enter 1..{len(self.pager.images)}.", ephemeral=True); return
-        self.pager.index = n - 1
-        await self.pager._update(interaction)
+            class JumpToIndexModal(ui.Modal, title="Jump to image #"):
+                idx = ui.TextInput(label="Image number (1-based)", placeholder="e.g., 17", required=True, max_length=6)
+                def __init__(self, pager): super().__init__(); self.pager = pager
+                async def on_submit(self, interaction: discord.Interaction):
+                    try:
+                        n = int(str(self.idx.value).strip())
+                    except Exception:
+                        await interaction.response.send_message("Please enter a valid integer.", ephemeral=True); return
+                    if not (1 <= n <= len(self.pager.images)):
+                        await interaction.response.send_message(f"Out of range. Enter 1..{len(self.pager.images)}.", ephemeral=True); return
+                    self.pager.index = n - 1
+                    await self.pager._update(interaction)
 
-class SpeciesPager(ui.View):
-    """Prev/Next + Jump. Uses an explicit images list to avoid upstream trimming."""
-    def __init__(self, entry: dict, images: list, start_index: int = 0, *, timeout: float = 300):
-        super().__init__(timeout=timeout)
-        self.entry = entry
-        self.images = images or []
-        self.index = max(0, min(start_index, max(0, len(self.images) - 1)))
+            class SpeciesPager(ui.View):
+                """Prev/Next + Jump. Uses an explicit images list to avoid upstream trimming."""
+                def __init__(self, entry: dict, images: list, start_index: int = 0, *, timeout: float = 300):
+                    super().__init__(timeout=timeout)
+                    self.entry = entry
+                    self.images = images or []
+                    self.index = max(0, min(start_index, max(0, len(self.images) - 1)))
 
-        if len(self.images) >= 2:
-            max_options = min(25, len(self.images))
-            opts = []
-            for i in range(max_options):
-                url, cap = _coerce_image_item(self.images[i])
-                label = f"{i+1}: {str(cap)[:80]}" if cap else f"Image {i+1}"
-                opts.append(discord.SelectOption(label=label, value=str(i), default=(i == self.index)))
-            self.select = ui.Select(placeholder="Jump to image...", min_values=1, max_values=1, options=opts)
-            self.select.callback = self._on_select
-            self.add_item(self.select)
+                    if len(self.images) >= 2:
+                        max_options = min(25, len(self.images))
+                        opts = []
+                        for i in range(max_options):
+                            url, cap = _coerce_image_item(self.images[i])
+                            label = f"{i+1}: {str(cap)[:80]}" if cap else f"Image {i+1}"
+                            opts.append(discord.SelectOption(label=label, value=str(i), default=(i == self.index)))
+                        self.select = ui.Select(placeholder="Jump to image...", min_values=1, max_values=1, options=opts)
+                        self.select.callback = self._on_select
+                        self.add_item(self.select)
 
-            self.add_item(self.prev_button)
-            self.add_item(self.next_button)
-            if len(self.images) > 25:
-                self.add_item(self.goto_button)
+                        self.add_item(self.prev_button)
+                        self.add_item(self.next_button)
+                        if len(self.images) > 25:
+                            self.add_item(self.goto_button)
 
-    async def _on_select(self, interaction: discord.Interaction):
-        try:
-            chosen = int(self.select.values[0])
-        except Exception:
-            await interaction.response.send_message("Invalid selection.", ephemeral=True); return
-        self.index = chosen
-        await self._update(interaction)
+                async def _on_select(self, interaction: discord.Interaction):
+                    try:
+                        chosen = int(self.select.values[0])
+                    except Exception:
+                        await interaction.response.send_message("Invalid selection.", ephemeral=True); return
+                    self.index = chosen
+                    await self._update(interaction)
 
-    @ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary)
-    async def prev_button(self, interaction: discord.Interaction, button: ui.Button):
-        if not self.images: await interaction.response.defer(); return
-        self.index = (self.index - 1) % len(self.images)
-        await self._update(interaction)
+                @ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary)
+                async def prev_button(self, interaction: discord.Interaction, button: ui.Button):
+                    if not self.images: await interaction.response.defer(); return
+                    self.index = (self.index - 1) % len(self.images)
+                    await self._update(interaction)
 
-    @ui.button(label="Next ▶", style=discord.ButtonStyle.secondary)
-    async def next_button(self, interaction: discord.Interaction, button: ui.Button):
-        if not self.images: await interaction.response.defer(); return
-        self.index = (self.index + 1) % len(self.images)
-        await self._update(interaction)
+                @ui.button(label="Next ▶", style=discord.ButtonStyle.secondary)
+                async def next_button(self, interaction: discord.Interaction, button: ui.Button):
+                    if not self.images: await interaction.response.defer(); return
+                    self.index = (self.index + 1) % len(self.images)
+                    await self._update(interaction)
 
-    @ui.button(label="Go to #", style=discord.ButtonStyle.primary)
-    async def goto_button(self, interaction: discord.Interaction, button: ui.Button):
-        await interaction.response.send_modal(JumpToIndexModal(self))
+                @ui.button(label="Go to #", style=discord.ButtonStyle.primary)
+                async def goto_button(self, interaction: discord.Interaction, button: ui.Button):
+                    await interaction.response.send_modal(JumpToIndexModal(self))
 
-    async def _update(self, interaction: discord.Interaction):
-        embed = build_species_embed(self.entry, image_index=self.index, images=self.images)
-        for item in self.children:
-            if isinstance(item, ui.Select):
-                for opt in item.options:
-                    opt.default = (opt.value == str(self.index))
-        try:
-            await interaction.response.edit_message(embed=embed, view=self)
-        except discord.InteractionResponded:
-            await interaction.edit_original_response(embed=embed, view=self)
+                async def _update(self, interaction: discord.Interaction):
+                    embed = build_species_embed(self.entry, image_index=self.index, images=self.images)
+                    for item in self.children:
+                        if isinstance(item, ui.Select):
+                            for opt in item.options:
+                                opt.default = (opt.value == str(self.index))
+                    try:
+                        await interaction.response.edit_message(embed=embed, view=self)
+                    except discord.InteractionResponded:
+                        await interaction.edit_original_response(embed=embed, view=self)
 
 
 
@@ -3914,40 +3915,34 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-        @bot.command(name="species", aliases=["card"])
-        async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-            """
-            Render a rich embed UI card for a species with image, taxonomy, description,
-            and holdings by region.
-            """
-            try:
-                if not name or not str(name).strip():
-                    await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-                    return
-
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
-
-                # NEW: build a complete image list with zero trimming
-                all_images = gather_all_images(entry)
-                log.info("Species '%s' total images gathered: %s", name, len(all_images))
-                if all_images[:6]:
-                    log.info("First images: %s", [(_coerce_image_item(i)[0]) for i in all_images[:6]])
-
-                embed = build_species_embed(entry, image_index=0, images=all_images)
-
-                if len(all_images) > 1:
-                    view = SpeciesPager(entry=entry, images=all_images, start_index=0)
-                    await ctx.send(embed=embed, view=view)
-                else:
-                    await ctx.send(embed=embed)
-
-            except Exception:
-                log.exception("Error in ;species")
-                await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
-
+@bot.command(name="species", aliases=["card"])
+async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
+    """
+    Render a rich embed UI card for a species with image, taxonomy, description,
+    and holdings by region.
+    """
+    try:
+        if not name or not str(name).strip():
+            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
+            return
+        
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
+        
+        images = entry.get("images") or []
+        embed = build_species_embed(entry, image_index=0)
+        
+        if isinstance(images, list) and len(images) > 1:
+            view = SpeciesPager(entry=entry, start_index=0)
+            await ctx.send(embed=embed, view=view)
+        else:
+            await ctx.send(embed=embed)
+        
+    except Exception:
+        log.exception("Error in ;species")
+        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
 
 
 @bot.command(name="holdings")
