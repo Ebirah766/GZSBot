@@ -3751,31 +3751,27 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
-
-# ============================  END ADDED: ZOO/OWNERSHIP  ============================
-
 # --- Commands ----------------------------------------------------------------
-        @bot.command(name="species", aliases=["card"])
-        async def cmd_card(ctx: commands.Context, *, name: str):
-            try:
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
+@bot.command(name="species", aliases=["card"])
+async def cmd_card(ctx: commands.Context, *, name: str):
+    try:
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
 
-                images = _sanitize_images(entry.get("images"))
-                embed = build_species_embed(entry, image_index=0, total_images=len(images))
+        images = _sanitize_images(entry.get("images"))
+        embed = build_species_embed(entry, image_index=0, total_images=len(images))
 
-                # Only add the pager if there are multiple images to flip through
-                if len(images) > 1:
-                    view = SpeciesPager(entry=entry, start_index=0)
-                    await ctx.send(embed=embed, view=view)
-                else:
-                    await ctx.send(embed=embed)
+        if len(images) > 1:
+            view = SpeciesPager(entry=entry, start_index=0)
+            await ctx.send(embed=embed, view=view)
+        else:
+            await ctx.send(embed=embed)
 
-            except Exception:
-                log.exception("Error in ;species")
-                await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
+    except Exception:
+        log.exception("Error in ;species")
+        await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
 
 
 @bot.command(name="holdings")
