@@ -4677,18 +4677,7 @@ async def on_ready():
                 return
             new_bal = _set_balance(data, member.id, n)
             await ctx.send(f"✅ Set **{member.display_name}** default balance to **{new_bal}**.")
-
-if __name__ == "__main__":
-    # >>> ADDED: start keep-alive web server before running the bot <<<
-    keep_alive()
-
-    token = os.getenv("DISCORD_TOKEN")
-    if not token:
-        log.error("DISCORD_TOKEN not set in environment or .env")
-        sys.exit(1)
-    bot.run(token)
-
-@bot.command(name="commands", aliases=["help", "h"])
+@bot.command(name="commands", aliases=["h"])
 async def help_command(ctx):
     """Displays grouped help for all commands with usage examples."""
     sections = [
@@ -5065,3 +5054,14 @@ async def breeddebug_cmd(ctx):
     except Exception as e:
         log.exception("breeddebug failed")
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
+
+
+if __name__ == "__main__":
+    # >>> ADDED: start keep-alive web server before running the bot <<<
+    keep_alive()
+
+    token = os.getenv("DISCORD_TOKEN")
+    if not token:
+        log.error("DISCORD_TOKEN not set in environment or .env")
+        sys.exit(1)
+    bot.run(token)
