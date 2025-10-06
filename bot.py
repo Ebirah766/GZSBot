@@ -4219,29 +4219,48 @@ async def breedset_cmd(ctx, species: str = None, *, label: str = None):
     _save_zoo_data(data)
     await ctx.send(f"✅ Set breeding difficulty for `{key}` → **{label}**.")
 
-@bot.command(name="breedchannel")
-@commands.has_permissions(manage_guild=True)
-async def breedchannel_cmd(ctx, sub: str = None):
-    """
-    ;breedchannel set   -> set the current channel for Friday birth announcements
-    ;breedchannel show  -> show the current channel
-    """
-    if sub is None:
-        await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
-        return
-    if sub.lower() == "set":
-        set_breeding_channel_for_guild(ctx.guild.id, ctx.channel.id)
-        await ctx.send(f"✅ Birth announcements will post in {ctx.channel.mention}.")
-        return
-    if sub.lower() == "show":
-        cid = get_breeding_channel_for_guild(ctx.guild.id)
-        if cid:
-            ch = ctx.guild.get_channel(cid)
-            await ctx.send(f"📣 Current birth channel: {ch.mention if ch else f'`{cid}` (not found)'}")
-        else:
-            await ctx.send("ℹ️ No birth channel set. Use `;breedchannel set` here.")
-        return
-    await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
+    @bot.command(name="breedchannel", help="Set or clear the breeding announcement channel.")
+    async def breedchannel_cmd(ctx, action: str = None):
+        """
+        Usage:
+          ;breedchannel set     → set the current channel for breeding announcements
+          ;breedchannel clear   → unset / disable announcements
+          ;breedchannel show    → show the current announcement channel
+        """
+        data = _load_zoo_data()
+        guild_id = str(ctx.guild.id)
+        channels = data.setdefault("breeding_channels", {})
+
+        if action is None:
+            await ctx.send("Usage: `;breedchannel set`, `;breedchannel clear`, or `;breedchannel show`")
+            return
+
+        action = action.lower()
+        if action == "set":
+            channels[guild_id] = ctx.channel.id
+            _save_zoo_data(data)
+            await ctx.send(f"✅ This channel (<#{ctx.channel.id}>) is now set for breeding announcements.")
+            return
+
+        if action == "clear":
+            if guild_id in channels:
+                del channels[guild_id]
+                _save_zoo_data(data)
+                await ctx.send("✅ Breeding announcements have been **disabled** for this server.")
+            else:
+                await ctx.send("ℹ️ No breeding channel was set for this server.")
+            return
+
+        if action == "show":
+            chan_id = channels.get(guild_id)
+            if chan_id:
+                await ctx.send(f"📢 Current breeding channel: <#{chan_id}>")
+            else:
+                await ctx.send("ℹ️ No breeding channel is set yet. Use `;breedchannel set` to configure one.")
+            return
+
+        await ctx.send("Unknown action. Use `set`, `clear`, or `show`.")
+
 
     
 # --- Region helpers ----------------------------------------------------------
