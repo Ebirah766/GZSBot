@@ -10,15 +10,6 @@ from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
 import builtins
 
-import aiohttp, io
-
-async def _fetch_bytes(url: str) -> bytes:
-    async with aiohttp.ClientSession() as sess:
-        async with sess.get(url) as resp:
-            resp.raise_for_status()
-            return await resp.read()
-
-
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
@@ -2542,7 +2533,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "Bubble-Tip Anemone": {
                         "common": "Bubble-Tip Anemone",
                         "scientific": "Entacmaea quadricolor",
-                        "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
+                        "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, red, and green.",
                         "type": "Invertebrate",
                         "order": "Actiniaria",
                         "family": "Actiniidae",
@@ -2552,12 +2543,13 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 {"label": "Green form", "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
                                 {"label": "Pink form", "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
                                 {"label": "Orange form", "url": "https://www.sealifebase.se/images/species/Enqua_uk.jpg"},
+                                
 
                             ],
                         "image_url": "https://example.com/default.jpg",
-                        "region": "Asia, Africa, Oceania",
+                        "region": "Asia",
                         "holdings": {
-                            "North America": "4 [Rose form] 4 [Green form] 4 [Pink form] 4 [Orange form] - New York Aquarium",
+                            "North America": "50 [Wild type] - New York Aquarium",
                             "Europe": 0,
                             "Asia": 0,
                             "Africa": 0,
@@ -2565,7 +2557,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                             "Oceania": 0,
                         },
                         "institutions": {
-                            "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
+                            "New York Aquarium": "50 [Wild type]"
         },
     }
 }
@@ -2842,50 +2834,21 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
 
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
-    def build_species_embed(entry: Dict[str, Any], image_index: int = 0, override_url: str | None = None) -> discord.Embed:
-        title = entry.get("common", "Unknown")
-        sci = entry.get("scientific", "Unknown")
-        e = discord.Embed(title=title, description=f"*{sci}*", color=discord.Color.blurple())
-
-        for label in ["Type", "Order", "Family", "Genus"]:
-            val = entry.get(label.lower())
-            if val:
-                e.add_field(name=label, value=val, inline=True)
-
-        region_list = _region_list(entry)
-        region_text = ", ".join(region_list) if region_list else "_None set_"
-        e.add_field(name="Region(s)", value=region_text, inline=False)
-
-        if entry.get("info"):
-            e.add_field(name="About", value=entry["info"], inline=False)
-
-        images = entry.get("images") or []
-        if images:
-            idx = image_index % len(images)
-            img = images[idx] or {}
-            url = override_url or img.get("url") or entry.get("image_url")
-            if url:
-                e.set_image(url=url)
-            label = img.get("label")
-            e.set_footer(text=f"Variant {idx+1}/{len(images)}" + (f" — {label}" if label else ""))
-        else:
-            if entry.get("image_url"):
-                e.set_image(url=entry["image_url"])
-
-        return e
-
-    # Taxonomy fields
+# >>> CHANGED: add image_index param + optional images pager support <<<
+def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.Embed:
+    title = entry.get("common", "Unknown")
+    sci = entry.get("scientific", "Unknown")
+    e = discord.Embed(title=title, description=f"*{sci}*", color=discord.Color.blurple())
     for label in ["Type", "Order", "Family", "Genus"]:
         val = entry.get(label.lower())
         if val:
             e.add_field(name=label, value=val, inline=True)
 
-    # --- Region field (already in your version) ---
+    # <<< NEW: Regions line drawn from user-maintained entry['region'] >>>
     region_list = _region_list(entry)
     region_text = ", ".join(region_list) if region_list else "_None set_"
     e.add_field(name="Region(s)", value=region_text, inline=False)
 
-    # --- Info / About ---
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
 
@@ -2901,7 +2864,6 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
     if not any_listed:
         e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
 
-    # --- Image / Variant handling (FIXED SECTION) ---
     images = entry.get("images") or []
     if isinstance(images, list) and len(images) > 0:
         idx = max(0, min(image_index, len(images) - 1))
@@ -2917,24 +2879,20 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
 
     return e
 
+# >>> NEW: minimal pager view (only shows when species has multiple images) <<<
 class SpeciesPager(discord.ui.View):
-    def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180, attach_names: list[str] | None = None):
+    def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180):
         super().__init__(timeout=timeout)
         self.entry = entry
         self.index = start_index
         self.images = entry.get("images") or []
-        self.attach_names = attach_names  # list of filenames already attached to the message
-
         if len(self.images) <= 1:
             for child in self.children:
                 if isinstance(child, discord.ui.Button):
                     child.disabled = True
 
     async def _refresh(self, interaction: discord.Interaction):
-        override = None
-        if self.attach_names:
-            override = f"attachment://{self.attach_names[self.index % len(self.attach_names)]}"
-        embed = build_species_embed(self.entry, self.index, override_url=override)
+        embed = build_species_embed(self.entry, self.index)
         await interaction.response.edit_message(embed=embed, view=self)
 
     @discord.ui.button(emoji="◀️", style=discord.ButtonStyle.secondary)
