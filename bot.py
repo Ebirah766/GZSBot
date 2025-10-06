@@ -10,6 +10,15 @@ from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
 import builtins
 
+import aiohttp, io
+
+async def _fetch_bytes(url: str) -> bytes:
+    async with aiohttp.ClientSession() as sess:
+        async with sess.get(url) as resp:
+            resp.raise_for_status()
+            return await resp.read()
+
+
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
@@ -2833,10 +2842,37 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
 
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
-def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.Embed:
-    title = entry.get("common", "Unknown")
-    sci = entry.get("scientific", "Unknown")
-    e = discord.Embed(title=title, description=f"*{sci}*", color=discord.Color.blurple())
+    def build_species_embed(entry: Dict[str, Any], image_index: int = 0, override_url: str | None = None) -> discord.Embed:
+        title = entry.get("common", "Unknown")
+        sci = entry.get("scientific", "Unknown")
+        e = discord.Embed(title=title, description=f"*{sci}*", color=discord.Color.blurple())
+
+        for label in ["Type", "Order", "Family", "Genus"]:
+            val = entry.get(label.lower())
+            if val:
+                e.add_field(name=label, value=val, inline=True)
+
+        region_list = _region_list(entry)
+        region_text = ", ".join(region_list) if region_list else "_None set_"
+        e.add_field(name="Region(s)", value=region_text, inline=False)
+
+        if entry.get("info"):
+            e.add_field(name="About", value=entry["info"], inline=False)
+
+        images = entry.get("images") or []
+        if images:
+            idx = image_index % len(images)
+            img = images[idx] or {}
+            url = override_url or img.get("url") or entry.get("image_url")
+            if url:
+                e.set_image(url=url)
+            label = img.get("label")
+            e.set_footer(text=f"Variant {idx+1}/{len(images)}" + (f" — {label}" if label else ""))
+        else:
+            if entry.get("image_url"):
+                e.set_image(url=entry["image_url"])
+
+        return e
 
     # Taxonomy fields
     for label in ["Type", "Order", "Family", "Genus"]:
@@ -2882,18 +2918,23 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     return e
 
 class SpeciesPager(discord.ui.View):
-    def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180):
+    def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180, attach_names: list[str] | None = None):
         super().__init__(timeout=timeout)
         self.entry = entry
         self.index = start_index
         self.images = entry.get("images") or []
+        self.attach_names = attach_names  # list of filenames already attached to the message
+
         if len(self.images) <= 1:
             for child in self.children:
                 if isinstance(child, discord.ui.Button):
                     child.disabled = True
 
     async def _refresh(self, interaction: discord.Interaction):
-        embed = build_species_embed(self.entry, self.index)
+        override = None
+        if self.attach_names:
+            override = f"attachment://{self.attach_names[self.index % len(self.attach_names)]}"
+        embed = build_species_embed(self.entry, self.index, override_url=override)
         await interaction.response.edit_message(embed=embed, view=self)
 
     @discord.ui.button(emoji="◀️", style=discord.ButtonStyle.secondary)
@@ -3744,34 +3785,50 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-@bot.command(name="species", aliases=["card"])
-async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-    """
-    Render a rich embed UI card for a species with image, taxonomy, description,
-    and holdings by region.
-    """
-    try:
-        if not name or not str(name).strip():
-            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-            return
-        
-        entry, msg = get_entry_or_message(name)
-        if msg:
-            await ctx.send(msg)
-            return
-        
-        images = entry.get("images") or []
-        embed = build_species_embed(entry, image_index=0)
-        
-        if isinstance(images, list) and len(images) > 1:
-            view = SpeciesPager(entry=entry, start_index=0)
-            await ctx.send(embed=embed, view=view)
-        else:
-            await ctx.send(embed=embed)
-        
-    except Exception:
-        log.exception("Error in ;species")
-        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
+        @bot.command(name="species", aliases=["card"])
+        async def cmd_card(ctx: commands.Context, *, name: str):
+            try:
+                entry, msg = get_entry_or_message(name)
+                if msg:
+                    await ctx.send(msg); return
+
+                images = entry.get("images") or []
+                attach_names: list[str] | None = None
+                files = []
+
+                # Use attachments when 2–10 images (Discord’s per-message file limit is ~10 for most servers).
+                if 1 < len(images) <= 10:
+                    attach_names = []
+                    for i, img in enumerate(images):
+                        url = (img or {}).get("url")
+                        if not url: 
+                            attach_names.append(f"variant_{i}.jpg")
+                            files.append(discord.File(io.BytesIO(b""), filename=attach_names[-1]))  # placeholder if missing
+                            continue
+                        data = await _fetch_bytes(url)
+                        fname = f"variant_{i}.jpg"  # extension doesn’t strictly matter; use jpg/png accordingly
+                        files.append(discord.File(io.BytesIO(data), filename=fname))
+                        attach_names.append(fname)
+
+                    # First embed uses the first attachment
+                    first_url = f"attachment://{attach_names[0]}"
+                    embed = build_species_embed(entry, image_index=0, override_url=first_url)
+                    view = SpeciesPager(entry=entry, start_index=0, attach_names=attach_names)
+                    await ctx.send(embed=embed, view=view, files=files)
+
+                else:
+                    # Fallback to normal remote URLs (or single image)
+                    embed = build_species_embed(entry, image_index=0)
+                    if len(images) > 1:
+                        view = SpeciesPager(entry=entry, start_index=0)
+                        await ctx.send(embed=embed, view=view)
+                    else:
+                        await ctx.send(embed=embed)
+
+            except Exception:
+                log.exception("Error in ;species")
+                await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
+
 
 
 @bot.command(name="holdings")
