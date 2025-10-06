@@ -3785,34 +3785,50 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-@bot.command(name="species", aliases=["card"])
-async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-    """
-    Render a rich embed UI card for a species with image, taxonomy, description,
-    and holdings by region.
-    """
-    try:
-        if not name or not str(name).strip():
-            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-            return
-        
-        entry, msg = get_entry_or_message(name)
-        if msg:
-            await ctx.send(msg)
-            return
-        
-        images = entry.get("images") or []
-        embed = build_species_embed(entry, image_index=0)
-        
-        if isinstance(images, list) and len(images) > 1:
-            view = SpeciesPager(entry=entry, start_index=0)
-            await ctx.send(embed=embed, view=view)
-        else:
-            await ctx.send(embed=embed)
-        
-    except Exception:
-        log.exception("Error in ;species")
-        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
+        @bot.command(name="species", aliases=["card"])
+        async def cmd_card(ctx: commands.Context, *, name: str):
+            try:
+                entry, msg = get_entry_or_message(name)
+                if msg:
+                    await ctx.send(msg); return
+
+                images = entry.get("images") or []
+                attach_names: list[str] | None = None
+                files = []
+
+                # Use attachments when 2–10 images (Discord’s per-message file limit is ~10 for most servers).
+                if 1 < len(images) <= 10:
+                    attach_names = []
+                    for i, img in enumerate(images):
+                        url = (img or {}).get("url")
+                        if not url: 
+                            attach_names.append(f"variant_{i}.jpg")
+                            files.append(discord.File(io.BytesIO(b""), filename=attach_names[-1]))  # placeholder if missing
+                            continue
+                        data = await _fetch_bytes(url)
+                        fname = f"variant_{i}.jpg"  # extension doesn’t strictly matter; use jpg/png accordingly
+                        files.append(discord.File(io.BytesIO(data), filename=fname))
+                        attach_names.append(fname)
+
+                    # First embed uses the first attachment
+                    first_url = f"attachment://{attach_names[0]}"
+                    embed = build_species_embed(entry, image_index=0, override_url=first_url)
+                    view = SpeciesPager(entry=entry, start_index=0, attach_names=attach_names)
+                    await ctx.send(embed=embed, view=view, files=files)
+
+                else:
+                    # Fallback to normal remote URLs (or single image)
+                    embed = build_species_embed(entry, image_index=0)
+                    if len(images) > 1:
+                        view = SpeciesPager(entry=entry, start_index=0)
+                        await ctx.send(embed=embed, view=view)
+                    else:
+                        await ctx.send(embed=embed)
+
+            except Exception:
+                log.exception("Error in ;species")
+                await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
+
 
 
 @bot.command(name="holdings")
