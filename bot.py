@@ -4963,3 +4963,105 @@ async def breedrun_cmd(ctx):
                 "text": ln,
             })
     await ctx.send("Done.")
+
+@bot.command(name="breeddebug")
+async def breeddebug_cmd(ctx):
+    """
+    Diagnostic for breeding. Shows what the bot sees and why births may not appear.
+    Run this in a SERVER channel (not DMs).
+    """
+    if ctx.guild is None:
+        await ctx.send("Run this in a server channel (not in DMs).")
+        return
+
+    try:
+        data = _load_zoo_data()
+        lines = []
+
+        # 1) Channel check
+        ch_id = get_breeding_channel_for_guild(ctx.guild.id)
+        if ch_id:
+            ch = ctx.guild.get_channel(ch_id)
+            lines.append(f"📣 Announcement channel: {ch.mention if ch else f'<#{ch_id}>(missing)'}")
+        else:
+            lines.append("⚠️ No breeding channel set. Use `;breedchannel set` in your target channel.")
+
+        users_node = data.get("users") or {}
+        if not users_node:
+            lines.append("❗ No users recorded in `zoo_progress.json` yet (no housed data).")
+            return await ctx.send("\n".join(lines))
+
+        total_users = total_zoos = total_candidates = 0
+        skipped_resolve = skipped_contra = skipped_prob0 = skipped_not_in_catalog = 0
+        rolled = hits = 0
+
+        for uid_str, urec in users_node.items():
+            user_id = int(uid_str)
+            total_users += 1
+            zoos = urec.get("zoos") or {}
+            if not zoos:
+                continue
+
+            for zoo_name, species_list in zoos.items():
+                total_zoos += 1
+                housed = list(species_list or [])
+                catalog = _catalog_species_for_zoo(zoo_name)
+
+                lines.append(f"\n👤 <@{user_id}> — **{zoo_name}**")
+                lines.append(f"• Housed: {len(housed)} | Catalog: {len(catalog)}")
+
+                if not housed:
+                    lines.append("  ↳ No housed species here.")
+                    continue
+
+                for sp in housed:
+                    total_candidates += 1
+
+                    entry, msg = get_entry_or_message(sp)
+                    if msg or not entry:
+                        skipped_resolve += 1
+                        lines.append(f"  ✖ Resolve failed for `{sp}` ({msg or 'no entry'})")
+                        continue
+
+                    entry = get_species_with_overrides(entry)
+                    cname = entry.get("common") or sp
+
+                    if cname not in catalog:
+                        skipped_not_in_catalog += 1
+                        lines.append(f"  ⚠️ `{cname}` is housed but **not in this zoo’s catalog** → ignored.")
+                        continue
+
+                    if is_contracepted(user_id, zoo_name, cname):
+                        skipped_contra += 1
+                        lines.append(f"  🚫 `{cname}` is contracepted → skipped.")
+                        continue
+
+                    label = get_breeding_label(entry)
+                    prob = BREEDING_PROB.get(label, BREEDING_PROB[DEFAULT_BREEDING_LABEL])
+                    if prob <= 0:
+                        skipped_prob0 += 1
+                        lines.append(f"  0️⃣ `{cname}` difficulty **{label}** (p=0) → skipped.")
+                        continue
+
+                    rolled += 1
+                    roll = random.random()
+                    ok = roll <= prob
+                    if ok:
+                        hits += 1
+                    lines.append(f"  🎲 `{cname}` diff **{label}** p={prob:.2f} roll={roll:.3f} → {'BIRTH' if ok else 'no'}")
+
+        summary = (
+            "\n— Summary —\n"
+            f"Users:{total_users} Zoos:{total_zoos} Candidates:{total_candidates}\n"
+            f"Rolled:{rolled} Hits:{hits} | Skipped: resolve={skipped_resolve}, "
+            f"not_in_catalog={skipped_not_in_catalog}, contracept={skipped_contra}, p0={skipped_prob0}"
+        )
+        text = "\n".join(lines) + summary
+
+        # Chunk for Discord limits
+        for i in range(0, len(text), 1900):
+            await ctx.send(text[i:i+1900])
+
+    except Exception as e:
+        log.exception("breeddebug failed")
+        await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
