@@ -265,7 +265,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Panthera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
-        "breeding_difficulty": "Average",
         "holdings": {
             "Africa": "Widespread in zoos",
             "Europe": "Many major zoos",
@@ -284,7 +283,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Rhincodontidae",
         "genus": "Rhincodon",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Whale_shark_Georgia_aquarium.jpg/1200px-Whale_shark_Georgia_aquarium.jpg",
-        "breeding_difficulty": "Impossible",
+        "breeding": "Impossible",
         "holdings": {
             "North America": "Georgia Aquarium (notable)",
             "Asia": "Okinawa Churaumi (notable)",
@@ -304,7 +303,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cerambycidae",
         "genus": "Batocera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Batocera_maculata_%2833312343742%29.jpg/1200px-Batocera_maculata_%2833312343742%29.jpg",
-        "breeding_difficulty": "Difficult",
+        "breeding": "Difficult",
         "region": "Asia",
         "holdings": {
             "North America": "2 - Cube Zoological Park",
@@ -327,7 +326,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cercopithecidae",
         "genus": "Macaca",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Rhesus_macaque_%28Macaca_mulatta_mulatta%29%2C_male%2C_Gokarna.jpg",
-        "breeding_difficulty": "Average",
         "region": "Asia",
         "holdings": {
             "North America": "2.4 - Cube Zoological Park",
@@ -350,7 +348,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Muscidae",
         "genus": "Musca",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/79611144/original.jpeg",
-        "breeding_difficulty": "Very Easy",
+        "breeding": "Very Easy",
         "region": "North America, South America, Europe, Asia, Africa, Oceania",
         "holdings": {
             "North America": "100 - Cube Zoological Park",
@@ -373,7 +371,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Suidae",
         "genus": "Sus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg/1280px-Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg",
-        "breeding_difficulty": "Average",
         "region": "Europe, Asia",
         "holdings": {
             "North America": "1.1 - Cube Zoological Park",
@@ -396,7 +393,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mustelidae",
         "genus": "Neogale",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/American_Mink.jpg/1280px-American_Mink.jpg",
-        "breeding_difficulty": "Difficult",
+        "breeding": "Difficult",
         "region": "North America",
         "holdings": {
             "North America": "1.0 - Cube Zoological Park",
@@ -419,7 +416,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Bovidae",
         "genus": "Bubalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Water_buffalo_at_Rinca.jpg/1280px-Water_buffalo_at_Rinca.jpg",
-        "breeding_difficulty": "Easy",
+        "breeding": "Easy",
         "holdings": {
             "North America": "2.4 - Cube Zoological Park",
             "Asia": 0,
@@ -441,7 +438,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Centrarchidae",
         "genus": "Micropterus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88108052/original.jpg",
-        "breeding_difficulty": "Difficult",
+        "breeding": "Difficult",
         "region": "North America",
         "holdings": {
             "North America": "5 - Cube Zoological Park",
@@ -467,7 +464,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Wild type", "url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg"},
             {"label": "Piebald", "url": "https://community.morphmarket.com/uploads/db1442/original/3X/c/c/cce5c7bf05ff8c269b109b74a6981690acbc3075.jpeg"}
         ],
-        "breeding_difficulty": "Below Average",
+        "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
             "North America": "0.1 (Wild type) - Cube Zoological Park",
@@ -4868,7 +4865,7 @@ async def _run_breeding_once() -> dict[int, list[str]]:
 
             # >>> CHANGED: Prefer per-species override if present
             # (Optional) pair check — you can enhance to require sexed pairs later
-            override_label = (entry.get("breeding_difficulty") or "").strip()
+            override_label = (entry.get("breeding") or "").strip()
             if override_label:
                 label = override_label
             else:
@@ -5050,7 +5047,7 @@ async def breeddebug_cmd(ctx):
                         continue
 
                     # >>> CHANGED: reflect species-level override in debug
-                    override_label = (entry.get("breeding_difficulty") or "").strip()
+                    override_label = (entry.get("breeding") or "").strip()
                     if override_label:
                         label = override_label
                     else:
