@@ -2667,7 +2667,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                             "breeding": "Impossible",
                             "region": "North America",
                         "holdings": {
-                        "North America": "3 - New York Aquarium ",
+                        "North America": "3 - New York Aquarium",
                         "Asia": 0,
                         "Europe": 0,
                         "Africa": 0,
@@ -2695,7 +2695,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "breeding": "Impossible",
                                 "region": "Asia, Oceania",
                             "holdings": {
-                            "North America": "3 [White form] 3 [Purple form] - New York Aquarium ",
+                            "North America": "3 [White form] 3 [Purple form] - New York Aquarium",
                             "Asia": 0,
                             "Europe": 0,
                             "Africa": 0,
@@ -2704,6 +2704,31 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 },
                             "institutions": {
                             "New York Aquarium": "3 [White form], 3 [Purple form] - New York Aquarium"
+
+                                }
+                                },
+
+                                "Red-Tailed Catfish": {
+                                "common": "Red-Tailed Catfish",
+                                "scientific": "Phractocephalus hemioliopterus",
+                                "info": "One of the world's largest catifsh, the red-tailed catfish is found exclusively in the Amazon River and its associated rivers. They are territorial predators who feed on a variety of different animals, both aquatic and terrestrial. They have been introduced to several tropical countries outside of their native range.",
+                                "type": "Fish",
+                                "order": "Siluriformes",
+                                "family": "Pimelodidae",
+                                "genus": "Phractocephalus",
+                                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/382034.jpg",
+                                "breeding": "Impossible",
+                                "region": "South America",
+                                "holdings": {
+                                "North America": 0,
+                                "Asia": 0,
+                                "Europe": "4.0 - Wasser Wunder Welt",
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Wasser Wunder Welt": "4.0"
         },
     }
 }
