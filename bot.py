@@ -684,6 +684,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Egerniidae",
         "genus": "Tribolonotus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Red-Eyed_Crocodile_Skink.jpg",
+        "breeding": "Below Average",
         "region": "Oceania",
         "holdings": {
             "North America": "0",
@@ -706,6 +707,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Felis",
         "image_url": "https://www.biolib.cz/IMG/GAL/BIG/309949.jpg",
+        "breeding": "Average",
         "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
@@ -728,6 +730,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Canidae",
         "genus": "Vulpes",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/388749029/original.jpg",
+        "breeding": "Average",
         "region": "North America, Europe, Asia",
         "holdings": {
             "North America": "0",
@@ -750,6 +753,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mustelidae",
         "genus": "Aonyx",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Otter_-_melbourne_zoo.jpg/1280px-Otter_-_melbourne_zoo.jpg",
+        "breeding": "Easy",
         "region": "Asia",
         "holdings": {
             "North America": "0",
@@ -772,6 +776,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Tinamidae",
         "genus": "Eudromia",
         "image_url": "https://static.inaturalist.org/photos/28265534/large.jpg",
+        "breeding": "Below Average",
         "region": "South America",
         "holdings": {
             "North America": "2.2 - Credit River Zoo",
@@ -794,6 +799,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Phoenicopteridae",
         "genus": "Phoenicopterus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/258687300/large.jpg",
+        "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
             "North America": "5.5 - Credit River Zoo",
@@ -816,6 +822,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Anhimidae",
         "genus": "Chauna",
         "image_url": "https://www.ecoregistros.org/site/images/dataimages/2018/10/02/289707/chaja-1.jpg",
+        "breeding": "Below Average",
         "region": "South America",
         "holdings": {
             "North America": "1.0 - Credit River Zoo",
@@ -838,6 +845,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Threskiornithidae",
         "genus": "Eudocimus",
         "image_url": "https://www.biolib.cz/IMG/GAL/BIG/395236.jpg",
+        "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
             "North America": "3.0 - Credit River Zoo",
@@ -860,6 +868,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Threskiornithidae",
         "genus": "Platalea",
         "image_url": "https://www.biolib.cz/IMG/GAL/BIG/561817.jpg",
+        "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
              "North America": "0.2 - Credit River Zoo",
@@ -882,6 +891,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Choloepodidae",
         "genus": "Choloepus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cholepus_didactylus_-_Flickr_-_Dick_Culbert.jpg",
+        "breeding": "Average",
         "region": "South America",
         "holdings": {
             "North America": "0.1 - Credit River Zoo",
@@ -904,6 +914,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Pitheciidae",
         "genus": "Pithecia",
         "image_url": "https://www.marwell.org.uk/wp-content/uploads/2021/07/White-faced-saki-Pithecia-pithecia-Marwell-Zoo.jpg",
+        "breeding": "Average",
         "region": "South America",
         "holdings": {
             "North America": "1.1 - Credit River Zoo",
@@ -926,6 +937,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Callitrichidae",
         "genus": "Saguinus",
         "image_url": "https://dwazoo.com/wp-content/uploads/2023/01/cotton2-scaled.jpg",
+        "breeding": "Easy",
         "region": "South America",
         "holdings": {
             "North America": "1.3 - Credit River Zoo",
@@ -948,6 +960,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Anatidae",
         "genus": "Dendrocygna",
         "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/03/Dendrocygna-autumnalis-fulgens-2.jpg",
+        "breeding": "Easy",
         "region": "North America, South America",
         "holdings": {
             "North America": "0.4 - Credit River Zoo",
@@ -970,6 +983,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Dasyproctidae",
         "genus": "Dasyprocta",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Red-rumped_Agouti_%2817380318590%29.jpg",
+        "breeding": "Easy",
         "region": "South America",
         "holdings": {
             "North America": "0.2 - Credit River Zoo",
@@ -992,6 +1006,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Psittacidae",
         "genus": "Amazona",
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/44406711/1200",
+        "breeding": "Below Average",
         "region": "North America",
         "holdings": {
             "North America": "2.0 - Credit River Zoo",
@@ -1015,6 +1030,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Panthera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Jaguar_%28Panthera_onca_palustris%29_male_Three_Brothers_River_2_%28cropped%29.jpg",
         "region": "North America, South America",
+        "breeding": "Difficult",
         "holdings": {
             "North America": 0,
             "Asia": 0,
@@ -1036,6 +1052,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Procyonidae",
         "genus": "Nasua",
         "image_url": "https://www.zoochat.com/community/media/white-nosed-coati-nasua-narica.228154/full",
+        "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
             "North America": 0,
@@ -1058,6 +1075,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Tayassuidae",
         "genus": "Catagonus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Catagonus_wagneri_1_-_Phoenix_Zoo.jpg/1280px-Catagonus_wagneri_1_-_Phoenix_Zoo.jpg",
+        "breeding": "Below Average",
         "region": "South America",
         "holdings": {
             "North America": 0,
@@ -1082,6 +1100,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Mexican Spider Monkey (vellerosus)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg/1280px-Geoffroy%27s_spider_monkey_%28Ateles_geoffroyi_yucatanensis%29_Peten.jpg"}
         ],
+        "breeding": "Below Average",
         "region": "North America, South America",
         "holdings": {
             "North America": 0,
@@ -1104,6 +1123,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Phyllostomidae",
         "genus": "Carollia",
         "image_url": "https://www.marylandzoo.org/wp-content/uploads/2017/10/bat_web.jpg",
+        "breeding": "Below Average",
         "region": "North America, South America",
         "holdings": {
             "North America": 0,
@@ -1126,6 +1146,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Dasypodidae",
         "genus": "Carollia",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88373350/original.jpeg",
+        "breeding": "Below Average",
         "region": "North America, South America",
         "holdings": {
             "North America": 0,
@@ -1149,6 +1170,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Tapiridae",
         "genus": "Tapirus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/73961577/original.jpeg",
+        "breeding": "Difficult",
         "region": "South America",
         "holdings": {
             "North America": 0,
@@ -1171,6 +1193,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mustelidae",
         "genus": "Eira",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tayra_-_Male%2C_Brazil_%28cropped%29.jpg/1280px-Tayra_-_Male%2C_Brazil_%28cropped%29.jpg",
+        "breeding": "Difficult",
         "region": "North America, South America",
         "holdings": {
             "North America": 0,
@@ -1193,6 +1216,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Procyonidae",
         "genus": "Procyon",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/1280px-Raccoon_in_Central_Park_%2835264%29.jpg",
+        "breeding": "Easy",
         "region": "North America",
         "holdings": {
             "North America": 0,
@@ -1215,6 +1239,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Mephitidae",
         "genus": "Mephitis",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/61292683/large.jpg",
+        "breeding": "Easy",
         "region": "North America",
         "holdings": {
             "North America": 0,
@@ -1239,6 +1264,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Ridley's Cave Racer (ridleyi)", "url": "https://static.thainationalparks.com/img/species/2021/12/20/397706/elaphe-taeniurus-ridleyi-w-1500.jpg"}
         ],
+        "breeding": "Average",
         "region": "Asia",
         "holdings": {
             "North America": "1.1 [ridleyi] - Jupiter Reptile Zoo",
@@ -1261,6 +1287,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Colubridae",
         "genus": "Drymarchon",
         "image_url": "https://www.fws.gov/sites/default/files/styles/facebook_1200x630/public/banner_images/2022-07/eastern-indigo-snake.jpg?h=f7c62170&itok=2StGVxab",
+        "breeding": "Average",
         "region": "North America",
         "holdings": {
             "North America": "1.1 - Jupiter Reptile Zoo",
@@ -1283,6 +1310,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Mixcoatlus",
         "image_url": "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/472999940_1672789173595713_1159118854601384928_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=YyUXLve42EkQ7kNvwHMtkmm&_nc_oc=AdlhzbHYMdP3n5QDbIe_fTpkWElKyz9d-Sxms3dbhBjG3oqODk1EfDlFaRL9asJovN66Z8G14SBgdBHI0i_WETrs&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=-hPNVuACjUTMk4Fuhlr6FA&oh=00_AffBxXIQB08HmECVF9ik8EnML5NASV72_7HaRDh2smC2qw&oe=68E7034D",
+        "breeding": "Difficult",
         "region": "North America",
         "holdings": {
             "North America": "0.2 - Jupiter Reptile Zoo",
@@ -1308,6 +1336,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Blue variant", "url": "https://media-animals.earth.com/images/2022/08/17/9637093228780143/trimeresurusinsularis_2552449653879538.jpg"},
             {"label": "Yellow variant", "url": "https://alephrocco.com/wp-content/uploads/2018/06/41776996854_0265ab2332_k.jpg"}
         ],
+        "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
             "North America": "1.1 [Blue], 0.1 [Yellow] - Jupiter Reptile Zoo",
@@ -1331,6 +1360,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Trimeresurus",
         "image_url": "https://static.thainationalparks.com/img/species/2017/07/05/317565/trimeresurus-purpureomaculatus-w-1500.jpg",
+        "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
             "North America": "0.3 - Jupiter Reptile Zoo",
@@ -1354,6 +1384,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Tropidolaemus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg/1280px-Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg",
+        "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
             "North America": "0.1 - Jupiter Reptile Zoo",
@@ -1378,6 +1409,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Dusky Pygmy Rattlesnake (barbouri)", "url": "https://static.inaturalist.org/photos/392077465/large.jpeg"}
         ],
+        "breeding": "Below Average",
         "region": "North America",
         "holdings": {
             "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
@@ -1399,6 +1431,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Squamata",
         "family": "Viperidae",
         "genus": "Craspedocephalus",
+        "breeding": "Below Average",
         "image_url": "https://static.inaturalist.org/photos/352173492/large.jpg",
         "region": "Asia",
         "holdings": {
@@ -1422,6 +1455,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Elapidae",
         "genus": "Naja",
         "image_url": "https://static.inaturalist.org/photos/12833129/large.jpg",
+        "breeding": "Below Average",
         "region": "Africa",
         "holdings": {
             "North America": "1.1 - Jupiter Reptile Zoo",
@@ -1444,6 +1478,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Colubridae",
         "genus": "Boiga",
         "image_url": "https://static.thainationalparks.com/img/species/2016/09/24/207594/boiga-melanota-w-1500.jpg",
+        "breeding": "Average",
         "region": "Asia",
         "holdings": {
             "North America": "2.0 - Jupiter Reptile Zoo",
@@ -1469,6 +1504,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Java locality", "url": "https://cdn.discordapp.com/attachments/1035388569419780176/1424050571932860416/large.png?ex=68e289f1&is=68e13871&hm=2a402427e2c62c390696e2a1653ea5cfb0c4ba8fc6368beb5425d7cf516c8911"}
         ],
+        "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
             "North America": "1.1 [Java] - Jupiter Reptile Zoo",
@@ -1495,6 +1531,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Wild type", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/491146798_1081368080686123_7102814473061028418_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dB_BPqbQrvgQ7kNvwHBWXOq&_nc_oc=Adl1lq2CaO7I_YK-PHlI7Ktskdbp_EN2ozE4azVJgWZdVzP4R5o1o9f-Xcm10MsQONM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=lfz1apkHFuI_dmAdS9v5VA&oh=00_AffAfUf6YWEMRyAQffeHdVRUJ3s4PtJZF4cXosCvcEeqAQ&oe=68E7251E"},
             {"label": "Leucistic", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/510343141_9936717456440041_3752577244402236551_n.jpg?stp=dst-jpg_p843x403_tt6&_nc_cat=107&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=fTmB3GAJFVkQ7kNvwEDuJ19&_nc_oc=AdnmGnVQfKM0NTljvtzn1JN0g1vCZCOE6U1Dgi-JK2ekB_uqV9ilC0nUW_LT5yFa9ZM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=r9UN0pTHtEO9xWBJGuJxJg&oh=00_AfegHTmllnIDkiBl44dtRWx877XeyA8qaUBljjAPlb_rTQ&oe=68E6FB38"}
         ],
+        "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
             "North America": "1.0 [Wild type] 0.1 [Leucistic] - Jupiter Reptile Zoo",
@@ -1517,6 +1554,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Elapidae",
         "genus": "Micrurus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/105813097/large.jpeg",
+        "breeding": "Below Average",
         "region": "North America",
         "holdings": {
             "North America": "1.1 - Jupiter Reptile Zoo",
@@ -1539,6 +1577,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Pythonidae",
         "genus": "Python",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
+        "breeding": "Difficult",
         "region": "Asia",
         "holdings": {
             "North America": "0.1 - Jupiter Reptile Zoo",
@@ -1561,6 +1600,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Shinisauridae",
         "genus": "Shinisaurus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Shinisaurus_crocodilurus_10.jpg/1280px-Shinisaurus_crocodilurus_10.jpg",
+        "breeding": "Difficult",
         "region": "Asia",
         "holdings": {
             "North America": "1.2 - Jupiter Reptile Zoo",
@@ -1583,6 +1623,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Bovidae",
         "genus": "Ovis",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/New_Mexico_Bighorn_Sheep.JPG/1280px-New_Mexico_Bighorn_Sheep.JPG",
+        "breeding": "Below Average",
         "region": "North America",
         "holdings": {
             "North America": "0.4 - High Uintahs Zoo",
@@ -1605,6 +1646,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Puma",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/9834553/original.jpg",
+        "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
             "North America": "0.1 - High Uintahs Zoo",
@@ -1627,6 +1669,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Erethizontidae",
         "genus": "Erethizon",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Erethizon_dorsatum_-_Prince_Rupert.jpg",
+        "breeding": "Easy",
         "region": "North America",
         "holdings": {
             "North America": "1.1 - High Uintahs Zoo",
@@ -1650,6 +1693,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Lynx",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/60028871/original.jpg",
+        "breeding": "Difficult",
         "region": "North America",
         "holdings": {
             "North America": "1.1 - High Uintahs Zoo",
@@ -1673,6 +1717,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Canidae",
         "genus": "Urocyon",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Gray_fox.jpg/1280px-Gray_fox.jpg",
+        "breeding": "Below Average",
         "region": "North America, South America",
         "holdings": {
             "North America": "1.1 - High Uintahs Zoo",
@@ -1697,7 +1742,8 @@ species_data: Dict[str, Dict[str, Any]] = {
     "family": "Cathartidae",
     "genus": "Cathartes",
     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/171981785/original.jpg",
-    "region": "North America, South America",
+        "breeding": "Below Average",
+        "region": "North America, South America",
     "holdings": {
         "North America": "2.0 - High Uintahs Zoo",
         "Asia": 0,
@@ -1721,7 +1767,8 @@ species_data: Dict[str, Dict[str, Any]] = {
     "family": "Sciuridae",
     "genus": "Glaucomys",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg/1280px-Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg",
-    "region": "North America",
+        "breeding": "Difficult",
+        "region": "North America",
     "holdings": {
         "North America": "1.1 - High Uintahs Zoo",
         "Asia": 0,
@@ -1745,7 +1792,8 @@ species_data: Dict[str, Dict[str, Any]] = {
     "family": "Equidae",
     "genus": "Equus",
     "image_url": "https://static.wikia.nocookie.net/project-zoo/images/9/90/Perry-miniature-donkey-in-Palo-Alto-CA-2016.jpg/revision/latest/scale-to-width-down/4559?cb=20200320040740",
-    "holdings": {
+        "breeding": "Easy",
+        "holdings": {
         "North America": "4.0 - High Uintahs Zoo",
         "Asia": 0,
         "Europe": 0,
@@ -1768,7 +1816,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Corvidae",
 "genus": "Corvus",
 "image_url": "https://media-animals.earth.com/images/2022/08/17/6615221388313479/corvuscorax_31777344837356836.jpg",
-"region": "North America, Europe, Asia, Africa",
+    "breeding": "Average",
+    "region": "North America, Europe, Asia, Africa",
 "holdings": {
 "North America": "1.0 - High Uintahs Zoo",
 "Asia": 0,
@@ -1792,7 +1841,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Arapaimidae",
 "genus": "Arapaima",
 "image_url": "https://www.biolib.cz/IMG/GAL/BIG/493019.jpg",
-"region": "South America",
+    "breeding": "Impossible",
+    "region": "South America",
 "holdings": {
 "North America": 0,
 "Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
@@ -1816,7 +1866,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Myliobatidae",
 "genus": "Myliobatis",
 "image_url": "https://www.marinepia.or.jp/picturebook/public/image/upload/594/main01.jpg",
-"region": "Asia",
+    "breeding": "Difficult",
+    "region": "Asia",
 "holdings": {
 "North America": 0,
 "Asia": "0.3 - Sapporo Reptile Center and National Aquarium ",
@@ -1840,7 +1891,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Congridae",
 "genus": "Heteroconger",
 "image_url": "https://images.reeflifesurvey.com/0/species_f4_57f745ed20d77.w1000.h666.jpg",
-"region": "Asia, Africa, Oceania",
+    "breeding": "Impossible",
+    "region": "Asia, Africa, Oceania",
 "holdings": {
 "North America": 0,
 "Asia": "2.4 - Sapporo Reptile Center and National Aquarium ",
@@ -1864,7 +1916,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Osteoglossidae",
 "genus": "Osteoglossum",
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Osteoglossum_bicirrhosum_in_Minsk_Zoo.jpg",
-"region": "South America",
+    "breeding": "Impossible",
+    "region": "South America",
 "holdings": {
 "North America": 0,
 "Asia": "1.1 - Sapporo Reptile Center and National Aquarium ",
@@ -1888,7 +1941,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Serrasalmidae",
 "genus": "Pygocentrus",
 "image_url": "https://www.biolib.cz/IMG/GAL/BIG/382042.jpg",
-"region": "South America",
+    "breeding": "Impossible",
+    "region": "South America",
 "holdings": {
 "North America": 0,
 "Asia": "2.2 - Sapporo Reptile Center and National Aquarium ",
@@ -1912,7 +1966,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Ambystomatidae",
 "genus": "Ambystoma",
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/1920px-Axolotl_ganz.jpg",
-"region": "North America",
+    "breeding": "Below Average",
+    "region": "North America",
 "holdings": {
 "North America": 0,
 "Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
@@ -1936,7 +1991,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Alligatoridae",
 "genus": "Alligator",
 "image_url": "https://a-z-animals.com/media/animals/images/original/Alligator_mississippiensis_1-1.jpg",
-"region": "North America",
+    "breeding": "Average",
+    "region": "North America",
 "holdings": {
 "North America": 0,
 "Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
@@ -1960,7 +2016,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Alligatoridae",
 "genus": "Alligator",
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/ChineseAlligator15.JPG/1280px-ChineseAlligator15.JPG",
-"region": "Asia",
+    "breeding": "Below Average",
+    "region": "Asia",
 "holdings": {
 "North America": 0,
 "Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
@@ -1984,7 +2041,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Chamaeleonidae",
 "genus": "Chamaeleo",
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Yemen_Chameleon.jpg/1280px-Yemen_Chameleon.jpg",
-"region": "Asia",
+    "breeding": "Below Average",
+    "region": "Asia",
 "holdings": {
 "North America": 0,
 "Asia": "1.2 - Sapporo Reptile Center and National Aquarium ",
@@ -2008,7 +2066,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Carettochelyidae",
 "genus": "Carettochelys",
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Carettochelys_insculpta_01.JPG/1920px-Carettochelys_insculpta_01.JPG",
-"region": "Oceania",
+    "breeding": "Difficult",
+    "region": "Oceania",
 "holdings": {
 "North America": 0,
 "Asia": "2.2 - Sapporo Reptile Center and National Aquarium ",
@@ -2032,7 +2091,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Teiidae",
 "genus": "Salvator",
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Black_and_White_Tegu.jpg/1920px-Black_and_White_Tegu.jpg",
-"region": "South America",
+    "breeding": "Average",
+    "region": "South America",
 "holdings": {
 "North America": 0,
 "Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
@@ -2056,7 +2116,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Iguanidae",
 "genus": "Iguana",
 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/356025444/original.jpg",
-"region": "North America, South America",
+    "breeding": "Below Average",
+    "region": "North America, South America",
 "holdings": {
 "North America": 0,
 "Asia": "1.2 - Sapporo Reptile Center and National Aquarium ",
@@ -2080,7 +2141,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Chelydridae",
 "genus": "Macrochelys",
 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/12726192/original.jpg",
-"region": "North America",
+    "breeding": "Difficult",
+    "region": "North America",
 "holdings": {
 "North America": 0,
 "Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
@@ -2105,6 +2167,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "High Blue", "url": "https://community.morphmarket.com/uploads/db1442/original/3X/e/a/ea18e345c3aa76c632b2227dc66a70d4cd7ad613.jpeg"},
         ],
+        "breeding": "Difficult",
         "region": "Oceania",
         "holdings": {
             "North America": 0,
@@ -2129,7 +2192,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Osphronemidae",
 "genus": "Betta",
 "image_url": "https://www.fishi-pedia.com/wp-content/uploads/2016/09/1781411_793531127324260_5255704950338882941_o.jpg",
-"region": "Asia",
+    "breeding": "Difficult",
+    "region": "Asia",
 "holdings": {
 "North America": "1.1 - New York Aquarium ",
 "Asia": 0,
@@ -2153,7 +2217,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Osphronemidae",
 "genus": "Betta",
 "image_url": "https://media-animals.earth.com/images/2018/12/18/15475565562648463/bettasimplex.jpg",
-"region": "Asia",
+    "breeding": "Below Average",
+    "region": "Asia",
 "holdings": {
 "North America": "3.3 - New York Aquarium ",
 "Asia": 0,
@@ -2179,6 +2244,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Beira locality", "url": "https://scontent-atl3-3.xx.fbcdn.net/v/t39.30808-6/511261235_23997244009907137_7942919226440147774_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cf85f3&_nc_ohc=BfAABtDfAKUQ7kNvwFKTAhG&_nc_oc=AdnQQaH7Tle9DKYa2hJF21A5DrBmN5kuMnTiW3d3FcXhBlF1WwFbmoY9x0keasyhz9FSFW-isWpsW61M9hJ6QMbk&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&_nc_gid=5s6uw2AlUR0CSWWz4WhRDQ&oh=00_Afe0ekUvmE195L5k8hdBa8UDgLrJeCykFkEsACA44IqAjQ&oe=68E848E0"},
         ],
+        "breeding": "Average",
         "region": "Africa",
         "holdings": {
             "North America": "3.3 (Beira) - New York Aquarium",
@@ -2205,6 +2271,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Zanzibar locality", "url": "https://killis.org.uk/wp-content/uploads/2023/10/Nothobranchius-guentheri-Zanzibar.jpg"},
         ],
+        "breeding": "Average",
         "region": "Africa",
         "holdings": {
             "North America": "3.3 (Zanzibar) - New York Aquarium",
@@ -2229,7 +2296,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cyprinidae",
         "genus": "Cyprinus",
         "image_url": "https://cdn.britannica.com/34/199834-050-ACEB68C7/Carp.jpg",
-        "region": "Europe, Asia",
+            "breeding": "Difficult",
+            "region": "Europe, Asia",
         "holdings": {
         "North America": "10 - New York Aquarium ",
         "Asia": 0,
@@ -2253,7 +2321,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Salmonidae",
         "genus": "Salvelinus",
         "image_url": "https://media-animals.earth.com/images/2022/08/17/9385017317518864/salvelinusfontinalis_6479630421282603.jpg",
-        "region": "North America",
+            "breeding": "Difficult",
+            "region": "North America",
         "holdings": {
         "North America": "20 - New York Aquarium ",
         "Asia": 0,
@@ -2277,7 +2346,8 @@ species_data: Dict[str, Dict[str, Any]] = {
     "family": "Salmonidae",
     "genus": "Salmo",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Salmo_trutta_Ozeaneum_Stralsund_HBP_2010-07-02.jpg/1280px-Salmo_trutta_Ozeaneum_Stralsund_HBP_2010-07-02.jpg",
-    "region": "Europe, Asia, Africa",
+        "breeding": "Difficult",
+        "region": "Europe, Asia, Africa",
     "holdings": {
     "North America": "20 - New York Aquarium ",
     "Asia": 0,
@@ -2325,7 +2395,8 @@ species_data: Dict[str, Dict[str, Any]] = {
     "family": "Scorpaenidae",
     "genus": "Sebastes",
     "image_url": "https://www.oceanlight.com/stock-photo/china-rockfish-picture-14041-900602.jpg",
-    "region": "North America",
+        "breeding": "Impossible",
+        "region": "North America",
     "holdings": {
     "North America": "6 - New York Aquarium ",
     "Asia": 0,
@@ -2349,7 +2420,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Scorpaenidae",
 "genus": "Sebastes",
 "image_url": "https://images.reeflifesurvey.com/0/species_08_59db3e38ba0e4.w1000.h666.jpg",
-"region": "North America",
+    "breeding": "Impossible",
+    "region": "North America",
 "holdings": {
 "North America": "6 - New York Aquarium ",
 "Asia": 0,
@@ -2373,6 +2445,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Scyliorhinidae",
 "genus": "Cephaloscyllium",
 "image_url": "https://www.sharksandrays.com/wp-content/uploads/2020/11/California-Swellshark-020.jpg",
+    "breeding": "Average",
 "region": "North America, South America",
 "holdings": {
 "North America": "1.1 - New York Aquarium ",
@@ -2397,7 +2470,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "family": "Pomacentridae",
 "genus": "Amphiprion",
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg/1280px-Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg",
-"region": "Asia, Oceania",
+    "breeding": "Easy",
+    "region": "Asia, Oceania",
 "holdings": {
 "North America": "16.16 - New York Aquarium ",
 "Asia": 0,
@@ -2420,7 +2494,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 "order": "Octopoda",
 "family": "Enteroctopodidae",
 "genus": "Enteroctopus",
-"image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/357027043/original.jpg",
+    "breeding": "Difficult",
+    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/357027043/original.jpg",
 "region": "North America, Asia",
 "holdings": {
 "North America": "1.0 - New York Aquarium ",
@@ -2449,6 +2524,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Pink form", "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Montipora_grisea.jpg"},
         ],
         "image_url": "https://example.com/default.jpg",
+        "breeding": "Difficult",
         "region": "Asia, Africa, Oceania",
         "holdings": {
             "North America": "1 [Brown form] 1 [Green form] 1 [Pink form] - New York Aquarium",
@@ -2475,6 +2551,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                     {"label": "Green form", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Acropora_millepora_Maldives.jpg/1280px-Acropora_millepora_Maldives.jpg"},
                 ],
                 "image_url": "https://example.com/default.jpg",
+                "breeding": "Difficult",
                 "region": "Asia, Africa, Oceania",
                 "holdings": {
                     "North America": "1 [Green form] - New York Aquarium",
@@ -2502,6 +2579,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                         {"label": "Wild type", "url": "https://aquaticarts.com/cdn/shop/products/Wild_Form_Neocaridina_13_1800x1800.jpg?v=1660149172"},
                     ],
                     "image_url": "https://example.com/default.jpg",
+                    "breeding": "Very Easy",
                     "region": "Asia",
                     "holdings": {
                         "North America": "100 [Wild type] - New York Aquarium",
@@ -2528,8 +2606,9 @@ species_data: Dict[str, Dict[str, Any]] = {
                     "images": [
                         {"label": "Wild type", "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/1981267/original.JPG"},
                     ],
-                    "image_url": "https://example.com/default.jpg",
-                    "region": "Asia",
+                        "image_url": "https://example.com/default.jpg",
+                        "breeding": "Average",
+                        "region": "Asia",
                     "holdings": {
                         "North America": "50 [Wild type] - New York Aquarium",
                         "Europe": 0,
@@ -2560,7 +2639,8 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                             ],
                         "image_url": "https://example.com/default.jpg",
-                        "region": "Asia, Africa, Oceania",
+                            "breeding": "Below Average",
+                            "region": "Asia, Africa, Oceania",
                         "holdings": {
                             "North America": "4 [Rose form] 4 [Green form] 4 [Pink form] 4 [Orange form] - New York Aquarium",
                             "Europe": 0,
@@ -2584,7 +2664,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "family": "Actiniidae",
                         "genus": "Anthopleura",
                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Anthopleura_xanthogrammica_1.jpg/1024px-Anthopleura_xanthogrammica_1.jpg",
-                        "region": "North America",
+                            "breeding": "Impossible",
+                            "region": "North America",
                         "holdings": {
                         "North America": "3 - New York Aquarium ",
                         "Asia": 0,
@@ -2611,7 +2692,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     {"label": "White form", "url": "https://reefguide.org/pix/cerianthusfiliformis1.jpg"},
                                     {"label": "Purple form", "url": "https://scuba.spanglers.com/im/f/2018/12/2018-12-16b-a20214.jpg"}
                                 ],
-                            "region": "Asia, Oceania",
+                                "breeding": "Impossible",
+                                "region": "Asia, Oceania",
                             "holdings": {
                             "North America": "3 [White form] 3 [Purple form] - New York Aquarium ",
                             "Asia": 0,
