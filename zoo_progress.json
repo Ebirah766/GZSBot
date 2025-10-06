@@ -30,6 +30,17 @@
           "Water Buffalo"
         ]
       }
+    },
+    "339392105803939841": {
+      "active_zoo": null,
+      "zoos": {
+        "Jupiter Reptile Zoo": [
+          "Black-Tailed Horned Pit Viper",
+          "Flat-Nosed Pit Viper",
+          "Indonesian Pit Viper",
+          "Chinese Crocodile Lizard"
+        ]
+      }
     }
   },
   "ownership": {

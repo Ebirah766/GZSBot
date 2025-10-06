@@ -2833,21 +2833,23 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
 
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
-# >>> CHANGED: add image_index param + optional images pager support <<<
 def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.Embed:
     title = entry.get("common", "Unknown")
     sci = entry.get("scientific", "Unknown")
     e = discord.Embed(title=title, description=f"*{sci}*", color=discord.Color.blurple())
+
+    # Taxonomy fields
     for label in ["Type", "Order", "Family", "Genus"]:
         val = entry.get(label.lower())
         if val:
             e.add_field(name=label, value=val, inline=True)
 
-    # <<< NEW: Regions line drawn from user-maintained entry['region'] >>>
+    # --- Region field (already in your version) ---
     region_list = _region_list(entry)
     region_text = ", ".join(region_list) if region_list else "_None set_"
     e.add_field(name="Region(s)", value=region_text, inline=False)
 
+    # --- Info / About ---
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
 
@@ -2863,6 +2865,7 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     if not any_listed:
         e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
 
+    # --- Image / Variant handling (FIXED SECTION) ---
     images = entry.get("images") or []
     if isinstance(images, list) and len(images) > 0:
         idx = max(0, min(image_index, len(images) - 1))
@@ -2878,7 +2881,6 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
 
     return e
 
-# >>> NEW: minimal pager view (only shows when species has multiple images) <<<
 class SpeciesPager(discord.ui.View):
     def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180):
         super().__init__(timeout=timeout)
