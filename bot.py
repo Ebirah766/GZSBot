@@ -265,7 +265,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Panthera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
-        "breeding_difficulty": "Average",
+        "breeding_difficulty": "Average"
         "holdings": {
             "Africa": "Widespread in zoos",
             "Europe": "Many major zoos",
@@ -284,6 +284,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Rhincodontidae",
         "genus": "Rhincodon",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Whale_shark_Georgia_aquarium.jpg/1200px-Whale_shark_Georgia_aquarium.jpg",
+        "breeding_difficulty": "Impossible"
         "holdings": {
             "North America": "Georgia Aquarium (notable)",
             "Asia": "Okinawa Churaumi (notable)",
