@@ -570,6 +570,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
         ],
         "image_url": "https://example.com/default.jpg",
+        "breeding": "Average",
         "holdings": {
             "North America": 0,
             "Europe": ["1.3 (Fjord) - Shropshire Hills Zoo"],
@@ -591,6 +592,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cervidae",
         "genus": "Dama",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Fallow_deer_in_field.jpg/1280px-Fallow_deer_in_field.jpg",
+        "breeding": "Easy",
         "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
@@ -613,6 +615,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cervidae",
         "genus": "Cervus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/68001185/large.jpg",
+        "breeding": "Average",
         "region": "Europe, Asia, Africa",
         "holdings": {
             "North America": "0",
@@ -635,6 +638,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Callitrichidae",
         "genus": "Leontopithecus",
         "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
+        "breeding": "Easy",
         "region": "South America",
         "holdings": {
             "North America": "0",
@@ -657,6 +661,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Equidae",
         "genus": "Equus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/398125195/large.jpg",
+        "breeding": "Average",
         "region": "Asia",
         "holdings": {
             "North America": "0",
