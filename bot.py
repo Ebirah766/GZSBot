@@ -4080,168 +4080,168 @@ async def cmd_specieslist(ctx: commands.Context):
         log.exception("Error in ;specieslist")
         await ctx.send("Sorry, I couldn't list species right now.")
 
-    # ---------------- Contraception & Breeding Admin Commands ----------------
+# ---------------- Contraception & Breeding Admin Commands ----------------
 
-    @bot.command(name="contracept")
-    async def contracept_cmd(ctx, *, arg: str = None):
-        """
-        ;contracept <Species>
-        ;contracept <Species> at <Zoo Name>
-        ;contracept <Zoo Name> :: <Species>
-        Applies contraception for that species in your OWNED zoo.
-        """
-        if not arg:
-            await ctx.send("Usage: `;contracept <Species>` (optionally `at <Zoo Name>` or `<Zoo> :: <Species>`)")
+@bot.command(name="contracept")
+async def contracept_cmd(ctx, *, arg: str = None):
+    """
+    ;contracept <Species>
+    ;contracept <Species> at <Zoo Name>
+    ;contracept <Zoo Name> :: <Species>
+    Applies contraception for that species in your OWNED zoo.
+    """
+    if not arg:
+        await ctx.send("Usage: `;contracept <Species>` (optionally `at <Zoo Name>` or `<Zoo> :: <Species>`)")
+        return
+
+    data = _load_zoo_data()
+    ownership = _get_user_ownership(data, ctx.author.id)
+
+    provided_zoo, sp_part = _parse_house_args(arg)
+    # Resolve zoo via same rules as ;house
+    if provided_zoo:
+        if not _owns_zoo(ownership, provided_zoo):
+            await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
             return
-
-        data = _load_zoo_data()
-        ownership = _get_user_ownership(data, ctx.author.id)
-
-        provided_zoo, sp_part = _parse_house_args(arg)
-        # Resolve zoo via same rules as ;house
-        if provided_zoo:
-            if not _owns_zoo(ownership, provided_zoo):
-                await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
-                return
-            zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
-        else:
-            if len(ownership["zoos"]) == 0:
-                await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
-                return
-            if len(ownership["zoos"]) > 1:
-                await ctx.send("You own multiple zoos. Please specify one: `;contracept <Species> at <Zoo>`.")
-                return
-            zoo = ownership["zoos"][0]
-
-        canonical = _canonical_species_name(sp_part)
-        if not canonical:
-            await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
+        zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
+    else:
+        if len(ownership["zoos"]) == 0:
+            await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
             return
-
-        set_contracept(ctx.author.id, zoo, canonical, True)
-        await ctx.send(f"🛑 `{canonical}` is now contracepted in **{zoo}**.")
-
-    @bot.command(name="uncontracept", aliases=["decontracept"])
-    async def uncontracept_cmd(ctx, *, arg: str = None):
-        """
-        ;uncontracept <Species>
-        ;uncontracept <Species> at <Zoo Name>
-        ;uncontracept <Zoo Name> :: <Species>
-        Removes contraception for that species in your OWNED zoo.
-        """
-        if not arg:
-            await ctx.send("Usage: `;uncontracept <Species>` (optionally `at <Zoo Name>` or `<Zoo> :: <Species>`)")
+        if len(ownership["zoos"]) > 1:
+            await ctx.send("You own multiple zoos. Please specify one: `;contracept <Species> at <Zoo>`.")
             return
+        zoo = ownership["zoos"][0]
 
-        data = _load_zoo_data()
-        ownership = _get_user_ownership(data, ctx.author.id)
+    canonical = _canonical_species_name(sp_part)
+    if not canonical:
+        await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
+        return
 
-        provided_zoo, sp_part = _parse_house_args(arg)
-        if provided_zoo:
-            if not _owns_zoo(ownership, provided_zoo):
-                await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
-                return
-            zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
-        else:
-            if len(ownership["zoos"]) == 0:
-                await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
-                return
-            if len(ownership["zoos"]) > 1:
-                await ctx.send("You own multiple zoos. Please specify one: `;uncontracept <Species> at <Zoo>`.")
-                return
-            zoo = ownership["zoos"][0]
+    set_contracept(ctx.author.id, zoo, canonical, True)
+    await ctx.send(f"🛑 `{canonical}` is now contracepted in **{zoo}**.")
 
-        canonical = _canonical_species_name(sp_part)
-        if not canonical:
-            await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
+@bot.command(name="uncontracept", aliases=["decontracept"])
+async def uncontracept_cmd(ctx, *, arg: str = None):
+    """
+    ;uncontracept <Species>
+    ;uncontracept <Species> at <Zoo Name>
+    ;uncontracept <Zoo Name> :: <Species>
+    Removes contraception for that species in your OWNED zoo.
+    """
+    if not arg:
+        await ctx.send("Usage: `;uncontracept <Species>` (optionally `at <Zoo Name>` or `<Zoo> :: <Species>`)")
+        return
+
+    data = _load_zoo_data()
+    ownership = _get_user_ownership(data, ctx.author.id)
+
+    provided_zoo, sp_part = _parse_house_args(arg)
+    if provided_zoo:
+        if not _owns_zoo(ownership, provided_zoo):
+            await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
             return
-
-        set_contracept(ctx.author.id, zoo, canonical, False)
-        await ctx.send(f"✅ Contraception removed for `{canonical}` in **{zoo}**.")
-
-    @bot.command(name="contraceptstatus", aliases=["breedstatus"])
-    async def contracept_status_cmd(ctx, *, zoo_name: str = None):
-        """
-        ;contraceptstatus
-        ;contraceptstatus <Zoo Name>
-        Lists contracepted species for your OWNED zoo.
-        """
-        data = _load_zoo_data()
-        ownership = _get_user_ownership(data, ctx.author.id)
-
-        if zoo_name:
-            if not _owns_zoo(ownership, zoo_name):
-                await ctx.send(f"🚫 You don’t own **{zoo_name}**.")
-                return
-            zoo = _find_cased_zoo_name(ownership, zoo_name) or zoo_name
-        else:
-            if len(ownership["zoos"]) == 0:
-                await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
-                return
-            if len(ownership["zoos"]) > 1:
-                await ctx.send("You own multiple zoos. Use: `;contraceptstatus <Zoo Name>`")
-                return
-            zoo = ownership["zoos"][0]
-
-        cmap = _load_zoo_data().get("contracept", {}).get(str(ctx.author.id), {}).get(zoo, {})
-        if not cmap:
-            await ctx.send(f"No species are contracepted in **{zoo}**.")
+        zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
+    else:
+        if len(ownership["zoos"]) == 0:
+            await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
             return
-
-        names = sorted(cmap.keys(), key=lambda s: s.lower())
-        bullet = "\n".join(f"• {n}" for n in names)
-        await ctx.send(f"**Contracepted in {zoo}:**\n{bullet}")
-
-    @bot.command(name="breedset")
-    @commands.has_permissions(manage_guild=True)
-    async def breedset_cmd(ctx, species: str = None, *, label: str = None):
-        """
-        ;breedset <Species> <Very Easy|Easy|Average|Below Average|Difficult|Impossible>
-        Sets the breeding difficulty (global override) for the species card.
-        """
-        if not species or not label:
-            await ctx.send("Usage: `;breedset <Species> <Very Easy|Easy|Average|Below Average|Difficult|Impossible>`")
+        if len(ownership["zoos"]) > 1:
+            await ctx.send("You own multiple zoos. Please specify one: `;uncontracept <Species> at <Zoo>`.")
             return
-        label = label.strip().title()
-        if label not in BREEDING_PROB:
-            await ctx.send(f"Invalid difficulty `{label}`. Valid: {', '.join(BREEDING_PROB.keys())}")
-            return
+        zoo = ownership["zoos"][0]
 
-        entry, msg = get_entry_or_message(species)
-        if msg:
-            await ctx.send(msg); return
+    canonical = _canonical_species_name(sp_part)
+    if not canonical:
+        await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
+        return
 
-        data = _load_zoo_data()
-        ov = data.setdefault("species_overrides", {})
-        key = entry.get("common") or species
-        node = ov.setdefault(key, {})
-        node["breeding"] = label
-        _save_zoo_data(data)
-        await ctx.send(f"✅ Set breeding difficulty for `{key}` → **{label}**.")
+    set_contracept(ctx.author.id, zoo, canonical, False)
+    await ctx.send(f"✅ Contraception removed for `{canonical}` in **{zoo}**.")
 
-    @bot.command(name="breedchannel")
-    @commands.has_permissions(manage_guild=True)
-    async def breedchannel_cmd(ctx, sub: str = None):
-        """
-        ;breedchannel set   -> set the current channel for Friday birth announcements
-        ;breedchannel show  -> show the current channel
-        """
-        if sub is None:
-            await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
+@bot.command(name="contraceptstatus", aliases=["breedstatus"])
+async def contracept_status_cmd(ctx, *, zoo_name: str = None):
+    """
+    ;contraceptstatus
+    ;contraceptstatus <Zoo Name>
+    Lists contracepted species for your OWNED zoo.
+    """
+    data = _load_zoo_data()
+    ownership = _get_user_ownership(data, ctx.author.id)
+
+    if zoo_name:
+        if not _owns_zoo(ownership, zoo_name):
+            await ctx.send(f"🚫 You don’t own **{zoo_name}**.")
             return
-        if sub.lower() == "set":
-            set_breeding_channel_for_guild(ctx.guild.id, ctx.channel.id)
-            await ctx.send(f"✅ Birth announcements will post in {ctx.channel.mention}.")
+        zoo = _find_cased_zoo_name(ownership, zoo_name) or zoo_name
+    else:
+        if len(ownership["zoos"]) == 0:
+            await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
             return
-        if sub.lower() == "show":
-            cid = get_breeding_channel_for_guild(ctx.guild.id)
-            if cid:
-                ch = ctx.guild.get_channel(cid)
-                await ctx.send(f"📣 Current birth channel: {ch.mention if ch else f'`{cid}` (not found)'}")
-            else:
-                await ctx.send("ℹ️ No birth channel set. Use `;breedchannel set` here.")
+        if len(ownership["zoos"]) > 1:
+            await ctx.send("You own multiple zoos. Use: `;contraceptstatus <Zoo Name>`")
             return
+        zoo = ownership["zoos"][0]
+
+    cmap = _load_zoo_data().get("contracept", {}).get(str(ctx.author.id), {}).get(zoo, {})
+    if not cmap:
+        await ctx.send(f"No species are contracepted in **{zoo}**.")
+        return
+
+    names = sorted(cmap.keys(), key=lambda s: s.lower())
+    bullet = "\n".join(f"• {n}" for n in names)
+    await ctx.send(f"**Contracepted in {zoo}:**\n{bullet}")
+
+@bot.command(name="breedset")
+@commands.has_permissions(manage_guild=True)
+async def breedset_cmd(ctx, species: str = None, *, label: str = None):
+    """
+    ;breedset <Species> <Very Easy|Easy|Average|Below Average|Difficult|Impossible>
+    Sets the breeding difficulty (global override) for the species card.
+    """
+    if not species or not label:
+        await ctx.send("Usage: `;breedset <Species> <Very Easy|Easy|Average|Below Average|Difficult|Impossible>`")
+        return
+    label = label.strip().title()
+    if label not in BREEDING_PROB:
+        await ctx.send(f"Invalid difficulty `{label}`. Valid: {', '.join(BREEDING_PROB.keys())}")
+        return
+
+    entry, msg = get_entry_or_message(species)
+    if msg:
+        await ctx.send(msg); return
+
+    data = _load_zoo_data()
+    ov = data.setdefault("species_overrides", {})
+    key = entry.get("common") or species
+    node = ov.setdefault(key, {})
+    node["breeding"] = label
+    _save_zoo_data(data)
+    await ctx.send(f"✅ Set breeding difficulty for `{key}` → **{label}**.")
+
+@bot.command(name="breedchannel")
+@commands.has_permissions(manage_guild=True)
+async def breedchannel_cmd(ctx, sub: str = None):
+    """
+    ;breedchannel set   -> set the current channel for Friday birth announcements
+    ;breedchannel show  -> show the current channel
+    """
+    if sub is None:
         await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
+        return
+    if sub.lower() == "set":
+        set_breeding_channel_for_guild(ctx.guild.id, ctx.channel.id)
+        await ctx.send(f"✅ Birth announcements will post in {ctx.channel.mention}.")
+        return
+    if sub.lower() == "show":
+        cid = get_breeding_channel_for_guild(ctx.guild.id)
+        if cid:
+            ch = ctx.guild.get_channel(cid)
+            await ctx.send(f"📣 Current birth channel: {ch.mention if ch else f'`{cid}` (not found)'}")
+        else:
+            await ctx.send("ℹ️ No birth channel set. Use `;breedchannel set` here.")
+        return
+    await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
 
     
 # --- Region helpers ----------------------------------------------------------
