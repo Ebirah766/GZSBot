@@ -3742,65 +3742,34 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-        @bot.command(name="species", aliases=["card"])
-        async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-            """
-            Render a rich embed UI card for a species with image, taxonomy, description,
-            and holdings by region.
-            """
-            try:
-                if not name or not str(name).strip():
-                    await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-                    return
-
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
-
-                # --- sanitize + cache-bust so 4th+ image loads ---
-                raw_images = entry.get("images") or []
-
-                def _is_http_url(u):
-                    return isinstance(u, str) and u.strip().lower().startswith(("http://", "https://"))
-
-                seen = set()
-                clean_images = []
-                for u in raw_images:
-                    if not _is_http_url(u):
-                        continue
-                    key = u.strip()
-                    if key in seen:
-                        continue
-                    seen.add(key)
-                    clean_images.append(key)
-
-                def _cache_bust(url, idx):
-                    return f"{url}&_cb={idx}" if ("?" in url) else f"{url}?_cb={idx}"
-
-                processed_images = [_cache_bust(u, i) for i, u in enumerate(clean_images)]
-
-                # keep entry shape the same so your pager can read it
-                entry["images"] = processed_images
-
-                embed = build_species_embed(entry, image_index=0)
-                if processed_images:
-                    try:
-                        embed.set_image(url=processed_images[0])
-                    except Exception:
-                        pass
-
-                if len(processed_images) > 1:
-                    view = SpeciesPager(entry=entry, start_index=0)
-                    await ctx.send(embed=embed, view=view)
-                else:
-                    await ctx.send(embed=embed)
-
-            except Exception:
-                log.exception("Error in ;species")
-                await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
-
-
+@bot.command(name="species", aliases=["card"])
+async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
+    """
+    Render a rich embed UI card for a species with image, taxonomy, description,
+    and holdings by region.
+    """
+    try:
+        if not name or not str(name).strip():
+            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
+            return
+        
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
+        
+        images = entry.get("images") or []
+        embed = build_species_embed(entry, image_index=0)
+        
+        if isinstance(images, list) and len(images) > 1:
+            view = SpeciesPager(entry=entry, start_index=0)
+            await ctx.send(embed=embed, view=view)
+        else:
+            await ctx.send(embed=embed)
+        
+    except Exception:
+        log.exception("Error in ;species")
+        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
 
 
 @bot.command(name="holdings")
