@@ -3374,73 +3374,73 @@ def holdings_to_bullets(raw) -> str:
     items = _normalize_holding_items(raw)
     return "\n".join(f"• {it}" for it in items) if items else "—"
 
-    # ---------------- Breeding Config & Helpers ----------------
-    from discord.ext import tasks
-    import random
-    from datetime import time as dtime
-    try:
-        from zoneinfo import ZoneInfo  # Python 3.9+
-    except Exception:
-        ZoneInfo = None
+# ---------------- Breeding Config & Helpers ----------------
+from discord.ext import tasks
+import random
+from datetime import time as dtime
+try:
+    from zoneinfo import ZoneInfo  # Python 3.9+
+except Exception:
+    ZoneInfo = None
 
-    # Probability per label (tweak as you like)
-    BREEDING_PROB = {
-        "Very Easy": 0.60,
-        "Easy": 0.40,
-        "Average": 0.25,
-        "Below Average": 0.12,
-        "Difficult": 0.05,
-        "Impossible": 0.00,
-    }
-    DEFAULT_BREEDING_LABEL = "Average"
+# Probability per label (tweak as you like)
+BREEDING_PROB = {
+    "Very Easy": 0.60,
+    "Easy": 0.40,
+    "Average": 0.25,
+    "Below Average": 0.12,
+    "Difficult": 0.05,
+    "Impossible": 0.00,
+}
+DEFAULT_BREEDING_LABEL = "Average"
 
-    def set_breeding_channel_for_guild(guild_id: int, channel_id: int) -> None:
-        data = _load_zoo_data()
-        data["breeding_channels"][str(guild_id)] = int(channel_id)
-        _save_zoo_data(data)
+def set_breeding_channel_for_guild(guild_id: int, channel_id: int) -> None:
+    data = _load_zoo_data()
+    data["breeding_channels"][str(guild_id)] = int(channel_id)
+    _save_zoo_data(data)
 
-    def get_breeding_channel_for_guild(guild_id: int) -> Optional[int]:
-        data = _load_zoo_data()
-        v = data.get("breeding_channels", {}).get(str(guild_id))
-        return int(v) if v is not None else None
+def get_breeding_channel_for_guild(guild_id: int) -> Optional[int]:
+    data = _load_zoo_data()
+    v = data.get("breeding_channels", {}).get(str(guild_id))
+    return int(v) if v is not None else None
 
-    def set_contracept(user_id: int, zoo_name: str, species_key: str, on: bool) -> None:
-        data = _load_zoo_data()
-        u = data["contracept"].setdefault(str(user_id), {})
-        z = u.setdefault(zoo_name, {})
-        if on:
-            z[species_key] = True
-        else:
-            z.pop(species_key, None)
-        _save_zoo_data(data)
+def set_contracept(user_id: int, zoo_name: str, species_key: str, on: bool) -> None:
+    data = _load_zoo_data()
+    u = data["contracept"].setdefault(str(user_id), {})
+    z = u.setdefault(zoo_name, {})
+    if on:
+        z[species_key] = True
+    else:
+        z.pop(species_key, None)
+    _save_zoo_data(data)
 
-    def is_contracepted(user_id: int, zoo_name: str, species_key: str) -> bool:
-        data = _load_zoo_data()
-        return bool(
-            data.get("contracept", {}).get(str(user_id), {}).get(zoo_name, {}).get(species_key)
-        )
+def is_contracepted(user_id: int, zoo_name: str, species_key: str) -> bool:
+    data = _load_zoo_data()
+    return bool(
+        data.get("contracept", {}).get(str(user_id), {}).get(zoo_name, {}).get(species_key)
+    )
 
-    def log_birth(entry: dict) -> None:
-        data = _load_zoo_data()
-        data["birth_log"].append(entry)
-        if len(data["birth_log"]) > 2000:
-            data["birth_log"] = data["birth_log"][-2000:]
-        _save_zoo_data(data)
+def log_birth(entry: dict) -> None:
+    data = _load_zoo_data()
+    data["birth_log"].append(entry)
+    if len(data["birth_log"]) > 2000:
+        data["birth_log"] = data["birth_log"][-2000:]
+    _save_zoo_data(data)
 
-    def get_species_with_overrides(entry: dict) -> dict:
-        """Merge species_overrides (e.g., breeding label) without mutating the base."""
-        data = _load_zoo_data()
-        name = entry.get("common")
-        overrides = data.get("species_overrides", {})
-        if name and name in overrides:
-            merged = dict(entry)
-            merged.update(overrides[name])
-            return merged
-        return entry
+def get_species_with_overrides(entry: dict) -> dict:
+    """Merge species_overrides (e.g., breeding label) without mutating the base."""
+    data = _load_zoo_data()
+    name = entry.get("common")
+    overrides = data.get("species_overrides", {})
+    if name and name in overrides:
+        merged = dict(entry)
+        merged.update(overrides[name])
+        return merged
+    return entry
 
-    def get_breeding_label(entry: dict) -> str:
-        label = (entry or {}).get("breeding") or DEFAULT_BREEDING_LABEL
-        return label if label in BREEDING_PROB else DEFAULT_BREEDING_LABEL
+def get_breeding_label(entry: dict) -> str:
+    label = (entry or {}).get("breeding") or DEFAULT_BREEDING_LABEL
+    return label if label in BREEDING_PROB else DEFAULT_BREEDING_LABEL
 
 
 # ------------- ;zoo command with ownership -------------
