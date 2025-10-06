@@ -144,6 +144,55 @@
   "breeding_channels": {
     "1422993403435679797": 1424822281246609410
   },
-  "birth_log": [],
+  "birth_log": [
+    {
+      "timestamp": "2025-10-06 18:53:56.724847+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `American Mink` at **Cube Zoological Park** (owner <@616302253908688908>) — difficulty **Average**"
+    },
+    {
+      "timestamp": "2025-10-06 18:53:56.726628+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `Rhesus Macaque` at **Cube Zoological Park** (owner <@616302253908688908>) — difficulty **Average**"
+    },
+    {
+      "timestamp": "2025-10-06 18:53:56.742594+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `Housefly` at **Cube Zoological Park** (owner <@616302253908688908>) — difficulty **Average**"
+    },
+    {
+      "timestamp": "2025-10-06 18:53:56.755890+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `Wild Boar` at **Cube Zoological Park** (owner <@616302253908688908>) — difficulty **Average**"
+    },
+    {
+      "timestamp": "2025-10-06 18:53:56.764807+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `Florida Bass` at **Cube Zoological Park** (owner <@616302253908688908>) — difficulty **Average**"
+    },
+    {
+      "timestamp": "2025-10-06 18:53:56.772123+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `Water Buffalo` at **Cube Zoological Park** (owner <@616302253908688908>) — difficulty **Average**"
+    },
+    {
+      "timestamp": "2025-10-06 18:53:56.786212+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `Indonesian Pit Viper` at **Jupiter Reptile Zoo** (owner <@339392105803939841>) — difficulty **Average**"
+    },
+    {
+      "timestamp": "2025-10-06 18:53:56.792667+00:00",
+      "guild_id": 1422993403435679797,
+      "channel_id": 1424822281246609410,
+      "text": "🍼 **Birth!** `Blood Python` at **Jupiter Reptile Zoo** (owner <@339392105803939841>) — difficulty **Average**"
+    }
+  ],
   "species_overrides": {}
 }
