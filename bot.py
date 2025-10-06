@@ -10,39 +10,6 @@ from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
 import builtins
 
-# --- Image helpers (keep these above the command) ---------------------------
-def _sanitize_images(images) -> list[str]:
-    out: list[str] = []
-    if isinstance(images, (list, tuple)):
-        for u in images:
-            if isinstance(u, str):
-                u = u.strip()
-                if u and (u.startswith("http://") or u.startswith("https://")):
-                    out.append(u)
-    return out
-
-def build_species_embed(entry: dict, image_index: int = 0, total_images: int | None = None):
-    import discord
-    common = entry.get("common") or entry.get("name") or "Unknown"
-    scientific = entry.get("scientific") or ""
-    info = entry.get("info") or ""
-    images = _sanitize_images(entry.get("images"))
-    total = total_images if total_images is not None else len(images)
-    if total > 0:
-        image_index = max(0, min(image_index, total - 1))
-
-    embed = discord.Embed(title=common, description=info)
-    if scientific:
-        embed.add_field(name="Scientific name", value=scientific, inline=False)
-    regions = entry.get("region")
-    if isinstance(regions, list) and regions:
-        embed.add_field(name="Region(s)", value=", ".join(regions), inline=False)
-    if total > 0:
-        embed.set_image(url=images[image_index])
-    if total > 1:
-        embed.set_footer(text=f"Image {image_index + 1}/{total}")
-    return embed
-
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
@@ -115,44 +82,6 @@ from keep_alive import keep_alive
 import discord
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
-
-# --- SpeciesPager class (needs discord imported) ----------------------------
-class SpeciesPager(discord.ui.View):
-    def __init__(self, entry: dict, start_index: int = 0, timeout: float | None = 300):
-        super().__init__(timeout=timeout)
-        self.entry = entry
-        self.images = _sanitize_images(entry.get("images"))
-        self.total = len(self.images)
-        self.index = 0 if self.total == 0 else max(0, min(start_index, self.total - 1))
-        # Disable nav if 0/1 images — do this AFTER super().__init__ so children exist
-        if self.total <= 1:
-            for child in self.children:
-                if isinstance(child, discord.ui.Button):
-                    child.disabled = True
-
-    def current_embed(self) -> "discord.Embed":
-        return build_species_embed(self.entry, self.index, total_images=self.total)
-
-    async def _safe_edit(self, interaction: "discord.Interaction"):
-        # Handle double-respond edge cases gracefully
-        try:
-            await interaction.response.edit_message(embed=self.current_embed(), view=self)
-        except discord.InteractionResponded:
-            await interaction.message.edit(embed=self.current_embed(), view=self)
-
-    @discord.ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary)
-    async def _prev(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-        if self.total == 0:
-            return
-        self.index = (self.index - 1) % self.total
-        await self._safe_edit(interaction)
-
-    @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary)
-    async def _next(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-        if self.total == 0:
-            return
-        self.index = (self.index + 1) % self.total
-        await self._safe_edit(interaction)
 
 # --- Intents -----------------------------------------------------------------
 intents = discord.Intents.default()
@@ -2715,58 +2644,6 @@ def get_entry_or_message(user_query: str) -> Tuple[Optional[Dict[str, Any]], Opt
     key = resolved
     return species_data[key], None
 
-def _sanitize_images(images) -> list[str]:
-    """Return a clean list of usable image URLs."""
-    out: list[str] = []
-    if isinstance(images, (list, tuple)):
-        for u in images:
-            if not isinstance(u, str):
-                continue
-            u = u.strip()
-            if not u:
-                continue
-            # Only allow http/https (discord embeds require a valid URL)
-            if u.startswith("http://") or u.startswith("https://"):
-                out.append(u)
-    return out
-
-def build_species_embed(entry: dict, image_index: int = 0, total_images: int | None = None) -> "discord.Embed":
-    """Build the species card for the given image index."""
-    import discord  # local import to avoid ordering issues
-
-    common = entry.get("common") or entry.get("name") or "Unknown"
-    scientific = entry.get("scientific") or ""
-    info = entry.get("info") or ""
-    image_urls = _sanitize_images(entry.get("images"))
-
-    total = total_images if total_images is not None else len(image_urls)
-    # clamp index into range
-    if total > 0:
-        image_index = max(0, min(image_index, total - 1))
-
-    embed = discord.Embed(
-        title=common,
-        description=info,
-    )
-    if scientific:
-        embed.add_field(name="Scientific name", value=scientific, inline=False)
-
-    # OPTIONAL: show region list if you have it
-    regions = entry.get("region")
-    if isinstance(regions, list) and regions:
-        embed.add_field(name="Region(s)", value=", ".join(regions), inline=False)
-
-    # Set the image for this page
-    if total > 0:
-        embed.set_image(url=image_urls[image_index])
-
-    # Nice little pager footer: "Image 1/5"
-    if total > 1:
-        embed.set_footer(text=f"Image {image_index + 1}/{total}")
-
-    return embed
-
-
 # --- Member resolver (mention / ID / name / nickname) -----------------------
 from discord.ext import commands as _cmds  # if not already imported with alias
 
@@ -3000,6 +2877,37 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
             e.set_image(url=entry["image_url"])
 
     return e
+
+# >>> NEW: minimal pager view (only shows when species has multiple images) <<<
+class SpeciesPager(discord.ui.View):
+    def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180):
+        super().__init__(timeout=timeout)
+        self.entry = entry
+        self.index = start_index
+        self.images = entry.get("images") or []
+        if len(self.images) <= 1:
+            for child in self.children:
+                if isinstance(child, discord.ui.Button):
+                    child.disabled = True
+
+    async def _refresh(self, interaction: discord.Interaction):
+        embed = build_species_embed(self.entry, self.index)
+        await interaction.response.edit_message(embed=embed, view=self)
+
+    @discord.ui.button(emoji="◀️", style=discord.ButtonStyle.secondary)
+    async def prev(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if not self.images:
+            return await interaction.response.defer()
+        self.index = (self.index - 1) % len(self.images)
+        await self._refresh(interaction)
+
+    @discord.ui.button(emoji="▶️", style=discord.ButtonStyle.secondary)
+    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if not self.images:
+            return await interaction.response.defer()
+        self.index = (self.index + 1) % len(self.images)
+        await self._refresh(interaction)
+
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
 # ---------- Persistence ----------
@@ -3834,31 +3742,34 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-        @bot.command(name="species", aliases=["card"])
-        async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-            try:
-                if not name or not str(name).strip():
-                    await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-                    return
-
-                entry, msg = get_entry_or_message(name)
-                if msg:
-                    await ctx.send(msg)
-                    return
-
-                images = _sanitize_images(entry.get("images"))
-                embed = build_species_embed(entry, image_index=0, total_images=len(images))
-
-                if len(images) > 1:
-                    view = SpeciesPager(entry=entry, start_index=0)
-                    await ctx.send(embed=embed, view=view)
-                else:
-                    await ctx.send(embed=embed)
-
-            except Exception:
-                log.exception("Error in ;species")
-                await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
-
+@bot.command(name="species", aliases=["card"])
+async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
+    """
+    Render a rich embed UI card for a species with image, taxonomy, description,
+    and holdings by region.
+    """
+    try:
+        if not name or not str(name).strip():
+            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
+            return
+        
+        entry, msg = get_entry_or_message(name)
+        if msg:
+            await ctx.send(msg)
+            return
+        
+        images = entry.get("images") or []
+        embed = build_species_embed(entry, image_index=0)
+        
+        if isinstance(images, list) and len(images) > 1:
+            view = SpeciesPager(entry=entry, start_index=0)
+            await ctx.send(embed=embed, view=view)
+        else:
+            await ctx.send(embed=embed)
+        
+    except Exception:
+        log.exception("Error in ;species")
+        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
 
 
 @bot.command(name="holdings")
