@@ -134,5 +134,15 @@
       "location": null,
       "image": null
     }
-  }
+  },
+  "contracept": {
+    "385221957550866443": {
+      "New York Aquarium": {}
+    }
+  },
+  "breeding_channels": {
+    "1422993403435679797": 1424042822302171208
+  },
+  "birth_log": [],
+  "species_overrides": {}
 }
