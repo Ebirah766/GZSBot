@@ -10,6 +10,7 @@ from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
 import builtins
 
+# --- Constants ---------------------------------------------------------------
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
@@ -53,8 +54,6 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
 
-
-
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
 logging.basicConfig(
@@ -93,15 +92,12 @@ log.info("Python exe: %s", sys.executable)
 log.info("CWD: %s", os.getcwd())
 log.info("DISCORD_TOKEN present? %s", "Yes" if os.getenv("DISCORD_TOKEN") else "No")
 
-# Order is optional; adjust to your project’s standard:
-REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
-
 def format_holdings_lines(holdings: Dict[str, Any]) -> str:
     """
-    Render holdings with one line per holder, not comma-separated.
+    Alternate renderer: one bullet per holder; shows single items inline.
     Accepts values like:
       - 0, "0", 0.0
-      - "1.1 - Zoo A, 0.3 - Zoo B"  -> split into bullets
+      - "1.1 - Zoo A, 0.3 - Zoo B"      -> split into bullets
       - ["1.1 - Zoo A", "0.3 - Zoo B"]  -> bullets
     """
     lines: List[str] = []
@@ -252,6 +248,7 @@ def list_user_zoos_with_balances(uid: int) -> list[tuple[str, int]]:
             out.append((k, int(v)))
         except Exception:
             pass
+    return sorted(out, key=lambda kv: kv[0].lower())
     return sorted(out, key=lambda kv: kv[0].lower())
 
 
@@ -2583,7 +2580,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "New York Aquarium": "3"
 
                             }
-                            },
+                                },
 
                             "Flower Tube Anemone": {
                             "common": "Flower Tube Anemone",
@@ -2886,6 +2883,7 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
 
 # >>> CHANGED: add image_index param + optional images pager support <<<
 def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.Embed:
+    entry = get_species_with_overrides(entry)  # apply overrides (e.g., breeding)
     title = entry.get("common", "Unknown")
     sci = entry.get("scientific", "Unknown")
     e = discord.Embed(title=title, description=f"*{sci}*", color=discord.Color.blurple())
@@ -2894,15 +2892,18 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
         if val:
             e.add_field(name=label, value=val, inline=True)
 
-    # <<< NEW: Regions line drawn from user-maintained entry['region'] >>>
+    # Regions (user-maintained)
     region_list = _region_list(entry)
     region_text = ", ".join(region_list) if region_list else "_None set_"
     e.add_field(name="Region(s)", value=region_text, inline=False)
 
+    # NEW: Breeding difficulty
+    e.add_field(name="Breeding Difficulty", value=get_breeding_label(entry), inline=True)
+
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
 
-    # --- Holdings by region (bulleted) ---
+    # Holdings by region
     holdings = entry.get("holdings") or {}
     any_listed = False
     for region in REGION_ORDER:
@@ -2910,7 +2911,6 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
         if value != "—":
             any_listed = True
             e.add_field(name=region, value=value, inline=False)
-
     if not any_listed:
         e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
 
@@ -2967,11 +2967,22 @@ _ZOO_DATA_PATH = pathlib.Path(__file__).with_name("zoo_progress.json")
 def _load_zoo_data() -> dict:
     if _ZOO_DATA_PATH.exists():
         try:
-            return json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
+            data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
         except Exception:
-            pass
-    # >>> NEW: add "directory" bucket for metadata like location
-    return {"users": {}, "ownership": {}, "directory": {}}
+            data = {}
+    else:
+        data = {}
+
+    # Ensure buckets exist
+    data.setdefault("users", {})                # {uid: {"active_zoo":..., "zoos": {zoo: [species...]}}}
+    data.setdefault("ownership", {})            # {uid: {"limit": n, "zoos": [names...]}}
+    data.setdefault("directory", {})            # zoo directory (name->meta)
+    data.setdefault("contracept", {})           # NEW: {uid: {zoo: {species: True}}}
+    data.setdefault("breeding_channels", {})    # NEW: {guild_id: channel_id}
+    data.setdefault("birth_log", [])            # NEW: rolling birth feed
+    data.setdefault("species_overrides", {})    # NEW: per-species overrides (e.g., breeding label)
+    return data
+
 
 def _save_zoo_data(data: dict) -> None:
     _ZOO_DATA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -3362,6 +3373,74 @@ def holdings_to_bullets(raw) -> str:
     """Return a bullet list string for a region, or '—' if none."""
     items = _normalize_holding_items(raw)
     return "\n".join(f"• {it}" for it in items) if items else "—"
+
+    # ---------------- Breeding Config & Helpers ----------------
+    from discord.ext import tasks
+    import random
+    from datetime import time as dtime
+    try:
+        from zoneinfo import ZoneInfo  # Python 3.9+
+    except Exception:
+        ZoneInfo = None
+
+    # Probability per label (tweak as you like)
+    BREEDING_PROB = {
+        "Very Easy": 0.60,
+        "Easy": 0.40,
+        "Average": 0.25,
+        "Below Average": 0.12,
+        "Difficult": 0.05,
+        "Impossible": 0.00,
+    }
+    DEFAULT_BREEDING_LABEL = "Average"
+
+    def set_breeding_channel_for_guild(guild_id: int, channel_id: int) -> None:
+        data = _load_zoo_data()
+        data["breeding_channels"][str(guild_id)] = int(channel_id)
+        _save_zoo_data(data)
+
+    def get_breeding_channel_for_guild(guild_id: int) -> Optional[int]:
+        data = _load_zoo_data()
+        v = data.get("breeding_channels", {}).get(str(guild_id))
+        return int(v) if v is not None else None
+
+    def set_contracept(user_id: int, zoo_name: str, species_key: str, on: bool) -> None:
+        data = _load_zoo_data()
+        u = data["contracept"].setdefault(str(user_id), {})
+        z = u.setdefault(zoo_name, {})
+        if on:
+            z[species_key] = True
+        else:
+            z.pop(species_key, None)
+        _save_zoo_data(data)
+
+    def is_contracepted(user_id: int, zoo_name: str, species_key: str) -> bool:
+        data = _load_zoo_data()
+        return bool(
+            data.get("contracept", {}).get(str(user_id), {}).get(zoo_name, {}).get(species_key)
+        )
+
+    def log_birth(entry: dict) -> None:
+        data = _load_zoo_data()
+        data["birth_log"].append(entry)
+        if len(data["birth_log"]) > 2000:
+            data["birth_log"] = data["birth_log"][-2000:]
+        _save_zoo_data(data)
+
+    def get_species_with_overrides(entry: dict) -> dict:
+        """Merge species_overrides (e.g., breeding label) without mutating the base."""
+        data = _load_zoo_data()
+        name = entry.get("common")
+        overrides = data.get("species_overrides", {})
+        if name and name in overrides:
+            merged = dict(entry)
+            merged.update(overrides[name])
+            return merged
+        return entry
+
+    def get_breeding_label(entry: dict) -> str:
+        label = (entry or {}).get("breeding") or DEFAULT_BREEDING_LABEL
+        return label if label in BREEDING_PROB else DEFAULT_BREEDING_LABEL
 
 
 # ------------- ;zoo command with ownership -------------
@@ -4001,6 +4080,170 @@ async def cmd_specieslist(ctx: commands.Context):
         log.exception("Error in ;specieslist")
         await ctx.send("Sorry, I couldn't list species right now.")
 
+    # ---------------- Contraception & Breeding Admin Commands ----------------
+
+    @bot.command(name="contracept")
+    async def contracept_cmd(ctx, *, arg: str = None):
+        """
+        ;contracept <Species>
+        ;contracept <Species> at <Zoo Name>
+        ;contracept <Zoo Name> :: <Species>
+        Applies contraception for that species in your OWNED zoo.
+        """
+        if not arg:
+            await ctx.send("Usage: `;contracept <Species>` (optionally `at <Zoo Name>` or `<Zoo> :: <Species>`)")
+            return
+
+        data = _load_zoo_data()
+        ownership = _get_user_ownership(data, ctx.author.id)
+
+        provided_zoo, sp_part = _parse_house_args(arg)
+        # Resolve zoo via same rules as ;house
+        if provided_zoo:
+            if not _owns_zoo(ownership, provided_zoo):
+                await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
+                return
+            zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
+        else:
+            if len(ownership["zoos"]) == 0:
+                await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
+                return
+            if len(ownership["zoos"]) > 1:
+                await ctx.send("You own multiple zoos. Please specify one: `;contracept <Species> at <Zoo>`.")
+                return
+            zoo = ownership["zoos"][0]
+
+        canonical = _canonical_species_name(sp_part)
+        if not canonical:
+            await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
+            return
+
+        set_contracept(ctx.author.id, zoo, canonical, True)
+        await ctx.send(f"🛑 `{canonical}` is now contracepted in **{zoo}**.")
+
+    @bot.command(name="uncontracept", aliases=["decontracept"])
+    async def uncontracept_cmd(ctx, *, arg: str = None):
+        """
+        ;uncontracept <Species>
+        ;uncontracept <Species> at <Zoo Name>
+        ;uncontracept <Zoo Name> :: <Species>
+        Removes contraception for that species in your OWNED zoo.
+        """
+        if not arg:
+            await ctx.send("Usage: `;uncontracept <Species>` (optionally `at <Zoo Name>` or `<Zoo> :: <Species>`)")
+            return
+
+        data = _load_zoo_data()
+        ownership = _get_user_ownership(data, ctx.author.id)
+
+        provided_zoo, sp_part = _parse_house_args(arg)
+        if provided_zoo:
+            if not _owns_zoo(ownership, provided_zoo):
+                await ctx.send(f"🚫 You don’t own **{provided_zoo}**.")
+                return
+            zoo = _find_cased_zoo_name(ownership, provided_zoo) or provided_zoo
+        else:
+            if len(ownership["zoos"]) == 0:
+                await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
+                return
+            if len(ownership["zoos"]) > 1:
+                await ctx.send("You own multiple zoos. Please specify one: `;uncontracept <Species> at <Zoo>`.")
+                return
+            zoo = ownership["zoos"][0]
+
+        canonical = _canonical_species_name(sp_part)
+        if not canonical:
+            await ctx.send(f"❌ I don’t recognize **{sp_part}**.")
+            return
+
+        set_contracept(ctx.author.id, zoo, canonical, False)
+        await ctx.send(f"✅ Contraception removed for `{canonical}` in **{zoo}**.")
+
+    @bot.command(name="contraceptstatus", aliases=["breedstatus"])
+    async def contracept_status_cmd(ctx, *, zoo_name: str = None):
+        """
+        ;contraceptstatus
+        ;contraceptstatus <Zoo Name>
+        Lists contracepted species for your OWNED zoo.
+        """
+        data = _load_zoo_data()
+        ownership = _get_user_ownership(data, ctx.author.id)
+
+        if zoo_name:
+            if not _owns_zoo(ownership, zoo_name):
+                await ctx.send(f"🚫 You don’t own **{zoo_name}**.")
+                return
+            zoo = _find_cased_zoo_name(ownership, zoo_name) or zoo_name
+        else:
+            if len(ownership["zoos"]) == 0:
+                await ctx.send("You don’t own any zoos — ask an admin to assign you as an owner.")
+                return
+            if len(ownership["zoos"]) > 1:
+                await ctx.send("You own multiple zoos. Use: `;contraceptstatus <Zoo Name>`")
+                return
+            zoo = ownership["zoos"][0]
+
+        cmap = _load_zoo_data().get("contracept", {}).get(str(ctx.author.id), {}).get(zoo, {})
+        if not cmap:
+            await ctx.send(f"No species are contracepted in **{zoo}**.")
+            return
+
+        names = sorted(cmap.keys(), key=lambda s: s.lower())
+        bullet = "\n".join(f"• {n}" for n in names)
+        await ctx.send(f"**Contracepted in {zoo}:**\n{bullet}")
+
+    @bot.command(name="breedset")
+    @commands.has_permissions(manage_guild=True)
+    async def breedset_cmd(ctx, species: str = None, *, label: str = None):
+        """
+        ;breedset <Species> <Very Easy|Easy|Average|Below Average|Difficult|Impossible>
+        Sets the breeding difficulty (global override) for the species card.
+        """
+        if not species or not label:
+            await ctx.send("Usage: `;breedset <Species> <Very Easy|Easy|Average|Below Average|Difficult|Impossible>`")
+            return
+        label = label.strip().title()
+        if label not in BREEDING_PROB:
+            await ctx.send(f"Invalid difficulty `{label}`. Valid: {', '.join(BREEDING_PROB.keys())}")
+            return
+
+        entry, msg = get_entry_or_message(species)
+        if msg:
+            await ctx.send(msg); return
+
+        data = _load_zoo_data()
+        ov = data.setdefault("species_overrides", {})
+        key = entry.get("common") or species
+        node = ov.setdefault(key, {})
+        node["breeding"] = label
+        _save_zoo_data(data)
+        await ctx.send(f"✅ Set breeding difficulty for `{key}` → **{label}**.")
+
+    @bot.command(name="breedchannel")
+    @commands.has_permissions(manage_guild=True)
+    async def breedchannel_cmd(ctx, sub: str = None):
+        """
+        ;breedchannel set   -> set the current channel for Friday birth announcements
+        ;breedchannel show  -> show the current channel
+        """
+        if sub is None:
+            await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
+            return
+        if sub.lower() == "set":
+            set_breeding_channel_for_guild(ctx.guild.id, ctx.channel.id)
+            await ctx.send(f"✅ Birth announcements will post in {ctx.channel.mention}.")
+            return
+        if sub.lower() == "show":
+            cid = get_breeding_channel_for_guild(ctx.guild.id)
+            if cid:
+                ch = ctx.guild.get_channel(cid)
+                await ctx.send(f"📣 Current birth channel: {ch.mention if ch else f'`{cid}` (not found)'}")
+            else:
+                await ctx.send("ℹ️ No birth channel set. Use `;breedchannel set` here.")
+            return
+        await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
+
+    
 # --- Region helpers ----------------------------------------------------------
 _REGION_ALIASES = {
     # canonical: lower-case
@@ -4497,6 +4740,12 @@ async def help_command(ctx):
                 "**;house <Zoo Name> :: <Species>** — Alternate syntax when names contain ‘at’.",
                 "**;unhouse <…>** — Remove a species from your housed list (same argument patterns).",
                 "_Note:_ You can only house species that appear in that zoo’s **;holdings**.",
+                "**;contracept <Species> [at <Zoo>]** — Prevent a housed species from breeding."
+                "**;uncontracept <Species> [at <Zoo>]** — Remove contraception."
+                "**;contraceptstatus [Zoo]** — List contracepted species for your zoo."
+                "**;breedset <Species> <Difficulty>** — Admin: set breeding difficulty."
+                "**;breedchannel set/show** — Admin: set or show the announcement channel."
+                "**;breedrun** — Admin: run a manual breeding roll now."
             ],
         ),
         (
@@ -4578,3 +4827,139 @@ async def zooremove_cmd(ctx, *, name: str):
     except Exception:
         log.exception("Error in ;zooremove")
         await ctx.send("❌ Unexpected error removing the zoo. Check the console logs.")
+
+
+# ---------------- Weekly Breeding Engine ----------------
+
+def _nyc_time(hour: int, minute: int = 0) -> dtime:
+    tz = ZoneInfo("America/New_York") if ZoneInfo else None
+    return dtime(hour=hour, minute=minute, tzinfo=tz)
+
+def _iter_housed_by_user_and_zoo():
+    """
+    Yields (user_id:int, zoo_name:str, species_list:List[str]) for all housed species.
+    """
+    data = _load_zoo_data()
+    for uid, urec in data.get("users", {}).items():
+        zoos = urec.get("zoos", {})
+        for zoo_name, species_list in zoos.items():
+            yield int(uid), zoo_name, list(species_list or [])
+
+async def _run_breeding_once() -> dict[int, list[str]]:
+    """
+    Core roll. Returns {guild_id: [lines...]} but we’ll broadcast to every configured guild.
+    Since your data isn’t tied to guilds, we build one global set of lines
+    then fan it out to all guilds with a configured channel.
+    """
+    lines: list[str] = []
+
+    for user_id, zoo_name, species_list in _iter_housed_by_user_and_zoo():
+        if not species_list:
+            continue
+        for sp in species_list:
+            entry, msg = get_entry_or_message(sp)
+            if msg or not entry:
+                continue
+            entry = get_species_with_overrides(entry)
+
+            # contracept check
+            if is_contracepted(user_id, zoo_name, entry.get("common") or sp):
+                continue
+
+            # (Optional) pair check — you can enhance to require sexed pairs later
+            label = get_breeding_label(entry)
+            prob = BREEDING_PROB.get(label, BREEDING_PROB[DEFAULT_BREEDING_LABEL])
+            if prob <= 0:
+                continue
+            if random.random() <= prob:
+                mention = f"<@{user_id}>"
+                lines.append(f"🍼 **Birth!** `{entry.get('common', sp)}` at **{zoo_name}** (owner {mention}) — difficulty **{label}**")
+
+    # Build per-guild map: broadcast same list to every guild that set a channel
+    by_guild: dict[int, list[str]] = {}
+    data = _load_zoo_data()
+    for gid_str, cid in data.get("breeding_channels", {}).items():
+        gid = int(gid_str)
+        by_guild[gid] = list(lines)
+    return by_guild
+
+@tasks.loop(time=_nyc_time(15, 0))  # 3:00 PM America/New_York daily; we'll gate to Fridays
+async def weekly_breeding_loop():
+    now = discord.utils.utcnow()
+    if ZoneInfo:
+        now_local = now.replace(tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo("America/New_York"))
+        if now_local.weekday() != 4:  # Friday
+            return
+    else:
+        if now.weekday() != 4:
+            return
+
+    by_guild = await _run_breeding_once()
+    for gid, lines in by_guild.items():
+        if not lines:
+            continue
+        ch_id = get_breeding_channel_for_guild(gid)
+        if not ch_id:
+            continue
+        guild = bot.get_guild(gid)
+        if not guild:
+            continue
+        ch = guild.get_channel(ch_id)
+        if not ch:
+            continue
+
+        msg = "\n".join(lines)
+        for chunk in [msg[i:i+1800] for i in range(0, len(msg), 1800)]:
+            await ch.send(f"**Friday Birth Announcements**\n{chunk}")
+        # log
+        for ln in lines:
+            log_birth({
+                "timestamp": str(discord.utils.utcnow()),
+                "guild_id": gid,
+                "channel_id": ch_id,
+                "text": ln,
+            })
+
+@weekly_breeding_loop.before_loop
+async def _before_weekly_breeding():
+    # Wait for the bot to be ready
+    await bot.wait_until_ready()
+
+# Start via on_connect so we don't have to modify your existing on_ready contents
+@bot.event
+async def on_connect():
+    if not weekly_breeding_loop.is_running():
+        weekly_breeding_loop.start()
+
+@bot.command(name="breedrun")
+@commands.has_permissions(manage_guild=True)
+async def breedrun_cmd(ctx):
+    """Manually trigger a breeding roll (posts to the configured channel for this server)."""
+    ch_id = get_breeding_channel_for_guild(ctx.guild.id)
+    if not ch_id:
+        await ctx.send("ℹ️ No birth channel set. Use `;breedchannel set` in the desired channel first.")
+        return
+
+    await ctx.send("Rolling breeding now…")
+    by_guild = await _run_breeding_once()
+    lines = by_guild.get(ctx.guild.id, [])
+    channel = ctx.guild.get_channel(ch_id)
+    if not channel:
+        await ctx.send("Configured channel not found.")
+        return
+    if not lines:
+        await channel.send("No births this roll.")
+        return
+
+    msg = "\n".join(lines)
+    for chunk in [msg[i:i+1800] for i in range(0, len(msg), 1800)]:
+        await channel.send(f"**Birth Announcements (Manual Run)**\n{chunk}")
+        # log
+        for ln in lines:
+            log_birth({
+                "timestamp": str(discord.utils.utcnow()),
+                "guild_id": ctx.guild.id,
+                "channel_id": channel.id,
+                "text": ln,
+            })
+    await ctx.send("Done.")
