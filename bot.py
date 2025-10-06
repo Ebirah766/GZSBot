@@ -326,6 +326,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cercopithecidae",
         "genus": "Macaca",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Rhesus_macaque_%28Macaca_mulatta_mulatta%29%2C_male%2C_Gokarna.jpg",
+        "breeding": "Average",
         "region": "Asia",
         "holdings": {
             "North America": "2.4 - Cube Zoological Park",
@@ -371,6 +372,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Suidae",
         "genus": "Sus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg/1280px-Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg",
+        "breeding": "Average",
         "region": "Europe, Asia",
         "holdings": {
             "North America": "1.1 - Cube Zoological Park",
@@ -488,6 +490,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Strigidae",
         "genus": "Athene",
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/205515041/1200",
+        "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
             "North America": "1.1 - Cube Zoological Park, 0.3 - High Uintahs Zoo",
@@ -511,6 +514,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Viperidae",
         "genus": "Crotalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Adult_Crotalus_adamanteus.jpg/1280px-Adult_Crotalus_adamanteus.jpg",
+        "breeding": "Average",
         "region": "North America",
         "holdings": {
             "North America": "1.0 - Cube Zoological Park",
@@ -538,6 +542,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
         ],
         "image_url": "https://example.com/default.jpg",
+        "breeding": "Difficult",
         "region": "Asia, Africa",
         "holdings": {
             "North America": 0,
