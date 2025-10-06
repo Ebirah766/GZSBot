@@ -10,6 +10,39 @@ from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
 import builtins
 
+# --- Image helpers (keep these above the command) ---------------------------
+def _sanitize_images(images) -> list[str]:
+    out: list[str] = []
+    if isinstance(images, (list, tuple)):
+        for u in images:
+            if isinstance(u, str):
+                u = u.strip()
+                if u and (u.startswith("http://") or u.startswith("https://")):
+                    out.append(u)
+    return out
+
+def build_species_embed(entry: dict, image_index: int = 0, total_images: int | None = None):
+    import discord
+    common = entry.get("common") or entry.get("name") or "Unknown"
+    scientific = entry.get("scientific") or ""
+    info = entry.get("info") or ""
+    images = _sanitize_images(entry.get("images"))
+    total = total_images if total_images is not None else len(images)
+    if total > 0:
+        image_index = max(0, min(image_index, total - 1))
+
+    embed = discord.Embed(title=common, description=info)
+    if scientific:
+        embed.add_field(name="Scientific name", value=scientific, inline=False)
+    regions = entry.get("region")
+    if isinstance(regions, list) and regions:
+        embed.add_field(name="Region(s)", value=", ".join(regions), inline=False)
+    if total > 0:
+        embed.set_image(url=images[image_index])
+    if total > 1:
+        embed.set_footer(text=f"Image {image_index + 1}/{total}")
+    return embed
+
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
@@ -82,6 +115,44 @@ from keep_alive import keep_alive
 import discord
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
+
+# --- SpeciesPager class (needs discord imported) ----------------------------
+class SpeciesPager(discord.ui.View):
+    def __init__(self, entry: dict, start_index: int = 0, timeout: float | None = 300):
+        super().__init__(timeout=timeout)
+        self.entry = entry
+        self.images = _sanitize_images(entry.get("images"))
+        self.total = len(self.images)
+        self.index = 0 if self.total == 0 else max(0, min(start_index, self.total - 1))
+        # Disable nav if 0/1 images — do this AFTER super().__init__ so children exist
+        if self.total <= 1:
+            for child in self.children:
+                if isinstance(child, discord.ui.Button):
+                    child.disabled = True
+
+    def current_embed(self) -> "discord.Embed":
+        return build_species_embed(self.entry, self.index, total_images=self.total)
+
+    async def _safe_edit(self, interaction: "discord.Interaction"):
+        # Handle double-respond edge cases gracefully
+        try:
+            await interaction.response.edit_message(embed=self.current_embed(), view=self)
+        except discord.InteractionResponded:
+            await interaction.message.edit(embed=self.current_embed(), view=self)
+
+    @discord.ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary)
+    async def _prev(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
+        if self.total == 0:
+            return
+        self.index = (self.index - 1) % self.total
+        await self._safe_edit(interaction)
+
+    @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary)
+    async def _next(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
+        if self.total == 0:
+            return
+        self.index = (self.index + 1) % self.total
+        await self._safe_edit(interaction)
 
 # --- Intents -----------------------------------------------------------------
 intents = discord.Intents.default()
@@ -2929,44 +3000,6 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
             e.set_image(url=entry["image_url"])
 
     return e
-
-# >>> NEW: minimal pager view (only shows when species has multiple images) <<<
-        class SpeciesPager(discord.ui.View):
-            def __init__(self, entry: dict, start_index: int = 0, timeout: float | None = 180):
-                super().__init__(timeout=timeout)
-                self.entry = entry
-                self.images = _sanitize_images(entry.get("images"))
-                self.total = len(self.images)
-                # guard against empty image lists
-                self.index = 0 if self.total == 0 else max(0, min(start_index, self.total - 1))
-                # Disable buttons if only 0/1 images
-                disabled = (self.total <= 1)
-                self.prev_button.disabled = disabled
-                self.next_button.disabled = disabled
-
-            def current_embed(self) -> "discord.Embed":
-                return build_species_embed(self.entry, self.index, total_images=self.total)
-
-            async def _update(self, interaction: "discord.Interaction"):
-                await interaction.response.edit_message(embed=self.current_embed(), view=self)
-
-            @discord.ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary, row=0)
-            async def prev_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-                if self.total == 0:
-                    return
-                # wrap backward
-                self.index = (self.index - 1) % self.total
-                await self._update(interaction)
-
-            @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary, row=0)
-            async def next_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-                if self.total == 0:
-                    return
-                # wrap forward
-                self.index = (self.index + 1) % self.total
-                await self._update(interaction)
-
-
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
 # ---------- Persistence ----------
