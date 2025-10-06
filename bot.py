@@ -265,6 +265,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Panthera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
+        "breeding_difficulty": "Average",
         "holdings": {
             "Africa": "Widespread in zoos",
             "Europe": "Many major zoos",
@@ -4819,6 +4820,7 @@ async def zooremove_cmd(ctx, *, name: str):
 
 
 # ---------------- Weekly Breeding Engine ----------------
+import random  # >>> ADDED: ensure random is available in this block
 
 def _nyc_time(hour: int, minute: int = 0) -> dtime:
     tz = ZoneInfo("America/New_York") if ZoneInfo else None
@@ -4855,14 +4857,27 @@ async def _run_breeding_once() -> dict[int, list[str]]:
             if is_contracepted(user_id, zoo_name, entry.get("common") or sp):
                 continue
 
+            # >>> CHANGED: Prefer per-species override if present
             # (Optional) pair check — you can enhance to require sexed pairs later
-            label = get_breeding_label(entry)
+            override_label = (entry.get("breeding_difficulty") or "").strip()
+            if override_label:
+                label = override_label
+            else:
+                label = get_breeding_label(entry)  # existing logic (fallback)
+                if not label:
+                    label = DEFAULT_BREEDING_LABEL
+
             prob = BREEDING_PROB.get(label, BREEDING_PROB[DEFAULT_BREEDING_LABEL])
             if prob <= 0:
                 continue
+
             if random.random() <= prob:
                 mention = f"<@{user_id}>"
-                lines.append(f"🍼 **Birth!** `{entry.get('common', sp)}` at **{zoo_name}** (owner {mention}) — difficulty **{label}**")
+                # include whether it was overridden for clarity
+                suffix = " (override)" if override_label else ""
+                lines.append(
+                    f"🍼 **Birth!** `{entry.get('common', sp)}` at **{zoo_name}** (owner {mention}) — difficulty **{label}**{suffix}"
+                )
 
     # Build per-guild map: broadcast same list to every guild that set a channel
     by_guild: dict[int, list[str]] = {}
@@ -5025,11 +5040,17 @@ async def breeddebug_cmd(ctx):
                         lines.append(f"  🚫 `{cname}` is contracepted → skipped.")
                         continue
 
-                    label = get_breeding_label(entry)
+                    # >>> CHANGED: reflect species-level override in debug
+                    override_label = (entry.get("breeding_difficulty") or "").strip()
+                    if override_label:
+                        label = override_label
+                    else:
+                        label = get_breeding_label(entry) or DEFAULT_BREEDING_LABEL
+
                     prob = BREEDING_PROB.get(label, BREEDING_PROB[DEFAULT_BREEDING_LABEL])
                     if prob <= 0:
                         skipped_prob0 += 1
-                        lines.append(f"  0️⃣ `{cname}` difficulty **{label}** (p=0) → skipped.")
+                        lines.append(f"  0️⃣ `{cname}` difficulty **{label}** (p=0){' [override]' if override_label else ''} → skipped.")
                         continue
 
                     rolled += 1
@@ -5037,7 +5058,10 @@ async def breeddebug_cmd(ctx):
                     ok = roll <= prob
                     if ok:
                         hits += 1
-                    lines.append(f"  🎲 `{cname}` diff **{label}** p={prob:.2f} roll={roll:.3f} → {'BIRTH' if ok else 'no'}")
+                    lines.append(
+                        f"  🎲 `{cname}` diff **{label}**{' [override]' if override_label else ''} "
+                        f"p={prob:.2f} roll={roll:.3f} → {'BIRTH' if ok else 'no'}"
+                    )
 
         summary = (
             "\n— Summary —\n"
