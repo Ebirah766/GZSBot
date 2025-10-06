@@ -2931,40 +2931,40 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     return e
 
 # >>> NEW: minimal pager view (only shows when species has multiple images) <<<
-        class SpeciesPager(discord.ui.View):
-            def __init__(self, entry: dict, start_index: int = 0, timeout: float | None = 180):
-                super().__init__(timeout=timeout)
-                self.entry = entry
-                self.images = _sanitize_images(entry.get("images"))
-                self.total = len(self.images)
-                # guard against empty image lists
-                self.index = 0 if self.total == 0 else max(0, min(start_index, self.total - 1))
-                # Disable buttons if only 0/1 images
-                disabled = (self.total <= 1)
-                self.prev_button.disabled = disabled
-                self.next_button.disabled = disabled
+class SpeciesPager(discord.ui.View):
+    def __init__(self, entry: dict, start_index: int = 0, timeout: float | None = 180):
+        super().__init__(timeout=timeout)
+        self.entry = entry
+        self.images = _sanitize_images(entry.get("images"))
+        self.total = len(self.images)
+        # guard against empty image lists
+        self.index = 0 if self.total == 0 else max(0, min(start_index, self.total - 1))
+        # Disable buttons if only 0/1 images
+        disabled = (self.total <= 1)
+        self.prev_button.disabled = disabled
+        self.next_button.disabled = disabled
 
-            def current_embed(self) -> "discord.Embed":
-                return build_species_embed(self.entry, self.index, total_images=self.total)
+    def current_embed(self) -> "discord.Embed":
+        return build_species_embed(self.entry, self.index, total_images=self.total)
 
-            async def _update(self, interaction: "discord.Interaction"):
-                await interaction.response.edit_message(embed=self.current_embed(), view=self)
+    async def _update(self, interaction: "discord.Interaction"):
+        await interaction.response.edit_message(embed=self.current_embed(), view=self)
 
-            @discord.ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary, row=0)
-            async def prev_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-                if self.total == 0:
-                    return
-                # wrap backward
-                self.index = (self.index - 1) % self.total
-                await self._update(interaction)
+    @discord.ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary, row=0)
+    async def prev_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
+        if self.total == 0:
+            return
+        # wrap backward
+        self.index = (self.index - 1) % self.total
+        await self._update(interaction)
 
-            @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary, row=0)
-            async def next_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-                if self.total == 0:
-                    return
-                # wrap forward
-                self.index = (self.index + 1) % self.total
-                await self._update(interaction)
+    @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary, row=0)
+    async def next_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
+        if self.total == 0:
+            return
+        # wrap forward
+        self.index = (self.index + 1) % self.total
+        await self._update(interaction)
 
 
 
