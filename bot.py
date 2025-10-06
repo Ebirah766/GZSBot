@@ -3395,7 +3395,7 @@ BREEDING_PROB = {
     "Very Easy": 0.30,
     "Easy": 0.20,
     "Average": 0.10,
-    "Below Average": 0.6,
+    "Below Average": 0.06,
     "Difficult": 0.01,
     "Impossible": 0.00,
 }
