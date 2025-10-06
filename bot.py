@@ -3758,15 +3758,14 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
                     await ctx.send(msg)
                     return
 
-                # --- FIX 1: sanitize and cache-bust image URLs so page 4+ loads reliably ---
+                # --- sanitize + cache-bust so 4th+ image loads ---
                 raw_images = entry.get("images") or []
 
-                def _is_http_url(u: Any) -> bool:
+                def _is_http_url(u):
                     return isinstance(u, str) and u.strip().lower().startswith(("http://", "https://"))
 
-                # keep order but drop empties/dupes/non-http
-                seen: Set[str] = set()
-                clean_images: List[str] = []
+                seen = set()
+                clean_images = []
                 for u in raw_images:
                     if not _is_http_url(u):
                         continue
@@ -3776,30 +3775,22 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
                     seen.add(key)
                     clean_images.append(key)
 
-                def _cache_bust(url: str, idx: int) -> str:
-                    # Appends a tiny query so Discord re-fetches instead of reusing a cached image.
-                    # Works for distinct pages, including the 4th+ image.
+                def _cache_bust(url, idx):
                     return f"{url}&_cb={idx}" if ("?" in url) else f"{url}?_cb={idx}"
 
                 processed_images = [_cache_bust(u, i) for i, u in enumerate(clean_images)]
 
-                # Store back so any downstream pager uses the cache-busted list
+                # keep entry shape the same so your pager can read it
                 entry["images"] = processed_images
 
-                # Build the first embed and ensure its image matches our processed list
                 embed = build_species_embed(entry, image_index=0)
                 if processed_images:
                     try:
-                        # Force the embed to the exact URL we want (even if builder set one)
                         embed.set_image(url=processed_images[0])
                     except Exception:
-                        # Non-fatal: continue with whatever the builder provided
                         pass
 
-                # --- FIX 2: robust pagination gate (any length > 1 will paginate) ---
                 if len(processed_images) > 1:
-                    # Assumes SpeciesPager reads entry["images"] each turn.
-                    # If your SpeciesPager uses an internal list, ensure it uses entry["images"].
                     view = SpeciesPager(entry=entry, start_index=0)
                     await ctx.send(embed=embed, view=view)
                 else:
@@ -3808,6 +3799,7 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
             except Exception:
                 log.exception("Error in ;species")
                 await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
+
 
 
 
