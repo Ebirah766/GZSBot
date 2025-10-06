@@ -2533,7 +2533,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "Bubble-Tip Anemone": {
                         "common": "Bubble-Tip Anemone",
                         "scientific": "Entacmaea quadricolor",
-                        "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, red, and green.",
+                        "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
                         "type": "Invertebrate",
                         "order": "Actiniaria",
                         "family": "Actiniidae",
@@ -2543,13 +2543,12 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 {"label": "Green form", "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
                                 {"label": "Pink form", "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
                                 {"label": "Orange form", "url": "https://www.sealifebase.se/images/species/Enqua_uk.jpg"},
-                                
 
                             ],
                         "image_url": "https://example.com/default.jpg",
-                        "region": "Asia",
+                        "region": "Asia, Africa, Oceania",
                         "holdings": {
-                            "North America": "50 [Wild type] - New York Aquarium",
+                            "North America": "4 [Rose form] 4 [Green form] 4 [Pink form] 4 [Orange form] - New York Aquarium",
                             "Europe": 0,
                             "Asia": 0,
                             "Africa": 0,
@@ -2557,7 +2556,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                             "Oceania": 0,
                         },
                         "institutions": {
-                            "New York Aquarium": "50 [Wild type]"
+                            "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
         },
     }
 }
