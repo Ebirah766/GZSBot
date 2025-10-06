@@ -2885,87 +2885,41 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
 
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
-# >>> CHANGED: add image_index param + optional images pager support <<<
-def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.Embed:
-    title = entry.get("common", "Unknown")
-    sci = entry.get("scientific", "Unknown")
-    e = discord.Embed(title=title, description=f"*{sci}*", color=discord.Color.blurple())
-    for label in ["Type", "Order", "Family", "Genus"]:
-        val = entry.get(label.lower())
-        if val:
-            e.add_field(name=label, value=val, inline=True)
-
-    # <<< NEW: Regions line drawn from user-maintained entry['region'] >>>
-    region_list = _region_list(entry)
-    region_text = ", ".join(region_list) if region_list else "_None set_"
-    e.add_field(name="Region(s)", value=region_text, inline=False)
-
-    if entry.get("info"):
-        e.add_field(name="About", value=entry["info"], inline=False)
-
-    # --- Holdings by region (bulleted) ---
-    holdings = entry.get("holdings") or {}
-    any_listed = False
-    for region in REGION_ORDER:
-        value = holdings_to_bullets(holdings.get(region))
-        if value != "—":
-            any_listed = True
-            e.add_field(name=region, value=value, inline=False)
-
-    if not any_listed:
-        e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
-
-    images = entry.get("images") or []
-    if isinstance(images, list) and len(images) > 0:
-        idx = max(0, min(image_index, len(images) - 1))
-        img = images[idx]
-        url = img.get("url")
-        if url:
-            e.set_image(url=url)
-            label = img.get("label", "Variant")
-            e.set_footer(text=f"{label} • {idx+1}/{len(images)}")
-    else:
-        if entry.get("image_url"):
-            e.set_image(url=entry["image_url"])
-
-    return e
-
 # >>> NEW: minimal pager view (only shows when species has multiple images) <<<
-        class SpeciesPager(discord.ui.View):
-            def __init__(self, entry: dict, start_index: int = 0, timeout: float | None = 180):
-                super().__init__(timeout=timeout)
-                self.entry = entry
-                self.images = _sanitize_images(entry.get("images"))
-                self.total = len(self.images)
-                # guard against empty image lists
-                self.index = 0 if self.total == 0 else max(0, min(start_index, self.total - 1))
-                # Disable buttons if only 0/1 images
-                disabled = (self.total <= 1)
-                self.prev_button.disabled = disabled
-                self.next_button.disabled = disabled
+class SpeciesPager(discord.ui.View):
+    def __init__(self, entry: dict, start_index: int = 0, timeout: float | None = 180):
+        super().__init__(timeout=timeout)
+        self.entry = entry
+        self.images = _sanitize_images(entry.get("images"))
+        self.total = len(self.images)
+        # guard against empty image lists
+        self.index = 0 if self.total == 0 else max(0, min(start_index, self.total - 1))
+        # Disable buttons if only 0/1 images
+        disabled = (self.total <= 1)
+        self.prev_button.disabled = disabled
+        self.next_button.disabled = disabled
 
-            def current_embed(self) -> "discord.Embed":
-                return build_species_embed(self.entry, self.index, total_images=self.total)
+    def current_embed(self) -> "discord.Embed":
+        return build_species_embed(self.entry, self.index, total_images=self.total)
 
-            async def _update(self, interaction: "discord.Interaction"):
-                await interaction.response.edit_message(embed=self.current_embed(), view=self)
+    async def _update(self, interaction: "discord.Interaction"):
+        await interaction.response.edit_message(embed=self.current_embed(), view=self)
 
-            @discord.ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary, row=0)
-            async def prev_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-                if self.total == 0:
-                    return
-                # wrap backward
-                self.index = (self.index - 1) % self.total
-                await self._update(interaction)
+    @discord.ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary, row=0)
+    async def prev_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
+        if self.total == 0:
+            return
+        # wrap backward
+        self.index = (self.index - 1) % self.total
+        await self._update(interaction)
 
-            @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary, row=0)
-            async def next_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
-                if self.total == 0:
-                    return
-                # wrap forward
-                self.index = (self.index + 1) % self.total
-                await self._update(interaction)
-
+    @discord.ui.button(label="Next ▶", style=discord.ButtonStyle.secondary, row=0)
+    async def next_button(self, interaction: "discord.Interaction", button: "discord.ui.Button"):
+        if self.total == 0:
+            return
+        # wrap forward
+        self.index = (self.index + 1) % self.total
+        await self._update(interaction)
 
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
@@ -3801,34 +3755,27 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # ============================  END ADDED: ZOO/OWNERSHIP  ============================
 
 # --- Commands ----------------------------------------------------------------
-@bot.command(name="species", aliases=["card"])
-async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
-    """
-    Render a rich embed UI card for a species with image, taxonomy, description,
-    and holdings by region.
-    """
-    try:
-        if not name or not str(name).strip():
-            await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
-            return
-        
-        entry, msg = get_entry_or_message(name)
-        if msg:
-            await ctx.send(msg)
-            return
-        
-        images = entry.get("images") or []
-        embed = build_species_embed(entry, image_index=0)
-        
-        if isinstance(images, list) and len(images) > 1:
-            view = SpeciesPager(entry=entry, start_index=0)
-            await ctx.send(embed=embed, view=view)
-        else:
-            await ctx.send(embed=embed)
-        
-    except Exception:
-        log.exception("Error in ;species")
-        await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
+        @bot.command(name="species", aliases=["card"])
+        async def cmd_card(ctx: commands.Context, *, name: str):
+            try:
+                entry, msg = get_entry_or_message(name)
+                if msg:
+                    await ctx.send(msg)
+                    return
+
+                images = _sanitize_images(entry.get("images"))
+                embed = build_species_embed(entry, image_index=0, total_images=len(images))
+
+                # Only add the pager if there are multiple images to flip through
+                if len(images) > 1:
+                    view = SpeciesPager(entry=entry, start_index=0)
+                    await ctx.send(embed=embed, view=view)
+                else:
+                    await ctx.send(embed=embed)
+
+            except Exception:
+                log.exception("Error in ;species")
+                await ctx.send(f"Sorry, something went wrong building the card for **{name}**.")
 
 
 @bot.command(name="holdings")
