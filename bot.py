@@ -87,6 +87,172 @@ from discord.ext.commands import CommandNotFound
 intents = discord.Intents.default()
 intents.message_content = True
 
+# ---------- Image utilities + pager (drop-in) ----------
+import discord
+from discord import ui
+
+def _coerce_image_item(item):
+    """
+    Accepts either a string URL or a dict like {"url": "...", "caption": "..."}.
+    Returns (url, caption) where caption may be None.
+    """
+    if isinstance(item, str):
+        return item, None
+    if isinstance(item, dict):
+        url = item.get("url") or item.get("image") or item.get("src")
+        cap = item.get("caption") or item.get("title") or item.get("alt")
+        return url, cap
+    return None, None
+
+def build_species_embed(entry: dict, image_index: int = 0) -> discord.Embed:
+    """
+    Builds the species embed and sets the image at image_index if present.
+    NOTE: No hard cap (no [:3], no min(index, 2)) – supports arbitrary count.
+    """
+    name = entry.get("common") or entry.get("name") or entry.get("scientific") or "Unknown species"
+    scientific = entry.get("scientific")
+    info = entry.get("info") or entry.get("description") or ""
+    type_ = entry.get("type") or entry.get("class") or ""
+    order = entry.get("order") or ""
+    family = entry.get("family") or ""
+    genus = entry.get("genus") or ""
+
+    embed = discord.Embed(title=name, description=info or discord.Embed.Empty, color=0x2b7ce5)
+    if scientific:
+        embed.add_field(name="Scientific", value=scientific, inline=True)
+    if type_:
+        embed.add_field(name="Type", value=type_, inline=True)
+    if order:
+        embed.add_field(name="Order", value=order, inline=True)
+    if family:
+        embed.add_field(name="Family", value=family, inline=True)
+    if genus:
+        embed.add_field(name="Genus", value=genus, inline=True)
+
+    # Try to show an image at the requested index
+    images = entry.get("images") or []
+    if isinstance(images, list) and len(images) > 0:
+        # clamp index safely (no arbitrary limit)
+        i = max(0, min(image_index, len(images) - 1))
+        url, cap = _coerce_image_item(images[i])
+        if url:
+            embed.set_image(url=url)
+            # helpful footer with index and optional caption
+            footer_parts = [f"Image {i+1}/{len(images)}"]
+            if cap:
+                footer_parts.append(str(cap))
+            embed.set_footer(text=" — ".join(footer_parts))
+
+    # Optional: thumbnail if provided on entry
+    thumb = entry.get("thumbnail") or entry.get("image_url")
+    if thumb and not embed.thumbnail.url:
+        try:
+            embed.set_thumbnail(url=thumb)
+        except Exception:
+            pass
+
+    return embed
+
+class JumpToIndexModal(ui.Modal, title="Jump to image #"):
+    idx = ui.TextInput(label="Image number (1-based)", placeholder="e.g., 17", required=True, max_length=6)
+
+    def __init__(self, pager):
+        super().__init__()
+        self.pager = pager
+
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            n = int(str(self.idx.value).strip())
+        except Exception:
+            await interaction.response.send_message("Please enter a valid integer.", ephemeral=True)
+            return
+        if not (1 <= n <= len(self.pager.images)):
+            await interaction.response.send_message(f"Out of range. Enter 1..{len(self.pager.images)}.", ephemeral=True)
+            return
+        self.pager.index = n - 1
+        await self.pager._update(interaction)
+
+class SpeciesPager(ui.View):
+    """
+    Prev/Next buttons + a Jump select for the first 25 images.
+    For >25 images, use the 'Go to #' button to open a modal.
+    """
+    def __init__(self, entry: dict, start_index: int = 0, *, timeout: float = 300):
+        super().__init__(timeout=timeout)
+        self.entry = entry
+        self.images = entry.get("images") or []
+        self.index = max(0, min(start_index, max(0, len(self.images) - 1)))
+
+        # Dynamically add a select if we have at least 2 images
+        if len(self.images) >= 2:
+            # Build up to 25 options (Discord limit per select)
+            max_options = min(25, len(self.images))
+            opts = []
+            for i in range(max_options):
+                url, cap = _coerce_image_item(self.images[i])
+                label = f"Image {i+1}"
+                if cap:
+                    # keep labels compact
+                    label = f"{i+1}: {str(cap)[:80]}"
+                opts.append(discord.SelectOption(label=label, value=str(i), default=(i == self.index)))
+            self.select = ui.Select(placeholder="Jump to image...", min_values=1, max_values=1, options=opts)
+            self.select.callback = self._on_select  # wire callback
+            self.add_item(self.select)
+
+        # Add controls
+        if len(self.images) >= 2:
+            self.add_item(self.prev_button)
+            self.add_item(self.next_button)
+            if len(self.images) > 25:
+                self.add_item(self.goto_button)  # modal button for large sets
+
+    async def _on_select(self, interaction: discord.Interaction):
+        try:
+            chosen = int(self.select.values[0])
+        except Exception:
+            await interaction.response.send_message("Invalid selection.", ephemeral=True)
+            return
+        self.index = chosen
+        await self._update(interaction)
+
+    @ui.button(label="◀ Prev", style=discord.ButtonStyle.secondary)
+    async def prev_button(self, interaction: discord.Interaction, button: ui.Button):
+        if not self.images:
+            await interaction.response.defer()
+            return
+        self.index = (self.index - 1) % len(self.images)
+        await self._update(interaction)
+
+    @ui.button(label="Next ▶", style=discord.ButtonStyle.secondary)
+    async def next_button(self, interaction: discord.Interaction, button: ui.Button):
+        if not self.images:
+            await interaction.response.defer()
+            return
+        self.index = (self.index + 1) % len(self.images)
+        await self._update(interaction)
+
+    @ui.button(label="Go to #", style=discord.ButtonStyle.primary)
+    async def goto_button(self, interaction: discord.Interaction, button: ui.Button):
+        # Only show when >25 images; harmless otherwise.
+        modal = JumpToIndexModal(self)
+        await interaction.response.send_modal(modal)
+
+    async def _update(self, interaction: discord.Interaction):
+        """Rebuild the embed for the current index and edit the message."""
+        embed = build_species_embed(self.entry, image_index=self.index)
+
+        # Keep the select's defaults in sync (if present)
+        for item in self.children:
+            if isinstance(item, ui.Select):
+                for opt in item.options:
+                    opt.default = (opt.value == str(self.index))
+        try:
+            await interaction.response.edit_message(embed=embed, view=self)
+        except discord.InteractionResponded:
+            # Fallback if we've already responded elsewhere in the flow
+            await interaction.edit_original_response(embed=embed, view=self)
+
+
 # --- Bot ---------------------------------------------------------------------
 bot = commands.Bot(command_prefix=";", intents=intents)
 log.info("Python exe: %s", sys.executable)
