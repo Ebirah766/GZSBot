@@ -2711,7 +2711,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "Red-Tailed Catfish": {
                                 "common": "Red-Tailed Catfish",
                                 "scientific": "Phractocephalus hemioliopterus",
-                                "info": "One of the world's largest catifsh, the red-tailed catfish is found exclusively in the Amazon River and its associated rivers. They are territorial predators who feed on a variety of different animals, both aquatic and terrestrial. They have been introduced to several tropical countries outside of their native range.",
+                                "info": "One of the world's largest catfish, the red-tailed catfish is found exclusively in the Amazon River and its associated rivers. They are territorial predators who feed on a variety of different animals, both aquatic and terrestrial. They have been introduced to several tropical countries outside of their native range.",
                                 "type": "Fish",
                                 "order": "Siluriformes",
                                 "family": "Pimelodidae",
@@ -3155,6 +3155,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Mint Park Zoo",
     "Shropshire Hills Zoo",
     "Sapporo Reptile Center and National Aquarium",
+    "Wasser Wunder Welt",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
