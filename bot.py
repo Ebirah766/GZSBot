@@ -5750,35 +5750,28 @@ async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
 async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
     """
     ;unhoused <zoo>
-    Show species held by other facilities but not yet housed in the specified zoo.
+    Show all species *not yet* housed in the specified zoo.
     """
     data = _load_zoo_data()
-    
-    # Get species housed in THIS zoo
-    this_zoo_species: set[str] = set()
-    # Get species housed in ANY zoo (all facilities)
-    all_facilities_species: set[str] = set()
-    
+    # Use your master species dict
+    all_species = set(species_data.keys())
+
+    housed_species: set[str] = set()
     for _uid, urec in data.get("users", {}).items():
         for zname, species_list in (urec.get("zoos", {}) or {}).items():
-            if isinstance(species_list, list):
-                valid_species = [s for s in species_list if isinstance(s, str) and s.strip()]
-                # Check if this is the target zoo
-                if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
-                    this_zoo_species.update(valid_species)
-                # Add to all facilities regardless
-                all_facilities_species.update(valid_species)
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
 
-    # Unhoused = species in other facilities but not in this zoo
-    unhoused = sorted(all_facilities_species - this_zoo_species, key=str.lower)
+    unhoused = sorted(all_species - housed_species, key=str.lower)
     if not unhoused:
-        await ctx.send(f"No species from other facilities are missing in **{zoo_name}**!")
+        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
         return
 
     lines = [f"• {sp}" for sp in unhoused]
     await _send_list_or_file(
         ctx,
-        title=f"**Species in other facilities but not in {zoo_name}:**",
+        title=f"**Unhoused species in {zoo_name}:**",
         lines=lines,
         filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
         inline_limit=100,  # change threshold here if you like
