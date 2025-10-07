@@ -5715,16 +5715,6 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
-if __name__ == "__main__":
-    # >>> ADDED: start keep-alive web server before running the bot <<<
-    keep_alive()
-
-    token = os.getenv("DISCORD_TOKEN")
-    if not token:
-        log.error("DISCORD_TOKEN not set in environment or .env")
-        sys.exit(1)
-    bot.run(token)
-
 @bot.command(name="housed")
 async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
     """
@@ -5786,3 +5776,14 @@ async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
         filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
         inline_limit=100,  # change threshold here if you like
     )
+
+
+if __name__ == "__main__":
+    # >>> ADDED: start keep-alive web server before running the bot <<<
+    keep_alive()
+
+    token = os.getenv("DISCORD_TOKEN")
+    if not token:
+        log.error("DISCORD_TOKEN not set in environment or .env")
+        sys.exit(1)
+    bot.run(token)
