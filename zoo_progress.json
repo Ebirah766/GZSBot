@@ -3,7 +3,18 @@
     "385221957550866443": {
       "active_zoo": null,
       "zoos": {
-        "New York Aquarium": []
+        "New York Aquarium": [
+          "Spotfin Betta",
+          "Krabi Mouth-Brooding Betta",
+          "Cherry Shrimp",
+          "Bee Shrimp",
+          "China Rockfish",
+          "Copper Rockfish",
+          "Swell Shark",
+          "Bluefin Nothobranchius",
+          "Redtail Nothobranchius",
+          "Giant Green Anemone"
+        ]
       }
     },
     "334493340282126337": {
@@ -149,7 +160,15 @@
   },
   "contracept": {
     "385221957550866443": {
-      "New York Aquarium": {}
+      "New York Aquarium": {
+        "Redtail Nothobranchius": true,
+        "Bluefin Nothobranchius": true,
+        "Swell Shark": true,
+        "Spotfin Betta": true,
+        "Krabi Mouth-Brooding Betta": true,
+        "Cherry Shrimp": true,
+        "Bee Shrimp": true
+      }
     }
   },
   "breeding_channels": {

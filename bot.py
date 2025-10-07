@@ -1105,19 +1105,19 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             "Asia": 0,
-            "Europe": "1.2 - Mint Park Zoo",
+            "Europe": "1.2 (vellerosus) - Mint Park Zoo",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Mint Park Zoo": "1.2"
+            "Mint Park Zoo": "1.2 [vellerosus]"
         }
     },
-    "Seba's Short-Tailed bat": {
-        "common": "Seba's Short-Tailed bat",
+    "Seba's Short-Tailed Bat": {
+        "common": "Seba's Short-Tailed Bat",
         "scientific": "Carollia perspicillata",
-        "info": "The Seba's short-taield bat is a common and widespread bat species that feeds on fruit. It is a generalist and will also consume nectar, pollen, and insects. They have a long lifespan, living up to 10 years.",
+        "info": "The Seba's short-tailed bat is a common and widespread bat species that feeds on fruit. It is a generalist and will also consume nectar, pollen, and insects. They have a long lifespan, living up to 10 years.",
         "type": "Mammal",
         "order": "Chiroptera",
         "family": "Phyllostomidae",
@@ -1144,7 +1144,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "type": "Mammal",
         "order": "Cingulata",
         "family": "Dasypodidae",
-        "genus": "Carollia",
+        "genus": "Dasypus",
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88373350/original.jpeg",
         "breeding": "Below Average",
         "region": "North America, South America",
@@ -2729,6 +2729,483 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 },
                                 "institutions": {
                                 "Wasser Wunder Welt": "4.0"
+
+                                    }
+                                    },
+
+                                    "White-Blotched River Ray": {
+                                    "common": "White-Blotched River Ray",
+                                    "scientific": "Potamotrygon leopoldi",
+                                    "info": "A freshwater stingray endemic to the Xingu River basin in Brazil, the white-blotched river ray is highly prized in the aquarium trade, where it is often bred for specific traits like size and coloration. In the wild, they live in sandy environments, burying themselves in the sand for protection.",
+                                    "type": "Fish",
+                                    "order": "Myliobatiformes",
+                                    "family": "Potamotrygonidae",
+                                    "genus": "Potamotrygon",
+                                    "image_url": "https://www.zoochat.com/community/media/leopolds-freshwater-ray-potamotrygon-leopoldi.342983/full?d=1480003013",
+                                    "breeding": "Difficult",
+                                    "region": "South America",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "3.3 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "3.3"
+
+                                        }
+                                        },
+                                        
+                                    "Ripsaw Catfish": {
+                                    "common": "Ripsaw Catfish",
+                                    "scientific": "Oxydoras niger",
+                                    "info": "A large catfish native to the greater Amazon basin, the ripsaw catfish has recently been upgraded to Endangered on the IUCN Red List, due to overfishing and the damming of rivers needed for spawning. They have very strong bony body armor which protects them from external threats.",
+                                    "type": "Fish",
+                                    "order": "Siluriformes",
+                                    "family": "Doradidae",
+                                    "genus": "Oxydoras",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Oxydoras_niger_-_Porte_doree_-_0178.jpg/1280px-Oxydoras_niger_-_Porte_doree_-_0178.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "South America",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "2.0 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "2.0"
+
+                                        }
+                                        },
+
+                                    "Electric Eel": {
+                                    "common": "Electric Eel",
+                                    "scientific": "Electrophorus electricus",
+                                    "info": "The best-known electric eel, the electric eel was once a complex of multiple cryptic species, but it was split into multiple in 2019. This nominal species is restricted to the Guiana Shield, and can deliver an electric shock of up to 480 volts.",
+                                    "type": "Fish",
+                                    "order": "Gymnotiformes",
+                                    "family": "Gymnotidae",
+                                    "genus": "Electrophorus",
+                                    "image_url": "https://www.monaconatureencyclopedia.com/wp-content/uploads/2020/06/6-Electrophorus-electricus.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "South America",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "0.3 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "0.3"
+
+                                        }
+                                        },
+                                        
+                                        "Tambaqui": {
+                                        "common": "Tambaqui",
+                                        "scientific": "Colossoma macropomum",
+                                        "info": "The tambaqui, also known as the black pacu, is a large freshwater fish native to the Amazon and Orinoco river basins of South America. Their main diet is fruits and seeds, witth their teeth being evolved specifically to crush tough food so it is easier to swallow.",
+                                        "type": "Fish",
+                                        "order": "Characiformes",
+                                        "family": "Serrasalmidae",
+                                        "genus": "Colossoma",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Colossoma_macropomum_01.jpg/1920px-Colossoma_macropomum_01.jpg",
+                                        "breeding": "Impossible",
+                                        "region": "South America",
+                                        "holdings": {
+                                        "North America": 0,
+                                        "Asia": 0,
+                                        "Europe": "6.0 - Wasser Wunder Welt",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "Wasser Wunder Welt": "6.0"
+
+                                            }
+                                            },
+                                            
+                                    "Iridescent Shark": {
+                                    "common": "Iridescent Shark",
+                                    "scientific": "Pangasianodon hypophthalmus",
+                                    "info": "A large pelagic catfish found in Southeast Asia, the iridescent shark gets its name from its sharklike appearance and iridescence on its scales. They are often sold in pet stores as juveniles or subadults, but their max size of 4.3ft makes it difficult for anyone but the most dedicated aquarist or public aquarium to hold properly.",
+                                    "type": "Fish",
+                                    "order": "Siluriformes",
+                                    "family": "Pangasiidae",
+                                    "genus": "Pangasianodon",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/414070.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Asia",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "1.1 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "1.1"
+
+                                        }
+                                        },
+
+                                    "Dwarf Pufferfish": {
+                                    "common": "Dwarf Pufferfish",
+                                    "scientific": "Carinotetraodon travancoricus",
+                                    "info": "One of the smallest pufferfish species, the dwarf pufferfish, also known as the pea pufferfish, is a vulnerable species that can be found exclusively in coastal swamps and rivers of southwestern India. They feed on invertebrates such as insect larvae and crustaceans, living in large schools that disperse during the rainy season.",
+                                    "type": "Fish",
+                                    "order": "Tetraodontiformes",
+                                    "family": "Tetraodontidae",
+                                    "genus": "Carinotetraodon",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/388538.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "Asia",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "16 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "16"
+
+                                        }
+                                        },
+                                        
+                                    "Banded Archerfish": {
+                                    "common": "Banded Archerfish",
+                                    "scientific": "Toxotes jaculatrix",
+                                    "info": "This brackish water archerfish is the most common archerfish species found in captivity. As an archerfish, they possess the unique ability amongst fish to spit water at its preferred prey, such as terrestrial insects, to knock them into the water. Interestingly, this is a learned behavior, as young archerfish must watch adults shoot for prey and try it themselves.",
+                                    "type": "Fish",
+                                    "order": "Carangiformes",
+                                    "family": "Toxotidae",
+                                    "genus": "Toxotes",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Toxotes_jaculatrix.jpg/1280px-Toxotes_jaculatrix.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Asia, Oceania",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "20 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "20"
+
+                                        
+                                           }
+                                            },
+
+                                    "Giant Gourami": {
+                                    "common": "Giant Gourami",
+                                    "scientific": "Osphronemus goramy",
+                                    "info": "The giant gourami is one of the largest gourami species. Native to Southeast Asia, it is a voracious herbivore, feeding on aquatic plants relentlessly. They are popular in aquaria but caution is advised due to their large adult size and aggression towards tankmates.",
+                                    "type": "Fish",
+                                    "order": "Anabantiformes",
+                                    "family": "Osphronemidae",
+                                    "genus": "Osphronemus",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Osphronemus_Gourami_%28better%29.png/1280px-Osphronemus_Gourami_%28better%29.png",
+                                    "breeding": "Impossible",
+                                    "region": "Asia",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "3 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "3"
+
+                                        }
+                                        },
+                                        
+                                    "Siberian Sturgeon": {
+                                    "common": "Siberian Sturgeon",
+                                    "scientific": "Huso baerii",
+                                    "info": "This critically endangered species of sturgeon is native to wide swathes of Siberia. Like many sturgeons it is heavily poached in the wild for its valuable roe, which is used to make caviar, and as a result the species is extensively farmed to fuel the demand for the exotic dish.",
+                                    "type": "Fish",
+                                    "order": "Acipenseriformes",
+                                    "family": "Acipenseridae",
+                                    "genus": "Huso",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/417067.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "Asia",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "2.2 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "2.2"
+
+                                        }
+                                        },
+                                        
+                                    "Wels Catfish": {
+                                    "common": "Wels Catfish",
+                                    "scientific": "Silurus glanis",
+                                    "info": "The Wels catfish is one of the largest catfish species in the world. As a riverine apex predator, they have a voracious appetite, and have been known to eat pretty much anything that fits in their mouths, from worms to nutrias and even invasive clams.",
+                                    "type": "Fish",
+                                    "order": "Acipenseriformes",
+                                    "family": "Acipenseridae",
+                                    "genus": "Huso",
+                                    "image_url": "https://www.monaconatureencyclopedia.com/wp-content/uploads/2018/01/1_silurus_glanis.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Europe, Asia",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "1.1 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "1.1"
+
+                                        }
+                                        },
+                                        
+                                    "Northern Pike": {
+                                    "common": "Northern Pike",
+                                    "scientific": "Esox lucius",
+                                    "info": "A large pike species, the northern pike is famed in its large Palearctic range for its large size and aggressive fight when caught by fishermen. They are aggressive predators and feed upon many types of animals, even occasionally swans larger than they are.",
+                                    "type": "Fish",
+                                    "order": "Salmoniformes",
+                                    "family": "Esocidae",
+                                    "genus": "Esox",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Esox_lucius_ZOO_1.jpg/1280px-Esox_lucius_ZOO_1.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "North America, Europe",
+                                "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "8 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "8"
+
+                                        }
+                                        },
+                                        
+                                    "Fire Salamander": {
+                                    "common": "Fire Salamander",
+                                    "scientific": "Salamandra salamandra",
+                                    "info": "A common and iconic salamander, the fire salamander gets it scommon name from an old myth that salamanders were born from fire (as salamanders often fled burning logs used for fires when they were lit up). Despite its large range it is listed as Vulnerable on the IUCN Red List due to its susceptibility to infection by the introduced fungus Batrachochytrium salamandrivorans.",
+                                    "type": "Amphibian",
+                                    "order": "Urodela",
+                                    "family": "Salamandridae",
+                                    "genus": "Salamandra",
+                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/159805189/large.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Europe",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "7.7 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "7.7"
+
+                                        }
+                                        },
+                                        
+                                    "Eurasian Otter": {
+                                    "common": "Eurasian Otter",
+                                    "scientific": "Lutra lutra",
+                                    "info": "The Eurasian otter is a widespread species of otter found on three continents. It is an important predator of various aquatic creatures such as fish and crayfish, and is under threat due to the introduction of non-native fish species to its native range, which impacts its ability to feed.",
+                                    "type": "Mammal",
+                                    "order": "Carnivora",
+                                    "family": "Mustelidae",
+                                    "genus": "Lutra",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/531466.jpg",
+                                    "breeding": "Average",
+                                    "region": "Europe, Asia, Africa",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "1.2 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "1.2"
+
+                                        }
+                                        },
+                                        
+                                    "Fahaka Pufferfish": {
+                                    "common": "Fahaka Pufferfish",
+                                    "scientific": "Tetraodon lineatus",
+                                    "info": "The fahaka pufferfish is a large freshwater pufferfish native to west, north, and east Africa. Feeding primarily on mussels and snails, their sharp beaks are adapted for piercing through the tough shells of these mollusks, and they are typically found in open or vegetated habitats.",
+                                    "type": "Fish",
+                                    "order": "Tetraodontiformes",
+                                    "family": "Tetraodontidae",
+                                    "genus": "Tetraodon",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/315960.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Africa",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "2 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "2"
+
+                                        }
+                                        },
+                                        
+                                    "West African Lungfish": {
+                                    "common": "West African Lungfish",
+                                    "scientific": "Protopterus annectens",
+                                    "info": "The African lungfish is the archetypal lungfish and the most common in captivity. Native to disjunct sections of Africa, this species is remarkably hardy and is the freshwater fish that can go the longest without food, being able to survive 3 1/2 years without any intake.",
+                                    "type": "Fish",
+                                    "order": "Ceratodontiformes",
+                                    "family": "Protopteridae",
+                                    "genus": "Protopterus",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/356962.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Africa",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "0.1 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "0.1"
+
+                                        }
+                                        },
+
+                                    "Ornate Bichir": {
+                                    "common": "Ornate Bichir",
+                                    "scientific": "Polypterus ornatipinnis",
+                                    "info": "The ornate bichir is a large bichir species found in central and east Africa. It is a primitive air-breathing fish, with a set of primitive lungs that allow it to breathe air from the surface of turbid and stagnant water, where bichirs often live.",
+                                    "type": "Fish",
+                                    "order": "Polypteriformes",
+                                    "family": "Polypteridae",
+                                    "genus": "Polypterus",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/237005.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Africa",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "6 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "6"
+
+                                        }
+                                        },
+
+                                    "Nile Crocodile": {
+                                    "common": "Nile Crocodile",
+                                    "scientific": "Crocodylus niloticus",
+                                    "info": "The Nile crocodile is the second-largest species of crocodile, native to both mainland Africa and Madagascar. An indomitable apex predator, they prey on virtually anything within their range, and are regarded as one of the most dangerous crocodile species due to its aggression towards humans.",
+                                    "type": "Reptile",
+                                    "order": "Crocodilia",
+                                    "family": "Crocodylidae",
+                                    "genus": "Crocodylus",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Nile_Crocodile_Kafue_River_Bank_Zambia_Jul23_A7C_05542.jpg/1920px-Nile_Crocodile_Kafue_River_Bank_Zambia_Jul23_A7C_05542.jpg",
+                                    "breeding": "Below Average",
+                                    "region": "Africa",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "1.1 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "1.1"
+
+                                        }
+                                        },
+
+                                    "Spotted Gar": {
+                                    "common": "Spotted Gar",
+                                    "scientific": "Lepisosteus oculatus",
+                                    "info": "A medium-sized freshwater fish native to North America, the spotted gar is a pursuit predator that chases smaller fish such as minnows and shiners. Its long snout is perfect for this style of hunting, and their eggs are highly toxic, providing an effective defense against predators.",
+                                    "type": "Fish",
+                                    "order": "Lepisosteiformes",
+                                    "family": "Lepisosteidae",
+                                    "genus": "Lepisosteus",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Lepisosteus_oculatus1.jpg/1280px-Lepisosteus_oculatus1.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "North America",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "6 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "6"
+
+                                        }
+                                            },
+
+                                     "Tentacled Snake": {
+                                    "common": "Tentacled Snake",
+                                    "scientific": "Erpeton tentaculatum",
+                                    "info": "An aquatic snake ",
+                                    "info": "An aquatic snake native to Southeast Asia, this small species is mildly venomous and feeds primarily upon small freshwater fish. Its unique 'tentacles' on the front of the head act as limbs, helping the snakes feel around in cloudy water.",
+                                    "type": "Reptile",
+                                    "order": "Squamata",
+                                    "family": "Homalopsidae",
+                                    "genus": "Erpeton",
+                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/335960148/original.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "Asia",
+                                    "holdings": {
+                                    "North America": 0,
+                                    "Asia": 0,
+                                    "Europe": "3.3 - Wasser Wunder Welt",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "3.3"
         },
     }
 }
@@ -2815,6 +3292,27 @@ def get_entry_or_message(user_query: str) -> Tuple[Optional[Dict[str, Any]], Opt
         return None, f"No entry for **{user_query}**."
     key = resolved
     return species_data[key], None
+
+async def _send_list_or_file(ctx, title: str, lines: list[str], filename: str, inline_limit: int = 100):
+    """
+    If `lines` is longer than `inline_limit`, send as a .txt file.
+    Otherwise, send as a normal message.
+    """
+    if not lines:
+        await ctx.send(f"{title}\n(none)")
+        return
+
+    if len(lines) <= inline_limit:
+        await ctx.send(f"{title}\n" + "\n".join(lines))
+        return
+
+    # Build .txt file for large outputs
+    import io, discord  # assumes discord.py already imported
+    content = title + "\n\n" + "\n".join(line.lstrip("• ").strip() for line in lines)
+    buf = io.BytesIO(content.encode("utf-8"))
+    buf.seek(0)
+    file = discord.File(buf, filename=filename)
+    await ctx.send(f"{title} (exported to file below):", file=file)
 
 # --- Member resolver (mention / ID / name / nickname) -----------------------
 from discord.ext import commands as _cmds  # if not already imported with alias
@@ -4074,7 +4572,7 @@ async def cmd_type(ctx: commands.Context, *, name: str):
             await ctx.send("Here’s a text file with all species:", file=file)
             return
 
-        # Normal behavior (single species or a type category)
+        # Try to resolve as a specific species first
         entry, msg = get_entry_or_message(name)
         if not msg:
             value = entry.get("type")
@@ -4084,18 +4582,31 @@ async def cmd_type(ctx: commands.Context, *, name: str):
                 await ctx.send(f"No type information stored for **{entry['common']}**.")
             return
 
-        # If not a species, try interpreting the input as a type name
+        # Not a species; interpret as a type category and export to .txt
         display, species_names = match_type_or_order(name, field="type")
         if display and species_names:
-            lines = [f"- {n}" for n in species_names]
-            for chunk in list_to_chunks(lines, header_prefix=f"**Species in type {display}**"):
-                await ctx.send(chunk)
+            species_sorted = builtins.sorted(species_names, key=lambda s: s.lower())
+            header = f"Species in type: {display}\nTotal: {len(species_sorted)}\n\n"
+            content = header + "\n".join(species_sorted)
+
+            # Make a simple, safe filename from the type
+            slug = "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in display.strip().lower())
+            if not slug:
+                slug = "type"
+
+            buf = io.BytesIO(content.encode("utf-8"))
+            buf.seek(0)
+            file = discord.File(buf, filename=f"type_{slug}.txt")
+            await ctx.send(f"Here’s a text file for **{display}**:", file=file)
             return
 
+        # Fallthrough: show whatever helpful message came from species lookup
         await ctx.send(msg)
+
     except Exception:
         log.exception("Error in ;type")
         await ctx.send(f"Sorry, something went wrong processing **{name}**.")
+
 
 
 
@@ -5213,3 +5724,65 @@ if __name__ == "__main__":
         log.error("DISCORD_TOKEN not set in environment or .env")
         sys.exit(1)
     bot.run(token)
+
+@bot.command(name="housed")
+async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
+    """
+    ;housed <zoo>
+    Show all species currently housed in the specified zoo.
+    """
+    data = _load_zoo_data()
+    housed_species: list[str] = []
+
+    # Aggregate across all users' records for the given zoo name
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.extend([s for s in species_list if isinstance(s, str) and s.strip()])
+
+    if not housed_species:
+        await ctx.send(f"No species are housed in **{zoo_name}**.")
+        return
+
+    housed_species = sorted(set(housed_species), key=str.lower)
+    lines = [f"• {sp}" for sp in housed_species]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Species housed in {zoo_name}:**",
+        lines=lines,
+        filename=f"housed_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,  # change threshold here if you like
+    )
+
+
+@bot.command(name="unhoused")
+async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
+    """
+    ;unhoused <zoo>
+    Show all species *not yet* housed in the specified zoo.
+    """
+    data = _load_zoo_data()
+    # Use your master species dict
+    all_species = set(species_data.keys())
+
+    housed_species: set[str] = set()
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
+
+    unhoused = sorted(all_species - housed_species, key=str.lower)
+    if not unhoused:
+        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
+        return
+
+    lines = [f"• {sp}" for sp in unhoused]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Unhoused species in {zoo_name}:**",
+        lines=lines,
+        filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,  # change threshold here if you like
+    )
