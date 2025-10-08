@@ -3710,6 +3710,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Shropshire Hills Zoo",
     "Sapporo Reptile Center and National Aquarium",
     "Wasser Wunder Welt",
+    "Essex County Zoo",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
