@@ -6363,66 +6363,6 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
-@bot.command(name="housed")
-async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
-    """
-    ;housed <zoo>
-    Show all species currently housed in the specified zoo.
-    """
-    data = _load_zoo_data()
-    housed_species: list[str] = []
-
-    # Aggregate across all users' records for the given zoo name
-    for _uid, urec in data.get("users", {}).items():
-        for zname, species_list in (urec.get("zoos", {}) or {}).items():
-            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
-                if isinstance(species_list, list):
-                    housed_species.extend([s for s in species_list if isinstance(s, str) and s.strip()])
-
-    if not housed_species:
-        await ctx.send(f"No species are housed in **{zoo_name}**.")
-        return
-
-    housed_species = sorted(set(housed_species), key=str.lower)
-    lines = [f"• {sp}" for sp in housed_species]
-    await _send_list_or_file(
-        ctx,
-        title=f"**Species housed in {zoo_name}:**",
-        lines=lines,
-        filename=f"housed_{zoo_name.replace(' ', '_')}.txt",
-        inline_limit=100,
-    )
-
-
-@bot.command(name="unhoused")
-async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
-    """
-    ;unhoused <zoo>
-    Show all species *not yet* housed in the specified zoo.
-    """
-    data = _load_zoo_data()
-    all_species = set(species_data.keys())
-
-    housed_species: set[str] = set()
-    for _uid, urec in data.get("users", {}).items():
-        for zname, species_list in (urec.get("zoos", {}) or {}).items():
-            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
-                if isinstance(species_list, list):
-                    housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
-
-    unhoused = sorted(all_species - housed_species, key=str.lower)
-    if not unhoused:
-        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
-        return
-
-    lines = [f"• {sp}" for sp in unhoused]
-    await _send_list_or_file(
-        ctx,
-        title=f"**Unhoused species in {zoo_name}:**",
-        lines=lines,
-        filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
-        inline_limit=100,
-    )
 
 
 if __name__ == "__main__":
