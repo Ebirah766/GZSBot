@@ -5750,11 +5750,8 @@ async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
 async def cmd_unhoused(ctx, *, zoo_name: str):
     """
     ;unhoused <zoo>
-    Show species that are HELD by <zoo> (i.e., listed in species_data['holdings'] for any region)
-    but are NOT currently housed there by the user.
-
-    Matching is STRICT: a species is 'in the collection' only if at least one region's holdings
-    explicitly lists this zoo (or one of its aliases).
+    Show species that are HELD by <zoo> (appear in species_data['holdings']) but NOT currently housed there.
+    Matching is strict to the facility name/aliases; subtraction uses normalized names so casing/punctuation won’t leak housed items into the result.
     """
     try:
         data = _load_zoo_data()
@@ -5768,42 +5765,36 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
                 return species_data
 
         # ---------- normalization ----------
-        def _norm(s: str) -> str:
-            # case-insensitive, collapse whitespace and punctuation around spaces
+        import re
+        NON_ALNUM = re.compile(r"[^a-z0-9]+")
+
+        def _norm_spaces(s: str) -> str:
             return " ".join(str(s).casefold().replace("–", "-").replace("—", "-").split())
 
-        target = _norm(zoo_name)
+        def _key(s: str) -> str:
+            # key used for set logic: lowercase, remove non-alphanumerics
+            return NON_ALNUM.sub("", str(s).casefold())
 
-        # Optional: accept aliases from the directory metadata if present
+        target = _norm_spaces(zoo_name)
+
+        # Optional aliases from directory metadata
         aliases: set[str] = {target}
-        dir_rec = (data.get("directory") or {}).get(zoo_name) if isinstance(data.get("directory"), dict) else None
-        if isinstance(dir_rec, dict) and isinstance(dir_rec.get("aliases"), list):
-            for a in dir_rec["aliases"]:
+        dirrec = (data.get("directory") or {}).get(zoo_name) if isinstance(data.get("directory"), dict) else None
+        if isinstance(dirrec, dict) and isinstance(dirrec.get("aliases"), list):
+            for a in dirrec["aliases"]:
                 if isinstance(a, str) and a.strip():
-                    aliases.add(_norm(a))
+                    aliases.add(_norm_spaces(a))
 
-        # ---------- parse an institution name out of a single "holder piece" ----------
-        # Handles forms like:
-        #   "1.1 - New York Aquarium"
-        #   "0.3–Georgia Aquarium" (note: en dash)
-        #   "New York Aquarium" (no numbers)
-        #   "1.2: NYA" (using colon)
-        #   "• 1.0 - Some Zoo" (bullets/newlines from user input)
-        import re
-        COUNT_PREFIX = re.compile(r"^\s*\d+(?:\.\d+)?\s*[-:]\s*(.+)$")  # number, dash/colon, then name
+        # ---------- parse institution from a holder piece ----------
+        COUNT_PREFIX = re.compile(r"^\s*\d+(?:\.\d+)?\s*[-:]\s*(.+)$")
 
         def extract_institution(piece: str) -> str:
-            s = str(piece).strip()
-            if not s:
-                return ""
-            s = s.replace("–", "-").replace("—", "-")  # normalize dashes
+            s = str(piece).strip().replace("–", "-").replace("—", "-")
             m = COUNT_PREFIX.match(s)
             if m:
                 return m.group(1).strip()
-            # If it contains " - " anywhere, prefer right side
             if " - " in s:
                 return s.split(" - ", 1)[1].strip()
-            # No count/dash pattern: treat whole thing as the institution
             return s
 
         # ---------- get user's currently housed list for this zoo ----------
@@ -5815,11 +5806,11 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
                     return {str(x).strip() for x in val if str(x).strip()}
             return set()
 
-        housed: set[str] = _get_housed_for_zoo()
+        housed_originals: set[str] = _get_housed_for_zoo()
 
         # ---------- derive collection strictly from species_data.holdings ----------
-        collection: set[str] = set()
         ds = _species_ds()
+        collection_originals: set[str] = set()
 
         for common_name, entry in (ds or {}).items():
             if not isinstance(entry, dict):
@@ -5828,13 +5819,12 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
             if not isinstance(holdings, dict):
                 continue
 
-            # examine each region value
             in_this_zoo = False
             for _region, raw in holdings.items():
                 if raw is None:
                     continue
-                # Normalize value to an iterable of "holder pieces"
-                # Accept lists or comma-separated strings; also split on newlines/bullets.
+
+                # Normalize to list of pieces
                 parts: list[str] = []
                 if isinstance(raw, list):
                     for item in raw:
@@ -5842,15 +5832,11 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
                             continue
                         parts.extend(str(item).replace("•", "\n").split(","))
                 else:
-                    s = str(raw)
-                    # ignore zeros exactly equal to 0 or "0"
-                    if s.strip() in ("0", "0.0", "0.00"):
+                    s = str(raw).strip()
+                    if s in ("0", "0.0", "0.00", ""):
                         continue
                     s = s.replace("•", "\n")
-                    # split on commas and newlines
-                    for chunk in re.split(r"[,;\n]+", s):
-                        if chunk is not None:
-                            parts.append(chunk)
+                    parts.extend(re.split(r"[,;\n]+", s))
 
                 for piece in parts:
                     piece = str(piece).strip()
@@ -5859,22 +5845,26 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
                     inst = extract_institution(piece)
                     if not inst:
                         continue
-                    if _norm(inst) in aliases:
+                    if _norm_spaces(inst) in aliases:
                         in_this_zoo = True
-                        break  # found, no need to scan more holders for this species
+                        break
                 if in_this_zoo:
                     break
 
             if in_this_zoo:
-                collection.add(str(common_name))
+                collection_originals.add(str(common_name))
 
-        # If NOTHING was detected, tell the user rather than falling back to the entire DB
-        if not collection:
+        if not collection_originals:
             await ctx.send(f"ℹ️ I couldn’t find any species in the global holdings that list **{zoo_name}**.")
             return
 
-        # ---------- compute UNHOUSED = collection - housed ----------
-        unhoused = sorted(collection - housed, key=lambda s: s.lower())
+        # ---------- crucial fix: subtract using a normalized key ----------
+        housed_keys = {_key(n) for n in housed_originals}
+        collection_map = {_key(n): n for n in collection_originals}  # key -> original name
+
+        # keys present in collection but NOT in housed
+        unhoused_keys = sorted([k for k in collection_map.keys() if k not in housed_keys])
+        unhoused = [collection_map[k] for k in unhoused_keys]
 
         if not unhoused:
             await ctx.send(f"🎉 All species held by **{zoo_name}** are currently housed there.")
@@ -5884,7 +5874,7 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
         lines = [f"Unhoused Species in {zoo_name} — in collection but not housed ({len(unhoused)} total)", ""]
         lines += [f"• {sp}" for sp in unhoused]
 
-        import io as _io, discord as _discord  # ensure available here
+        import io as _io, discord as _discord
         buf = _io.BytesIO("\n".join(lines).encode("utf-8"))
         buf.seek(0)
         await ctx.send(file=_discord.File(buf, filename=f"{zoo_name}_unhoused.txt"))
@@ -5892,6 +5882,7 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
     except Exception:
         log.exception("Error in ;unhoused")
         await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{zoo_name}**.")
+
 
 
 
