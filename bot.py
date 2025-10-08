@@ -5770,51 +5770,35 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
-    @bot.command(name="housed")
-    async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
-        """
-        ;housed <zoo>
-        Show all species currently housed in the specified zoo.
-        """
-        data = _load_zoo_data()
-        directory = data.get("directory", {})
+@bot.command(name="housed")
+async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
+    """
+    ;housed <zoo>
+    Show all species currently housed in the specified zoo.
+    """
+    data = _load_zoo_data()
+    housed_species: list[str] = []
 
-        # Normalize zoo name (case-insensitive) and find the proper display name
-        proper_name = None
-        if isinstance(directory, dict):
-            for z in directory.keys():
-                if z.lower().strip() == zoo_name.lower().strip():
-                    proper_name = z
-                    break
+    # Aggregate across all users' records for the given zoo name
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.extend([s for s in species_list if isinstance(s, str) and s.strip()])
 
-        # Fall back to user input if not found in directory
-        display_name = proper_name or zoo_name.strip()
+    if not housed_species:
+        await ctx.send(f"No species are housed in **{zoo_name}**.")
+        return
 
-        housed_species: list[str] = []
-
-        # Aggregate across all users' records for this zoo
-        for _uid, urec in data.get("users", {}).items():
-            for zname, species_list in (urec.get("zoos", {}) or {}).items():
-                if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
-                    if isinstance(species_list, list):
-                        housed_species.extend(
-                            [s for s in species_list if isinstance(s, str) and s.strip()]
-                        )
-
-        if not housed_species:
-            await ctx.send(f"No species are housed in **{display_name}**.")
-            return
-
-        housed_species = sorted(set(housed_species), key=str.lower)
-        lines = [f"• {sp}" for sp in housed_species]
-
-        await _send_list_or_file(
-            ctx,
-            title=f"**Species housed in {display_name}:**",
-            lines=lines,
-            filename=f"housed_{display_name.replace(' ', '_')}.txt",
-            inline_limit=100,
-        )
+    housed_species = sorted(set(housed_species), key=str.lower)
+    lines = [f"• {sp}" for sp in housed_species]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Species housed in {zoo_name}:**",
+        lines=lines,
+        filename=f"housed_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,  # change threshold here if you like
+    )
 
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
