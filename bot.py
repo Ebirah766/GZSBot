@@ -5751,7 +5751,6 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
     """
     ;unhoused <zoo>
     Show species that are HELD by <zoo> (appear in species_data['holdings']) but NOT currently housed there.
-    Matching is strict to the facility name/aliases; subtraction uses normalized names so casing/punctuation won’t leak housed items into the result.
     """
     try:
         data = _load_zoo_data()
@@ -5764,30 +5763,41 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
             except NameError:
                 return species_data
 
-        # ---------- normalization ----------
+        # ---------- normalization helpers ----------
         import re
         NON_ALNUM = re.compile(r"[^a-z0-9]+")
 
         def _norm_spaces(s: str) -> str:
             return " ".join(str(s).casefold().replace("–", "-").replace("—", "-").split())
 
-        def _key(s: str) -> str:
-            # key used for set logic: lowercase, remove non-alphanumerics
+        def _key_name(s: str) -> str:
+            # canonical key for species/zoo names
             return NON_ALNUM.sub("", str(s).casefold())
 
-        target = _norm_spaces(zoo_name)
+        # ----- build alias set for the requested zoo (for holdings scan *and* user zoo-key match) -----
+        requested_norm = _norm_spaces(zoo_name)
+        alias_norms: set[str] = {requested_norm}
 
-        # Optional aliases from directory metadata
-        aliases: set[str] = {target}
-        dirrec = (data.get("directory") or {}).get(zoo_name) if isinstance(data.get("directory"), dict) else None
-        if isinstance(dirrec, dict) and isinstance(dirrec.get("aliases"), list):
-            for a in dirrec["aliases"]:
-                if isinstance(a, str) and a.strip():
-                    aliases.add(_norm_spaces(a))
+        dirrec = data.get("directory") if isinstance(data.get("directory"), dict) else None
+        if isinstance(dirrec, dict):
+            # exact name record
+            if isinstance(dirrec.get(zoo_name), dict):
+                aliases = dirrec[zoo_name].get("aliases")
+                if isinstance(aliases, list):
+                    for a in aliases:
+                        if isinstance(a, str) and a.strip():
+                            alias_norms.add(_norm_spaces(a))
+            # also search directory keys for a record with a name matching requested_norm
+            for k, v in dirrec.items():
+                if _norm_spaces(k) == requested_norm and isinstance(v, dict):
+                    aliases = v.get("aliases")
+                    if isinstance(aliases, list):
+                        for a in aliases:
+                            if isinstance(a, str) and a.strip():
+                                alias_norms.add(_norm_spaces(a))
 
         # ---------- parse institution from a holder piece ----------
         COUNT_PREFIX = re.compile(r"^\s*\d+(?:\.\d+)?\s*[-:]\s*(.+)$")
-
         def extract_institution(piece: str) -> str:
             s = str(piece).strip().replace("–", "-").replace("—", "-")
             m = COUNT_PREFIX.match(s)
@@ -5797,13 +5807,34 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
                 return s.split(" - ", 1)[1].strip()
             return s
 
-        # ---------- get user's currently housed list for this zoo ----------
+        # ---------- get user's housed list for the correct zoo KEY ----------
         def _get_housed_for_zoo() -> set[str]:
             user_zoos = (data.get("users", {}).get(user_id, {}) or {}).get("zoos", {})
-            if isinstance(user_zoos, dict):
-                val = user_zoos.get(zoo_name)
-                if isinstance(val, list):
-                    return {str(x).strip() for x in val if str(x).strip()}
+            if not isinstance(user_zoos, dict):
+                return set()
+
+            # find the matching key in user_zoos by normalized compare (supporting aliases)
+            # e.g., "NEW YORK AQUARIUM" vs "New York Aquarium"
+            candidates_norm = alias_norms | {requested_norm}
+            matched_key = None
+            for k in user_zoos.keys():
+                if _norm_spaces(k) in candidates_norm:
+                    matched_key = k
+                    break
+            # also try very loose key match (remove punctuation)
+            if matched_key is None:
+                req_key = _key_name(zoo_name)
+                for k in user_zoos.keys():
+                    if _key_name(k) == req_key:
+                        matched_key = k
+                        break
+
+            if matched_key is None:
+                return set()
+
+            val = user_zoos.get(matched_key)
+            if isinstance(val, list):
+                return {str(x).strip() for x in val if str(x).strip()}
             return set()
 
         housed_originals: set[str] = _get_housed_for_zoo()
@@ -5845,7 +5876,7 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
                     inst = extract_institution(piece)
                     if not inst:
                         continue
-                    if _norm_spaces(inst) in aliases:
+                    if _norm_spaces(inst) in alias_norms:
                         in_this_zoo = True
                         break
                 if in_this_zoo:
@@ -5858,13 +5889,11 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
             await ctx.send(f"ℹ️ I couldn’t find any species in the global holdings that list **{zoo_name}**.")
             return
 
-        # ---------- crucial fix: subtract using a normalized key ----------
-        housed_keys = {_key(n) for n in housed_originals}
-        collection_map = {_key(n): n for n in collection_originals}  # key -> original name
-
-        # keys present in collection but NOT in housed
-        unhoused_keys = sorted([k for k in collection_map.keys() if k not in housed_keys])
-        unhoused = [collection_map[k] for k in unhoused_keys]
+        # ---------- subtract using normalized species keys ----------
+        housed_keys = {_key_name(n) for n in housed_originals}
+        collection_map = {_key_name(n): n for n in collection_originals}  # key -> original
+        unhoused_keys = [k for k in collection_map.keys() if k not in housed_keys]
+        unhoused = [collection_map[k] for k in sorted(unhoused_keys)]
 
         if not unhoused:
             await ctx.send(f"🎉 All species held by **{zoo_name}** are currently housed there.")
@@ -5882,9 +5911,6 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
     except Exception:
         log.exception("Error in ;unhoused")
         await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{zoo_name}**.")
-
-
-
 
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
