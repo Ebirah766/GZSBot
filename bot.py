@@ -5802,211 +5802,34 @@ async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
 
 
 @bot.command(name="unhoused")
-async def cmd_unhoused(ctx, *, zoo_name: Optional[str] = None):
+async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
     """
-    ;unhoused <zoo>     -> List species HELD by <zoo> (in species_data['holdings']) but NOT currently housed by the user for that zoo.
-    ;unhoused           -> Same, for ALL zoos in the directory (skips zoos with no results).
-    ;unhoused all       -> Same as above.
+    ;unhoused <zoo>
+    Show all species *not yet* housed in the specified zoo.
     """
-    try:
-        data = _load_zoo_data()
-        user_id = str(ctx.author.id)
+    data = _load_zoo_data()
+    all_species = set(species_data.keys())
 
-        # ---------- dataset access ----------
-        def _species_ds():
-            try:
-                return SPECIES  # if you've set SPECIES = species_data
-            except NameError:
-                return species_data
+    housed_species: set[str] = set()
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
 
-        ds = _species_ds()
+    unhoused = sorted(all_species - housed_species, key=str.lower)
+    if not unhoused:
+        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
+        return
 
-        # ---------- normalization helpers ----------
-        import re, io as _io, discord as _discord
-        NON_ALNUM = re.compile(r"[^a-z0-9]+")
-
-        def _norm_spaces(s: str) -> str:
-            # case/space-insensitive compare; normalize dashes too
-            return " ".join(str(s).casefold().replace("–", "-").replace("—", "-").split())
-
-        def _key_name(s: str) -> str:
-            # canonical key for species/zoo names in set logic
-            return NON_ALNUM.sub("", str(s).casefold())
-
-        COUNT_PREFIX = re.compile(r"^\s*\d+(?:\.\d+)?\s*[-:]\s*(.+)$")
-        def extract_institution(piece: str) -> str:
-            s = str(piece).strip().replace("–", "-").replace("—", "-")
-            m = COUNT_PREFIX.match(s)
-            if m:
-                return m.group(1).strip()
-            if " - " in s:
-                return s.split(" - ", 1)[1].strip()
-            return s
-
-        # ---------- get user's currently housed list for a (possibly aliased) zoo ----------
-        def get_housed_for_zoo(requested_zoo_name: str) -> set[str]:
-            user_zoos = (data.get("users", {}).get(user_id, {}) or {}).get("zoos", {})
-            if not isinstance(user_zoos, dict):
-                return set()
-
-            # Build alias norms for this requested zoo from directory metadata (if present)
-            requested_norm = _norm_spaces(requested_zoo_name)
-            alias_norms: set[str] = {requested_norm}
-            directory = data.get("directory") if isinstance(data.get("directory"), dict) else {}
-            if isinstance(directory, dict):
-                # exact key record
-                if isinstance(directory.get(requested_zoo_name), dict):
-                    aliases = directory[requested_zoo_name].get("aliases")
-                    if isinstance(aliases, list):
-                        alias_norms |= {_norm_spaces(a) for a in aliases if isinstance(a, str) and a.strip()}
-                # other keys that normalize to the same requested name
-                for k, v in directory.items():
-                    if _norm_spaces(k) == requested_norm and isinstance(v, dict):
-                        aliases = v.get("aliases")
-                        if isinstance(aliases, list):
-                            alias_norms |= {_norm_spaces(a) for a in aliases if isinstance(a, str) and a.strip()}
-
-            # Find the matching key in user's housed dict
-            matched_key = None
-            for k in user_zoos.keys():
-                if _norm_spaces(k) in alias_norms:
-                    matched_key = k
-                    break
-            if matched_key is None:
-                req_key = _key_name(requested_zoo_name)
-                for k in user_zoos.keys():
-                    if _key_name(k) == req_key:
-                        matched_key = k
-                        break
-
-            if matched_key is None:
-                return set()
-
-            val = user_zoos.get(matched_key)
-            if isinstance(val, list):
-                return {str(x).strip() for x in val if str(x).strip()}
-            return set()
-
-        # ---------- derive collection strictly from species_data.holdings for one zoo ----------
-        def derive_collection_for_zoo(zname: str, aliases_from_dir: set[str]) -> set[str]:
-            alias_norms = {_norm_spaces(zname)} | {_norm_spaces(a) for a in aliases_from_dir}
-            collection: set[str] = set()
-
-            for common_name, entry in (ds or {}).items():
-                if not isinstance(entry, dict):
-                    continue
-                holdings = entry.get("holdings")
-                if not isinstance(holdings, dict):
-                    continue
-
-                in_this_zoo = False
-                for _region, raw in holdings.items():
-                    if raw is None:
-                        continue
-
-                    parts: list[str] = []
-                    if isinstance(raw, list):
-                        for item in raw:
-                            if item is None:
-                                continue
-                            parts.extend(str(item).replace("•", "\n").split(","))
-                    else:
-                        s = str(raw).strip()
-                        if s in ("0", "0.0", "0.00", ""):
-                            continue
-                        s = s.replace("•", "\n")
-                        parts.extend(re.split(r"[,;\n]+", s))
-
-                    for piece in parts:
-                        piece = str(piece).strip()
-                        if not piece or piece in ("0", "0.0", "0.00"):
-                            continue
-                        inst = extract_institution(piece)
-                        if not inst:
-                            continue
-                        if _norm_spaces(inst) in alias_norms:
-                            in_this_zoo = True
-                            break
-                    if in_this_zoo:
-                        break
-
-                if in_this_zoo:
-                    collection.add(str(common_name))
-
-            return collection
-
-        # ---------- helper: aliases for a directory zoo key ----------
-        def aliases_for_directory_key(k: str) -> set[str]:
-            directory = data.get("directory") if isinstance(data.get("directory"), dict) else {}
-            if isinstance(directory, dict):
-                rec = directory.get(k)
-                if isinstance(rec, dict) and isinstance(rec.get("aliases"), list):
-                    return {a for a in rec["aliases"] if isinstance(a, str) and a.strip()}
-            return set()
-
-        # ---------- single-zoo flow ----------
-        def run_for_one_zoo(zname: str) -> tuple[str, list[str]]:
-            aliases = aliases_for_directory_key(zname)
-            collection_originals = derive_collection_for_zoo(zname, aliases)
-            if not collection_originals:
-                return (zname, [])  # nothing held → nothing to report
-
-            housed_originals = get_housed_for_zoo(zname)
-
-            housed_keys = {_key_name(n) for n in housed_originals}
-            collection_map = {_key_name(n): n for n in collection_originals}
-            unhoused_keys = [k for k in collection_map.keys() if k not in housed_keys]
-            unhoused = [collection_map[k] for k in sorted(unhoused_keys)]
-            return (zname, unhoused)
-
-        # ---------- decide scope (one zoo vs all) ----------
-        run_all = (zoo_name is None) or (str(zoo_name).strip().lower() in ("all", "*"))
-        directory = data.get("directory") if isinstance(data.get("directory"), dict) else {}
-
-        if not run_all:
-            # Single zoo
-            zname = str(zoo_name).strip()
-            zlabel, unhoused = run_for_one_zoo(zname)
-            if not unhoused:
-                await ctx.send(f"ℹ️ No unhoused species found for **{zlabel}** (either nothing held or all held species are housed).")
-                return
-
-            lines = [f"Unhoused Species in {zlabel} — in collection but not housed ({len(unhoused)} total)", ""]
-            lines += [f"• {sp}" for sp in unhoused]
-            buf = _io.BytesIO("\n".join(lines).encode("utf-8"))
-            buf.seek(0)
-            await ctx.send(file=_discord.File(buf, filename=f"{_key_name(zlabel)}_unhoused.txt"))
-            return
-
-        # All zoos in directory
-        if not isinstance(directory, dict) or not directory:
-            await ctx.send("ℹ️ No zoos in the directory to scan.")
-            return
-
-        sections: list[str] = []
-        total_zoos_with_results = 0
-        for zkey in sorted(directory.keys(), key=lambda s: s.lower()):
-            zlabel, unhoused = run_for_one_zoo(zkey)
-            if not unhoused:
-                continue  # skip empty
-            total_zoos_with_results += 1
-            sections.append(f"{zlabel} — {len(unhoused)} unhoused")
-            sections.extend([f"• {sp}" for sp in unhoused])
-            sections.append("")  # blank line between zoos
-
-        if total_zoos_with_results == 0:
-            await ctx.send("🎉 Across all zoos in the directory, there are no unhoused species (everything held is housed) or no holdings were detected.")
-            return
-
-        header = f"Unhoused Species by Zoo — in collection but not housed\nZoos with results: {total_zoos_with_results}\n"
-        content = header + "\n".join(sections)
-        buf = _io.BytesIO(content.encode("utf-8"))
-        buf.seek(0)
-        await ctx.send(file=_discord.File(buf, filename="unhoused_all_zoos.txt"))
-
-    except Exception:
-        log.exception("Error in ;unhoused")
-        await ctx.send("⚠️ Something went wrong while listing unhoused species.")
+    lines = [f"• {sp}" for sp in unhoused]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Unhoused species in {zoo_name}:**",
+        lines=lines,
+        filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,
+    )
 
 
 if __name__ == "__main__":
