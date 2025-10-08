@@ -5838,6 +5838,9 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
     try:
         data = _load_zoo_data()
         user_id = str(ctx.author.id)
+        
+        # Get canonical zoo name for proper capitalization
+        canon_name, alias_norms_from_resolve = _resolve_zoo_canonical(zoo_name, data)
 
         # ---------- dataset access ----------
         def _species_ds():
@@ -5859,7 +5862,7 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
 
         # ----- build alias set for the requested zoo (for holdings scan *and* user zoo-key match) -----
         requested_norm = _norm_spaces(zoo_name)
-        alias_norms: set[str] = {requested_norm}
+        alias_norms: set[str] = alias_norms_from_resolve | {requested_norm}
 
         dirrec = data.get("directory") if isinstance(data.get("directory"), dict) else None
         if isinstance(dirrec, dict):
@@ -5969,7 +5972,7 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
                 collection_originals.add(str(common_name))
 
         if not collection_originals:
-            await ctx.send(f"ℹ️ I couldn’t find any species in the global holdings that list **{zoo_name}**.")
+            await ctx.send(f"ℹ️ I couldn’t find any species in the global holdings that list **{canon_name}**.")
             return
 
         # ---------- subtract using normalized species keys ----------
@@ -5979,21 +5982,21 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
         unhoused = [collection_map[k] for k in sorted(unhoused_keys)]
 
         if not unhoused:
-            await ctx.send(f"🎉 All species held by **{zoo_name}** are currently housed there.")
+            await ctx.send(f"🎉 All species held by **{canon_name}** are currently housed there.")
             return
 
         # ---------- output ----------
-        lines = [f"Unhoused Species in {zoo_name} — in collection but not housed ({len(unhoused)} total)", ""]
+        lines = [f"Unhoused Species in {canon_name} — in collection but not housed ({len(unhoused)} total)", ""]
         lines += [f"• {sp}" for sp in unhoused]
 
         import io as _io, discord as _discord
         buf = _io.BytesIO("\n".join(lines).encode("utf-8"))
         buf.seek(0)
-        await ctx.send(file=_discord.File(buf, filename=f"{zoo_name}_unhoused.txt"))
+        await ctx.send(file=_discord.File(buf, filename=f"{canon_name}_unhoused.txt"))
 
     except Exception:
         log.exception("Error in ;unhoused")
-        await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{zoo_name}**.")
+        await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{canon_name}**.")
 
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
