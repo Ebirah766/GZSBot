@@ -5750,10 +5750,11 @@ async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
 async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
     """
     ;unhoused <zoo>
-    Show species in the specified zoo that are NOT recognized in the species system.
+    Show all species *not yet* housed in the specified zoo.
     """
     data = _load_zoo_data()
-    all_valid_species = set(species_data.keys())
+    # Use your master species dict
+    all_species = set(species_data.keys())
 
     housed_species: set[str] = set()
     for _uid, urec in data.get("users", {}).items():
@@ -5762,23 +5763,18 @@ async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
                 if isinstance(species_list, list):
                     housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
 
-    if not housed_species:
-        await ctx.send(f"No species are housed in **{zoo_name}**.")
+    unhoused = sorted(all_species - housed_species, key=str.lower)
+    if not unhoused:
+        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
         return
 
-    # Show species in zoo that are NOT in the valid species catalog
-    unrecognized = sorted(housed_species - all_valid_species, key=str.lower)
-    if not unrecognized:
-        await ctx.send(f"All species in **{zoo_name}** are recognized in the system!")
-        return
-
-    lines = [f"• {sp}" for sp in unrecognized]
+    lines = [f"• {sp}" for sp in unhoused]
     await _send_list_or_file(
         ctx,
-        title=f"**Unrecognized species in {zoo_name}:**",
+        title=f"**Unhoused species in {zoo_name}:**",
         lines=lines,
-        filename=f"unrecognized_{zoo_name.replace(' ', '_')}.txt",
-        inline_limit=100,
+        filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,  # change threshold here if you like
     )
 
 
