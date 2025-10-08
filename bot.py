@@ -5770,35 +5770,68 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
-@bot.command(name="housed")
-async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
-    """
-    ;housed <zoo>
-    Show all species currently housed in the specified zoo.
-    """
-    data = _load_zoo_data()
-    housed_species: list[str] = []
+    @bot.command(name="housed")
+    async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
+        """
+        ;housed <zoo>
+        Show all species currently housed in the specified zoo.
+        """
+        try:
+            data = _load_zoo_data()
 
-    # Aggregate across all users' records for the given zoo name
-    for _uid, urec in data.get("users", {}).items():
-        for zname, species_list in (urec.get("zoos", {}) or {}).items():
-            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
-                if isinstance(species_list, list):
-                    housed_species.extend([s for s in species_list if isinstance(s, str) and s.strip()])
+            # Local normalizer: lower + strip non-alphanumerics so
+            # "new york aquarium", "New-York   Aquarium", etc. all match.
+            def _norm(s: str) -> str:
+                import re as _re
+                return _re.sub(r"[^a-z0-9]+", "", s.lower()) if isinstance(s, str) else ""
 
-    if not housed_species:
-        await ctx.send(f"No species are housed in **{zoo_name}**.")
-        return
+            # Build a canonical name map from your directory (or get_all_zoo_names if available)
+            directory = data.get("directory") or {}
+            dir_names = list(directory.keys()) if isinstance(directory, dict) else []
+            if not dir_names:
+                try:
+                    # If you have this helper elsewhere in your codebase
+                    dir_names = get_all_zoo_names()  # noqa: F821
+                except Exception:
+                    dir_names = []
 
-    housed_species = sorted(set(housed_species), key=str.lower)
-    lines = [f"• {sp}" for sp in housed_species]
-    await _send_list_or_file(
-        ctx,
-        title=f"**Species housed in {zoo_name}:**",
-        lines=lines,
-        filename=f"housed_{zoo_name.replace(' ', '_')}.txt",
-        inline_limit=100,  # change threshold here if you like
-    )
+            canon_map = { _norm(n): n for n in dir_names }
+            display_name = canon_map.get(_norm(zoo_name), zoo_name.strip())
+            target_key = _norm(display_name)
+
+            from typing import List
+            housed_species: List[str] = []
+
+            # Aggregate across all users for this zoo (normalized match)
+            for _uid, urec in (data.get("users", {}) or {}).items():
+                for zname, species_list in (urec.get("zoos", {}) or {}).items():
+                    if _norm(zname) == target_key and isinstance(species_list, list):
+                        for s in species_list:
+                            if isinstance(s, str) and s.strip():
+                                housed_species.append(s.strip())
+
+            if not housed_species:
+                await ctx.send(f"No species are housed in **{display_name}**.")
+                return
+
+            housed_species = sorted(set(housed_species), key=str.lower)
+            lines = [f"• {sp}" for sp in housed_species]
+
+            import re as _re
+            safe_filename = f"housed_{_re.sub(r'[^A-Za-z0-9_]+', '_', display_name.replace(' ', '_'))}.txt"
+
+            await _send_list_or_file(
+                ctx,
+                title=f"**Species housed in {display_name}:**",
+                lines=lines,
+                filename=safe_filename,
+                inline_limit=100,  # ok if your helper accepts it; remove if not
+            )
+
+        except Exception:
+            log.exception("Error in ;housed")
+            await ctx.send(f"Sorry, something went wrong building the housed list for **{zoo_name}**.")
+
 
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
