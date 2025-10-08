@@ -14,6 +14,234 @@ import builtins
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
+# ===================== Zoo data persistence & migrations =====================
+_ZOO_DATA_PATH = pathlib.Path(__file__).with_name("zoo_progress.json")
+
+# Normalizers
+_ZOO_SPACE_NORM = re.compile(r"\s+")
+def _norm_zoo(s: str) -> str:
+    """Loose normalizer for equality checks: trim + single spaces + lowercase."""
+    return _ZOO_SPACE_NORM.sub(" ", (s or "").strip().lower())
+
+def _title_zoo(s: str) -> str:
+    """Nice-looking fallback title-casing for display names."""
+    return " ".join(part.capitalize() for part in _ZOO_SPACE_NORM.sub(" ", (s or "").strip()).split())
+
+_directory_normalizer = re.compile(r"\s+")
+def _norm_zoo_key(name: str) -> str:
+    """Directory key normalizer used by the NEW schema."""
+    return _directory_normalizer.sub(" ", (name or "").strip().lower())
+
+def _save_zoo_data(data: dict) -> None:
+    _ZOO_DATA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+def _load_zoo_data() -> dict:
+    if _ZOO_DATA_PATH.exists():
+        try:
+            data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            data = {}
+    else:
+        data = {}
+
+    # Ensure buckets exist
+    data.setdefault("users", {})                # {uid: {"active_zoo":..., "zoos": {zoo: [species...]}}}
+    data.setdefault("ownership", {})            # {uid: {"limit": n, "zoos": [names...]}}
+    data.setdefault("directory", {})            # zoo directory (key shape may vary; we migrate below)
+    data.setdefault("contracept", {})           # {uid: {zoo: {species: True}}}
+    data.setdefault("breeding_channels", {})    # {guild_id: channel_id}
+    data.setdefault("birth_log", [])            # rolling birth feed
+    data.setdefault("species_overrides", {})    # per-species overrides (e.g., breeding label)
+
+    changed = False
+    # 1) Upgrade directory to normalized-key shape with display "name"
+    if _migrate_directory_shape(data):
+        changed = True
+    # 2) Canonicalize all stored zoo names + dedupe species across users/ownership
+    if _migrate_canonicalize_zoos(data):
+        changed = True
+    if changed:
+        _save_zoo_data(data)
+    return data
+
+def _canonical_species_name(user_input: str) -> Optional[str]:
+    """
+    Resolve to your canonical species key (common name). If your resolver isn't
+    available at import time, fall back to a trimmed string so migration still runs.
+    """
+    try:
+        resolved = resolve_species_key(user_input)  # your existing resolver elsewhere
+        if isinstance(resolved, tuple):
+            _exact, suggestion_key = resolved
+            return suggestion_key
+        return resolved
+    except Exception:
+        s = (user_input or "").strip()
+        return s or None
+
+def _canonical_from_directory(data: dict, raw: str) -> str:
+    """
+    Resolve raw zoo text to the canonical **display name** from the directory,
+    supporting BOTH directory shapes:
+
+    Old: { "Mint Park Zoo": {"image_url":..., "location":...}, ... }  (pretty keys)
+    New: { "mint park zoo": {"name":"Mint Park Zoo","image":..., "location":...}, ... } (normalized keys)
+    """
+    txt = (raw or "").strip()
+    if not txt:
+        return raw
+
+    # Try species/institutions resolver first (it returns pretty display names).
+    try:
+        exact, suggestion = resolve_institution_name(txt)  # your existing helper elsewhere
+        if exact:
+            return exact
+    except Exception:
+        pass
+
+    directory = (data.get("directory") or {})
+    if not isinstance(directory, dict) or not directory:
+        return _title_zoo(txt)
+
+    nz = _norm_zoo(txt)
+
+    # New schema: normalized key -> dict with "name"
+    node = directory.get(nz)
+    if isinstance(node, dict) and (node.get("name") or "").strip():
+        return node["name"].strip()
+
+    # Keys might still be pretty, or mixed; scan.
+    for k, v in directory.items():
+        if _norm_zoo(k) == nz:
+            if isinstance(v, dict) and (v.get("name") or "").strip():
+                return v["name"].strip()
+            return _title_zoo(k)
+
+    # Old schema fallback: pretty keys with metadata directly
+    for pretty_key in directory.keys():
+        if _norm_zoo(pretty_key) == nz:
+            return pretty_key
+
+    return _title_zoo(txt)
+
+def _migrate_directory_shape(data: dict) -> bool:
+    """
+    Old -> New directory shape migration.
+
+    Old: directory = { "Mint Park Zoo": {"location":..., "image_url":...}, ... }
+    New: directory = { "mint park zoo": {"name":"Mint Park Zoo","location":...,"image":...}, ... }
+    """
+    directory = data.get("directory")
+    if not isinstance(directory, dict) or not directory:
+        return False
+
+    # If everything already has a 'name', assume it's new-ish.
+    looks_new = all(isinstance(v, dict) and "name" in v for v in directory.values())
+    # But also check that keys are normalized — if not, we still rewrite.
+    if looks_new and all(_norm_zoo_key(v.get("name", k)) == k for k, v in directory.items() if isinstance(v, dict)):
+        return False
+
+    new_dir: dict[str, dict] = {}
+    for k, v in list(directory.items()):
+        # In old shape, k is the display name; in new shape, v['name'] is the display name.
+        display = str(v.get("name") if isinstance(v, dict) and v.get("name") else k).strip()
+        key_norm = _norm_zoo_key(display)
+
+        # Build new entry
+        node = {"name": display}
+        if isinstance(v, dict):
+            loc = v.get("location")
+            if isinstance(loc, str) and loc.strip():
+                node["location"] = loc.strip()
+            img = v.get("image") or v.get("image_url")
+            if isinstance(img, str) and img.strip():
+                node["image"] = img.strip()
+
+        new_dir[key_norm] = node
+
+    if new_dir != directory:
+        data["directory"] = new_dir
+        return True
+    return False
+
+def _migrate_canonicalize_zoos(data: dict) -> bool:
+    """
+    - Rewrites ownership lists to directory-canonical display names (keeps limit)
+    - Re-keys users[uid]['zoos'] buckets to canonical display names and merges dup buckets
+    - Dedupes & canonicalizes species names per bucket
+    Returns True if data changed.
+    """
+    changed = False
+
+    # Ownership list
+    ownership = data.get("ownership") or {}
+    for uid, rec in ownership.items():
+        zoos = list(rec.get("zoos") or [])
+        new_list, seen = [], set()
+        for z in zoos:
+            cz = _canonical_from_directory(data, z)
+            if cz not in seen:
+                new_list.append(cz); seen.add(cz)
+            if cz != z:
+                changed = True
+        rec["zoos"] = new_list
+
+    # User zoo buckets
+    users = data.get("users") or {}
+    for uid, urec in users.items():
+        zmap = dict(urec.get("zoos") or {})
+        if not isinstance(zmap, dict):
+            continue
+        newmap: dict[str, list[str]] = {}
+        for zname, species in zmap.items():
+            cz = _canonical_from_directory(data, zname)
+            lst = list(species or [])
+            bucket = newmap.setdefault(cz, [])
+            bucket.extend(lst)
+            if cz != zname:
+                changed = True
+
+        # Deduplicate & canonicalize species entries per bucket
+        for cz, lst in newmap.items():
+            out, seen = [], set()
+            for s in lst:
+                if not isinstance(s, str):
+                    continue
+                cs = _canonical_species_name(s) or s.strip()
+                if cs and cs not in seen:
+                    seen.add(cs); out.append(cs)
+            newmap[cz] = out
+
+        urec["zoos"] = newmap
+
+    return changed
+
+def _get_directory_entry(data: dict, display_name: str) -> dict | None:
+    """
+    Shape-proof directory read: returns entry dict with at least {'name': ...}
+    regardless of old/new directory schema.
+    """
+    directory = data.get("directory") or {}
+    # New-shape fast path
+    node = directory.get(_norm_zoo_key(display_name))
+    if isinstance(node, dict):
+        return node
+    # Old-shape direct key
+    node = directory.get(display_name)
+    if isinstance(node, dict):
+        return {
+            "name": display_name,
+            "location": node.get("location"),
+            "image": node.get("image") or node.get("image_url"),
+        }
+    # Scan values for matching 'name'
+    for v in directory.values():
+        if isinstance(v, dict) and v.get("name") == display_name:
+            return v
+    return None
+# =================== end Zoo data persistence & migrations ===================
+
+
 def format_holdings(holdings: Dict[str, Any]) -> str:
     """
     Render each region as a header line, then bullets (always bullets, even for one item).
