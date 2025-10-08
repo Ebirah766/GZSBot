@@ -3254,6 +3254,136 @@ def ensure_region_field_for_all() -> None:
 # Initialize the region field at import time
 ensure_region_field_for_all()
 
+# ---------- Helpers for view pagination (NEW) ----------
+PAGE_SIZE = 20  # items per page
+
+def _user_housed_list_for_zoo(data: dict, user_id: int, zoo_name: str) -> list[str]:
+    """Return the current user's valid housed species for the given zoo (canonicalized + deduped + sorted)."""
+    urec = (data.get("users", {}) or {}).get(str(user_id), {}) or {}
+    housed = list(urec.get("zoos", {}).get(zoo_name, []) or [])
+    housed_valid = []
+    seen = set()
+    for s in housed:
+        canon = _canonical_species_name(s)
+        if canon and canon not in seen:
+            housed_valid.append(canon); seen.add(canon)
+    housed_valid.sort(key=str.lower)
+    return housed_valid
+
+def _unhoused_list_for_zoo(data: dict, user_id: int, zoo_name: str) -> list[str]:
+    """Return the catalog species for this zoo that the user has NOT housed yet (sorted)."""
+    catalog = set(_catalog_species_for_zoo(zoo_name) or [])
+    housed = set(_user_housed_list_for_zoo(data, user_id, zoo_name))
+    missing = sorted([s for s in catalog if s not in housed], key=str.lower)
+    return missing
+
+def _slice_page(items: list[str], page: int, per_page: int = PAGE_SIZE) -> tuple[list[str], int]:
+    total_pages = max(1, (len(items) + per_page - 1) // per_page)
+    page = max(0, min(page, total_pages - 1))
+    start = page * per_page
+    return items[start:start + per_page], total_pages
+
+def _build_zoo_progress_embed(ctx, zoo_name: str, data: dict, user_id: int,
+                              category: str, page: int, per_page: int = PAGE_SIZE) -> discord.Embed:
+    """category: 'housed' or 'unhoused'."""
+    assert category in ("housed", "unhoused")
+    housed = _user_housed_list_for_zoo(data, user_id, zoo_name)
+    catalog_set = set(_catalog_species_for_zoo(zoo_name) or [])
+    denom = len(catalog_set)
+    num = len([s for s in housed if s in catalog_set])
+    pct = _percent(num, denom)
+
+    items = housed if category == "housed" else _unhoused_list_for_zoo(data, user_id, zoo_name)
+    page_items, total_pages = _slice_page(items, page, per_page)
+
+    # Title + summary bar
+    bar_len = 20
+    filled = round((pct / 100) * bar_len) if denom else 0
+    bar = "█" * filled + "—" * (bar_len - filled)
+
+    title = f"{zoo_name} — {num}/{denom} housed ({pct:.1f}%)"
+    desc = f"`{bar}`\n**Viewing:** {('Housed' if category == 'housed' else 'Unhoused')} species"
+
+    e = discord.Embed(title=title, description=desc, color=discord.Color.blurple())
+    # Try to carry forward any zoo image/location if you store them
+    meta = (data.get("directory", {}) or {}).get(zoo_name, {}) or {}
+    if isinstance(meta.get("image"), str) and meta["image"].strip():
+        e.set_thumbnail(url=meta["image"].strip())
+    elif isinstance(meta.get("image_url"), str) and meta["image_url"].strip():
+        e.set_thumbnail(url=meta["image_url"].strip())
+    if isinstance(meta.get("location"), str) and meta["location"].strip():
+        e.add_field(name="Location", value=meta["location"].strip(), inline=False)
+
+    # Page body
+    if page_items:
+        lines = [f"• {s}" for s in page_items]
+        e.add_field(
+            name=f"{'Housed' if category == 'housed' else 'Unhoused'} (showing {len(page_items)} of {len(items)})",
+            value="\n".join(lines),
+            inline=False
+        )
+    else:
+        e.add_field(
+            name=f"{'Housed' if category == 'housed' else 'Unhoused'}",
+            value="_None_",
+            inline=False
+        )
+
+    e.set_footer(text=f"Page {page + 1}/{total_pages} • Use ◀️ ▶️  • Toggle with 🔁")
+    return e
+
+# ---------- Paginated view for ;zoo view (NEW) ----------
+class ZooViewPager(discord.ui.View):
+    def __init__(self, ctx: commands.Context, zoo_name: str, data: dict,
+                 start_category: str = "housed", start_page: int = 0):
+        super().__init__(timeout=120)  # 2 min to prevent zombie views
+        self.ctx = ctx
+        self.zoo_name = zoo_name
+        self.data = data
+        self.category = start_category  # 'housed' | 'unhoused'
+        self.page = start_page
+
+    # Prev
+    @discord.ui.button(emoji="◀️", style=discord.ButtonStyle.secondary)
+    async def prev_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if interaction.user.id != self.ctx.author.id:
+            await interaction.response.send_message("Only the command invoker can use these controls.", ephemeral=True)
+            return
+        # compute total pages to wrap-around
+        items = (_user_housed_list_for_zoo if self.category == "housed" else _unhoused_list_for_zoo)(
+            self.data, self.ctx.author.id, self.zoo_name
+        )
+        _, total_pages = _slice_page(items, 0)  # just to get count
+        self.page = (self.page - 1) % total_pages
+        e = _build_zoo_progress_embed(self.ctx, self.zoo_name, self.data, self.ctx.author.id, self.category, self.page)
+        await interaction.response.edit_message(embed=e, view=self)
+
+    # Toggle housed/unhoused
+    @discord.ui.button(emoji="🔁", style=discord.ButtonStyle.primary)
+    async def toggle_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if interaction.user.id != self.ctx.author.id:
+            await interaction.response.send_message("Only the command invoker can use these controls.", ephemeral=True)
+            return
+        self.category = "unhoused" if self.category == "housed" else "housed"
+        self.page = 0
+        e = _build_zoo_progress_embed(self.ctx, self.zoo_name, self.data, self.ctx.author.id, self.category, self.page)
+        await interaction.response.edit_message(embed=e, view=self)
+
+    # Next
+    @discord.ui.button(emoji="▶️", style=discord.ButtonStyle.secondary)
+    async def next_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if interaction.user.id != self.ctx.author.id:
+            await interaction.response.send_message("Only the command invoker can use these controls.", ephemeral=True)
+            return
+        items = (_user_housed_list_for_zoo if self.category == "housed" else _unhoused_list_for_zoo)(
+            self.data, self.ctx.author.id, self.zoo_name
+        )
+        _, total_pages = _slice_page(items, 0)
+        self.page = (self.page + 1) % total_pages
+        e = _build_zoo_progress_embed(self.ctx, self.zoo_name, self.data, self.ctx.author.id, self.category, self.page)
+        await interaction.response.edit_message(embed=e, view=self)
+
+
 # --- Normalization helpers ---------------------------------------------------
 _normalizer = re.compile(r"[^a-z0-9]+")
 def norm(s: str) -> str:
@@ -4345,26 +4475,37 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
         return
 
     # >>> view UI card ---------------------------------------------------------
-    if sub == "view":
-        # Allow viewing any institution (doesn't require ownership).
-        # If no name provided, auto-pick if user owns exactly one.
-        if rest and rest.strip():
-            exact, suggestion = resolve_institution_name(rest.strip())
-            if not exact and suggestion:
-                await ctx.send(f"No exact entry for **{rest.strip()}**. Did you mean **{suggestion}**?")
-                return
-            if not exact and not suggestion:
-                await ctx.send(f"No institutions recorded yet or no match for **{rest.strip()}**.")
-                return
-            target_zoo = exact
-        else:
-            target_zoo, err = _auto_pick_owned_or_msg(ownership["zoos"], None, need_ownership=False)
-            if err:
-                await ctx.send("Please provide a zoo name to view (e.g., `;zoo view Mint Park Zoo`).")
-                return
-        e = _build_zoo_embed(ctx, target_zoo, data)
-        await ctx.send(embed=e)
-        return
+        # >>> view UI card ---------------------------------------------------------
+        if sub == "view":
+            # Allow viewing any institution (doesn't require ownership).
+            # If no name provided, auto-pick if user owns exactly one.
+            if rest and rest.strip():
+                exact, suggestion = resolve_institution_name(rest.strip())
+                if not exact and suggestion:
+                    await ctx.send(f"No exact entry for **{rest.strip()}**. Did you mean **{suggestion}**?")
+                    return
+                if not exact and not suggestion:
+                    await ctx.send(f"No institutions recorded yet or no match for **{rest.strip()}**.")
+                    return
+                target_zoo = exact
+            else:
+                target_zoo, err = _auto_pick_owned_or_msg(ownership["zoos"], None, need_ownership=False)
+                if err:
+                    await ctx.send("Please provide a zoo name to view (e.g., `;zoo view Mint Park Zoo`).")
+                    return
+
+            # If the viewer OWNS this zoo, show the new paginated progress UI.
+            viewer_owns = any(_norm_zoo(z) == _norm_zoo(target_zoo) for z in ownership["zoos"])
+            if viewer_owns:
+                e = _build_zoo_progress_embed(ctx, target_zoo, data, ctx.author.id, category="housed", page=0)
+                view = ZooViewPager(ctx, target_zoo, data, start_category="housed", start_page=0)
+                await ctx.send(embed=e, view=view)
+            else:
+                # Fallback to the existing static card for non-owners
+                e = _build_zoo_embed(ctx, target_zoo, data)
+                await ctx.send(embed=e)
+            return
+
 
     # --- status ---------------------------------------------------------------
     if sub == "status":
