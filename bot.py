@@ -10,6 +10,11 @@ from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
 import io  # <<< ADDED
 import builtins
 
+# --- Discord imports (moved to top to fix NameError in type annotations) ---
+import discord
+from discord.ext import commands
+from discord.ext.commands import CommandNotFound
+
 # --- Constants ---------------------------------------------------------------
 # Render holdings with one line per holder (split comma-separated values into bullets)
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
@@ -241,6 +246,139 @@ def _get_directory_entry(data: dict, display_name: str) -> dict | None:
     return None
 # =================== end Zoo data persistence & migrations ===================
 
+# ============ Housed/Unhoused pager helpers (place after migrations) ============
+PAGE_SIZE = 20  # items per page
+
+def _user_housed_list_for_zoo(data: dict, user_id: int, zoo_name: str) -> list[str]:
+    """Return the current user's valid housed species for the given zoo (canonicalized + deduped + sorted)."""
+    urec = (data.get("users", {}) or {}).get(str(user_id), {}) or {}
+    housed = list(urec.get("zoos", {}).get(zoo_name, []) or [])
+    housed_valid = []
+    seen = set()
+    for s in housed:
+        canon = _canonical_species_name(s)
+        if canon and canon not in seen:
+            housed_valid.append(canon)
+            seen.add(canon)
+    housed_valid.sort(key=str.lower)
+    return housed_valid
+
+def _unhoused_list_for_zoo(data: dict, user_id: int, zoo_name: str) -> list[str]:
+    """Return the catalog species for this zoo that the user has NOT housed yet (sorted)."""
+    catalog = set(_catalog_species_for_zoo(zoo_name) or [])
+    housed = set(_user_housed_list_for_zoo(data, user_id, zoo_name))
+    missing = sorted([s for s in catalog if s not in housed], key=str.lower)
+    return missing
+
+def _slice_page(items: list[str], page: int, per_page: int = PAGE_SIZE) -> tuple[list[str], int]:
+    total_pages = max(1, (len(items) + per_page - 1) // per_page)
+    page = max(0, min(page, total_pages - 1))
+    start = page * per_page
+    return items[start:start + per_page], total_pages
+
+def _build_zoo_progress_embed(ctx, zoo_name: str, data: dict, user_id: int,
+                              category: str, page: int, per_page: int = PAGE_SIZE) -> discord.Embed:
+    """category: 'housed' or 'unhoused'."""
+    assert category in ("housed", "unhoused")
+
+    housed = _user_housed_list_for_zoo(data, user_id, zoo_name)
+    catalog_set = set(_catalog_species_for_zoo(zoo_name) or [])
+    denom = len(catalog_set)
+    num = len([s for s in housed if s in catalog_set])
+    pct = _percent(num, denom)
+
+    items = housed if category == "housed" else _unhoused_list_for_zoo(data, user_id, zoo_name)
+    page_items, total_pages = _slice_page(items, page, per_page)
+
+    # Title + summary bar
+    bar_len = 20
+    filled = round((pct / 100) * bar_len) if denom else 0
+    bar = "█" * filled + "—" * (bar_len - filled)
+
+    title = f"{zoo_name} — {num}/{denom} housed ({pct:.1f}%)"
+    desc = f"`{bar}`\n**Viewing:** {('Housed' if category == 'housed' else 'Unhoused')} species"
+
+    e = discord.Embed(title=title, description=desc, color=discord.Color.blurple())
+
+    # Use shape-proof directory access
+    meta = _get_directory_entry(data, zoo_name) or {}
+    img = (meta.get("image") or "").strip() if isinstance(meta.get("image"), str) else ""
+    if img:
+        e.set_thumbnail(url=img)
+    loc = (meta.get("location") or "").strip() if isinstance(meta.get("location"), str) else ""
+    if loc:
+        e.add_field(name="Location", value=loc, inline=False)
+
+    # Page body
+    if page_items:
+        lines = [f"• {s}" for s in page_items]
+        e.add_field(
+            name=f"{'Housed' if category == 'housed' else 'Unhoused'} (showing {len(page_items)} of {len(items)})",
+            value="\n".join(lines),
+            inline=False
+        )
+    else:
+        e.add_field(
+            name=f"{'Housed' if category == 'housed' else 'Unhoused'}",
+            value="_None_",
+            inline=False
+        )
+
+    e.set_footer(text=f"Page {page + 1}/{total_pages} • Use ◀️ ▶️  • Toggle with 🔁")
+    return e
+
+# ----------------------- Paginated View (buttons) ----------------------------
+class ZooViewPager(discord.ui.View):
+    def __init__(self, ctx: commands.Context, zoo_name: str, data: dict,
+                 start_category: str = "housed", start_page: int = 0):
+        super().__init__(timeout=120)  # 2 minutes to prevent zombie views
+        self.ctx = ctx
+        self.zoo_name = zoo_name
+        self.data = data
+        self.category = start_category  # 'housed' | 'unhoused'
+        self.page = start_page
+
+    # Prev
+    @discord.ui.button(emoji="◀️", style=discord.ButtonStyle.secondary)
+    async def prev_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if interaction.user.id != self.ctx.author.id:
+            await interaction.response.send_message("Only the command invoker can use these controls.", ephemeral=True)
+            return
+        # compute total pages to wrap-around
+        items = (_user_housed_list_for_zoo if self.category == "housed" else _unhoused_list_for_zoo)(
+            self.data, self.ctx.author.id, self.zoo_name
+        )
+        _, total_pages = _slice_page(items, 0)  # just to get count
+        self.page = (self.page - 1) % total_pages
+        e = _build_zoo_progress_embed(self.ctx, self.zoo_name, self.data, self.ctx.author.id, self.category, self.page)
+        await interaction.response.edit_message(embed=e, view=self)
+
+    # Toggle housed/unhoused
+    @discord.ui.button(emoji="🔁", style=discord.ButtonStyle.primary)
+    async def toggle_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if interaction.user.id != self.ctx.author.id:
+            await interaction.response.send_message("Only the command invoker can use these controls.", ephemeral=True)
+            return
+        self.category = "unhoused" if self.category == "housed" else "housed"
+        self.page = 0
+        e = _build_zoo_progress_embed(self.ctx, self.zoo_name, self.data, self.ctx.author.id, self.category, self.page)
+        await interaction.response.edit_message(embed=e, view=self)
+
+    # Next
+    @discord.ui.button(emoji="▶️", style=discord.ButtonStyle.secondary)
+    async def next_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if interaction.user.id != self.ctx.author.id:
+            await interaction.response.send_message("Only the command invoker can use these controls.", ephemeral=True)
+            return
+        items = (_user_housed_list_for_zoo if self.category == "housed" else _unhoused_list_for_zoo)(
+            self.data, self.ctx.author.id, self.zoo_name
+        )
+        _, total_pages = _slice_page(items, 0)
+        self.page = (self.page + 1) % total_pages
+        e = _build_zoo_progress_embed(self.ctx, self.zoo_name, self.data, self.ctx.author.id, self.category, self.page)
+        await interaction.response.edit_message(embed=e, view=self)
+# ================== end housed/unhoused pager helpers & view =================
+
 
 def format_holdings(holdings: Dict[str, Any]) -> str:
     """
@@ -304,11 +442,6 @@ except Exception:
 
 # >>> ADDED: keep_alive import <<<
 from keep_alive import keep_alive
-
-# --- Discord imports ---------------------------------------------------------
-import discord
-from discord.ext import commands
-from discord.ext.commands import CommandNotFound
 
 # --- Intents -----------------------------------------------------------------
 intents = discord.Intents.default()
