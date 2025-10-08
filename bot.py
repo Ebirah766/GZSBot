@@ -5747,35 +5747,50 @@ async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
 
 
 @bot.command(name="unhoused")
-async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
+async def cmd_unhoused(ctx, *, zoo_name: str):
     """
     ;unhoused <zoo>
-    Show all species *not yet* housed in the specified zoo.
+    Show all species listed for that zoo that are not yet housed.
     """
-    data = _load_zoo_data()
-    # Use your master species dict
-    all_species = set(species_data.keys())
+    try:
+        data = _load_zoo_data()
+        user_id = str(ctx.author.id)
+        user_rec = data.get("users", {}).get(user_id, {})
+        user_zoos = user_rec.get("zoos", {})
+        housed_species = set(user_zoos.get(zoo_name, []))
 
-    housed_species: set[str] = set()
-    for _uid, urec in data.get("users", {}).items():
-        for zname, species_list in (urec.get("zoos", {}) or {}).items():
-            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
-                if isinstance(species_list, list):
-                    housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
+        # Get the full list of species recorded as holdings for this zoo (if tracked elsewhere)
+        # We'll assume there’s a top-level "holdings" field or similar in your data
+        zoo_directory = data.get("directory", {})
+        zoo_holdings = set()
+        if zoo_name in zoo_directory:
+            # If zoo’s directory entry has a “species” list, use that
+            if isinstance(zoo_directory[zoo_name].get("species"), list):
+                zoo_holdings = set(zoo_directory[zoo_name]["species"])
 
-    unhoused = sorted(all_species - housed_species, key=str.lower)
-    if not unhoused:
-        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
-        return
+        # Fallback: if no "species" list in directory, use global species dataset instead
+        if not zoo_holdings:
+            zoo_holdings = {name for name in species_data.keys()}
 
-    lines = [f"• {sp}" for sp in unhoused]
-    await _send_list_or_file(
-        ctx,
-        title=f"**Unhoused species in {zoo_name}:**",
-        lines=lines,
-        filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
-        inline_limit=100,  # change threshold here if you like
-    )
+        # Filter for species that *belong* to this zoo's holdings but aren't housed
+        unhoused = sorted(zoo_holdings - housed_species, key=str.lower)
+
+        if not unhoused:
+            await ctx.send(f"🎉 All species in **{zoo_name}** are currently housed!")
+            return
+
+        # Build and send as a .txt file if it's long
+        lines = [f"Unhoused Species in {zoo_name} ({len(unhoused)} total)\n"]
+        lines += [f"• {sp}" for sp in unhoused]
+
+        content = "\n".join(lines)
+        buf = io.BytesIO(content.encode("utf-8"))
+        file = discord.File(buf, filename=f"{zoo_name}_unhoused.txt")
+        await ctx.send(f"Here’s a list of unhoused species in **{zoo_name}**:", file=file)
+
+    except Exception:
+        log.exception("Error in ;unhoused")
+        await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{zoo_name}**.")
 
 
 if __name__ == "__main__":
