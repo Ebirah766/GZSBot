@@ -1753,8 +1753,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "Oceania": 0,
                         },
     "institutions": {
-            "High Uintahs Zoo": "2.0",
-            "Essex County Zoo": "3.0"
+            "Essex County Zoo": "3.0",
+            "High Uintahs Zoo": "2.0"
 
         }
         },
