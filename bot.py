@@ -3212,6 +3212,88 @@ species_data: Dict[str, Dict[str, Any]] = {
 }
 SPECIES = species_data
 
+# -------- Canonicalize existing zoo names (APPLIES TO OLD DATA) --------
+_ZOO_SPACE_NORM = re.compile(r"\s+")
+
+def _norm_zoo(s: str) -> str:
+    return _ZOO_SPACE_NORM.sub(" ", (s or "").strip().lower())
+
+def _title_zoo(s: str) -> str:
+    return " ".join(part.capitalize() for part in _ZOO_SPACE_NORM.sub(" ", (s or "").strip()).split())
+
+def _canonical_from_directory(data: dict, raw: str) -> str:
+    """
+    Prefer exact directory casing via your resolver; else match directory keys by normalized form;
+    else fall back to Title Case so old entries still look nice.
+    """
+    try:
+        exact, suggestion = resolve_institution_name(raw.strip())
+        if exact:
+            return exact
+    except Exception:
+        pass
+
+    directory = (data.get("directory") or {})
+    nz = _norm_zoo(raw)
+    for dn in directory.keys():
+        if _norm_zoo(dn) == nz:
+            return dn
+    return _title_zoo(raw)
+
+def _migrate_canonicalize_zoos(data: dict) -> bool:
+    """
+    - Rewrites ownership lists to canonical names (keeps limit, order doesn’t matter)
+    - Re-keys users[uid]['zoos'] buckets to canonical names and merges dup buckets
+    - Dedupes & canonicalizes species names per bucket
+    Returns True if data changed.
+    """
+    changed = False
+
+    # Ownership list
+    ownership = data.get("ownership") or {}
+    for uid, rec in ownership.items():
+        zoos = list(rec.get("zoos") or [])
+        new_list, seen = [], set()
+        for z in zoos:
+            cz = _canonical_from_directory(data, z)
+            if cz not in seen:
+                new_list.append(cz); seen.add(cz)
+            if cz != z:
+                changed = True
+        rec["zoos"] = new_list
+
+    # User zoo buckets
+    users = data.get("users") or {}
+    for uid, urec in users.items():
+        zmap = dict(urec.get("zoos") or {})
+        if not isinstance(zmap, dict):
+            continue
+        newmap: dict[str, list[str]] = {}
+        for zname, species in zmap.items():
+            cz = _canonical_from_directory(data, zname)
+            lst = list(species or [])
+            # merge duplicate buckets after canonicalization
+            bucket = newmap.setdefault(cz, [])
+            bucket.extend(lst)
+            if cz != zname:
+                changed = True
+
+        # Deduplicate & canonicalize species entries per bucket
+        for cz, lst in newmap.items():
+            out, seen = [], set()
+            for s in lst:
+                if not isinstance(s, str):
+                    continue
+                cs = _canonical_species_name(s) or s.strip()
+                if cs and cs not in seen:
+                    seen.add(cs); out.append(cs)
+            newmap[cz] = out
+
+        urec["zoos"] = newmap
+
+    return changed
+
+
 # --- Region helpers (derived from user-maintained `region` field) ------------
 _region_normalizer = re.compile(r"[^a-z]+")
 
@@ -4276,9 +4358,16 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
     ;zoo set / ;zoo clear -> no longer required; we auto-select your zoo.
     """
     data = _load_zoo_data()
+
+    # >>> NEW: migrate old names to canonical casing/keys so the new UI works everywhere
+    if _migrate_canonicalize_zoos(data):
+        _save_zoo_data(data)
+
     user = _ensure_user_struct(data, ctx.author.id)
     ownership = _get_user_ownership(data, ctx.author.id)
 
+
+    
     def _auto_pick_owned_or_msg(owned_list, provided: str | None, need_ownership: bool = True):
         """Return (zoo_name, err_msg). If provided is given, validate (and ownership if need_ownership)."""
         if provided and provided.strip():
