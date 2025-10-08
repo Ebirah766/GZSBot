@@ -4810,7 +4810,7 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
                 await ctx.send("Please provide a zoo name to view (e.g., `;zoo view Mint Park Zoo`).")
                 return
 
-        # If the viewer OWNS this zoo, show the new paginated progress UI.
+        # If the viewer OWNS this zoo, show the paginated progress UI with arrows + toggle.
         viewer_owns = any(_norm_zoo(z) == _norm_zoo(target_zoo) for z in ownership["zoos"])
         if viewer_owns:
             e = _build_zoo_progress_embed(ctx, target_zoo, data, ctx.author.id, category="housed", page=0)
@@ -4821,6 +4821,7 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
             e = _build_zoo_embed(ctx, target_zoo, data)
             await ctx.send(embed=e)
         return
+
 
 
     # --- status ---------------------------------------------------------------
