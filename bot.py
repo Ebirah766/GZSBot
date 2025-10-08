@@ -5770,63 +5770,35 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
-# ---------------- ;housed command (replace yours) ----------------
 @bot.command(name="housed")
-async def cmd_housed(ctx, *, zoo_name: str):
+async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
     """
     ;housed <zoo>
-    Show species currently housed at the given zoo for the calling user.
-    Zoo name is matched case/space/alias-insensitively and displayed using the
-    canonical capitalization from the directory when available.
+    Show all species currently housed in the specified zoo.
     """
-    try:
-        data = _load_zoo_data()
-        user_id = str(ctx.author.id)
+    data = _load_zoo_data()
+    housed_species: list[str] = []
 
-        canon_name, alias_norms = _resolve_zoo_canonical(zoo_name, data)
+    # Aggregate across all users' records for the given zoo name
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.extend([s for s in species_list if isinstance(s, str) and s.strip()])
 
-        # Find the correct key in the user's zoo bucket using aliases/normalization
-        user_zoos = (data.get("users", {}).get(user_id, {}) or {}).get("zoos", {})
-        if not isinstance(user_zoos, dict) or not user_zoos:
-            await ctx.send("You don’t have any housed species recorded yet.")
-            return
+    if not housed_species:
+        await ctx.send(f"No species are housed in **{zoo_name}**.")
+        return
 
-        matched_key = None
-        for k in user_zoos.keys():
-            if _norm_spaces(k) in alias_norms:
-                matched_key = k
-                break
-        if matched_key is None:
-            # very loose fallback: punctuation-insensitive
-            want_key = _key_name(zoo_name)
-            for k in user_zoos.keys():
-                if _key_name(k) == want_key:
-                    matched_key = k
-                    break
-
-        if matched_key is None:
-            await ctx.send(f"I couldn’t find any housed records for **{canon_name}**.")
-            return
-
-        housed_list = user_zoos.get(matched_key, [])
-        if not isinstance(housed_list, list) or not housed_list:
-            await ctx.send(f"No species are currently housed at **{canon_name}**.")
-            return
-
-        # Tidy output as a .txt
-        housed_sorted = sorted({str(x).strip() for x in housed_list if str(x).strip()}, key=str.lower)
-        lines = [f"Housed Species — {canon_name} ({len(housed_sorted)} total)", ""]
-        lines += [f"• {sp}" for sp in housed_sorted]
-
-        import io as _io, discord as _discord
-        buf = _io.BytesIO("\n".join(lines).encode("utf-8"))
-        buf.seek(0)
-        await ctx.send(file=_discord.File(buf, filename=f"{canon_name}_housed.txt"))
-
-    except Exception:
-        log.exception("Error in ;housed")
-        await ctx.send(f"⚠️ Something went wrong while listing housed species for **{zoo_name}**.")
-
+    housed_species = sorted(set(housed_species), key=str.lower)
+    lines = [f"• {sp}" for sp in housed_species]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Species housed in {zoo_name}:**",
+        lines=lines,
+        filename=f"housed_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,  # change threshold here if you like
+    )
 
 
 @bot.command(name="unhoused")
