@@ -1745,7 +1745,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "North America, South America",
     "holdings": {
-        "North America": "2.0 - High Uintahs Zoo, 3.0 - Essex County Zoo",
+        "North America": "3.0 - Essex County Zoo, 2.0 - High Uintahs Zoo",
         "Asia": 0,
         "Europe": 0,
         "Africa": 0,
