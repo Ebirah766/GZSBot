@@ -4475,36 +4475,35 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
         return
 
     # >>> view UI card ---------------------------------------------------------
-        # >>> view UI card ---------------------------------------------------------
-        if sub == "view":
-            # Allow viewing any institution (doesn't require ownership).
-            # If no name provided, auto-pick if user owns exactly one.
-            if rest and rest.strip():
-                exact, suggestion = resolve_institution_name(rest.strip())
-                if not exact and suggestion:
-                    await ctx.send(f"No exact entry for **{rest.strip()}**. Did you mean **{suggestion}**?")
-                    return
-                if not exact and not suggestion:
-                    await ctx.send(f"No institutions recorded yet or no match for **{rest.strip()}**.")
-                    return
-                target_zoo = exact
-            else:
-                target_zoo, err = _auto_pick_owned_or_msg(ownership["zoos"], None, need_ownership=False)
-                if err:
-                    await ctx.send("Please provide a zoo name to view (e.g., `;zoo view Mint Park Zoo`).")
-                    return
+    if sub == "view":
+        # Allow viewing any institution (doesn't require ownership).
+        # If no name provided, auto-pick if user owns exactly one.
+        if rest and rest.strip():
+            exact, suggestion = resolve_institution_name(rest.strip())
+            if not exact and suggestion:
+                await ctx.send(f"No exact entry for **{rest.strip()}**. Did you mean **{suggestion}**?")
+                return
+            if not exact and not suggestion:
+                await ctx.send(f"No institutions recorded yet or no match for **{rest.strip()}**.")
+                return
+            target_zoo = exact
+        else:
+            target_zoo, err = _auto_pick_owned_or_msg(ownership["zoos"], None, need_ownership=False)
+            if err:
+                await ctx.send("Please provide a zoo name to view (e.g., `;zoo view Mint Park Zoo`).")
+                return
 
-            # If the viewer OWNS this zoo, show the new paginated progress UI.
-            viewer_owns = any(_norm_zoo(z) == _norm_zoo(target_zoo) for z in ownership["zoos"])
-            if viewer_owns:
-                e = _build_zoo_progress_embed(ctx, target_zoo, data, ctx.author.id, category="housed", page=0)
-                view = ZooViewPager(ctx, target_zoo, data, start_category="housed", start_page=0)
-                await ctx.send(embed=e, view=view)
-            else:
-                # Fallback to the existing static card for non-owners
-                e = _build_zoo_embed(ctx, target_zoo, data)
-                await ctx.send(embed=e)
-            return
+        # If the viewer OWNS this zoo, show the new paginated progress UI.
+        viewer_owns = any(_norm_zoo(z) == _norm_zoo(target_zoo) for z in ownership["zoos"])
+        if viewer_owns:
+            e = _build_zoo_progress_embed(ctx, target_zoo, data, ctx.author.id, category="housed", page=0)
+            view = ZooViewPager(ctx, target_zoo, data, start_category="housed", start_page=0)
+            await ctx.send(embed=e, view=view)
+        else:
+            # Fallback to the existing static card for non-owners
+            e = _build_zoo_embed(ctx, target_zoo, data)
+            await ctx.send(embed=e)
+        return
 
 
     # --- status ---------------------------------------------------------------
