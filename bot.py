@@ -5770,73 +5770,66 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
-    @bot.command(name="housed")
-    async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
-        """
-        ;housed <zoo>
-        Show all species currently housed in the specified zoo.
-        Self-contained: no external helpers; robust normalization; safe filename.
-        """
-        # --- EARLY PING so we know the command actually fired ---
-        # (If you hate the visible ping, comment this out after it works.)
-        ping_msg = await ctx.send("🔎 Working on it…")
+@bot.command(name="housed")
+async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
+    """
+    ;housed <zoo>
+    Show all species currently housed in the specified zoo.
+    """
+    data = _load_zoo_data()
+    housed_species: list[str] = []
 
-        try:
-            data = _load_zoo_data()
+    # Aggregate across all users' records for the given zoo name
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.extend([s for s in species_list if isinstance(s, str) and s.strip()])
 
-            # Normalizer: lower + strip non-alphanumerics
-            import re as _re
-            def _norm(s: str) -> str:
-                return _re.sub(r"[^a-z0-9]+", "", s.lower()) if isinstance(s, str) else ""
+    if not housed_species:
+        await ctx.send(f"No species are housed in **{zoo_name}**.")
+        return
 
-            # Canonical name from directory or fallback
-            directory = data.get("directory") or {}
-            dir_names = list(directory.keys()) if isinstance(directory, dict) else []
-            canon_map = { _norm(n): n for n in dir_names }
-            display_name = canon_map.get(_norm(zoo_name), zoo_name.strip())
-            target_key = _norm(display_name)
+    housed_species = sorted(set(housed_species), key=str.lower)
+    lines = [f"• {sp}" for sp in housed_species]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Species housed in {zoo_name}:**",
+        lines=lines,
+        filename=f"housed_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,
+    )
 
-            # Aggregate across all users for normalized match
-            from typing import List
-            housed_species: List[str] = []
-            for _uid, urec in (data.get("users", {}) or {}).items():
-                for zname, species_list in (urec.get("zoos", {}) or {}).items():
-                    if _norm(zname) == target_key and isinstance(species_list, list):
-                        for s in species_list:
-                            if isinstance(s, str) and s.strip():
-                                housed_species.append(s.strip())
 
-            if not housed_species:
-                await ping_msg.edit(content=f"ℹ️ No species are housed in **{display_name}**.")
-                return
+@bot.command(name="unhoused")
+async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
+    """
+    ;unhoused <zoo>
+    Show all species *not yet* housed in the specified zoo.
+    """
+    data = _load_zoo_data()
+    all_species = set(species_data.keys())
 
-            housed_species = sorted(set(housed_species), key=str.lower)
-            lines = [f"• {sp}" for sp in housed_species]
+    housed_species: set[str] = set()
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
 
-            # If short, send inline; if long, send as a .txt file
-            title = f"**Species housed in {display_name}:**"
-            if len(lines) <= 100 and sum(len(x) for x in lines) < 1800:
-                # Inline message
-                content = title + "\n" + "\n".join(lines)
-                await ping_msg.edit(content=content)
-            else:
-                # File fallback
-                safe_filename = "housed_" + _re.sub(r"[^A-Za-z0-9_]+", "_", display_name.replace(" ", "_")) + ".txt"
-                buf_txt = title + f"\n\nTotal: {len(lines)}\n\n" + "\n".join(lines)
-                import io
-                b = io.BytesIO(buf_txt.encode("utf-8"))
-                b.seek(0)
-                file = discord.File(b, filename=safe_filename)
-                await ping_msg.edit(content=title)
-                await ctx.send(file=file)
+    unhoused = sorted(all_species - housed_species, key=str.lower)
+    if not unhoused:
+        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
+        return
 
-        except Exception as e:
-            # Log if available; also surface a visible error so it doesn't look like a no-op
-            try:
-                log.exception("Error in ;housed")
-            except Exception:
-                pass
-            await ping_msg.edit(content=f"❌ Sorry, something went wrong building the housed list for **{zoo_name}**.\n`{type(e).__name__}: {e}`")
+    lines = [f"• {sp}" for sp in unhoused]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Unhoused species in {zoo_name}:**",
+        lines=lines,
+        filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,
+    )
 
 
 if __name__ == "__main__":
