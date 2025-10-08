@@ -5715,168 +5715,73 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
+# ======================= HOUSED / UNHOUSED (robust) =========================
 @bot.command(name="housed")
-async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
+async def cmd_housed(ctx, *, zoo_name: str):
     """
     ;housed <zoo>
-    Show all species currently housed in the specified zoo.
+    Show species that are HELD by <zoo> and are currently housed there by the user.
     """
-    data = _load_zoo_data()
-    housed_species: list[str] = []
+    try:
+        data = _load_zoo_data()
+        user_id = str(ctx.author.id)
+        housed_list, collection_list = _compute_housed_and_collection(data, user_id, zoo_name)
 
-    # Aggregate across all users' records for the given zoo name
-    for _uid, urec in data.get("users", {}).items():
-        for zname, species_list in (urec.get("zoos", {}) or {}).items():
-            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
-                if isinstance(species_list, list):
-                    housed_species.extend([s for s in species_list if isinstance(s, str) and s.strip()])
+        if not collection_list:
+            await ctx.send(f"ℹ️ I couldn’t find any species in the global holdings that list **{zoo_name}**.")
+            return
 
-    if not housed_species:
-        await ctx.send(f"No species are housed in **{zoo_name}**.")
-        return
+        # canonicalize and intersect
+        key, idx_to_display = _name_key_maker_and_index()
+        housed_keys = {key(n) for n in housed_list}
+        collection_keys = {key(n) for n in collection_list}
+        result_keys = sorted(collection_keys & housed_keys)
 
-    housed_species = sorted(set(housed_species), key=str.lower)
-    lines = [f"• {sp}" for sp in housed_species]
-    await _send_list_or_file(
-        ctx,
-        title=f"**Species housed in {zoo_name}:**",
-        lines=lines,
-        filename=f"housed_{zoo_name.replace(' ', '_')}.txt",
-        inline_limit=100,  # change threshold here if you like
-    )
+        if not result_keys:
+            await ctx.send(f"ℹ️ I don’t see any species **currently housed** at **{zoo_name}** (from your housed list).")
+            return
+
+        out = [f"Housed Species in {zoo_name} — ({len(result_keys)} total)", ""]
+        out += [f"• {idx_to_display(k)}" for k in result_keys]
+
+        import io as _io, discord as _discord
+        buf = _io.BytesIO("\n".join(out).encode("utf-8")); buf.seek(0)
+        await ctx.send(file=_discord.File(buf, filename=f"{zoo_name}_housed.txt"))
+
+    except Exception:
+        log.exception("Error in ;housed")
+        await ctx.send(f"⚠️ Something went wrong while listing housed species for **{zoo_name}**.")
 
 
 @bot.command(name="unhoused")
 async def cmd_unhoused(ctx, *, zoo_name: str):
     """
     ;unhoused <zoo>
-    Show species that are HELD by <zoo> (appear in species_data['holdings']) but NOT currently housed there.
-    Matching is strict to the facility name/aliases; subtraction uses normalized names so casing/punctuation won’t leak housed items into the result.
+    Show species that are HELD by <zoo> but are NOT currently housed there by the user.
     """
     try:
         data = _load_zoo_data()
         user_id = str(ctx.author.id)
+        housed_list, collection_list = _compute_housed_and_collection(data, user_id, zoo_name)
 
-        # ---------- dataset access ----------
-        def _species_ds():
-            try:
-                return SPECIES  # if you've set SPECIES = species_data
-            except NameError:
-                return species_data
-
-        # ---------- normalization ----------
-        import re
-        NON_ALNUM = re.compile(r"[^a-z0-9]+")
-
-        def _norm_spaces(s: str) -> str:
-            return " ".join(str(s).casefold().replace("–", "-").replace("—", "-").split())
-
-        def _key(s: str) -> str:
-            # key used for set logic: lowercase, remove non-alphanumerics
-            return NON_ALNUM.sub("", str(s).casefold())
-
-        target = _norm_spaces(zoo_name)
-
-        # Optional aliases from directory metadata
-        aliases: set[str] = {target}
-        dirrec = (data.get("directory") or {}).get(zoo_name) if isinstance(data.get("directory"), dict) else None
-        if isinstance(dirrec, dict) and isinstance(dirrec.get("aliases"), list):
-            for a in dirrec["aliases"]:
-                if isinstance(a, str) and a.strip():
-                    aliases.add(_norm_spaces(a))
-
-        # ---------- parse institution from a holder piece ----------
-        COUNT_PREFIX = re.compile(r"^\s*\d+(?:\.\d+)?\s*[-:]\s*(.+)$")
-
-        def extract_institution(piece: str) -> str:
-            s = str(piece).strip().replace("–", "-").replace("—", "-")
-            m = COUNT_PREFIX.match(s)
-            if m:
-                return m.group(1).strip()
-            if " - " in s:
-                return s.split(" - ", 1)[1].strip()
-            return s
-
-        # ---------- get user's currently housed list for this zoo ----------
-        def _get_housed_for_zoo() -> set[str]:
-            user_zoos = (data.get("users", {}).get(user_id, {}) or {}).get("zoos", {})
-            if isinstance(user_zoos, dict):
-                val = user_zoos.get(zoo_name)
-                if isinstance(val, list):
-                    return {str(x).strip() for x in val if str(x).strip()}
-            return set()
-
-        housed_originals: set[str] = _get_housed_for_zoo()
-
-        # ---------- derive collection strictly from species_data.holdings ----------
-        ds = _species_ds()
-        collection_originals: set[str] = set()
-
-        for common_name, entry in (ds or {}).items():
-            if not isinstance(entry, dict):
-                continue
-            holdings = entry.get("holdings")
-            if not isinstance(holdings, dict):
-                continue
-
-            in_this_zoo = False
-            for _region, raw in holdings.items():
-                if raw is None:
-                    continue
-
-                # Normalize to list of pieces
-                parts: list[str] = []
-                if isinstance(raw, list):
-                    for item in raw:
-                        if item is None:
-                            continue
-                        parts.extend(str(item).replace("•", "\n").split(","))
-                else:
-                    s = str(raw).strip()
-                    if s in ("0", "0.0", "0.00", ""):
-                        continue
-                    s = s.replace("•", "\n")
-                    parts.extend(re.split(r"[,;\n]+", s))
-
-                for piece in parts:
-                    piece = str(piece).strip()
-                    if not piece or piece in ("0", "0.0", "0.00"):
-                        continue
-                    inst = extract_institution(piece)
-                    if not inst:
-                        continue
-                    if _norm_spaces(inst) in aliases:
-                        in_this_zoo = True
-                        break
-                if in_this_zoo:
-                    break
-
-            if in_this_zoo:
-                collection_originals.add(str(common_name))
-
-        if not collection_originals:
+        if not collection_list:
             await ctx.send(f"ℹ️ I couldn’t find any species in the global holdings that list **{zoo_name}**.")
             return
 
-        # ---------- crucial fix: subtract using a normalized key ----------
-        housed_keys = {_key(n) for n in housed_originals}
-        collection_map = {_key(n): n for n in collection_originals}  # key -> original name
+        key, idx_to_display = _name_key_maker_and_index()
+        housed_keys = {key(n) for n in housed_list}
+        collection_keys = {key(n) for n in collection_list}
+        result_keys = sorted([k for k in collection_keys if k not in housed_keys])
 
-        # keys present in collection but NOT in housed
-        unhoused_keys = sorted([k for k in collection_map.keys() if k not in housed_keys])
-        unhoused = [collection_map[k] for k in unhoused_keys]
-
-        if not unhoused:
+        if not result_keys:
             await ctx.send(f"🎉 All species held by **{zoo_name}** are currently housed there.")
             return
 
-        # ---------- output ----------
-        lines = [f"Unhoused Species in {zoo_name} — in collection but not housed ({len(unhoused)} total)", ""]
-        lines += [f"• {sp}" for sp in unhoused]
+        out = [f"Unhoused Species in {zoo_name} — in collection but not housed ({len(result_keys)} total)", ""]
+        out += [f"• {idx_to_display(k)}" for k in result_keys]
 
         import io as _io, discord as _discord
-        buf = _io.BytesIO("\n".join(lines).encode("utf-8"))
-        buf.seek(0)
+        buf = _io.BytesIO("\n".join(out).encode("utf-8")); buf.seek(0)
         await ctx.send(file=_discord.File(buf, filename=f"{zoo_name}_unhoused.txt"))
 
     except Exception:
@@ -5884,7 +5789,212 @@ async def cmd_unhoused(ctx, *, zoo_name: str):
         await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{zoo_name}**.")
 
 
+# ======================= helpers used by both commands =======================
+def _species_dataset():
+    # Works whether you use SPECIES or species_data
+    try:
+        return SPECIES  # type: ignore
+    except NameError:
+        return species_data  # type: ignore
 
+
+def _name_key_maker_and_index():
+    """
+    Returns:
+      key(s:str)->str: canonical key for set math
+      idx_to_display(k:str)->str: display name (common) for a given canonical key
+    We map BOTH common and scientific names to the SAME canonical key (the species' common name).
+    """
+    import re
+    NON_ALNUM = re.compile(r"[^a-z0-9]+")
+    ds = _species_dataset() or {}
+
+    def canon_key(s: str) -> str:
+        return NON_ALNUM.sub("", str(s).casefold())
+
+    # Build index: canonical_key(common) -> common display name
+    # Also allow lookup by scientific name: scientific -> same key as common
+    common_key_to_display: dict[str, str] = {}
+    sci_to_common_key: dict[str, str] = {}
+
+    for common, entry in ds.items():
+        if not isinstance(entry, dict):
+            continue
+        common_disp = str(common)
+        ck = canon_key(common_disp)
+        if ck and ck not in common_key_to_display:
+            common_key_to_display[ck] = common_disp
+        sci = entry.get("scientific")
+        if isinstance(sci, str) and sci.strip():
+            sci_to_common_key[canon_key(sci)] = ck
+
+    def key(name: str) -> str:
+        k = canon_key(name)
+        # if it's a scientific name we know, map to common's key
+        return sci_to_common_key.get(k, k)
+
+    def idx_to_display(k: str) -> str:
+        # prefer known common display; otherwise best-effort restore
+        return common_key_to_display.get(k, k)
+
+    return key, idx_to_display
+
+
+def _compute_housed_and_collection(data: dict, user_id: str, zoo_name: str) -> tuple[set[str], set[str]]:
+    """
+    Returns (housed_list, collection_list) where both are sets of ORIGINAL names (as stored).
+    Housed is read from several likely JSON paths. Collection is derived from:
+      - your explicit buckets if present, else
+      - scanning species_data['holdings'] for this institution.
+    """
+    # ---- where housed might live (try multiple buckets) ----
+    housed: set[str] = set()
+
+    user_rec = (data.get("users") or {}).get(user_id, {}) if isinstance(data.get("users"), dict) else {}
+    if isinstance(user_rec, dict):
+        # 1) users[uid]["zoos"][zoo_name] -> [species...]
+        z1 = user_rec.get("zoos", {})
+        if isinstance(z1, dict) and isinstance(z1.get(zoo_name), list):
+            housed.update(str(x).strip() for x in z1.get(zoo_name) if str(x).strip())
+
+        # 2) users[uid]["housed"][zoo_name] -> [species...]
+        z2 = user_rec.get("housed", {})
+        if isinstance(z2, dict) and isinstance(z2.get(zoo_name), list):
+            housed.update(str(x).strip() for x in z2.get(zoo_name) if str(x).strip())
+
+        # 3) users[uid]["zoos_meta"][zoo_name]["housed"] -> [species...]
+        zm = user_rec.get("zoos_meta", {})
+        if isinstance(zm, dict) and isinstance(zm.get(zoo_name), dict):
+            v = zm[zoo_name].get("housed")
+            if isinstance(v, list):
+                housed.update(str(x).strip() for x in v if str(x).strip())
+
+    # 4) global: data["zoos"][zoo_name]["housed"] -> [species...]
+    zoos_global = data.get("zoos", {})
+    if isinstance(zoos_global, dict) and isinstance(zoos_global.get(zoo_name), dict):
+        v = zoos_global[zoo_name].get("housed")
+        if isinstance(v, list):
+            housed.update(str(x).strip() for x in v if str(x).strip())
+
+    # 5) global: directory[zoo_name]["housed"] -> [species...]
+    directory = data.get("directory", {})
+    if isinstance(directory, dict) and isinstance(directory.get(zoo_name), dict):
+        v = directory[zoo_name].get("housed")
+        if isinstance(v, list):
+            housed.update(str(x).strip() for x in v if str(x).strip())
+
+    # ---- build collection (explicit buckets first; otherwise infer from holdings) ----
+    collection: set[str] = set()
+
+    # Explicit buckets (if you maintain lists per zoo)
+    # A) users[uid]["collections"][zoo_name]
+    if isinstance(user_rec, dict):
+        coll = user_rec.get("collections", {})
+        if isinstance(coll, dict) and isinstance(coll.get(zoo_name), list):
+            collection.update(str(x).strip() for x in coll.get(zoo_name) if str(x).strip())
+        # B) users[uid]["zoo_collections"][zoo_name]
+        zc = user_rec.get("zoo_collections", {})
+        if isinstance(zc, dict) and isinstance(zc.get(zoo_name), list):
+            collection.update(str(x).strip() for x in zc.get(zoo_name) if str(x).strip())
+        # C) users[uid]["zoos_meta"][zoo_name]["holdings"]
+        zm = user_rec.get("zoos_meta", {})
+        if isinstance(zm, dict) and isinstance(zm.get(zoo_name), dict):
+            v = zm[zoo_name].get("holdings")
+            if isinstance(v, list):
+                collection.update(str(x).strip() for x in v if str(x).strip())
+
+    # D) global: directory[zoo_name]["species"]
+    if isinstance(directory, dict) and isinstance(directory.get(zoo_name), dict):
+        v = directory[zoo_name].get("species")
+        if isinstance(v, list):
+            collection.update(str(x).strip() for x in v if str(x).strip())
+
+    if not collection:
+        # Derive from species_data['holdings'] where the institution appears
+        collection = _infer_collection_from_species_db(zoo_name)
+
+    return housed, collection
+
+
+def _infer_collection_from_species_db(zoo_name: str) -> set[str]:
+    """
+    Scan species_data for species whose holdings include the given zoo.
+    Matches aliases from directory if present.
+    Returns SET OF COMMON NAMES (originals as stored in dataset keys).
+    """
+    import re
+    ds = _species_dataset() or {}
+
+    def norm_spaces(s: str) -> str:
+        return " ".join(str(s).casefold().replace("–", "-").replace("—", "-").split())
+
+    target = norm_spaces(zoo_name)
+
+    # pull aliases if defined
+    data = _load_zoo_data()
+    aliases: set[str] = {target}
+    directory = data.get("directory", {})
+    if isinstance(directory, dict) and isinstance(directory.get(zoo_name), dict):
+        a = directory[zoo_name].get("aliases")
+        if isinstance(a, list):
+            for x in a:
+                if isinstance(x, str) and x.strip():
+                    aliases.add(norm_spaces(x))
+
+    COUNT_PREFIX = re.compile(r"^\s*\d+(?:\.\d+)?\s*[-:]\s*(.+)$")  # "1.1 - Zoo Name"
+
+    def extract_institution(piece: str) -> str:
+        s = str(piece).strip().replace("–", "-").replace("—", "-")
+        m = COUNT_PREFIX.match(s)
+        if m:
+            return m.group(1).strip()
+        if " - " in s:
+            return s.split(" - ", 1)[1].strip()
+        return s
+
+    found: set[str] = set()
+
+    for common_name, entry in ds.items():
+        if not isinstance(entry, dict):
+            continue
+        holdings = entry.get("holdings")
+        if not isinstance(holdings, dict):
+            continue
+
+        in_this_zoo = False
+        for _region, raw in holdings.items():
+            if raw is None:
+                continue
+
+            parts: list[str] = []
+            if isinstance(raw, list):
+                for item in raw:
+                    if item is None:
+                        continue
+                    parts.extend(str(item).replace("•", "\n").split(","))
+            else:
+                s = str(raw).strip()
+                if s in ("0", "0.0", "0.00", ""):
+                    continue
+                s = s.replace("•", "\n")
+                parts.extend(re.split(r"[,;\n]+", s))
+
+            for piece in parts:
+                piece = str(piece).strip()
+                if not piece or piece in ("0", "0.0", "0.00"):
+                    continue
+                inst = extract_institution(piece)
+                if inst and norm_spaces(inst) in aliases:
+                    in_this_zoo = True
+                    break
+
+            if in_this_zoo:
+                break
+
+        if in_this_zoo:
+            found.add(str(common_name))
+
+    return found
 
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
