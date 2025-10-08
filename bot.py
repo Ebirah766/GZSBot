@@ -5747,99 +5747,34 @@ async def cmd_housed(ctx: commands.Context, *, zoo_name: str):
 
 
 @bot.command(name="unhoused")
-async def cmd_unhoused(ctx, *, zoo_name: str):
+async def cmd_unhoused(ctx: commands.Context, *, zoo_name: str):
     """
     ;unhoused <zoo>
-    Show species that are in this zoo's collection/holdings but NOT currently housed there.
-    Only inspects recorded collection lists; if none are found, it reports that explicitly.
+    Show all species *not yet* housed in the specified zoo.
     """
-    try:
-        data = _load_zoo_data()
-        user_id = str(ctx.author.id)
+    data = _load_zoo_data()
+    all_species = set(species_data.keys())
 
-        # ---------------- helpers ----------------
-        def _as_set(val):
-            if isinstance(val, list):
-                return {str(x).strip() for x in val if str(x).strip()}
-            return set()
+    housed_species: set[str] = set()
+    for _uid, urec in data.get("users", {}).items():
+        for zname, species_list in (urec.get("zoos", {}) or {}).items():
+            if isinstance(zname, str) and zname.lower().strip() == zoo_name.lower().strip():
+                if isinstance(species_list, list):
+                    housed_species.update([s for s in species_list if isinstance(s, str) and s.strip()])
 
-        def _get_user_rec():
-            return data.get("users", {}).get(user_id, {})
+    unhoused = sorted(all_species - housed_species, key=str.lower)
+    if not unhoused:
+        await ctx.send(f"All known species are already housed in **{zoo_name}**!")
+        return
 
-        def _get_housed_for_zoo() -> set[str]:
-            # Your housed species live here per your previous structure:
-            # data["users"][<uid>]["zoos"][<zoo_name>] == [species...]
-            user_zoos = _get_user_rec().get("zoos", {})
-            return _as_set(user_zoos.get(zoo_name, []))
-
-        def _get_collection_for_zoo() -> set[str]:
-            """
-            Try common places people store 'collection' / 'holdings' lists.
-            We DO NOT fall back to the entire species database.
-            """
-            urec = _get_user_rec()
-
-            # 1) users[uid]["collections"][zoo_name] -> [species...]
-            collections = urec.get("collections", {})
-            if isinstance(collections, dict) and zoo_name in collections:
-                return _as_set(collections.get(zoo_name))
-
-            # 2) users[uid]["zoo_collections"][zoo_name] -> [species...]
-            zc = urec.get("zoo_collections", {})
-            if isinstance(zc, dict) and zoo_name in zc:
-                return _as_set(zc.get(zoo_name))
-
-            # 3) users[uid]["zoos_meta"][zoo_name]["holdings"] -> [species...]
-            zm = urec.get("zoos_meta", {})
-            if isinstance(zm, dict) and zoo_name in zm:
-                holdings = zm[zoo_name].get("holdings")
-                if isinstance(holdings, list):
-                    return _as_set(holdings)
-
-            # 4) global directory[zoo_name]["species"] -> [species...]
-            # (only if you’ve explicitly populated this per-zoo list)
-            directory = data.get("directory", {})
-            if isinstance(directory, dict) and zoo_name in directory:
-                drec = directory.get(zoo_name, {})
-                if isinstance(drec, dict) and isinstance(drec.get("species"), list):
-                    return _as_set(drec["species"])
-
-            # Nothing found — return empty
-            return set()
-
-        # --------------- compute -----------------
-        housed = {s for s in _get_housed_for_zoo()}
-        collection = {s for s in _get_collection_for_zoo()}
-
-        if not collection:
-            await ctx.send(
-                f"ℹ️ I don’t have a recorded collection/holdings list for **{zoo_name}**.\n"
-                f"Add a collection for this zoo first (e.g., under `users[{user_id}]['collections']['{zoo_name}']` "
-                f"or `directory['{zoo_name}']['species']`) and try again."
-            )
-            return
-
-        # Only species that are in the collection but NOT currently housed
-        unhoused = sorted((collection - housed), key=lambda s: s.lower())
-
-        if not unhoused:
-            await ctx.send(f"🎉 All species in **{zoo_name}**’s collection are currently housed!")
-            return
-
-        # Output as a tidy .txt (nicer for long lists)
-        lines = [f"Unhoused Species in {zoo_name} (in collection but not housed) — {len(unhoused)} total", ""]
-        lines += [f"• {sp}" for sp in unhoused]
-
-        content = "\n".join(lines)
-        buf = io.BytesIO(content.encode("utf-8"))
-        buf.seek(0)
-        file = discord.File(buf, filename=f"{zoo_name}_unhoused.txt")
-        await ctx.send(file=file)
-
-    except Exception:
-        log.exception("Error in ;unhoused")
-        await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{zoo_name}**.")
-        await ctx.send(f"⚠️ Something went wrong while listing unhoused species for **{zoo_name}**.")
+    lines = [f"• {sp}" for sp in unhoused]
+    await _send_list_or_file(
+        ctx,
+        title=f"**Unhoused species in {zoo_name}:**",
+        lines=lines,
+        filename=f"unhoused_{zoo_name.replace(' ', '_')}.txt",
+        inline_limit=100,
+    )
 
 
 if __name__ == "__main__":
