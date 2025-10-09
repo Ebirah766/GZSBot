@@ -956,14 +956,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
-            "Asia": "3.0 - Air Terjun Zoo"
+            "Asia": "3.0 - Air Terjun Zoo",
             "Europe": "1.3 - Shropshire Hills Zoo",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Shropshire Hills Zoo": "1.3"
+            "Shropshire Hills Zoo": "1.3",
             "Air Terjun Zoo": "3.0"
         },
     },
@@ -3918,23 +3918,24 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "Serval": {
                                             "common": "Serval",
                                             "scientific": "Leptailurus serval",
-                                            "info": "A small wild cat native to Africa, the serval is a solitary carnivore with a wide range, stretching",
+                                            "info": "A small wild cat native to Africa, the serval is a solitary carnivore with a wide range, stretching from west to southern Africa. Their main diet consists of rodents and other small mammals, but they will also take birds and small ungulates occasionally. They have been crossbred with domestic cats to create savannah cats.",
                                             "type": "Mammal",
-                                            "order": "Artiodactyla",
-                                            "family": "Camelidae",
-                                            "genus": "Camelus",
-                                            "image_url": "https://pictureanimal.com/wiki-image/1080/152345814335750145.jpeg",
-                                            "breeding": "Easy",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Leptailurus",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg/1024px-Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg",
+                                            "breeding": "Average",
+                                            "region": "Africa",
                                             "holdings": {
                                                 "North America": 0,
-                                                "Asia": "1.3 - Air Terjun Zoo",
+                                                "Asia": "1.1 - Air Terjun Zoo",
                                                 "Europe": 0,
                                                 "Africa": 0,
                                                 "South America": 0,
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
-                                                "Air Terjun Zoo": "1.3"
+                                                "Air Terjun Zoo": "1.1"
         },
     }
 }

@@ -4,6 +4,13 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-10-09**: Fixed recurring syntax errors in species_data:
+- Common Fallow Deer: Added missing commas in holdings (line 962) and institutions (line 969) dictionaries
+- Cotton-Top Tamarin: Added missing comma between institution entries (line 1315)
+- Turkey Vulture: Added missing comma between institution entries (line 2122)
+- Added "Air Terjun Zoo" to zoo directory in zoo_progress.json
+- Note: Common Fallow Deer syntax error has recurred multiple times - always check for missing commas when adding Air Terjun Zoo data
+
 **2025-10-06**: Fixed critical indentation errors in bot.py:
 - Corrected SpeciesPager class indentation (was nested inside function, moved to top level)
 - Removed duplicate build_species_embed function definition that was missing total_images parameter
