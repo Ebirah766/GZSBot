@@ -610,7 +610,6 @@ def list_user_zoos_with_balances(uid: int) -> list[tuple[str, int]]:
         except Exception:
             pass
     return sorted(out, key=lambda kv: kv[0].lower())
-    return sorted(out, key=lambda kv: kv[0].lower())
 
 
 # --- Species DB --------------------------------------------------------------
@@ -1302,14 +1301,15 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "South America",
         "holdings": {
             "North America": "1.3 - Credit River Zoo",
-            "Asia": 0,
+            "Asia": "1.2 - Air Terjun Zoo",
             "Europe": 0,
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Credit River Zoo": "1.3"
+            "Credit River Zoo": "1.3",
+            "Air Terjun Zoo": "1.2"
         },
     },
     "Black-Bellied Whistling Duck": {
@@ -2116,9 +2116,8 @@ species_data: Dict[str, Dict[str, Any]] = {
     "institutions": {
             "Essex County Zoo": "3.0",
             "High Uintahs Zoo": "2.0"
-
         }
-        },
+    },
 
     "Northern Flying Squirrel": {
     "common": "Northern Flying Squirrel",
@@ -3817,6 +3816,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Air Terjun Zoo": "0.1 [jacksoni]"
+
+                                            }
+                                            },
+                                            "Lar Gibbon": {
+                                            "common": "Lar Gibbon",
+                                            "scientific": "Hylobates lar",
+                                            "info": "An endangered gibbon, the lar gibbon (or simply lar) can be found natively in western Indochina in mainland Southeast Asia. It is a commonly kept gibbon species and is regarded as one of the more better-known species, due to its loud calls and distinctive coloration.",
+                                            "type": "Mammal",
+                                            "order": "Primates",
+                                            "family": "Hylobatidae",
+                                            "genus": "Hylobates",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Hylobates_lar_pair_of_white_and_black_01.jpg/1280px-Hylobates_lar_pair_of_white_and_black_01.jpg",
+                                            "breeding": "Below Average",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": "1.1 - Air Terjun Zoo",
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Air Terjun Zoo": "1.1 [jacksoni]"
         },
     }
 }
