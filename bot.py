@@ -3374,13 +3374,13 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "Fire Salamander": {
                                     "common": "Fire Salamander",
                                     "scientific": "Salamandra salamandra",
-                                    "info": "A common and iconic salamander, the fire salamander gets it scommon name from an old myth that salamanders were born from fire (as salamanders often fled burning logs used for fires when they were lit up). Despite its large range it is listed as Vulnerable on the IUCN Red List due to its susceptibility to infection by the introduced fungus Batrachochytrium salamandrivorans.",
+                                    "info": "A common and iconic salamander, the fire salamander gets its common name from an old myth that salamanders were born from fire (as salamanders often fled burning logs used for fires when they were lit up). Despite its large range it is listed as Vulnerable on the IUCN Red List due to its susceptibility to infection by the introduced fungus Batrachochytrium salamandrivorans.",
                                     "type": "Amphibian",
                                     "order": "Urodela",
                                     "family": "Salamandridae",
                                     "genus": "Salamandra",
                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/159805189/large.jpg",
-                                    "breeding": "Impossible",
+                                    "breeding": "Below Average",
                                     "region": "Europe",
                                     "holdings": {
                                     "North America": 0,
@@ -3549,7 +3549,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                      "Tentacled Snake": {
                                     "common": "Tentacled Snake",
                                     "scientific": "Erpeton tentaculatum",
-                                    "info": "An aquatic snake ",
                                     "info": "An aquatic snake native to Southeast Asia, this small species is mildly venomous and feeds primarily upon small freshwater fish. Its unique 'tentacles' on the front of the head act as limbs, helping the snakes feel around in cloudy water.",
                                     "type": "Reptile",
                                     "order": "Squamata",
@@ -3568,6 +3567,256 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                     "Wasser Wunder Welt": "3.3"
+
+                                    }
+                                        },
+
+                                "Amazonian Giant Centipede": {
+                                "common": "Amazonian Giant Centipede",
+                                "scientific": "Scolopendra gigantea",
+                                "info": "This is the world's largest centipede, exceeding 1ft in length. Native to South America and the Caribbean, it is a voracious predator, able to overpower many smaller animals including insects, spiders, and even birds and bats. Unusually for a centipede, they are docile and can be handled somewhat.",
+                                "type": "Invertebrate",
+                                "order": "Scolopendromorpha",
+                                "family": "Scolopendridae",
+                                "genus": "Scolopendra",
+                                "image_url": "https://i0.wp.com/adlayasanimals.wordpress.com/wp-content/uploads/2021/01/1920px-spiders_genova_-_scolopendra_gigantea-e1610739899911.jpg?fit=1200%2C675&ssl=1",
+                                "breeding": "Difficult",
+                                "region": "North America, South America",
+                                "holdings": {
+                                "North America": "1.1 - Essex County Zoo",
+                                "Asia": 0,
+                                "Europe": 0,
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Essex County Zoo": "1.1"
+
+                                    }
+                                    },
+                                    
+                                "Eastern Gray Squirrel": {
+                                "common": "Eastern Gray Squirrel",
+                                "scientific": "Sciurus carolinensis",
+                                "info": "A common and ubiquitous species in eastern North America, the eastern gray squirrel is an important forest regenerator in its natural range, helping to maintain the health and ecological diversity of temperate forests. Unfortunately, this species has also been introduced outside of its range, and is outcompeting native red squirrels in the United Kingdom.",
+                                "type": "Mammal",
+                                "order": "Rodentia",
+                                "family": "Sciuridae",
+                                "genus": "Sciurus",
+                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/EasternGraySquirrel_GAm.jpg/1024px-EasternGraySquirrel_GAm.jpg",
+                                "breeding": "Easy",
+                                "region": "North America",
+                                "holdings": {
+                                "North America": "1.0 - Essex County Zoo",
+                                "Asia": 0,
+                                "Europe": 0,
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Essex County Zoo": "1.0"
+
+                                    }
+                                    },
+                                    
+                                "Canada Goose": {
+                                "common": "Canada Goose",
+                                "scientific": "Branta canadensis",
+                                "info": "One of the most adaptable North American waterfowl, the Canada goose is somewhat infamous for its ability to live in human-inhabited areas. It is the subject of a low-stakes human-wildlife conflict, as people find their aggressive defense of their goslings as a nuisance. They have also been introduced to Europe and have become invasive there.",
+                                "type": "Bird",
+                                "order": "Anseriformes",
+                                "family": "Anatidae",
+                                "genus": "Branta",
+                                "image_url": "https://static.inaturalist.org/photos/229398131/large.jpg",
+                                "breeding": "Easy",
+                                "region": "North America",
+                                "holdings": {
+                                "North America": "0.2 - Essex County Zoo",
+                                "Asia": 0,
+                                "Europe": 0,
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Essex County Zoo": "0.2"
+
+                                }
+                                },
+
+                                "Corn Snake": {
+                                "common": "Corn Snake",
+                                "scientific": "Pantherophis guttatus",
+                                "info": "A small colubrid from North America, the corn snake is sometimes regarded as a pest, but in reality is actually beneficial to farmers as they eat crop-destroying rodents. Their common name comes from the fact that they are known for living near grain stores, preying upon the mice and rats that feed on them.",
+                                "type": "Reptile",
+                                "order": "Squamata",
+                                "family": "Colubridae",
+                                "genus": "Pantherophis",
+                                "image_url": "https://static.inaturalist.org/photos/457255500/large.jpg",
+                                "breeding": "Easy",
+                                "region": "North America",
+                                "holdings": {
+                                    "North America": "0.2 - Essex County Zoo",
+                                "Asia": 0,
+                                "Europe": 0,
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Essex County Zoo": "0.2"
+
+                                }
+                                },
+                                "White-Lipped Pit Viper": {
+                                    "common": "White-Lipped Pit Viper",
+                                    "scientific": "Trimeresurus albolabris",
+                                    "info": "One of the most well-known species in its genus, the white-lipped pit viper has highly variable coloration. These variants include green, mint, and striped. They are found in east, southeast, and south Asia, making them one of the most widely distributed Trimeresurus species.",
+                                    "type": "Reptile",
+                                    "order": "Squamata",
+                                    "family": "Viperidae",
+                                    "genus": "Trimeresurus",
+                                    "images": [
+                                        {"label": "Green variant", "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Trimeresurus_albolabris%2C_White-lipped_pit_viper_%28female%29_-_Kaeng_Krachan_National_Park_%2827493423545%29.jpg"}
+                                    ],
+                                    "breeding": "Below Average",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": "1.0 [Green] - Essex County Zoo",
+                                        "Asia": 0,
+                                        "Europe": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                        "Essex County Zoo": "1.0 [Green variant]"
+
+                                    }
+                                    },
+                                    "Mediterranean Banded Centipede": {
+                                        "common": "Mediterranean Banded Centipede",
+                                        "scientific": "Scolopendra cingulata",
+                                        "info": "One of the more common scolopendrid in captivity, the Mediterranean banded centipede has a mild venom compared to fellow scolopendromorphs. Only growing 7 inches, it is also one of the smaller species in its genus. Most of the time they lay burrowed in dark, damp environments like leaf litter.",
+                                        "type": "Invertebrate",
+                                        "order": "Scolopendromorpha",
+                                        "family": "Scolopendridae",
+                                        "genus": "Scolopendra",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Scolopendra_cingulata_-_D7-08-2291.JPG",
+                                        "breeding": "Below Average",
+                                        "region": "Europe, Asia, Africa",
+                                        "holdings": {
+                                            "North America": "1.0 - Essex County Zoo",
+                                            "Asia": 0,
+                                            "Europe": 0,
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                            "Essex County Zoo": "1.0"
+
+                                            }
+                                            },
+                                        "Vietnamese Giant Centipede": {
+                                            "common": "Vietnamese Giant Centipede",
+                                            "scientific": "Scolopendra dehaani",
+                                            "info": "A large, highly aggressive centipede species described as having a 'nasty temperament', the Vietnamese giant centipede can be found in regions of south, southeast, and east Asia. Typically living for 5 to 6 years, they typically forage for prey such as invertebrates, but have on occasion taken larger animals like frogs and snakes.",
+                                            "type": "Invertebrate",
+                                            "order": "Scolopendromorpha",
+                                            "family": "Scolopendridae",
+                                            "genus": "Scolopendra",
+                                            "image_url": "https://www.biolib.cz/IMG/GAL/BIG/262860.jpg",
+                                            "breeding": "Below Average",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": "1.1 - Essex County Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Essex County Zoo": "1.1"
+
+                                            }
+                                            },
+                                            "Regal Jumper": {
+                                            "common": "Regal Jumper",
+                                            "scientific": "Phidippus regius",
+                                            "info": "The largest jumping spider in eastern North America, the regal jumper is often found in the private trade due to its hardiness and various attractive color forms. Typically preferring open areas, they sleep in silken nests at night, typically in enclosed areas where it is safe from predators.",
+                                            "type": "Invertebrate",
+                                            "order": "Araneae",
+                                            "family": "Salticidae",
+                                            "genus": "Phidippus",
+                                                "images": [
+                                                    {"label": "Black variant", "url": "https://cdn.store-assets.com/s/727929/i/23312655.jpg?width=1024"}
+                                                ],
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "1.1 [Black] - Essex County Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Essex County Zoo": "1.1 [Black variant]"
+
+                                            }
+                                            },
+                                            "Common Pillbug": {
+                                            "common": "Common Pillbug",
+                                            "scientific": "Armadillidium vulgare",
+                                            "info": "The most extensively studied terrestrial isopod, the common pillbug can be found natively in Europe. Introduced widely globally, it is a hardy and adaptable species which makes it ideal for the private trade, and as such is the most popular beginner isopod kept.",
+                                            "type": "Invertebrate",
+                                            "order": "Isopoda",
+                                            "family": "Armadillidiidae",
+                                            "genus": "Armadillidium",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Armadillidium_vulgare_001.jpg",
+                                            "breeding": "Very Easy",
+                                            "region": "Europe",
+                                            "holdings": {
+                                                "North America": "20 - Essex County Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Essex County Zoo": "20"
+
+                                            }
+                                            },
+                                            "Tiger": {
+                                            "common": "Tiger",
+                                            "scientific": "Panthera tigris",
+                                            "info": "One of the most famous animals globally, the tiger is considered as part of Asia's charismatic megafauna. Native originally to much of the continent, its range has shrunk due to human-wildlife conflict, and now the last strongholds for the species are in South Asia, Southeast Asia, and North Asia. It has been extirpated from much of East and Central Asia.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Panthera",
+                                            "images": [
+                                                {"label": "Malayan tiger (jacksoni)", "url": "https://www.biolib.cz/IMG/GAL/BIG/178975.jpg"}
+                                            ],
+                                            "breeding": "Difficult",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": "0.1 - Air Terjun Zoo",
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Air Terjun Zoo": "0.1 [jacksoni]"
         },
     }
 }
@@ -4284,6 +4533,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Sapporo Reptile Center and National Aquarium",
     "Wasser Wunder Welt",
     "Essex County Zoo",
+    "Air Terjun Zoo",
 ]
 
 _directory_normalizer = re.compile(r"\s+")

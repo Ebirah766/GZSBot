@@ -13,7 +13,19 @@
           "Swell Shark",
           "Bluefin Nothobranchius",
           "Redtail Nothobranchius",
-          "Giant Green Anemone"
+          "Giant Green Anemone",
+          "Milli Staghorn Coral",
+          "Pore Coral",
+          "Bubble-Tip Anemone",
+          "Ocellaris Clownfish"
+        ],
+        "Essex County Zoo": [
+          "Turkey Vulture",
+          "Eastern Gray Squirrel",
+          "Common Pillbug",
+          "Amazonian Giant Centipede",
+          "Vietnamese Giant Centipede",
+          "Mediterranean Banded Centipede"
         ]
       }
     },
@@ -22,7 +34,9 @@
       "zoos": {
         "Shropshire Hills Zoo": [
           "Common Fallow Deer",
-          "European Wildcat"
+          "European Wildcat",
+          "Red Deer",
+          "Golden Lion Tamarin"
         ]
       }
     },
@@ -161,6 +175,11 @@
     },
     "essex county zoo": {
       "name": "Essex County Zoo",
+      "location": null,
+      "image": null
+    },
+    "air terjun zoo": {
+      "name": "Air Terjun Zoo",
       "location": null,
       "image": null
     }
