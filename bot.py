@@ -956,14 +956,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
-            "Asia": "3.0 - Air Terjun Zoo",
+            "Asia": "3.0 - Air Terjun Zoo"
             "Europe": "1.3 - Shropshire Hills Zoo",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Shropshire Hills Zoo": "1.3",
+            "Shropshire Hills Zoo": "1.3"
             "Air Terjun Zoo": "3.0"
         },
     },
@@ -3896,6 +3896,29 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "common": "Bactrian Camel",
                                             "scientific": "Camelus bactrianus",
                                             "info": "The domestic form of the wild Bactrian camel, the Bactrian camel has been exploited for thousands of years. They are more cold-hardy than dromedary camels and have been used by peoples of Central and East Asia for various purposes up to the modern period.",
+                                            "type": "Mammal",
+                                            "order": "Artiodactyla",
+                                            "family": "Camelidae",
+                                            "genus": "Camelus",
+                                            "image_url": "https://pictureanimal.com/wiki-image/1080/152345814335750145.jpeg",
+                                            "breeding": "Easy",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": "1.3 - Air Terjun Zoo",
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Air Terjun Zoo": "1.3"
+
+                                            }
+                                            },
+                                            "Serval": {
+                                            "common": "Serval",
+                                            "scientific": "Leptailurus serval",
+                                            "info": "A small wild cat native to Africa, the serval is a solitary carnivore with a wide range, stretching",
                                             "type": "Mammal",
                                             "order": "Artiodactyla",
                                             "family": "Camelidae",
