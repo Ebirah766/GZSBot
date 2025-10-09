@@ -956,9 +956,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
-            "Asia": 0,
+            "Asia": "3.0 - Air Terjun Zoo",
             "Europe": "1.3 - Shropshire Hills Zoo",
-            "Africa": "3.0 - Air Terjun Zoo",
+            "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
