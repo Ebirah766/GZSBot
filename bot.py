@@ -956,14 +956,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
-            "Asia": "3.0 - Air Terjun Zoo",
+            "Asia": "3.0 - Air Terjun Zoo"
             "Europe": "1.3 - Shropshire Hills Zoo",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Shropshire Hills Zoo": "1.3",
+            "Shropshire Hills Zoo": "1.3"
             "Air Terjun Zoo": "3.0"
         },
     },
@@ -3865,6 +3865,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Air Terjun Zoo": "1.2"
+
+                                            }
+                                            },
+                                            "Sika Deer": {
+                                            "common": "Sika Deer",
+                                            "scientific": "Cervus nippon",
+                                            "info": "The sika deer has a hugely disjunct range, from patches of Vietnam to Japan and Russia. There are many subspecies, some of which are highly abundant and some of which are extremely endangered. They, like several other deer species, have been introduced to various locations for hunting purposes and have become invasive.",
+                                            "type": "Mammal",
+                                            "order": "Artiodactyla",
+                                            "family": "Cervidae",
+                                            "genus": "Cervus",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Cervus_nippon_002.jpg/1280px-Cervus_nippon_002.jpg",
+                                            "breeding": "Easy",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": "1.3 - Air Terjun Zoo",
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Air Terjun Zoo": "1.3"
 
                                             }
                                             },
