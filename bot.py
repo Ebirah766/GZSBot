@@ -956,14 +956,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Europe, Asia",
         "holdings": {
             "North America": "0",
-            "Asia": "3.0 - Air Terjun Zoo"
+            "Asia": "3.0 - Air Terjun Zoo",
             "Europe": "1.3 - Shropshire Hills Zoo",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Shropshire Hills Zoo": "1.3"
+            "Shropshire Hills Zoo": "1.3",
             "Air Terjun Zoo": "3.0"
         },
     },
@@ -3892,17 +3892,16 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                             }
                                             },
-                                            "Sika Deer": {
-                                            "common": "Sika Deer",
-                                            "scientific": "Cervus nippon",
-                                            "info": "The sika deer has a hugely disjunct range, from patches of Vietnam to Japan and Russia. There are many subspecies, some of which are highly abundant and some of which are extremely endangered. They, like several other deer species, have been introduced to various locations for hunting purposes and have become invasive.",
+                                            "Bactrian Camel": {
+                                            "common": "Bactrian Camel",
+                                            "scientific": "Camelus bactrianus",
+                                            "info": "The domestic form of the wild Bactrian camel, the Bactrian camel has been exploited for thousands of years. They are more cold-hardy than dromedary camels and have been used by peoples of Central and East Asia for various purposes up to the modern period.",
                                             "type": "Mammal",
                                             "order": "Artiodactyla",
-                                            "family": "Cervidae",
-                                            "genus": "Cervus",
-                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Cervus_nippon_002.jpg/1280px-Cervus_nippon_002.jpg",
+                                            "family": "Camelidae",
+                                            "genus": "Camelus",
+                                            "image_url": "https://pictureanimal.com/wiki-image/1080/152345814335750145.jpeg",
                                             "breeding": "Easy",
-                                            "region": "Asia",
                                             "holdings": {
                                                 "North America": 0,
                                                 "Asia": "1.3 - Air Terjun Zoo",
