@@ -3937,6 +3937,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Air Terjun Zoo": "1.1"
+
+                                            }
+                                            },
+                                            "Bennett's Wallaby": {
+                                            "common": "Bennett's Wallaby",
+                                            "scientific": "Notamacropus rufogriseus",
+                                            "info": "A small wild cat native to Africa, the serval is a solitary carnivore with a wide range, stretching from west to southern Africa. Their main diet consists of rodents and other small mammals, but they will also take birds and small ungulates occasionally. They have been crossbred with domestic cats to create savannah cats.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Leptailurus",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg/1024px-Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg",
+                                            "breeding": "Average",
+                                            "region": "Africa",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": "1.1 - Air Terjun Zoo",
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Air Terjun Zoo": "1.1"
         },
     }
 }
