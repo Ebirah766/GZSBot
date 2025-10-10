@@ -3810,7 +3810,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "region": "Asia",
                                             "holdings": {
                                                 "North America": 0,
-                                                "Asia": "0.1 - Air Terjun Zoo",
+                                                "Asia": "0.1 (jacksoni) - Air Terjun Zoo",
                                                 "Europe": 0,
                                                 "Africa": 0,
                                                 "South America": 0,
@@ -3943,24 +3943,50 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "Bennett's Wallaby": {
                                             "common": "Bennett's Wallaby",
                                             "scientific": "Notamacropus rufogriseus",
-                                            "info": "A small wild cat native to Africa, the serval is a solitary carnivore with a wide range, stretching from west to southern Africa. Their main diet consists of rodents and other small mammals, but they will also take birds and small ungulates occasionally. They have been crossbred with domestic cats to create savannah cats.",
+                                            "info": "An abundant wallaby species native to parts of eastern and southern Australia, the Bennett's wallaby has been introduced to various locations in New Zealand and Europe. A mainly solitary species, Bennett's wallabies will gather together on occasion when there is plentiful food or water. They are a mainly nocturnal animal.",
                                             "type": "Mammal",
-                                            "order": "Carnivora",
-                                            "family": "Felidae",
-                                            "genus": "Leptailurus",
-                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg/1024px-Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg",
-                                            "breeding": "Average",
-                                            "region": "Africa",
+                                            "order": "Diprotodontia",
+                                            "family": "Macropodidae",
+                                            "genus": "Notamacropus",
+                                            "image_url": "https://www.biolib.cz/IMG/GAL/BIG/28343.jpg",
+                                            "breeding": "Easy",
+                                            "region": "Oceania",
                                             "holdings": {
                                                 "North America": 0,
-                                                "Asia": "1.1 - Air Terjun Zoo",
+                                                "Asia": "0.4 - Air Terjun Zoo",
                                                 "Europe": 0,
                                                 "Africa": 0,
                                                 "South America": 0,
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
-                                                "Air Terjun Zoo": "1.1"
+                                                "Air Terjun Zoo": "0.4"
+
+                                            }
+                                            },
+                                            "Rusty-Spotted Cat": {
+                                            "common": "Rusty-Spotted Cat",
+                                            "scientific": "Prionailurus rubiginosus",
+                                            "info": "One of the smallest members of the cat family, the rusty-spotted cat is native to south Asia, from northern India to Sri Lanka. Very little is known about their ecology in the wild due to their elusiveness, and they feed mainly on rodents, birds, lizards, frogs, and insects. Captive males and females scent-mark their home range by spraying urine.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Prionailurus",
+                                            "images": [
+                                                {"label": "Sri Lankan rusty-spotted cat (phillipsi)", "url": "https://www.zoochat.com/community/media/rusty-spotted-cat-prionailurus-rubiginosus-phillipsi.305998/full"}
+                                            ],
+                                            "breeding": "Difficult",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "1.1 (phillipsi) - Wildkatzenpark Tatzenfels",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Wildkatzenpark Tatzenfels": "1.1 [phillipsi]"
         },
     }
 }
@@ -4678,6 +4704,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Wasser Wunder Welt",
     "Essex County Zoo",
     "Air Terjun Zoo",
+    "Wildkatzenpark Tatzenfels",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
