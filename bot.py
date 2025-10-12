@@ -3931,12 +3931,13 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "holdings": {
                                                 "North America": 0,
                                                 "Asia": "1.1 - Air Terjun Zoo",
-                                                "Europe": 0,
+                                                "Europe": "0.2 - Wildkatzenpark Tatzenfels",
                                                 "Africa": 0,
                                                 "South America": 0,
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
+                                                "Wildkatzenpark Tatzenfels": "0.2",
                                                 "Air Terjun Zoo": "1.1"
 
                                             }
