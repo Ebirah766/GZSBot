@@ -4087,6 +4087,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Wildkatzenpark Tatzenfels": "1.1 [manul]"
+
+                                            }
+                                            },
+                                            "Caracal": {
+                                            "common": "Caracal",
+                                            "scientific": "Caracal caracal",
+                                            "info": "A distinctive nocturnal small cat found throughout Africa and parts of Asia, the caracal is well-known for its jumping ability",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Leopardus",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/518453211/original.jpg",
+                                            "breeding": "Below Average",
+                                            "region": "North America, South America",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "0.1 - Wildkatzenpark Tatzenfels",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Wildkatzenpark Tatzenfels": "0.1"
         },
     }
 }
