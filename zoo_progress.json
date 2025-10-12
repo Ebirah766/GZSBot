@@ -29,7 +29,8 @@
           "Common Pillbug",
           "Amazonian Giant Centipede",
           "Vietnamese Giant Centipede",
-          "Mediterranean Banded Centipede"
+          "Mediterranean Banded Centipede",
+          "Canada Goose"
         ]
       }
     },
@@ -220,6 +221,9 @@
         "Milli Staghorn Coral": true,
         "Bubble-Tip Anemone": true,
         "Rainbow Trout": true
+      },
+      "Essex County Zoo": {
+        "Canada Goose": true
       }
     }
   },

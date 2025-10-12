@@ -1073,13 +1073,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": "0",
             "Asia": 0,
-            "Europe": "0.1 - Shropshire Hills Zoo",
+            "Europe": "0.1 - Shropshire Hills Zoo, 1.1 - Wildkatzenpark Tatzenfels",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Shropshire Hills Zoo": "0.1"
+            "Shropshire Hills Zoo": "0.1",
+            "Wildkatzenpark Tatzenfels": "1.1"
         },
     },
     "Arctic Fox": {
@@ -3987,6 +3988,78 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Wildkatzenpark Tatzenfels": "1.1 [phillipsi]"
+
+                                            }
+                                            },
+                                            "Eurasian Lynx": {
+                                            "common": "Eurasian Lynx",
+                                            "scientific": "Lynx lynx",
+                                            "info": "The Eurasian lynx is a species of lynx native to a huge swath of Eurasia, from France to Siberia. Despite this, it is threatened by habitat loss, poaching, and depletion of prey. Reintroduction projects have begun in much of western Europe, which have seen an increase in forest health and a depletion of overabundant prey populations.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Lynx",
+                                            "image_url": "https://www.euronatur.org/fileadmin/_processed_/4/c/csm_Luchs_sitzt_auf_Fels-Christof_Wermter__869aa2a067.jpg",
+                                            "breeding": "Difficult",
+                                            "region": "Europe, Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "1.0 - Wildkatzenpark Tatzenfels",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Wildkatzenpark Tatzenfels": "1.0"
+
+                                            }
+                                            },
+                                            "Fishing Cat": {
+                                            "common": "Fishing Cat",
+                                            "scientific": "Prionailurus viverrinus",
+                                            "info": "The fishing cat is unique amongst felids in the sense that is is a specialized piscivore. A strong swimmer, it can swim long distances, which is unusual for a small cat. Typically living in wetland environments, it is listed as Vulnerable on the IUCN Red List due to substantial loss of wetlands in its native range.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Prionailurus",
+                                            "image_url": "https://animals.sandiegozoo.org/sites/default/files/inline-images/fishing_cat02.jpg",
+                                            "breeding": "Difficult",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "1.1 - Wildkatzenpark Tatzenfels",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Wildkatzenpark Tatzenfels": "1.1"
+
+                                            }
+                                            },
+                                            "Ocelot": {
+                                            "common": "Ocelot",
+                                            "scientific": "Leopardus pardalis",
+                                            "info": "A small cat found in the Americas, the ocelot is a generalist mesopredator, feeding upon a variety of different small animals, and even plant matter on occasion. An adaptable species, its preferred habitats are desert and rainforest with an abundance of prey and water. It is a crepuscular species that hunts under cover of darkness.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Leopardus",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/518453211/original.jpg",
+                                            "breeding": "Below Average",
+                                            "region": "North America, South America",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "0.1 - Wildkatzenpark Tatzenfels",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Wildkatzenpark Tatzenfels": "0.1"
         },
     }
 }
