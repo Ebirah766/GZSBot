@@ -4060,6 +4060,32 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Wildkatzenpark Tatzenfels": "0.1"
+
+                                            }
+                                            },
+                                            "Pallas's Cat": {
+                                            "common": "Pallas's Cat",
+                                            "scientific": "Otocolobus manul",
+                                            "info": "The Pallas's cat can be found in mountainous areas of west, central, south, and east Asia, from the Caucasus in the west to Russia in the east. A solitary species, it is a highly specialized predator of small mammals including rodents and shrews. It is also called 'manul' in the Mongolian language, lending it is species name.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Felidae",
+                                            "genus": "Otocolobus",
+                                                "images": [
+                                                    {"label": "Siberian Pallas's cat (manul)", "url": "https://www.biolib.cz/IMG/GAL/BIG/488446.jpg"}
+                                                ],
+                                            "breeding": "Below Average",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "1.1 (manul) - Wildkatzenpark Tatzenfels",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Wildkatzenpark Tatzenfels": "1.1 [manul]"
         },
     }
 }
