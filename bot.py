@@ -4093,24 +4093,48 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "Caracal": {
                                             "common": "Caracal",
                                             "scientific": "Caracal caracal",
-                                            "info": "A distinctive nocturnal small cat found throughout Africa and parts of Asia, the caracal is well-known for its jumping ability",
+                                            "info": "A distinctive nocturnal small cat found throughout Africa and parts of Asia, the caracal is well-known for its jumping ability, which allows it to catch birds in flight. However, most of its diet actually consists of small mammals. They are often thought of as a lynx, but are placed in a different genus.",
                                             "type": "Mammal",
                                             "order": "Carnivora",
                                             "family": "Felidae",
-                                            "genus": "Leopardus",
-                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/518453211/original.jpg",
+                                            "genus": "Caracal",
+                                            "image_url": "https://cdn.britannica.com/28/122928-050-9569D57F/Caracal.jpg",
                                             "breeding": "Below Average",
-                                            "region": "North America, South America",
+                                            "region": "Asia, Africa",
                                             "holdings": {
                                                 "North America": 0,
                                                 "Asia": 0,
-                                                "Europe": "0.1 - Wildkatzenpark Tatzenfels",
+                                                "Europe": "1.0 - Wildkatzenpark Tatzenfels",
                                                 "Africa": 0,
                                                 "South America": 0,
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "0.1"
+                                                "Wildkatzenpark Tatzenfels": "1.0"
+
+                                            }
+                                            },
+                                            "Atlantic Puffin": {
+                                            "common": "Atlantic Puffin",
+                                            "scientific": "Fratercula arctica",
+                                            "info": "One of the most famous seabirds, the Atlantic puffin is found on both sides of the North Atlantic, and is most abundant in Iceland. They are devoted parents, flying many miles out to sea to obtain food for their young, and their striking color has given them the nickname 'sea parrot.'",
+                                            "type": "Bird",
+                                            "order": "Charadriiformes",
+                                            "family": "Alcidae",
+                                            "genus": "Fratercula",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Papageitaucher_Fratercula_arctica.jpg",
+                                            "breeding": "Difficult",
+                                            "region": "North America, Europe, Africa",
+                                            "holdings": {
+                                                "North America": "2.2 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "2.2"
         },
     }
 }
@@ -4829,6 +4853,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Essex County Zoo",
     "Air Terjun Zoo",
     "Wildkatzenpark Tatzenfels",
+    "North Star Zoo",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
