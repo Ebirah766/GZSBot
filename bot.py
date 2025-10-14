@@ -1673,7 +1673,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Squamata",
         "family": "Viperidae",
         "genus": "Mixcoatlus",
-        "image_url": "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/472999940_1672789173595713_1159118854601384928_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=YyUXLve42EkQ7kNvwHMtkmm&_nc_oc=AdlhzbHYMdP3n5QDbIe_fTpkWElKyz9d-Sxms3dbhBjG3oqODk1EfDlFaRL9asJovN66Z8G14SBgdBHI0i_WETrs&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=-hPNVuACjUTMk4Fuhlr6FA&oh=00_AffBxXIQB08HmECVF9ik8EnML5NASV72_7HaRDh2smC2qw&oe=68E7034D",
+        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/519384.jpg",
         "breeding": "Difficult",
         "region": "North America",
         "holdings": {
@@ -2606,7 +2606,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Nothobranchiidae",
         "genus": "Nothobranchius",
         "images": [
-            {"label": "Beira locality", "url": "https://scontent-atl3-3.xx.fbcdn.net/v/t39.30808-6/511261235_23997244009907137_7942919226440147774_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cf85f3&_nc_ohc=BfAABtDfAKUQ7kNvwFKTAhG&_nc_oc=AdnQQaH7Tle9DKYa2hJF21A5DrBmN5kuMnTiW3d3FcXhBlF1WwFbmoY9x0keasyhz9FSFW-isWpsW61M9hJ6QMbk&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&_nc_gid=5s6uw2AlUR0CSWWz4WhRDQ&oh=00_Afe0ekUvmE195L5k8hdBa8UDgLrJeCykFkEsACA44IqAjQ&oe=68E848E0"},
+            {"label": "Beira locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Rachovii-Beira-F1.jpg"},
         ],
         "breeding": "Average",
         "region": "Africa",
@@ -3834,7 +3834,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "breeding": "Below Average",
                                             "region": "Asia",
                                             "holdings": {
-                                                "North America": 0,
+                                                "North America": "1.1 - North Star Zoo",
                                                 "Asia": "1.1 - Air Terjun Zoo",
                                                 "Europe": 0,
                                                 "Africa": 0,
@@ -3842,7 +3842,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
-                                                "Air Terjun Zoo": "1.1"
+                                                "Air Terjun Zoo": "1.1",
+                                                "North Star Zoo": "1.1"
 
                                             }
                                             },
@@ -4135,8 +4136,57 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "North Star Zoo": "2.2"
-        },
-    }
+
+                                            }
+                                            },
+                                            "North American River Otter": {
+                                            "common": "North American River Otter",
+                                            "scientific": "Lontra canadensis",
+                                            "info": "A semiaquatic mustelid endemic to North America, the North American river otter is a famous symbol of the wetlands of the continent. A mesopredator feeding on a variety of creatures both aquatic and terrestrial, they are regarded as an important indicator species, as otters do not tolerate heavily polluted waterways.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Mustelidae",
+                                            "genus": "Lontra",
+                                            "image_url": "https://www.ndow.org/wp-content/uploads/2021/10/lontra_canadensis.jpeg",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "1.2 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "1.2"
+
+                                            }
+                                            },
+                                            "Common Snapping Turtle": {
+                                            "common": "Common Snapping Turtle",
+                                            "scientific": "Chelydra serpentina",
+                                            "info": "One of the largest freshwater turtles in North America, the common snapping turtle is a high-ranking predator, feeding mainly on aquatic animals but also a variety of terrestrial species as well. Regarded as a dangerous animal, it is in fact generally docile unless provoked.",
+                                            "type": "Reptile",
+                                            "order": "Testudines",
+                                            "family": "Chelydridae",
+                                            "genus": "Chelydra",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/72712185/original.jpeg",
+                                            "breeding": "Below Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "0.1 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "0.1"
+
+                                            }
+                                            },
 }
 SPECIES = species_data
 
