@@ -4187,6 +4187,30 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                             }
                                             },
+                                            "African Penguin": {
+                                            "common": "African Penguin",
+                                            "scientific": "Spheniscus demersus",
+                                            "info": "One of the largest freshwater turtles in North America, the common snapping turtle is a high-ranking predator, feeding mainly on aquatic animals but also a variety of terrestrial species as well. Regarded as a dangerous animal, it is in fact generally docile unless provoked.",
+                                            "type": "Reptile",
+                                            "order": "Testudines",
+                                            "family": "Chelydridae",
+                                            "genus": "Chelydra",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/72712185/original.jpeg",
+                                            "breeding": "Below Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "0.1 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "0.1"
+
+                                            }
+                                            },
 }
 SPECIES = species_data
 
