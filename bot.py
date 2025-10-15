@@ -940,8 +940,8 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Shropshire Hills Zoo": "1.3 [Fjord]"
-            "Glacier Zoo": "1.3 [Fjord]"
+            "Shropshire Hills Zoo": "1.3 [Fjord]",
+            "Glacier Zoo": "1.1 [American Mustang]"
         },
     },
     "Common Fallow Deer": {
@@ -4354,7 +4354,9 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Glacier Zoo": "0.3 [Fjord]"
+            "Glacier Zoo": "0.3 [Silkie]"
+        },
+    },
 }
 SPECIES = species_data
 
