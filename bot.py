@@ -4190,16 +4190,16 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "African Penguin": {
                                             "common": "African Penguin",
                                             "scientific": "Spheniscus demersus",
-                                            "info": "One of the largest freshwater turtles in North America, the common snapping turtle is a high-ranking predator, feeding mainly on aquatic animals but also a variety of terrestrial species as well. Regarded as a dangerous animal, it is in fact generally docile unless provoked.",
-                                            "type": "Reptile",
-                                            "order": "Testudines",
-                                            "family": "Chelydridae",
-                                            "genus": "Chelydra",
-                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/72712185/original.jpeg",
-                                            "breeding": "Below Average",
-                                            "region": "North America",
+                                            "info": "The African penguin is critically endangered due to oil spills, poaching, and overfishing of its preferred prey. A large worldwide captive breeding program has been initiated for this species, which is endemic to the southern coast of Africa.",
+                                            "type": "Bird",
+                                            "order": "Sphenisciformes",
+                                            "family": "Spheniscidae",
+                                            "genus": "Spheniscus",
+                                            "image_url": "https://www.ecoregistros.org/site/images/dataimages/2016/11/19/175994/pinguino-del-cabo--8-.JPG",
+                                            "breeding": "Average",
+                                            "region": "Africa",
                                             "holdings": {
-                                                "North America": "0.1 - North Star Zoo",
+                                                "North America": "6.6 - North Star Zoo",
                                                 "Asia": 0,
                                                 "Europe": 0,
                                                 "Africa": 0,
@@ -4207,10 +4207,129 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
-                                                "North Star Zoo": "0.1"
+                                                "North Star Zoo": "6.6"
 
                                             }
                                             },
+                                            "Mandarin Duck": {
+                                            "common": "Mandarin Duck",
+                                            "scientific": "Aix galericulata",
+                                            "info": "This colorful duck, closely related to the wood ducks of North America, can be found natively in east Asia. It has been introduced to parts of Europe as an ornamental speceies, but it has become invasive in wetland environments.",
+                                            "type": "Bird",
+                                            "order": "Anseriformes",
+                                            "family": "Anatidae",
+                                            "genus": "Aix",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Mandarin_duck_%28Aix_galericulata%29_Franconville_03.jpg",
+                                            "breeding": "Easy",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": "6.0 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "6.0"
+
+                                            }
+                                            },
+                                            "American Toad": {
+                                            "common": "American Toad",
+                                            "scientific": "Anaxyrus americanus",
+                                            "info": "The most abundant toad in its range, the American toad is a common sight in woodlands with abundant prey and clean water. This species, like all toads, is mildly poisonous which is a defense mechanism that gives it a bad taste, dissuading predators from consuming them.",
+                                            "type": "Amphibian",
+                                            "order": "Anura",
+                                            "family": "Bufonidae",
+                                            "genus": "Anaxyrus",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Bufo_americanus_PJC1.jpg/1280px-Bufo_americanus_PJC1.jpg",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "1.2 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "1.2"
+
+                                            }
+                                            },
+                                            "American Bullfrog": {
+                                            "common": "American Toad",
+                                            "scientific": "Lithobates catesbeianus",
+                                            "info": "A large frog famed for its hardiness, the American bullfrog is a common sight in eastern North America. It is adaptable for an amphibian and can inhabit a wide range of habitats, including human-disturbed areas, which gives it an edge compared to other native amphibians.",
+                                            "type": "Amphibian",
+                                            "order": "Anura",
+                                            "family": "Ranidae",
+                                            "genus": "Lithobates",
+                                            "image_url": "https://www.citizenscience.lu/images/content/Bioindicator_Species/invasive_species/invasive_animals/Ochsenfrosch.jpg",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "1.0 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "1.0"
+
+                                            }
+                                            },
+                                            "American Lobster": {
+                                            "common": "American Lobster",
+                                            "scientific": "Homarus americanus",
+                                            "info": "The world's largest crustacean, the American lobster is also the largest of all arthropods. Found exclusively on the northeastern coast of North America, this huge invertebrate feeds mainly on mollusks, echinoderms, and marine worms. It has several rare color variants, which are often displayed in public aquaria.",
+                                            "type": "Invertebrate",
+                                            "order": "Decapoda",
+                                            "family": "Nephropidae",
+                                            "genus": "Homarus",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/75691769/original.jpg",
+                                            "breeding": "Impossible",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "1.0 - North Star Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "North Star Zoo": "1.0"
+
+                                            }
+                                            },
+                                            "Demoiselle Crane": {
+                                            "common": "Demoiselle Crane",
+                                            "scientific": "Homarus americanus",
+                                            "info": "The demoiselle crane is the smallest species of crane, native to Asia. They are well-known for their long migrations over the Himalayan mountains that allow them to migrate to their breeding sites in Central Asia. Interestingly, birds native to western Eurasia will migrate to Africa during the wintertime.",
+                                            "type": "Bird",
+                                            "order": "Gruiformes",
+                                            "family": "Gruidae",
+                                            "genus": "Grus",
+                                            "image_url": "https://observation.org/media/photo/90849200.jpg",
+                                            "breeding": "Below Average",
+                                            "region": "Asia, Africa",
+                                            "holdings": {
+                                                "North America": "1.1 - Glacier Zoo",
+                                                "Asia": 0,
+                                                "Europe": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Glacier Zoo": "1.1"
+                                        }
+                                        },
 }
 SPECIES = species_data
 
@@ -4928,6 +5047,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Air Terjun Zoo",
     "Wildkatzenpark Tatzenfels",
     "North Star Zoo",
+    "Glacier Zoo",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
