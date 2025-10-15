@@ -4309,13 +4309,13 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "Demoiselle Crane": {
                                             "common": "Demoiselle Crane",
-                                            "scientific": "Homarus americanus",
+                                            "scientific": "Grus virgo",
                                             "info": "The demoiselle crane is the smallest species of crane, native to Asia. They are well-known for their long migrations over the Himalayan mountains that allow them to migrate to their breeding sites in Central Asia. Interestingly, birds native to western Eurasia will migrate to Africa during the wintertime.",
                                             "type": "Bird",
                                             "order": "Gruiformes",
                                             "family": "Gruidae",
                                             "genus": "Grus",
-                                            "image_url": "https://observation.org/media/photo/90849200.jpg",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Demoiselle_Crane_%28Grus_virgo%29_%2851169667074%29.jpg",
                                             "breeding": "Below Average",
                                             "region": "Asia, Africa",
                                             "holdings": {
@@ -4328,8 +4328,34 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Glacier Zoo": "1.1"
-                                        }
-                                        },
+
+                                            }
+                                            },
+    "Domestic Chicken": {
+        "common": "Domestic Chicken",
+        "scientific": "Gallus gallus domesticus",
+        "info": "The most numerous of all domesticated animals, the domestic chicken is estimated to have 50 billion individuals alive, mostly for human consumption in the form of meat and eggs, but domestic chickens are also used as companion animals. They are the domesticated form of the red junglefowl and first originated in southeast Asia.",
+        "type": "Bird",
+        "order": "Galliformes",
+        "family": "Phasianidae",
+        "genus": "Gallus",
+        "images": [
+            {"label": "Silkie", "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Silky_bantam.jpg"},
+        ],
+        "image_url": "https://example.com/default.jpg",
+        "breeding": "Very Easy",
+        "holdings": {
+            "North America": ["0.3 (Silkie) - Glacier Zoo"],
+            "Europe": 0,
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+        },
+        "institutions": {
+            "Glacier Zoo": "0.3 [Silkie]"
+        },
+    },
 }
 SPECIES = species_data
 
