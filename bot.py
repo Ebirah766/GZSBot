@@ -926,13 +926,13 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Equus",
         "images": [
             {"label": "Fjord", "url": "https://madbarn.com/wp-content/uploads/2023/07/Fjord-Horse-Breed-Guide-1.jpg"},
-            {"label": "Variant 2 caption", "url": "https://example.com/variant2.jpg"},
+            {"label": "American Mustang", "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Mustanggelding.jpg"},
             {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
         ],
         "image_url": "https://example.com/default.jpg",
         "breeding": "Average",
         "holdings": {
-            "North America": 0,
+            "North America": ["1.1 (American Mustang) - Glacier Zoo"],
             "Europe": ["1.3 (Fjord) - Shropshire Hills Zoo"],
             "Asia": 0,
             "Africa": 0,
@@ -941,6 +941,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Shropshire Hills Zoo": "1.3 [Fjord]"
+            "Glacier Zoo": "1.3 [Fjord]"
         },
     },
     "Common Fallow Deer": {
@@ -4328,9 +4329,9 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             },
                                             "institutions": {
                                                 "Glacier Zoo": "1.1"
+                                        }
+                                        },
 
-                                            }
-                                            },
     "Domestic Chicken": {
         "common": "Domestic Chicken",
         "scientific": "Gallus gallus domesticus",
@@ -4353,9 +4354,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Glacier Zoo": "0.3 [Silkie]"
-        },
-    },
+            "Glacier Zoo": "0.3 [Fjord]"
 }
 SPECIES = species_data
 
