@@ -965,8 +965,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Shropshire Hills Zoo": "1.3",
-            "Air Terjun Zoo": "3.0"
-            "Air Terjun Zoo": "0.3"
+            "Air Terjun Zoo": "3.0",
+            "Glacier Zoo": "0.3"
             
         },
     },
@@ -2419,7 +2419,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 "Oceania": 0,
                 },
 "institutions": {
-"Sapporo Reptile Center and National Aquarium": "1.2"
+"Sapporo Reptile Center and National Aquarium": "1.2",
 "Glacier Zoo": "0.1"
 
 }
