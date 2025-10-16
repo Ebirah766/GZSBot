@@ -4998,6 +4998,50 @@ def format_holdings(holdings: Dict[str, Any]) -> str:
 
     return "\n".join(lines) if lines else "_No holdings data provided_"
 
+def holdings_to_inline(value) -> str:
+    """
+    Format a region's holdings as a single inline string like:
+    '1.1 [Blue], 0.1 [Yellow] - Jupiter Reptile Zoo'
+    Handles list/str/dict forms gracefully.
+    """
+    if not value:
+        return "—"
+
+    items: list[str] = []
+
+    if isinstance(value, dict):
+        for inst, v in value.items():
+            if isinstance(v, list):
+                for s in v:
+                    s = (s or "").strip()
+                    if s:
+                        items.append(s if inst and inst in s else (f"{s} - {inst}" if inst else s))
+            elif isinstance(v, str):
+                s = v.strip()
+                if s:
+                    items.append(s if inst and inst in s else (f"{s} - {inst}" if inst else s))
+
+    elif isinstance(value, list):
+        for s in value:
+            if isinstance(s, str):
+                s = s.strip()
+                if s:
+                    items.append(s)
+            elif isinstance(s, dict):
+                parts = []
+                if s.get("count"): parts.append(str(s["count"]))
+                if s.get("variant"): parts.append(f"[{s['variant']}]")
+                label = " ".join(parts).strip()
+                if s.get("inst"): label = f"{label} - {s['inst']}" if label else s["inst"]
+                if label:
+                    items.append(label)
+
+    elif isinstance(value, str):
+        items.append(value.strip())
+
+    return ", ".join([i for i in items if i]) or "—"
+
+
 # >>> CHANGED: add image_index param + optional images pager support <<<
 def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.Embed:
     entry = get_species_with_overrides(entry)  # apply overrides (e.g., breeding)
@@ -5024,7 +5068,7 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     holdings = entry.get("holdings") or {}
     any_listed = False
     for region in REGION_ORDER:
-        value = holdings_to_bullets(holdings.get(region))
+        value = holdings_to_inline(holdings.get(region))
         if value != "—":
             any_listed = True
             e.add_field(name=region, value=value, inline=False)

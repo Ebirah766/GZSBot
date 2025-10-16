@@ -30,7 +30,9 @@
           "Amazonian Giant Centipede",
           "Vietnamese Giant Centipede",
           "Mediterranean Banded Centipede",
-          "Canada Goose"
+          "Canada Goose",
+          "Corn Snake",
+          "Regal Jumper"
         ]
       }
     },
@@ -73,6 +75,19 @@
           "Indonesian Pit Viper",
           "Chinese Crocodile Lizard",
           "Blood Python"
+        ]
+      }
+    },
+    "443791230774804501": {
+      "active_zoo": null,
+      "zoos": {
+        "Wasser Wunder Welt": [
+          "Spotted Gar",
+          "Electric Eel",
+          "Red-Tailed Catfish",
+          "Tambaqui",
+          "Ripsaw Catfish",
+          "White-Blotched River Ray"
         ]
       }
     }
