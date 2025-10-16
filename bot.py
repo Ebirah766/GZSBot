@@ -956,7 +956,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Easy",
         "region": "Europe, Asia",
         "holdings": {
-            "North America": "0",
+            "North America": "0.3 - Glacier Zoo",
             "Asia": "3.0 - Air Terjun Zoo",
             "Europe": "1.3 - Shropshire Hills Zoo",
             "Africa": 0,
@@ -966,6 +966,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "institutions": {
             "Shropshire Hills Zoo": "1.3",
             "Air Terjun Zoo": "3.0"
+            "Air Terjun Zoo": "0.3"
+            
         },
     },
     "Red Deer": {
@@ -2409,8 +2411,8 @@ species_data: Dict[str, Dict[str, Any]] = {
     "breeding": "Below Average",
     "region": "Asia",
 "holdings": {
-"North America": 0,
-"Asia": "1.2 - Sapporo Reptile Center and National Aquarium ",
+"North America": "0.1 - Glacier Zoo",
+"Asia": "1.2 - Sapporo Reptile Center and National Aquarium",
 "Europe": 0,
 "Africa": 0,
 "South America": 0,
@@ -2418,6 +2420,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
 "institutions": {
 "Sapporo Reptile Center and National Aquarium": "1.2"
+"Glacier Zoo": "0.1"
 
 }
 },
@@ -4355,6 +4358,82 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Glacier Zoo": "0.3 [Silkie]"
+
+        }
+        },
+
+        "Domestic Sheep": {
+        "common": "Domestic Sheep",
+        "scientific": "Ovis aries",
+        "info": "The domestic sheep originated in Eurasia, descending from the mouflon. They are commonly kept for the purposes of their wool and meat, and due to their close association with humans are well-known and culturally important to many places around the world.  Sheep are thought of as unintelligent, but are actually considered one of the smartest domesticated animals.",
+        "type": "Mammal",
+        "order": "Artiodactyla",
+        "family": "Bovidae",
+        "genus": "Ovis",
+        "images": [
+        {"label": "Jacob's Sheep", "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Jacob_Ram_at_Royal_Show.jpg"},
+        ],
+        "image_url": "https://example.com/default.jpg",
+        "breeding": "Very Easy",
+        "holdings": {
+        "North America": ["1.2 (Jacob's Sheep) - Glacier Zoo"],
+        "Europe": 0,
+        "Asia": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Glacier Zoo": "1.2 [Jacob's Sheep]"
+
+            }
+            },
+
+        "Virginia Opossum": {
+        "common": "Virginia Opossum",
+        "scientific": "Didelphis virginiana",
+        "info": "The only marsupial found in the United States, the Virginia opossum is a solitary nocturnal species well-known for its habit of 'playing possum', where when attacked by a predator it pretends to be dead in order to dissuade predation. They are devoted parents, with mother opossums caring for their young for 4-5 months.",
+        "type": "Mammal",
+        "order": "Didelphimorphia",
+        "family": "Didelphidae",
+        "genus": "Didelphis",
+        "image_url": "https://nhpbs.org/wild/images/virginiaopossumforestrydavidcapeaert.jpg",
+        "breeding": "Below Average",
+        "region": "North America",
+        "holdings": {
+        "North America": ["1.1 - Glacier Zoo"],
+        "Europe": 0,
+        "Asia": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Glacier Zoo": "1.1"
+
+        }
+        },
+
+        "Fancy Rat": {
+        "common": "Fancy Rat",
+        "scientific": "Rattus norvegicus domestica",
+        "info": "The domesticated form of the brown rat, the fancy rat was originally bred for blood sports. When this was phased out, they became popular pets, renowned for their intelligence, playfulness, and cleanliness. Fancy rats come in a variety of morphs, bred into the subspecies for generations. In some areas they are banned due to the potential for invasiveness.",
+        "type": "Mammal",
+        "order": "Rodentia",
+        "family": "Muridae",
+        "genus": "Rattus",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Lyonblackandwhitehoodedrat.jpg/1920px-Lyonblackandwhitehoodedrat.jpg",
+        "breeding": "Very Easy",
+        "holdings": {
+        "North America": ["3.0 - Glacier Zoo"],
+        "Europe": 0,
+        "Asia": 0,
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Glacier Zoo": "3.0"
         },
     },
 }
