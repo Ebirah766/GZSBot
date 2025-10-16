@@ -5291,7 +5291,7 @@ async def progress_cmd(ctx):
     """
     ;progress
     Show all zoos that have >50% of their species housed (aggregated across all users).
-    This version is defensive: it always replies, and surfaces basic debug info if something goes wrong.
+    Backward-compatible with older discord.py versions.
     """
     import re, traceback
 
@@ -5299,7 +5299,16 @@ async def progress_cmd(ctx):
         await ctx.send(f"⚠️ {msg}")
 
     try:
-        await ctx.trigger_typing()
+        # --- Typing indicator (compatible across versions) ---
+        try:
+            await ctx.typing()
+        except Exception:
+            try:
+                # Older discord.py versions use a context manager
+                async with ctx.typing():
+                    pass
+            except Exception:
+                pass  # skip if not supported at all
 
         # -------- Load + basic validation --------
         data = _load_zoo_data()
@@ -5323,7 +5332,6 @@ async def progress_cmd(ctx):
             return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
 
         def extract_species_list(value):
-            # Accept list or {"species": [...]}
             if isinstance(value, list):
                 return [s for s in value if isinstance(s, str)]
             if isinstance(value, dict):
@@ -5336,7 +5344,7 @@ async def progress_cmd(ctx):
             return str(s).strip().casefold()
 
         # -------- Aggregate across all users --------
-        agg = {}  # norm_zoo -> {"name": canonical, "held": set(), "housed": set()}
+        agg = {}
         zoo_count_seen = 0
 
         for _uid, urec in users.items():
@@ -5346,7 +5354,6 @@ async def progress_cmd(ctx):
             collections = (urec.get("collections") or {})
             zoos = (urec.get("zoos") or {})
 
-            # Held
             if isinstance(collections, dict):
                 for zoo_name, held_val in collections.items():
                     zoo_count_seen += 1
@@ -5355,7 +5362,6 @@ async def progress_cmd(ctx):
                     bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
                     bucket["held"].update(norm_species(s) for s in extract_species_list(held_val))
 
-            # Housed
             if isinstance(zoos, dict):
                 for zoo_name, housed_val in zoos.items():
                     cz = canon_zoo(zoo_name)
@@ -5380,7 +5386,6 @@ async def progress_cmd(ctx):
                 rows.append((rec["name"], percent, housed_in_held, len(held)))
 
         if not rows:
-            # Helpful diagnostics so you know it actually ran
             checked = len(agg)
             await ctx.send(
                 f"ℹ️ No zoos currently have more than 50% housed.\n"
@@ -5393,9 +5398,9 @@ async def progress_cmd(ctx):
         await ctx.send("**Zoos with >50% species housed:**\n" + "\n".join(lines))
 
     except Exception:
-        # Never fail silently — surface a short error and drop the traceback to logs if you have them
         tb = traceback.format_exc(limit=2)
-        await ctx.send("🚫 Error while computing progress. (A short traceback was captured.)\n```\n" + tb + "\n```")
+        await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
+
 
 
 @bot.command(name="zooadd")
