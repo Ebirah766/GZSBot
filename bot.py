@@ -5102,7 +5102,7 @@ class SpeciesPager(discord.ui.View):
                 if isinstance(child, discord.ui.Button):
                     child.disabled = True
 
-    async def _update_embed(self, interaction: discord.Interaction):
+    async def _refresh(self, interaction: discord.Interaction):
         embed = build_species_embed(self.entry, self.index)
         await interaction.response.edit_message(embed=embed, view=self)
 
@@ -5111,14 +5111,14 @@ class SpeciesPager(discord.ui.View):
         if not self.images:
             return await interaction.response.defer()
         self.index = (self.index - 1) % len(self.images)
-        await self._update_embed(interaction)
+        await self._refresh(interaction)
 
     @discord.ui.button(emoji="▶️", style=discord.ButtonStyle.secondary)
     async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
         if not self.images:
             return await interaction.response.defer()
         self.index = (self.index + 1) % len(self.images)
-        await self._update_embed(interaction)
+        await self._refresh(interaction)
 
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
@@ -5285,6 +5285,118 @@ def get_all_zoo_names() -> list[str]:
     return sorted(names, key=lambda s: (s or "").lower())
 
 # ---------- Simple commands to manage/show the directory --------------------
+
+@bot.command(name="progress")
+async def progress_cmd(ctx):
+    """
+    ;progress
+    Show all zoos that have >50% of their species housed (aggregated across all users).
+    This version is defensive: it always replies, and surfaces basic debug info if something goes wrong.
+    """
+    import re, traceback
+
+    async def _fail(msg: str):
+        await ctx.send(f"⚠️ {msg}")
+
+    try:
+        await ctx.trigger_typing()
+
+        # -------- Load + basic validation --------
+        data = _load_zoo_data()
+        if not isinstance(data, dict) or not data:
+            await _fail("No data found in zoo_progress.json (or file is malformed).")
+            return
+
+        users = data.get("users") or {}
+        if not isinstance(users, dict) or not users:
+            await _fail("No users/zoos recorded yet.")
+            return
+
+        directory = data.get("directory", {}) or {}
+
+        # -------- Normalizers --------
+        norm = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
+        canon_by_norm = {norm(k): k for k in directory.keys()}
+
+        def canon_zoo(z: str) -> str:
+            n = norm(z)
+            return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
+
+        def extract_species_list(value):
+            # Accept list or {"species": [...]}
+            if isinstance(value, list):
+                return [s for s in value if isinstance(s, str)]
+            if isinstance(value, dict):
+                maybe = value.get("species")
+                if isinstance(maybe, list):
+                    return [s for s in maybe if isinstance(s, str)]
+            return []
+
+        def norm_species(s: str) -> str:
+            return str(s).strip().casefold()
+
+        # -------- Aggregate across all users --------
+        agg = {}  # norm_zoo -> {"name": canonical, "held": set(), "housed": set()}
+        zoo_count_seen = 0
+
+        for _uid, urec in users.items():
+            if not isinstance(urec, dict):
+                continue
+
+            collections = (urec.get("collections") or {})
+            zoos = (urec.get("zoos") or {})
+
+            # Held
+            if isinstance(collections, dict):
+                for zoo_name, held_val in collections.items():
+                    zoo_count_seen += 1
+                    cz = canon_zoo(zoo_name)
+                    key = norm(cz)
+                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
+                    bucket["held"].update(norm_species(s) for s in extract_species_list(held_val))
+
+            # Housed
+            if isinstance(zoos, dict):
+                for zoo_name, housed_val in zoos.items():
+                    cz = canon_zoo(zoo_name)
+                    key = norm(cz)
+                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
+                    bucket["housed"].update(norm_species(s) for s in extract_species_list(housed_val))
+
+        if not agg:
+            await _fail("No zoos detected in `users[*].collections` or `users[*].zoos`.")
+            return
+
+        # -------- Compute over-50% --------
+        rows = []
+        for rec in agg.values():
+            held = rec["held"]
+            housed = rec["housed"]
+            if not held:
+                continue
+            housed_in_held = len(housed.intersection(held))
+            percent = (housed_in_held / len(held)) * 100.0
+            if percent >= 50.0:
+                rows.append((rec["name"], percent, housed_in_held, len(held)))
+
+        if not rows:
+            # Helpful diagnostics so you know it actually ran
+            checked = len(agg)
+            await ctx.send(
+                f"ℹ️ No zoos currently have more than 50% housed.\n"
+                f"(Checked {checked} zoo name(s) across {zoo_count_seen} collection entries.)"
+            )
+            return
+
+        rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
+        lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
+        await ctx.send("**Zoos with >50% species housed:**\n" + "\n".join(lines))
+
+    except Exception:
+        # Never fail silently — surface a short error and drop the traceback to logs if you have them
+        tb = traceback.format_exc(limit=2)
+        await ctx.send("🚫 Error while computing progress. (A short traceback was captured.)\n```\n" + tb + "\n```")
+
 
 @bot.command(name="zooadd")
 async def zooadd_cmd(ctx, *, name: str):
@@ -7164,119 +7276,6 @@ async def breedrun_cmd(ctx):
                 "text": ln,
             })
     await ctx.send("Done.")
-
-    @bot.command(name="progress")
-    async def progress_cmd(ctx):
-        """
-        ;progress
-        Show all zoos that have >50% of their species housed (aggregated across all users).
-        This version is defensive: it always replies, and surfaces basic debug info if something goes wrong.
-        """
-        import re, traceback
-
-        async def _fail(msg: str):
-            await ctx.send(f"⚠️ {msg}")
-
-        try:
-            await ctx.trigger_typing()
-
-            # -------- Load + basic validation --------
-            data = _load_zoo_data()
-            if not isinstance(data, dict) or not data:
-                await _fail("No data found in zoo_progress.json (or file is malformed).")
-                return
-
-            users = data.get("users") or {}
-            if not isinstance(users, dict) or not users:
-                await _fail("No users/zoos recorded yet.")
-                return
-
-            directory = data.get("directory", {}) or {}
-
-            # -------- Normalizers --------
-            norm = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
-            canon_by_norm = {norm(k): k for k in directory.keys()}
-
-            def canon_zoo(z: str) -> str:
-                n = norm(z)
-                return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
-
-            def extract_species_list(value):
-                # Accept list or {"species": [...]}
-                if isinstance(value, list):
-                    return [s for s in value if isinstance(s, str)]
-                if isinstance(value, dict):
-                    maybe = value.get("species")
-                    if isinstance(maybe, list):
-                        return [s for s in maybe if isinstance(s, str)]
-                return []
-
-            def norm_species(s: str) -> str:
-                return str(s).strip().casefold()
-
-            # -------- Aggregate across all users --------
-            agg = {}  # norm_zoo -> {"name": canonical, "held": set(), "housed": set()}
-            zoo_count_seen = 0
-
-            for _uid, urec in users.items():
-                if not isinstance(urec, dict):
-                    continue
-
-                collections = (urec.get("collections") or {})
-                zoos = (urec.get("zoos") or {})
-
-                # Held
-                if isinstance(collections, dict):
-                    for zoo_name, held_val in collections.items():
-                        zoo_count_seen += 1
-                        cz = canon_zoo(zoo_name)
-                        key = norm(cz)
-                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
-                        bucket["held"].update(norm_species(s) for s in extract_species_list(held_val))
-
-                # Housed
-                if isinstance(zoos, dict):
-                    for zoo_name, housed_val in zoos.items():
-                        cz = canon_zoo(zoo_name)
-                        key = norm(cz)
-                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
-                        bucket["housed"].update(norm_species(s) for s in extract_species_list(housed_val))
-
-            if not agg:
-                await _fail("No zoos detected in `users[*].collections` or `users[*].zoos`.")
-                return
-
-            # -------- Compute over-50% --------
-            rows = []
-            for rec in agg.values():
-                held = rec["held"]
-                housed = rec["housed"]
-                if not held:
-                    continue
-                housed_in_held = len(housed.intersection(held))
-                percent = (housed_in_held / len(held)) * 100.0
-                if percent >= 50.0:
-                    rows.append((rec["name"], percent, housed_in_held, len(held)))
-
-            if not rows:
-                # Helpful diagnostics so you know it actually ran
-                checked = len(agg)
-                await ctx.send(
-                    f"ℹ️ No zoos currently have more than 50% housed.\n"
-                    f"(Checked {checked} zoo name(s) across {zoo_count_seen} collection entries.)"
-                )
-                return
-
-            rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
-            lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
-            await ctx.send("**Zoos with >50% species housed:**\n" + "\n".join(lines))
-
-        except Exception:
-            # Never fail silently — surface a short error and drop the traceback to logs if you have them
-            tb = traceback.format_exc(limit=2)
-            await ctx.send("🚫 Error while computing progress. (A short traceback was captured.)\n```\n" + tb + "\n```")
-
-
 
 @bot.command(name="breeddebug")
 async def breeddebug_cmd(ctx):
