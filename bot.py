@@ -5102,7 +5102,7 @@ class SpeciesPager(discord.ui.View):
                 if isinstance(child, discord.ui.Button):
                     child.disabled = True
 
-    async def _refresh(self, interaction: discord.Interaction):
+    async def _update_embed(self, interaction: discord.Interaction):
         embed = build_species_embed(self.entry, self.index)
         await interaction.response.edit_message(embed=embed, view=self)
 
@@ -5111,14 +5111,14 @@ class SpeciesPager(discord.ui.View):
         if not self.images:
             return await interaction.response.defer()
         self.index = (self.index - 1) % len(self.images)
-        await self._refresh(interaction)
+        await self._update_embed(interaction)
 
     @discord.ui.button(emoji="▶️", style=discord.ButtonStyle.secondary)
     async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
         if not self.images:
             return await interaction.response.defer()
         self.index = (self.index + 1) % len(self.images)
-        await self._refresh(interaction)
+        await self._update_embed(interaction)
 
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
@@ -7164,6 +7164,48 @@ async def breedrun_cmd(ctx):
                 "text": ln,
             })
     await ctx.send("Done.")
+
+@bot.command(name="progress")
+async def progress_cmd(ctx):
+    """
+    ;progress
+    Show all zoos that have >50% of their species housed.
+    """
+    data = _load_zoo_data()
+    results: list[tuple[str, float, int, int]] = []
+
+    # --- Iterate over all users' zoos ---
+    for _uid, urec in data.get("users", {}).items():
+        zoos = urec.get("zoos", {}) or {}
+        collections = urec.get("collections", {}) or {}
+
+        for zoo_name, held_species in collections.items():
+            if not isinstance(held_species, list) or not held_species:
+                continue
+
+            housed_species = zoos.get(zoo_name, [])
+            if not isinstance(housed_species, list):
+                housed_species = []
+
+            total = len(set(held_species))
+            housed = len(set(housed_species))
+            if total == 0:
+                continue
+
+            percent = (housed / total) * 100
+            if percent >= 50:
+                results.append((zoo_name, percent, housed, total))
+
+    # --- Sort & display ---
+    if not results:
+        await ctx.send("No zoos currently have more than 50% of their species housed.")
+        return
+
+    results.sort(key=lambda x: x[1], reverse=True)
+    lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in results]
+    content = "**Zoos with >50% species housed:**\n" + "\n".join(lines)
+    await ctx.send(content)
+
 
 @bot.command(name="breeddebug")
 async def breeddebug_cmd(ctx):
