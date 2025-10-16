@@ -7165,46 +7165,90 @@ async def breedrun_cmd(ctx):
             })
     await ctx.send("Done.")
 
-@bot.command(name="progress")
-async def progress_cmd(ctx):
-    """
-    ;progress
-    Show all zoos that have >50% of their species housed.
-    """
-    data = _load_zoo_data()
-    results: list[tuple[str, float, int, int]] = []
+    @bot.command(name="progress")
+    async def progress_cmd(ctx):
+        """
+        ;progress
+        Show all zoos that have >50% of their species housed (aggregated across all users).
+        """
+        import re
 
-    # --- Iterate over all users' zoos ---
-    for _uid, urec in data.get("users", {}).items():
-        zoos = urec.get("zoos", {}) or {}
-        collections = urec.get("collections", {}) or {}
+        data = _load_zoo_data()
+        directory = data.get("directory", {}) or {}
 
-        for zoo_name, held_species in collections.items():
-            if not isinstance(held_species, list) or not held_species:
-                continue
+        def _norm_zoo(s: str) -> str:
+            return re.sub(r"[^a-z0-9]+", "", str(s).lower())
 
-            housed_species = zoos.get(zoo_name, [])
-            if not isinstance(housed_species, list):
-                housed_species = []
+        # Map normalized -> canonical from the directory, if available
+        canon_by_norm = {_norm_zoo(k): k for k in directory.keys()}
 
-            total = len(set(held_species))
-            housed = len(set(housed_species))
+        def _canon_name(z: str) -> str:
+            n = _norm_zoo(z)
+            return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
+
+        def _extract_species_list(value) -> list[str]:
+            """
+            Accepts either a list of species or a dict shape that contains a 'species' list.
+            Falls back to empty list when malformed.
+            """
+            if isinstance(value, list):
+                return [s for s in value if isinstance(s, str)]
+            if isinstance(value, dict):
+                maybe = value.get("species")
+                if isinstance(maybe, list):
+                    return [s for s in maybe if isinstance(s, str)]
+            return []
+
+        def _norm_species(s: str) -> str:
+            return str(s).strip().casefold()
+
+        # Aggregate across all users into: norm_zoo -> {"name": canonical, "held": set(), "housed": set()}
+        agg: dict[str, dict[str, set[str] | str]] = {}
+
+        for _uid, urec in (data.get("users", {}) or {}).items():
+            collections = (urec.get("collections", {}) or {})
+            zoos = (urec.get("zoos", {}) or {})
+
+            # Held species per zoo
+            for zoo_name, held_val in collections.items():
+                canon = _canon_name(zoo_name)
+                key = _norm_zoo(canon)
+                bucket = agg.setdefault(key, {"name": canon, "held": set(), "housed": set()})
+                held_species = _extract_species_list(held_val)
+                bucket["held"].update(_norm_species(s) for s in held_species)
+
+            # Housed species per zoo
+            for zoo_name, housed_val in zoos.items():
+                canon = _canon_name(zoo_name)
+                key = _norm_zoo(canon)
+                bucket = agg.setdefault(key, {"name": canon, "held": set(), "housed": set()})
+                housed_species = _extract_species_list(housed_val)
+                bucket["housed"].update(_norm_species(s) for s in housed_species)
+
+        # Compute results
+        rows: list[tuple[str, float, int, int]] = []
+        for key, rec in agg.items():
+            name = rec["name"]  # type: ignore
+            held = rec["held"]  # type: ignore
+            housed = rec["housed"]  # type: ignore
+
+            total = len(held)
             if total == 0:
                 continue
 
-            percent = (housed / total) * 100
-            if percent >= 50:
-                results.append((zoo_name, percent, housed, total))
+            housed_in_held = len(housed.intersection(held))
+            percent = (housed_in_held / total) * 100.0
+            if percent >= 50.0:
+                rows.append((str(name), percent, housed_in_held, total))
 
-    # --- Sort & display ---
-    if not results:
-        await ctx.send("No zoos currently have more than 50% of their species housed.")
-        return
+        if not rows:
+            await ctx.send("No zoos currently have more than 50% of their species housed.")
+            return
 
-    results.sort(key=lambda x: x[1], reverse=True)
-    lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in results]
-    content = "**Zoos with >50% species housed:**\n" + "\n".join(lines)
-    await ctx.send(content)
+        rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
+        lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
+        await ctx.send("**Zoos with >50% species housed:**\n" + "\n".join(lines))
+
 
 
 @bot.command(name="breeddebug")
