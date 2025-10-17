@@ -4448,25 +4448,22 @@ def _get_by_norm_key(obj: dict, target_key: str) -> tuple[str | None, any]:
 
 def _extract_species_set(raw) -> set[str]:
     """
-    Accepts a list[str], a dict[str, any] (take its keys), or a set[str].
-    Filters to non-empty strings.
+    Accepts a list[str] / set[str] / tuple[str], or a dict[str, any] whose KEYS are species names.
     """
-    out: set[str] = set()
-    if isinstance(raw, list) or isinstance(raw, set) or isinstance(raw, tuple):
-        out = {s for s in raw if isinstance(s, str) and s.strip()}
-    elif isinstance(raw, dict):
-        # Some directories store species as { "Tiger": {}, "Lion": {} }
-        out = {s for s in raw.keys() if isinstance(s, str) and s.strip()}
-    elif isinstance(raw, str):
-        # single string — allow it
-        out = {raw} if raw.strip() else set()
-    return out
+    if isinstance(raw, (list, set, tuple)):
+        return {s for s in raw if isinstance(s, str) and s.strip()}
+    if isinstance(raw, dict):
+        # Treat dict keys as species names (common pattern: {"Lion": {...}, "Tiger": {...}})
+        return {s for s in raw.keys() if isinstance(s, str) and s.strip()}
+    if isinstance(raw, str):
+        return {raw.strip()} if raw.strip() else set()
+    return set()
 
 def _extract_directory_species(dentry: dict) -> set[str]:
     """
-    Try multiple likely keys used in your data:
-      'species', 'held', 'holdings', 'collection'
-    Also handle nested dict formats.
+    Only read from explicit species containers inside the directory entry:
+      'species', 'held', 'holdings', or 'collection'
+    DO NOT fall back to using the directory entry's top-level keys as species.
     """
     if not isinstance(dentry, dict):
         return set()
@@ -4475,12 +4472,6 @@ def _extract_directory_species(dentry: dict) -> set[str]:
             s = _extract_species_set(dentry.get(key))
             if s:
                 return s
-    # If no known key, but dentry itself looks like a species dict (many string keys):
-    if any(isinstance(k, str) for k in dentry.keys()):
-        # Heuristic: if most values are dicts/empties and keys look like species names
-        keys_as_species = _extract_species_set(dentry)
-        if keys_as_species:
-            return keys_as_species
     return set()
 
 def _find_owner_uid_for_zoo(data: dict, canon_zoo: str) -> int | None:
