@@ -4157,8 +4157,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "Japanese Rhinoceros Beetle": {
         "common": "Japanese Rhinoceros Beetle",
         "scientific": "Allomyrina dichotoma",
-        "info": "One of the most well-known species of beetles, the Japanese rhinoceros beetle is found in Asia, from India to Japan. Adults feed on tree sap and bore through the wood to get to it. Males use their large horns to fight each other for mates or territory.",
-        "type": "Invertberate",
+        "info": "One of the most well-known species of beetles, the Japanese rhinoceros beetle is found in Asia, from India to Japan. Adults feed on tree sap and bore through the wood to get to it. Males use their large horns to fight each other for mates o
+        "type": "Invertebrate",
         "order": "Coleoptera",
         "family": "Scarabaeidae",
         "genus": "Allomyrina",
@@ -4183,7 +4183,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "common": "Metallic Stag Beetle",
         "scientific": "Cyclommatus metallifer",
         "info": "An attractively-colored beetle with several color morphs, the metallic stag beetle endemic to Indonesia. Feeding on sap from plants, they may also feed on flowers and fruit. The males vary wildly in size, from 26 to 100 millimeters in length.",
-        "type": "Invertberate",
+        "type": "Invertebrate",nvertber
+        ate",
         "order": "Coleoptera",
         "family": "Lucanidae",
         "genus": "Cyclommatus",
@@ -4209,8 +4210,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "Godzilla Isopod": {
         "common": "Godzilla Isopod",
         "scientific": "Spherillo sp. Godzilla",
-        "info": "One of the largest of the 'spiky isopods', the Godzilla isopod is an extremely rare species originating from southeast Asia. They are known for their defense mechanism, where they hiss at potential predators by rubbing their legs against the interior of their exoskeletons.",
-        "type": "Invertberate",
+        "info": "One of the largest of the 'spiky isopods', the Godzilla isopod is an extremely rare species originating from southeast Asia. They are known for their defense mechanism, where they hiss at potential predators by rubbing their legs against the interior of their e
+        "type": "Invertebrate",nvertber
+        ate",
         "order": "Isopoda",
         "family": "Armadillidae",
         "genus": "Spherillo",
@@ -4235,7 +4237,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "common": "Javan Leaf Insect",
         "scientific": "Pulchriphyllium pulchrifolium",
         "info": "A typical member of its genus, the Javan leaf insect is often found in a green or brownish coloration. Like all leaf insects they imitate leaves for camoflauge purposes, protecting them from predators.",
-        "type": "Invertberate",
+   Invertebrate",Invertberate",
         "order": "Phasmatodea",
         "family": "Phylliidae",
         "genus": "Pulchriphyllium",
@@ -4260,7 +4262,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "common": "Camoflauge Isopod",
             "scientific": "Troglodillo rotundatus",
             "info": "A rare isopod endemic to China, the camoflauge isopod is rare and highly sought after in the isopod hobby. Typically preferring drier environments with thin layers of substrate, they can command high prices as they are extremely difficult to breed in captivity.",
-            "type": "Invertberate",
+       Invertebrate",Invertberate",
             "order": "Isopoda",
             "family": "Armadillidae",
             "genus": "Troglodillo",
