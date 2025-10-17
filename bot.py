@@ -4120,6 +4120,157 @@ def _migrate_canonicalize_zoos(data: dict) -> bool:
 
     return changed
 
+# somewhere near your other config helpers
+_PROGRESS_CFG_PATH = "progress_roles.json"
+
+def _load_progress_cfg() -> dict:
+    try:
+        with open(_PROGRESS_CFG_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def _save_progress_cfg(cfg: dict) -> None:
+    with open(_PROGRESS_CFG_PATH, "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=2, ensure_ascii=False)
+
+# Normalizer used elsewhere in your bot
+_ZOO_NORMALIZER = re.compile(r"\s+")
+
+def _norm_zoo(name: str) -> str:
+    return _ZOO_NORMALIZER.sub(" ", (name or "").strip()).lower()
+
+def _load_zoo_data() -> dict:
+    # you already have this in your codebase; this is just here to show calls
+    ...
+
+def _get_directory_species_for_zoo(zoo_name: str, data: dict) -> list[str]:
+    """Prefer canonical directory collection; fallback to owner's collections."""
+    directory = data.get("directory", {}) or {}
+    for k, v in directory.items():
+        if isinstance(k, str) and _norm_zoo(k) == _norm_zoo(zoo_name):
+            species = (v or {}).get("species")
+            if isinstance(species, list):
+                return [s for s in species if isinstance(s, str)]
+    # fallback: find an owner who has a 'collections' list for this zoo
+    for _uid, urec in (data.get("users", {}) or {}).items():
+        coll = (urec.get("collections", {}) or {}).get(zoo_name)
+        if isinstance(coll, list) and coll:
+            return [s for s in coll if isinstance(s, str)]
+    return []
+
+def _get_owner_housed_for_zoo(zoo_name: str, data: dict) -> tuple[int|None, list[str]]:
+    """
+    Return (owner_uid, housed_species) for the zoo.
+    If multiple users have entries, pick the one with the largest housed list.
+    """
+    best_uid, best_list = None, []
+    for uid, urec in (data.get("users", {}) or {}).items():
+        zoos = (urec.get("zoos", {}) or {})
+        for zname, housed_list in zoos.items():
+            if isinstance(zname, str) and _norm_zoo(zname) == _norm_zoo(zoo_name):
+                cur = [s for s in (housed_list or []) if isinstance(s, str)]
+                if len(cur) > len(best_list):
+                    best_uid, best_list = int(uid), cur
+    return best_uid, best_list
+
+def housed_ratio_for_zoo(zoo_name: str) -> tuple[float, int, int, int|None]:
+    """
+    Returns (ratio_0to1, housed_count, held_count, owner_uid).
+    Ratio is 0 if held_count == 0.
+    """
+    data = _load_zoo_data()
+    owner_uid, housed = _get_owner_housed_for_zoo(zoo_name, data)
+    held = _get_directory_species_for_zoo(zoo_name, data)
+    if not isinstance(held, list):
+        held = []
+    # Only count housed if it’s actually part of the zoo’s held collection
+    held_set = {s.lower().strip() for s in held}
+    housed_valid = [s for s in housed if isinstance(s, str) and s.lower().strip() in held_set]
+    held_n = len(held_set)
+    housed_n = len(housed_valid)
+    ratio = (housed_n / held_n) if held_n > 0 else 0.0
+    return ratio, housed_n, held_n, owner_uid
+
+def any_zoo_over_50_for_user(uid: int) -> bool:
+    """True if this user owns any zoo that’s ≥ 50% housed."""
+    data = _load_zoo_data()
+    urec = (data.get("users", {}) or {}).get(str(uid)) or {}
+    zoos = (urec.get("zoos", {}) or {})
+    for zname in zoos.keys():
+        ratio, _, _, owner_uid = housed_ratio_for_zoo(zname)
+        if owner_uid == uid and ratio >= 0.5:
+            return True
+    return False
+
+from discord.ext import tasks
+
+PROGRESS_CMD_PERMS = commands.has_permissions(manage_roles=True)
+
+def _get_progress_role(guild: discord.Guild) -> discord.Role | None:
+    cfg = _load_progress_cfg()
+    role_id = (cfg.get(str(guild.id)) or {}).get("role_id")
+    if role_id:
+        return guild.get_role(int(role_id))
+    return None
+
+async def _set_progress_role(guild: discord.Guild, role: discord.Role):
+    cfg = _load_progress_cfg()
+    cfg[str(guild.id)] = {"role_id": int(role.id)}
+    _save_progress_cfg(cfg)
+
+async def recompute_progress_role_for_guild(guild: discord.Guild):
+    """
+    Give the configured role to members who have ANY zoo at ≥50% housed (as owner).
+    Remove it from members who no longer qualify.
+    """
+    role = _get_progress_role(guild)
+    if not role:
+        return
+
+    # Build a set of members who should have the role
+    should_have: set[int] = set()
+    for member in guild.members:
+        if member.bot:
+            continue
+        try:
+            if any_zoo_over_50_for_user(member.id):
+                should_have.add(member.id)
+        except Exception:
+            # don't break the whole run on a bad record
+            continue
+
+    # Apply changes (batched to reduce churn)
+    # Add role
+    for member in guild.members:
+        if member.id in should_have and role not in member.roles:
+            try:
+                await member.add_roles(role, reason="≥50% housed (auto)")
+            except discord.Forbidden:
+                pass
+
+    # Remove role
+    for member in guild.members:
+        if member.id not in should_have and role in member.roles:
+            try:
+                await member.remove_roles(role, reason="<50% housed (auto)")
+            except discord.Forbidden:
+                pass
+
+@tasks.loop(minutes=10)
+async def progress_role_sweeper():
+    # Periodically reconcile across all guilds the bot is in
+    for guild in bot.guilds:
+        try:
+            await recompute_progress_role_for_guild(guild)
+        except Exception:
+            log.exception("Progress role sweep failed for guild %s", guild.id)
+
+@progress_role_sweeper.before_loop
+async def _wait_until_ready():
+    await bot.wait_until_ready()
+
+
 
 # --- Region helpers (derived from user-maintained `region` field) ------------
 _region_normalizer = re.compile(r"[^a-z]+")
@@ -7097,6 +7248,7 @@ async def breeddebug_cmd(ctx):
 
 
 
+
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
     keep_alive()
@@ -7106,3 +7258,34 @@ if __name__ == "__main__":
         log.error("DISCORD_TOKEN not set in environment or .env")
         sys.exit(1)
     bot.run(token)
+
+@bot.command(name="progressrole.set")
+@PROGRESS_CMD_PERMS
+async def cmd_progressrole_set(ctx: commands.Context, role: discord.Role):
+    """Bind the '≥50% housed' role for this server."""
+    await _set_progress_role(ctx.guild, role)
+    await ctx.send(f"✅ Set the progress role to {role.mention} for this server.")
+    # Optional: immediate reconcile
+    await recompute_progress_role_for_guild(ctx.guild)
+    await ctx.send("🔄 Recomputed current assignments.")
+
+@bot.command(name="progressrole.check")
+@commands.has_permissions(manage_roles=True)
+async def cmd_progressrole_check(ctx: commands.Context, member: Optional[discord.Member] = None):
+    """Check if you (or a specified member) currently qualify."""
+    m = member or ctx.author
+    ok = any_zoo_over_50_for_user(m.id)
+    await ctx.send(f"{m.mention} {'✅ qualifies' if ok else '❌ does not qualify'} (≥50% in any owned zoo).")
+
+@bot.command(name="progressrole.refresh")
+@commands.has_permissions(manage_roles=True)
+async def cmd_progressrole_refresh(ctx: commands.Context):
+    """Force a full recompute now."""
+    await recompute_progress_role_for_guild(ctx.guild)
+    await ctx.send("🔄 Refreshed role assignments.")
+
+
+@bot.event
+async def on_ready():
+    if not progress_role_sweeper.is_running():
+        progress_role_sweeper.start()
