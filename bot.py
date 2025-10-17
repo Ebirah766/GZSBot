@@ -14,10 +14,6 @@ import builtins
 import discord
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
-import re
-import math
-import builtins
-from typing import Dict, Any, List, Tuple, Set, Optional
 
 # --- Constants ---------------------------------------------------------------
 # Render holdings with one line per holder (split comma-separated values into bullets)
@@ -4046,8 +4042,6 @@ SPECIES = species_data
 # -------- Canonicalize existing zoo names (APPLIES TO OLD DATA) --------
 _ZOO_SPACE_NORM = re.compile(r"\s+")
 
-_zoo_norm_re = re.compile(r"[^a-z0-9]+")
-
 def _norm_zoo(s: str) -> str:
     return _ZOO_SPACE_NORM.sub(" ", (s or "").strip().lower())
 
@@ -4858,85 +4852,190 @@ def get_all_zoo_names() -> list[str]:
 # ---------- Simple commands to manage/show the directory --------------------
 
 @bot.command(name="progress")
-async def cmd_progress(ctx: commands.Context, *, min_percent: Optional[float] = None):
-    """
-    ;progress [min_percent]
+async def progress_cmd(ctx, arg: str = None):
+                                                            """
+                                                            ;progress
+                                                            Owner-scoped progress: total = owner's holdings for a zoo; housed = owner's housed for that zoo.
+                                                            ;progress debug -> adds per-zoo diagnostics.
+                                                            """
+                                                            import re, traceback
 
-    Computes, for each zoo you own:
-      housed = your 'housed' list for that zoo
-      total  = that zoo's full holdings (directory[z]['species'] OR any users' collections[z])
-      %      = housed ∩ holdings / holdings * 100
+                                                            DEBUG = (str(arg).strip().lower() == "debug") if arg else False
 
-    If min_percent is provided, only shows zoos at or above that threshold.
-    """
-    try:
-        viewer_id = ctx.author.id
-        data = _load_zoo_data()
+                                                            async def _fail(msg: str):
+                                                                await ctx.send(f"⚠️ {msg}")
 
-        # canonical names for pretty output
-        canon_map = _canonical_zoo_map(data)
+                                                            try:
+                                                                try:
+                                                                    await ctx.typing()
+                                                                except Exception:
+                                                                    try:
+                                                                        async with ctx.typing():
+                                                                            pass
+                                                                    except Exception:
+                                                                        pass
 
-        # your owned zoos and housed species lists
-        owned = _get_viewer_owned_housed(data, viewer_id)
-        if not owned:
-            await ctx.send("You don’t own any zoos yet (or none recorded). Use `;zoo add <name>` to create one.")
-            return
+                                                                data = _load_zoo_data()
+                                                                if not isinstance(data, dict) or not data:
+                                                                    await _fail("No data found in zoo_progress.json (or file is malformed).")
+                                                                    return
 
-        rows: List[Tuple[str, int, int, float]] = []  # (display_name, housed_count, total_count, pct)
+                                                                users = data.get("users") or {}
 
-        for zname_raw, housed_list in owned.items():
-            # canonical display casing
-            zkey = _norm_zoo(zname_raw)
-            display_name = canon_map.get(zkey, zname_raw)
+                                                                # ---------- helpers ----------
+                                                                norm_key = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
+                                                                def norm_species(s: str) -> str:
+                                                                    return str(s).strip().casefold()
 
-            # pull holdings for the zoo (from directory or any users' collections)
-            holdings = _get_holdings_for_zoo(data, display_name)
-            total = len(holdings)
+                                                                def is_species_string(x) -> bool:
+                                                                    if not isinstance(x, str): return False
+                                                                    s = x.strip()
+                                                                    if not s: return False
+                                                                    if s.lower().startswith(("http://","https://")): return False
+                                                                    return len(s) <= 150
 
-            # count only housed species that actually appear in holdings (defensive)
-            housed_in_holdings = [s for s in housed_list if s in holdings]
-            housed_count = len(housed_in_holdings)
+                                                                def extract_species_list_anyshape(value) -> list[str]:
+                                                                    """Accept: list[str]; dict with 'species'/'species_list'/'list' list; dict-keys-as-species."""
+                                                                    out: list[str] = []
+                                                                    if isinstance(value, list):
+                                                                        out.extend([s for s in value if is_species_string(s)])
+                                                                    elif isinstance(value, dict):
+                                                                        for key in ("species","species_list","list"):
+                                                                            v = value.get(key)
+                                                                            if isinstance(v, list):
+                                                                                out.extend([s for s in v if is_species_string(s)])
+                                                                        for k, _v in value.items():
+                                                                            if is_species_string(k):
+                                                                                out.append(k)
+                                                                    # dedupe casefold
+                                                                    seen=set(); uniq=[]
+                                                                    for s in out:
+                                                                        ns = norm_species(s)
+                                                                        if ns not in seen:
+                                                                            seen.add(ns); uniq.append(s)
+                                                                    return uniq
 
-            pct = _percent(housed_count, total)
-            rows.append((display_name, housed_count, total, pct))
+                                                                # Try exact keys first; if missing, recursively search this user's record for a subtree keyed by zoo name.
+                                                                def find_housed_for_user_zoo(urec: dict, zoo_name: str) -> list[str]:
+                                                                    target = norm_key(zoo_name)
 
-        # optional threshold
-        if isinstance(min_percent, (int, float)):
-            rows = [r for r in rows if r[3] >= float(min_percent)]
+                                                                    # 1) Direct lookups under standard housed containers
+                                                                    for hk in ("zoos", "housed", "housing"):
+                                                                        obj = urec.get(hk)
+                                                                        if isinstance(obj, dict):
+                                                                            # exact
+                                                                            if zoo_name in obj:
+                                                                                return extract_species_list_anyshape(obj[zoo_name])
+                                                                            # case/spacing-insensitive
+                                                                            for k, v in obj.items():
+                                                                                if norm_key(k) == target:
+                                                                                    return extract_species_list_anyshape(v)
 
-        # sort by percent desc, then by total desc, then by name
-        rows.sort(key=lambda r: (-r[3], -r[2], r[0].lower()))
+                                                                    # 2) Recursive fallback: anywhere under this user where a dict has a key == zoo_name (normalized)
+                                                                    def walk(o):
+                                                                        if isinstance(o, dict):
+                                                                            for k, v in o.items():
+                                                                                if norm_key(k) == target:
+                                                                                    lst = extract_species_list_anyshape(v)
+                                                                                    if lst:
+                                                                                        return lst
+                                                                                if isinstance(v, (dict, list, tuple, set)):
+                                                                                    got = walk(v)
+                                                                                    if got: return got
+                                                                        elif isinstance(o, (list, tuple, set)):
+                                                                            for it in o:
+                                                                                if isinstance(it, (dict, list, tuple, set)):
+                                                                                    got = walk(it); if got: return got
+                                                                        return None
 
-        if not rows:
-            await ctx.send("ℹ️ No zoos matched your filter." if min_percent is not None else "ℹ️ No progress to report yet.")
-            return
+                                                                    res = walk(urec)
+                                                                    return res or []
 
-        # Build a readable summary
-        lines = []
-        # Header
-        lines.append("**Zoo Housing Progress**")
-        if min_percent is not None:
-            lines.append(f"_Showing zoos ≥ {float(min_percent):.1f}% housed_")
-        lines.append("")
+                                                                # ---------- owner-scoped compute ----------
+                                                                HELD_KEYS = ("collections","collection","holdings")
 
-        # Body
-        for name, housed_count, total_count, pct in rows:
-            if total_count == 0:
-                lines.append(f"🏛️ **{name}** — _no holdings list found_ (housed {housed_count}/0)")
-            else:
-                lines.append(f"🏛️ **{name}** — {housed_count}/{total_count} housed ({pct:.1f}%)")
+                                                                rows = []
+                                                                debug_lines = []
+                                                                zoos_seen = 0
+                                                                zoos_with_held = 0
 
-        # Footer diagnostics (lightweight)
-        seen = len(rows)
-        lines.append("")
-        lines.append(f"_Zoos seen: {seen}; Source: directory/collections for holdings, your housed list for housed._")
+                                                                for uid, urec in users.items():
+                                                                    if not isinstance(urec, dict):
+                                                                        continue
 
-        await ctx.send("\n".join(lines))
+                                                                    # gather this owner's holdings maps
+                                                                    held_maps = []
+                                                                    for k in HELD_KEYS:
+                                                                        obj = urec.get(k)
+                                                                        if isinstance(obj, dict):
+                                                                            held_maps.append(obj)
 
-    except Exception:
-        log.exception("Error in ;progress")
-        await ctx.send("Sorry—something went wrong computing progress. Check that your zoos have a holdings list in either `directory[<zoo>]['species']` or any user's `collections[<zoo>]`, and that your housed lists live under your `users[you]['zoos'][<zoo>]`.")
+                                                                    # union of zoo names this owner has in holdings
+                                                                    zoo_names = set()
+                                                                    for m in held_maps:
+                                                                        zoo_names.update(str(z) for z in m.keys())
 
+                                                                    for zname in sorted(zoo_names, key=lambda s: s.lower()):
+                                                                        zoos_seen += 1
+
+                                                                        # HELD (owner's holdings for this zoo)
+                                                                        held_set = set()
+                                                                        for m in held_maps:
+                                                                            if zname in m:
+                                                                                held_list = extract_species_list_anyshape(m.get(zname))
+                                                                                held_set.update(norm_species(s) for s in held_list)
+                                                                            else:
+                                                                                # normalized key match
+                                                                                for k, v in m.items():
+                                                                                    if norm_key(k) == norm_key(zname):
+                                                                                        held_list = extract_species_list_anyshape(v)
+                                                                                        held_set.update(norm_species(s) for s in held_list)
+
+                                                                        if not held_set:
+                                                                            if DEBUG:
+                                                                                debug_lines.append(f"• {zname.lower()} [owner:{uid}]: held=0, housed=0")
+                                                                            continue  # must have holdings to compute % housed
+
+                                                                        zoos_with_held += 1
+
+                                                                        # HOUSED (same owner, same zoo)
+                                                                        housed_list = find_housed_for_user_zoo(urec, zname)
+                                                                        housed_set = set(norm_species(s) for s in housed_list)
+
+                                                                        housed_in_held = len(housed_set.intersection(held_set))
+                                                                        percent = (housed_in_held / len(held_set)) * 100.0
+
+                                                                        if DEBUG:
+                                                                            held_sample = list(sorted(list(held_set)))[:5]
+                                                                            housed_sample = list(sorted(list(housed_set)))[:5]
+                                                                            debug_lines.append(
+                                                                                f"• {zname.lower()} [owner:{uid}]: held={len(held_set)} {held_sample}, "
+                                                                                f"housed={len(housed_set)} {housed_sample}, "
+                                                                                f"housed∩held={housed_in_held} ({percent:.1f}%)"
+                                                                            )
+
+                                                                        if percent >= 50.0:
+                                                                            rows.append((str(zname), percent, housed_in_held, len(held_set)))
+
+                                                                if not rows:
+                                                                    await ctx.send(
+                                                                        "ℹ️ No zoos currently have more than 50% housed (owner-scoped)."
+                                                                        + (
+                                                                            "\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```"
+                                                                            if DEBUG and debug_lines else ""
+                                                                        )
+                                                                    )
+                                                                    return
+
+                                                                rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
+                                                                lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
+                                                                if DEBUG and debug_lines:
+                                                                    lines.append("\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```")
+                                                                await ctx.send("**Zoos with >50% species housed (owner-scoped):**\n" + "\n".join(lines))
+
+                                                            except Exception:
+                                                                tb = traceback.format_exc(limit=2)
+                                                                await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
 
 
 @bot.command(name="zooadd")
@@ -5165,80 +5264,6 @@ def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discor
         e.set_thumbnail(url=image_url)
 
     return e
-
-def _canonical_zoo_map(data: Dict[str, Any]) -> Dict[str, str]:
-    """
-    Build {normalized_name -> canonical display name} by scanning:
-      - data['directory'] keys
-      - all users' collections keys
-      - all users' zoos (ownership) keys
-    The first seen name becomes the canonical display form.
-    """
-    canon: Dict[str, str] = {}
-    # directory keys
-    for name in (data.get("directory") or {}).keys():
-        if isinstance(name, str) and name.strip():
-            k = _norm_zoo(name)
-            canon.setdefault(k, name)
-    # users' collections and zoos
-    for _uid, urec in (data.get("users") or {}).items():
-        # collections
-        for name in (urec.get("collections") or {}).keys():
-            if isinstance(name, str) and name.strip():
-                k = _norm_zoo(name)
-                canon.setdefault(k, name)
-        # owned zoos
-        for name in (urec.get("zoos") or {}).keys():
-            if isinstance(name, str) and name.strip():
-                k = _norm_zoo(name)
-                canon.setdefault(k, name)
-    return canon
-
-def _get_holdings_for_zoo(data: Dict[str, Any], zoo_name: str) -> Set[str]:
-    """
-    Returns the full 'holdings/collection' set for a zoo, sourced from either:
-      1) data['directory'][zoo]['species']
-      2) any users' collections[zoo] (unioned if multiple users keep lists)
-    """
-    holdings: Set[str] = set()
-    # 1) directory entry
-    directory = data.get("directory") or {}
-    dz = directory.get(zoo_name) if isinstance(directory, dict) else None
-    if isinstance(dz, dict):
-        sp = dz.get("species")
-        if isinstance(sp, list):
-            for s in sp:
-                if isinstance(s, str) and s.strip():
-                    holdings.add(s.strip())
-
-    # 2) union of all user-maintained collections for this zoo
-    for _uid, urec in (data.get("users") or {}).items():
-        cols = urec.get("collections") or {}
-        lst = cols.get(zoo_name)
-        if isinstance(lst, list):
-            for s in lst:
-                if isinstance(s, str) and s.strip():
-                    holdings.add(s.strip())
-
-    return holdings
-
-def _get_viewer_owned_housed(data: Dict[str, Any], viewer_id: int) -> Dict[str, List[str]]:
-    """
-    Returns {zoo_name -> housed_species_list} for zoos the viewer owns.
-    """
-    urec = (data.get("users") or {}).get(str(viewer_id)) or (data.get("users") or {}).get(int(viewer_id))
-    if not isinstance(urec, dict):
-        return {}
-    zoos = urec.get("zoos") or {}
-    out: Dict[str, List[str]] = {}
-    for zname, species_list in zoos.items():
-        if isinstance(zname, str) and isinstance(species_list, list):
-            out[zname] = [s for s in species_list if isinstance(s, str) and s.strip()]
-    return out
-
-def _percent(n: int, d: int) -> float:
-    return (n / d * 100.0) if d > 0 else 0.0
-
 
 # --- Holdings formatting helpers --------------------------------------------
 
