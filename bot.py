@@ -12,8 +12,19 @@ import builtins
 
 # --- Discord imports (moved to top to fix NameError in type annotations) ---
 import discord
-from discord.ext import commands
-from discord.ext.commands import CommandNotFound
+from discord.ext import commands, tasks
+import json
+import re
+import logging
+
+# --- Intents setup (this is Step 1) ---
+intents = discord.Intents.default()
+intents.message_content = True  # keep this so normal commands work
+intents.members = True          # 👈 REQUIRED so the bot can see all members
+
+# --- Bot creation ---
+bot = commands.Bot(command_prefix=";", intents=intents)
+log = logging.getLogger("wotbp-bot")
 
 # --- Constants ---------------------------------------------------------------
 # Render holdings with one line per holder (split comma-separated values into bullets)
@@ -4034,6 +4045,31 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
         "Glacier Zoo": "3.0"
+
+        }
+        },
+
+        "Gladiator Stag Beetle": {
+        "common": "Gladiator Stag Beetle",
+        "scientific": "Homoderus gladiator",
+        "info": "A stag beetle native to Africa, the gladiator stag beetle is regarded as difficult to breed in captivity due to its preference for laying eggs in wood. Little is known about this species in the wild and it is rarely held in captivity.",
+        "type": "Invertberate",
+        "order": "Coleoptera",
+        "family": "Lucanidae",
+        "genus": "Homoderus",
+        "image_url": "https://thespidershop.co.uk/wp-content/uploads/2018/06/H_gladiator.jpg",
+        "breeding": "Difficult",
+        "region": "Africa",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["1.1 - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Kings of the Jungle": "1.1"
         },
     },
 }
@@ -5042,6 +5078,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Wildkatzenpark Tatzenfels",
     "North Star Zoo",
     "Glacier Zoo",
+    "Kings of the Jungle",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
@@ -6570,7 +6607,7 @@ async def region_command(ctx, *, region: str = ""):
 # --- Error handling ----------------------------------------------------------
 @bot.event
 async def on_command_error(ctx: commands.Context, error: Exception):
-    if isinstance(error, CommandNotFound):
+    if isinstance(error, commands.CommandNotFound):
         return
     log.exception("Command error: %s", error)
     await ctx.send("An error occurred while processing that command.")
@@ -7269,13 +7306,21 @@ async def cmd_progressrole_set(ctx: commands.Context, role: discord.Role):
     await recompute_progress_role_for_guild(ctx.guild)
     await ctx.send("🔄 Recomputed current assignments.")
 
-@bot.command(name="progressrole.check")
-@commands.has_permissions(manage_roles=True)
-async def cmd_progressrole_check(ctx: commands.Context, member: Optional[discord.Member] = None):
-    """Check if you (or a specified member) currently qualify."""
-    m = member or ctx.author
-    ok = any_zoo_over_50_for_user(m.id)
-    await ctx.send(f"{m.mention} {'✅ qualifies' if ok else '❌ does not qualify'} (≥50% in any owned zoo).")
+    @bot.command(
+        name="progressrole.check",
+        aliases=["progressrolecheck", "progresscheck", "prcheck"]
+    )
+    async def cmd_progressrole_check(ctx: commands.Context, member: Optional[discord.Member] = None):
+        """
+        Check if you (or a specified member) currently qualify (≥50% housed in any owned zoo).
+        Usage:
+          ;progressrole.check
+          ;progressrole.check @someone
+        """
+        m = member or ctx.author
+        ok = any_zoo_over_50_for_user(m.id)
+        await ctx.send(f"{m.mention} {'✅ qualifies' if ok else '❌ does not qualify'} (≥50% in any owned zoo).")
+
 
 @bot.command(name="progressrole.refresh")
 @commands.has_permissions(manage_roles=True)
