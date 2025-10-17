@@ -5287,7 +5287,7 @@ def get_all_zoo_names() -> list[str]:
 # ---------- Simple commands to manage/show the directory --------------------
 
 @bot.command(name="progress")
-        async def progress_cmd(ctx, arg: str = None):
+async def progress_cmd(ctx, arg: str = None):
             """
             ;progress
             Show all zoos that have >50% of their species housed (aggregated across all users).
