@@ -4409,6 +4409,84 @@ def _resolve_zoo_canonical(input_name: str, data: dict) -> tuple[str, set[str]]:
     return input_name, {want_norm}
 
 
+_norm_re = re.compile(r"[^a-z0-9]+")
+
+def _norm_zoo(name: str) -> str:
+    return _norm_re.sub("", (name or "").lower()).strip()
+
+def _build_canonical_zoo_map(data: dict) -> dict[str, str]:
+    """
+    Build {normalized_name -> Canonical Name} from every place zoos can appear:
+    - Global directory keys (preferred)
+    - Any users' zoos (housed) keys
+    - Any users' collections keys
+    First seen wins; directory beats user sources by being added first.
+    """
+    canon: dict[str, str] = {}
+    # 1) Directory
+    for z in (data.get("directory") or {}).keys():
+        if isinstance(z, str):
+            canon.setdefault(_norm_zoo(z), z)
+    # 2) Users
+    for _uid, urec in (data.get("users") or {}).items():
+        for z in (urec.get("zoos") or {}).keys():
+            if isinstance(z, str):
+                canon.setdefault(_norm_zoo(z), z)
+        for z in (urec.get("collections") or {}).keys():
+            if isinstance(z, str):
+                canon.setdefault(_norm_zoo(z), z)
+    return canon
+
+def _find_owner_uid_for_zoo(data: dict, zoo: str) -> int | None:
+    """
+    Heuristic: the 'owner' is the user with the largest housed list for this zoo.
+    (Matches how your cards infer ownership from who actually records housing.)
+    """
+    best_uid = None
+    best_count = -1
+    for uid, urec in (data.get("users") or {}).items():
+        housed = (urec.get("zoos") or {}).get(zoo) or []
+        if isinstance(housed, list) and len(housed) > best_count:
+            best_count = len(housed)
+            best_uid = int(uid)
+    return best_uid
+
+def _get_housed_by_owner(data: dict, zoo: str, owner_uid: int | None) -> set[str]:
+    if owner_uid is None:
+        return set()
+    urec = (data.get("users") or {}).get(str(owner_uid)) or {}
+    housed = (urec.get("zoos") or {}).get(zoo) or []
+    return {s for s in housed if isinstance(s, str) and s.strip()}
+
+def _get_held_for_zoo(data: dict, zoo: str, owner_uid: int | None) -> set[str]:
+    """
+    Priority:
+      1) data['directory'][zoo]['species'] if present (the canonical holdings list)
+      2) owner's collections[zoo] as fallback
+      3) union of all users' collections[zoo] (last-ditch)
+    """
+    directory = data.get("directory") or {}
+    dentry = directory.get(zoo) or {}
+    d_species = dentry.get("species") or []
+    held = {s for s in d_species if isinstance(s, str) and s.strip()}
+    if held:
+        return held
+
+    if owner_uid is not None:
+        urec = (data.get("users") or {}).get(str(owner_uid)) or {}
+        coll = (urec.get("collections") or {}).get(zoo) or []
+        owner_held = {s for s in coll if isinstance(s, str) and s.strip()}
+        if owner_held:
+            return owner_held
+
+    # Fallback: anyone's collections for this zoo
+    union_all: set[str] = set()
+    for _uid, urec in (data.get("users") or {}).items():
+        coll = (urec.get("collections") or {}).get(zoo) or []
+        union_all |= {s for s in coll if isinstance(s, str) and s.strip()}
+    return union_all
+
+
 # --- ZIMS parsing + Institution helpers -------------------------------------
 _zims_number_re = re.compile(r"\d+")
 
@@ -4851,192 +4929,68 @@ def get_all_zoo_names() -> list[str]:
 
 # ---------- Simple commands to manage/show the directory --------------------
 
+# ----------------------------- ;progress command --------------------------------------
 @bot.command(name="progress")
-async def progress_cmd(ctx, arg: str = None):
-                                                            """
-                                                            ;progress
-                                                            Owner-scoped progress: total = owner's holdings for a zoo; housed = owner's housed for that zoo.
-                                                            ;progress debug -> adds per-zoo diagnostics.
-                                                            """
-                                                            import re, traceback
+async def cmd_progress(ctx: commands.Context):
+    """
+    ;progress
+    Lists every known zoo and its housed percentage, using the same inputs your ;zoo view cards use:
+    - Owner = user with most housed at that zoo
+    - Held species = directory[zoo].species (fallback: owner's collections[zoo], then union of all collections[zoo])
+    - Housed species = owner's zoos[zoo]
+    """
+    try:
+        data = _load_zoo_data()
 
-                                                            DEBUG = (str(arg).strip().lower() == "debug") if arg else False
+        # Build canonical names so we show properly-capitalized zoo names
+        canon_map = _build_canonical_zoo_map(data)
+        if not canon_map:
+            await ctx.send("No zoos recorded yet.")
+            return
 
-                                                            async def _fail(msg: str):
-                                                                await ctx.send(f"⚠️ {msg}")
+        rows: list[tuple[str, int | None, int, int, float | None]] = []
+        # (zoo_name, owner_uid, housed_count, held_count, pct)
 
-                                                            try:
-                                                                try:
-                                                                    await ctx.typing()
-                                                                except Exception:
-                                                                    try:
-                                                                        async with ctx.typing():
-                                                                            pass
-                                                                    except Exception:
-                                                                        pass
+        for _norm, zoo in sorted(canon_map.items(), key=lambda kv: kv[1].lower()):
+            owner_uid = _find_owner_uid_for_zoo(data, zoo)
+            housed_set = _get_housed_by_owner(data, zoo, owner_uid)
+            held_set = _get_held_for_zoo(data, zoo, owner_uid)
 
-                                                                data = _load_zoo_data()
-                                                                if not isinstance(data, dict) or not data:
-                                                                    await _fail("No data found in zoo_progress.json (or file is malformed).")
-                                                                    return
+            housed = len(housed_set)
+            held = len(held_set)
+            pct = (housed / held * 100.0) if held > 0 else None
+            rows.append((zoo, owner_uid, housed, held, pct))
 
-                                                                users = data.get("users") or {}
+        # Sort by percentage desc, then by name
+        rows.sort(key=lambda r: (-(r[4] if r[4] is not None else -1.0), r[0].lower()))
 
-                                                                # ---------- helpers ----------
-                                                                norm_key = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
-                                                                def norm_species(s: str) -> str:
-                                                                    return str(s).strip().casefold()
+        # Build readable lines; keep list compact if very long
+        lines: list[str] = []
+        for zoo, owner_uid, housed, held, pct in rows:
+            # Owner tag (optional)
+            owner_tag = f" <@{owner_uid}>" if owner_uid is not None else ""
+            if held == 0:
+                lines.append(f"🏛️ **{zoo}** — _no holdings set_ (owner unknown){owner_tag}")
+            else:
+                pct_text = f"{pct:.1f}%" if pct is not None else "—"
+                lines.append(f"🏛️ **{zoo}** — {housed}/{held} housed ({pct_text}){owner_tag}")
 
-                                                                def is_species_string(x) -> bool:
-                                                                    if not isinstance(x, str): return False
-                                                                    s = x.strip()
-                                                                    if not s: return False
-                                                                    if s.lower().startswith(("http://","https://")): return False
-                                                                    return len(s) <= 150
+        # Chunk if needed (Discord 2000 char limit)
+        header = "📊 **Zoo Housing Progress (based on directory/collections + owners from housed data)**"
+        msg = header + "\n" + "\n".join(lines)
+        if len(msg) <= 1900:
+            await ctx.send(msg)
+        else:
+            # spill into a .txt for very big lists
+            content = header + "\n\n" + "\n".join(lines)
+            buf = io.BytesIO(content.encode("utf-8"))
+            buf.seek(0)
+            file = discord.File(buf, filename="zoo_progress.txt")
+            await ctx.send("List was long—here’s a file:", file=file)
 
-                                                                def extract_species_list_anyshape(value) -> list[str]:
-                                                                    """Accept: list[str]; dict with 'species'/'species_list'/'list' list; dict-keys-as-species."""
-                                                                    out: list[str] = []
-                                                                    if isinstance(value, list):
-                                                                        out.extend([s for s in value if is_species_string(s)])
-                                                                    elif isinstance(value, dict):
-                                                                        for key in ("species","species_list","list"):
-                                                                            v = value.get(key)
-                                                                            if isinstance(v, list):
-                                                                                out.extend([s for s in v if is_species_string(s)])
-                                                                        for k, _v in value.items():
-                                                                            if is_species_string(k):
-                                                                                out.append(k)
-                                                                    # dedupe casefold
-                                                                    seen=set(); uniq=[]
-                                                                    for s in out:
-                                                                        ns = norm_species(s)
-                                                                        if ns not in seen:
-                                                                            seen.add(ns); uniq.append(s)
-                                                                    return uniq
-
-                                                                # Try exact keys first; if missing, recursively search this user's record for a subtree keyed by zoo name.
-                                                                def find_housed_for_user_zoo(urec: dict, zoo_name: str) -> list[str]:
-                                                                    target = norm_key(zoo_name)
-
-                                                                    # 1) Direct lookups under standard housed containers
-                                                                    for hk in ("zoos", "housed", "housing"):
-                                                                        obj = urec.get(hk)
-                                                                        if isinstance(obj, dict):
-                                                                            # exact
-                                                                            if zoo_name in obj:
-                                                                                return extract_species_list_anyshape(obj[zoo_name])
-                                                                            # case/spacing-insensitive
-                                                                            for k, v in obj.items():
-                                                                                if norm_key(k) == target:
-                                                                                    return extract_species_list_anyshape(v)
-
-                                                                    # 2) Recursive fallback: anywhere under this user where a dict has a key == zoo_name (normalized)
-                                                                    def walk(o):
-                                                                        if isinstance(o, dict):
-                                                                            for k, v in o.items():
-                                                                                if norm_key(k) == target:
-                                                                                    lst = extract_species_list_anyshape(v)
-                                                                                    if lst:
-                                                                                        return lst
-                                                                                if isinstance(v, (dict, list, tuple, set)):
-                                                                                    got = walk(v)
-                                                                                    if got: return got
-                                                                        elif isinstance(o, (list, tuple, set)):
-                                                                            for it in o:
-                                                                                if isinstance(it, (dict, list, tuple, set)):
-                                                                                    got = walk(it); if got: return got
-                                                                        return None
-
-                                                                    res = walk(urec)
-                                                                    return res or []
-
-                                                                # ---------- owner-scoped compute ----------
-                                                                HELD_KEYS = ("collections","collection","holdings")
-
-                                                                rows = []
-                                                                debug_lines = []
-                                                                zoos_seen = 0
-                                                                zoos_with_held = 0
-
-                                                                for uid, urec in users.items():
-                                                                    if not isinstance(urec, dict):
-                                                                        continue
-
-                                                                    # gather this owner's holdings maps
-                                                                    held_maps = []
-                                                                    for k in HELD_KEYS:
-                                                                        obj = urec.get(k)
-                                                                        if isinstance(obj, dict):
-                                                                            held_maps.append(obj)
-
-                                                                    # union of zoo names this owner has in holdings
-                                                                    zoo_names = set()
-                                                                    for m in held_maps:
-                                                                        zoo_names.update(str(z) for z in m.keys())
-
-                                                                    for zname in sorted(zoo_names, key=lambda s: s.lower()):
-                                                                        zoos_seen += 1
-
-                                                                        # HELD (owner's holdings for this zoo)
-                                                                        held_set = set()
-                                                                        for m in held_maps:
-                                                                            if zname in m:
-                                                                                held_list = extract_species_list_anyshape(m.get(zname))
-                                                                                held_set.update(norm_species(s) for s in held_list)
-                                                                            else:
-                                                                                # normalized key match
-                                                                                for k, v in m.items():
-                                                                                    if norm_key(k) == norm_key(zname):
-                                                                                        held_list = extract_species_list_anyshape(v)
-                                                                                        held_set.update(norm_species(s) for s in held_list)
-
-                                                                        if not held_set:
-                                                                            if DEBUG:
-                                                                                debug_lines.append(f"• {zname.lower()} [owner:{uid}]: held=0, housed=0")
-                                                                            continue  # must have holdings to compute % housed
-
-                                                                        zoos_with_held += 1
-
-                                                                        # HOUSED (same owner, same zoo)
-                                                                        housed_list = find_housed_for_user_zoo(urec, zname)
-                                                                        housed_set = set(norm_species(s) for s in housed_list)
-
-                                                                        housed_in_held = len(housed_set.intersection(held_set))
-                                                                        percent = (housed_in_held / len(held_set)) * 100.0
-
-                                                                        if DEBUG:
-                                                                            held_sample = list(sorted(list(held_set)))[:5]
-                                                                            housed_sample = list(sorted(list(housed_set)))[:5]
-                                                                            debug_lines.append(
-                                                                                f"• {zname.lower()} [owner:{uid}]: held={len(held_set)} {held_sample}, "
-                                                                                f"housed={len(housed_set)} {housed_sample}, "
-                                                                                f"housed∩held={housed_in_held} ({percent:.1f}%)"
-                                                                            )
-
-                                                                        if percent >= 50.0:
-                                                                            rows.append((str(zname), percent, housed_in_held, len(held_set)))
-
-                                                                if not rows:
-                                                                    await ctx.send(
-                                                                        "ℹ️ No zoos currently have more than 50% housed (owner-scoped)."
-                                                                        + (
-                                                                            "\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```"
-                                                                            if DEBUG and debug_lines else ""
-                                                                        )
-                                                                    )
-                                                                    return
-
-                                                                rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
-                                                                lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
-                                                                if DEBUG and debug_lines:
-                                                                    lines.append("\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```")
-                                                                await ctx.send("**Zoos with >50% species housed (owner-scoped):**\n" + "\n".join(lines))
-
-                                                            except Exception:
-                                                                tb = traceback.format_exc(limit=2)
-                                                                await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
-
+    except Exception:
+        log.exception("Error in ;progress")
+        await ctx.send("Sorry—couldn’t build the progress list. Check logs for details.")
 
 @bot.command(name="zooadd")
 async def zooadd_cmd(ctx, *, name: str):
