@@ -5291,7 +5291,7 @@ async def progress_cmd(ctx):
     """
     ;progress
     Show all zoos that have >50% of their species housed (aggregated across all users).
-    Backward-compatible with older discord.py versions.
+    Falls back to directory[<zoo>]['species'] when users[*].collections is missing.
     """
     import re, traceback
 
@@ -5299,39 +5299,37 @@ async def progress_cmd(ctx):
         await ctx.send(f"⚠️ {msg}")
 
     try:
-        # --- Typing indicator (compatible across versions) ---
+        # Typing indicator (works across discord.py variants)
         try:
             await ctx.typing()
         except Exception:
             try:
-                # Older discord.py versions use a context manager
                 async with ctx.typing():
                     pass
             except Exception:
-                pass  # skip if not supported at all
+                pass
 
-        # -------- Load + basic validation --------
         data = _load_zoo_data()
         if not isinstance(data, dict) or not data:
             await _fail("No data found in zoo_progress.json (or file is malformed).")
             return
 
         users = data.get("users") or {}
-        if not isinstance(users, dict) or not users:
-            await _fail("No users/zoos recorded yet.")
-            return
+        directory = data.get("directory") or {}
 
-        directory = data.get("directory", {}) or {}
-
-        # -------- Normalizers --------
+        # --- Helpers ---
         norm = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
+
+        # Canonicalize zoo names using directory when possible
         canon_by_norm = {norm(k): k for k in directory.keys()}
 
         def canon_zoo(z: str) -> str:
             n = norm(z)
+            # Prefer directory spelling if present, else trim incoming
             return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
 
         def extract_species_list(value):
+            """Accepts a list[str] or a dict {'species': list[str]}."""
             if isinstance(value, list):
                 return [s for s in value if isinstance(s, str)]
             if isinstance(value, dict):
@@ -5343,53 +5341,77 @@ async def progress_cmd(ctx):
         def norm_species(s: str) -> str:
             return str(s).strip().casefold()
 
-        # -------- Aggregate across all users --------
+        # --- Aggregate ---
+        # key (norm_zoo) -> {"name": canonical, "held": set(), "housed": set()}
         agg = {}
-        zoo_count_seen = 0
+        user_collection_entries = 0
+        directory_fallback_used = 0
 
-        for _uid, urec in users.items():
-            if not isinstance(urec, dict):
-                continue
+        # 1) Pull housed species from every user's 'zoos'
+        if isinstance(users, dict):
+            for _uid, urec in users.items():
+                if not isinstance(urec, dict):
+                    continue
+                zoos = urec.get("zoos") or {}
+                if isinstance(zoos, dict):
+                    for zoo_name, housed_val in zoos.items():
+                        cz = canon_zoo(zoo_name)
+                        key = norm(cz)
+                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
+                        bucket["housed"].update(norm_species(s) for s in extract_species_list(housed_val))
 
-            collections = (urec.get("collections") or {})
-            zoos = (urec.get("zoos") or {})
+        # 2) Pull HELD species from users[*].collections if present
+        if isinstance(users, dict):
+            for _uid, urec in users.items():
+                if not isinstance(urec, dict):
+                    continue
+                collections = urec.get("collections") or {}
+                if isinstance(collections, dict):
+                    for zoo_name, held_val in collections.items():
+                        user_collection_entries += 1
+                        cz = canon_zoo(zoo_name)
+                        key = norm(cz)
+                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
+                        bucket["held"].update(norm_species(s) for s in extract_species_list(held_val))
 
-            if isinstance(collections, dict):
-                for zoo_name, held_val in collections.items():
-                    zoo_count_seen += 1
-                    cz = canon_zoo(zoo_name)
-                    key = norm(cz)
-                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
-                    bucket["held"].update(norm_species(s) for s in extract_species_list(held_val))
+        # 3) FALLBACK: If a zoo has no held species yet, try directory[<zoo>]['species']
+        if isinstance(directory, dict):
+            for dzoo, meta in directory.items():
+                cz = canon_zoo(dzoo)
+                key = norm(cz)
+                bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
 
-            if isinstance(zoos, dict):
-                for zoo_name, housed_val in zoos.items():
-                    cz = canon_zoo(zoo_name)
-                    key = norm(cz)
-                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
-                    bucket["housed"].update(norm_species(s) for s in extract_species_list(housed_val))
+                if not bucket["held"]:
+                    dir_species = extract_species_list(meta)
+                    if not dir_species and isinstance(meta, dict):
+                        dir_species = extract_species_list(meta.get("species"))  # support nested
+                    if dir_species:
+                        directory_fallback_used += 1
+                        bucket["held"].update(norm_species(s) for s in dir_species)
 
         if not agg:
-            await _fail("No zoos detected in `users[*].collections` or `users[*].zoos`.")
+            await _fail("No zoos detected in users[*].zoos or directory.")
             return
 
-        # -------- Compute over-50% --------
+        # --- Compute results ---
         rows = []
+        checked = 0
         for rec in agg.values():
             held = rec["held"]
             housed = rec["housed"]
             if not held:
                 continue
+            checked += 1
             housed_in_held = len(housed.intersection(held))
             percent = (housed_in_held / len(held)) * 100.0
             if percent >= 50.0:
                 rows.append((rec["name"], percent, housed_in_held, len(held)))
 
         if not rows:
-            checked = len(agg)
             await ctx.send(
-                f"ℹ️ No zoos currently have more than 50% housed.\n"
-                f"(Checked {checked} zoo name(s) across {zoo_count_seen} collection entries.)"
+                "ℹ️ No zoos currently have more than 50% housed.\n"
+                f"(Checked {checked} zoo(s). User collection entries: {user_collection_entries}; "
+                f"directory fallbacks used: {directory_fallback_used}.)"
             )
             return
 
@@ -5400,6 +5422,7 @@ async def progress_cmd(ctx):
     except Exception:
         tb = traceback.format_exc(limit=2)
         await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
+
 
 
 
