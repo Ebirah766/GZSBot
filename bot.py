@@ -99,6 +99,119 @@ def format_holdings_lines(holdings: Dict[str, Any]) -> str:
 
     return "\n".join(lines)
 
+_norm_re = re.compile(r"[^a-z0-9]+")
+
+def _norm_zoo(name: str) -> str:
+    return _norm_re.sub("", (name or "").lower()).strip()
+
+def _get_by_norm_key(obj: Dict[str, Any] | None, target_key: str) -> Tuple[str | None, Any]:
+    if not isinstance(obj, dict):
+        return None, None
+    want = _norm_zoo(target_key)
+    for k, v in obj.items():
+        if isinstance(k, str) and _norm_zoo(k) == want:
+            return k, v
+    return None, None
+
+def _extract_species_set(raw: Any) -> Set[str]:
+    """
+    Accept list/set/tuple[str], dict[str, any] (keys are species), or single str.
+    """
+    if isinstance(raw, (list, set, tuple)):
+        return {s for s in raw if isinstance(s, str) and s.strip()}
+    if isinstance(raw, dict):
+        return {s for s in raw.keys() if isinstance(s, str) and s.strip()}
+    if isinstance(raw, str):
+        return {raw.strip()} if raw.strip() else set()
+    return set()
+
+def _build_canonical_zoo_map(data: Dict[str, Any]) -> Dict[str, str]:
+    canon: Dict[str, str] = {}
+    directory = data.get("directory") or {}
+    for z in directory.keys():
+        if isinstance(z, str):
+            canon.setdefault(_norm_zoo(z), z)
+    for _uid, urec in (data.get("users") or {}).items():
+        for z in (urec.get("zoos") or {}).keys():
+            if isinstance(z, str):
+                canon.setdefault(_norm_zoo(z), z)
+        for z in (urec.get("collections") or {}).keys():
+            if isinstance(z, str):
+                canon.setdefault(_norm_zoo(z), z)
+    return canon
+
+def _find_owner_uid_for_zoo(data: Dict[str, Any], canon_zoo: str) -> int | None:
+    best_uid = None
+    best_count = 0
+    for uid, urec in (data.get("users") or {}).items():
+        _k, housed_raw = _get_by_norm_key(urec.get("zoos") or {}, canon_zoo)
+        housed = _extract_species_set(housed_raw)
+        if len(housed) > best_count:
+            best_count = len(housed)
+            best_uid = int(uid)
+    return best_uid if best_count > 0 else None
+
+def _get_housed_by_owner(data: Dict[str, Any], canon_zoo: str, owner_uid: int | None) -> Set[str]:
+    if owner_uid is None:
+        return set()
+    urec = (data.get("users") or {}).get(str(owner_uid)) or {}
+    _k, housed_raw = _get_by_norm_key(urec.get("zoos") or {}, canon_zoo)
+    return _extract_species_set(housed_raw)
+
+def _get_held_for_zoo(data: Dict[str, Any], canon_zoo: str, owner_uid: int | None, debug_lines: list[str] | None = None) -> Set[str]:
+    """
+    Priority:
+      1) directory[zoo]['species'|'held'|'holdings'|'collection']
+      2) owner's collections[zoo]
+      3) any user's collections[zoo]
+      4) if directory[zoo] itself looks like a species dict (keys are species)
+    """
+    directory = data.get("directory") or {}
+    held: Set[str] = set()
+
+    # 1) Directory
+    dz_key, dentry = _get_by_norm_key(directory, canon_zoo)
+    if debug_lines is not None:
+        debug_lines.append(f"  directory key match: {dz_key!r}")
+    if isinstance(dentry, dict):
+        for key in ("species", "held", "holdings", "collection"):
+            if key in dentry:
+                cand = _extract_species_set(dentry.get(key))
+                if debug_lines is not None:
+                    debug_lines.append(f"  directory[{key}] found: {len(cand)}")
+                held |= cand
+        # 4) Whole entry as species dict (only if none found above)
+        if not held:
+            as_dict = _extract_species_set(dentry)
+            if debug_lines is not None:
+                debug_lines.append(f"  directory whole-dict species keys: {len(as_dict)}")
+            held |= as_dict
+
+    # 2) Owner collections
+    if not held and owner_uid is not None:
+        urec = (data.get("users") or {}).get(str(owner_uid)) or {}
+        ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
+        cand = _extract_species_set(coll_raw)
+        if debug_lines is not None:
+            debug_lines.append(f"  owner collections key: {ck!r}, count: {len(cand)}")
+        held |= cand
+
+    # 3) Union all users' collections
+    if not held:
+        total = 0
+        for _uid, urec in (data.get("users") or {}).items():
+            ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
+            cand = _extract_species_set(coll_raw)
+            total += len(cand)
+            held |= cand
+        if debug_lines is not None:
+            debug_lines.append(f"  union(all users' collections): {total}")
+
+    if debug_lines is not None:
+        debug_lines.append(f"  HELD RESOLVED: {len(held)}")
+    return held
+
+
 # --- Token System (per-user, per-zoo) ---------------------------------------
 TOKENS_FILE = pathlib.Path("tokens.json")
 TOKENS_START = 10
@@ -4446,34 +4559,6 @@ def _get_by_norm_key(obj: dict, target_key: str) -> tuple[str | None, any]:
             return k, v
     return None, None
 
-    def _extract_species_set(raw) -> set[str]:
-        """
-        Accepts a list[str] / set[str] / tuple[str], or a dict[str, any] whose KEYS are species names.
-        """
-        if isinstance(raw, (list, set, tuple)):
-            return {s for s in raw if isinstance(s, str) and s.strip()}
-        if isinstance(raw, dict):
-            # Treat dict keys as species names (common pattern: {"Lion": {...}, "Tiger": {...}})
-            return {s for s in raw.keys() if isinstance(s, str) and s.strip()}
-        if isinstance(raw, str):
-            return {raw.strip()} if raw.strip() else set()
-        return set()
-
-    def _extract_directory_species(dentry: dict) -> set[str]:
-        """
-        Only read from explicit species containers inside the directory entry:
-          'species', 'held', 'holdings', or 'collection'
-        DO NOT fall back to using the directory entry's top-level keys as species.
-        """
-        if not isinstance(dentry, dict):
-            return set()
-        for key in ("species", "held", "holdings", "collection"):
-            if key in dentry:
-                s = _extract_species_set(dentry.get(key))
-                if s:
-                    return s
-        return set()
-
 def _find_owner_uid_for_zoo(data: dict, canon_zoo: str) -> int | None:
     """
     Owner = user with the largest *housed* list for this zoo (matched by normalized name).
@@ -4981,66 +5066,97 @@ def get_all_zoo_names() -> list[str]:
 
 # ----------------------------- ;progress command --------------------------------------
 @bot.command(name="progress")
-async def cmd_progress(ctx: commands.Context):
+async def cmd_progress(ctx: commands.Context, *, mode: str = ""):
     """
     ;progress
-    Lists every known zoo and its housed percentage, using the same inputs your ;zoo view cards use:
-    - Owner = user with most housed at that zoo
-    - Held species = directory[zoo].species (fallback: owner's collections[zoo], then union of all collections[zoo])
-    - Housed species = owner's zoos[zoo]
+    ;progress debug  -> also uploads a .txt with per-zoo diagnostics
     """
     try:
         data = _load_zoo_data()
+    except Exception as e:
+        await ctx.send(f"Couldn’t load data: {type(e).__name__}: {e}")
+        return
 
-        # Build canonical names so we show properly-capitalized zoo names
+    try:
         canon_map = _build_canonical_zoo_map(data)
         if not canon_map:
             await ctx.send("No zoos recorded yet.")
             return
 
-        rows: list[tuple[str, int | None, int, int, float | None]] = []
-        # (zoo_name, owner_uid, housed_count, held_count, pct)
+        want_debug = isinstance(mode, str) and mode.strip().lower() == "debug"
+        debug_dump: list[str] = []
+        rows: list[tuple[str, int | None, int, int, float | None, str | None]] = []
+        # -> (zoo, owner_uid, housed, held, pct, err)
 
-        for _norm, zoo in sorted(canon_map.items(), key=lambda kv: kv[1].lower()):
-            owner_uid = _find_owner_uid_for_zoo(data, zoo)
-            housed_set = _get_housed_by_owner(data, zoo, owner_uid)
-            held_set = _get_held_for_zoo(data, zoo, owner_uid)
+        for _nz, zoo in sorted(canon_map.items(), key=lambda kv: kv[1].lower()):
+            per_debug: list[str] = []
+            err_text = None
+            try:
+                owner_uid = _find_owner_uid_for_zoo(data, zoo)
+                if want_debug:
+                    per_debug.append(f"Zoo: {zoo}")
+                    per_debug.append(f"  owner_uid: {owner_uid}")
 
-            housed = len(housed_set)
-            held = len(held_set)
-            pct = (housed / held * 100.0) if held > 0 else None
-            rows.append((zoo, owner_uid, housed, held, pct))
+                housed_set = _get_housed_by_owner(data, zoo, owner_uid)
+                if want_debug:
+                    per_debug.append(f"  HOUSED: {len(housed_set)}")
 
-        # Sort by percentage desc, then by name
-        rows.sort(key=lambda r: (-(r[4] if r[4] is not None else -1.0), r[0].lower()))
+                held_set = _get_held_for_zoo(data, zoo, owner_uid, per_debug if want_debug else None)
+                housed = len(housed_set)
+                held = len(held_set)
+                pct = (housed / held * 100.0) if held > 0 else None
+                rows.append((zoo, owner_uid, housed, held, pct, None))
 
-        # Build readable lines; keep list compact if very long
+            except Exception as ex:
+                err_text = f"{type(ex).__name__}: {ex}"
+                rows.append((zoo, None, 0, 0, None, err_text))
+                if want_debug:
+                    per_debug.append("  ERROR: " + err_text)
+                    per_debug.append("  TRACE:\n" + "".join(traceback.format_exc()))
+
+            if want_debug:
+                if err_text:
+                    per_debug.append("--")
+                debug_dump.extend(per_debug)
+
+        # sort by pct desc (None -> bottom), then name
+        def _sort_key(r):
+            zoo, owner_uid, housed, held, pct, err = r
+            return (-(pct if pct is not None else -1.0), zoo.lower())
+        rows.sort(key=_sort_key)
+
         lines: list[str] = []
-        for zoo, owner_uid, housed, held, pct in rows:
-            # Owner tag (optional)
+        header = "📊 **Zoo Housing Progress (directory/collections + owners from housed data)**"
+        for zoo, owner_uid, housed, held, pct, err in rows:
             owner_tag = f" <@{owner_uid}>" if owner_uid is not None else ""
-            if held == 0:
+            if err:
+                lines.append(f"🏛️ **{zoo}** — _error_ ({err})")
+            elif held == 0:
                 lines.append(f"🏛️ **{zoo}** — _no holdings set_ (owner unknown){owner_tag}")
             else:
                 pct_text = f"{pct:.1f}%" if pct is not None else "—"
                 lines.append(f"🏛️ **{zoo}** — {housed}/{held} housed ({pct_text}){owner_tag}")
 
-        # Chunk if needed (Discord 2000 char limit)
-        header = "📊 **Zoo Housing Progress (based on directory/collections + owners from housed data)**"
         msg = header + "\n" + "\n".join(lines)
-        if len(msg) <= 1900:
+        if len(msg) <= 1900 and not want_debug:
             await ctx.send(msg)
         else:
-            # spill into a .txt for very big lists
-            content = header + "\n\n" + "\n".join(lines)
-            buf = io.BytesIO(content.encode("utf-8"))
+            # Always send file if debug, or if the list is long
+            full_txt = header + "\n\n" + "\n".join(lines)
+            if want_debug:
+                full_txt += "\n\n===== DEBUG =====\n" + "\n".join(debug_dump)
+            buf = io.BytesIO(full_txt.encode("utf-8"))
             buf.seek(0)
             file = discord.File(buf, filename="zoo_progress.txt")
-            await ctx.send("List was long—here’s a file:", file=file)
+            await ctx.send("Here you go:", file=file)
 
-    except Exception:
-        log.exception("Error in ;progress")
-        await ctx.send("Sorry—couldn’t build the progress list. Check logs for details.")
+    except Exception as e:
+        # Last-resort guard so you see the actual Python error
+        tb = "".join(traceback.format_exc())
+        buf = io.BytesIO(tb.encode("utf-8"))
+        buf.seek(0)
+        await ctx.send("Sorry—couldn’t build the progress list. Uploading traceback.")
+        await ctx.send(file=discord.File(buf, filename="progress_error_traceback.txt"))
 
 @bot.command(name="zooadd")
 async def zooadd_cmd(ctx, *, name: str):

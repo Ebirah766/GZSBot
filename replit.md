@@ -9,6 +9,9 @@ This is a Discord bot application built using discord.py that manages a virtual 
 - Lines 4449-4475: Fixed indentation for _extract_species_set and _extract_directory_species functions
 - Lines 4501-4538: Fixed indentation for _get_held_for_zoo function
 - Line 4494: Fixed malformed parameter name (_get_held_for_zooowner_uid → owner_uid)
+- Removed duplicate over-indented _extract_species_set and _extract_directory_species functions at lines 4562-4588 that were causing NameError
+- Line 5069: Fixed extra space before async in cmd_progress function definition
+- Fixed cmd_progress function body indentation (reduced from 12 to 4 spaces)
 - Functions now properly recognized by Python interpreter
 - Fixed invalid semicolon syntax error in bot.py:
 - Line 4948: Split `got = walk(it); if got: return got` into two proper lines
