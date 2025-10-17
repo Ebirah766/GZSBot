@@ -4491,7 +4491,7 @@ def _find_owner_uid_for_zoo(data: dict, canon_zoo: str) -> int | None:
             best_uid = int(uid)
     return best_uid if best_count > 0 else None
 
-def _get_housed_by_owner(data: dict, canon_zoo: str, owner_uid: int | None) -> set[str]:
+def _get_housed_by_owner(data: dict, canon_zoo: str, _get_held_for_zooowner_uid: int | None) -> set[str]:
     if owner_uid is None:
         return set()
     urec = (data.get("users") or {}).get(str(owner_uid)) or {}
@@ -4499,42 +4499,42 @@ def _get_housed_by_owner(data: dict, canon_zoo: str, owner_uid: int | None) -> s
     return _extract_species_set(housed_raw)
 
 def _get_held_for_zoo(data: dict, canon_zoo: str, owner_uid: int | None) -> set[str]:
-    """
-    Find all 'held' species for a zoo, searching all likely spots:
-      1) directory[zoo]['species'] or ['holdings'] or ['collection'] or ['held']
-      2) owner's collections[zoo]
-      3) any user's collections[zoo]
-      4) directory[zoo] directly if it looks like a dict of species
-    """
-    directory = data.get("directory") or {}
-    held: set[str] = set()
+        """
+        Find all 'held' species for a zoo, searching all likely spots:
+          1) directory[zoo]['species'] or ['holdings'] or ['collection'] or ['held']
+          2) owner's collections[zoo]
+          3) any user's collections[zoo]
+          4) directory[zoo] directly if it looks like a dict of species
+        """
+        directory = data.get("directory") or {}
+        held: set[str] = set()
 
-    # 1) Directory entry (try multiple keys)
-    for dkey, dval in directory.items():
-        if _norm_zoo(dkey) == _norm_zoo(canon_zoo):
-            if isinstance(dval, dict):
-                # look inside known keys
-                for k in ("species", "held", "holdings", "collection"):
-                    if k in dval:
-                        held |= _extract_species_set(dval[k])
-                # if that failed, maybe the whole entry is just species dict
-                if not held and all(isinstance(v, (dict, str)) for v in dval.values()):
-                    held |= _extract_species_set(dval)
-            break
+        # 1) Directory entry (try multiple keys)
+        for dkey, dval in directory.items():
+            if _norm_zoo(dkey) == _norm_zoo(canon_zoo):
+                if isinstance(dval, dict):
+                    # look inside known keys
+                    for k in ("species", "held", "holdings", "collection"):
+                        if k in dval:
+                            held |= _extract_species_set(dval[k])
+                    # if that failed, maybe the whole entry is just species dict
+                    if not held and all(isinstance(v, (dict, str)) for v in dval.values()):
+                        held |= _extract_species_set(dval)
+                break
 
-    # 2) Owner's collections
-    if not held and owner_uid is not None:
-        urec = (data.get("users") or {}).get(str(owner_uid)) or {}
-        _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
-        held |= _extract_species_set(coll_raw)
-
-    # 3) Other users' collections fallback
-    if not held:
-        for _uid, urec in (data.get("users") or {}).items():
+        # 2) Owner's collections
+        if not held and owner_uid is not None:
+            urec = (data.get("users") or {}).get(str(owner_uid)) or {}
             _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
             held |= _extract_species_set(coll_raw)
 
-    return held
+        # 3) Other users' collections fallback
+        if not held:
+            for _uid, urec in (data.get("users") or {}).items():
+                _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
+                held |= _extract_species_set(coll_raw)
+
+        return held
 
 
 # --- ZIMS parsing + Institution helpers -------------------------------------
