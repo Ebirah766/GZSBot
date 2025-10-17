@@ -4070,7 +4070,214 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
         "Kings of the Jungle": "1.1"
+
+            }
+            },
+
+        "Japanese Stag Beetle": {
+        "common": "Japanese Stag Beetle",
+        "scientific": "Dorcus hopei",
+        "info": "A large beetle native to eastern Asia, the Japanese stag beetle remains in its larval stage for 1-2 years, and emerge as adults afterwards. The adults live for around 3-5 years and feed upon plant matter and fruit. A unique trait of this species is the antifreeze proteins in its body, which allows it to survive the cold winters.",
+        "type": "Invertberate",
+        "order": "Coleoptera",
+        "family": "Lucanidae",
+        "genus": "Dorcus",
+            "images": [
+                {"label": "Subspecies binodulosus", "url": "https://www.joelsartore.com/wp-content/uploads/stock/INS026/INS026-00202-1920x1279.jpg"},
+            ],
+        "breeding": "Difficult",
+        "region": "Asia",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["1.1 (binodulosus) - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
         },
+        "institutions": {
+        "Kings of the Jungle": "1.1 [binodulosus]"
+
+            }
+            },
+
+        "Taiwanese Stag Beetle": {
+        "common": "Taiwanese Stag Beetle",
+        "scientific": "Cyclommatus mniszechi",
+        "info": "A distinctive beetle species endemic to Taiwan, the Taiwanese stag beetle feeds upon tree bark as a juvenile and a mixture of fruits as an adult. It is regarded as an easier species to breed than many stag beetles, and its distinctive golden appearance makes it highly prized by invertebrate keepers.",
+        "type": "Invertberate",
+        "order": "Coleoptera",
+        "family": "Lucanidae",
+        "genus": "Dorcus",
+        "image_url": "https://richardsinverts-store.com/cdn/shop/products/i-img1200x1200-1624245649b8hpbb29980.jpg?v=1642870614&width=1445",
+        "breeding": "Average",
+        "region": "Asia",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["1.1 - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Kings of the Jungle": "1.1"
+
+        }
+        },
+
+        "Titan Stag Beetle": {
+        "common": "Titan Stag Beetle",
+        "scientific": "Serrognathus titanus",
+        "info": "This stag beetle is regarded as one of the better-known and popular species. Widely distributed throughout south, east and southeast Asia, they live for 1-2 years and inhabits a wide variety of habitats, as evidenced by its wide range. There are potentially 39 subspecies of this beetle, but further research is required.",
+        "type": "Invertberate",
+        "order": "Coleoptera",
+        "family": "Lucanidae",
+        "genus": "Serrognathus",
+            "images": [
+                {"label": "Subspecies palawanicus", "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/572107599/original.jpg"},
+                {"label": "Subspecies titanus", "url": "https://www.pierrewildlife.com/wp-content/uploads/2024/10/Serrognathus-titanus-titanus-2-2.jpg"}
+            ],
+        "breeding": "Below Average",
+        "region": "Asia",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["1.1 [palawanicus], 0.1 [titanus] - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Kings of the Jungle": "1.1 [palawanicus], 0.1 [titanus]"
+
+        }
+        },
+
+        "Japanese Rhinoceros Beetle": {
+        "common": "Japanese Rhinoceros Beetle",
+        "scientific": "Allomyrina dichotoma",
+        "info": "One of the most well-known species of beetles, the Japanese rhinoceros beetle is found in Asia, from India to Japan. Adults feed on tree sap and bore through the wood to get to it. Males use their large horns to fight each other for mates or territory.",
+        "type": "Invertberate",
+        "order": "Coleoptera",
+        "family": "Scarabaeidae",
+        "genus": "Allomyrina",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Male_rhinoceros_beetle_on_concrete_-_3.jpg/1280px-Male_rhinoceros_beetle_on_concrete_-_3.jpg",
+        "breeding": "Below Average",
+        "region": "Asia",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["0.1 - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Kings of the Jungle": "0.1"
+
+            }
+            },
+
+        "Metallic Stag Beetle": {
+        "common": "Metallic Stag Beetle",
+        "scientific": "Cyclommatus metallifer",
+        "info": "An attractively-colored beetle with several color morphs, the metallic stag beetle endemic to Indonesia. Feeding on sap from plants, they may also feed on flowers and fruit. The males vary wildly in size, from 26 to 100 millimeters in length.",
+        "type": "Invertberate",
+        "order": "Coleoptera",
+        "family": "Lucanidae",
+        "genus": "Cyclommatus",
+        "images": [
+            {"label": "Supernova color variant", "url": "https://davidsbeetles.com/cdn/shop/articles/metallifer5_1_of_1.jpg?v=1667521313"},
+        ],
+        "breeding": "Difficult",
+        "region": "Asia",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["0.1 (Supernova) - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Kings of the Jungle": "0.1 [Supernova]"
+
+        }
+        },
+
+        "Godzilla Isopod": {
+        "common": "Godzilla Isopod",
+        "scientific": "Spherillo sp. Godzilla",
+        "info": "One of the largest of the 'spiky isopods', the Godzilla isopod is an extremely rare species originating from southeast Asia. They are known for their defense mechanism, where they hiss at potential predators by rubbing their legs against the interior of their exoskeletons.",
+        "type": "Invertberate",
+        "order": "Isopoda",
+        "family": "Armadillidae",
+        "genus": "Spherillo",
+        "image_url": "https://i.imgur.com/1BQ5HNo.jpeg",
+        "breeding": "Difficult",
+        "region": "Asia",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["20 - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Kings of the Jungle": "20"
+
+        }
+        },
+
+        "Javan Leaf Insect": {
+        "common": "Javan Leaf Insect",
+        "scientific": "Pulchriphyllium pulchrifolium",
+        "info": "A typical member of its genus, the Javan leaf insect is often found in a green or brownish coloration. Like all leaf insects they imitate leaves for camoflauge purposes, protecting them from predators.",
+        "type": "Invertberate",
+        "order": "Phasmatodea",
+        "family": "Phylliidae",
+        "genus": "Pulchriphyllium",
+        "image_url": "https://www.phasmatodea.com/sites/default/files/speciesgallery/phyllium/bioculatum-gray-1832/mixed/idbioculatum-gray-1832.jpg",
+        "breeding": "Below Average",
+        "region": "Asia",
+        "holdings": {
+        "North America": 0,
+        "Europe": 0,
+        "Asia": ["0.1 - Kings of the Jungle"],
+        "Africa": 0,
+        "South America": 0,
+        "Oceania": 0,
+        },
+        "institutions": {
+        "Kings of the Jungle": "0.1"
+
+            }
+            },
+
+            "Camoflauge Isopod": {
+            "common": "Camoflauge Isopod",
+            "scientific": "Troglodillo rotundatus",
+            "info": "A rare isopod endemic to China, the camoflauge isopod is rare and highly sought after in the isopod hobby. Typically preferring drier environments with thin layers of substrate, they can command high prices as they are extremely difficult to breed in captivity.",
+            "type": "Invertberate",
+            "order": "Isopoda",
+            "family": "Armadillidae",
+            "genus": "Troglodillo",
+            "image_url": "https://cdn.isopod.site/2022/02/P9279477x.jpg",
+            "breeding": "Difficult",
+            "region": "Asia",
+            "holdings": {
+            "North America": 0,
+            "Europe": 0,
+            "Asia": ["20 - Kings of the Jungle"],
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Kings of the Jungle": "20"
+    },
     },
 }
 SPECIES = species_data
@@ -6607,7 +6814,7 @@ async def region_command(ctx, *, region: str = ""):
 # --- Error handling ----------------------------------------------------------
 @bot.event
 async def on_command_error(ctx: commands.Context, error: Exception):
-    if isinstance(error, commands.CommandNotFound):
+    if isinstance(error, CommandNotFound):
         return
     log.exception("Command error: %s", error)
     await ctx.send("An error occurred while processing that command.")
