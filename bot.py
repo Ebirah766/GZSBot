@@ -4157,7 +4157,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "Japanese Rhinoceros Beetle": {
         "common": "Japanese Rhinoceros Beetle",
         "scientific": "Allomyrina dichotoma",
-        "info": "One of the most well-known species of beetles, the Japanese rhinoceros beetle is found in Asia, from India to Japan. Adults feed on tree sap and bore through the wood to get to it. Males use their large horns to fight each other for mates ,
+        "info": "One of the most well-known species of beetles, the Japanese rhinoceros beetle is found in Asia, from India to Japan. Adults feed on tree sap and bore through the wood to get to it. Males use their large horns to fight each other for mates or territory.",
         "type": "Invertebrate",
         "order": "Coleoptera",
         "family": "Scarabaeidae",
@@ -4261,7 +4261,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "scientific": "Troglodillo rotundatus",
             "info": "A rare isopod endemic to China, the camoflauge isopod is rare and highly sought after in the isopod hobby. Typically preferring drier environments with thin layers of substrate, they can command high prices as they are extremely difficult to breed in captivity.",
             "type": "Invertebrate",
-            ,
             "order": "Isopoda",
             "family": "Armadillidae",
             "genus": "Troglodillo",
