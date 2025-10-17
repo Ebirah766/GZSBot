@@ -18,6 +18,7 @@ This is a Discord bot application built using discord.py that manages a virtual 
 - Line 4948: Split `got = walk(it); if got: return got` into two proper lines
 - Python does not allow semicolons to separate statements on the same line in this context
 - Fixed mismatched brackets in Titan Stag Beetle species data (line 4137-4143): Added missing closing bracket `]` for images array
+- Fixed malformed dictionary keys in species data (lines 4161, 4186, 4213, 4238, 4263): Changed `Invertebrate "Invertberate",` to `"type": "Invertberate",` - missing `"type":` prefix in Japanese Rhinoceros Beetle, Metallic Stag Beetle, Godzilla Isopod, Javan Leaf Insect, and Camoflauge Isopod entries
 - Bot now runs successfully without syntax errors
 
 **2025-10-09**: Fixed recurring syntax errors in species_data:

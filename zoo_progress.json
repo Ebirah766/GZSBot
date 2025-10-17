@@ -21,7 +21,9 @@
           "Common Carp",
           "Rainbow Trout",
           "Brown Trout",
-          "Brook Trout"
+          "Brook Trout",
+          "Giant Pacific Octopus",
+          "Flower Tube Anemone"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -87,7 +89,8 @@
           "Red-Tailed Catfish",
           "Tambaqui",
           "Ripsaw Catfish",
-          "White-Blotched River Ray"
+          "White-Blotched River Ray",
+          "Ornate Bichir"
         ]
       }
     },
@@ -97,7 +100,9 @@
         "Kings of the Jungle": [
           "Japanese Stag Beetle",
           "Taiwanese Stag Beetle",
-          "Titan Stag Beetle"
+          "Titan Stag Beetle",
+          "Camoflauge Isopod",
+          "Japanese Rhinoceros Beetle"
         ]
       }
     }
