@@ -4,7 +4,8 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
-**2025-10-17**: Fixed indentation, syntax, and runtime errors in bot.py:
+**2025-10-17**: Fixed indentation, syntax, runtime errors, and typos in bot.py:
+- Fixed typo: Replaced all instances of "Invertberate" with "Invertebrate" throughout species data
 - Fixed NameError in error handler: Changed `CommandNotFound` to `commands.CommandNotFound` (line 6613)
 - Lines 4412-4536: De-indented helper functions (_norm_zoo, _build_canonical_zoo_map, etc.) to module level - they were over-indented by 4 spaces
 - Lines 4449-4475: Fixed indentation for _extract_species_set and _extract_directory_species functions
