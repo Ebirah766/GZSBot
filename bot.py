@@ -5096,21 +5096,26 @@ async def progress_cmd(ctx, arg: str = None):
                         if not bucket["housed_sample"]:
                             bucket["housed_sample"] = lst[:5]
 
-                def add_held(zoo_like: str, value):
-                    nonlocal user_held_hits
-                    cz = canon_zoo(zoo_like)
-                    key = norm(cz)
-                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set(),
-                                                  "held_sample": [], "housed_sample": []})
-                    lst = extract_species_from_collections(value)  # <<--- explicit extractor
-                    if lst:
-                        user_held_hits += 1
-                        bucket["held"].update(norm_species(s) for s in lst)
-                        if not bucket["held_sample"]:
-                            bucket["held_sample"] = lst[:5]
+                    # ---- HELD from users: walk any collections/collection/holdings block
+                    user_held_hits = 0
 
-                # HOUSED and HELD from users
-                if isinstance(users, dict):
+                    def add_held(zoo_like: str, value):
+                        nonlocal user_held_hits
+                        cz = canon_zoo(zoo_like)
+                        key = norm(cz)
+                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set(),
+                                                      "held_sample": [], "housed_sample": []})
+                        lst = _extract_species_anyshape(value)
+                        if lst:
+                            user_held_hits += 1
+                            bucket["held"].update(norm_species(s) for s in lst)
+                            if not bucket["held_sample"]:
+                                bucket["held_sample"] = lst[:5]
+
+                    # Walk all users once for any collections-like blocks
+                    if isinstance(users, dict):
+                        for zname, val in _iter_collection_containers(users):
+                            add_held(zname, val)
                     for _uid, urec in users.items():
                         if not isinstance(urec, dict):
                             continue
@@ -5439,6 +5444,71 @@ def _build_zoo_embed(ctx: commands.Context, zoo_name: str, data: dict) -> discor
     return e
 
 # --- Holdings formatting helpers --------------------------------------------
+
+def _extract_species_anyshape(value) -> list[str]:
+    """Extremely permissive species extractor for collections/holdings blocks."""
+    out: list[str] = []
+
+    def add_str(x):
+        if isinstance(x, str):
+            s = x.strip()
+            if s and not s.lower().startswith(("http://","https://")) and len(s) <= 150:
+                out.append(s)
+
+    def walk(o, depth=0):
+        if o is None or depth > 8:
+            return
+        if isinstance(o, str):
+            add_str(o); return
+        if isinstance(o, (list, tuple, set)):
+            for it in o: walk(it, depth+1)
+            return
+        if isinstance(o, dict):
+            # keys might be species names
+            for k, v in o.items():
+                add_str(k)
+                # values may be lists/dicts containing more names
+                walk(v, depth+1)
+            return
+        # booleans / numbers ignored
+
+    walk(value, 0)
+
+    # dedupe case-insensitively
+    seen = set(); uniq = []
+    for s in out:
+        ns = s.casefold()
+        if ns not in seen:
+            seen.add(ns); uniq.append(s)
+    return uniq
+
+
+def _iter_collection_containers(users_dict):
+    """
+    Yield (zoo_name, value) for every zoo in any user's collections-like container,
+    no matter how it is structured or where it appears.
+    """
+    KEY_CANDIDATES = {"collections","collection","holdings"}
+    def normz(s): 
+        return re.sub(r"[^a-z0-9]+","",str(s).lower())
+
+    def walk(o, under_key=None):
+        if isinstance(o, dict):
+            # If this dict itself is a collections-container, its keys are zoos
+            if isinstance(under_key, str) and under_key.lower() in KEY_CANDIDATES:
+                for zname, val in o.items():
+                    yield (str(zname), val)
+            # recurse
+            for k, v in o.items():
+                # pass the key downward so we know when we’re under a collections container
+                yield from walk(v, k)
+        elif isinstance(o, (list, tuple, set)):
+            for it in o:
+                yield from walk(it, under_key)
+        # else: primitives ignored
+
+    yield from walk(users_dict, None)
+
 
 REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
