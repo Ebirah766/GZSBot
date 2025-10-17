@@ -4853,386 +4853,191 @@ def get_all_zoo_names() -> list[str]:
 
 @bot.command(name="progress")
 async def progress_cmd(ctx, arg: str = None):
-                            """
-                            ;progress
-                            Show all zoos that have >50% of their species housed.
+                                                            """
+                                                            ;progress
+                                                            Owner-scoped progress: total = owner's holdings for a zoo; housed = owner's housed for that zoo.
+                                                            ;progress debug -> adds per-zoo diagnostics.
+                                                            """
+                                                            import re, traceback
 
-                            ;progress debug  -> prints per-zoo diagnostics incl. sample species lists
-                            """
-                            import re, traceback
+                                                            DEBUG = (str(arg).strip().lower() == "debug") if arg else False
 
-                            DEBUG = (str(arg).strip().lower() == "debug") if arg else False
+                                                            async def _fail(msg: str):
+                                                                await ctx.send(f"⚠️ {msg}")
 
-                            async def _fail(msg: str):
-                                await ctx.send(f"⚠️ {msg}")
+                                                            try:
+                                                                try:
+                                                                    await ctx.typing()
+                                                                except Exception:
+                                                                    try:
+                                                                        async with ctx.typing():
+                                                                            pass
+                                                                    except Exception:
+                                                                        pass
 
-                            try:
-                                try:
-                                    await ctx.typing()
-                                except Exception:
-                                    try:
-                                        async with ctx.typing():
-                                            pass
-                                    except Exception:
-                                        pass
+                                                                data = _load_zoo_data()
+                                                                if not isinstance(data, dict) or not data:
+                                                                    await _fail("No data found in zoo_progress.json (or file is malformed).")
+                                                                    return
 
-                                data = _load_zoo_data()
-                                if not isinstance(data, dict) or not data:
-                                    await _fail("No data found in zoo_progress.json (or file is malformed).")
-                                    return
+                                                                users = data.get("users") or {}
 
-                                users = data.get("users") or {}
-                                directory = data.get("directory") or {}
+                                                                # ---------- helpers ----------
+                                                                norm_key = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
+                                                                def norm_species(s: str) -> str:
+                                                                    return str(s).strip().casefold()
 
-                                # ---------- Normalizers ----------
-                                norm = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
-                                def norm_species(s: str) -> str:
-                                    return str(s).strip().casefold()
+                                                                def is_species_string(x) -> bool:
+                                                                    if not isinstance(x, str): return False
+                                                                    s = x.strip()
+                                                                    if not s: return False
+                                                                    if s.lower().startswith(("http://","https://")): return False
+                                                                    return len(s) <= 150
 
-                                # Gather all zoo names we can see to build a nicer canonical map
-                                seen_zoo_names: list[str] = []
-                                if isinstance(directory, dict):
-                                    seen_zoo_names.extend([str(k) for k in directory.keys()])
-                                if isinstance(users, dict):
-                                    for _uid, urec in users.items():
-                                        if isinstance(urec, dict):
-                                            for k in ("zoos","housed","housing","collections","collection","holdings"):
-                                                obj = urec.get(k)
-                                                if isinstance(obj, dict):
-                                                    seen_zoo_names.extend([str(z) for z in obj.keys()])
+                                                                def extract_species_list_anyshape(value) -> list[str]:
+                                                                    """Accept: list[str]; dict with 'species'/'species_list'/'list' list; dict-keys-as-species."""
+                                                                    out: list[str] = []
+                                                                    if isinstance(value, list):
+                                                                        out.extend([s for s in value if is_species_string(s)])
+                                                                    elif isinstance(value, dict):
+                                                                        for key in ("species","species_list","list"):
+                                                                            v = value.get(key)
+                                                                            if isinstance(v, list):
+                                                                                out.extend([s for s in v if is_species_string(s)])
+                                                                        for k, _v in value.items():
+                                                                            if is_species_string(k):
+                                                                                out.append(k)
+                                                                    # dedupe casefold
+                                                                    seen=set(); uniq=[]
+                                                                    for s in out:
+                                                                        ns = norm_species(s)
+                                                                        if ns not in seen:
+                                                                            seen.add(ns); uniq.append(s)
+                                                                    return uniq
 
-                                canon_by_norm = {}
-                                for z in seen_zoo_names:
-                                    nz = norm(z)
-                                    # prefer the first capitalization we see
-                                    canon_by_norm.setdefault(nz, z)
+                                                                # Try exact keys first; if missing, recursively search this user's record for a subtree keyed by zoo name.
+                                                                def find_housed_for_user_zoo(urec: dict, zoo_name: str) -> list[str]:
+                                                                    target = norm_key(zoo_name)
 
-                                def canon_zoo(z: str) -> str:
-                                    n = norm(z)
-                                    return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
+                                                                    # 1) Direct lookups under standard housed containers
+                                                                    for hk in ("zoos", "housed", "housing"):
+                                                                        obj = urec.get(hk)
+                                                                        if isinstance(obj, dict):
+                                                                            # exact
+                                                                            if zoo_name in obj:
+                                                                                return extract_species_list_anyshape(obj[zoo_name])
+                                                                            # case/spacing-insensitive
+                                                                            for k, v in obj.items():
+                                                                                if norm_key(k) == target:
+                                                                                    return extract_species_list_anyshape(v)
 
-                                SPECIES_KEYS = {
-                                    "species", "species_list", "collection", "collections", "holdings", "animals", "list"
-                                }
-                                REGION_LIKE = {
-                                    "north america","south america","europe","asia","africa","oceania","australia",
-                                    "antarctica","global","world","americas","middle east","eurasia","caribbean",
-                                    "indopacific","indo-pacific"
-                                }
+                                                                    # 2) Recursive fallback: anywhere under this user where a dict has a key == zoo_name (normalized)
+                                                                    def walk(o):
+                                                                        if isinstance(o, dict):
+                                                                            for k, v in o.items():
+                                                                                if norm_key(k) == target:
+                                                                                    lst = extract_species_list_anyshape(v)
+                                                                                    if lst:
+                                                                                        return lst
+                                                                                if isinstance(v, (dict, list, tuple, set)):
+                                                                                    got = walk(v)
+                                                                                    if got: return got
+                                                                        elif isinstance(o, (list, tuple, set)):
+                                                                            for it in o:
+                                                                                if isinstance(it, (dict, list, tuple, set)):
+                                                                                    got = walk(it)
+                                                                                    if got: return got
+                                                                        return None
 
-                                def _is_species_string(x: object) -> bool:
-                                    if not isinstance(x, str):
-                                        return False
-                                    s = x.strip()
-                                    if not s:
-                                        return False
-                                    low = s.lower()
-                                    if low.startswith("http://") or low.startswith("https://"):
-                                        return False
-                                    if len(s) > 150:
-                                        return False
-                                    return True
+                                                                    res = walk(urec)
+                                                                    return res or []
 
-                                def _is_listlike(o) -> bool:
-                                    return isinstance(o, (list, tuple, set))
+                                                                # ---------- owner-scoped compute ----------
+                                                                HELD_KEYS = ("collections","collection","holdings")
 
-                                # ---- STRICT harvest for HELD from directory (unchanged)
-                                def harvest_species_strict(obj) -> list[str]:
-                                    out: list[str] = []
-                                    def _harvest(o, parent_key: str | None = None, depth: int = 0):
-                                        if o is None or depth > 6:
-                                            return
-                                        if _is_listlike(o):
-                                            for item in o:
-                                                if _is_species_string(item):
-                                                    out.append(item)
-                                                elif isinstance(item, (list, tuple, set, dict)):
-                                                    _harvest(item, parent_key, depth + 1)
-                                            return
-                                        if isinstance(o, dict):
-                                            if parent_key and parent_key.lower() in SPECIES_KEYS:
-                                                for k in o.keys():
-                                                    if _is_species_string(k):
-                                                        out.append(k)
-                                            for k, v in o.items():
-                                                k_str = str(k).strip().lower()
-                                                if k_str in SPECIES_KEYS or k_str in REGION_LIKE:
-                                                    if isinstance(v, dict):
-                                                        for sk, sv in v.items():
-                                                            if _is_species_string(sk):
-                                                                out.append(sk)
-                                                            if isinstance(sv, (list, tuple, set, dict)):
-                                                                _harvest(sv, k_str, depth + 1)
-                                                        continue
-                                                    elif _is_listlike(v):
-                                                        _harvest(v, k_str, depth + 1)
-                                                        continue
-                                                    elif isinstance(v, str):
-                                                        if _is_species_string(v):
-                                                            out.append(v)
-                                                        continue
-                                            return
-                                    _harvest(obj, None, 0)
-                                    seen=set(); uniq=[]
-                                    for s in out:
-                                        ns=norm_species(s)
-                                        if ns not in seen:
-                                            seen.add(ns); uniq.append(s)
-                                    return uniq
+                                                                rows = []
+                                                                debug_lines = []
+                                                                zoos_seen = 0
+                                                                zoos_with_held = 0
 
-                                # ---- PERMISSIVE harvest for HOUSED (unchanged)
-                                def harvest_species_permissive(obj) -> list[str]:
-                                    out: list[str] = []
-                                    def _harvest(o, parent_key: str | None = None, depth: int = 0):
-                                        if o is None or depth > 6:
-                                            return
-                                        if _is_listlike(o):
-                                            for item in o:
-                                                if _is_species_string(item):
-                                                    out.append(item)
-                                                elif isinstance(item, (list, tuple, set, dict)):
-                                                    _harvest(item, parent_key, depth + 1)
-                                            return
-                                        if isinstance(o, str):
-                                            if _is_species_string(o):
-                                                out.append(o)
-                                            return
-                                        if isinstance(o, dict):
-                                            if parent_key and parent_key.lower() in SPECIES_KEYS:
-                                                for k in o.keys():
-                                                    if _is_species_string(k):
-                                                        out.append(k)
-                                            for k, v in o.items():
-                                                k_str = str(k).strip().lower()
-                                                if k_str in SPECIES_KEYS or k_str in REGION_LIKE:
-                                                    if isinstance(v, dict):
-                                                        for sk, sv in v.items():
-                                                            if _is_species_string(sk):
-                                                                out.append(sk)
-                                                            if isinstance(sv, (list, tuple, set, dict)):
-                                                                _harvest(sv, k_str, depth + 1)
-                                                        continue
-                                                    elif _is_listlike(v):
-                                                        _harvest(v, k_str, depth + 1)
-                                                        continue
-                                                    elif isinstance(v, str):
-                                                        if _is_species_string(v):
-                                                            out.append(v)
-                                                        continue
-                                                if isinstance(v, (list, tuple, set, dict, str)):
-                                                    _harvest(v, k_str, depth + 1)
-                                            return
-                                    _harvest(obj, None, 0)
-                                    seen=set(); uniq=[]
-                                    for s in out:
-                                        ns=norm_species(s)
-                                        if ns not in seen:
-                                            seen.add(ns); uniq.append(s)
-                                    return uniq
+                                                                for uid, urec in users.items():
+                                                                    if not isinstance(urec, dict):
+                                                                        continue
 
-                                # ---- EXPLICIT extractor for HELD from user collections (NEW+robust)
-                                def extract_species_from_collections(value) -> list[str]:
-                                    out: list[str] = []
+                                                                    # gather this owner's holdings maps
+                                                                    held_maps = []
+                                                                    for k in HELD_KEYS:
+                                                                        obj = urec.get(k)
+                                                                        if isinstance(obj, dict):
+                                                                            held_maps.append(obj)
 
-                                    def add_str(s):
-                                        if _is_species_string(s):
-                                            out.append(s)
+                                                                    # union of zoo names this owner has in holdings
+                                                                    zoo_names = set()
+                                                                    for m in held_maps:
+                                                                        zoo_names.update(str(z) for z in m.keys())
 
-                                    # Extract from an arbitrary object
-                                    def walk(o, depth=0):
-                                        if o is None or depth > 8:
-                                            return
-                                        if isinstance(o, str):
-                                            add_str(o); return
-                                        if isinstance(o, (list, tuple, set)):
-                                            for it in o:
-                                                walk(it, depth+1)
-                                            return
-                                        if isinstance(o, dict):
-                                            # If this looks like a container, look into common fields first
-                                            for key in ("species", "species_list", "list", "holdings", "animals", "collection", "collections"):
-                                                v = o.get(key)
-                                                if isinstance(v, (list, dict, tuple, set, str)):
-                                                    walk(v, depth+1)
-                                            # Dict where KEYS may be species names
-                                            for k, v in o.items():
-                                                if _is_species_string(k):
-                                                    out.append(k)
-                                                # Also support item dicts with fields like 'common'/'name'/'scientific'
-                                                if isinstance(v, dict):
-                                                    for f in ("common","name","scientific","sci"):
-                                                        fv = v.get(f)
-                                                        if isinstance(fv, str):
-                                                            add_str(fv)
-                                                elif isinstance(v, (list, tuple, set, str, dict)):
-                                                    walk(v, depth+1)
-                                            return
-                                        # numbers/bools ignored
+                                                                    for zname in sorted(zoo_names, key=lambda s: s.lower()):
+                                                                        zoos_seen += 1
 
-                                    walk(value, 0)
+                                                                        # HELD (owner's holdings for this zoo)
+                                                                        held_set = set()
+                                                                        for m in held_maps:
+                                                                            if zname in m:
+                                                                                held_list = extract_species_list_anyshape(m.get(zname))
+                                                                                held_set.update(norm_species(s) for s in held_list)
+                                                                            else:
+                                                                                # normalized key match
+                                                                                for k, v in m.items():
+                                                                                    if norm_key(k) == norm_key(zname):
+                                                                                        held_list = extract_species_list_anyshape(v)
+                                                                                        held_set.update(norm_species(s) for s in held_list)
 
-                                    # dedupe (casefold)
-                                    seen = set()
-                                    uniq = []
-                                    for s in out:
-                                        ns = norm_species(s)
-                                        if ns not in seen:
-                                            seen.add(ns); uniq.append(s)
-                                    return uniq
+                                                                        if not held_set:
+                                                                            if DEBUG:
+                                                                                debug_lines.append(f"• {zname.lower()} [owner:{uid}]: held=0, housed=0")
+                                                                            continue  # must have holdings to compute % housed
 
-                                # ---------- Aggregate ----------
-                                agg: dict[str, dict[str, object]] = {}
+                                                                        zoos_with_held += 1
 
-                                # HELD from directory (strict)
-                                directory_used = 0
-                                if isinstance(directory, dict):
-                                    for dzoo, meta in directory.items():
-                                        cz = canon_zoo(dzoo)
-                                        key = norm(cz)
-                                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set(),
-                                                                      "held_sample": [], "housed_sample": [], "held_src": None})
-                                        dir_list = harvest_species_strict(meta)
-                                        if dir_list:
-                                            directory_used += 1
-                                            bucket["held"].update(norm_species(s) for s in dir_list)
-                                            bucket["held_sample"] = dir_list[:5]
-                                            bucket["held_src"] = bucket["held_src"] or "directory"
+                                                                        # HOUSED (same owner, same zoo)
+                                                                        housed_list = find_housed_for_user_zoo(urec, zname)
+                                                                        housed_set = set(norm_species(s) for s in housed_list)
 
-                                user_housed_hits = 0
-                                user_held_hits = 0
+                                                                        housed_in_held = len(housed_set.intersection(held_set))
+                                                                        percent = (housed_in_held / len(held_set)) * 100.0
 
-                                def add_housed(zoo_like: str, value):
-                                    nonlocal user_housed_hits
-                                    cz = canon_zoo(zoo_like)
-                                    key = norm(cz)
-                                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set(),
-                                                                  "held_sample": [], "housed_sample": [], "held_src": None})
-                                    lst = harvest_species_permissive(value)
-                                    if lst:
-                                        user_housed_hits += 1
-                                        bucket["housed"].update(norm_species(s) for s in lst)
-                                        if not bucket["housed_sample"]:
-                                            bucket["housed_sample"] = lst[:5]
+                                                                        if DEBUG:
+                                                                            held_sample = list(sorted(list(held_set)))[:5]
+                                                                            housed_sample = list(sorted(list(housed_set)))[:5]
+                                                                            debug_lines.append(
+                                                                                f"• {zname.lower()} [owner:{uid}]: held={len(held_set)} {held_sample}, "
+                                                                                f"housed={len(housed_set)} {housed_sample}, "
+                                                                                f"housed∩held={housed_in_held} ({percent:.1f}%)"
+                                                                            )
 
-                                def add_held(zoo_like: str, value):
-                                    nonlocal user_held_hits
-                                    cz = canon_zoo(zoo_like)
-                                    key = norm(cz)
-                                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set(),
-                                                                  "held_sample": [], "housed_sample": [], "held_src": None})
-                                    lst = extract_species_from_collections(value)
-                                    if lst:
-                                        user_held_hits += 1
-                                        bucket["held"].update(norm_species(s) for s in lst)
-                                        if not bucket["held_sample"]:
-                                            bucket["held_sample"] = lst[:5]
-                                        if bucket["held_src"] != "directory":
-                                            bucket["held_src"] = "user"
+                                                                        if percent >= 50.0:
+                                                                            rows.append((str(zname), percent, housed_in_held, len(held_set)))
 
-                                # HOUSED and HELD from users
-                                if isinstance(users, dict):
-                                    for _uid, urec in users.items():
-                                        if not isinstance(urec, dict):
-                                            continue
-                                        # HOUSED-like buckets
-                                        for candidate_key in ("zoos", "housed", "housing"):
-                                            obj = urec.get(candidate_key)
-                                            if obj is None:
-                                                continue
-                                            if isinstance(obj, dict):
-                                                for zoo_k, bucket_val in obj.items():
-                                                    add_housed(str(zoo_k), bucket_val)
-                                            elif _is_listlike(obj):
-                                                for item in obj:
-                                                    if isinstance(item, dict):
-                                                        zname = item.get("name") or item.get("zoo") or item.get("title")
-                                                        if isinstance(zname, str):
-                                                            add_housed(zname, item)
-                                                        else:
-                                                            for k2, v2 in item.items():
-                                                                add_housed(str(k2), v2)
-                                        # HELD-like buckets (collections)
-                                        for candidate_key in ("collections", "collection", "holdings"):
-                                            obj = urec.get(candidate_key)
-                                            if obj is None:
-                                                continue
-                                            if isinstance(obj, dict):
-                                                for zoo_k, bucket_val in obj.items():
-                                                    add_held(str(zoo_k), bucket_val)
-                                            elif _is_listlike(obj):
-                                                for item in obj:
-                                                    if isinstance(item, dict):
-                                                        zname = item.get("name") or item.get("zoo") or item.get("title")
-                                                        if isinstance(zname, str):
-                                                            add_held(zname, item)
-                                                        else:
-                                                            for k2, v2 in item.items():
-                                                                add_held(str(k2), v2)
+                                                                if not rows:
+                                                                    await ctx.send(
+                                                                        "ℹ️ No zoos currently have more than 50% housed (owner-scoped)."
+                                                                        + (
+                                                                            "\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```"
+                                                                            if DEBUG and debug_lines else ""
+                                                                        )
+                                                                    )
+                                                                    return
 
-                                # ---- Fallback if a zoo has HOUSED but no HELD: set HELD := HOUSED
-                                held_from_housed_fallback = 0
-                                for rec in agg.values():
-                                    if rec["housed"] and not rec["held"]:
-                                        rec["held"] = set(rec["housed"])
-                                        rec["held_src"] = rec.get("held_src") or "fallback"
-                                        held_from_housed_fallback += 1
+                                                                rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
+                                                                lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
+                                                                if DEBUG and debug_lines:
+                                                                    lines.append("\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```")
+                                                                await ctx.send("**Zoos with >50% species housed (owner-scoped):**\n" + "\n".join(lines))
 
-                                # ---------- Compute ----------
-                                rows = []
-                                zoos_seen = len(agg)
-                                zoos_with_held = sum(1 for rec in agg.values() if rec["held"])
-                                debug_lines = []
+                                                            except Exception:
+                                                                tb = traceback.format_exc(limit=2)
+                                                                await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
 
-                                for rec in agg.values():
-                                    name = rec["name"]
-                                    held = rec["held"]; housed = rec["housed"]
-                                    held_n = len(held); housed_n = len(housed)
-
-                                    if not held_n:
-                                        if DEBUG:
-                                            src = rec.get("held_src") or "-"
-                                            debug_lines.append(f"• {str(name).lower()}: held=0 [held:{src}], housed={housed_n}")
-                                        continue
-
-                                    housed_in_held = len(housed.intersection(held))
-                                    percent = (housed_in_held / held_n) * 100.0
-
-                                    if DEBUG:
-                                        held_sample = rec.get("held_sample", []) or []
-                                        housed_sample = rec.get("housed_sample", []) or []
-                                        src = rec.get("held_src") or "-"
-                                        debug_lines.append(
-                                            f"• {str(name).lower()}: held={held_n} {held_sample} [held:{src}], "
-                                            f"housed={housed_n} {housed_sample}, "
-                                            f"housed∩held={housed_in_held} ({percent:.1f}%)"
-                                        )
-
-                                    if percent >= 50.0:
-                                        rows.append((str(name), percent, housed_in_held, held_n))
-
-                                if not rows:
-                                    await ctx.send(
-                                        "ℹ️ No zoos currently have more than 50% housed.\n"
-                                        f"(Zoos seen: {zoos_seen}; Zoos with 'held' data: {zoos_with_held}; "
-                                        f"User housed hits: {user_housed_hits}; User held hits: {user_held_hits}; "
-                                        f"Directory (strict) used: {directory_used}; "
-                                        f"Held-from-housed fallbacks: {held_from_housed_fallback}.)"
-                                        + (
-                                            ("\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```")
-                                            if DEBUG and debug_lines else ""
-                                        )
-                                    )
-                                    return
-
-                                rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
-                                lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
-                                if DEBUG and debug_lines:
-                                    lines.append("\n```" + "\n".join(debug_lines[:80]) + ("..." if len(debug_lines) > 80 else "") + "```")
-                                await ctx.send("**Zoos with >50% species housed:**\n" + "\n".join(lines))
-
-                            except Exception:
-                                tb = traceback.format_exc(limit=2)
-                                await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
 
 @bot.command(name="zooadd")
 async def zooadd_cmd(ctx, *, name: str):
