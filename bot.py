@@ -4446,33 +4446,33 @@ def _get_by_norm_key(obj: dict, target_key: str) -> tuple[str | None, any]:
             return k, v
     return None, None
 
-def _extract_species_set(raw) -> set[str]:
-    """
-    Accepts a list[str] / set[str] / tuple[str], or a dict[str, any] whose KEYS are species names.
-    """
-    if isinstance(raw, (list, set, tuple)):
-        return {s for s in raw if isinstance(s, str) and s.strip()}
-    if isinstance(raw, dict):
-        # Treat dict keys as species names (common pattern: {"Lion": {...}, "Tiger": {...}})
-        return {s for s in raw.keys() if isinstance(s, str) and s.strip()}
-    if isinstance(raw, str):
-        return {raw.strip()} if raw.strip() else set()
-    return set()
-
-def _extract_directory_species(dentry: dict) -> set[str]:
-    """
-    Only read from explicit species containers inside the directory entry:
-      'species', 'held', 'holdings', or 'collection'
-    DO NOT fall back to using the directory entry's top-level keys as species.
-    """
-    if not isinstance(dentry, dict):
+    def _extract_species_set(raw) -> set[str]:
+        """
+        Accepts a list[str] / set[str] / tuple[str], or a dict[str, any] whose KEYS are species names.
+        """
+        if isinstance(raw, (list, set, tuple)):
+            return {s for s in raw if isinstance(s, str) and s.strip()}
+        if isinstance(raw, dict):
+            # Treat dict keys as species names (common pattern: {"Lion": {...}, "Tiger": {...}})
+            return {s for s in raw.keys() if isinstance(s, str) and s.strip()}
+        if isinstance(raw, str):
+            return {raw.strip()} if raw.strip() else set()
         return set()
-    for key in ("species", "held", "holdings", "collection"):
-        if key in dentry:
-            s = _extract_species_set(dentry.get(key))
-            if s:
-                return s
-    return set()
+
+    def _extract_directory_species(dentry: dict) -> set[str]:
+        """
+        Only read from explicit species containers inside the directory entry:
+          'species', 'held', 'holdings', or 'collection'
+        DO NOT fall back to using the directory entry's top-level keys as species.
+        """
+        if not isinstance(dentry, dict):
+            return set()
+        for key in ("species", "held", "holdings", "collection"):
+            if key in dentry:
+                s = _extract_species_set(dentry.get(key))
+                if s:
+                    return s
+        return set()
 
 def _find_owner_uid_for_zoo(data: dict, canon_zoo: str) -> int | None:
     """
@@ -4500,31 +4500,42 @@ def _get_housed_by_owner(data: dict, canon_zoo: str, owner_uid: int | None) -> s
 
 def _get_held_for_zoo(data: dict, canon_zoo: str, owner_uid: int | None) -> set[str]:
     """
-    Priority:
-      1) directory[canon_zoo] (match by normalized key) → try keys: species/held/holdings/collection or dict-of-species
-      2) owner collections[canon_zoo] (same flexible parsing)
-      3) union of all users’ collections[canon_zoo]
+    Find all 'held' species for a zoo, searching all likely spots:
+      1) directory[zoo]['species'] or ['holdings'] or ['collection'] or ['held']
+      2) owner's collections[zoo]
+      3) any user's collections[zoo]
+      4) directory[zoo] directly if it looks like a dict of species
     """
     directory = data.get("directory") or {}
-    _dz_key, dentry = _get_by_norm_key(directory, canon_zoo)
-    held = _extract_directory_species(dentry)
-    if held:
-        return held
+    held: set[str] = set()
 
-    # Owner fallback
-    if owner_uid is not None:
+    # 1) Directory entry (try multiple keys)
+    for dkey, dval in directory.items():
+        if _norm_zoo(dkey) == _norm_zoo(canon_zoo):
+            if isinstance(dval, dict):
+                # look inside known keys
+                for k in ("species", "held", "holdings", "collection"):
+                    if k in dval:
+                        held |= _extract_species_set(dval[k])
+                # if that failed, maybe the whole entry is just species dict
+                if not held and all(isinstance(v, (dict, str)) for v in dval.values()):
+                    held |= _extract_species_set(dval)
+            break
+
+    # 2) Owner's collections
+    if not held and owner_uid is not None:
         urec = (data.get("users") or {}).get(str(owner_uid)) or {}
         _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
-        owner_held = _extract_species_set(coll_raw)
-        if owner_held:
-            return owner_held
+        held |= _extract_species_set(coll_raw)
 
-    # Global union fallback
-    union_all: set[str] = set()
-    for _uid, urec in (data.get("users") or {}).items():
-        _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
-        union_all |= _extract_species_set(coll_raw)
-    return union_all
+    # 3) Other users' collections fallback
+    if not held:
+        for _uid, urec in (data.get("users") or {}).items():
+            _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
+            held |= _extract_species_set(coll_raw)
+
+    return held
+
 
 # --- ZIMS parsing + Institution helpers -------------------------------------
 _zims_number_re = re.compile(r"\d+")
