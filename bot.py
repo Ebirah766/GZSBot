@@ -5424,8 +5424,6 @@ async def progress_cmd(ctx):
         await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
 
 
-
-
 @bot.command(name="zooadd")
 async def zooadd_cmd(ctx, *, name: str):
     """
