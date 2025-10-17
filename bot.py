@@ -5287,141 +5287,219 @@ def get_all_zoo_names() -> list[str]:
 # ---------- Simple commands to manage/show the directory --------------------
 
 @bot.command(name="progress")
-async def progress_cmd(ctx):
-    """
-    ;progress
-    Show all zoos that have >50% of their species housed (aggregated across all users).
-    Falls back to directory[<zoo>]['species'] when users[*].collections is missing.
-    """
-    import re, traceback
+        async def progress_cmd(ctx, arg: str = None):
+            """
+            ;progress
+            Show all zoos that have >50% of their species housed (aggregated across all users).
+            Falls back to directory[...] in a schema-agnostic way by recursively harvesting species lists.
 
-    async def _fail(msg: str):
-        await ctx.send(f"⚠️ {msg}")
+            Optional:
+            ;progress debug   -> prints per-zoo diagnostics (how many 'held' and 'housed' found).
+            """
+            import re, traceback
 
-    try:
-        # Typing indicator (works across discord.py variants)
-        try:
-            await ctx.typing()
-        except Exception:
+            DEBUG = (str(arg).strip().lower() == "debug") if arg else False
+
+            async def _fail(msg: str):
+                await ctx.send(f"⚠️ {msg}")
+
             try:
-                async with ctx.typing():
-                    pass
+                # Try to show typing, ignore if unsupported
+                try:
+                    await ctx.typing()
+                except Exception:
+                    try:
+                        async with ctx.typing():
+                            pass
+                    except Exception:
+                        pass
+
+                data = _load_zoo_data()
+                if not isinstance(data, dict) or not data:
+                    await _fail("No data found in zoo_progress.json (or file is malformed).")
+                    return
+
+                users = data.get("users") or {}
+                directory = data.get("directory") or {}
+
+                # ---------- Normalizers ----------
+                norm = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
+                def norm_species(s: str) -> str:
+                    return str(s).strip().casefold()
+
+                # Prefer directory spelling if we have it
+                canon_by_norm = {norm(k): k for k in directory.keys()}
+                def canon_zoo(z: str) -> str:
+                    n = norm(z)
+                    return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
+
+                # ---------- Species extraction (very forgiving) ----------
+                SPECIES_KEYS = {"species", "collection", "collections", "holdings", "animals"}
+                REGION_LIKE = {
+                    "north america","south america","europe","asia","africa","oceania","australia","antarctica",
+                    "global","world","americas","middle east","eurasia","caribbean","indopacific","indo-pacific"
+                }
+
+                def _is_species_string(x: object) -> bool:
+                    if not isinstance(x, str):
+                        return False
+                    s = x.strip()
+                    if not s:
+                        return False
+                    # filter obvious non-species junk
+                    low = s.lower()
+                    if low.startswith("http://") or low.startswith("https://"):
+                        return False
+                    if len(s) > 150:  # probably a paragraph
+                        return False
+                    return True
+
+                def harvest_species(obj) -> list[str]:
+                    """
+                    Recursively collect species strings from:
+                     - lists under common keys ('species', 'holdings', etc)
+                     - region maps (dict of region -> list[str])
+                     - direct list[str]
+                    """
+                    out: list[str] = []
+
+                    def _harvest(o, parent_key: str | None = None, depth: int = 0):
+                        if o is None or depth > 5:
+                            return
+                        # If it's a list, collect stringy items
+                        if isinstance(o, list):
+                            for item in o:
+                                if _is_species_string(item):
+                                    out.append(item)
+                                elif isinstance(item, (list, dict)):
+                                    _harvest(item, parent_key, depth + 1)
+                            return
+                        # If it's a dict, look for known keys or region-like keys
+                        if isinstance(o, dict):
+                            for k, v in o.items():
+                                k_str = str(k).strip().lower()
+                                if k_str in SPECIES_KEYS or k_str in REGION_LIKE:
+                                    if isinstance(v, list):
+                                        for item in v:
+                                            if _is_species_string(item):
+                                                out.append(item)
+                                            elif isinstance(item, (list, dict)):
+                                                _harvest(item, k_str, depth + 1)
+                                        continue
+                                    elif isinstance(v, (dict, list)):
+                                        _harvest(v, k_str, depth + 1)
+                                        continue
+                                # Also descend generically to catch nested shapes
+                                if isinstance(v, (dict, list)):
+                                    _harvest(v, k_str, depth + 1)
+                            return
+
+                    _harvest(obj, None, 0)
+                    # Dedup while preserving order
+                    seen = set()
+                    uniq = []
+                    for s in out:
+                        ns = norm_species(s)
+                        if ns not in seen:
+                            seen.add(ns)
+                            uniq.append(s)
+                    return uniq
+
+                # ---------- Aggregate ----------
+                # key (norm_zoo) -> {"name": canonical, "held": set(), "housed": set()}
+                agg: dict[str, dict[str, object]] = {}
+
+                # 1) HOUSED from every user's 'zoos'
+                if isinstance(users, dict):
+                    for _uid, urec in users.items():
+                        if not isinstance(urec, dict):
+                            continue
+                        zoos = urec.get("zoos") or {}
+                        if isinstance(zoos, dict):
+                            for zoo_name, housed_val in zoos.items():
+                                cz = canon_zoo(zoo_name)
+                                key = norm(cz)
+                                bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
+                                housed_list = harvest_species(housed_val)
+                                bucket["housed"].update(norm_species(s) for s in housed_list)
+
+                # 2) HELD from users[*].collections (if present)
+                user_collection_entries = 0
+                if isinstance(users, dict):
+                    for _uid, urec in users.items():
+                        if not isinstance(urec, dict):
+                            continue
+                        collections = urec.get("collections") or {}
+                        if isinstance(collections, dict):
+                            for zoo_name, held_val in collections.items():
+                                user_collection_entries += 1
+                                cz = canon_zoo(zoo_name)
+                                key = norm(cz)
+                                bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
+                                held_list = harvest_species(held_val)
+                                bucket["held"].update(norm_species(s) for s in held_list)
+
+                # 3) FALLBACK: HELD from directory[...] (any schema we can harvest)
+                directory_fallback_used = 0
+                if isinstance(directory, dict):
+                    for dzoo, meta in directory.items():
+                        cz = canon_zoo(dzoo)
+                        key = norm(cz)
+                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
+                        if not bucket["held"]:
+                            dir_list = harvest_species(meta)
+                            if dir_list:
+                                directory_fallback_used += 1
+                                bucket["held"].update(norm_species(s) for s in dir_list)
+
+                if not agg:
+                    await _fail("No zoos found in users[*].zoos or directory.")
+                    return
+
+                # ---------- Compute ----------
+                rows = []
+                zoos_seen = len(agg)
+                zoos_with_held = 0
+                debug_lines = []
+
+                for rec in agg.values():
+                    name = rec["name"]
+                    held = rec["held"]
+                    housed = rec["housed"]
+                    if not held:
+                        if DEBUG:
+                            debug_lines.append(f"• {name}: held=0, housed={len(housed)}")
+                        continue
+                    zoos_with_held += 1
+                    held_n = len(held)
+                    housed_in_held = len(housed.intersection(held))
+                    percent = (housed_in_held / held_n) * 100.0
+                    if DEBUG:
+                        debug_lines.append(f"• {name}: held={held_n}, housed∩held={housed_in_held} ({percent:.1f}%)")
+                    if percent >= 50.0:
+                        rows.append((str(name), percent, housed_in_held, held_n))
+
+                if not rows:
+                    base = (
+                        "ℹ️ No zoos currently have more than 50% housed.\n"
+                        f"(Zoos seen: {zoos_seen}; Zoos with 'held' data: {zoos_with_held}; "
+                        f"User collection entries: {user_collection_entries}; Directory fallbacks used: {directory_fallback_used}.)"
+                    )
+                    if DEBUG and debug_lines:
+                        await ctx.send(base + "\n```" + "\n".join(debug_lines[:40]) + ("..." if len(debug_lines) > 40 else "") + "```")
+                    else:
+                        await ctx.send(base)
+                    return
+
+                rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
+                lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
+                if DEBUG and debug_lines:
+                    lines.append("\n```" + "\n".join(debug_lines[:40]) + ("..." if len(debug_lines) > 40 else "") + "```")
+                await ctx.send("**Zoos with >50% species housed:**\n" + "\n".join(lines))
+
             except Exception:
-                pass
-
-        data = _load_zoo_data()
-        if not isinstance(data, dict) or not data:
-            await _fail("No data found in zoo_progress.json (or file is malformed).")
-            return
-
-        users = data.get("users") or {}
-        directory = data.get("directory") or {}
-
-        # --- Helpers ---
-        norm = lambda s: re.sub(r"[^a-z0-9]+", "", str(s).lower())
-
-        # Canonicalize zoo names using directory when possible
-        canon_by_norm = {norm(k): k for k in directory.keys()}
-
-        def canon_zoo(z: str) -> str:
-            n = norm(z)
-            # Prefer directory spelling if present, else trim incoming
-            return canon_by_norm.get(n, z.strip() if isinstance(z, str) else str(z))
-
-        def extract_species_list(value):
-            """Accepts a list[str] or a dict {'species': list[str]}."""
-            if isinstance(value, list):
-                return [s for s in value if isinstance(s, str)]
-            if isinstance(value, dict):
-                maybe = value.get("species")
-                if isinstance(maybe, list):
-                    return [s for s in maybe if isinstance(s, str)]
-            return []
-
-        def norm_species(s: str) -> str:
-            return str(s).strip().casefold()
-
-        # --- Aggregate ---
-        # key (norm_zoo) -> {"name": canonical, "held": set(), "housed": set()}
-        agg = {}
-        user_collection_entries = 0
-        directory_fallback_used = 0
-
-        # 1) Pull housed species from every user's 'zoos'
-        if isinstance(users, dict):
-            for _uid, urec in users.items():
-                if not isinstance(urec, dict):
-                    continue
-                zoos = urec.get("zoos") or {}
-                if isinstance(zoos, dict):
-                    for zoo_name, housed_val in zoos.items():
-                        cz = canon_zoo(zoo_name)
-                        key = norm(cz)
-                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
-                        bucket["housed"].update(norm_species(s) for s in extract_species_list(housed_val))
-
-        # 2) Pull HELD species from users[*].collections if present
-        if isinstance(users, dict):
-            for _uid, urec in users.items():
-                if not isinstance(urec, dict):
-                    continue
-                collections = urec.get("collections") or {}
-                if isinstance(collections, dict):
-                    for zoo_name, held_val in collections.items():
-                        user_collection_entries += 1
-                        cz = canon_zoo(zoo_name)
-                        key = norm(cz)
-                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
-                        bucket["held"].update(norm_species(s) for s in extract_species_list(held_val))
-
-        # 3) FALLBACK: If a zoo has no held species yet, try directory[<zoo>]['species']
-        if isinstance(directory, dict):
-            for dzoo, meta in directory.items():
-                cz = canon_zoo(dzoo)
-                key = norm(cz)
-                bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set()})
-
-                if not bucket["held"]:
-                    dir_species = extract_species_list(meta)
-                    if not dir_species and isinstance(meta, dict):
-                        dir_species = extract_species_list(meta.get("species"))  # support nested
-                    if dir_species:
-                        directory_fallback_used += 1
-                        bucket["held"].update(norm_species(s) for s in dir_species)
-
-        if not agg:
-            await _fail("No zoos detected in users[*].zoos or directory.")
-            return
-
-        # --- Compute results ---
-        rows = []
-        checked = 0
-        for rec in agg.values():
-            held = rec["held"]
-            housed = rec["housed"]
-            if not held:
-                continue
-            checked += 1
-            housed_in_held = len(housed.intersection(held))
-            percent = (housed_in_held / len(held)) * 100.0
-            if percent >= 50.0:
-                rows.append((rec["name"], percent, housed_in_held, len(held)))
-
-        if not rows:
-            await ctx.send(
-                "ℹ️ No zoos currently have more than 50% housed.\n"
-                f"(Checked {checked} zoo(s). User collection entries: {user_collection_entries}; "
-                f"directory fallbacks used: {directory_fallback_used}.)"
-            )
-            return
-
-        rows.sort(key=lambda r: (r[1], r[3]), reverse=True)
-        lines = [f"🏛️ **{z}** — {h}/{t} housed ({p:.1f}%)" for z, p, h, t in rows]
-        await ctx.send("**Zoos with >50% species housed:**\n" + "\n".join(lines))
-
-    except Exception:
-        tb = traceback.format_exc(limit=2)
-        await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
+                tb = traceback.format_exc(limit=2)
+                await ctx.send("🚫 Error while computing progress.\n```\n" + tb + "\n```")
 
 
 @bot.command(name="zooadd")
