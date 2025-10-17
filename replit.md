@@ -4,7 +4,10 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
-**2025-10-17**: Fixed invalid semicolon syntax error in bot.py:
+**2025-10-17**: Fixed indentation and syntax errors in bot.py:
+- Lines 4412-4536: De-indented helper functions (_norm_zoo, _build_canonical_zoo_map, etc.) to module level - they were over-indented by 4 spaces
+- Functions now properly recognized by Python interpreter
+- Fixed invalid semicolon syntax error in bot.py:
 - Line 4948: Split `got = walk(it); if got: return got` into two proper lines
 - Python does not allow semicolons to separate statements on the same line in this context
 - Bot now runs successfully without syntax errors

@@ -4409,6 +4409,7 @@ def _resolve_zoo_canonical(input_name: str, data: dict) -> tuple[str, set[str]]:
     return input_name, {want_norm}
 
 
+# ---------- Robust helpers for ;progress (handles casing + varied keys) ----------
 _norm_re = re.compile(r"[^a-z0-9]+")
 
 def _norm_zoo(name: str) -> str:
@@ -4416,18 +4417,15 @@ def _norm_zoo(name: str) -> str:
 
 def _build_canonical_zoo_map(data: dict) -> dict[str, str]:
     """
-    Build {normalized_name -> Canonical Name} from every place zoos can appear:
-    - Global directory keys (preferred)
-    - Any users' zoos (housed) keys
-    - Any users' collections keys
-    First seen wins; directory beats user sources by being added first.
+    {normalized -> Canonical Name}, prioritizing directory keys, then users' zoos, then users' collections.
     """
     canon: dict[str, str] = {}
-    # 1) Directory
-    for z in (data.get("directory") or {}).keys():
+    directory = data.get("directory") or {}
+    # 1) Directory first (preferred capitalization)
+    for z in directory.keys():
         if isinstance(z, str):
             canon.setdefault(_norm_zoo(z), z)
-    # 2) Users
+    # 2) Users' zoos + collections
     for _uid, urec in (data.get("users") or {}).items():
         for z in (urec.get("zoos") or {}).keys():
             if isinstance(z, str):
@@ -4437,55 +4435,105 @@ def _build_canonical_zoo_map(data: dict) -> dict[str, str]:
                 canon.setdefault(_norm_zoo(z), z)
     return canon
 
-def _find_owner_uid_for_zoo(data: dict, zoo: str) -> int | None:
+def _get_by_norm_key(obj: dict, target_key: str) -> tuple[str | None, any]:
     """
-    Heuristic: the 'owner' is the user with the largest housed list for this zoo.
-    (Matches how your cards infer ownership from who actually records housing.)
+    Find a value in 'obj' whose key, normalized, equals normalized(target_key).
+    Returns (original_key, value) or (None, None).
+    """
+    want = _norm_zoo(target_key)
+    for k, v in (obj or {}).items():
+        if isinstance(k, str) and _norm_zoo(k) == want:
+            return k, v
+    return None, None
+
+def _extract_species_set(raw) -> set[str]:
+    """
+    Accepts a list[str], a dict[str, any] (take its keys), or a set[str].
+    Filters to non-empty strings.
+    """
+    out: set[str] = set()
+    if isinstance(raw, list) or isinstance(raw, set) or isinstance(raw, tuple):
+        out = {s for s in raw if isinstance(s, str) and s.strip()}
+    elif isinstance(raw, dict):
+        # Some directories store species as { "Tiger": {}, "Lion": {} }
+        out = {s for s in raw.keys() if isinstance(s, str) and s.strip()}
+    elif isinstance(raw, str):
+        # single string — allow it
+        out = {raw} if raw.strip() else set()
+    return out
+
+def _extract_directory_species(dentry: dict) -> set[str]:
+    """
+    Try multiple likely keys used in your data:
+      'species', 'held', 'holdings', 'collection'
+    Also handle nested dict formats.
+    """
+    if not isinstance(dentry, dict):
+        return set()
+    for key in ("species", "held", "holdings", "collection"):
+        if key in dentry:
+            s = _extract_species_set(dentry.get(key))
+            if s:
+                return s
+    # If no known key, but dentry itself looks like a species dict (many string keys):
+    if any(isinstance(k, str) for k in dentry.keys()):
+        # Heuristic: if most values are dicts/empties and keys look like species names
+        keys_as_species = _extract_species_set(dentry)
+        if keys_as_species:
+            return keys_as_species
+    return set()
+
+def _find_owner_uid_for_zoo(data: dict, canon_zoo: str) -> int | None:
+    """
+    Owner = user with the largest *housed* list for this zoo (matched by normalized name).
+    If nobody houses anything for this zoo, return None (don't ping).
     """
     best_uid = None
-    best_count = -1
+    best_count = 0
+    want = _norm_zoo(canon_zoo)
     for uid, urec in (data.get("users") or {}).items():
-        housed = (urec.get("zoos") or {}).get(zoo) or []
-        if isinstance(housed, list) and len(housed) > best_count:
+        zoos = (urec.get("zoos") or {})
+        _orig, housed_raw = _get_by_norm_key(zoos, canon_zoo)
+        housed = _extract_species_set(housed_raw)
+        if len(housed) > best_count:
             best_count = len(housed)
             best_uid = int(uid)
-    return best_uid
+    return best_uid if best_count > 0 else None
 
-def _get_housed_by_owner(data: dict, zoo: str, owner_uid: int | None) -> set[str]:
+def _get_housed_by_owner(data: dict, canon_zoo: str, owner_uid: int | None) -> set[str]:
     if owner_uid is None:
         return set()
     urec = (data.get("users") or {}).get(str(owner_uid)) or {}
-    housed = (urec.get("zoos") or {}).get(zoo) or []
-    return {s for s in housed if isinstance(s, str) and s.strip()}
+    _k, housed_raw = _get_by_norm_key(urec.get("zoos") or {}, canon_zoo)
+    return _extract_species_set(housed_raw)
 
-def _get_held_for_zoo(data: dict, zoo: str, owner_uid: int | None) -> set[str]:
+def _get_held_for_zoo(data: dict, canon_zoo: str, owner_uid: int | None) -> set[str]:
     """
     Priority:
-      1) data['directory'][zoo]['species'] if present (the canonical holdings list)
-      2) owner's collections[zoo] as fallback
-      3) union of all users' collections[zoo] (last-ditch)
+      1) directory[canon_zoo] (match by normalized key) → try keys: species/held/holdings/collection or dict-of-species
+      2) owner collections[canon_zoo] (same flexible parsing)
+      3) union of all users’ collections[canon_zoo]
     """
     directory = data.get("directory") or {}
-    dentry = directory.get(zoo) or {}
-    d_species = dentry.get("species") or []
-    held = {s for s in d_species if isinstance(s, str) and s.strip()}
+    _dz_key, dentry = _get_by_norm_key(directory, canon_zoo)
+    held = _extract_directory_species(dentry)
     if held:
         return held
 
+    # Owner fallback
     if owner_uid is not None:
         urec = (data.get("users") or {}).get(str(owner_uid)) or {}
-        coll = (urec.get("collections") or {}).get(zoo) or []
-        owner_held = {s for s in coll if isinstance(s, str) and s.strip()}
+        _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
+        owner_held = _extract_species_set(coll_raw)
         if owner_held:
             return owner_held
 
-    # Fallback: anyone's collections for this zoo
+    # Global union fallback
     union_all: set[str] = set()
     for _uid, urec in (data.get("users") or {}).items():
-        coll = (urec.get("collections") or {}).get(zoo) or []
-        union_all |= {s for s in coll if isinstance(s, str) and s.strip()}
+        _ck, coll_raw = _get_by_norm_key(urec.get("collections") or {}, canon_zoo)
+        union_all |= _extract_species_set(coll_raw)
     return union_all
-
 
 # --- ZIMS parsing + Institution helpers -------------------------------------
 _zims_number_re = re.compile(r"\d+")
