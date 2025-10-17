@@ -5096,26 +5096,21 @@ async def progress_cmd(ctx, arg: str = None):
                         if not bucket["housed_sample"]:
                             bucket["housed_sample"] = lst[:5]
 
-                    # ---- HELD from users: walk any collections/collection/holdings block
-                    user_held_hits = 0
+                def add_held(zoo_like: str, value):
+                    nonlocal user_held_hits
+                    cz = canon_zoo(zoo_like)
+                    key = norm(cz)
+                    bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set(),
+                                                  "held_sample": [], "housed_sample": []})
+                    lst = extract_species_from_collections(value)  # <<--- explicit extractor
+                    if lst:
+                        user_held_hits += 1
+                        bucket["held"].update(norm_species(s) for s in lst)
+                        if not bucket["held_sample"]:
+                            bucket["held_sample"] = lst[:5]
 
-                    def add_held(zoo_like: str, value):
-                        nonlocal user_held_hits
-                        cz = canon_zoo(zoo_like)
-                        key = norm(cz)
-                        bucket = agg.setdefault(key, {"name": cz, "held": set(), "housed": set(),
-                                                      "held_sample": [], "housed_sample": []})
-                        lst = _extract_species_anyshape(value)
-                        if lst:
-                            user_held_hits += 1
-                            bucket["held"].update(norm_species(s) for s in lst)
-                            if not bucket["held_sample"]:
-                                bucket["held_sample"] = lst[:5]
-
-                    # Walk all users once for any collections-like blocks
-                    if isinstance(users, dict):
-                        for zname, val in _iter_collection_containers(users):
-                            add_held(zname, val)
+                # HOUSED and HELD from users
+                if isinstance(users, dict):
                     for _uid, urec in users.items():
                         if not isinstance(urec, dict):
                             continue
