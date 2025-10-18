@@ -5362,18 +5362,28 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
                     holdings_texts.append(f"{region}: {p}")
             else:
                 holdings_texts.append(f"{region}: {value}")
-        if holdings_texts:
-            e.add_field(
-                name="Holdings",
-                value="\n".join(f"• {line}" for line in holdings_texts),
-                inline=False
-            )
-    else:
-        e.add_field(name="Holdings", value="_None recorded_", inline=False)
+        # --- Holdings (for About section) ---
+        holdings_texts = []
+        holdings = entry.get("holdings", {})
+        if isinstance(holdings, dict):
+            for region, value in holdings.items():
+                if not value or value == 0:
+                    continue
+                if isinstance(value, str):
+                    parts = [p.strip() for p in value.split(",") if p.strip()]
+                    for p in parts:
+                        holdings_texts.append(f"• {region}: {p}")
+                else:
+                    holdings_texts.append(f"• {region}: {value}")
 
-    
-    if entry.get("info"):
-        e.add_field(name="About", value=entry["info"], inline=False)
+        # --- About section (with holdings appended) ---
+        about_text = entry.get("info", "")
+        if holdings_texts:
+            about_text += "\n\n**Holdings**\n" + "\n".join(holdings_texts)
+
+        if about_text.strip():
+            e.add_field(name="About", value=about_text, inline=False)
+
 
     # Holdings by region
     holdings = entry.get("holdings") or {}
