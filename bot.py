@@ -6005,6 +6005,33 @@ def holdings_to_bullets(raw) -> str:
     items = _normalize_holding_items(raw)
     return "\n".join(f"• {it}" for it in items) if items else "—"
 
+def _format_region_holdings(val) -> str:
+    """Turn holdings for a single region into a bulleted list."""
+    # "3.0 - ECZ, 2.0 - HUZ"  -> bullets
+    if isinstance(val, str):
+        parts = [p.strip() for p in val.split(",") if p.strip()]
+        return "\n".join(f"• {p}" for p in parts) if parts else "_None_"
+
+    # ["3.0 - ECZ", "2.0 - HUZ"] -> bullets
+    if isinstance(val, list):
+        items = [str(p).strip() for p in val if str(p).strip()]
+        return "\n".join(f"• {p}" for p in items) if items else "_None_"
+
+    # {"Essex County Zoo": "3.0", "High Uintahs Zoo": "2.0"} -> bullets
+    if isinstance(val, dict):
+        items = []
+        for inst, count in val.items():
+            if count in (0, "0", "", None):
+                continue
+            items.append(f"• {count} - {inst}")
+        return "\n".join(items) if items else "_None_"
+
+    # numbers or anything else
+    if isinstance(val, (int, float)) and val > 0:
+        return f"• {val}"
+    return "_None_"
+
+
 # ---------------- Breeding Config & Helpers ----------------
 from discord.ext import tasks
 import random
