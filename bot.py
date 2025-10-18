@@ -5348,54 +5348,24 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     # NEW: Breeding difficulty
     e.add_field(name="Breeding Difficulty", value=get_breeding_label(entry), inline=True)
 
-    # --- Holdings Display ---
-    holdings = entry.get("holdings", {})
-    if isinstance(holdings, dict) and holdings:
-        holdings_texts = []
-        for region, value in holdings.items():
-            if not value or value == 0:
-                continue
-            # Split multiple institutions in one region into separate lines
-            if isinstance(value, str):
-                parts = [p.strip() for p in value.split(",") if p.strip()]
-                for p in parts:
-                    holdings_texts.append(f"{region}: {p}")
-            else:
-                holdings_texts.append(f"{region}: {value}")
-        # --- Holdings (for About section) ---
-        holdings_texts = []
-        holdings = entry.get("holdings", {})
-        if isinstance(holdings, dict):
-            for region, value in holdings.items():
-                if not value or value == 0:
-                    continue
-                if isinstance(value, str):
-                    parts = [p.strip() for p in value.split(",") if p.strip()]
-                    for p in parts:
-                        holdings_texts.append(f"• {region}: {p}")
-                else:
-                    holdings_texts.append(f"• {region}: {value}")
+    if entry.get("info"):
+        e.add_field(name="About", value=entry["info"], inline=False)
 
-        # --- About section (with holdings appended) ---
-        about_text = entry.get("info", "")
-        if holdings_texts:
-            about_text += "\n\n**Holdings**\n" + "\n".join(holdings_texts)
-
-        if about_text.strip():
-            e.add_field(name="About", value=about_text, inline=False)
-
-
-    # Holdings by region
+    # Holdings by region (now bulleted)
     holdings = entry.get("holdings") or {}
     any_listed = False
     for region in REGION_ORDER:
-        value = holdings_to_inline(holdings.get(region))
-        if value != "—":
+        region_holdings = holdings.get(region)
+        if region_holdings and isinstance(region_holdings, list) and len(region_holdings) > 0:
             any_listed = True
-            e.add_field(name=region, value=value, inline=False)
+            # Each holder gets its own bullet
+            lines = [f"• {h}" for h in region_holdings]
+            e.add_field(name=region, value="\n".join(lines), inline=False)
+
     if not any_listed:
         e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
 
+    # Images (unchanged)
     images = entry.get("images") or []
     if isinstance(images, list) and len(images) > 0:
         idx = max(0, min(image_index, len(images) - 1))
@@ -5410,22 +5380,6 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
             e.set_image(url=entry["image_url"])
 
     return e
-
-def _parse_region_holdings(entry: dict) -> str:
-    """Return a bullet list of holdings by region, skipping zero values."""
-    holdings = entry.get("holdings", {})
-    if not holdings:
-        return "_No holdings recorded_"
-
-    lines = []
-    for region, value in holdings.items():
-        # Skip zeroes or empty strings
-        if not value or str(value).strip() in ("0", "0.0"):
-            continue
-        lines.append(f"• **{region}**: {value}")
-
-    return "\n".join(lines) if lines else "_No active holdings_"
-
 
 # >>> NEW: minimal pager view (only shows when species has multiple images) <<<
 class SpeciesPager(discord.ui.View):

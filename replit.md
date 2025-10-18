@@ -8,7 +8,7 @@ This is a Discord bot application built using discord.py that manages a virtual 
 - Japanese Rhinoceros Beetle (line 4160): Completed truncated info field - restored "or territory." at end of sentence
 - Camoflauge Isopod (line 4264): Removed invalid standalone comma between "type" and "order" fields
 - Fixed indentation error in build_species_embed function (line 5336): De-indented entire function definition and body from nested level to module level - was incorrectly indented by 8 spaces
-- Removed orphaned code (lines 5414-5423): Deleted duplicate holdings processing code that was outside any function definition
+- Removed orphaned code (lines 5351-5413): Fixed 'return' outside function error by removing improperly nested `_format_region_holdings` function and orphaned holdings processing code that was at module level; properly reintegrated holdings and images code back into build_species_embed function with correct indentation
 - Fixed NameError (line 5419 and 5429): Removed multiple instances of orphaned code attempting to call `_parse_region_holdings(entry)` and `e.add_field()` at module level where variables `entry` and `e` were undefined
 - Added "Kings of the Jungle" to zoo directory in zoo_progress.json
 - Bot now running successfully with 15 zoos recognized in directory: Air Terjun Zoo, Credit River Zoo, Cube Zoological Park, Essex County Zoo, Glacier Zoo, High Uintahs Zoo, Jupiter Reptile Zoo, Kings of the Jungle, Mint Park Zoo, New York Aquarium, North Star Zoo, Sapporo Reptile Center and National Aquarium, Shropshire Hills Zoo, Wasser Wunder Welt, Wildkatzenpark Tatzenfels
