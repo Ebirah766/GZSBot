@@ -5381,6 +5381,35 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
 
     return e
 
+# Holdings by region (bulleted; tolerant of string/list/0/dict formats)
+def _parse_region_holdings(x) -> list[str]:
+    if not x or x == 0:
+        return []
+    if isinstance(x, list):
+        out = []
+        for item in x:
+            if isinstance(item, str):
+                s = item.strip()
+                if s:
+                    out.append(s)
+            elif isinstance(item, dict):
+                # e.g., {"Essex County Zoo": "3.0"}
+                for name, val in item.items():
+                    name = str(name).strip()
+                    if not name:
+                        continue
+                    if val is None or str(val).strip() == "":
+                        out.append(name)
+                    else:
+                        out.append(f"{val} – {name}")
+        return out
+    if isinstance(x, str):
+        # split comma-separated string into items
+        parts = [p.strip() for p in x.split(",") if p.strip()]
+        return parts
+    if isinstance(x, (int, float)):
+        return [] if x == 0 else [str(x)]
+    return []
 
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
