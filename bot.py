@@ -4259,7 +4259,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Camoflauge Isopod": {
             "common": "Camoflauge Isopod",
             "scientific": "Troglodillo rotundatus",
-            "info": "A rare isopod endemic to China, the camoflauge isopod is rare and highly sought after in the isopod hobby. Typically preferring drier environments with thin layers of substrate, they can command high prices as they are extremely difficult to breed in captivity.",
+            "info": "A rare isopod endemic to China, the camoflauge isopod is scarce and highly sought after in the isopod hobby. Typically preferring drier environments with thin layers of substrate, they can command high prices as they are extremely difficult to breed in captivity.",
             "type": "Invertebrate",
             "order": "Isopoda",
             "family": "Armadillidae",
@@ -4277,6 +4277,31 @@ species_data: Dict[str, Dict[str, Any]] = {
             },
             "institutions": {
             "Kings of the Jungle": "20"
+
+            }
+            },
+
+            "Yellowline Arrow Crab": {
+            "common": "Yellowline Arrow Crab",
+            "scientific": "Stenorhynchus seticornis",
+            "info": "Also known as simply 'arrow crab', the yellowline arrow crab is a predatory crustacean native to the Caribbean. A nocturnal species averse to sunlight, the yellowline arrow crab is a predator of feather duster worms and other reef invertebrates. They are commonly kept in private aquaria to hunt bristle worms. They sometimes serve as a cleaner for animals such as moray eels and squirrelfish.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Inachidae",
+            "genus": "Stenorhynchus",
+            "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS006/FIS006-00083-1920x1278.jpg",
+            "breeding": "Impossible",
+            "region": "North America, South America",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["3 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "3"
     },
     },
 }
@@ -4285,7 +4310,7 @@ SPECIES = species_data
 # -------- Canonicalize existing zoo names (APPLIES TO OLD DATA) --------
 _ZOO_SPACE_NORM = re.compile(r"\s+")
 
-def _norm_zoo(s: str) -> str:
+def _norm_zoo(s : str) -> str:
     return _ZOO_SPACE_NORM.sub(" ", (s or "").strip().lower())
 
 def _title_zoo(s: str) -> str:
@@ -5286,6 +5311,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "North Star Zoo",
     "Glacier Zoo",
     "Kings of the Jungle",
+    "Species Watch",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
