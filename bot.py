@@ -1674,7 +1674,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "North America",
         "holdings": {
-            "North America": "1.1 - High Uintahs Zoo",
+            "North America": "1.0 - Cube Zoological Park, 1.1 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -4302,6 +4302,181 @@ species_data: Dict[str, Dict[str, Any]] = {
             },
             "institutions": {
             "Species Watch": "3"
+
+                }
+                },
+                
+            "Pom Pom Crab": {
+            "common": "Pom Pom Crab",
+            "scientific": "Lybia tessellata",
+            "info": "This small nocturnal crab is native to the Indo-Pacific. Living on coral reefs, it has a unique adaptation, it lives commensally with a small species of sea anemone that provides it protection, while the crab allows the sea anemone more mobility. They typically cling to corals with their highly adapted legs.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Xanthidae",
+            "genus": "Lybia",
+            "image_url": "https://static.inaturalist.org/photos/30267880/large.jpg",
+            "breeding": "Impossible",
+            "region": "Asia, Africa, Oceania",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["4 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "4"
+
+                }
+                },
+                
+            "Emerald Crab": {
+            "common": "Emerald Crab",
+            "scientific": "Mithraculus sculptus",
+            "info": "Commonly collected from its native range for the aquarium trade, the emerald crab is a hardy omnivorous scavenger that typically selects a portion of rock to claim as its own. They are aggressive towards conspecifics and like many crabs are mostly nocturnal.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Majidae",
+            "genus": "Mithraculus",
+            "image_url": "https://www.animalspot.net/wp-content/uploads/2018/10/Green-Emerald-Crab.jpg",
+            "breeding": "Impossible",
+            "region": "North America, South America",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["3 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "3"
+
+                }
+                },
+
+            "Strawberry Crab": {
+            "common": "Strawberry Crab",
+            "scientific": "Neoliomera pubescens",
+            "info": "A small bright pink crab with a carapace width of 2 inches, the strawberry crab is a nocturnal scavenger. It can be found from eastern Africa to Hawaii, and is sometimes collected for the aquarium trade for its bright coloration and peaceful nature.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Xanthidae",
+            "genus": "Neoliomera",
+            "image_url": "https://media.masterfisch.com/81203-thickbox_default/strawberry-crab.jpg",
+            "breeding": "Impossible",
+            "region": "Asia, Africa, Oceania",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["2 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "2"
+
+            }
+            },
+
+            "Blue Leg Hermit Crab": {
+            "common": "Blue Leg Hermit Crab",
+            "scientific": "Clibanarius tricolor",
+            "info": "A small hermit crab less than 1 inch in length, the blue leg hermit crab can be found in shallow reefs in the Caribbean. They are an important detritivore, consuming dead plants, animals, and algaes that would otherwise clog the reef and make in uninhabitable for other animals.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Diogenidae",
+            "genus": "Clibanarius",
+            "image_url": "https://tropicalfishplus.com/cdn/shop/products/Clibanarius_tricolor_9_BG_800x.jpg?v=1605659918",
+            "breeding": "Impossible",
+            "region": "North America, South America",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["2 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "2"
+
+                }
+                },
+
+            "Blue Line Hermit Crab": {
+            "common": "Blue Line Hermit Crab",
+            "scientific": "Calcinus elegans",
+            "info": "A small, brightly colored hermit crab found in the Indo-Pacific, the blue line hermit crab is commonly utilized in the aquarium trade for ornamental and detritivorous purposes. Like many hermit crab species, the blue line hermit crab participates in shell exchanges, associating with other crabs to trade their shells.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Diogenidae",
+            "genus": "Calcinus",
+            "image_url": "https://www.thereefexperience.com/cdn/shop/products/blue_let_hermit_1024x1024_1024x_fbd6fd40-8845-4034-b05a-180889df77d2.jpg?v=1670618337",
+            "breeding": "Impossible",
+            "region": "Africa, Asia, Oceania",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["2 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "2"
+
+            }
+            },
+
+            "Halloween Hermit Crab": {
+            "common": "Halloween Hermit Crab",
+            "scientific": "Ciliopagurus strigatus",
+            "info": "The Halloween hermit crab gets its common name from its orange and yellow coloration. It is a voracious detritivore that eats algae, making it popular in the aquarium trade, but it is larger and more aggressive than many hermit crab species and therefore should be acquired with caution.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Diogenidae",
+            "genus": "Ciliopagurus",
+            "image_url": "https://aquariumbreeder.com/wp-content/uploads/2020/01/Halloween-hermit-crabs-Ciliopagurus-strigatus-logo.jpg",
+            "breeding": "Impossible",
+            "region": "Africa, Asia, Oceania",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["3 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "3"
+
+            }
+            },
+
+            "Scarlet Hermit Crab": {
+            "common": "Scarlet Hermit Crab",
+            "scientific": "Paguristes cadenati",
+            "info": "A small hermit crab native to the Caribbean, the scarlet hermit crab is considered more peaceful than other hermits of its size, and is a voracious detritivore that consumes algae and animal matter. They can be found from the intertidal zone down to about 80m in the ocean.",
+            "type": "Invertebrate",
+            "order": "Decapoda",
+            "family": "Diogenidae",
+            "genus": "Paguristes",
+            "image_url": "https://tropicalfishplus.com/cdn/shop/products/scarlet_hermit_c_4e7f2b6dbf345_1000x.jpg?v=1605661053",
+            "breeding": "Impossible",
+            "region": "North America, South America",
+            "holdings": {
+            "North America": 0,
+            "Europe": ["2 - Species Watch"],
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0,
+            },
+            "institutions": {
+            "Species Watch": "2"
     },
     },
 }
@@ -5176,17 +5351,21 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
 
-    # Holdings by region
+    # Holdings by region (now bulleted)
     holdings = entry.get("holdings") or {}
     any_listed = False
     for region in REGION_ORDER:
-        value = holdings_to_inline(holdings.get(region))
-        if value != "—":
+        region_holdings = holdings.get(region)
+        if region_holdings and isinstance(region_holdings, list) and len(region_holdings) > 0:
             any_listed = True
-            e.add_field(name=region, value=value, inline=False)
+            # Each holder gets its own bullet
+            lines = [f"• {h}" for h in region_holdings]
+            e.add_field(name=region, value="\n".join(lines), inline=False)
+
     if not any_listed:
         e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
 
+    # Images (unchanged)
     images = entry.get("images") or []
     if isinstance(images, list) and len(images) > 0:
         idx = max(0, min(image_index, len(images) - 1))
@@ -5202,35 +5381,6 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
 
     return e
 
-# >>> NEW: minimal pager view (only shows when species has multiple images) <<<
-class SpeciesPager(discord.ui.View):
-    def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180):
-        super().__init__(timeout=timeout)
-        self.entry = entry
-        self.index = start_index
-        self.images = entry.get("images") or []
-        if len(self.images) <= 1:
-            for child in self.children:
-                if isinstance(child, discord.ui.Button):
-                    child.disabled = True
-
-    async def _update_embed(self, interaction: discord.Interaction):
-        embed = build_species_embed(self.entry, self.index)
-        await interaction.response.edit_message(embed=embed, view=self)
-
-    @discord.ui.button(emoji="◀️", style=discord.ButtonStyle.secondary)
-    async def prev(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if not self.images:
-            return await interaction.response.defer()
-        self.index = (self.index - 1) % len(self.images)
-        await self._update_embed(interaction)
-
-    @discord.ui.button(emoji="▶️", style=discord.ButtonStyle.secondary)
-    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if not self.images:
-            return await interaction.response.defer()
-        self.index = (self.index + 1) % len(self.images)
-        await self._update_embed(interaction)
 
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
