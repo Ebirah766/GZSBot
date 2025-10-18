@@ -5351,21 +5351,17 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
 
-    # Holdings by region (now bulleted)
+    # Holdings by region
     holdings = entry.get("holdings") or {}
     any_listed = False
     for region in REGION_ORDER:
-        region_holdings = holdings.get(region)
-        if region_holdings and isinstance(region_holdings, list) and len(region_holdings) > 0:
+        value = holdings_to_inline(holdings.get(region))
+        if value != "—":
             any_listed = True
-            # Each holder gets its own bullet
-            lines = [f"• {h}" for h in region_holdings]
-            e.add_field(name=region, value="\n".join(lines), inline=False)
-
+            e.add_field(name=region, value=value, inline=False)
     if not any_listed:
         e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
 
-    # Images (unchanged)
     images = entry.get("images") or []
     if isinstance(images, list) and len(images) > 0:
         idx = max(0, min(image_index, len(images) - 1))
@@ -5381,35 +5377,35 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
 
     return e
 
-# Holdings by region (bulleted; tolerant of string/list/0/dict formats)
-def _parse_region_holdings(x) -> list[str]:
-    if not x or x == 0:
-        return []
-    if isinstance(x, list):
-        out = []
-        for item in x:
-            if isinstance(item, str):
-                s = item.strip()
-                if s:
-                    out.append(s)
-            elif isinstance(item, dict):
-                # e.g., {"Essex County Zoo": "3.0"}
-                for name, val in item.items():
-                    name = str(name).strip()
-                    if not name:
-                        continue
-                    if val is None or str(val).strip() == "":
-                        out.append(name)
-                    else:
-                        out.append(f"{val} – {name}")
-        return out
-    if isinstance(x, str):
-        # split comma-separated string into items
-        parts = [p.strip() for p in x.split(",") if p.strip()]
-        return parts
-    if isinstance(x, (int, float)):
-        return [] if x == 0 else [str(x)]
-    return []
+# >>> NEW: minimal pager view (only shows when species has multiple images) <<<
+class SpeciesPager(discord.ui.View):
+    def __init__(self, entry: Dict[str, Any], start_index: int = 0, timeout: float = 180):
+        super().__init__(timeout=timeout)
+        self.entry = entry
+        self.index = start_index
+        self.images = entry.get("images") or []
+        if len(self.images) <= 1:
+            for child in self.children:
+                if isinstance(child, discord.ui.Button):
+                    child.disabled = True
+
+    async def _update_embed(self, interaction: discord.Interaction):
+        embed = build_species_embed(self.entry, self.index)
+        await interaction.response.edit_message(embed=embed, view=self)
+
+    @discord.ui.button(emoji="◀️", style=discord.ButtonStyle.secondary)
+    async def prev(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if not self.images:
+            return await interaction.response.defer()
+        self.index = (self.index - 1) % len(self.images)
+        await self._update_embed(interaction)
+
+    @discord.ui.button(emoji="▶️", style=discord.ButtonStyle.secondary)
+    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if not self.images:
+            return await interaction.response.defer()
+        self.index = (self.index + 1) % len(self.images)
+        await self._update_embed(interaction)
 
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
