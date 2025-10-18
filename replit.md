@@ -4,11 +4,12 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
-**2025-10-18**: Fixed recurring orphaned code issue in build_species_embed function:
+**2025-10-18**: Fixed recurring orphaned code issue in build_species_embed function and Bobcat species data:
 - Root cause: The `build_species_embed` function (line 5367) was incomplete - missing its final sections (info field, holdings processing, images handling, and return statement)
 - This code was appearing as "orphaned code" at module level (lines 5382-5416) with incorrect indentation, referencing variables like `entry` and `e` that don't exist at module level
 - Solution: Moved `_format_region_holdings` helper function to module level (before build_species_embed, line 5336), then completed build_species_embed with all necessary code inside function body with correct indentation
 - Fixed structure: Helper function at module level → complete build_species_embed function with info field, holdings iteration using helper, images pager logic, and return statement all properly indented inside function
+- Bobcat species data (line 1688): Added missing comma after "Cube Zoological Park": "1.0" in institutions dictionary
 - Previous fixes (same session): Japanese Rhinoceros Beetle truncated info field, Camoflauge Isopod invalid comma, multiple indentation errors
 - Added "Kings of the Jungle" to zoo directory in zoo_progress.json
 - Bot now running successfully with 15 zoos recognized in directory: Air Terjun Zoo, Credit River Zoo, Cube Zoological Park, Essex County Zoo, Glacier Zoo, High Uintahs Zoo, Jupiter Reptile Zoo, Kings of the Jungle, Mint Park Zoo, New York Aquarium, North Star Zoo, Sapporo Reptile Center and National Aquarium, Shropshire Hills Zoo, Wasser Wunder Welt, Wildkatzenpark Tatzenfels
