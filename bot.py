@@ -5416,9 +5416,6 @@ def _parse_region_holdings(entry: dict) -> str:
 
     return "\n".join(lines) if lines else "_No active holdings_"
 
-holdings_text = _parse_region_holdings(entry)
-e.add_field(name="Holdings by Region", value=holdings_text, inline=False)
-
 
 # >>> NEW: minimal pager view (only shows when species has multiple images) <<<
 class SpeciesPager(discord.ui.View):
