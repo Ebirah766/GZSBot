@@ -5329,6 +5329,37 @@ def holdings_to_inline(value) -> str:
     return ", ".join([i for i in items if i]) or "—"
 
 
+# --- Helper: format a single region's holdings as bullets ---
+def _format_region_holdings(val) -> str:
+    """Turn holdings for a single region into a bulleted list."""
+    if not val:
+        return "_None_"
+
+    # "3.0 - ECZ, 2.0 - HUZ" -> bullets
+    if isinstance(val, str):
+        parts = [p.strip() for p in val.split(",") if p.strip()]
+        return "\n".join(f"• {p}" for p in parts) if parts else "_None_"
+
+    # ["3.0 - ECZ", "2.0 - HUZ"] -> bullets
+    if isinstance(val, list):
+        items = [str(p).strip() for p in val if str(p).strip()]
+        return "\n".join(f"• {p}" for p in items) if items else "_None_"
+
+    # {"Essex County Zoo": "3.0", "High Uintahs Zoo": "2.0"} -> bullets
+    if isinstance(val, dict):
+        items = []
+        for inst, count in val.items():
+            if count in (0, "0", "", None):
+                continue
+            items.append(f"• {count} - {inst}")
+        return "\n".join(items) if items else "_None_"
+
+    # numbers or anything else
+    if isinstance(val, (int, float)) and val > 0:
+        return f"• {val}"
+    return "_None_"
+
+
 # >>> CHANGED: add image_index param + optional images pager support <<<
 def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.Embed:
     entry = get_species_with_overrides(entry)  # apply overrides (e.g., breeding)
@@ -5348,19 +5379,24 @@ def build_species_embed(entry: Dict[str, Any], image_index: int = 0) -> discord.
     # NEW: Breeding difficulty
     e.add_field(name="Breeding Difficulty", value=get_breeding_label(entry), inline=True)
 
+    # Info field
     if entry.get("info"):
         e.add_field(name="About", value=entry["info"], inline=False)
 
-    # Holdings by region (now bulleted)
+    # Holdings by region (render whatever keys exist, as bullets)
     holdings = entry.get("holdings") or {}
     any_listed = False
-    for region in REGION_ORDER:
-        region_holdings = holdings.get(region)
-        if region_holdings and isinstance(region_holdings, list) and len(region_holdings) > 0:
+
+    for region, raw_val in holdings.items():
+        # Skip empty or zero values
+        if raw_val in (None, "", 0, "0", "0.0"):
+            continue
+
+        # Format the region's value into bullets
+        formatted = _format_region_holdings(raw_val)
+        if formatted and formatted != "_None_":
             any_listed = True
-            # Each holder gets its own bullet
-            lines = [f"• {h}" for h in region_holdings]
-            e.add_field(name=region, value="\n".join(lines), inline=False)
+            e.add_field(name=region, value=formatted, inline=False)
 
     if not any_listed:
         e.add_field(name="Holdings", value="No current reported holdings.", inline=False)
@@ -5962,6 +5998,36 @@ def holdings_to_bullets(raw) -> str:
 def _format_region_holdings(val) -> str:
     """Turn holdings for a single region into a bulleted list."""
     # "3.0 - ECZ, 2.0 - HUZ"  -> bullets
+    if isinstance(val, str):
+        parts = [p.strip() for p in val.split(",") if p.strip()]
+        return "\n".join(f"• {p}" for p in parts) if parts else "_None_"
+
+    # ["3.0 - ECZ", "2.0 - HUZ"] -> bullets
+    if isinstance(val, list):
+        items = [str(p).strip() for p in val if str(p).strip()]
+        return "\n".join(f"• {p}" for p in items) if items else "_None_"
+
+    # {"Essex County Zoo": "3.0", "High Uintahs Zoo": "2.0"} -> bullets
+    if isinstance(val, dict):
+        items = []
+        for inst, count in val.items():
+            if count in (0, "0", "", None):
+                continue
+            items.append(f"• {count} - {inst}")
+        return "\n".join(items) if items else "_None_"
+
+    # numbers or anything else
+    if isinstance(val, (int, float)) and val > 0:
+        return f"• {val}"
+    return "_None_"
+
+
+def _format_region_holdings(val) -> str:
+    """Turn holdings for a single region into a bulleted list."""
+    if not val:
+        return "_None_"
+
+    # "3.0 - ECZ, 2.0 - HUZ" -> bullets
     if isinstance(val, str):
         parts = [p.strip() for p in val.split(",") if p.strip()]
         return "\n".join(f"• {p}" for p in parts) if parts else "_None_"

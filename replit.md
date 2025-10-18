@@ -4,12 +4,12 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
-**2025-10-18**: Fixed syntax errors in species data and indentation errors:
-- Japanese Rhinoceros Beetle (line 4160): Completed truncated info field - restored "or territory." at end of sentence
-- Camoflauge Isopod (line 4264): Removed invalid standalone comma between "type" and "order" fields
-- Fixed indentation error in build_species_embed function (line 5336): De-indented entire function definition and body from nested level to module level - was incorrectly indented by 8 spaces
-- Removed orphaned code (lines 5351-5440): Fixed 'return' outside function error by removing improperly nested `_format_region_holdings` function and orphaned holdings/images processing code that was at module level; properly reintegrated all holdings and images code back into build_species_embed function with correct indentation
-- Fixed NameError (line 5419 and 5429): Removed multiple instances of orphaned code attempting to call `_parse_region_holdings(entry)` and `e.add_field()` at module level where variables `entry` and `e` were undefined
+**2025-10-18**: Fixed recurring orphaned code issue in build_species_embed function:
+- Root cause: The `build_species_embed` function (line 5367) was incomplete - missing its final sections (info field, holdings processing, images handling, and return statement)
+- This code was appearing as "orphaned code" at module level (lines 5382-5416) with incorrect indentation, referencing variables like `entry` and `e` that don't exist at module level
+- Solution: Moved `_format_region_holdings` helper function to module level (before build_species_embed, line 5336), then completed build_species_embed with all necessary code inside function body with correct indentation
+- Fixed structure: Helper function at module level → complete build_species_embed function with info field, holdings iteration using helper, images pager logic, and return statement all properly indented inside function
+- Previous fixes (same session): Japanese Rhinoceros Beetle truncated info field, Camoflauge Isopod invalid comma, multiple indentation errors
 - Added "Kings of the Jungle" to zoo directory in zoo_progress.json
 - Bot now running successfully with 15 zoos recognized in directory: Air Terjun Zoo, Credit River Zoo, Cube Zoological Park, Essex County Zoo, Glacier Zoo, High Uintahs Zoo, Jupiter Reptile Zoo, Kings of the Jungle, Mint Park Zoo, New York Aquarium, North Star Zoo, Sapporo Reptile Center and National Aquarium, Shropshire Hills Zoo, Wasser Wunder Welt, Wildkatzenpark Tatzenfels
 
