@@ -1682,6 +1682,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
                         },
         "institutions": {
+            "Cube Zoological Park": "1.0"
             "High Uintahs Zoo": "1.1"
 
             }
