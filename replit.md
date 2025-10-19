@@ -4,6 +4,13 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-10-19**: Added Common Grackle species to species_data:
+- Added new species entry "Common Grackle" (Quiscalus quiscula) at line 1742
+- Type: Bird, Order: Passeriformes, Family: Icteridae
+- Breeding difficulty: Easy
+- Region: North America
+- Species now available for lookup via bot commands
+
 **2025-10-18**: Fixed recurring orphaned code issue in build_species_embed function and Bobcat species data:
 - Root cause: The `build_species_embed` function (line 5367) was incomplete - missing its final sections (info field, holdings processing, images handling, and return statement)
 - This code was appearing as "orphaned code" at module level (lines 5382-5416) with incorrect indentation, referencing variables like `entry` and `e` that don't exist at module level
