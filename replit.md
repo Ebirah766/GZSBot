@@ -6,6 +6,7 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 **2025-10-19**: Fixed syntax errors in species data and error handler:
 - American Alligator species data (line 1986): Added missing comma after "Essex County Zoo": "1.1" in institutions dictionary
+- American Bullfrog species data (line 3900): Added missing comma after "Essex County Zoo": "1.0" in institutions dictionary
 - Line 7118: Changed `CommandNotFound` to `commands.CommandNotFound` to fix NameError that was occurring when invalid commands were sent
 - Bot now properly handles invalid commands without errors
 
