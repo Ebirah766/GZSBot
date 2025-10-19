@@ -1980,8 +1980,9 @@ species_data: Dict[str, Dict[str, Any]] = {
 "Oceania": 0,
                 },
 "institutions": {
-"Essex County Zoo": "1.1",
+"Essex County Zoo": "1.1"
 "Sapporo Reptile Center and National Aquarium": "0.1"
+
 }
 },
 
@@ -3886,7 +3887,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "breeding": "Average",
                                             "region": "North America",
                                             "holdings": {
-                                                "North America": "1.0 - North Star Zoo",
+                                                "North America": "1.0 - 1.0 - North Star Zoo",
                                                 "Asia": 0,
                                                 "Europe": 0,
                                                 "Africa": 0,
