@@ -4,6 +4,10 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-10-19**: Fixed NameError in error handler:
+- Line 7118: Changed `CommandNotFound` to `commands.CommandNotFound` to fix NameError that was occurring when invalid commands were sent
+- Bot now properly handles invalid commands without errors
+
 **2025-10-18**: Fixed recurring orphaned code issue in build_species_embed function and Bobcat species data:
 - Root cause: The `build_species_embed` function (line 5367) was incomplete - missing its final sections (info field, holdings processing, images handling, and return statement)
 - This code was appearing as "orphaned code" at module level (lines 5382-5416) with incorrect indentation, referencing variables like `entry` and `e` that don't exist at module level

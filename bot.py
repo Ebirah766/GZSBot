@@ -7112,7 +7112,7 @@ async def region_command(ctx, *, region: str = ""):
 # --- Error handling ----------------------------------------------------------
 @bot.event
 async def on_command_error(ctx: commands.Context, error: Exception):
-    if isinstance(error, CommandNotFound):
+    if isinstance(error, commands.CommandNotFound):
         return
     log.exception("Command error: %s", error)
     await ctx.send("An error occurred while processing that command.")
