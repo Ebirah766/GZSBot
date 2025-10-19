@@ -3798,8 +3798,9 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
-                                                "Essex County Zoo": "1.0",
+                                                "Essex County Zoo": "1.0"
                                                 "North Star Zoo": "0.1"
+
                                             }
                                             },
                                             "African Penguin": {
@@ -4885,6 +4886,31 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "common": "Arizona Blonde Tarantula",
                                     "scientific": "Aphonopelma chalcodes",
                                     "info": "The Arizona blonde tarantula is one of the most common species kept in captivity. They are long-lived, docile, and have mild venom, making them an excellent first choice. They are typically nocturnal hunters, sleeping in a sling of silk during the day.",
+                                    "type": "Invertebrate",
+                                    "order": "Araneae",
+                                    "family": "Theraphosidae",
+                                    "genus": "Aphonopelma",
+                                    "image_url": "https://bugcagecompany.com/wp-content/uploads/2025/08/1000003618.jpg",
+                                    "breeding": "Below Average",
+                                    "region": "North America",
+                                    "holdings": {
+                                    "North America": "0.1 - New York Aquarium",  
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                    "New York Aquarium": "0.1"
+
+                                    }
+                                    },
+
+                                    "Mallard": {
+                                    "common": "Mallard",
+                                    "scientific": "Anas platyrhynchos",
+                                    "info": "One of the most well-known of all ducks, ",
                                     "type": "Invertebrate",
                                     "order": "Araneae",
                                     "family": "Theraphosidae",
