@@ -3798,9 +3798,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
-                                                "Essex County Zoo": "1.0"
+                                                "Essex County Zoo": "1.0",
                                                 "North Star Zoo": "0.1"
-
                                             }
                                             },
                                             "African Penguin": {
@@ -4894,7 +4893,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "breeding": "Below Average",
                                     "region": "North America",
                                     "holdings": {
-                                    "North America": "0.1 - New York Aquarium",  
+                                    "North America": "0.1 - Essex County Zoo",  
                                     "Europe": 0,
                                     "Asia": 0,
                                     "Africa": 0,
@@ -4902,7 +4901,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "Oceania": 0
                                     },
                                     "institutions": {
-                                    "New York Aquarium": "0.1"
+                                    "Essex County Zoo": "0.1"
 
                                     }
                                     },
@@ -4910,16 +4909,16 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "Mallard": {
                                     "common": "Mallard",
                                     "scientific": "Anas platyrhynchos",
-                                    "info": "One of the most well-known of all ducks, ",
-                                    "type": "Invertebrate",
-                                    "order": "Araneae",
-                                    "family": "Theraphosidae",
-                                    "genus": "Aphonopelma",
-                                    "image_url": "https://bugcagecompany.com/wp-content/uploads/2025/08/1000003618.jpg",
+                                    "info": "One of the most well-known of all ducks, the mallard is native to North America, Europe, Asia, and north Africa. An adaptable and hardy species, it is often seen in human-inhabited areas and has been introduced to many locations, becoming invasive. This species has strong sexual dimorphism, with males having a green head and striking feathers, and the females having a more muted brown appearance.",
+                                    "type": "Bird",
+                                    "order": "Anseriformes",
+                                    "family": "Anatidae",
+                                    "genus": "Anas",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anas_platyrhynchos_male_female_quadrat.jpg/1024px-Anas_platyrhynchos_male_female_quadrat.jpg",
                                     "breeding": "Below Average",
-                                    "region": "North America",
+                                    "region": "North America, Europe, Asia Africa",
                                     "holdings": {
-                                    "North America": "0.1 - New York Aquarium",  
+                                    "North America": "2.2 - Essex County Zoo",  
                                     "Europe": 0,
                                     "Asia": 0,
                                     "Africa": 0,
@@ -4927,7 +4926,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "Oceania": 0
                                     },
                                     "institutions": {
-                                    "New York Aquarium": "0.1"
+                                    "Essex County Zoo": "2.2"
     }
     },
 }
