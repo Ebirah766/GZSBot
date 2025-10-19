@@ -1736,28 +1736,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         }
     },
 
-    "Common Grackle": {
-        "common": "Common Grackle",
-        "scientific": "Quiscalus quiscula",
-        "info": "The common grackle is a widespread and abundant blackbird found throughout North America. These highly adaptable birds are known for their iridescent plumage and bright yellow eyes. Common grackles are omnivorous and highly social, often forming large flocks during migration and winter.",
-        "type": "Bird",
-        "order": "Passeriformes",
-        "family": "Icteridae",
-        "genus": "Quiscalus",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Common_Grackle_%28Quiscalus_quiscula%29_RWD.jpg/1280px-Common_Grackle_%28Quiscalus_quiscula%29_RWD.jpg",
-        "breeding": "Easy",
-        "region": "North America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0
-        },
-        "institutions": {}
-    },
-
     "Northern Flying Squirrel": {
     "common": "Northern Flying Squirrel",
     "scientific": "Glaucomys sabrinus",
