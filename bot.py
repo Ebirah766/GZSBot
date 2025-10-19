@@ -2280,14 +2280,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
         "North America": "10 - New York Aquarium ",
         "Asia": 0,
-        "Europe": 0,
+        "Europe": "15 - Wasser Wunder Welt ",
         "Africa": 0,
         "South America": 0,
         "Oceania": 0,
                 },
         "institutions": {
-        "New York Aquarium": "10"
-
+        "New York Aquarium": "10",
+        "Wasser Wunder Welt": "15"
             }
             },
             
