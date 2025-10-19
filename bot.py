@@ -1972,16 +1972,16 @@ species_data: Dict[str, Dict[str, Any]] = {
     "breeding": "Average",
     "region": "North America",
 "holdings": {
-"North America": 0,
-"Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
+"North America": "1.1 - Essex County Zoo",
+"Asia": "0.1 - Sapporo Reptile Center and National Aquarium",
 "Europe": 0,
 "Africa": 0,
 "South America": 0,
 "Oceania": 0,
                 },
 "institutions": {
+"Essex County Zoo": "1.1",
 "Sapporo Reptile Center and National Aquarium": "0.1"
-
 }
 },
 
@@ -4477,7 +4477,407 @@ species_data: Dict[str, Dict[str, Any]] = {
             },
             "institutions": {
             "Species Watch": "2"
-    },
+
+            }
+            },
+
+            "Common Grackle": {
+                "common": "Common Grackle",
+                "scientific": "Quiscalus quiscula",
+                "info": "One of the most common and well-known North American songbirds, the common grackle is noted for the iridescence on its black feathers, which is especially pronounced in males. They are omnivorous, feeding upon insects and seeds primarily, and can be found natively east of the Rocky Mountains.",
+                "type": "Bird",
+                "order": "Passeriformes",
+                "family": "Icteridae",
+                "genus": "Quiscalus",
+                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Grackle_IMG_3972.jpg/1280px-Grackle_IMG_3972.jpg",
+                "breeding": "Average",
+                "region": ["North America"],  # list, not string
+                "holdings": {
+                    "North America": "2.0 - Cube Zoological Park",  # string, not list
+                    "Europe": 0,
+                    "Asia": 0,
+                    "Africa": 0,
+                    "South America": 0,
+                    "Oceania": 0
+                },
+                "institutions": {
+                    "Cube Zoological Park": "2.0"
+
+                }
+                },
+
+                "Painted Lady": {
+                    "common": "Painted Lady",
+                    "scientific": "Vanessa cardui",
+                    "info": "The most widely distributed of all butterflies, the painted lady can be found on every continent except Oceania, Antarctica and South America. This species is typically intolerant of cold climates and therefore is known for its migrations, such as between North Africa and Europe.",
+                    "type": "Invertebrate",
+                    "order": "Lepidoptera",
+                    "family": "Nymphalidae",
+                    "genus": "Vanessa",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/0_Belle-dame_%28Vanessa_cardui%29_-_Echinacea_purpurea_-_Havr%C3%A9_%283%29.jpg/1280px-0_Belle-dame_%28Vanessa_cardui%29_-_Echinacea_purpurea_-_Havr%C3%A9_%283%29.jpg",
+                    "breeding": "Average",
+                    "region": "North America, Europe, Asia, Africa",
+                    "holdings": {
+                        "North America": "25 - Cube Zoological Park",  # string, not list
+                        "Europe": 0,
+                        "Asia": 0,
+                        "Africa": 0,
+                        "South America": 0,
+                        "Oceania": 0
+                    },
+                    "institutions": {
+                        "Cube Zoological Park": "25"
+
+                    }
+                    },
+
+                    "Pumpkinseed": {
+                        "common": "Pumpkinseed",
+                        "scientific": "Lepomis gibbosus",
+                        "info": "One of the most well known of the freshwater sunfish, the pumpkinseed is native to the eastern and central parts of North America, but has been introduced to various locations globally and has become invasive in certain places. It is a very popular species for recreational fishermen.",
+                        "type": "Fish",
+                        "order": "Centrarchiformes",
+                        "family": "Centrarchidae",
+                        "genus": "Lepomis",
+                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/391723.jpg",
+                        "breeding": "Difficult",
+                        "region": "North America",
+                        "holdings": {
+                            "North America": "3 - Cube Zoological Park",  
+                            "Europe": 0,
+                            "Asia": 0,
+                            "Africa": 0,
+                            "South America": 0,
+                            "Oceania": 0
+                        },
+                        "institutions": {
+                            "Cube Zoological Park": "3"
+
+                            }
+                            },
+
+                        "Yellow-Crowned Night Heron": {
+                            "common": "Yellow-Crowned Night Heron",
+                            "scientific": "Nyctanassa violacea",
+                            "info": "A night heron endemic to the Americas, the yellow-crowned night heron feeds mainly on crustaceans, but also other small animals. Their mating cycle is tied to the life cycle of crabs, when they emerge, they mate and lay eggs. It is a widespread species without any major threats.",
+                            "type": "Bird",
+                            "order": "Pelecaniformes",
+                            "family": "Ardeidae",
+                            "genus": "Nyctanassa",
+                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Nyctanassa_violacea_in_La_Manzanilla.jpg",
+                            "breeding": "Average",
+                            "region": "North America, South America",
+                            "holdings": {
+                                "North America": "2.2 - Cube Zoological Park",  
+                                "Europe": 0,
+                                "Asia": 0,
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0
+                            },
+                            "institutions": {
+                                "Cube Zoological Park": "2.2"
+
+                                }
+                                },
+
+                            "Black Swallowtail": {
+                            "common": "Black Swallowtail",
+                            "scientific": "Papilio polyxenes",
+                            "info": "Found throughout much of North America, the black swallowtail's caterpillars are adaptable and feed on a variety of plants within the family Apiaceae. Male butterflies will secure territories to use in mate location and courtship, and will defend this territory from other males.",
+                            "type": "Invertebrate",
+                            "order": "Lepidoptera",
+                            "family": "Papilionidae",
+                            "genus": "Papilio",
+                            "image_url": "https://objects.liquidweb.services/images/201703/kevin_heffernan_15477106887_2516850b08_b.jpg",
+                            "breeding": "Average",
+                            "region": "North America, South America",
+                            "holdings": {
+                                "North America": "25 - Cube Zoological Park",  
+                                "Europe": 0,
+                                "Asia": 0,
+                                "Africa": 0,
+                                "South America": 0,
+                                "Oceania": 0
+                            },
+                            "institutions": {
+                                "Cube Zoological Park": "25"
+
+                                }
+                                },
+                                
+                            "Monarch": {
+                                "common": "Monarch",
+                                "scientific": "Danaus plexippus",
+                                "info": "The monarch, or monarch butterfly, is probably the most well-known butterfly species in North America. While there are typical resident populations that don't move from their territories, there is a well-known migratory population that migrates to Mexico in the winter time that is listed as Vulnerable on the IUCN Red List.",
+                                "type": "Invertebrate",
+                                "order": "Lepidoptera",
+                                "family": "Nymphalidae",
+                                "genus": "Danaus",
+                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Monarch_In_May.jpg/1280px-Monarch_In_May.jpg",
+                                "breeding": "Average",
+                                "region": "North America, South America",
+                                "holdings": {
+                                    "North America": "25 - Cube Zoological Park",  
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                },
+                                "institutions": {
+                                       "Cube Zoological Park": "25"
+
+                                    }
+                                    },
+
+                                "Common Mormon": {
+                                    "common": "Common Mormon",
+                                    "scientific": "Papilio polytes",
+                                    "info": "A common swallowtail butterfly distributed across Asia, the common mormon is named because this species is polygamous, with males mating with multiple females. They are one of the species known to produce gynandromorphs, which are animals that display both male and female phenotypical traits.",
+                                    "type": "Invertebrate",
+                                    "order": "Lepidoptera",
+                                    "family": "Papilionidae",
+                                    "genus": "Papilio",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Papilio_polytes-Thekkady-2016-12-03-001.jpg/2560px-Papilio_polytes-Thekkady-2016-12-03-001.jpg",
+                                    "breeding": "Average",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": 0,  
+                                        "Europe": 0,
+                                        "Asia": "25 - Kings of the Jungle",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                    },
+                                    "institutions": {
+                                           "Kings of the Jungle": "25"
+
+                                    }
+                                    },
+
+                                    "Common Tiger": {
+                                    "common": "Common Tiger",
+                                    "scientific": "Danaus genutia",
+                                    "info": "One of the most common butterflies in India, the common tiger can also be found in southeast Asia and Oceania. It, like other members of its genus, are considered unpalatable to predators, and their bright coloration advertises this to them.",
+                                    "type": "Invertebrate",
+                                    "order": "Lepidoptera",
+                                    "family": "Nymphalidae",
+                                    "genus": "Danaus",
+                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/219936/original.jpg",
+                                    "breeding": "Average",
+                                    "region": "Asia, Oceania",
+                                    "holdings": {
+                                        "North America": 0,  
+                                        "Europe": 0,
+                                        "Asia": "25 - Kings of the Jungle",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                    },
+                                    "institutions": {
+                                           "Kings of the Jungle": "25"
+
+                                        }
+                                        },
+                                        
+                                    "Eastern Honeybee": {
+                                    "common": "Eastern Honeybee",
+                                    "scientific": "Apis cerana",
+                                    "info": "The second-most common of all honeybee species, the eastern honeybee can be found throughout south, east, and southeast Asia. The Japanese subspecies is known for its defense mechanism against Asian giant hornets, when threatened, the colony jumps on the hornet and fans their wings, raising the hornet's temperature until it dies.",
+                                    "type": "Invertebrate",
+                                    "order": "Hymenoptera",
+                                    "family": "Apidae",
+                                    "genus": "Apis",
+                                    "image_url": "https://static.inaturalist.org/photos/2033079/large.jpg",
+                                    "breeding": "Very Easy",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": 0,  
+                                        "Europe": 0,
+                                        "Asia": "200 - Kings of the Jungle",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                    },
+                                    "institutions": {
+                                           "Kings of the Jungle": "200"
+
+                                    }
+                                    },
+
+                                    "Plain Tiger": {
+                                    "common": "Plain Tiger",
+                                    "scientific": "Danaus chrysippus",
+                                    "info": "Widespread across Asia, Africa, and Oceania, the plain tiger primarily consumes milkweed as a larvae, which gives it emetic properties as an adult. As adults they consume nectar like most butterflies. Preferring open and arid areas, this species adapts well to human interference, often thriving in cities and parks.",
+                                    "type": "Invertebrate",
+                                    "order": "Lepidoptera",
+                                    "family": "Nymphalidae",
+                                    "genus": "Danaus",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Danaus_chrysippus_Female_by_kadavoor.jpg/1280px-Danaus_chrysippus_Female_by_kadavoor.jpg",
+                                    "breeding": "Average",
+                                    "region": "Asia, Africa, Oceania",
+                                    "holdings": {
+                                    "North America": 0,  
+                                    "Europe": 0,
+                                    "Asia": "25 - Kings of the Jungle",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                       "Kings of the Jungle": "25"
+
+                                    }
+                                    },
+
+                                    "Tropical Leatherleaf Slug": {
+                                    "common": "Tropical Leatherleaf Slug",
+                                    "scientific": "Laevicaulis alte",
+                                    "info": "A round, small slug species, the tropical leatherleaf slug is believed to be native to Africa, but has been introduced widely to many places in Asia and Oceania. It has several adaptations for surviving in dry, adverse conditions, such as a rounded shape with a small surface area and a narrow foot to reduce evaporation.",
+                                    "type": "Invertebrate",
+                                    "order": "Systellommatophora",
+                                    "family": "Veronicellidae",
+                                    "genus": "Laevicaulis",
+                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/47874316/original.jpg",
+                                    "breeding": "Average",
+                                    "region": "Africa",
+                                    "holdings": {
+                                    "North America": 0,  
+                                    "Europe": 0,
+                                    "Asia": "3 - Kings of the Jungle",
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                       "Kings of the Jungle": "3"
+
+                                    }
+                                    },
+
+                                    "Florida Gar": {
+                                    "common": "Florida Gar",
+                                    "scientific": "Lepisosteus platyrhincus",
+                                    "info": "This gar species is endemic to Georgia and Florida in the United States. Like many gar, it has highly toxic eggs which serve as a defense mechanism against potential predators, and it is a high-ranking predator in its natural range, feeding on fish, shrimp, and crayfish.",
+                                    "type": "Fish",
+                                    "order": "Lepisosteiformes",
+                                    "family": "Lepisosteidae",
+                                    "genus": "Lepisosteus",
+                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/104542990/original.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "North America",
+                                    "holdings": {
+                                    "North America": "3 - New York Aquarium",  
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                       "New York Aquarium": "3"
+
+                                    }
+                                    },
+
+                                    "Knobbed Whelk": {
+                                    "common": "Knobbed Whelk",
+                                    "scientific": "Busycon carica",
+                                    "info": "A large, predatory sea snail native to the eastern coast of North America, the knobbed whelk feeds on oysters, clams, and other marine invertebrates. It migrates between deep and shallow water depending on the time of year. They have an excellent sense of smell and use it to look for prey.",
+                                    "type": "Invertebrate",
+                                    "order": "Neogastropoda",
+                                    "family": "Busyconidae",
+                                    "genus": "Busycon",
+                                    "image_url": "https://static.inaturalist.org/photos/16337478/original.jpg",
+                                    "breeding": "Impossible",
+                                    "region": "North America",
+                                    "holdings": {
+                                    "North America": "2 - New York Aquarium",  
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                       "New York Aquarium": "2"
+
+                                        }
+                                        },
+
+                                    "Largemouth Bass": {
+                                    "common": "Largemouth Bass",
+                                    "scientific": "Micropterus nigricans",
+                                    "info": "An iconic freshwater fish native to North America, the largemouth bass has become one of the most notorious invasive species globally, being introduced to places like Central America, Africa, Japan, and Canada. Largemouth bass are predators that feed on pretty much anything they can eat, preferring to live in heavily planted areas.",
+                                    "type": "Fish",
+                                    "order": "Centrarchiformes",
+                                    "family": "Centrarchidae",
+                                    "genus": "Micropterus",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/145390.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "North America",
+                                    "holdings": {
+                                    "North America": "3 - New York Aquarium",  
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                       "New York Aquarium": "3"
+
+                                    }
+                                    },
+
+                                    "Red Swamp Crayfish": {
+                                    "common": "Red Swamp Crayfish",
+                                    "scientific": "Procambarus clarkii",
+                                    "info": "Probably the most well-known of all crayfish, the red swamp crayfish is endemic to the United States and Mexico, but it has been introduced to other locations in North America and elsewhere. They are commonly farmed and consumed as food, and are hardy animals that can live in poor water conditions.",
+                                    "type": "Invertebrate",
+                                    "order": "Decapoda",
+                                    "family": "Cambaridae",
+                                    "genus": "Procambarus",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/117069.jpg",
+                                    "breeding": "Below Average",
+                                    "region": "North America",
+                                    "holdings": {
+                                    "North America": "1.0 - New York Aquarium",  
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                    "New York Aquarium": "1.0"
+
+                                    }
+                                    },
+
+                                    "Seminole Ramshorn Snail": {
+                                    "common": "Seminole Ramshorn Snail",
+                                    "scientific": "Planorbella duryi",
+                                    "info": "A small snail species native to freshwater ecosystems in Florida, the Seminole ramshorn is a common aquarium pet, either intentional or accidental. They have been introduced to Hawaii, Europe, Palestine, and Nigeria by accident and have become invasive there.",
+                                    "type": "Invertebrate",
+                                    "order": "Unknown",
+                                    "family": "Planorbidae",
+                                    "genus": "Planorbella",
+                                    "image_url": "https://www.garnelio.de/media/image/33/b1/52/garnelio-schnecke-braune-posthornschnecke-planorbella-duryi-duryi-2_430x430@2x.jpg",
+                                    "breeding": "Very Easy",
+                                    "region": "North America",
+                                    "holdings": {
+                                    "North America": "10 - New York Aquarium",  
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                    "New York Aquarium": "10"
+    }
     },
 }
 SPECIES = species_data
