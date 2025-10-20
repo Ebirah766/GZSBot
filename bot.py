@@ -5246,6 +5246,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         },
                                         "institutions": {
                                         "New York Aquarium": "0.2"
+
+                                        }
+                                        },
+                                        "Blackback Land Crab": {
+                                        "common": "Blackback Land Crab",
+                                        "scientific": "Gecarcinus lateralis",
+                                        "info": "One of many land crabs native to the Caribbean region, the blackback land crab gets its common name from the black patch of its carapace, which helps to identify it from similar species. There are many color variants but they all retain this distinctive patterning.",
+                                        "type": "Invertebrate",
+                                        "order": "Decapoda",
+                                        "family": "Gecarcinidae",
+                                        "genus": "Gecarcinus",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Gecarcinus_lateralis_2.jpg",
+                                        "breeding": "Impossible",
+                                        "region": "North America, South America",
+                                        "holdings": {
+                                        "North America": "2.2 - New York Aquarium", 
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "New York Aquarium": "2.2"
     }
     },
 }
