@@ -5270,6 +5270,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         },
                                         "institutions": {
                                         "New York Aquarium": "2.2"
+
+                                        }
+                                        },
+                                        "Common Moon Jelly": {
+                                        "common": "Common Moon Jelly",
+                                        "scientific": "Aurelia aurita",
+                                        "info": "Probably the most common jellyfish species in the world, the common moon jelly is found circumglobally and is often displayed in public aquariums. It is a micropredator, feeding on small animals in the water column with its mild venom, which can be painful to humans.",
+                                        "type": "Invertebrate",
+                                        "order": "Semaeostomeae",
+                                        "family": "Ulmaridae",
+                                        "genus": "Aurelia",
+                                        "image_url": "https://jellyfish-farm.com/cdn/shop/products/jellyfish-farm-ohrenquallen-moon-jellyfish.jpg?v=1624697052",
+                                        "breeding": "Difficult",
+                                        "region": "North America, South America, Europe, Asia, Africa, Oceania, Antarctica",
+                                        "holdings": {
+                                        "North America": 0, 
+                                        "Europe": "20 - Species Watch",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Species Watch": "20"
     }
     },
 }
