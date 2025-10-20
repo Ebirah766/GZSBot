@@ -5294,6 +5294,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         },
                                         "institutions": {
                                         "Species Watch": "20"
+
+                                        }
+                                        },
+                                        "Textile Cone": {
+                                        "common": "Textile Cone",
+                                        "scientific": "Conus textile",
+                                        "info": "An extremely venomous species of sea snail, the textile cone can be found throughout the Indo-Pacific. Its attractive shell coloration is sought-after by shell collectors, This species is typically found in shallow areas buried in the sand, emerging at night to feed on sea snails.",
+                                        "type": "Invertebrate",
+                                        "order": "Neogastropoda",
+                                        "family": "Conidae",
+                                        "genus": "Conus",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Textile_cone.JPG/1200px-Textile_cone.JPG",
+                                        "breeding": "Impossible",
+                                        "region": "Asia, Africa, Oceania",
+                                        "holdings": {
+                                        "North America": 0, 
+                                        "Europe": "2 - Species Watch",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Species Watch": "2"
     }
     },
 }

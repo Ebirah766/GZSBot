@@ -5,12 +5,12 @@ This is a Discord bot application built using discord.py that manages a virtual 
 # Recent Changes
 
 **2025-10-20**: Fixed recurring missing comma syntax errors in species data:
-- Axolotl species data (line 1961): Added missing comma after "Kings of the Jungle": "2.2" in institutions dictionary (recurring fix - file was reverted)
+- Axolotl species data (line 1961): Added missing comma after "Kings of the Jungle": "2.2" in institutions dictionary (fixed multiple times - file keeps reverting)
 - Common Carp species data (line 2292): Added missing comma after "New York Aquarium": "10" in institutions dictionary
 - Common Snapping Turtle species data (line 3804): Added missing comma after "Essex County Zoo": "1.0" in institutions dictionary
-- Pumpkinseed species data (line 4557): Added missing comma after "Cube Zoological Park": "3" in institutions dictionary
+- Pumpkinseed species data (line 4557): Added missing comma after "Cube Zoological Park": "3" in institutions dictionary (fixed multiple times - file keeps reverting)
 - Bot successfully restarted and running without errors
-- Note: This issue has recurred multiple times, suggesting external file edits may be reverting fixes
+- **Important Note**: These same errors have recurred multiple times within this session, strongly suggesting the bot.py file is being edited externally, which reverts fixes. Pattern: Missing commas between institution entries in species data dictionaries
 
 **2025-10-19**: Fixed syntax errors in species data and error handler:
 - American Alligator species data (line 1986): Added missing comma after "Essex County Zoo": "1.1" in institutions dictionary
