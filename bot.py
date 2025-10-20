@@ -4915,7 +4915,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "family": "Anatidae",
                                     "genus": "Anas",
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anas_platyrhynchos_male_female_quadrat.jpg/1024px-Anas_platyrhynchos_male_female_quadrat.jpg",
-                                    "breeding": "Below Average",
+                                    "breeding": "Easy",
                                     "region": "North America, Europe, Asia, Africa",
                                     "holdings": {
                                     "North America": "2.2 - Essex County Zoo",  
