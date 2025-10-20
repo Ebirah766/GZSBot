@@ -5227,7 +5227,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         },
                                         "Giant Otter": {
                                         "common": "Giant Otter",
-                                        "scientific": "Strix leptogrammica",
+                                        "scientific": "Pteronura brasiliensis",
                                         "info": "One of the largest otter species in the world, the giant otter resides in the Amazon basin and the Pantanal of South America. A pack-hunting apex predator, they are specialized hunters of fish and will occasionally take crabs and reptiles as well. They are unfortunately endangered due to poaching and habitat loss.",
                                         "type": "Mammal",
                                         "order": "Carnivora",
