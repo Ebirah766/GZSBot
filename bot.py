@@ -1948,15 +1948,15 @@ species_data: Dict[str, Dict[str, Any]] = {
     "region": "North America",
 "holdings": {
 "North America": 0,
-"Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
+"Asia": "2.2 - Kings of the Jungle, 1.0 - Sapporo Reptile Center and National Aquarium ",
 "Europe": 0,
 "Africa": 0,
 "South America": 0,
 "Oceania": 0,
                 },
 "institutions": {
+"Kings of the Jungle": "2.2",
 "Sapporo Reptile Center and National Aquarium": "1.0"
-
 }
 },
     
@@ -4916,7 +4916,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "genus": "Anas",
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anas_platyrhynchos_male_female_quadrat.jpg/1024px-Anas_platyrhynchos_male_female_quadrat.jpg",
                                     "breeding": "Below Average",
-                                    "region": "North America, Europe, Asia Africa",
+                                    "region": "North America, Europe, Asia, Africa",
                                     "holdings": {
                                     "North America": "2.2 - Essex County Zoo",  
                                     "Europe": 0,
@@ -4927,6 +4927,301 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                     "Essex County Zoo": "2.2"
+
+                                        }
+                                        },
+
+                                    "Zander": {
+                                    "common": "Zander",
+                                    "scientific": "Sander lucioperca",
+                                    "info": "A pikeperch native to western Eurasia, the zander has been introduced to various locations as a valuable sport fish. They are carnivorous and adults will hunt for smaller schooling fish such as smelt, ruffe, perch, and roach. They are long-lived fish, living up to 17 years.",
+                                    "type": "Fish",
+                                    "order": "Perciformes",
+                                    "family": "Percidae",
+                                    "genus": "Sander",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rousse_Ecomuseum_-_Sander_lucioperca.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "Europe",
+                                    "holdings": {
+                                    "North America": 0, 
+                                    "Europe": "4 - Wasser Wunder Welt", 
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "4"
+
+                                    }
+                                    },
+
+                                    "Stone Loach": {
+                                    "common": "Stone Loach",
+                                    "scientific": "Barbatula barbatula",
+                                    "info": "The stone loach is a medium-sized loach that can grow up to 8.3 inches in length but typically only reaches 5 inches. They feed on small aquatic invertebrates like insect larvae and amphipods. They are nocturnal and feed mainly at night.",
+                                    "type": "Fish",
+                                    "order": "Cypriniformes",
+                                    "family": "Nemacheilidae",
+                                    "genus": "Barbatula",
+                                    "image_url": "https://media-animals.earth.com/images/2022/08/17/626539844685148/barbatulabarbatula_31451673516346723.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "Europe",
+                                    "holdings": {
+                                    "North America": 0, 
+                                    "Europe": "6 - Wasser Wunder Welt", 
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "6"
+
+                                    }
+                                },
+
+                                    "European Sea Sturgeon": {
+                                    "common": "European Sea Sturgeon",
+                                    "scientific": "Acipenser sturio",
+                                    "info": "A sturgeon growing up to 20 feet in length (but more commonly 1/5th of that size), the European sea sturgeon is critically endangered in the wild due to being caught as bycatch, habitat loss, and dam construction. This species spends most of its time in saltwater and spawns in freshwater.",
+                                    "type": "Fish",
+                                    "order": "Acipenseriformes",
+                                    "family": "Acipenseridae",
+                                    "genus": "Acipenser",
+                                    "image_url": "https://cdn.britannica.com/75/140975-050-719AEA44/Atlantic-sturgeon-species-Baltic-International-Union-for-1996.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "Europe, Asia",
+                                    "holdings": {
+                                    "North America": 0, 
+                                    "Europe": "1.2 - Wasser Wunder Welt", 
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                    },
+                                    "institutions": {
+                                    "Wasser Wunder Welt": "1.2"
+
+                                            }
+                                        },
+
+                                        "Burbot": {
+                                        "common": "Burbot",
+                                        "scientific": "Lota lota",
+                                        "info": "This distinctive species of fish is related to the cods. Native to subarctic regions of the Northern Hemisphere, it has a tolerance and preference for very cold water and breeds under ice. They are voracious predators, eating everything from insects to pike.",
+                                        "type": "Fish",
+                                        "order": "Gadiformes",
+                                        "family": "Lotidae",
+                                        "genus": "Lota",
+                                        "image_url": "https://www.hlasek.com/foto/lota_lota_hf0194.jpg",
+                                        "breeding": "Impossible",
+                                        "region": "Europe, Asia",
+                                        "holdings": {
+                                        "North America": 0, 
+                                        "Europe": "1 - Wasser Wunder Welt", 
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Wasser Wunder Welt": "1"
+
+                                                }
+                                            },
+
+                                        "Black Rat Snake": {
+                                        "common": "Black Rat Snake",
+                                        "scientific": "Pantherophis spiloides",
+                                        "info": "A large colubrid growing to 6ft in length, the black rat snake is also known by the common name of gray rat snake, due to its variable coloration. They typically feed on rodents, birds, and eggs, and are considered helpful and beneficial to farmers due to their propensity to eat crop-destroying rodents.",
+                                        "type": "Reptile",
+                                        "order": "Squamata",
+                                        "family": "Colubridae",
+                                        "genus": "Pantherophis",
+                                        "image_url": "https://www.vtherpatlas.org/wp2016/wp-content/uploads/2017/08/P.-alleghaniensis-1-Nick-Arms.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "North America",
+                                        "holdings": {
+                                        "North America": "0.0.2.2 - Cube Zoological Park",  
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Cube Zoological Park": "0.0.2.2"
+
+                                            }
+                                            },
+
+                                        "Red-Eyed Devil Katydid": {
+                                        "common": "Red-Eyed Devil Katydid",
+                                        "scientific": "Neobarrettia spinosa",
+                                        "info": "A species of katyidd native to the arid lands of the United States and Mexico, the red-eyed devil is a notorious predator of small animals. It is not picky and has been known to eat everything from insects to birds. Their bite is strong and allows them to pin prey in place.",
+                                        "type": "Invertebrate",
+                                        "order": "Orthoptera",
+                                        "family": "Tettigoniidae",
+                                        "genus": "Neobarrettia",
+                                        "image_url": "https://static.inaturalist.org/photos/2267006/large.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "North America",
+                                        "holdings": {
+                                        "North America": "1.1 - Cube Zoological Park",  
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Cube Zoological Park": "1.1"
+
+                                            }
+                                            },
+
+                                        "Eastern Screech Owl": {
+                                        "common": "Eastern Screech Owl",
+                                        "scientific": "Megascops asio",
+                                        "info": "The eastern screech owl is a small owl relatively common across its range in eastern and central North America. Their name comes from their screeching call, which was considered unnerving by early settlers of the region. They feed on a wide variety of small animals, preferring insects and small mammals.",
+                                        "type": "Bird",
+                                        "order": "Strigiformes",
+                                        "family": "Strigidae",
+                                        "genus": "Megascops",
+                                        "image_url": "https://cdn.britannica.com/14/220114-050-99FD6748/Screech-Owl-Bird-Gray-Morph.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "North America",
+                                        "holdings": {
+                                        "North America": "1.0 - Cube Zoological Park",  
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Cube Zoological Park": "1.0"
+
+                                        }
+                                        },
+                                        "Brown Rat": {
+                                        "common": "Brown Rat",
+                                        "scientific": "Rattus norvegicus",
+                                        "info": "The most widespread and common rat species, the brown rat can be found, with few exceptions, everywhere that humans live. Thought to have originated in northern China and nearby areas, the brown rat's adaptability and hardiness has made it a cosmopolitan species.",
+                                        "type": "Mammal",
+                                        "order": "Rodentia",
+                                        "family": "Muridae",
+                                        "genus": "Rattus",
+                                        "image_url": "https://cdn.britannica.com/26/65326-050-53232216/Norway-rat.jpg",
+                                        "breeding": "Very Easy",
+                                        "region": "North America, South America, Europe, Asia, Africa",
+                                        "holdings": {
+                                        "North America": 0,  
+                                        "Europe": "3.3 - Shropshire Hills Zoo",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Shropshire Hills Zoo": "3.3"
+
+                                        }
+                                        },
+                                        "Great Gray Owl": {
+                                        "common": "Great Gray Owl",
+                                        "scientific": "Strix nebulosa",
+                                        "info": "The longest owl by length, the great gray owl can be found across the Northern Hemisphere from North America to Asia. A powerful apex predator, the great gray owl feeds mostly upon rodents, but will take other animals as well on occasion. They are difficult to find in situ, unusual for such a high-ranking predator.",
+                                        "type": "Bird",
+                                        "order": "Strigiformes",
+                                        "family": "Strigidae",
+                                        "genus": "Strix",
+                                        "image_url": "https://static.inaturalist.org/photos/179795514/large.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "North America, Europe, Asia,",
+                                        "holdings": {
+                                        "North America": 0,  
+                                        "Europe": "1.1 - Shropshire Hills Zoo",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Shropshire Hills Zoo": "1.1"
+
+                                        }
+                                        },
+                                        "Common Buzzard": {
+                                        "common": "Common Buzzard",
+                                        "scientific": "Buteo buteo",
+                                        "info": "A well-known opportunistic predator, the common buzzard can be found throughout the Old World. They are devoted parents to their young, building large nests for them. They are considered one of the most common birds of prey in the world, with population estimates running into the millions.",
+                                        "type": "Bird",
+                                        "order": "Accipitriformes",
+                                        "family": "Accipitridae",
+                                        "genus": "Buteo",
+                                        "image_url": "https://bilderreich.de/images/slider/2013/03/treich_20130327_9959_3x2.jpg",
+                                        "breeding": "Average",
+                                        "region": "Europe, Asia, Africa",
+                                        "holdings": {
+                                        "North America": 0,  
+                                        "Europe": "2.0 - Shropshire Hills Zoo",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Shropshire Hills Zoo": "2.0"
+
+                                        }
+                                        },
+                                        "Reticulated Python": {
+                                        "common": "Reticulated Python",
+                                        "scientific": "Malayopython reticulatus",
+                                        "info": "The longest of all snakes and the third-heaviest in the world, the reticulated python is an apex predator in its native range of southeast Asia. They are well-adapted to living in human-disturbed areas, being somewhat common in places such as Bangkok. They are occasionally dangerous to humans and should be respected when nearby.",
+                                        "type": "Reptile",
+                                        "order": "Squamata",
+                                        "family": "Pythonidae",
+                                        "genus": "Malayopython",
+                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/466970.jpg",
+                                        "breeding": "Average",
+                                        "region": "Asia",
+                                        "holdings": {
+                                        "North America": 0,  
+                                        "Europe": 0,
+                                        "Asia": "0.1 - Kings of the Jungle",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Kings of the Jungle": "0.1"
+
+                                        }
+                                        },
+                                        "Brown Wood Owl": {
+                                        "common": "Brown Wood Owl",
+                                        "scientific": "Strix leptogrammica",
+                                        "info": "An owl species native to south, southeast, and east Asia, the brown wood owl is a nocturnal species that prefers densely forested areas, per its name. They mainly feed on small mammals, birds, and reptiles, and have 14 recognized subspecies distributed across their range.",
+                                        "type": "Bird",
+                                        "order": "Strigiformes",
+                                        "family": "Strigidae",
+                                        "genus": "Strix",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Brown_Wood_Owl1.jpg/1280px-Brown_Wood_Owl1.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "Asia",
+                                        "holdings": {
+                                        "North America": 0,  
+                                        "Europe": 0,
+                                        "Asia": "1.0 - Kings of the Jungle",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Kings of the Jungle": "1.0"
     }
     },
 }
