@@ -3875,7 +3875,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             }
                                             },
                                             "American Bullfrog": {
-                                            "common": "American Toad",
+                                            "common": "American Bullfrog",
                                             "scientific": "Lithobates catesbeianus",
                                             "info": "A large frog famed for its hardiness, the American bullfrog is a common sight in eastern North America. It is adaptable for an amphibian and can inhabit a wide range of habitats, including human-disturbed areas, which gives it an edge compared to other native amphibians.",
                                             "type": "Amphibian",
