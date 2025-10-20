@@ -4551,9 +4551,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                             "Oceania": 0
                         },
                         "institutions": {
-                            "Cube Zoological Park": "3"
+                            "Cube Zoological Park": "3",
                             "New York Aquarium": "3"
-
                             }
                             },
 
@@ -5322,27 +5321,27 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        "Textile Cone": {
-                                        "common": "Textile Cone",
-                                        "scientific": "Conus textile",
-                                        "info": "An extremely venomous species of sea snail, the textile cone can be found throughout the Indo-Pacific. Its attractive shell coloration is sought-after by shell collectors, This species is typically found in shallow areas buried in the sand, emerging at night to feed on sea snails.",
+                                        "European Medicinal Leech": {
+                                        "common": "European Medicinal Leech",
+                                        "scientific": "Hirudo medicinalis",
+                                        "info": "One of several species of leeches formerly used in the medical field, the European medicinal leech has suffered population declines in its native habitat due to overcollection for this trade. Their habitat of muddy pools and ponds with plentiful vegetation have also been reduced, further endangering the species.",
                                         "type": "Invertebrate",
-                                            "order": "Neogastropoda",
-                                            "family": "Conidae",
-                                            "genus": "Conus",
-                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Textile_cone.JPG/1200px-Textile_cone.JPG",
-                                            "breeding": "Impossible",
-                                            "region": "Asia, Africa, Oceania",
-                                            "holdings": {
-                                            "North America": 0, 
-                                            "Europe": "2 - Species Watch",
-                                            "Asia": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0
-                                            },
-                                            "institutions": {
-                                            "Species Watch": "2"
+                                        "order": "Arhynchobdellida",
+                                        "family": "Hirudinidae",
+                                        "genus": "Hirudo",
+                                        "image_url": "https://i0.wp.com/adlayasanimals.wordpress.com/wp-content/uploads/2021/02/hirudo_medicinalis.jpg?fit=1200%2C820&ssl=1",
+                                        "breeding": "Impossible",
+                                        "region": "Europe, Asia",
+                                        "holdings": {
+                                        "North America": 0, 
+                                        "Europe": "10 - Species Watch",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Species Watch": "10"
     }
     },
 }
