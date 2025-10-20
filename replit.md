@@ -8,6 +8,7 @@ This is a Discord bot application built using discord.py that manages a virtual 
 - Axolotl species data (line 1961): Added missing comma after "Kings of the Jungle": "2.2" in institutions dictionary (recurring fix - file was reverted)
 - Common Carp species data (line 2292): Added missing comma after "New York Aquarium": "10" in institutions dictionary
 - Common Snapping Turtle species data (line 3804): Added missing comma after "Essex County Zoo": "1.0" in institutions dictionary
+- Pumpkinseed species data (line 4557): Added missing comma after "Cube Zoological Park": "3" in institutions dictionary
 - Bot successfully restarted and running without errors
 - Note: This issue has recurred multiple times, suggesting external file edits may be reverting fixes
 

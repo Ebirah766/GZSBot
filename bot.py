@@ -4543,7 +4543,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "breeding": "Difficult",
                         "region": "North America",
                         "holdings": {
-                            "North America": "3 - Cube Zoological Park",  
+                            "North America": "3 - Cube Zoological Park, 3 - New York Aquarium",  
                             "Europe": 0,
                             "Asia": 0,
                             "Africa": 0,
@@ -4551,8 +4551,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                             "Oceania": 0
                         },
                         "institutions": {
-                            "Cube Zoological Park": "3"
-
+                            "Cube Zoological Park": "3",
+                            "New York Aquarium": "3"
                             }
                             },
 
