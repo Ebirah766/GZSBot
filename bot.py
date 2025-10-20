@@ -5222,6 +5222,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         },
                                         "institutions": {
                                         "Kings of the Jungle": "1.0"
+
+                                        }
+                                        },
+                                        "Giant Otter": {
+                                        "common": "Giant Otter",
+                                        "scientific": "Strix leptogrammica",
+                                        "info": "One of the largest otter species in the world, the giant otter resides in the Amazon basin and the Pantanal of South America. A pack-hunting apex predator, they are specialized hunters of fish and will occasionally take crabs and reptiles as well. They are unfortunately endangered due to poaching and habitat loss.",
+                                        "type": "Mammal",
+                                        "order": "Carnivora",
+                                        "family": "Mustelidae",
+                                        "genus": "Pteronura",
+                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/377926.jpg",
+                                        "breeding": "Difficult",
+                                        "region": "South America",
+                                        "holdings": {
+                                        "North America": "0.2 - New York Aquarium", 
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "New York Aquarium": "0.2"
     }
     },
 }
