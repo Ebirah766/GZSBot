@@ -348,7 +348,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
-            "Europe": 0,
+            "Europe": "0.3 - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
