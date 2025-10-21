@@ -342,7 +342,8 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Artiodactyla",
         "family": "Suidae",
         "genus": "Sus",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg/1280px-Wildschwein%2C_N%C3%A4he_Pulverstampftor_%28cropped%29.jpg",
+        "images": [
+            {"label": "Central European wild boar ", "url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg"},
         "breeding": "Average",
         "region": "Europe, Asia",
         "holdings": {
@@ -354,7 +355,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "1.1",
+            "Cube Zoological Park": "1.1"
             "Giardino Zoologico e Botanico La Sapienza": "0.3 [scrofa]"
         },
     },
