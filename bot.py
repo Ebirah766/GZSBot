@@ -5449,6 +5449,32 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 },
                                                 "institutions": {
                                                     "Giardino Zoologico e Botanico La Sapienza": "1.0 [bubo]"
+
+                                                }
+                                                },
+                                                "Long-Eared Owl": {
+                                                    "common": "Long-Eared Owl",
+                                                    "scientific": "Asio otus",
+                                                    "info": "A large, powerfully-built owl native to wide swathes of Europe and Asia, the Eurasian eagle-owl is a nocturnal apex predator, taking a wide variety of prey, with a majority being small mammals. They are a long-lived species, living up to 27 years in the wild and more in captivity.",
+                                                    "type": "Bird",
+                                                    "order": "Strigiformes",
+                                                    "family": "Strigidae",
+                                                    "genus": "Bubo",
+                                                    "images": [
+                                                        {"label": "European eagle-owl (bubo)", "url": "https://www.biolib.cz/IMG/GAL/BIG/456883.jpg"}
+                                                    ],
+                                                    "breeding": "Below Average",
+                                                    "region": "Europe, Asia",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Asia": 0,
+                                                        "Europe": "1.0 (bubo) - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "Giardino Zoologico e Botanico La Sapienza": "1.0 [bubo]"
     }
     },
 }
