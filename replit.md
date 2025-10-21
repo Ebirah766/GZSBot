@@ -4,6 +4,11 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-10-21**: Added missing zoos to directory in zoo_progress.json:
+- Added "Species Watch" to zoo directory (zoo was in ownership data but missing from directory)
+- Added "Giardino Zoologico e Botanico La Sapienza" to zoo directory (zoo was in species data but missing from directory)
+- Bot now running successfully with 17 zoos recognized in directory: Air Terjun Zoo, Credit River Zoo, Cube Zoological Park, Essex County Zoo, Giardino Zoologico e Botanico La Sapienza, Glacier Zoo, High Uintahs Zoo, Jupiter Reptile Zoo, Kings of the Jungle, Mint Park Zoo, New York Aquarium, North Star Zoo, Sapporo Reptile Center and National Aquarium, Shropshire Hills Zoo, Species Watch, Wasser Wunder Welt, Wildkatzenpark Tatzenfels
+
 **2025-10-20**: Fixed recurring missing comma syntax errors in species data:
 - Axolotl species data (line 1961): Added missing comma after "Kings of the Jungle": "2.2" in institutions dictionary (fixed multiple times - file keeps reverting)
 - Common Carp species data (line 2292): Added missing comma after "New York Aquarium": "10" in institutions dictionary

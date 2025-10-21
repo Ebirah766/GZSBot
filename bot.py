@@ -5342,6 +5342,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         },
                                         "institutions": {
                                         "Species Watch": "10"
+
+                                        }
+                                        },
+                                        "Racovitza's Rudd": {
+                                        "common": "Racovitza's Rudd",
+                                        "scientific": "Scardinius racovitzai",
+                                        "info": "A freshwater fish closely related to the common rudd, the Racotviza's rudd was formerly endemic to Romania. Now extinct in the wild, this species survives on due to zoos breeding the species in captivity. It was found in one lake natively, until the lake dried up in 2014.",
+                                        "type": "Fish",
+                                        "order": "Cypriniformes",
+                                        "family": "Leuciscidae",
+                                        "genus": "Scardinius",
+                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/411297.jpg",
+                                        "breeding": "Difficult",
+                                        "region": "Europe",
+                                        "holdings": {
+                                        "North America": 0, 
+                                        "Europe": "20 - Giardino Zoologico e Botanico La Sapienza",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Giardino Zoologico e Botanico La Sapienza": "20"
     }
     },
 }
@@ -6392,6 +6416,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Glacier Zoo",
     "Kings of the Jungle",
     "Species Watch",
+    "Giardino Zoologico e Botanico La Sapienza",
 ]
 
 _directory_normalizer = re.compile(r"\s+")

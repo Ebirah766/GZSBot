@@ -298,6 +298,16 @@
       "name": "Kings of the Jungle",
       "location": null,
       "image": null
+    },
+    "species watch": {
+      "name": "Species Watch",
+      "location": null,
+      "image": null
+    },
+    "giardino zoologico e botanico la sapienza": {
+      "name": "Giardino Zoologico e Botanico La Sapienza",
+      "location": null,
+      "image": null
     }
   },
   "contracept": {
