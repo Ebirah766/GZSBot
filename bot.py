@@ -343,11 +343,12 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Suidae",
         "genus": "Sus",
         "images": [
-            {"label": "Central European wild boar ", "url": "https://cdn.britannica.com/09/225209-050-5002E7F8/Burmese-python-invasive-species-captured-Everglades-National-Park-Florida.jpg"},
+            {"label": "Central European wild boar (scrofa)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Locha%28js%29.jpg/1280px-Locha%28js%29.jpg"}
+        ],
         "breeding": "Average",
         "region": "Europe, Asia",
         "holdings": {
-            "North America": "1.1 - Cube Zoological Park",
+            "North America": "1.1 [scrofa] - Cube Zoological Park",
             "Asia": 0,
             "Europe": "0.3 [scrofa] - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
@@ -355,7 +356,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "1.1"
+            "Cube Zoological Park": "1.1",
             "Giardino Zoologico e Botanico La Sapienza": "0.3 [scrofa]"
         },
     },
