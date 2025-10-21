@@ -1200,14 +1200,16 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Easy",
         "region": "North America",
         "holdings": {
-            "North America": 0,
+            "North America": "1.1 - Essex County Zoo",
             "Asia": 0,
-            "Europe": "2.2 - Mint Park Zoo",
+            "Europe": "3.0 - Giardino Zoologico e Botanico La Sapienza, 2.2 - Mint Park Zoo",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
+            "Essex County Zoo": "1.1",
+            "Giardino Zoologico e Botanico La Sapienza": "3.0",
             "Mint Park Zoo": "2.2"
         }
     },
@@ -1630,7 +1632,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
-            "North America": "0.1 - High Uintahs Zoo",
+            "North America": "0.0.2.0 - Essex County Zoo, 0.1 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1638,6 +1640,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
                 },
         "institutions": {
+            "Essex County Zoo": "0.0.2.0",
             "High Uintahs Zoo": "0.1"
         }
     },
@@ -5455,26 +5458,126 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "Long-Eared Owl": {
                                                     "common": "Long-Eared Owl",
                                                     "scientific": "Asio otus",
-                                                    "info": "A large, powerfully-built owl native to wide swathes of Europe and Asia, the Eurasian eagle-owl is a nocturnal apex predator, taking a wide variety of prey, with a majority being small mammals. They are a long-lived species, living up to 27 years in the wild and more in captivity.",
+                                                    "info": "This medium-sized owl species can be found in the Palearctic realm. With a huge range and relative adaptability, this species has a population estimated from 500,000 to 5 million individuals. They typically prefer semi-open habitats, such as the edge of woodlands.",
                                                     "type": "Bird",
                                                     "order": "Strigiformes",
                                                     "family": "Strigidae",
-                                                    "genus": "Bubo",
+                                                    "genus": "Asio",
                                                     "images": [
-                                                        {"label": "European eagle-owl (bubo)", "url": "https://www.biolib.cz/IMG/GAL/BIG/456883.jpg"}
+                                                        {"label": "Eurasian long-eared owl (otus)", "url": "https://www.biolib.cz/IMG/GAL/BIG/199312.jpg"}
                                                     ],
                                                     "breeding": "Below Average",
-                                                    "region": "Europe, Asia",
+                                                    "region": "North America, Europe, Asia, Africa",
                                                     "holdings": {
                                                         "North America": 0,
                                                         "Asia": 0,
-                                                        "Europe": "1.0 (bubo) - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Europe": "3.0 (otus) - Giardino Zoologico e Botanico La Sapienza",
                                                         "Africa": 0,
                                                         "South America": 0,
                                                         "Oceania": 0,
                                                     },
                                                     "institutions": {
-                                                        "Giardino Zoologico e Botanico La Sapienza": "1.0 [bubo]"
+                                                        "Giardino Zoologico e Botanico La Sapienza": "3.0 [otus]"
+
+                                                    }
+                                                    },
+                                                    "Western Barn Owl": {
+                                                        "common": "Western Barn Owl",
+                                                        "scientific": "Tyto alba",
+                                                        "info": "One of the most well-known owl species, the western barn owl gets its name from its propensity to roost in barns, which have plentiful rodents to hunt. Formerly one wide-ranging taxa, the barn owl was split into several species, with the western barn owl residing in western and central Europe, west Asia, Africa, and various Atlantic/Indian Ocean islands.",
+                                                        "type": "Bird",
+                                                        "order": "Strigiformes",
+                                                        "family": "Tytonidae",
+                                                        "genus": "Tyto",
+                                                        "images": [
+                                                            {"label": "Western barn owl (alba)", "url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Barn_Owl%2C_Lancashire.jpg"}
+                                                        ],
+                                                        "breeding": "Below Average",
+                                                        "region": "Europe, Asia, Africa",
+                                                        "holdings": {
+                                                            "North America": 0,
+                                                            "Asia": 0,
+                                                            "Europe": "0.4 (alba) - Giardino Zoologico e Botanico La Sapienza",
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                            "Giardino Zoologico e Botanico La Sapienza": "0.4 [alba]"
+
+                                                        }
+                                                        },
+                                                        "Great Crested Newt": {
+                                                            "common": "Great Crested Newt",
+                                                            "scientific": "Triturus cristatus",
+                                                            "info": "A large newt growing up to 6.3 inches in length, the great crested newt is found throughout temperate Europe, from Great Britain to Russia. They have a well-studied life cycle, going from eggs to tadpoles to juveniles known as efts, to adults who alternate between land and water. Males develop the well-known crests during the breeding season.",
+                                                            "type": "Amphibian",
+                                                            "order": "Urodela",
+                                                            "family": "Salamandridae",
+                                                            "genus": "Triturus",
+                                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Kammmolchmaennchen.jpg",
+                                                            "breeding": "Average",
+                                                            "region": "Europe",
+                                                            "holdings": {
+                                                                "North America": 0,
+                                                                "Asia": 0,
+                                                                "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                                "Giardino Zoologico e Botanico La Sapienza": "2.2"
+
+                                                            }
+                                                            },
+                                                            "Radiated Wolf Spider": {
+                                                                "common": "Radiated Wolf Spider",
+                                                                "scientific": "Hogna radiata",
+                                                                "info": "A wandering wolf spider find throughout Europe, Asia, and Africa. They typically prefer warm, dry habitat and as such is abundant in the Mediterranean region, being one of the most commonly sighted wolf spiders there.",
+                                                                "type": "Invertebrate",
+                                                                "order": "Araneae",
+                                                                "family": "Lycosidae",
+                                                                "genus": "Hogna",
+                                                                "images": [
+                                                                    {"label": "Italian radiated wolf spider (minor)", "url": "https://i.imgur.com/bxsH2SF.jpeg"}
+                                                                ],
+                                                                "breeding": "Average",
+                                                                "region": "Europe, Asia, Africa",
+                                                                "holdings": {
+                                                                    "North America": 0,
+                                                                    "Asia": 0,
+                                                                    "Europe": "1.1 (minor) - Giardino Zoologico e Botanico La Sapienza",
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1 [minor]"
+
+                                                        }
+                                                        },
+                                                        "Barred Owl": {
+                                                            "common": "Barred Owl",
+                                                            "scientific": "Strix varia",
+                                                            "info": "A large owl species ranging across much of North America, the barred owl has a distinctive call that sounds like the words 'who-cooks-for-you-all?'. Preferring mature woodlands but somewhat adaptable, the barred owl has been encroaching westward, endangering the related spotted owl.",
+                                                            "type": "Bird",
+                                                            "order": "Strigiformes",
+                                                            "family": "Strigidae",
+                                                            "genus": "Strix",
+                                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/359094470/large.jpg",
+                                                            "breeding": "Below Average",
+                                                            "region": "North America",
+                                                            "holdings": {
+                                                                "North America": "1.1 - Essex County Zoo",
+                                                                "Asia": 0,
+                                                                "Europe": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                                "Essex County Zoo": "1.1"
     }
     },
 }

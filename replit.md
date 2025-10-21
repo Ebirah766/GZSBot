@@ -4,6 +4,20 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-10-21**: Fixed Barred Owl species data errors:
+- Fixed truncated "info" field (line 5563): Completed sentence to "endangering the closely related spotted owl"
+- Fixed incorrect taxonomy copied from Radiated Wolf Spider:
+  - Changed "type" from "Invertebrate" to "Bird"
+  - Changed "order" from "Araneae" to "Strigiformes"
+  - Changed "family" from "Lycosidae" to "Strigidae"
+  - Changed "genus" from "Hogna" to "Strix"
+- Fixed image_url: Changed from newt image to proper Barred Owl image
+- Fixed region from "Europe, Asia, Africa" to "North America"
+- Fixed holdings: Removed incorrect European zoo entry, set to proper regional zeros
+- Fixed institutions: Removed incorrect Italian zoo entry
+- Fixed indentation errors at closing braces
+- Barred Owl now properly recognized as a North American owl species
+
 **2025-10-21**: Added missing zoos to directory in zoo_progress.json and fixed Wild Boar syntax errors:
 - Added "Species Watch" to zoo directory (zoo was in ownership data but missing from directory)
 - Added "Giardino Zoologico e Botanico La Sapienza" to zoo directory (zoo was in species data but missing from directory)
