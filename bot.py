@@ -5400,7 +5400,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "European Badger": {
                                             "common": "European Badger",
                                             "scientific": "Meles meles",
-                                            "info": "A larged mustelid native to Europe and western Asia, the European badger is well-known for eating just about anything and its tolerance of human-inhabited areas, though not to the extent of fellow small carnivores like red foxes. They are generally common and increasing in population due to a reduction in rabies.",
+                                            "info": "A large mustelid native to Europe and western Asia, the European badger is well-known for eating just about anything and its tolerance of human-inhabited areas, though not to the extent of fellow small carnivores like red foxes. They are generally common and increasing in population due to a reduction in rabies.",
                                             "type": "Mammal",
                                             "order": "Carnivora",
                                             "family": "Mustelidae",
@@ -5423,29 +5423,29 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                             }
                                             },
-                                            "European Badger": {
-                                                "common": "European Badger",
-                                                "scientific": "Meles meles",
-                                                "info": "A larged mustelid native to Europe and western Asia, the European badger is well-known for eating just about anything and its tolerance of human-inhabited areas, though not to the extent of fellow small carnivores like red foxes. They are generally common and increasing in population due to a reduction in rabies.",
-                                                "type": "Mammal",
-                                                "order": "Carnivora",
-                                                "family": "Mustelidae",
-                                                "genus": "Meles",
+                                            "Eurasian Eagle-Owl": {
+                                                "common": "Eurasian Eagle-Owl",
+                                                "scientific": "Bubo bubo",
+                                                "info": "A large, powerfully-built owl native to wide swathes of Europe and Asia, the Eurasian eagle-owl is a nocturnal apex predator, taking a wide variety of prey, with a majority being small mammals. They are a long-lived species, living up to 27 years in the wild and more in captivity.",
+                                                "type": "Bird",
+                                                "order": "Strigiformes",
+                                                "family": "Strigidae",
+                                                "genus": "Bubo",
                                                 "images": [
-                                                    {"label": "Common badger (meles)", "url": "https://www.biolib.cz/IMG/GAL/BIG/172043.jpg"}
-                                                    ],
-                                                    "breeding": "Below Average",
-                                                    "region": "Europe, Asia",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Asia": 0,
-                                                        "Europe": "0.1 (meles) - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "Giardino Zoologico e Botanico La Sapienza": "0.1 [meles]"
+                                                    {"label": "European eagle-owl (bubo)", "url": "https://www.biolib.cz/IMG/GAL/BIG/456883.jpg"}
+                                                ],
+                                                "breeding": "Below Average",
+                                                "region": "Europe, Asia",
+                                                "holdings": {
+                                                    "North America": 0,
+                                                    "Asia": 0,
+                                                    "Europe": "1.0 (bubo) - Giardino Zoologico e Botanico La Sapienza",
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.0 [bubo]"
     }
     },
 }
