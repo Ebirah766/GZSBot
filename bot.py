@@ -3030,12 +3030,13 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "holdings": {
                                     "North America": 0,
                                     "Asia": 0,
-                                    "Europe": "1.2 - Wasser Wunder Welt",
+                                    "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza, 1.2 - Wasser Wunder Welt",
                                     "Africa": 0,
                                     "South America": 0,
                                     "Oceania": 0,
                                     },
                                     "institutions": {
+                                    "Giardino Zoologico e Botanico La Sapienza": "1.1",
                                     "Wasser Wunder Welt": "1.2"
 
                                         }
@@ -5369,6 +5370,82 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         },
                                         "institutions": {
                                         "Giardino Zoologico e Botanico La Sapienza": "20"
+
+                                        }
+                                        },
+                                        "Eurasian Beaver": {
+                                        "common": "Eurasian Beaver",
+                                        "scientific": "Castor fiber",
+                                        "info": "One of the two extant species of beavers, the Eurasian beaver can be distinguished from the North American beaver by its slightly longer skull. They number 1.5 million individuals in situ, and their population is rapidly increasing.",
+                                        "type": "Mammal",
+                                        "order": "Rodentia",
+                                        "family": "Castoridae",
+                                        "genus": "Castor",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Castoridae_Castor_fiber_1.jpg",
+                                        "breeding": "Average",
+                                        "region": "Europe, Asia",
+                                        "holdings": {
+                                        "North America": 0, 
+                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0
+                                        },
+                                        "institutions": {
+                                        "Giardino Zoologico e Botanico La Sapienza": "1.1"
+
+                                        }
+                                        },
+                                        "European Badger": {
+                                            "common": "European Badger",
+                                            "scientific": "Meles meles",
+                                            "info": "A larged mustelid native to Europe and western Asia, the European badger is well-known for eating just about anything and its tolerance of human-inhabited areas, though not to the extent of fellow small carnivores like red foxes. They are generally common and increasing in population due to a reduction in rabies.",
+                                            "type": "Mammal",
+                                            "order": "Carnivora",
+                                            "family": "Mustelidae",
+                                            "genus": "Meles",
+                                            "images": [
+                                                {"label": "Common badger (meles)", "url": "https://www.biolib.cz/IMG/GAL/BIG/172043.jpg"}
+                                            ],
+                                            "breeding": "Below Average",
+                                            "region": "Europe, Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "0.1 (meles) - Giardino Zoologico e Botanico La Sapienza",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Giardino Zoologico e Botanico La Sapienza": "0.1 [meles]"
+
+                                            }
+                                            },
+                                            "European Badger": {
+                                                "common": "European Badger",
+                                                "scientific": "Meles meles",
+                                                "info": "A larged mustelid native to Europe and western Asia, the European badger is well-known for eating just about anything and its tolerance of human-inhabited areas, though not to the extent of fellow small carnivores like red foxes. They are generally common and increasing in population due to a reduction in rabies.",
+                                                "type": "Mammal",
+                                                "order": "Carnivora",
+                                                "family": "Mustelidae",
+                                                "genus": "Meles",
+                                                "images": [
+                                                    {"label": "Common badger (meles)", "url": "https://www.biolib.cz/IMG/GAL/BIG/172043.jpg"}
+                                                    ],
+                                                    "breeding": "Below Average",
+                                                    "region": "Europe, Asia",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Asia": 0,
+                                                        "Europe": "0.1 (meles) - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "Giardino Zoologico e Botanico La Sapienza": "0.1 [meles]"
     }
     },
 }
