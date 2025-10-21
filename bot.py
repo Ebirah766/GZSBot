@@ -5165,19 +5165,22 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "order": "Accipitriformes",
                                         "family": "Accipitridae",
                                         "genus": "Buteo",
-                                        "image_url": "https://bilderreich.de/images/slider/2013/03/treich_20130327_9959_3x2.jpg",
+                                            "images": [
+                                                {"label": "Central European buzzard (buteo)", "url": "https://www.biolib.cz/IMG/GAL/BIG/417947.jpg"}
+                                            ],
                                         "breeding": "Average",
                                         "region": "Europe, Asia, Africa",
                                         "holdings": {
                                         "North America": 0,  
-                                        "Europe": "2.0 - Shropshire Hills Zoo",
+                                        "Europe": "0.2 (buteo) - Giardino Zoologico e Botanico La Sapienza, 2.0 (buteo) - Shropshire Hills Zoo",
                                         "Asia": 0,
                                         "Africa": 0,
                                         "South America": 0,
                                         "Oceania": 0
                                         },
                                         "institutions": {
-                                        "Shropshire Hills Zoo": "2.0"
+                                        "Giardino Zoologico e Botanico La Sapienza": "0.2 [buteo]",
+                                        "Shropshire Hills Zoo": "2.0 [buteo]" 
 
                                         }
                                         },
@@ -7572,6 +7575,7 @@ async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
 async def cmd_holdings(ctx: commands.Context, *, institution: str):
     """
     Show all species and counts recorded for a specific zoo/aquarium.
+    Outputs the holdings list as a .txt file instead of inline messages.
     """
     try:
         exact, suggestion = resolve_institution_name(institution)
@@ -7581,13 +7585,24 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
         if not exact and not suggestion:
             await ctx.send(f"No institutions recorded yet or no match for **{institution}**.")
             return
-        
+
         blocks, total, sp_count = format_institution_holdings(exact)
+        # If format_institution_holdings returns an error string, send that directly
         if isinstance(blocks, str):
             await ctx.send(blocks)
-        else:
-            for b in blocks:
-                await ctx.send(b)
+            return
+
+        # Combine all blocks into one text file
+        combined_text = f"Holdings for {exact} ({sp_count} species, {total} total individuals)\n\n"
+        combined_text += "\n".join(blocks)
+
+        # Encode and send as .txt
+        import io
+        buf = io.BytesIO(combined_text.encode("utf-8"))
+        buf.seek(0)
+        file = discord.File(buf, filename=f"{exact.replace(' ', '_')}_holdings.txt")
+        await ctx.send(f"Here’s a text file with all holdings for **{exact}**:", file=file)
+
     except Exception:
         log.exception("Error in ;holdings")
         await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
