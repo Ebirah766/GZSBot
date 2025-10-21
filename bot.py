@@ -348,13 +348,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
-            "Europe": "0.3 - Giardino Zoologico e Botanico La Sapienza",
+            "Europe": "0.3 [scrofa] - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "1.1"
+            "Cube Zoological Park": "1.1",
+            "Giardino Zoologico e Botanico La Sapienza": "0.3 [scrofa]"
         },
     },
     "American Mink": {
