@@ -3371,7 +3371,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "Regal Jumper": {
                                             "common": "Regal Jumper",
                                             "scientific": "Phidippus regius",
-                                            "info": "The largest jumping spider in eastern North America, the regal jumper is often found in the private trade due to its hardiness and various attractive color forms. Typically preferring open areas, they sleep in silken nests at night, typically in enclosed areas where it is safe from predators.",
+                                            "info": "The largest jumping spider in eastern North America, the regal jumper is often found in the private trade due to its hardiness and various attractive color forms. Typically preferring open areas, they sleep in silken nests at night, often in enclosed areas where it is safe from predators.",
                                             "type": "Invertebrate",
                                             "order": "Araneae",
                                             "family": "Salticidae",
@@ -5578,6 +5578,55 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             },
                                                             "institutions": {
                                                                 "Essex County Zoo": "1.1"
+
+                                                            }
+                                                            },
+                                                            "European Mouflon": {
+                                                                "common": "European Mouflon",
+                                                                "scientific": "Ovis aries musimon",
+                                                                "info": "A feral subspecies of domestic sheep, the European mouflon is an interesting case in feral species, as it seems to have become feral before domestication fully took place. As such, the European mouflon is more adapted to mountainous environments, just like its ancestor the mouflon.",
+                                                                "type": "Mammal",
+                                                                "order": "Artiodactyla",
+                                                                "family": "Bovidae",
+                                                                "genus": "Ovis",
+                                                                "image_url": "https://static.inaturalist.org/photos/45828139/large.jpeg",
+                                                                "breeding": "Average",
+                                                                "holdings": {
+                                                                    "North America": 0,
+                                                                    "Asia": 0,
+                                                                    "Europe": "1.5 - Giardino Zoologico e Botanico La Sapienza",
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                    "Giardino Zoologico e Botanico La Sapienza": "1.5"
+
+                                                                }
+                                                                },
+                                                            "Wild Turkey": {
+                                                                "common": "Wild Turkey",
+                                                                "scientific": "Meleagris gallopavo ",
+                                                                "info": "A large gamebird native to North America, the wild turkey is culturally important to the people of this continent. Common in forests but somewhat adaptable to human-inhabited areas, male turkeys are known for their elaborate feather displays towards the females, which includes the distinctive snood on their snout.",
+                                                                "type": "Bird",
+                                                                "order": "Galliformes",
+                                                                "family": "Phasianidae",
+                                                                "genus": "Meleagris",
+                                                                "images": [
+                                                                    {"label": "Merriam's wild turkey (merriami)", "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/188573264/original.jpg"}
+                                                                ],
+                                                                "breeding": "Average",
+                                                                "region": "North America",
+                                                                "holdings": {
+                                                                    "North America": "1.1 (merriami) - High Uintahs Zoo",
+                                                                    "Asia": 0,
+                                                                    "Europe": 0,
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                            },
+                                                                "institutions": {
+                                                                    "High Uintahs Zoo": "1.1 [merriami]"
     }
     },
 }
@@ -8658,137 +8707,60 @@ def _iter_housed_by_user_and_zoo():
         for zoo_name, species_list in zoos.items():
             yield int(uid), zoo_name, list(species_list or [])
 
-async def _run_breeding_once() -> dict[int, list[str]]:
-    """
-    Core roll. Returns {guild_id: [lines...]} but we’ll broadcast to every configured guild.
-    Since your data isn’t tied to guilds, we build one global set of lines
-    then fan it out to all guilds with a configured channel.
-    """
-    lines: list[str] = []
+    async def _run_breeding_once() -> dict[int, list[str]]:
+        """
+        Core roll. Returns {guild_id: [lines...]} but we’ll broadcast to every configured guild.
+        Since your data isn’t tied to guilds, we build one global set of lines
+        then fan it out to all guilds with a configured channel.
+        """
+        lines: list[str] = []
 
-    for user_id, zoo_name, species_list in _iter_housed_by_user_and_zoo():
-        if not species_list:
-            continue
-        for sp in species_list:
-            entry, msg = get_entry_or_message(sp)
-            if msg or not entry:
+        for user_id, zoo_name, species_list in _iter_housed_by_user_and_zoo():
+            if not species_list:
                 continue
-            entry = get_species_with_overrides(entry)
+            for sp in species_list:
+                entry, msg = get_entry_or_message(sp)
+                if msg or not entry:
+                    continue
+                entry = get_species_with_overrides(entry)
 
-            # contracept check
-            if is_contracepted(user_id, zoo_name, entry.get("common") or sp):
-                continue
+                # contracept check
+                if is_contracepted(user_id, zoo_name, entry.get("common") or sp):
+                    continue
 
-            # >>> CHANGED: Prefer per-species override if present
-            # (Optional) pair check — you can enhance to require sexed pairs later
-            override_label = (entry.get("breeding") or "").strip()
-            if override_label:
-                label = override_label
-            else:
-                label = get_breeding_label(entry)  # existing logic (fallback)
-                if not label:
-                    label = DEFAULT_BREEDING_LABEL
+                # >>> NEW: require 1.1 or 3+ unsexed at THIS institution
+                if not _has_breeding_pair_or_group(zoo_name, entry):
+                    continue
 
-            prob = BREEDING_PROB.get(label, BREEDING_PROB[DEFAULT_BREEDING_LABEL])
-            if prob <= 0:
-                continue
+                # >>> CHANGED: Prefer per-species override if present
+                override_label = (entry.get("breeding") or "").strip()
+                if override_label:
+                    label = override_label
+                else:
+                    label = get_breeding_label(entry)  # existing logic (fallback)
+                    if not label:
+                        label = DEFAULT_BREEDING_LABEL
 
-            if random.random() <= prob:
-                mention = f"<@{user_id}>"
-                # include whether it was overridden for clarity
-                suffix = " (override)" if override_label else ""
-                lines.append(
-                    f"🍼 **Birth!** `{entry.get('common', sp)}` at **{zoo_name}** (owner {mention}) — difficulty **{label}**{suffix}"
-                )
+                prob = BREEDING_PROB.get(label, BREEDING_PROB[DEFAULT_BREEDING_LABEL])
+                if prob <= 0:
+                    continue
 
-    # Build per-guild map: broadcast same list to every guild that set a channel
-    by_guild: dict[int, list[str]] = {}
-    data = _load_zoo_data()
-    for gid_str, cid in data.get("breeding_channels", {}).items():
-        gid = int(gid_str)
-        by_guild[gid] = list(lines)
-    return by_guild
+                if random.random() <= prob:
+                    mention = f"<@{user_id}>"
+                    # include whether it was overridden for clarity
+                    suffix = " (override)" if override_label else ""
+                    lines.append(
+                        f"🍼 **Birth!** `{entry.get('common', sp)}` at **{zoo_name}** (owner {mention}) — difficulty **{label}**{suffix}"
+                    )
 
-@tasks.loop(time=_nyc_time(15, 0))  # 3:00 PM America/New_York daily; we'll gate to Fridays
-async def weekly_breeding_loop():
-    now = discord.utils.utcnow()
-    if ZoneInfo:
-        now_local = now.replace(tzinfo=ZoneInfo("UTC")).astimezone(ZoneInfo("America/New_York"))
-        if now_local.weekday() != 4:  # Friday
-            return
-    else:
-        if now.weekday() != 4:
-            return
+        # Build per-guild map: broadcast same list to every guild that set a channel
+        by_guild: dict[int, list[str]] = {}
+        data = _load_zoo_data()
+        for gid_str, cid in data.get("breeding_channels", {}).items():
+            gid = int(gid_str)
+            by_guild[gid] = list(lines)
+        return by_guild
 
-    by_guild = await _run_breeding_once()
-    for gid, lines in by_guild.items():
-        if not lines:
-            continue
-        ch_id = get_breeding_channel_for_guild(gid)
-        if not ch_id:
-            continue
-        guild = bot.get_guild(gid)
-        if not guild:
-            continue
-        ch = guild.get_channel(ch_id)
-        if not ch:
-            continue
-
-        msg = "\n".join(lines)
-        for chunk in [msg[i:i+1800] for i in range(0, len(msg), 1800)]:
-            await ch.send(f"**Friday Birth Announcements**\n{chunk}")
-        # log
-        for ln in lines:
-            log_birth({
-                "timestamp": str(discord.utils.utcnow()),
-                "guild_id": gid,
-                "channel_id": ch_id,
-                "text": ln,
-            })
-
-@weekly_breeding_loop.before_loop
-async def _before_weekly_breeding():
-    # Wait for the bot to be ready
-    await bot.wait_until_ready()
-
-# Start via on_connect so we don't have to modify your existing on_ready contents
-@bot.event
-async def on_connect():
-    if not weekly_breeding_loop.is_running():
-        weekly_breeding_loop.start()
-
-@bot.command(name="breedrun")
-@commands.has_permissions(manage_guild=True)
-async def breedrun_cmd(ctx):
-    """Manually trigger a breeding roll (posts to the configured channel for this server)."""
-    ch_id = get_breeding_channel_for_guild(ctx.guild.id)
-    if not ch_id:
-        await ctx.send("ℹ️ No birth channel set. Use `;breedchannel set` in the desired channel first.")
-        return
-
-    await ctx.send("Rolling breeding now…")
-    by_guild = await _run_breeding_once()
-    lines = by_guild.get(ctx.guild.id, [])
-    channel = ctx.guild.get_channel(ch_id)
-    if not channel:
-        await ctx.send("Configured channel not found.")
-        return
-    if not lines:
-        await channel.send("No births this roll.")
-        return
-
-    msg = "\n".join(lines)
-    for chunk in [msg[i:i+1800] for i in range(0, len(msg), 1800)]:
-        await channel.send(f"**Birth Announcements (Manual Run)**\n{chunk}")
-        # log
-        for ln in lines:
-            log_birth({
-                "timestamp": str(discord.utils.utcnow()),
-                "guild_id": ctx.guild.id,
-                "channel_id": channel.id,
-                "text": ln,
-            })
-    await ctx.send("Done.")
 
 @bot.command(name="breeddebug")
 async def breeddebug_cmd(ctx):
@@ -8819,6 +8791,7 @@ async def breeddebug_cmd(ctx):
 
         total_users = total_zoos = total_candidates = 0
         skipped_resolve = skipped_contra = skipped_prob0 = skipped_not_in_catalog = 0
+        skipped_pairgroup = 0  # <<< NEW: missing 1.1 or 3+ unsexed
         rolled = hits = 0
 
         for uid_str, urec in users_node.items():
@@ -8862,6 +8835,12 @@ async def breeddebug_cmd(ctx):
                         lines.append(f"  🚫 `{cname}` is contracepted → skipped.")
                         continue
 
+                    # <<< NEW: require 1.1 or 3+ unsexed at THIS institution
+                    if not _has_breeding_pair_or_group(zoo_name, entry):
+                        skipped_pairgroup += 1
+                        lines.append(f"  ⛔ `{cname}` lacks **1.1 or 3+ unsexed** at **{zoo_name}** → skipped.")
+                        continue
+
                     # >>> CHANGED: reflect species-level override in debug
                     override_label = (entry.get("breeding") or "").strip()
                     if override_label:
@@ -8889,7 +8868,8 @@ async def breeddebug_cmd(ctx):
             "\n— Summary —\n"
             f"Users:{total_users} Zoos:{total_zoos} Candidates:{total_candidates}\n"
             f"Rolled:{rolled} Hits:{hits} | Skipped: resolve={skipped_resolve}, "
-            f"not_in_catalog={skipped_not_in_catalog}, contracept={skipped_contra}, p0={skipped_prob0}"
+            f"not_in_catalog={skipped_not_in_catalog}, contracept={skipped_contra}, "
+            f"pair/group={skipped_pairgroup}, p0={skipped_prob0}"
         )
         text = "\n".join(lines) + summary
 
@@ -8902,6 +8882,126 @@ async def breeddebug_cmd(ctx):
         await ctx.send(f"⚠️ breeddebug crashed: `{type(e).__name__}` — {e}")
 
 
+# ---------------- Breeding pair/group requirement ----------------
+_INAME_CLEANER = re.compile(r"\s+")
+
+def _norm_institution_name(name: str) -> str:
+    return _INAME_CLEANER.sub(" ", (name or "").strip().lower())
+
+def _parse_inst_count_piece(piece: str) -> tuple[Optional[str], Optional[str]]:
+    """
+    Best-effort parse for lines like:
+      '2.1 - Essex County Zoo'   OR   'Essex County Zoo - 2.1'
+      '0.0.3 - New York Aquarium' OR 'New York Aquarium - 0.0.3'
+      '3 unsexed - Cube Zoological Park'
+    Returns (institution, count_str) or (None, None) if not parseable.
+    """
+    s = (piece or "").strip()
+    if not s:
+        return None, None
+
+    # Try COUNT - INST
+    m = re.match(r"^\s*(?P<count>[A-Za-z0-9 .]+?)\s*[-–—]\s*(?P<inst>.+?)\s*$", s)
+    if m:
+        return m.group("inst").strip(), m.group("count").strip()
+
+    # Try INST - COUNT
+    m = re.match(r"^\s*(?P<inst>.+?)\s*[-–—]\s*(?P<count>[A-Za-z0-9 .]+?)\s*$", s)
+    if m:
+        return m.group("inst").strip(), m.group("count").strip()
+
+    # If there's no dash, we can't confidently split a freeform string
+    return None, None
+
+def _iter_inst_counts_for_species(entry: dict, target_inst: str) -> list[str]:
+    """
+    Search entry['holdings'] across all regions and return every raw count string
+    that matches the given institution name.
+    Robust to dict/list/str shapes.
+    """
+    out: list[str] = []
+    holdings = (entry or {}).get("holdings") or {}
+    if not isinstance(holdings, dict):
+        return out
+
+    target_norm = _norm_institution_name(target_inst)
+
+    for _region, val in holdings.items():
+        if not val:
+            continue
+
+        # Direct dict: {"Essex County Zoo": "2.1", ...}
+        if isinstance(val, dict):
+            for inst, count in val.items():
+                if _norm_institution_name(str(inst)) == target_norm:
+                    if count not in (None, "", 0, "0"):
+                        out.append(str(count).strip())
+            continue
+
+        # List of pieces: ["2.1 - Zoo", "0.0.3 - Other"]
+        if isinstance(val, list):
+            for piece in val:
+                inst, count = _parse_inst_count_piece(str(piece))
+                if inst and count and _norm_institution_name(inst) == target_norm and count not in (None, "", "0", 0):
+                    out.append(count.strip())
+            continue
+
+        # Comma/semicolon separated string
+        if isinstance(val, str):
+            parts = [p.strip() for p in re.split(r"[;,]\s*", val) if p.strip()]
+            for piece in parts:
+                inst, count = _parse_inst_count_piece(piece)
+                if inst and count and _norm_institution_name(inst) == target_norm and count not in (None, "", "0", 0):
+                    out.append(count.strip())
+            continue
+
+        # Fallback: ignore other shapes
+
+    return out
+
+def _breeding_ok_from_count(count_str: str) -> bool:
+    """
+    True iff the count string indicates:
+      • at least 1.1 (male >=1 AND female >=1), OR
+      • a breeding group of 3+ unsexed (e.g., '0.0.3', '3 unsexed', '3').
+    Accepts 'm.f', 'm.f.u' formats, or plain integers.
+    """
+    if not count_str:
+        return False
+
+    s = count_str.strip().lower()
+
+    # e.g., "3 unsexed"
+    m = re.search(r"\b(\d+)\s*unsexed\b", s)
+    if m:
+        return int(m.group(1)) >= 3
+
+    # Dot formats: m.f or m.f.u
+    if re.fullmatch(r"\d+(?:\.\d+){1,2}", s):
+        parts = [int(p) for p in s.split(".")]
+        # m.f
+        if len(parts) == 2:
+            m_, f_ = parts
+            return (m_ >= 1 and f_ >= 1)
+        # m.f.u
+        if len(parts) == 3:
+            m_, f_, u_ = parts
+            return (m_ >= 1 and f_ >= 1) or (u_ >= 3)
+
+    # Plain integer -> treat as unsexed total
+    if s.isdigit():
+        return int(s) >= 3
+
+    return False
+
+def _has_breeding_pair_or_group(zoo_name: str, entry: dict) -> bool:
+    """
+    Check if THIS institution (zoo_name) has a qualifying sex ratio/group for the species entry.
+    """
+    for raw in _iter_inst_counts_for_species(entry, zoo_name):
+        if _breeding_ok_from_count(raw):
+            return True
+    return False
 
 
 

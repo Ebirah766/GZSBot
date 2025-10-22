@@ -23,7 +23,12 @@
           "Brown Trout",
           "Brook Trout",
           "Giant Pacific Octopus",
-          "Flower Tube Anemone"
+          "Flower Tube Anemone",
+          "Seminole Ramshorn Snail",
+          "Red Swamp Crayfish",
+          "Florida Gar",
+          "Largemouth Bass",
+          "Knobbed Whelk"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -35,7 +40,12 @@
           "Canada Goose",
           "Corn Snake",
           "Regal Jumper",
-          "White-Lipped Pit Viper"
+          "White-Lipped Pit Viper",
+          "American Alligator",
+          "Mallard",
+          "Arizona Blonde Tarantula",
+          "American Bullfrog",
+          "Common Snapping Turtle"
         ]
       }
     },
@@ -138,7 +148,11 @@
       "active_zoo": null,
       "zoos": {
         "High Uintahs Zoo": [
-          "Bighorn Sheep"
+          "Bighorn Sheep",
+          "Mountain Lion",
+          "Turkey Vulture",
+          "Bobcat",
+          "Domestic Donkey"
         ]
       }
     }
@@ -341,10 +355,28 @@
         "Pore Coral": true,
         "Milli Staghorn Coral": true,
         "Bubble-Tip Anemone": true,
-        "Rainbow Trout": true
+        "Rainbow Trout": true,
+        "Seminole Ramshorn Snail": true,
+        "Red Swamp Crayfish": true,
+        "Largemouth Bass": true,
+        "Giant Pacific Octopus": true
       },
       "Essex County Zoo": {
-        "Canada Goose": true
+        "Canada Goose": true,
+        "Corn Snake": true,
+        "White-Lipped Pit Viper": true,
+        "American Alligator": true,
+        "Amazonian Giant Centipede": true,
+        "Vietnamese Giant Centipede": true,
+        "Mediterranean Banded Centipede": true,
+        "Regal Jumper": true,
+        "Mallard": true,
+        "Arizona Blonde Tarantula": true,
+        "American Bullfrog": true,
+        "Common Snapping Turtle": true,
+        "Common Pillbug": true,
+        "Turkey Vulture": true,
+        "Eastern Gray Squirrel": true
       }
     }
   },
