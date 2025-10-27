@@ -28,7 +28,13 @@
           "Red Swamp Crayfish",
           "Florida Gar",
           "Largemouth Bass",
-          "Knobbed Whelk"
+          "Knobbed Whelk",
+          "Pumpkinseed",
+          "Giant Otter",
+          "Azure Damselfish",
+          "Yellowtail Damselfish",
+          "Magenta Dottyback",
+          "Blackback Land Crab"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -45,7 +51,11 @@
           "Mallard",
           "Arizona Blonde Tarantula",
           "American Bullfrog",
-          "Common Snapping Turtle"
+          "Common Snapping Turtle",
+          "Raccoon",
+          "Barred Owl",
+          "Crested Gecko",
+          "Central Bearded Dragon"
         ]
       }
     },
@@ -140,7 +150,9 @@
           "Eastern Honeybee",
           "Common Tiger",
           "Plain Tiger",
-          "Common Mormon"
+          "Common Mormon",
+          "Axolotl",
+          "Reticulated Python"
         ]
       }
     },
@@ -152,7 +164,39 @@
           "Mountain Lion",
           "Turkey Vulture",
           "Bobcat",
-          "Domestic Donkey"
+          "Domestic Donkey",
+          "Sockeye Salmon",
+          "Wild Turkey",
+          "Mule Deer",
+          "Raccoon",
+          "Elk"
+        ]
+      }
+    },
+    "412392831773179915": {
+      "active_zoo": null,
+      "zoos": {
+        "Glacier Zoo": [
+          "Demoiselle Crane",
+          "Common Fallow Deer"
+        ]
+      }
+    },
+    "530084255381061647": {
+      "active_zoo": null,
+      "zoos": {
+        "Giardino Zoologico e Botanico La Sapienza": [
+          "Common Buzzard",
+          "Eurasian Beaver",
+          "Eurasian Eagle-Owl",
+          "Eurasian Otter",
+          "European Mouflon",
+          "Long-Eared Owl",
+          "Western Barn Owl",
+          "Wild Boar",
+          "Racovitza's Rudd",
+          "Great Crested Newt",
+          "Raccoon"
         ]
       }
     }
@@ -359,7 +403,9 @@
         "Seminole Ramshorn Snail": true,
         "Red Swamp Crayfish": true,
         "Largemouth Bass": true,
-        "Giant Pacific Octopus": true
+        "Giant Pacific Octopus": true,
+        "Pumpkinseed": true,
+        "Giant Otter": true
       },
       "Essex County Zoo": {
         "Canada Goose": true,
@@ -376,7 +422,8 @@
         "Common Snapping Turtle": true,
         "Common Pillbug": true,
         "Turkey Vulture": true,
-        "Eastern Gray Squirrel": true
+        "Eastern Gray Squirrel": true,
+        "Raccoon": true
       }
     }
   },

@@ -541,12 +541,12 @@ species_data: Dict[str, Dict[str, Any]] = {
         "images": [
             {"label": "Fjord", "url": "https://madbarn.com/wp-content/uploads/2023/07/Fjord-Horse-Breed-Guide-1.jpg"},
             {"label": "American Mustang", "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Mustanggelding.jpg"},
-            {"label": "Variant 3 caption", "url": "https://example.com/variant3.jpg"},
+            {"label": "Chincoteague Pony", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Wild_Pony_at_Assateague.jpg/1280px-Wild_Pony_at_Assateague.jpg"},
         ],
         "image_url": "https://example.com/default.jpg",
         "breeding": "Average",
         "holdings": {
-            "North America": ["1.1 (American Mustang) - Glacier Zoo"],
+            "North America": ["2.4 (Chincoteague Pony) - Cube Zoological Park", "1.1 (American Mustang) - Glacier Zoo"],
             "Europe": ["1.3 (Fjord) - Shropshire Hills Zoo"],
             "Asia": 0,
             "Africa": 0,
@@ -555,6 +555,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Shropshire Hills Zoo": "1.3 [Fjord]",
+            "Cube Zoological Park": "2.4 [Chincoteague Pony]",
             "Glacier Zoo": "1.1 [American Mustang]"
         },
     },
@@ -1200,7 +1201,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Easy",
         "region": "North America",
         "holdings": {
-            "North America": "1.1 - Essex County Zoo",
+            "North America": "1.1 - Essex County Zoo, 0.1 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": "3.0 - Giardino Zoologico e Botanico La Sapienza, 2.2 - Mint Park Zoo",
             "Africa": 0,
@@ -1209,6 +1210,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Essex County Zoo": "1.1",
+            "High Uintahs Zoo": "0.1",
             "Giardino Zoologico e Botanico La Sapienza": "3.0",
             "Mint Park Zoo": "2.2"
         }
@@ -5627,6 +5629,915 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             },
                                                                 "institutions": {
                                                                     "High Uintahs Zoo": "1.1 [merriami]"
+
+                                                                }
+                                                                },
+                                                                "Mule Deer": {
+                                                                "common": "Mule Deer",
+                                                                "scientific": "Odocoileus hemionus ",
+                                                                "info": "One of the two most common deer species in North America, the mule deer is restricted to habitat west of the Rocky Mountains. Adaptable and common, several subspecies exist spread across its range. The name 'mule deer' comes from the ears, which look similar to that of a mule.",
+                                                                "type": "Mammal",
+                                                                "order": "Artiodactyla",
+                                                                "family": "Cervidae",
+                                                                "genus": "Odocoileus",
+                                                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mule_buck_elk_creek_m_myatt_%285489214303%29.jpg/1280px-Mule_buck_elk_creek_m_myatt_%285489214303%29.jpg",
+                                                                "breeding": "Average",
+                                                                "region": "North America",
+                                                                "holdings": {
+                                                                    "North America": "1.2 - High Uintahs Zoo",
+                                                                    "Asia": 0,
+                                                                    "Europe": 0,
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                    "High Uintahs Zoo": "1.2"
+
+                                                            }
+                                                            },
+                                                            "Elk": {
+                                                            "common": "Elk",
+                                                            "scientific": "Cervus canadensis ",
+                                                            "info": "A large deer native to Asia and North America, the elk has several names that it is referred to by, including wapiti (which has become more common in recent years). These deer are well known for their bugling cries, which can be heard from great distances.",
+                                                            "type": "Mammal",
+                                                            "order": "Artiodactyla",
+                                                            "family": "Cervidae",
+                                                            "genus": "Cervus",
+                                                            "images": [
+                                                                    {"label": "Rocky Mountain elk (nelsoni)", "url": "https://www.biolib.cz/IMG/GAL/BIG/542297.jpg"}
+                                                                ],
+                                                            "breeding": "Average",
+                                                            "region": "North America, Asia",
+                                                            "holdings": {
+                                                                "North America": "2.0 (nelsoni) - High Uintahs Zoo",
+                                                                "Asia": 0,
+                                                                "Europe": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                                "High Uintahs Zoo": "2.0 [nelsoni]"
+
+                                                            }
+                                                            },
+                                                            "Sockeye Salmon": {
+                                                            "common": "Sockeye Salmon",
+                                                            "scientific": "Oncorhynchus nerka ",
+                                                            "info": "Probably the most well-known of the Pacific salmon, the sockeye salmon is known for its dramatic migrations from the river to the sea and back again for spawning. They are an important food source for many animals and are a keystone species because of this.",
+                                                            "type": "Fish",
+                                                            "order": "Salmoniformes",
+                                                            "family": "Salmonidae",
+                                                            "genus": "Oncorhynchus",
+                                                            "images": [
+                                                                    {"label": "Kokanee salmon", "url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS001/FIS001-00084.jpg"}
+                                                                ],
+                                                            "breeding": "Impossible",
+                                                            "region": "North America, Asia",
+                                                            "holdings": {
+                                                                "North America": "10 (Kokanee) - High Uintahs Zoo",
+                                                                "Asia": 0,
+                                                                "Europe": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                                "High Uintahs Zoo": "10 [Kokanee]"
+
+                                                            }
+                                                            },
+                                                            "Magenta Dottyback": {
+                                                            "common": "Magenta Dottyback",
+                                                            "scientific": "Pictichromis porphyrea ",
+                                                            "info": "A dottyback species found in the Indo-Pacific region from the Philippines to the central Pacific, the magenta dottyback is commonly traded in the aquarium trade. It is a boisterous and aggressive species that defends its territory fiercely.",
+                                                            "type": "Fish",
+                                                            "order": "Blenniiformes",
+                                                            "family": "Pseudochromidae",
+                                                            "genus": "Pictichromis",
+                                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Magenta_dottyback_%28Pictichromis_porphyrea%29_%2846422564495%29.jpg",
+                                                            "breeding": "Impossible",
+                                                            "region": "Asia, Oceania",
+                                                            "holdings": {
+                                                                "North America": "6 - New York Aquarium",
+                                                                "Asia": 0,
+                                                                "Europe": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                                "New York Aquarium": "6"
+
+                                                            }
+                                                            },
+                                                            "Azure Damselfish": {
+                                                            "common": "Azure Damselfish",
+                                                            "scientific": "Chrysiptera hemicyanea ",
+                                                            "info": "Unlike many damselfish, the azure damselfish is rather peaceful and will often live in large, loosely associated schools to protect themselves from predators. They are exceedingly popular in the aquarium trade for their hardiness and peaceful nature.",
+                                                            "type": "Fish",
+                                                            "order": "Blenniiformes",
+                                                            "family": "Pomacentridae",
+                                                            "genus": "Chrysiptera",
+                                                            "image_url": "https://ultramarinemagazine.co.uk/wp-content/uploads/2023/02/Chrysiptera-hemicyanea.jpg",
+                                                            "breeding": "Impossible",
+                                                            "region": "Asia, Oceania",
+                                                            "holdings": {
+                                                                "North America": "30 - New York Aquarium",
+                                                                "Asia": 0,
+                                                                "Europe": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                                "New York Aquarium": "30"
+
+                                                            }
+                                                            },
+                                                            "Yellowtail Damselfish": {
+                                                            "common": "Yellowtail Damselfish",
+                                                            "scientific": "Chrysiptera parasema ",
+                                                            "info": "A small damselfish found in the Indo-Pacific, the yellowtail damselfish is popular in the aquarium trade due to its hardiness and peaceful nature compared to most damselfish. They are able to change color depending on their mood, with a darker color indicating stress.",
+                                                            "type": "Fish",
+                                                            "order": "Blenniiformes",
+                                                            "family": "Pomacentridae",
+                                                            "genus": "Chrysiptera",
+                                                            "image_url": "https://www.biolib.cz/IMG/GAL/BIG/316449.jpg",
+                                                            "breeding": "Impossible",
+                                                            "region": "Asia, Oceania",
+                                                            "holdings": {
+                                                                "North America": "30 - New York Aquarium",
+                                                                "Asia": 0,
+                                                                "Europe": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                                "New York Aquarium": "30"
+
+                                                        }
+                                                        },
+                                                        "Common Leopard Gecko": {
+                                                        "common": "Common Leopard Gecko",
+                                                        "scientific": "Eublepharis macularius ",
+                                                        "info": "One of the most popular pet lizards, the common leopard gecko is native originally to west and south Asia's arid environments. It is an opportunistic carnivore, feeding mainly on insects. Their hardiness and docile nature makes them one of the most popular reptiles kept in captivity.",
+                                                        "type": "Reptile",
+                                                        "order": "Squamata",
+                                                        "family": "Eublepharidae",
+                                                        "genus": "Eublepharis",
+                                                        "image_url": "https://www.biolib.cz/IMG/GAL/18637.jpg",
+                                                        "breeding": "Easy",
+                                                        "region": "Asia",
+                                                        "holdings": {
+                                                            "North America": "1.0 - Essex County Zoo",
+                                                            "Asia": 0,
+                                                            "Europe": 0,
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                            "Essex County Zoo": "1.0"
+
+                                                    }
+                                                    },
+                                                    "Central Bearded Dragon": {
+                                                    "common": "Central Bearded Dragon",
+                                                    "scientific": "Pogona vitticeps ",
+                                                    "info": "A wide-ranging agamid lizard endemic to Australia, the central bearded dragon can be found in the central and eastern parts of Australia, typically in arid or semi-arid environments. They are popular pet lizards due to their docile nature and hardiness.",
+                                                    "type": "Reptile",
+                                                    "order": "Squamata",
+                                                    "family": "Agamidae",
+                                                    "genus": "Pogona",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Bartagame_%28fcm%29.jpg/1280px-Bartagame_%28fcm%29.jpg",
+                                                    "breeding": "Easy",
+                                                    "region": "Oceania",
+                                                    "holdings": {
+                                                        "North America": "1.1 - Essex County Zoo",
+                                                        "Asia": 0,
+                                                        "Europe": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "Essex County Zoo": "1.1"
+
+                                                    }
+                                                    },
+                                                    "Crested Gecko": {
+                                                    "common": "Crested Gecko",
+                                                    "scientific": "Correlophus ciliatus",
+                                                    "info": "This gecko species is endemic to New Caledonia and was thought to be extinct until its rediscovery in 1994. It has since become a popular pet lizard due to its small size and ease of care, and now has a huge captive population in zoos as a conservation measure.",
+                                                    "type": "Reptile",
+                                                    "order": "Squamata",
+                                                    "family": "Diplodactylidae",
+                                                    "genus": "Correlophus",
+                                                    "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/06/Correlophus-cristatus.jpg",
+                                                    "breeding": "Easy",
+                                                    "region": "Oceania",
+                                                    "holdings": {
+                                                        "North America": "1.0 - Essex County Zoo",
+                                                        "Asia": 0,
+                                                        "Europe": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "Essex County Zoo": "1.0"
+
+                                                    }
+                                                    },
+                                                    "Big Brown Bat": {
+                                                    "common": "Big Brown Bat",
+                                                    "scientific": "Eptesicus fuscus",
+                                                    "info": "A relatively large species of bat native to the Americas, the big brown bat is a voracious insectivore, so much so that they are considered beneficial for farmers and agriculturalists. Bat boxes, which are artifical roosting sites, have helped the species adapt to human-inhabited areas.",
+                                                    "type": "Mammal",
+                                                    "order": "Chiroptera",
+                                                    "family": "Vespertilionidae",
+                                                    "genus": "Eptesicus",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/11370649/large.jpg",
+                                                    "breeding": "Difficult",
+                                                    "region": "North America, South America",
+                                                    "holdings": {
+                                                        "North America": "2.0 - High Uintahs Zoo",
+                                                        "Asia": 0,
+                                                        "Europe": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "High Uintahs Zoo": "2.0"
+
+                                                    }
+                                                    },
+                                                    "American Crow": {
+                                                    "common": "American Crow",
+                                                    "scientific": "Corvus brachyrhynchos",
+                                                    "info": "A common corvid found throughout North America, the American crow is an adaptable omnivore, feeding on a variety of plant and animal matter. They are considered one of the most intelligent bird species, able to use tools and plan feeding strategies.",
+                                                    "type": "Bird",
+                                                    "order": "Passeriformes",
+                                                    "family": "Corvidae",
+                                                    "genus": "Corvus",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/97752362/large.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "0.1 - High Uintahs Zoo",
+                                                        "Asia": 0,
+                                                        "Europe": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "High Uintahs Zoo": "0.1"  
+
+                                                    }
+                                                    },
+                                                    "Western Black Widow": {
+                                                    "common": "Western Black Widow",
+                                                    "scientific": "Latrodectus hesperus",
+                                                    "info": "This venomous spider species can be found throughout the western regions of North America. Infamous for its potent venom, the western black widow is actually a shy species with little propensity for biting humans; only a handful of people have ever died from western black widow bites.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Araneae",
+                                                    "family": "Theridiidae",
+                                                    "genus": "Latrodectus",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Latrodectus_hesperus_Berkeley%2C_California.jpg/1280px-Latrodectus_hesperus_Berkeley%2C_California.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "0.1 - High Uintahs Zoo",
+                                                        "Asia": 0,
+                                                        "Europe": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                        "High Uintahs Zoo": "0.1"  
+
+                                                    },
+                                                    },
+                                                    "Zebra Isopod": {
+                                                        "common": "Zebra Isopod",
+                                                        "scientific": "Armadillidium maculatum",
+                                                        "info": "Endemic to a small area of southeastern France, the zebra isopod has become an immensely popular species in the invertebrate hobby. It is a hardy species that like all isopods requires some ambient moisture to thrive.",
+                                                        "type": "Invertebrate",
+                                                        "order": "Isopoda",
+                                                        "family": "Armadillidiidae",
+                                                        "genus": "Armadillidium",
+                                                        "images": [
+                                                            {"label": "Wild type", "url": "https://frogdaddy.net/cdn/shop/products/IMG_4287.jpg?v=1609730804&width=1810"},
+                                                            {"label": "Champagne morph", "url": "https://www.petpedesandpods.com/wp-content/uploads/2022/03/Photo_1667080910280-scaled.jpg"},
+                                                            {"label": "Yellow zebra morph", "url": "https://richardsinverts-store.com/cdn/shop/products/zebra-isopod-yellow-armadillidium-maculatum-yellow-448608.jpg?v=1674907343&width=1445"},
+                                                        ],
+                                                        "image_url": "https://example.com/default.jpg",
+                                                        "breeding": "Very Easy",
+                                                        "region": "Europe",
+                                                        "holdings": {
+                                                            "North America": 0,
+                                                            "Europe": 0,
+                                                            "Asia": ["20 (Wild type), 20 (Champagne) 20 (Yellow zebra) - Kings of the Jungle"],
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                            "Kings of the Jungle": "20 [Wild type], 20 [Champagne] 20 [Yellow zebra]",
+
+                                                    },
+                                                    },
+                                                    "Domestic Cow": {
+                                                        "common": "Domestic Cow",
+                                                        "scientific": "Bos taurus",
+                                                        "info": "One of the most common domesticated animal, domestic cows are the descendants of the now extinct aurochs of Eurasia. Domestic cattle are often used for meat and milk, but sometimes are kept as pets. There are over 1,000 recognized breeds of cow.",
+                                                        "type": "Mammal",
+                                                        "order": "Artiodactyla",
+                                                        "family": "Bovidae",
+                                                        "genus": "Bos",
+                                                        "images": [
+                                                            {"label": "Florida Cracker Cow", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Florida_Cracker_cow_and_calf.JPG/1280px-Florida_Cracker_cow_and_calf.JPG"},
+                                                            {"label": "Ankole-Watusi", "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/African_AnKole_-_Watusi.jpg"},
+                                                        ],
+                                                        "image_url": "https://example.com/default.jpg",
+                                                        "breeding": "Easy",
+                                                        "holdings": {
+                                                            "North America": ["1.1 (Florida Cracker Cow), 1.1 (Ankole-Watusi) - Cube Zoological Park"],
+                                                            "Europe": 0,
+                                                            "Asia": 0,
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                        "Cube Zoological Park": "1.1 [Florida Cracker Cow], 1.1 [Ankole-Watusi]",
+
+                                                    },
+                                                    },
+                                                    "African Arowana": {
+                                                        "common": "African Arowana",
+                                                        "scientific": "Heterotis niloticus",
+                                                        "info": "Despite being called an arowana, the African arowana is actually more closely related to the arapaimas of South America, which is conspicuous in its morphology. Like many bonytongue fish they are able to breathe air with primitive lung-like organs, giving them an advantage in oxygen-poor water.",
+                                                        "type": "Fish",
+                                                        "order": "Osteoglossiformes",
+                                                        "family": "Arapaimidae",
+                                                        "genus": "Heterotis",
+                                                        "image_url": "https://www.biolib.cz/IMG/GAL/362453.jpg",
+                                                        "breeding": "Impossible",
+                                                        "region": "Africa",
+                                                        "holdings": {
+                                                            "North America": 0,
+                                                            "Europe": "1 - Wasser Wunder Welt",
+                                                            "Asia": 0,
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                        "Wasser Wunder Welt": "1",
+
+                                                    },
+                                                    },
+                                                    "Plains Zebra": {
+                                                        "common": "Plains Zebra",
+                                                        "scientific": "Equus quagga",
+                                                        "info": "Of all animals, the plains zebra is amongst the most famous due to its distinctive coloration and resemblance to domestic horses. Native to parts of east and southern Africa, the plains zebra is divided into six subspecies, including the extinct quagga.",
+                                                        "type": "Mammal",
+                                                        "order": "Perissodactyla",
+                                                        "family": "Equidae",
+                                                        "genus": "Equus",
+                                                        "images": [
+                                                            {"label": "Burchell's zebra (burchellii)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Equus_quagga_burchellii_-_Etosha%2C_2014.jpg/1280px-Equus_quagga_burchellii_-_Etosha%2C_2014.jpg"},
+                                                        ],
+                                                        "image_url": "https://example.com/default.jpg",
+                                                        "breeding": "Average",
+                                                        "region": "Africa",
+                                                        "holdings": {
+                                                            "North America": 0,
+                                                            "Europe": ["1.2 (burchelli) - Shropshire Hills Zoo"],
+                                                            "Asia": 0,
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                        "Shropshire Hills Zoo": "1.2 [burchelli]",
+
+                                                    },
+                                                    },
+                                                    "Striped Burrfish": {
+                                                        "common": "Striped Burrfish",
+                                                        "scientific": "Chilomycterus schoepfii",
+                                                        "info": "Found in the tropical and temperate waters of the western Atlantic Ocean, the striped burrfish is adaptable and can be found in salt and brackish water. They are found in shallow water no deeper than 11m and like all porcupinefish feed primarily on crustaceans and other invertebrates.",
+                                                        "type": "Fish",
+                                                        "order": "Tetraodontiformes",
+                                                        "family": "Diodontidae",
+                                                        "genus": "Chilomycterus",
+                                                        "image_url": "https://aqua.org/assets/animals/_open_graph_1x/70174/2020-04-01_animal_striped-burrfish_center-center_001.webp",
+                                                        "breeding": "Impossible",
+                                                        "region": "North America, South America",
+                                                        "holdings": {
+                                                            "North America": "1 - New York Aquarium",
+                                                            "Europe": 0,
+                                                            "Asia": 0,
+                                                            "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                        "New York Aquarium": "1",
+
+                                                },
+                                                },
+                                                "Mummichog": {
+                                                    "common": "Mummichog",
+                                                    "scientific": "Fundulus heteroclitus",
+                                                    "info": "One of the largest killifish species, the mummichog inhabits brackish water ecosystems in eastern North America, but has also been introduced to Iberia as well. Unusually for a killifish, they are able to breathe air.",
+                                                    "type": "Fish",
+                                                    "order": "Cyprinodontiformes",
+                                                    "family": "Fundulidae",
+                                                    "genus": "Fundulus",
+                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/373163.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "10 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "10",
+
+                                                },
+                                                },
+                                                "Banded Killifish": {
+                                                    "common": "Banded Killifish",
+                                                    "scientific": "Fundulus diaphanus",
+                                                    "info": "The banded killifish is the only freshwater killifish that inhabits eastern North America, it can also occasionally be found in brackish water as well. They are sometimes found in the killifish hobby due to their hardiness and attractive coloration.",
+                                                    "type": "Fish",
+                                                    "order": "Cyprinodontiformes",
+                                                    "family": "Fundulidae",
+                                                    "genus": "Fundulus",
+                                                    "image_url": "https://lh4.googleusercontent.com/proxy/lyZoiFAss2Lf93ynhK2QAT4pXamktBe7o5d5cGyupXF9MeUxhWCGo1QFAvL7iKl9T9C0oRFivPE88qSraYO1QWwDxuF-XHftVf0C",
+                                                    "breeding": "Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "10 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "10",
+
+                                                    },
+                                                    },
+                                                    "Eastern Mudsnail": {
+                                                        "common": "Eastern Mudsnail",
+                                                        "scientific": "Ilyanassa obsoleta",
+                                                        "info": "A small snail that can be found in brackish and salt water, the eastern mudsnail is abundant in its range, feeding on biofilm resting on the sand. It is natively found in the temperate eastern part of North America.",
+                                                        "type": "Invertebrate",
+                                                        "order": "Neogastropoda",
+                                                        "family": "Nassariidae",
+                                                        "genus": "Ilyanassa",
+                                                        "image_url": "https://www.exoticsguide.org/sites/default/files/species_images/i_obsoleta_lg_b.jpg",
+                                                        "breeding": "Impossible",
+                                                        "region": "North America",
+                                                        "holdings": {
+                                                            "North America": "20 - New York Aquarium",
+                                                            "Europe": 0,
+                                                            "Asia": 0,
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                        "New York Aquarium": "20",
+
+                                                        },
+                                                        },
+                                                        "Atlantic Blue Crab": {
+                                                            "common": "Atlantic Blue Crab",
+                                                            "scientific": "Callinectes sapidus",
+                                                            "info": "A distinctive crab found in brackish and intertidal areas along the eastern coasts of North and South America, the Atlantic blue crab is a keystone species in its native range, serving as a predator of smaller invertebrates and an invaluable food source for larger fish.",
+                                                            "type": "Invertebrate",
+                                                            "order": "Decapoda",
+                                                            "family": "Portunidae",
+                                                            "genus": "Callinectes",
+                                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/134165478/original.jpg",
+                                                            "breeding": "Impossible",
+                                                            "region": "North America, South America",
+                                                            "holdings": {
+                                                                "North America": "2 - New York Aquarium",
+                                                                "Europe": 0,
+                                                                "Asia": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                            "New York Aquarium": "2",
+
+                                                            },
+                                                            },
+                                                            "Portly Spider Crab": {
+                                                                "common": "Portly Spider Crab",
+                                                                "scientific": "Libinia emarginata",
+                                                                "info": "One of the most abundant crabs in the northwestern Atlantic, the portly spider crab can be found from brackish estuaries to moderately deep depths of 49m. Their main diet consists of large starfish.",
+                                                                "type": "Invertebrate",
+                                                                "order": "Decapoda",
+                                                                "family": "Epialtidae",
+                                                                "genus": "Libinia",
+                                                                "image_url": "https://mote.org/wp-content/uploads/2024/11/3e851bd7-7fd2-47a1-9399-32036a1f69dc_lg-1024x683.jpg",
+                                                                "breeding": "Impossible",
+                                                                "region": "North America, South America",
+                                                                "holdings": {
+                                                                    "North America": "3 - New York Aquarium",
+                                                                    "Europe": 0,
+                                                                    "Asia": 0,
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                "New York Aquarium": "3",
+
+                                                                },
+                                                                },
+                                                                "Australian Water Dragon": {
+                                                                    "common": "Australian Water Dragon",
+                                                                    "scientific": "Intellagama lesueurii",
+                                                                    "info": "A semi-aquatic agamid lizard found in eastern Australia, the Australian water dragon is an omnivorous species feeding on various small animals, fruits, and flowers. They are able to change the color of their scales to camoflauge, albeit not as fast as some other species.",
+                                                                    "type": "Reptile",
+                                                                    "order": "Squamata",
+                                                                    "family": "Agamidae",
+                                                                    "genus": "Intellagama",
+                                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Intellagama_lesueurii_lesueurii%2C_Eastern_Water_Dragon%2C_Manly%2C_Australia.jpg",
+                                                                    "breeding": "Below Average",
+                                                                    "region": "Oceania",
+                                                                    "holdings": {
+                                                                        "North America": "1.0 - Essex County Zoo",
+                                                                        "Europe": 0,
+                                                                        "Asia": 0,
+                                                                        "Africa": 0,
+                                                                        "South America": 0,
+                                                                        "Oceania": 0,
+                                                                    },
+                                                                    "institutions": {
+                                                                    "Essex County Zoo": "1.0",
+
+                                                                    },
+                                                                    },
+                                                                    "Emerald Cockroach Wasp": {
+                                                                        "common": "Emerald Cockroach Wasp",
+                                                                        "scientific": "Ampulex compressa",
+                                                                        "info": "A solitary parasitoid wasp that parasitizes cockroaches as the name implies, the emerald cockroch wasp is distributed amongst the tropics and has benefitted from the spread of various household cockroach species.",
+                                                                        "type": "Invertebrate",
+                                                                        "order": "Hymenoptera",
+                                                                        "family": "Ampulicidae",
+                                                                        "genus": "Ampulex",
+                                                                        "image_url": "https://www.biolib.cz/IMG/GAL/484910.jpg",
+                                                                        "breeding": "Difficult",
+                                                                        "region": "Asia, Africa, Oceania",
+                                                                        "holdings": {
+                                                                            "North America": "12 - Cube Zoological Park",
+                                                                            "Europe": 0,
+                                                                            "Asia": 0,
+                                                                            "Africa": 0,
+                                                                            "South America": 0,
+                                                                            "Oceania": 0,
+                                                                        },
+                                                                        "institutions": {
+                                                                        "Cube Zoological Park": "12",
+
+                                                                    },
+                                                                    },
+                                                                    "Red-Tailed Hawk": {
+                                                                        "common": "Red-Tailed Hawk",
+                                                                        "scientific": "Buteo jamaicensis",
+                                                                        "info": "One of the most common birds of prey in North America, the red-tailed hawk is a popular species for falconry due to its ability to quickly learn commands. They are unfazed by human activity and serve as important control agents for rats and pigeons in urban areas.",
+                                                                        "type": "Bird",
+                                                                        "order": "Accipitriformes",
+                                                                        "family": "Accipitridae",
+                                                                        "genus": "Buteo",
+                                                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/185705.jpg",
+                                                                        "breeding": "Average",
+                                                                        "region": "North America",
+                                                                        "holdings": {
+                                                                            "North America": "1.0 - High Uintahs Zoo",
+                                                                            "Europe": 0,
+                                                                            "Asia": 0,
+                                                                            "Africa": 0,
+                                                                            "South America": 0,
+                                                                            "Oceania": 0,
+                                                                        },
+                                                                        "institutions": {
+                                                                        "High Uintahs Zoo": "1.0",
+
+                                                                    },
+                                                                    },
+                                                                    "Cooper's Hawk": {
+                                                                        "common": "Cooper's Hawk",
+                                                                        "scientific": "Astur cooperii",
+                                                                        "info": "A medium-sized hawk found in North America, the Cooper's hawk is not as adaptable as some of its cousins, and prefers undisturbed wilderness to roost and hunt in. They are highly agile birds and can hunt prey larger than themselves with ease due to this.",
+                                                                        "type": "Bird",
+                                                                        "order": "Accipitriformes",
+                                                                        "family": "Accipitridae",
+                                                                        "genus": "Astur",
+                                                                        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/170370008/original.jpg",
+                                                                        "breeding": "Average",
+                                                                        "region": "North America",
+                                                                        "holdings": {
+                                                                            "North America": "0.1 - High Uintahs Zoo",
+                                                                            "Europe": 0,
+                                                                            "Asia": 0,
+                                                                            "Africa": 0,
+                                                                            "South America": 0,
+                                                                            "Oceania": 0,
+                                                                        },
+                                                                        "institutions": {
+                                                                        "High Uintahs Zoo": "0.1",
+
+                                                                    },
+                                                                    },
+                                                                    "Western Tiger Swallowtail": {
+                                                                        "common": "Western Tiger Swallowtail",
+                                                                        "scientific": "Papilio rutulus",
+                                                                        "info": "The western tiger swallowtail is endemic to western North America, from British Columbia to Texas. They are a larger swallowtail species with a wingspan of 3-4 inches. Its pupae are heavily resistant to cold winters, a necessity in the northern parts of its range.",
+                                                                        "type": "Invertebrate",
+                                                                        "order": "Lepidoptera",
+                                                                        "family": "Papilionidae",
+                                                                        "genus": "Papilio",
+                                                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Wtigerswallowtail.JPG/1280px-Wtigerswallowtail.JPG",
+                                                                        "breeding": "Average",
+                                                                        "region": "North America",
+                                                                        "holdings": {
+                                                                            "North America": 0,
+                                                                            "Europe": 0,
+                                                                            "Asia": "25 - Kings of the Jungle",
+                                                                            "Africa": 0,
+                                                                            "South America": 0,
+                                                                            "Oceania": 0,
+                                                                        },
+                                                                        "institutions": {
+                                                                        "Kings of the Jungle": "25",
+
+                                                                    },
+                                                                    },
+                                                                    "Orange Sulphur": {
+                                                                        "common": "Orange Sulphur",
+                                                                        "scientific": "Colias eurytheme",
+                                                                        "info": "The orange sulphur is a widespread North American butterfly ranging from southern Canada to Mexico. Its caterpillars are nocturnal and feed on plants from the family Fabaceae. Occasionally it breeds extensively, causing problems for alfalfa farmers.",
+                                                                        "type": "Invertebrate",
+                                                                        "order": "Lepidoptera",
+                                                                        "family": "Pieridae",
+                                                                        "genus": "Colias",
+                                                                        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/27553205/original.jpeg",
+                                                                        "breeding": "Average",
+                                                                        "region": "North America",
+                                                                        "holdings": {
+                                                                            "North America": 0,
+                                                                            "Europe": 0,
+                                                                            "Asia": "25 - Kings of the Jungle",
+                                                                            "Africa": 0,
+                                                                            "South America": 0,
+                                                                            "Oceania": 0,
+                                                                        },
+                                                                        "institutions": {
+                                                                        "Kings of the Jungle": "25",
+
+                                                            },
+                                                            },
+                                                            "Red Admiral": {
+                                                                "common": "Red Admiral",
+                                                                "scientific": "Vanessa atalanta",
+                                                                "info": "One of the most widespread and well-known butterflies in the Palearctic realm, the red admiral prefers moist woodland environments, its caterpillars hosting on nettle plants. A criteria for females selecting males is flight ability; the best-flying males are more likely to successfully court females.",
+                                                                "type": "Invertebrate",
+                                                                "order": "Lepidoptera",
+                                                                "family": "Nymphalidae",
+                                                                "genus": "Vanessa",
+                                                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Red_admiral_%28Vanessa_atalanta%29_Hungary.jpg/1280px-Red_admiral_%28Vanessa_atalanta%29_Hungary.jpg",
+                                                                "breeding": "Average",
+                                                                "region": "North America, Europe, Asia, Africa",
+                                                                "holdings": {
+                                                                    "North America": 0,
+                                                                    "Europe": 0,
+                                                                    "Asia": "25 - Kings of the Jungle",
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                "Kings of the Jungle": "25",
+
+                                                            },
+                                                            },
+                                                            "Northern Crescent": {
+                                                                "common": "Northern Crescent",
+                                                                "scientific": "Phyciodes cocyta",
+                                                                "info": "This small butterfly can typically be seen in its adult form from June to July depending on the location. The larvae feed on Asteraceae sp. plants, while the adults feed on nectar. Its range stretches from northern Canada to southern New Mexico.",
+                                                                "type": "Invertebrate",
+                                                                "order": "Lepidoptera",
+                                                                "family": "Nymphalidae",
+                                                                "genus": "Phyciodes",
+                                                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Phyciodes_cocyta.jpg",
+                                                                "breeding": "Average",
+                                                                "region": "North America",
+                                                                "holdings": {
+                                                                    "North America": 0,
+                                                                    "Europe": 0,
+                                                                    "Asia": "25 - Kings of the Jungle",
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                "Kings of the Jungle": "25",
+
+                                                            },
+                                                            },
+                                                            "Greylag Goose": {
+                                                                "common": "Greylag Goose",
+                                                                "scientific": "Anser anser",
+                                                                "info": "The type species of its genus, the greylag goose is the ancestor of most domestic goose breeds, having been domesticated since ancient times. They are distributed across Eurasia and North Africa, from Iceland to South Korea.",
+                                                                "type": "Bird",
+                                                                "order": "Anseriformes",
+                                                                "family": "Anatidae",
+                                                                "genus": "Anser",
+                                                                "images": [
+                                                                    {"label": "Western greylag goose (anser)", "url": "https://www.biolib.cz/IMG/GAL/BIG/369978.jpg"},
+                                                                ],
+                                                                "breeding": "Easy",
+                                                                "region": "Europe, Asia, Africa",
+                                                                "holdings": {
+                                                                    "North America": 0,
+                                                                    "Europe": "2.2 (anser) - Giardino Zoologico e Botanico La Sapienza",
+                                                                    "Asia": 0,
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                "Giardino Zoologico e Botanico La Sapienza": "2.2 [anser]",
+
+                                                            },
+                                                            },
+                                                            "Mute Swan": {
+                                                                "common": "Mute Swan",
+                                                                "scientific": "Cygnus olor",
+                                                                "info": "The most iconic swan species, the mute swan is native to Eurasia and north Africa. There are 500,000 swans in their native range, with a large percentage concentrated in Russia. They have been introduced to many locations globally, causing negative effects for native species.",
+                                                                "type": "Bird",
+                                                                "order": "Anseriformes",
+                                                                "family": "Anatidae",
+                                                                "genus": "Cygnus",
+                                                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/CygneVaires.jpg/1280px-CygneVaires.jpg",
+                                                                "breeding": "Average",
+                                                                "region": "Europe, Asia, Africa",
+                                                                "holdings": {
+                                                                    "North America": 0,
+                                                                    "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
+                                                                    "Asia": 0,
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                "Giardino Zoologico e Botanico La Sapienza": "1.1",
+
+                                                            },
+                                                            },
+                                                            "Tufted Duck": {
+                                                                "common": "Tufted Duck",
+                                                                "scientific": "Aythya fuligula",
+                                                                "info": "A small diving duck with nearly one million wild individuals, the tufted duck is found natively in the Old World from Iceland to the Philippines. A partially migratory species, males and females are very sexually dimorphic, with males having the distinctive tuft of feathers on the back of the head.",
+                                                                "type": "Bird",
+                                                                "order": "Anseriformes",
+                                                                "family": "Anatidae",
+                                                                "genus": "Aythya",
+                                                                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/236995.jpg",
+                                                                "breeding": "Average",
+                                                                "region": "Europe, Asia, Africa",
+                                                                "holdings": {
+                                                                    "North America": 0,
+                                                                    "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
+                                                                    "Asia": 0,
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                "Giardino Zoologico e Botanico La Sapienza": "2.2",
+
+                                                            },
+                                                            },
+                                                            "Hart's Rivulus": {
+                                                                "common": "Hart's Rivulus",
+                                                                "scientific": "Anablepsoides hartii",
+                                                                "info": "Despite being called a rivulus, the Hart's rivulus is actually a member of a closely related genus, Anablepsoides. They are sometimes found in the aquarium trade but they are a niche fish typically only kept by killifish enthusiasts. They are known for their jumping ability.",
+                                                                "type": "Fish",
+                                                                "order": "Cyprinodontiformes",
+                                                                "family": "Rivulidae",
+                                                                "genus": "Anablepsoides",
+                                                                "image_url": "https://www.itrainsfishes.net/content/species/rivulus_hartii_gr05.jpg",
+                                                                "breeding": "Average",
+                                                                "region": "South America",
+                                                                "holdings": {
+                                                                    "North America": "3.3 - New York Aquarium",
+                                                                    "Europe": 0,
+                                                                    "Asia": 0,
+                                                                    "Africa": 0,
+                                                                    "South America": 0,
+                                                                    "Oceania": 0,
+                                                                },
+                                                                "institutions": {
+                                                                "New York Aquarium": "3.3",
+
+                                                        },
+                                                        },
+                                                        "Mafia Island Killifish": {
+                                                            "common": "Mafia Island Killifish",
+                                                            "scientific": "Nothobranchius korthausae",
+                                                            "info": "Endemic to Mafia Island in Tanzania, the Mafia Island killifish is one of the most common Nothobranchius species kept in the aquarium trade. They are variable in coloration, with some being bright red and some being bright yellow.",
+                                                            "type": "Fish",
+                                                            "order": "Cyprinodontiformes",
+                                                            "family": "Nothobranchiidae",
+                                                            "genus": "Nothobranchius",
+                                                            "images": [
+                                                                {"label": "Mafia Island yellow locality", "url": "https://static.wixstatic.com/media/4f7ec1_c280d2550f894b9182c2e55f4e5d7057.jpg/v1/fill/w_600,h_360,al_c,q_80,enc_auto/4f7ec1_c280d2550f894b9182c2e55f4e5d7057.jpg"},
+                                                            ],
+                                                            "breeding": "Average",
+                                                            "region": "Africa",
+                                                            "holdings": {
+                                                                "North America": "3.3 - New York Aquarium (Mafia Island yellow)",
+                                                                "Europe": 0,
+                                                                "Asia": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                            "New York Aquarium": "3.3 [Mafia Island yellow]",
+
+                                                    },
+                                                    },
+                                                    "Madagascar Giant Hognose Snake": {
+                                                        "common": "Madagascar Giant Hognose Snake",
+                                                        "scientific": "Leioheterodon madagascariensis",
+                                                        "info": "A large snake endemic to Madagascar, the Madagascar giant hognose snake evolved a defensive behavior much like that of cobras, where it will rear up and spread its scales out to form a hood to make itself look bigger. They are not venomous, but possess a paralyzing saliva that makes subduing prey easier.",
+                                                        "type": "Reptile",
+                                                        "order": "Squamata",
+                                                        "family": "Pseudoxyrhophiidae",
+                                                        "genus": "Leioheterodon",
+                                                        "image_url": "https://static.inaturalist.org/photos/41718069/large.jpg",
+                                                        "breeding": "Below Average",
+                                                        "region": "Africa",
+                                                        "holdings": {
+                                                            "North America": "1.1 - Essex County Zoo",
+                                                            "Europe": 0,
+                                                            "Asia": 0,
+                                                            "Africa": 0,
+                                                            "South America": 0,
+                                                            "Oceania": 0,
+                                                        },
+                                                        "institutions": {
+                                                        "Essex County Zoo": "1.1",
+
+                                                        },
+                                                        },
+                                                        "Gray Heron": {
+                                                            "common": "Gray Heron",
+                                                            "scientific": "Ardea cinerea",
+                                                            "info": "A large heron species, the gray heron resides throughout the Old World from islands in the eastern Atlantic all the way to Japan and Indonesia. They are apex predators feeding on a variety of small animals, typically feeding on aquatic animals it can ambush.",
+                                                            "type": "Bird",
+                                                            "order": "Pelecaniformes",
+                                                            "family": "Ardeidae",
+                                                            "genus": "Ardea",
+                                                            "images": [
+                                                                {"label": "Eurasian gray heron (cinerea)", "url": "https://www.biolib.cz/IMG/GAL/200369.jpg"},
+                                                            ],
+                                                            "breeding": "Below Average",
+                                                            "region": "Europe, Asia, Africa",
+                                                            "holdings": {
+                                                                "North America": 0,
+                                                                "Europe": "1.0 - Giardino Zoologico e Botanico La Sapienza",
+                                                                "Asia": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                            "Giardino Zoologico e Botanico La Sapienza": "1.0",
     }
     },
 }
