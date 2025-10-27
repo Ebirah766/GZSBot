@@ -6518,7 +6518,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "Gray Heron": {
                                                             "common": "Gray Heron",
                                                             "scientific": "Ardea cinerea",
-                                                            "info": "A large heron species, the gray heron resides throughout the Old World from islands in the eastern Atlantic all the way to Japan and Indonesia. They are apex predators feeding on a variety of small animals, typically feeding on aquatic animals it can ambush.",
+                                                            "info": "A large heron species, the gray heron resides throughout the Old World from islands in the eastern Atlantic all the way to Japan and Indonesia. They are apex predators feeding on a variety of small animals, typically aquatic animals it can ambush.",
                                                             "type": "Bird",
                                                             "order": "Pelecaniformes",
                                                             "family": "Ardeidae",
@@ -6530,14 +6530,14 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "region": "Europe, Asia, Africa",
                                                             "holdings": {
                                                                 "North America": 0,
-                                                                "Europe": "1.0 - Giardino Zoologico e Botanico La Sapienza",
+                                                                "Europe": "1.0 (cinerea) - Giardino Zoologico e Botanico La Sapienza",
                                                                 "Asia": 0,
                                                                 "Africa": 0,
                                                                 "South America": 0,
                                                                 "Oceania": 0,
                                                             },
                                                             "institutions": {
-                                                            "Giardino Zoologico e Botanico La Sapienza": "1.0",
+                                                            "Giardino Zoologico e Botanico La Sapienza": "1.0 [cinerea]",
     }
     },
 }
