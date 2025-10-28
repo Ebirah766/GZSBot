@@ -34,7 +34,11 @@
           "Azure Damselfish",
           "Yellowtail Damselfish",
           "Magenta Dottyback",
-          "Blackback Land Crab"
+          "Blackback Land Crab",
+          "Banded Killifish",
+          "Mummichog",
+          "Eastern Mudsnail",
+          "Striped Burrfish"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -55,7 +59,8 @@
           "Raccoon",
           "Barred Owl",
           "Crested Gecko",
-          "Central Bearded Dragon"
+          "Central Bearded Dragon",
+          "Common Leopard Gecko"
         ]
       }
     },
