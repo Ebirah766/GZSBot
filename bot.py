@@ -6826,6 +6826,32 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         },
                                                         "institutions": {
                                                         "Cube Zoological Park": "12",
+
+                                                },
+                                                },
+                                                "Oldfield Mouse": {
+                                                    "common": "Oldfield Mouse",
+                                                    "scientific": "Peromyscus polionotus",
+                                                    "info": "A nocturnal deermouse species inhabiting beaches and sandy areas, the oldfield mouse can be split into different subspecies, some of which are highly endangered and have captive breeding programs. They can be found in the southeastern part of the United States from Tennessee to the Gulf Coast.",
+                                                    "type": "Mammal",
+                                                    "order": "Rodentia",
+                                                    "family": "Cricetidae",
+                                                    "genus": "Peromyscus",
+                                                    "images": [
+                                                        {"label": "Perdido Key beach mouse (trissyllepsis)", "url": "https://www.zoochat.com/community/media/perdido-key-beach-mouse-peromyscus-polionotus-trissyllepsis.482088/full"},
+                                                    ],
+                                                    "breeding": "Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "3.3 (trissyllepsis) - Cube Zoological Park",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Cube Zoological Park": "3.3 [trissyllepsis]",
     }
     },
 }
