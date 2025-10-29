@@ -4021,7 +4021,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "North America",
         "holdings": {
-        "North America": ["1.1 - Glacier Zoo"],
+        "North America": ["0.1 - Essex County Zoo", "1.1 - Glacier Zoo"],
         "Europe": 0,
         "Asia": 0,
         "Africa": 0,
@@ -4029,6 +4029,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "Oceania": 0,
         },
         "institutions": {
+        "Essex County Zoo": "0.1",
         "Glacier Zoo": "1.1"
 
         }
@@ -6852,6 +6853,270 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     },
                                                     "institutions": {
                                                     "Cube Zoological Park": "3.3 [trissyllepsis]",
+
+                                                },
+                                                },
+                                                "Black Bullhead": {
+                                                    "common": "Black Bullhead",
+                                                    "scientific": "Ameiurus melas",
+                                                    "info": "The black bullhead is a common and very hardy catfish that is natively distributed in central North America. They have been introduced to Europe and have become invasive there, potentially negatively impacting native species.",
+                                                    "type": "Fish",
+                                                    "order": "Siluriformes",
+                                                    "family": "Ictaluridae",
+                                                    "genus": "Ameiurus",
+                                                    "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS017/FIS017-00009-1920x1278.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "3 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "3",
+
+                                                },
+                                                },
+                                                "Black Ghost Knifefish": {
+                                                    "common": "Black Ghost Knifefish",
+                                                    "scientific": "Apteronotus albifrons",
+                                                    "info": "The black ghost knifefish gets its common name from a local folk tale that they are actually ghosts of the dead. They are a larger knifefish growing to 20 inches in length, and are weakly electric, using their electricity as a way to see in the murky rivers they live in.",
+                                                    "type": "Fish",
+                                                    "order": "Gymnotiformes",
+                                                    "family": "Apteronotidae",
+                                                    "genus": "Apteronotus",
+                                                    "image_url": "https://biotopeaquariumproject.com/wp-content/uploads/2019/11/marajo-apteronotus-albifrons-jrichter.jpg",
+                                                    "breeding": "Diffiuclt",
+                                                    "region": "South America",
+                                                    "holdings": {
+                                                        "North America": "1 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "1",
+
+                                                },
+                                                },
+                                                "Dungeness Crab": {
+                                                    "common": "Dungeness Crab",
+                                                    "scientific": "Metacarcinus magister",
+                                                    "info": "A medium sized crab with a carapace width of 6-7 inches, the Dungeness crab typically inhabits eelgrass beds and sandy habitats, feeding on a variety of different meaty foods. They are the subject of a large-scale fishery and are prized as food.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Decapoda",
+                                                    "family": "Cancridae",
+                                                    "genus": "Metacarcinus",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/446850127/large.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "3 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "3",
+
+                                                },
+                                                },
+                                                "Orange Sea Pen": {
+                                                    "common": "Orange Sea Pen",
+                                                    "scientific": "Ptilosarcus gurneyi",
+                                                    "info": "A benthic cnidarian native to the northeastern Pacific Ocean, the orange sea pen is a deepwater species, found from 14 to 225 meters in the ocean. They are filter feeders, extending their tentacles to catch zooplankton in the water column.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Scleralcyonacea",
+                                                    "family": "Pennatulidae",
+                                                    "genus": "Ptilosarcus",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/113028683/large.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "5 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "5",
+
+                                                },
+                                                },
+                                                "Sea Walnut": {
+                                                    "common": "Sea Walnut",
+                                                    "scientific": "Mnemiopsis leidyi",
+                                                    "info": "Initially native to the western Atlantic, the sea walnut has become invasive in Europe and Asia through ballast water discharges. A carnivore, they move slowly and with the flow of the current, feeding on various zooplankton.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Lobata",
+                                                    "family": "Bolinopsidae",
+                                                    "genus": "Mnemiopsis",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Comb_jelly.tif/lossy-page1-1280px-Comb_jelly.tif.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "North America, South America",
+                                                    "holdings": {
+                                                        "North America": "10 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "10",
+
+                                                },
+                                                },
+                                                "American Barn Owl": {
+                                                    "common": "American Barn Owl",
+                                                    "scientific": "Tyto furcata",
+                                                    "info": "Once thought to be part of a cosmopolitan species, the populations of barn owls in the Americas are actually a different species entirely. The American barn owl is a specialized small mammal hunter, and like all barn owls, has a loud, shrieking call which can be disconcerting.",
+                                                    "type": "Bird",
+                                                    "order": "Strigiformes",
+                                                    "family": "Tytonidae",
+                                                    "genus": "Tyto",
+                                                    "image_url": "https://ecoregistros.org/site/images/dataimages/2022/04/09/489008/DSC_0926.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "North America, South America",
+                                                    "holdings": {
+                                                        "North America": "1.0 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.0",
+
+                                                },
+                                                },
+                                                "Cuvier's Dwarf Caiman": {
+                                                    "common": "Cuvier's Dwarf Caiman",
+                                                    "scientific": "Paleosuchus palpebrosus",
+                                                    "info": "The smallest of all crocodilians, the Cuvier's dwarf caiman only grows to 4.6 ft in length, but compensates for its lack of size with its heavy body armor and aggressive temperament. They feed on small animals such as fish and frogs, and are sometimes kept in the private trade but require large enclosures.",
+                                                    "type": "Reptile",
+                                                    "order": "Crocodilia",
+                                                    "family": "Alligatoridae",
+                                                    "genus": "Paleosuchus",
+                                                    "image_url": "https://cdn.britannica.com/20/256820-050-C718F747/Cuviers-dwarf-caiman-Paleosuchus-palpebrosus.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "South America",
+                                                    "holdings": {
+                                                        "North America": "1.1 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.1",
+
+                                                },
+                                                },
+                                                "Pacific Giant Centipede": {
+                                                    "common": "Pacific Giant Centipede",
+                                                    "scientific": "Scolopendra subspinipes",
+                                                    "info": "One of the most widespread and common members of its genus, the Pacific giant centipede is thought to have originated in Asia and Oceania, but has been introduced to many locations globally. They are are an aggressive and nervous species, highly defensive and considered an advanced centipede species for private keepers.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Scolopendromorpha",
+                                                    "family": "Scolopendridae",
+                                                    "genus": "Scolopendra",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/254287959/large.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "Asia, Oceania",
+                                                    "holdings": {
+                                                        "North America": "1.1 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.1",
+
+                                                },
+                                                },
+                                                "Southern Flying Squirrel": {
+                                                    "common": "Southern Flying Squirrel",
+                                                    "scientific": "Glaucomys volans",
+                                                    "info": "Out of the three North American flying squirrel species, the southern flying squirrel is distributed throughout the eastern part of the continent as well as into Mexico and Central America. A nocturnal species, they are highly social and fly together in large groups.",
+                                                    "type": "Mammal",
+                                                    "order": "Rodentia",
+                                                    "family": "Sciuridae",
+                                                    "genus": "Glaucomys",
+                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/463699.jpg",
+                                                    "breeding": "Difficult",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "1.0 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.0",
+
+                                                },
+                                                },
+                                                "European Bombardier Beetle": {
+                                                    "common": "European Bombardier Beetle",
+                                                    "scientific": "Brachinus crepitans",
+                                                    "info": "A common bombardier beetle species found throughout Europe, western Asia, and northern Africa. The larvae are parasites of beetle pupae, with the adults able to shoot their trademark noxious toxin at threats. They are usually found hiding under stones.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Coleoptera",
+                                                    "family": "Carabidae",
+                                                    "genus": "Brachinus",
+                                                    "image_url": "https://static.inaturalist.org/photos/114151390/large.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "Europe, Asia, Africa",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "10 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "10",
+
+                                                },
+                                                },
+                                                "Western Pond Turtle": {
+                                                    "common": "Western Pond Turtle",
+                                                    "scientific": "Actinemys marmorata",
+                                                    "info": "This turtle species is endemic to the western coast of North America, from Washington State to Baja California. Formerly native to western Canada, it was extirpated from that region by 2002. They are vulnerable to habitat loss and are listed as Vulnerable on the IUCN Red List.",
+                                                    "type": "Reptile",
+                                                    "order": "Testudines",
+                                                    "family": "Emydidae",
+                                                    "genus": "Actinemys",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/5198277/large.jpeg",
+                                                    "breeding": "Below Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "3.3 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "3.3",
     }
     },
 }
@@ -9009,6 +9274,116 @@ async def cmd_holdings(ctx: commands.Context, *, institution: str):
     except Exception:
         log.exception("Error in ;holdings")
         await ctx.send(f"Sorry, something went wrong looking up holdings for **{institution}**.")
+
+@bot.command(name="orderat", aliases=["zooorder", "orderheld"])
+async def cmd_order_at(ctx, order: str = None, *, zoo: str = None):
+    """
+    Usage:
+    ;orderat <order> <zoo>
+    Shows all animals in the given taxonomic order that the specified zoo holds.
+    Example:
+      ;orderat Carnivora Cube Zoological Park
+    """
+    if not order or not zoo:
+        return await ctx.send("Usage: `;orderat <order> <zoo>`")
+
+    try:
+        # ——— Resolve zoo name to your canonical spelling (matches your ;holdings helper) ———
+        try:
+            exact, suggestion = resolve_institution_name(zoo)
+        except NameError:
+            # If you don't have resolve_institution_name, fall back to raw text
+            exact, suggestion = zoo, None
+
+        if not exact and suggestion:
+            return await ctx.send(f"No exact entry for **{zoo}**. Did you mean **{suggestion}**?")
+        if not exact and not suggestion:
+            return await ctx.send(f"No institutions recorded yet or no match for **{zoo}**.")
+
+        order_q = order.strip().lower()
+        zoo_q   = (exact or zoo).strip().lower()
+
+        # ——— Load your species registry ———
+        # Replace _load_species_data() with whatever you already use to get the full species dict.
+        try:
+            species_data = _load_species_data()
+        except NameError:
+            # Fallback: if you have a global like SPECIES, use it:
+            try:
+                species_data = SPECIES  # type: ignore
+            except NameError:
+                return await ctx.send("Couldn’t load species registry (add `_load_species_data()` or `SPECIES`).")
+
+        matches = []
+
+        # ——— Scan all species for order match and the target zoo in holdings ———
+        for sp_name, entry in species_data.items():
+            sp_order = str(entry.get("order", "")).strip().lower()
+            if sp_order != order_q:
+                continue
+
+            holdings = entry.get("holdings") or {}
+            if not isinstance(holdings, dict) or not holdings:
+                continue
+
+            # holders can be strings "2.0 - Zoo A, 1.0 - Zoo B", a list, or 0/None
+            found_regions = []
+            for region, holders in holdings.items():
+                if not holders or holders == 0:
+                    continue
+
+                def holder_contains_zoo(h) -> bool:
+                    return zoo_q in str(h).strip().lower()
+
+                hit = False
+                if isinstance(holders, str):
+                    parts = [p.strip() for p in holders.split(",") if p.strip()]
+                    hit = any(holder_contains_zoo(p) for p in parts)
+                elif isinstance(holders, list):
+                    hit = any(holder_contains_zoo(h) for h in holders)
+
+                if hit:
+                    found_regions.append(region)
+
+            if found_regions:
+                common = entry.get("common", sp_name)
+                sci    = entry.get("scientific", "")
+                regions_str = ", ".join(found_regions)
+                matches.append(f"• **{common}** (*{sci}*) — {regions_str}")
+
+        if not matches:
+            return await ctx.send(
+                f"No animals from order **{order.title()}** recorded for **{(exact or zoo).title()}**."
+            )
+
+        # ——— Send result (chunk if very long) ———
+        header = f"**Animals of Order {order.title()} in {(exact or zoo).title()}**"
+        body = "\n".join(matches)
+
+        # Discord hard limit safety
+        if len(header) + len(body) > 3900:
+            # split into multiple messages if huge
+            await ctx.send(header)
+            chunk = []
+            total = 0
+            for line in matches:
+                if total + len(line) + 1 > 1900:
+                    await ctx.send("\n".join(chunk))
+                    chunk, total = [], 0
+                chunk.append(line)
+                total += len(line) + 1
+            if chunk:
+                await ctx.send("\n".join(chunk))
+        else:
+            embed = discord.Embed(title=f"Animals of Order {order.title()}",
+                                  description=f"**Zoo:** {(exact or zoo).title()}\n\n" + body,
+                                  color=0x2ECC71)
+            await ctx.send(embed=embed)
+
+    except Exception:
+        log.exception("Error in ;orderat")
+        await ctx.send("Sorry, something went wrong while gathering that order list.")
+
 
 
 @bot.command(name="type")

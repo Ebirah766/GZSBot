@@ -99,7 +99,12 @@
           "Common Grackle",
           "Yellow-Crowned Night Heron",
           "Red-Eyed Devil Katydid",
-          "Eastern Screech Owl"
+          "Eastern Screech Owl",
+          "Little Brown Bat",
+          "Oldfield Mouse",
+          "Hispid Cotton Rat",
+          "Cameroon Ogre-Faced Spider",
+          "Nine-Banded Armadillo"
         ]
       }
     },
@@ -183,7 +188,9 @@
       "zoos": {
         "Glacier Zoo": [
           "Demoiselle Crane",
-          "Common Fallow Deer"
+          "Common Fallow Deer",
+          "Virginia Opossum",
+          "Veiled Chameleon"
         ]
       }
     },
