@@ -7117,8 +7117,175 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     },
                                                     "institutions": {
                                                     "Essex County Zoo": "3.3",
-    }
-    },
+
+                                                },
+                                                },
+                                                "Rock Hyrax": {
+                                                    "common": "Rock Hyrax",
+                                                    "scientific": "Procavia capensis",
+                                                    "info": "A member of the afrothere clade and therefore closely related to elephants, the rock hyrax is the most common and well-known of the hyrax species. Distributed across Africa, it is adaptable and lives in human-inhabited areas. They are highly social, living in groups of 10-80 animals.",
+                                                    "type": "Mammal",
+                                                    "order": "Hyracoidea",
+                                                    "family": "Procaviidae",
+                                                    "genus": "Procavia",
+                                                    "image_url": "https://static.inaturalist.org/photos/131657139/large.jpeg",
+                                                    "breeding": "Average",
+                                                    "region": "Africa",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "2.2 - Shropshire Hills Zoo",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Shropshire Hills Zoo": "2.2",
+
+                                                },
+                                                },
+                                                "Reticulated Glass Frog": {
+                                                    "common": "Reticulated Glass Frog",
+                                                    "scientific": "Hyalinobatrachium valerioi",
+                                                    "info": "One of the more common glass frog species found in captivity, the reticulated glass frog is native to southern Central America to the Pacific slopes of South America in Colombia and Ecuador. They are carnivores, feeding on insects such as crickets, moths, and flies.",
+                                                    "type": "Amphibian",
+                                                    "order": "Anura",
+                                                    "family": "Centrolenidae",
+                                                    "genus": "Hyalinobatrachium",
+                                                    "image_url": "https://static.inaturalist.org/photos/374495/large.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "North America, South America",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1",
+
+                                                },
+                                                },
+                                                "Green Frog": {
+                                                    "common": "Green Frog",
+                                                    "scientific": "Lithobates clamitans",
+                                                    "info": "The green frog is one of the most common frogs found in North America. Distributed to the eastern part of the continent from Quebec to Texas, it has also been introduced to parts of Newfoundland. They are voracious predators and have strong territoriality, with males defending their territories fiercely.",
+                                                    "type": "Amphibian",
+                                                    "order": "Anura",
+                                                    "family": "Ranidae",
+                                                    "genus": "Lithobates",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Male_Green_Frog_-_Hunterdon_County%2C_NJ.jpg/1280px-Male_Green_Frog_-_Hunterdon_County%2C_NJ.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "1.0 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.0",
+
+                                                },
+                                                },
+                                                "African Clawed Frog": {
+                                                    "common": "African Clawed Frog",
+                                                    "scientific": "Xenopus laevis",
+                                                    "info": "One of the most well-studied amphibians due to its use as a model organism, the African clawed frog is native to freshwater environments of sub-Saharan Africa. They are very adaptable and found in high numbers in artifically created water bodies.",
+                                                    "type": "Amphibian",
+                                                    "order": "Anura",
+                                                    "family": "Pipidae",
+                                                    "genus": "Xenopus",
+                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/433739.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "Africa",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "2.2",
+
+                                                },
+                                                },
+                                                "Australian Green Tree Frog": {
+                                                    "common": "Australian Green Tree Frog",
+                                                    "scientific": "Ranoidea caerulea",
+                                                    "info": "An arboreal frog native to Australia and New Guinea, the Australian green tree frog is one of the most common frogs in Australia and is a popular exotic pet as well. They are larger than most Australian frogs, growing to 4 inches in length, and can live for over 20 years.",
+                                                    "type": "Amphibian",
+                                                    "order": "Anura",
+                                                    "family": "Hylidae",
+                                                    "genus": "Ranoidea",
+                                                    "image_url": "https://www.zoochat.com/community/media/australian-green-tree-frog-ranoidea-caerulea.500144/full?d=1599502223",
+                                                    "breeding": "Average",
+                                                    "region": "Oceania",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "0.1 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "0.1",
+
+                                                },
+                                                },
+                                                "Bear Lake Sculpin": {
+                                                    "common": "Bear Lake Sculpin",
+                                                    "scientific": "Cottus extensus",
+                                                    "info": "A small sculpin growing no larger than 5 inches, the Bear Lake sculpin is, as the name suggests, endemic to Bear Lake on the border of Utah and Idaho. It has also been introduced to the nearby Flaming Gorge Reservoir and is considered Vulnerable on the IUCN Red List due to habitat loss.",
+                                                    "type": "Fish",
+                                                    "order": "Perciformes",
+                                                    "family": "Cottidae",
+                                                    "genus": "Cottus",
+                                                    "image_url": "https://static.inaturalist.org/photos/248862981/original.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "3 - High Uintahs Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "High Uintahs Zoo": "3"
+                                                }
+                                                },
+                                                "Mottled Sculpin": {
+                                                    "common": "Mottled Sculpin",
+                                                    "scientific": "Cottus bairdii",
+                                                    "info": "A widely distributed sculpin found exclusively in North America, mottled sculpins prefer well-oxygenated coldwater habitats such as mountain streams and rocky lake shores. They feed mostly on aquatic insect larvae and grow to 5.9 inches in length.",
+                                                    "type": "Fish",
+                                                    "order": "Perciformes",
+                                                    "family": "Cottidae",
+                                                    "genus": "Cottus",
+                                                    "image_url": "https://i.troutnut.com/im_regspec/pic_3150_800.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "3 - High Uintahs Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "High Uintahs Zoo": "3"
+                                                }
+                                                },
 }
 SPECIES = species_data
 
@@ -9288,11 +9455,10 @@ async def cmd_order_at(ctx, order: str = None, *, zoo: str = None):
         return await ctx.send("Usage: `;orderat <order> <zoo>`")
 
     try:
-        # ——— Resolve zoo name to your canonical spelling (matches your ;holdings helper) ———
+        # --- Normalize and resolve zoo name ---
         try:
             exact, suggestion = resolve_institution_name(zoo)
         except NameError:
-            # If you don't have resolve_institution_name, fall back to raw text
             exact, suggestion = zoo, None
 
         if not exact and suggestion:
@@ -9301,22 +9467,20 @@ async def cmd_order_at(ctx, order: str = None, *, zoo: str = None):
             return await ctx.send(f"No institutions recorded yet or no match for **{zoo}**.")
 
         order_q = order.strip().lower()
-        zoo_q   = (exact or zoo).strip().lower()
+        zoo_q = (exact or zoo).strip().lower()
 
-        # ——— Load your species registry ———
-        # Replace _load_species_data() with whatever you already use to get the full species dict.
+        # --- Load species data ---
         try:
             species_data = _load_species_data()
         except NameError:
-            # Fallback: if you have a global like SPECIES, use it:
             try:
-                species_data = SPECIES  # type: ignore
+                species_data = SPECIES  # fallback
             except NameError:
-                return await ctx.send("Couldn’t load species registry (add `_load_species_data()` or `SPECIES`).")
+                return await ctx.send("Couldn’t load species registry (missing `_load_species_data()` or `SPECIES`).")
 
         matches = []
 
-        # ——— Scan all species for order match and the target zoo in holdings ———
+        # --- Scan all species for matching order and zoo holdings ---
         for sp_name, entry in species_data.items():
             sp_order = str(entry.get("order", "")).strip().lower()
             if sp_order != order_q:
@@ -9326,47 +9490,45 @@ async def cmd_order_at(ctx, order: str = None, *, zoo: str = None):
             if not isinstance(holdings, dict) or not holdings:
                 continue
 
-            # holders can be strings "2.0 - Zoo A, 1.0 - Zoo B", a list, or 0/None
-            found_regions = []
-            for region, holders in holdings.items():
+            # Look for zoo in holdings
+            found = False
+            for holders in holdings.values():
                 if not holders or holders == 0:
                     continue
-
-                def holder_contains_zoo(h) -> bool:
-                    return zoo_q in str(h).strip().lower()
-
-                hit = False
                 if isinstance(holders, str):
                     parts = [p.strip() for p in holders.split(",") if p.strip()]
-                    hit = any(holder_contains_zoo(p) for p in parts)
+                    if any(zoo_q in p.lower() for p in parts):
+                        found = True
+                        break
                 elif isinstance(holders, list):
-                    hit = any(holder_contains_zoo(h) for h in holders)
+                    if any(zoo_q in str(h).lower() for h in holders):
+                        found = True
+                        break
 
-                if hit:
-                    found_regions.append(region)
-
-            if found_regions:
+            if found:
                 common = entry.get("common", sp_name)
-                sci    = entry.get("scientific", "")
-                regions_str = ", ".join(found_regions)
-                matches.append(f"• **{common}** (*{sci}*) — {regions_str}")
+                sci = entry.get("scientific", "")
+                matches.append((common, sci))
 
         if not matches:
             return await ctx.send(
                 f"No animals from order **{order.title()}** recorded for **{(exact or zoo).title()}**."
             )
 
-        # ——— Send result (chunk if very long) ———
-        header = f"**Animals of Order {order.title()} in {(exact or zoo).title()}**"
-        body = "\n".join(matches)
+        # --- Alphabetize by common name ---
+        matches.sort(key=lambda x: x[0].lower())
 
-        # Discord hard limit safety
-        if len(header) + len(body) > 3900:
-            # split into multiple messages if huge
+        # --- Build embed ---
+        lines = [f"• **{c}** (*{s}*)" if s else f"• **{c}**" for c, s in matches]
+        header = f"**Animals of Order {order.title()} in {(exact or zoo).title()}**"
+        body = "\n".join(lines)
+
+        # Split if too long for one embed
+        if len(body) > 3900:
             await ctx.send(header)
             chunk = []
             total = 0
-            for line in matches:
+            for line in lines:
                 if total + len(line) + 1 > 1900:
                     await ctx.send("\n".join(chunk))
                     chunk, total = [], 0
@@ -9375,14 +9537,17 @@ async def cmd_order_at(ctx, order: str = None, *, zoo: str = None):
             if chunk:
                 await ctx.send("\n".join(chunk))
         else:
-            embed = discord.Embed(title=f"Animals of Order {order.title()}",
-                                  description=f"**Zoo:** {(exact or zoo).title()}\n\n" + body,
-                                  color=0x2ECC71)
+            embed = discord.Embed(
+                title=f"Animals of Order {order.title()}",
+                description=f"**Zoo:** {(exact or zoo).title()}\n\n" + body,
+                color=0x2ECC71,
+            )
             await ctx.send(embed=embed)
 
     except Exception:
         log.exception("Error in ;orderat")
         await ctx.send("Sorry, something went wrong while gathering that order list.")
+
 
 
 

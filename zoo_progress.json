@@ -38,7 +38,9 @@
           "Banded Killifish",
           "Mummichog",
           "Eastern Mudsnail",
-          "Striped Burrfish"
+          "Striped Burrfish",
+          "Atlantic Blue Crab",
+          "Black Bullhead"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -60,7 +62,10 @@
           "Barred Owl",
           "Crested Gecko",
           "Central Bearded Dragon",
-          "Common Leopard Gecko"
+          "Common Leopard Gecko",
+          "Cuvier's Dwarf Caiman",
+          "Pacific Giant Centipede",
+          "American Barn Owl"
         ]
       }
     },
@@ -73,7 +78,8 @@
           "Red Deer",
           "Golden Lion Tamarin",
           "Przewalski's Horse",
-          "Domestic Horse"
+          "Domestic Horse",
+          "Common Buzzard"
         ]
       }
     },
@@ -104,7 +110,8 @@
           "Oldfield Mouse",
           "Hispid Cotton Rat",
           "Cameroon Ogre-Faced Spider",
-          "Nine-Banded Armadillo"
+          "Nine-Banded Armadillo",
+          "Domestic Horse"
         ]
       }
     },

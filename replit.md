@@ -4,6 +4,12 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-11-01**: Fixed critical bracket closure error in species_data dictionary:
+- Line 7263-7268: Fixed "Bear Lake Sculpin" institutions dictionary - removed extra comma and fixed closing bracket alignment
+- Line 7286-7291: Fixed "Mottled Sculpin" institutions dictionary - removed extra comma and corrected severe indentation issues (was indented to column 4 instead of proper alignment)
+- Root cause: Unclosed '{' bracket starting at line 229 (species_data dictionary) due to malformed closing brackets in sculpin species entries
+- Bot successfully restarted and running without errors
+
 **2025-10-28**: Fixed syntax error in Nine-Banded Armadillo species data:
 - Line 1142: Added missing comma after "Cube Zoological Park": "1.0" in institutions dictionary
 - Bot successfully restarted and running without errors
