@@ -5957,7 +5957,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "Domestic Cow": {
                                                         "common": "Domestic Cow",
                                                         "scientific": "Bos taurus",
-                                                        "info": "One of the most common domesticated animal, domestic cows are the descendants of the now extinct aurochs of Eurasia. Domestic cattle are often used for meat and milk, but sometimes are kept as pets. There are over 1,000 recognized breeds of cow.",
+                                                        "info": "One of the most common domesticated animals, domestic cows are the descendants of the now extinct aurochs of Eurasia. Domestic cattle are often used for meat and milk, but sometimes are kept as pets. There are over 1,000 recognized breeds of cow.",
                                                         "type": "Mammal",
                                                         "order": "Artiodactyla",
                                                         "family": "Bovidae",
@@ -7284,6 +7284,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     },
                                                     "institutions": {
                                                     "High Uintahs Zoo": "3"
+
+                                                }
+                                                },
+                                                "Mottled Sculpin": {
+                                                    "common": "Mottled Sculpin",
+                                                    "scientific": "Cottus bairdii",
+                                                    "info": "A widely distributed sculpin found exclusively in North America, mottled sculpins prefer well-oxygenated coldwater habitats such as mountain streams and rocky lake shores. They feed mostly on aquatic insect larvae and grow to 5.9 inches in length.",
+                                                    "type": "Fish",
+                                                    "order": "Perciformes",
+                                                    "family": "Cottidae",
+                                                    "genus": "Cottus",
+                                                    "image_url": "https://i.troutnut.com/im_regspec/pic_3150_800.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America",
+                                                            "holdings": {
+                                                                "North America": "3 - High Uintahs Zoo",
+                                                                "Europe": 0,
+                                                                "Asia": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                            "High Uintahs Zoo": "3"
                                                 }
                                                 },
 }
