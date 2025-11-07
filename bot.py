@@ -7834,7 +7834,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "genus": "Manduca",
                                                     "images": [
                                                         {"label": "Tobacco hornworm", "url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/60/Manduca_sexta_missouri.jpg/1024px-Manduca_sexta_missouri.jpg"},
-                                                        {"label": "Carolina sphinx moth", "url": "https://www.butterfliesandmoths.org/sites/default/files/bamona_images/manduca_sexta_taj1.jpg"}
+                                                        "label": "Carolina sphinx moth", "url": "https://www.butterfliesandmoths.org/sites/default/files/bamona_images/manduca_sexta_taj1.jpg"},
                                                     ],
                                                     "breeding": "Very Easy",
                                                     "region": "North America",
@@ -7848,6 +7848,32 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     },
                                                     "institutions": {
                                                     "Cube Zoological Park": "12"
+
+                                                        }
+                                                        },
+                                                        "Argentine Horned Frog": {
+                                                            "common": "Argentine Horned Frog",
+                                                            "scientific": "Ceratophrys ornata",
+                                                            "info": "Endemic to South America, the Argentine horned frog is a voracious ambush predator. Typically remaining inactive while it waits for food, this brightly colored frog has sharp teeth and can inflict surprisingly serious injuries if threatened.",
+                                                            "type": "Amphibian",
+                                                            "order": "Anura",
+                                                            "family": "Ceratophryidae",
+                                                            "genus": "Ceratophrys",
+                                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/106327834/original.jpeg",
+                                                            "breeding": "Average",
+                                                            "region": "South America",
+                                                            "holdings": {
+                                                                "North America": "1.0 - Essex County Zoo",
+                                                                "Europe": 0,
+                                                                "Asia": 0,
+                                                                "Africa": 0,
+                                                                "South America": 0,
+                                                                "Oceania": 0,
+                                                            },
+                                                            "institutions": {
+                                                            "Essex County Zoo": "1.0"
+                                                        
+                                                        
                                                 }
                                                 },
 }
