@@ -7877,7 +7877,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "San Francisco Brine Shrimp": {
                                                     "common": "San Francisco Brine Shrimp",
                                                     "scientific": "Artemia franciscana",
-                                                    "info": "The American tadpole shrimp is a freshwater crustacean species that is the most widespread of all tadpole shrimp. Despite the name implying endemism to North America, it can be found there, South America, Japan, South Korea, and isladns in the Indo-Pacific.",
+                                                    "info": "The widely distributed brine shrimp most familiar to aquarists, the San Francisco brine shrimp is originally native to the Americas, but has now become a global species due to introductions. It is often raised for live food or for petkeeping in the aquarium trade.",
                                                     "type": "Invertebrate",
                                                     "order": "Notostraca",
                                                     "family": "Triopsidae",
