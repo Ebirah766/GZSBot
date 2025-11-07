@@ -7871,6 +7871,29 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "Oceania": 0,
                                                     },
                                                     "institutions": {
+                                                        "Cube Zoological Park": "20"
+                                                    }
+                                                },
+                                                "San Francisco Brine Shrimp": {
+                                                    "common": "San Francisco Brine Shrimp",
+                                                    "scientific": "Artemia franciscana",
+                                                    "info": "The American tadpole shrimp is a freshwater crustacean species that is the most widespread of all tadpole shrimp. Despite the name implying endemism to North America, it can be found there, South America, Japan, South Korea, and isladns in the Indo-Pacific.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Notostraca",
+                                                    "family": "Triopsidae",
+                                                    "genus": "Triops",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Triops_longicaudatus.jpg",
+                                                    "breeding": "Easy",
+                                                    "region": "North America, South America, Asia, Oceania",
+                                                    "holdings": {
+                                                        "North America": "20 - Cube Zoological Park",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
                                                     "Cube Zoological Park": "20"
                                                         
                                                         
