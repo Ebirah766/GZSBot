@@ -4,6 +4,11 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-11-07**: Fixed syntax error in Carolina Sphinx Moth species data:
+- Line 7837: Added missing opening curly brace { to second image dictionary entry - was missing the opening bracket for {"label": "Carolina sphinx moth", ...}
+- Line 7840: Removed trailing comma after last image entry in the images array
+- Bot successfully restarted and running without errors
+
 **2025-11-01**: Fixed critical bracket closure error in species_data dictionary:
 - Line 7263-7268: Fixed "Bear Lake Sculpin" institutions dictionary - removed extra comma and fixed closing bracket alignment
 - Line 7286-7291: Fixed "Mottled Sculpin" institutions dictionary - removed extra comma and corrected severe indentation issues (was indented to column 4 instead of proper alignment)

@@ -1110,13 +1110,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             "Asia": 0,
-            "Europe": "25 - Mint Park Zoo",
+            "Europe": ["25 - Mint Park Zoo", "20 - Shropshire Hills Zoo"],
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Mint Park Zoo": "25"
+            "Mint Park Zoo": "25",
+            "Shropshire Hills Zoo": "20"
     }
     },
     "Nine-Banded Armadillo": {
@@ -1227,7 +1228,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Easy",
         "region": "North America",
         "holdings": {
-            "North America": 0,
+            "North America": "1.0 - Essex County Zoo",
             "Asia": 0,
             "Europe": "0.1 - Mint Park Zoo",
             "Africa": 0,
@@ -1235,6 +1236,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
+            "Essex County Zoo": "1.0",
             "Mint Park Zoo": "0.1"
         }
     },
@@ -3035,13 +3037,14 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "holdings": {
                                     "North America": 0,
                                     "Asia": 0,
-                                    "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza, 1.2 - Wasser Wunder Welt",
+                                    "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza, 1.2 - Shropshire Hills Zoo, 1.2 - Wasser Wunder Welt",
                                     "Africa": 0,
                                     "South America": 0,
                                     "Oceania": 0,
                                     },
                                     "institutions": {
                                     "Giardino Zoologico e Botanico La Sapienza": "1.1",
+                                    "Shropshire Hills Zoo": "1.2",
                                     "Wasser Wunder Welt": "1.2"
 
                                         }
@@ -3325,7 +3328,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "Mediterranean Banded Centipede": {
                                         "common": "Mediterranean Banded Centipede",
                                         "scientific": "Scolopendra cingulata",
-                                        "info": "One of the more common scolopendrid in captivity, the Mediterranean banded centipede has a mild venom compared to fellow scolopendromorphs. Only growing 7 inches, it is also one of the smaller species in its genus. Most of the time they lay burrowed in dark, damp environments like leaf litter.",
+                                        "info": "One of the more common scolopendrids in captivity, the Mediterranean banded centipede has a mild venom compared to fellow scolopendromorphs. Only growing 7 inches, it is also one of the smaller species in its genus. Most of the time they lay burrowed in dark, damp environments like leaf litter.",
                                         "type": "Invertebrate",
                                         "order": "Scolopendromorpha",
                                         "family": "Scolopendridae",
@@ -5147,19 +5150,22 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "order": "Strigiformes",
                                         "family": "Strigidae",
                                         "genus": "Strix",
-                                        "image_url": "https://static.inaturalist.org/photos/179795514/large.jpg",
+                                            "images": [
+                                                {"label": "Eurasian great gray owl (lapponica)", "url": "https://www.biolib.cz/IMG/GAL/BIG/310298.jpg"}
+                                            ],
                                         "breeding": "Below Average",
                                         "region": "North America, Europe, Asia,",
                                         "holdings": {
                                         "North America": 0,  
-                                        "Europe": "1.1 - Shropshire Hills Zoo",
+                                        "Europe": "1.0 (lapponica) - Giardino Zoologico e Botanico La Sapienza, 1.1 (lapponica) - Shropshire Hills Zoo",
                                         "Asia": 0,
                                         "Africa": 0,
                                         "South America": 0,
                                         "Oceania": 0
                                         },
                                         "institutions": {
-                                        "Shropshire Hills Zoo": "1.1"
+                                        "Giardino Zoologico e Botanico La Sapienza": "1.0 [lapponica]",
+                                        "Shropshire Hills Zoo": "1.1 [lapponica]"
 
                                         }
                                         },
@@ -7228,7 +7234,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "breeding": "Average",
                                                     "region": "Oceania",
                                                     "holdings": {
-                                                        "North America": 0,
+                                                        "North America": "1.0 - Cube Zoological Park",
                                                         "Europe": "0.1 - Giardino Zoologico e Botanico La Sapienza",
                                                         "Asia": 0,
                                                         "Africa": 0,
@@ -7236,6 +7242,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "Oceania": 0,
                                                     },
                                                     "institutions": {
+                                                    "Cube Zoological Park": "1.0",
                                                     "Giardino Zoologico e Botanico La Sapienza": "0.1",
 
                                                 },
@@ -7287,27 +7294,560 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                                 }
                                                 },
-                                                "Mottled Sculpin": {
-                                                    "common": "Mottled Sculpin",
-                                                    "scientific": "Cottus bairdii",
-                                                    "info": "A widely distributed sculpin found exclusively in North America, mottled sculpins prefer well-oxygenated coldwater habitats such as mountain streams and rocky lake shores. They feed mostly on aquatic insect larvae and grow to 5.9 inches in length.",
+                                                "Paiute Sculpin": {
+                                                    "common": "Paiute Sculpin",
+                                                    "scientific": "Cottus beldingii",
+                                                    "info": "Endemic to the western United States, the Paiute sculpin is a small fish, growing to 5 inches at maximum. They are benthic fish which almost never leave the substrate of their habitat, which is typically riffles in streams and creeks.",
                                                     "type": "Fish",
                                                     "order": "Perciformes",
                                                     "family": "Cottidae",
                                                     "genus": "Cottus",
-                                                    "image_url": "https://i.troutnut.com/im_regspec/pic_3150_800.jpg",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/18337097/original.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                            "holdings": {
-                                                                "North America": "3 - High Uintahs Zoo",
-                                                                "Europe": 0,
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "High Uintahs Zoo": "3"
+                                                    "holdings": {
+                                                        "North America": "3 - High Uintahs Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "High Uintahs Zoo": "3"
+
+                                                }
+                                                },
+                                                "Egyptian Fruit Bat": {
+                                                    "common": "Egyptian Fruit Bat",
+                                                    "scientific": "Rousettus aegyptiacus",
+                                                    "info": "A medium-sized bat native to Africa and Asia, the Egyptian fruit bat feeds on, as its name suggests, fruit and leaves. They are considered pests in their native range for their eating of crops, and this serves as a primary threat to the species in the wild.",
+                                                    "type": "Mammal",
+                                                    "order": "Chiroptera",
+                                                    "family": "Pteropodidae",
+                                                    "genus": "Rousettus",
+                                                    "image_url": "https://live.staticflickr.com/3473/3186245424_ebb367a628_b.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "Asia, Africa",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "15 - Shropshire Hills Zoo",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Shropshire Hills Zoo": "15"
+
+                                                }
+                                                },
+                                                "Rodrigues Flying Fox": {
+                                                    "common": "Rodrigues Flying Fox",
+                                                    "scientific": "Pteropus rodricensis",
+                                                    "info": "An endangered species of flying fox endemic to the Mauritian island of Rodridues, this large bat roosts in large groups during the day and forages for fruit at night. They are hunted extensively by locals as well as being threatened by storms that buffet the island.",
+                                                    "type": "Mammal",
+                                                    "order": "Chiroptera",
+                                                    "family": "Pteropodidae",
+                                                    "genus": "Pteropus",
+                                                    "image_url": "https://www.kiezebrink.eu/public/data/image/extrafields/44b3db3194ceb3de192c36123e885cfbdd48534f-animals-g646cd5b4c-1920.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "Africa",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "6 - Shropshire Hills Zoo",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Shropshire Hills Zoo": "6"
+
+                                                }
+                                                },
+                                                "California Skeleton Shrimp": {
+                                                    "common": "California Skeleton Shrimp",
+                                                    "scientific": "Caprella californica",
+                                                    "info": "Despite the name, the California skeleton shrimp is an amphipod and not a true shrimp. They are native to marine habitats of the eastern Pacific, though there are reports of distribution in the Sea of Japan as well.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Amphipoda",
+                                                    "family": "Caprellidae",
+                                                    "genus": "Caprella",
+                                                    "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/INV006/INV006-00336-1920x1279.jpg",
+                                                    "breeding": "Difficult",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "10 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "10"
+
+                                                }
+                                                },
+                                                "Common Basket Star": {
+                                                    "common": "Common Basket Star",
+                                                    "scientific": "Gorgonocephalus eucnemis",
+                                                    "info": "Found in frigid waters of the Northern Hemisphere, the common basket star can be found from 8 to 1850 meters in the ocean. Their many arms allow them to grab particles of food from the water column. They are often found in association with toxic sponges, which allows it to defend itself from predators.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Phrynophiurida",
+                                                    "family": "Gorgonocephalidae",
+                                                    "genus": "Gorgonocephalus",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/166133850/original.jpeg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America, Asia",
+                                                    "holdings": {
+                                                        "North America": "1 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "1"
+
+                                                }
+                                                },
+                                                "Everglades Crayfish": {
+                                                    "common": "Everglades Crayfish",
+                                                    "scientific": "Procambarus alleni",
+                                                    "info": "Endemic to Florida, the Everglades crayfish has many color variants from brown to blue, but its most well known variant is an electric blue coloration that was bred into it for the aquarium industry. They are an omnivorous scavenger and will eat just about anything.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Decapoda",
+                                                    "family": "Cambaridae",
+                                                    "genus": "Procambarus",
+                                                    "image_url": "https://static.inaturalist.org/photos/67827087/original.jpeg",
+                                                    "breeding": "Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "1.0 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "1.0"
+
+                                                }
+                                                },
+                                                "Sarcastic Fringehead": {
+                                                    "common": "Sarcastic Fringehead",
+                                                    "scientific": "Neoclinus blanchardi",
+                                                    "info": "One of the largest blenny species, the sarcastic fringehead is found in the eastern Pacific and is most well known for its incredibly large jaws that they use to intimidate others and defend their territory. They reside within holes in the rock and come out typically only to eat.",
+                                                    "type": "Fish",
+                                                    "order": "Blenniiformes",
+                                                    "family": "Chaenopsidae",
+                                                    "genus": "Neoclinus",
+                                                    "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS011/FIS011-00563-1920x1278.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "1 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "1"
+
+                                                }
+                                                },
+                                                "Coyote": {
+                                                    "common": "Coyote",
+                                                    "scientific": "Canis latrans",
+                                                    "info": "A canine native to North America, the coyote is an important mesopredator in the continent's ecosystem and is one of the most common large mammals there. Typically feeding on small mammals, coyotes are much less social than their cousins the gray wolf, preferring instead to live alone or in loosely-associated small packs.",
+                                                    "type": "Mammal",
+                                                    "order": "Carnivora",
+                                                    "family": "Canidae",
+                                                    "genus": "Canis",
+                                                    "image_url": "https://cdn.britannica.com/18/7818-050-46C6BE48/Coyote.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "4.0 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "4.0"
+
+                                                }
+                                                },
+                                                "Giant Desert Centipede": {
+                                                    "common": "Giant Desert Centipede",
+                                                    "scientific": "Scolopendra heros",
+                                                    "info": "One of the most common centipedes kept in the private trade, the giant desert centipede is renowned for its bright color, but it is an aggressive species that should be kept with great care. Native to arid regions of North America, they hunt small animals at night using their venom and strength.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Scolopendromorpha",
+                                                    "family": "Scolopendridae",
+                                                    "genus": "Scolopendra",
+                                                    "images": [
+                                                        {"label": "Black-headed form", "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Scolopendra_heros.jpg"},
+                                                    ],
+                                                    "breeding": "Below Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "1.1 (black-headed) - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.1 [black-headed]"
+
+                                                }
+                                                },
+                                                "Timber Rattlesnake": {
+                                                    "common": "Timber Rattlesnake",
+                                                    "scientific": "Crotalus horridus",
+                                                    "info": "A large rattlesnake species native to the eastern half of the United States the timber rattlesnake is the only venomous snake species found in the northeastern part of the country. They are threatened in several states due to habitat loss.",
+                                                    "type": "Reptile",
+                                                    "order": "Squamata",
+                                                    "family": "Viperidae",
+                                                    "genus": "Crotalus",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/ZollmanTimberRattlesnake.jpg/1920px-ZollmanTimberRattlesnake.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "1.0 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.0"
+
+                                                }
+                                                },
+                                                "Common Pipistrelle": {
+                                                    "common": "Common Pipistrelle",
+                                                    "scientific": "Pipistrellus pipistrellus",
+                                                    "info": "This small insectivorous bat can be found in a huge range from the British Isles to Korea. Preferring mosquitoes, midges, and gnats, they are an edge specialist, which means that they feed primarily on the edges of woodlands.",
+                                                    "type": "Mammal",
+                                                    "order": "Chiroptera",
+                                                    "family": "Vespertilionidae",
+                                                    "genus": "Pipistrellus",
+                                                    "image_url": "https://batslife.eu/wp-content/uploads/2019/11/Vilda_36091_Rollin_Verlinde__Common_Pipistrelle-1160x741.jpg",
+                                                    "breeding": "Difficult",
+                                                    "region": "Europe, Asia",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "3 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "3"
+
+                                                }
+                                                },
+                                                "Raft Spider": {
+                                                    "common": "Raft Spider",
+                                                    "scientific": "Dolomedes fimbriatus",
+                                                    "info": "A large semi-aquatic spider with a disjunct distribution from Iceland to Siberia, the raft spider primarily hunts aquatic invertebrates such as pond striders. They have been known to fully submerge themselves to protect themselves from predators, hiding underwater for several minutes.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Araneae",
+                                                    "family": "Dolomedidae",
+                                                    "genus": "Dolomedes",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AttackPosition.jpg/1280px-AttackPosition.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "Europe, Asia",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1"
+
+                                                }
+                                                },
+                                                "Wasp Spider": {
+                                                    "common": "Wasp Spider",
+                                                    "scientific": "Argiope bruennichi",
+                                                    "info": "One of several orb weavers native to Eurasia, the wasp spider gets its name from the distinctive coloration on its abdomen and legs. Males are significantly smaller than females, and it is thought this allows them to sneak onto the females' webs in order to mate.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Araneae",
+                                                    "family": "Araneidae",
+                                                    "genus": "Argiope",
+                                                    "image_url": "https://live.staticflickr.com/65535/51891449875_2ca7876e01_b.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "Europe, Asia, Africa",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1"
+
+                                                }
+                                                },
+                                                "Indian White-Eye": {
+                                                    "common": "Indian White-Eye",
+                                                    "scientific": "Zosterops palpebrosus",
+                                                    "info": "One of the many birds in the white-eye family, the Indian white-eye is a common passerine bird within the Indian subcontinent, feeding primarily on nectar and insects. They live in tightly-associated flocks which only separate during the breeding season.",
+                                                    "type": "Bird",
+                                                    "order": "Passeriformes",
+                                                    "family": "Zosteropidae",
+                                                    "genus": "Zosterops",
+                                                    "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/126366191/900",
+                                                    "breeding": "Average",
+                                                    "region": "Asia",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1"
+
+                                                }
+                                                },
+                                                "New Caledonian Giant Gecko": {
+                                                    "common": "New Caledonian Giant Gecko",
+                                                    "scientific": "Rhacodactylus leachianus",
+                                                    "info": "The largest extant species of gecko, the New Caledonian giant gecko is commonly known as the 'leachie' in the reptile hobby. They are primarily nocturnal, hiding within tree hollows during the daytime. They are omnivorous and not picky, feeding on fruit, nectar, sap, and small animals.",
+                                                    "type": "Reptile",
+                                                    "order": "Squamata",
+                                                    "family": "Diplodactylidae",
+                                                    "genus": "Rhacodactylus",
+                                                    "image_url": "https://a-z-animals.com/media/2024/03/shutterstock-2338755981-huge-licensed-scaled-1024x682.jpg",
+                                                    "breeding": "Difficult",
+                                                    "region": "Oceania",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "1.0 - Giardino Zoologico e Botanico La Sapienza",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.0"
+
+                                                }
+                                                },
+                                                "Common Earwig": {
+                                                    "common": "Common Earwig",
+                                                    "scientific": "Forficula auricularia",
+                                                    "info": "Also known as the European earwig, the common earwig gets its name from the hindwings, which look like a human ear when unfolded. They are a common household insect and are disliked due to their appearance, but are completely harmless.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Dermaptera",
+                                                    "family": "Forficulidae",
+                                                    "genus": "Forficula",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/15939/large.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "Europe, Asia",
+                                                    "holdings": {
+                                                        "North America": "6 - Cube Zoological Park",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Cube Zoological Park": "6"
+
+                                                }
+                                                },
+                                                "American Paddlefish": {
+                                                    "common": "American Paddlefish",
+                                                    "scientific": "Polyodon spathula",
+                                                    "info": "One of the most iconic and well-known North American freshwater fish, the American paddlefish is the only remaining extant paddlefish species. They are filter feeders, keeping their mouths open most of the time to feed on zooplankton.",
+                                                    "type": "Fish",
+                                                    "order": "Acipenseriformes",
+                                                    "family": "Polyodontidae",
+                                                    "genus": "Polyodon",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Paddlefish-USFWS-Fish-and-Aquatic-Conservation-2160x1440.jpg/1280px-Paddlefish-USFWS-Fish-and-Aquatic-Conservation-2160x1440.jpg",
+                                                    "breeding": "Difficult",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": "3 - Wasser Wunder Welt",
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Wasser Wunder Welt": "3"
+
+                                                }
+                                                },
+                                                "Blue-Green Chromis": {
+                                                    "common": "Blue-Green Chromis",
+                                                    "scientific": "Chromis viridis",
+                                                    "info": "A common shoaling damselfish of the Indo-Pacific, the blue-green chromis is commonly kept in the aquarium trade, where it is renowned for its hardiness. They are found at shallow depths and are often associated with Acropora corals.",
+                                                    "type": "Fish",
+                                                    "order": "Blenniiformes",
+                                                    "family": "Pomacentridae",
+                                                    "genus": "Chromis",
+                                                    "image_url": "https://www.fishi-pedia.com/wp-content/uploads/2023/05/Chromis_viridis_1-scaled.jpg",
+                                                    "breeding": "Impossible",
+                                                    "region": "Asia, Africa, Oceania",
+                                                    "holdings": {
+                                                        "North America": "200 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "200"
+
+                                                }
+                                                },
+                                                "Percula Clownfish": {
+                                                    "common": "Percula Clownfish",
+                                                    "scientific": "Amphiprion percula",
+                                                    "info": "One of the most popular and well-known clownfish species, the percula clownfish is endemic to the southeastern Indo-Pacific, from New Guinea to Australia. Associated with two species of sea anemones, the percula clownfish can be distinguished from the ocellaris clownfish by the number of dorsal spines.",
+                                                    "type": "Fish",
+                                                    "order": "Blenniiformes",
+                                                    "family": "Pomacentridae",
+                                                    "genus": "Amphiprion",
+                                                    "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS046/FIS046-00345-1920x1279.jpg",
+                                                    "breeding": "Easy",
+                                                    "region": "Oceania",
+                                                    "holdings": {
+                                                        "North America": "8.8 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "8.8"
+
+                                                }
+                                                },
+                                                "Banggai Cardinalfish": {
+                                                    "common": "Banggai Cardinalfish",
+                                                    "scientific": "Pterapogon kauderni",
+                                                    "info": "One of the few marine fish to have been bred in captivity, the Banggai cardinalfish is originally endemic to the Banggai archipelago of Indonesia. It is a paternal mouthbrooder, which makes it easier to breed in captivity than other cardinalfish. It is endangered in the wild and most aquarium specimens are captive-bred.",
+                                                    "type": "Fish",
+                                                    "order": "Gobiiformes",
+                                                    "family": "Apogonidae",
+                                                    "genus": "Pterapogon",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Banggai-Kardinalbarsch_%28Pterapogon_kauderni%29_-_5340.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "Asia",
+                                                    "holdings": {
+                                                        "North America": "12 - New York Aquarium",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "New York Aquarium": "12"
+
+                                                }
+                                                },
+                                                "Ball Python": {
+                                                    "common": "Ball Python",
+                                                    "scientific": "Python regius",
+                                                    "info": "A small python endemic to west and central Africa, the ball python is extremely popular in the private trade for its small size and docile temperament. Feeding primarily on small mammals and birds, this species has many morphs bred in captivity, including the controversial spider ball python.",
+                                                    "type": "Reptile",
+                                                    "order": "Squamata",
+                                                    "family": "Pythonidae",
+                                                    "genus": "Python",
+                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/222323.jpg",
+                                                    "breeding": "Easy",
+                                                    "region": "Africa",
+                                                    "holdings": {
+                                                        "North America": "0.1 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "0.1"
+
+                                                }
+                                                },
+                                                "Argentine Horned Frog": {
+                                                    "common": "Argentine Horned Frog",
+                                                    "scientific": "Ceratophrys ornata",
+                                                    "info": "Endemic to South America, the Argentine horned frog is a voracious ambush predator. Typically remaining inactive while it waits for food, this brightly colored frog has sharp teeth and can inflict surprisingly serious injuries if threatened.",
+                                                    "type": "Amphibian",
+                                                    "order": "Anura",
+                                                    "family": "Ceratophryidae",
+                                                    "genus": "Ceratophrys",
+                                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/106327834/original.jpeg",
+                                                    "breeding": "Average",
+                                                    "region": "South America",
+                                                    "holdings": {
+                                                        "North America": "1.0 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.0"
+
+                                                }
+                                                },
+                                                "Carolina Sphinx Moth": {
+                                                    "common": "Carolina Sphinx Moth",
+                                                    "scientific": "Manduca sexta",
+                                                    "info": "The larvae of this moth species are more well known than the adults. The larvae are known as tobacco hornworms, and they feed on various plants, with their preferred hosts being tobacco and tomato plants. They are commonly used as model organisms in biology due to their short life cycles.",
+                                                    "type": "Invertebrate",
+                                                    "order": "Lepidoptera",
+                                                    "family": "Sphingidae",
+                                                    "genus": "Manduca",
+                                                    "images": [
+                                                        {"label": "Tobacco hornworm", "url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/60/Manduca_sexta_missouri.jpg/1024px-Manduca_sexta_missouri.jpg"},
+                                                        {"label": "Carolina sphinx moth", "url": "https://www.butterfliesandmoths.org/sites/default/files/bamona_images/manduca_sexta_taj1.jpg"}
+                                                    ],
+                                                    "breeding": "Very Easy",
+                                                    "region": "North America",
+                                                    "holdings": {
+                                                        "North America": "12 - Cube Zoological Park",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Cube Zoological Park": "12"
                                                 }
                                                 },
 }
