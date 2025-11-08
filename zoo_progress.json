@@ -47,7 +47,8 @@
           "California Skeleton Shrimp",
           "Everglades Crayfish",
           "Sarcastic Fringehead",
-          "Common Basket Star"
+          "Common Basket Star",
+          "Mafia Island Killifish"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -139,7 +140,7 @@
     "339392105803939841": {
       "active_zoo": null,
       "zoos": {
-        "Jupiter Reptile Zoo": [
+        "jupiter reptile zoo": [
           "Black-Tailed Horned Pit Viper",
           "Flat-Nosed Pit Viper",
           "Indonesian Pit Viper",
@@ -263,7 +264,7 @@
     "339392105803939841": {
       "limit": 2,
       "zoos": [
-        "Jupiter Reptile Zoo"
+        "jupiter reptile zoo"
       ]
     },
     "815216371327434782": {
