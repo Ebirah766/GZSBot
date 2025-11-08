@@ -4,6 +4,12 @@ This is a Discord bot application built using discord.py that manages a virtual 
 
 # Recent Changes
 
+**2025-11-08**: Fixed critical data error in Western Mangrove Cat Snake species data:
+- Line 1478-1481: Changed "institutions" from set {0} to empty dictionary {}
+- This was causing "AttributeError: 'set' object has no attribute 'get'" when trying to house any species
+- Root cause: institutions field was malformed as a set instead of a dictionary, breaking the house command
+- Bot now handles house/unhouse commands correctly
+
 **2025-11-07**: Fixed syntax error in Carolina Sphinx Moth species data:
 - Line 7837: Added missing opening curly brace { to second image dictionary entry - was missing the opening bracket for {"label": "Carolina sphinx moth", ...}
 - Line 7840: Removed trailing comma after last image entry in the images array

@@ -1476,8 +1476,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            0,
-
         }
     },
     "Flat-Nosed Pit Viper": {
