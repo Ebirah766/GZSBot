@@ -1256,12 +1256,13 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             "Asia": 0,
-            "Europe": 0,
+            "Europe": "1.1 (ridleyi) - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
+            "Giardino Zoologico e Botanico La Sapienza": "1.1 [ridleyi]"
            
         }
     },
@@ -1542,7 +1543,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "North America",
         "holdings": {
-            "North America": 0,
+            "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1550,7 +1551,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Cube Zoological Park": "1.1"
         }
     },
     "Blood Python": {
@@ -1588,7 +1589,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "Asia",
         "holdings": {
-            "North America": 0,
+            "North America": "1.2 - Essex County Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1596,6 +1597,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
+            "Essex County Zoo": "1.2"
             
         }
     },
