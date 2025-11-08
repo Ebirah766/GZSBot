@@ -1254,7 +1254,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "Asia",
         "holdings": {
-            "North America": "1.1 [ridleyi] - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1262,7 +1262,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1 [ridleyi]"
+           
         }
     },
     "Eastern Indigo Snake": {
@@ -1277,7 +1277,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "North America",
         "holdings": {
-            "North America": "1.1 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1285,7 +1285,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1"
+            
         }
     },
     "Black-Tailed Horned Pit Viper": {
@@ -1300,7 +1300,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "North America",
         "holdings": {
-            "North America": "0.2 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1308,7 +1308,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "0.2"
+            
         }
     },
     "Indonesian Pit Viper": {
@@ -1326,7 +1326,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": "1.1 [Blue], 0.1 [Yellow] - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1334,7 +1334,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1 [Blue], 0.1 [Yellow]"
+            
 
             }
             },
@@ -1350,7 +1350,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": "0.3 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1358,7 +1358,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "0.3"
+           
 
     }
     },
@@ -1374,7 +1374,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": "0.1 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1382,7 +1382,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "0.1"
+            
         }
     },
     "Pygmy Rattlesnake": {
@@ -1399,7 +1399,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "North America",
         "holdings": {
-            "North America": "1.2 [barbouri] - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1407,7 +1407,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.2 [barbouri]"
+           
         }
     },
     "Sri Lankan Pit Viper": {
@@ -1422,7 +1422,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://static.inaturalist.org/photos/352173492/large.jpg",
         "region": "Asia",
         "holdings": {
-            "North America": "1.1 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1430,7 +1430,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1"
+            
         }
     },
     "Egyptian Cobra": {
@@ -1445,7 +1445,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Africa",
         "holdings": {
-            "North America": "1.1 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1453,7 +1453,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1"
+            
         }
     },
     "Western Mangrove Cat Snake": {
@@ -1468,7 +1468,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "Asia",
         "holdings": {
-            "North America": "2.0 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1476,7 +1476,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "2.0"
+            0,
 
         }
     },
@@ -1494,7 +1494,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": "1.1 [Java] - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1502,7 +1502,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1 [Java]"
+            
 
     }
     },
@@ -1521,7 +1521,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": "1.0 [Wild type] 0.1 [Leucistic] - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1529,7 +1529,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.0 [Wild type], 0.1 [Leucistic]"
+            
         }
     },
     "Eastern Coral Snake": {
@@ -1544,7 +1544,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "North America",
         "holdings": {
-            "North America": "1.1 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1552,7 +1552,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.1"
+            
         }
     },
     "Blood Python": {
@@ -1567,7 +1567,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "Asia",
         "holdings": {
-            "North America": "0.1 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1575,7 +1575,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "0.1"
+            
         }
     },
     "Chinese Crocodile Lizard": {
@@ -1590,7 +1590,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "Asia",
         "holdings": {
-            "North America": "1.2 - Jupiter Reptile Zoo",
+            "North America": 0,
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1598,7 +1598,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            "Jupiter Reptile Zoo": "1.2"
+            
         }
     },
     "Bighorn Sheep": {
@@ -7877,16 +7877,16 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "San Francisco Brine Shrimp": {
                                                     "common": "San Francisco Brine Shrimp",
                                                     "scientific": "Artemia franciscana",
-                                                    "info": "The widely distributed brine shrimp most familiar to aquarists, the San Francisco brine shrimp is originally native to the Americas, but has now become a global species due to introductions. It is often raised for live food or for petkeeping in the aquarium trade.",
+                                                    "info": "The brine shrimp most familiar to aquarists, the San Francisco brine shrimp is originally native to the Americas, but has now become a global species due to introductions. It is often raised for live food or for petkeeping in the aquarium trade.",
                                                     "type": "Invertebrate",
-                                                    "order": "Notostraca",
-                                                    "family": "Triopsidae",
-                                                    "genus": "Triops",
-                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Triops_longicaudatus.jpg",
-                                                    "breeding": "Easy",
-                                                    "region": "North America, South America, Asia, Oceania",
+                                                    "order": "Anostraca",
+                                                    "family": "Artemiidae",
+                                                    "genus": "Artemia",
+                                                    "image_url": "https://microscopy.org/get/files/image/galleries/Artemia_FINAL.jpg",
+                                                    "breeding": "Very Easy",
+                                                    "region": "North America, South America",
                                                     "holdings": {
-                                                        "North America": "20 - Cube Zoological Park",
+                                                        "North America": "200 - Cube Zoological Park",
                                                         "Europe": 0,
                                                         "Asia": 0,
                                                         "Africa": 0,
@@ -7894,7 +7894,31 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "Oceania": 0,
                                                     },
                                                     "institutions": {
-                                                    "Cube Zoological Park": "20"
+                                                    "Cube Zoological Park": "200"
+
+                                                    }
+                                                },
+                                                "African Fat-Tailed Gecko": {
+                                                    "common": "African Fat-Tailed Gecko",
+                                                    "scientific": "Hemitheconyx caudicinctus",
+                                                    "info": "A ground-dwelling gecko originally native to west and central Africa, the African fat-tailed gecko gets its name from its large tail, which is predictably used to store fat for lean times. They are popular pets and many morphs have been bred into them for this purpose.",
+                                                    "type": "Reptile",
+                                                    "order": "Squamata",
+                                                    "family": "Eublepharidae",
+                                                    "genus": "Hemitheconyx",
+                                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Hemitheconyx_caudicinctus.jpg",
+                                                    "breeding": "Average",
+                                                    "region": "Africa",
+                                                    "holdings": {
+                                                        "North America": "1.1 - Essex County Zoo",
+                                                        "Europe": 0,
+                                                        "Asia": 0,
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Essex County Zoo": "1.1"
                                                         
                                                         
                                                 }
@@ -8934,7 +8958,6 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Credit River Zoo",
     "Cube Zoological Park",
     "High Uintahs Zoo",
-    "Jupiter Reptile Zoo",
     "New York Aquarium",
     "Mint Park Zoo",
     "Shropshire Hills Zoo",
