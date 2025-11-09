@@ -1351,7 +1351,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": 0,
+            "North America": "0.3 - Essex County Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1359,9 +1359,8 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-           
-
-    }
+            "Essex County Zoo": "0.3"
+        }
     },
     "Wagler's Pit Viper": {
         "common": "Wagler's Pit Viper",
