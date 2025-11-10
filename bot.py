@@ -1278,7 +1278,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "North America",
         "holdings": {
-            "North America": 0,
+            "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1286,7 +1286,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Cube Zoological Park": "1.1"
         }
     },
     "Black-Tailed Horned Pit Viper": {
@@ -1358,9 +1358,9 @@ species_data: Dict[str, Dict[str, Any]] = {
             "South America": 0,
             "Oceania": 0,
         },
-        "institutions": {
-            "Essex County Zoo": "0.3"
-        }
+            "institutions": {
+                "Essex County Zoo": "0.3"           
+    }
     },
     "Wagler's Pit Viper": {
         "common": "Wagler's Pit Viper",
