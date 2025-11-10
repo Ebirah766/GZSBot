@@ -1374,7 +1374,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": 0,
+            "North America": "0.1 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1382,7 +1382,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Cube Zoological Park": "0.1"
         }
     },
     "Pygmy Rattlesnake": {
