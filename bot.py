@@ -1401,13 +1401,13 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             "Asia": 0,
-            "Europe": 0,
+            "Europe": "1.2 (barbouri) - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-           
+            "Giardino Zoologico e Botanico La Sapienza": "1.2 [barbouri]"
         }
     },
     "Sri Lankan Pit Viper": {
