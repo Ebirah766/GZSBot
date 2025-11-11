@@ -2,6 +2,14 @@
 
 This project is a Discord bot designed to manage a virtual zoo and token-based economy. It allows users to create zoos, collect animals, and participate in a virtual currency system. The bot is built with `discord.py` and is hosted on Replit, utilizing its web server capabilities to ensure continuous uptime. The long-term vision is to provide an engaging and persistent virtual pet experience within Discord.
 
+# Recent Changes
+
+**2025-11-11**: Added new zoo "Chiang Mai Serpentarium" to zoo directory:
+- Discovered zoo was referenced in species data but missing from zoo_progress.json directory
+- Added "Chiang Mai Serpentarium" entry to directory in zoo_progress.json
+- Zoo directory expanded from 17 to 18 zoos
+- Bot successfully restarted and recognizes new zoo
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.

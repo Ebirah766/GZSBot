@@ -1327,7 +1327,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": 0,
+            "North America": "1.1 (Blue) 0.1 (Yellow) - Essex County Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1335,7 +1335,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+             "Essex County Zoo": "1.1 [Blue], 0.1 [Yellow]"
 
             }
             },
@@ -1494,13 +1494,13 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             "Asia": 0,
-            "Europe": 0,
+            "Europe": "1.1 (Java) - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Giardino Zoologico e Botanico La Sapienza": "1.1 [Java]",
 
     }
     },
@@ -7918,6 +7918,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     },
                                                     "institutions": {
                                                     "Essex County Zoo": "1.1"
+
+                                                    }
+                                                    },
+                                                "Cryptic Green Pit Viper": {
+                                                    "common": "Cryptic Green Pit Viper",
+                                                    "scientific": "Trimeresurus cryptographicus",
+                                                    "info": "One of the most recently described members in its genus, the cryptic green pit viper was only made known to science in 2025. At the moment it is only known from a small area in central Thailand, and has a variety of color variants, making it difficult to identify to species level.",
+                                                    "type": "Reptile",
+                                                    "order": "Squamata",
+                                                    "family": "Viperidae",
+                                                    "genus": "Trimeresurus",
+                                                    "image_url": "https://static.thainationalparks.com/img/species/2025/04/26/398196/trimeresurus-cryptographicus-w-1500.jpg",
+                                                    "breeding": "Below Average",
+                                                    "region": "Asia",
+                                                    "holdings": {
+                                                        "North America": 0,
+                                                        "Europe": 0,
+                                                        "Asia": "1.1 - Chiang Mai Serpentarium",
+                                                        "Africa": 0,
+                                                        "South America": 0,
+                                                        "Oceania": 0,
+                                                    },
+                                                    "institutions": {
+                                                    "Chiang Mai Serpentarium": "1.1"
                                                         
                                                         
                                                 }
@@ -8970,6 +8994,7 @@ ZOO_DIRECTORY_SEED: list[str] = [
     "Kings of the Jungle",
     "Species Watch",
     "Giardino Zoologico e Botanico La Sapienza",
+    "Chiang Mai Serpentarium",
 ]
 
 _directory_normalizer = re.compile(r"\s+")
