@@ -8239,8 +8239,37 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                         "New York Aquarium": "1 [Brown form], 1 [Pink form], 1 [Orange form]"
-                                        }
-                                        },
+
+                                    }
+                                    },
+                                    "Thin Staghorn Coral": {
+                                    "common": "Thin Staghorn Coral",
+                                    "scientific": "Acropora tenuis",
+                                    "info": "A somewhat common Acropora both in the wild and in captivity, the thin staghorn coral occurs in corymbose (thick, chaotic) colonies which can be several different colors. They typically occur in upper and mid-level reefs from 26-66 feet in depth.",
+                                    "type": "Invertebrate",
+                                    "order": "Scleractinia",
+                                    "family": "Acroporidae",
+                                    "genus": "Acropora",
+                                    "images": [                                                
+                                        {"label": "Brown form", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Acropora_tenuis_Maldives.jpg/1280px-Acropora_tenuis_Maldives.jpg"},
+                                        {"label": "Pink form", "url": "https://www.coralsoftheworld.org/media/images/0074_C01_02.jpg"},
+                                        {"label": "Green form", "url": "https://www.coralsoftheworld.org/media/images/0074_C04_05.jpg"},
+                                ],
+                                "image_url": "https://example.com/default.jpg",
+                                "breeding": "Difficult",
+                                "region": "Asia, Africa, Oceania",
+                                "holdings": {
+                                    "North America": "1 [Brown form] 1 [Pink form] 1 [Green form] - New York Aquarium",
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "New York Aquarium": "1 [Brown form], 1 [Pink form], 1 [Green form]"
+                                    }
+                                    },
 }
 SPECIES = species_data
 
