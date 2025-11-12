@@ -4,13 +4,14 @@ This project is a Discord bot designed to manage a virtual zoo and token-based e
 
 # Recent Changes
 
-**2025-11-12**: Database expanded to 326 species and fixed syntax error:
+**2025-11-12**: Implemented automatic syntax protection system:
+- **NEW**: Created `run_bot_safe.py` - automatic syntax validator with backup/restore functionality
+- Bot now validates syntax before every start and auto-restores from backup if broken file is synced
+- This permanently solves recurring SSH sync issues that were overwriting fixes
 - Fixed syntax error in Eggers's Killifish species data (line 8175-8180): Added missing closing bracket `]` for images array
 - Database now contains 326 species (up from 320)
-- Bot successfully restarted and recognizes all 326 species
 - Latest additions include: Siamese Spitting Cobra, Brown-Banded Cobra, Omkoi Lance-Headed Pit Viper, Phuket Pit Viper, Lanna Green Pit Viper, Guo's Green Pit Viper, Cryptic Green Pit Viper, African Fat-Tailed Gecko, San Francisco Brine Shrimp, American Tadpole Shrimp, Carolina Sphinx Moth, Argentine Horned Frog, Ball Python, Banggai Cardinalfish, Percula Clownfish
 - Species breakdown: 79 Invertebrates, 76 Mammals, 64 Fish, 51 Reptiles, 39 Birds, 11 Amphibians
-- All species data validated successfully
 
 **2025-11-11**: Added new zoo "Chiang Mai Serpentarium" to zoo directory:
 - Discovered zoo was referenced in species data but missing from zoo_progress.json directory
@@ -43,6 +44,15 @@ To meet Replit's uptime requirements, a Flask web server runs on port 8080 in a 
 ## Error Handling and Logging
 
 The bot uses Python's `logging` module to output operational information and errors to both `bot.log` and standard output, with detailed formatting. It includes graceful handling for `CommandNotFound` errors.
+
+## Automatic Syntax Protection
+
+A safe launcher system (`run_bot_safe.py`) provides automatic protection against syntax errors:
+- Validates `bot.py` syntax before every bot start using Python's `py_compile`
+- Creates automatic backups (`bot.py.backup`) of valid bot files
+- Auto-restores from backup if a broken file is synced from the local machine
+- Prevents bot crashes from SSH sync conflicts
+- Displays helpful error messages with fix instructions if syntax errors are detected
 
 ## Configuration Management
 
