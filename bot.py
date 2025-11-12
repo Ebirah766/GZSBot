@@ -8341,6 +8341,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "institutions": {
                                     "Essex County Zoo": "2.2"
 
+                                    }
+                                    },
+                                    "Spotted Turtle": {
+                                    "common": "Spotted Turtle",
+                                    "scientific": "Clemmys guttata",
+                                    "info": "The most well-known and common lemur species in captivity, the ring-tailed lemur resides in the dry forests of southwestern Madagascar. With a complex matriarchal social structure, ring-tailed lemurs are probably the most well-studied lemur species due to their ease of access and popularity amongst the general public.",
+                                    "type": "Mammal",
+                                    "order": "Primates",
+                                    "family": "Lemuridae",
+                                    "genus": "Lemur",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Lemur_catta_001.jpg/1024px-Lemur_catta_001.jpg",
+                                    "breeding": "Easy",
+                                    "region": "Africa",
+                                    "holdings": {
+                                        "North America": "2.2 - Essex County Zoo",
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Essex County Zoo": "2.2"
+
                                 }
                                 },
 }
