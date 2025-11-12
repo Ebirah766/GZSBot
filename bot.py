@@ -444,13 +444,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Asia",
         "holdings": {
             "North America": "0.1 (Wild type) - Cube Zoological Park",
-            "Asia": "1.0 (Piebald) - Sapporo Reptile Center and National Aquarium",
+            "Asia": "0.1 (Wild type) - Chiang Mai Serpentarium, 1.0 (Piebald) - Sapporo Reptile Center and National Aquarium",
             "Europe": 0,
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
+            "Chiang Mai Serpentarium": "0.1 [Wild type]",
             "Cube Zoological Park": "0.1 [Wild type]",
             "Sapporo Reptile Center and National Aquarium": "1.0 [Piebald]"
         },
@@ -1301,7 +1302,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "North America",
         "holdings": {
-            "North America": 0,
+            "North America": "0.2 - Essex County Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1309,7 +1310,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Essex County Zoo": "0.2"
         }
     },
     "Indonesian Pit Viper": {
@@ -1422,7 +1423,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://static.inaturalist.org/photos/352173492/large.jpg",
         "region": "Asia",
         "holdings": {
-            "North America": 0,
+            "North America": "1.1 - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1430,7 +1431,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Cube Zoological Park": "1.1",
         }
     },
     "Egyptian Cobra": {
@@ -1470,13 +1471,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": 0,
             "Asia": "0.2 - Chiang Mai Serpentarium",
-            "Europe": 0,
+            "Europe": "2.0 - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
         "Chiang Mai Serpentarium": "0.2",
+        "Giardino Zoologico e Botanico La Sapienza": "2.0",
             }
     },
     "Flat-Nosed Pit Viper": {
@@ -1514,13 +1516,13 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Elapidae",
         "genus": "Naja",
         "images": [
-            {"label": "Wild type", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/491146798_1081368080686123_7102814473061028418_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dB_BPqbQrvgQ7kNvwHBWXOq&_nc_oc=Adl1lq2CaO7I_YK-PHlI7Ktskdbp_EN2ozE4azVJgWZdVzP4R5o1o9f-Xcm10MsQONM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=lfz1apkHFuI_dmAdS9v5VA&oh=00_AffAfUf6YWEMRyAQffeHdVRUJ3s4PtJZF4cXosCvcEeqAQ&oe=68E7251E"},
-            {"label": "Leucistic", "url": "https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/510343141_9936717456440041_3752577244402236551_n.jpg?stp=dst-jpg_p843x403_tt6&_nc_cat=107&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=fTmB3GAJFVkQ7kNvwEDuJ19&_nc_oc=AdnmGnVQfKM0NTljvtzn1JN0g1vCZCOE6U1Dgi-JK2ekB_uqV9ilC0nUW_LT5yFa9ZM&_nc_zt=23&_nc_ht=scontent-cph2-1.xx&_nc_gid=r9UN0pTHtEO9xWBJGuJxJg&oh=00_AfegHTmllnIDkiBl44dtRWx877XeyA8qaUBljjAPlb_rTQ&oe=68E6FB38"}
+            {"label": "Wild type", "url": "https://static.thainationalparks.com/img/species/2021/06/15/397559/naja-kaouthia-juvenile-w-1500.jpg"},
+            {"label": "Leucistic", "url": "https://i.imgur.com/pH6Me5E.jpeg"}
         ],
         "breeding": "Below Average",
         "region": "Asia",
         "holdings": {
-            "North America": 0,
+            "North America": "1.0 (Wild type) 0.1 (Leucistic) - Cube Zoological Park",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1528,7 +1530,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Cube Zoological Park": "1.0 [Wild type], 0.1 [Leucistic]"
         }
     },
     "Eastern Coral Snake": {
@@ -8087,8 +8089,106 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                     "Chiang Mai Serpentarium": "0.1"
-                                                }
-                                                },
+
+                                        }
+                                        },
+                                        "Wanghaoting's Krait": {
+                                        "common": "Wanghaoting's Krait",
+                                        "scientific": "Bungarus wanghaotingi",
+                                        "info": "A highly venomous krait species that is native to mainland Southeast Asia from China to Myanmar, the Wanghaoting's krait is named for Mr. Wang Hao-t'ing, an artist and scientist who painted reptiles for western scientists. They are often synonymized with the similar many-banded krait.",
+                                        "type": "Reptile",
+                                        "order": "Squamata",
+                                        "family": "Elapidae",
+                                        "genus": "Bungarus",
+                                        "image_url": "https://images.squarespace-cdn.com/content/v1/5b4b10e19d5abb222d2069fe/1617092002655-MDPCXWMDX073CX6L3Y23/Many+Banded+Krait+-+Bungarus+multicinctus.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "Asia",
+                                        "holdings": {
+                                            "North America": 0,
+                                            "Europe": 0,
+                                            "Asia": "0.1 - Chiang Mai Serpentarium",
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "Chiang Mai Serpentarium": "0.1"
+
+                                    }
+                                    },
+                                    "Cox's Mud Snake": {
+                                    "common": "Cox's Mud Snake",
+                                    "scientific": "Homalopsis mereljcoxi",
+                                    "info": "Also known as the skull-faced water snake, this species is distinguished by its distinctive patterning on the top of the head. A nocturnal species, they come out at night to hunt prey such as fish and frogs. They are viviparous, giving birth to live young.",
+                                    "type": "Reptile",
+                                    "order": "Squamata",
+                                    "family": "Homalopsidae",
+                                    "genus": "Homalopsis",
+                                    "image_url": "https://www.thainationalparks.com/img/species/2020/09/03/397029/homalopsis-mereljcoxi-w-1500.jpg",
+                                    "breeding": "Below Average",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": 0,
+                                        "Europe": 0,
+                                        "Asia": "2.4 - Chiang Mai Serpentarium",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Chiang Mai Serpentarium": "2.4"
+
+                                    }
+                                    },
+                                    "Green Cat Snake": {
+                                    "common": "Green Cat Snake",
+                                    "scientific": "Boiga cyanea",
+                                    "info": "A colubrid found in south, east, and southeast Asia, the green cat snake is a nonvenomous widely distributed species. They are both terrestrial and arboreal, feeding primarily on lizards but also taking frogs, birds, rodents, and other snakes.",
+                                    "type": "Reptile",
+                                    "order": "Squamata",
+                                    "family": "Colubridae",
+                                    "genus": "Boiga",
+                                    "image_url": "https://static.thainationalparks.com/img/species/2017/08/10/319997/boiga-cyanea-w-1500.jpg",
+                                    "breeding": "Average",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": 0,
+                                        "Europe": 0,
+                                        "Asia": "0.1 (cf.) - Chiang Mai Serpentarium",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Chiang Mai Serpentarium": "0.1 [cf.]"
+
+                                    }
+                                    },
+                                    "Eggers's Killifish": {
+                                    "common": "Eggers's Killifish",
+                                    "scientific": "Nothobranchius eggersi",
+                                    "info": "Endemic to Tanzania, the Eggers's killifish has several distinct morphs of red and blue. It is a fairly recently described species, being described in 1982 from Utete in Tanzania. They reach about 2 inches at maximum size, a moderate size for a Nothobranchius.",
+                                    "type": "Fish",
+                                    "order": "Cyprinodontiformes",
+                                    "family": "Nothobranchiidae",
+                                    "genus": "Nothobranchius",
+                                    "images": [
+                                        {"label": "Utete Red locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Eggersi-Utete.jpg"}
+                                    ],
+                                    "breeding": "Average",
+                                    "region": "Africa",
+                                    "holdings": {
+                                        "North America": "3.3 (Utete Red) - New York Aquarium",
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "New York Aquarium": "3.3 [Utete Red]"
+                                            }
+                                            },
 }
 SPECIES = species_data
 
