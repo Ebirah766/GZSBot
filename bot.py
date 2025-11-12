@@ -1469,14 +1469,15 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Asia",
         "holdings": {
             "North America": 0,
-            "Asia": 0,
+            "Asia": "0.2 - Chiang Mai Serpentarium",
             "Europe": 0,
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-        }
+        "Chiang Mai Serpentarium": "0.2",
+            }
     },
     "Flat-Nosed Pit Viper": {
         "common": "Flat-Nosed Pit Viper",
@@ -1565,7 +1566,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "Asia",
         "holdings": {
-            "North America": 0,
+            "North America": "0.1 - Essex County Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1573,7 +1574,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Essex County Zoo": "0.1"
         }
     },
     "Chinese Crocodile Lizard": {
@@ -7942,8 +7943,150 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     },
                                                     "institutions": {
                                                     "Chiang Mai Serpentarium": "1.1"
-                                                        
-                                                        
+
+                                                }
+                                                },
+                                                "Guo's Green Pit Viper": {
+                                                "common": "Guo's Green Pit Viper",
+                                                "scientific": "Trimeresurus guoi",
+                                                "info": "A recently described species of pit viper, the Guo's green pit viper is found in China, Thailand, Laos, and Myanmar. It is closely related to the white-lipped pit viper and was thought to be the same species until it was described as a separate species in 2021.",
+                                                "type": "Reptile",
+                                                "order": "Squamata",
+                                                "family": "Viperidae",
+                                                "genus": "Trimeresurus",
+                                                "image_url": "https://static.thainationalparks.com/img/species/2020/12/03/397103/trimeresurus-albolabris-guoi-w-1500.jpg",
+                                                "breeding": "Below Average",
+                                                "region": "Asia",
+                                                "holdings": {
+                                                    "North America": 0,
+                                                    "Europe": 0,
+                                                    "Asia": "1.2 - Chiang Mai Serpentarium",
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Chiang Mai Serpentarium": "1.2"
+
+                                            }
+                                            },
+                                            "Lanna Green Pit Viper": {
+                                            "common": "Lanna Green Pit Viper",
+                                            "scientific": "Trimeresurus lanna",
+                                            "info": "Named after the ancient Lan kingdom, the Lanna green pit viper is a recently described pit viper endemic to a small area of Thailand. Some specimens have impressive accents on their scales, which can help in identification.",
+                                            "type": "Reptile",
+                                            "order": "Squamata",
+                                            "family": "Viperidae",
+                                            "genus": "Trimeresurus",
+                                            "image_url": "https://static.thainationalparks.com/img/species/2024/04/05/398115/trimeresurus-lanna-w-1500.jpg",
+                                            "breeding": "Below Average",
+                                            "region": "Asia",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Europe": 0,
+                                                "Asia": "0.2 - Chiang Mai Serpentarium",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Chiang Mai Serpentarium": "0.2"
+
+                                        }
+                                        },
+                                        "Phuket Pit Viper": {
+                                        "common": "Phuket Pit Viper",
+                                        "scientific": "Trimeresurus phuketensis",
+                                        "info": "Endemic to Phuket Island, the Phuket pit viper is distinguished from other species in its genus with its impressive red and green coloration, which varies in brightness per individual. They are a fully arboreal species that feeds on small tree-dwelling animals.",
+                                        "type": "Reptile",
+                                        "order": "Squamata",
+                                        "family": "Viperidae",
+                                        "genus": "Trimeresurus",
+                                        "image_url": "https://www.thainationalparks.com/img/species/2021/11/28/397697/trimeresurus-phuketensis-w-1500.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "Asia",
+                                        "holdings": {
+                                            "North America": 0,
+                                            "Europe": 0,
+                                            "Asia": "1.2 - Chiang Mai Serpentarium",
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "Chiang Mai Serpentarium": "1.2"
+
+                                    }
+                                    },
+                                    "Omkoi Lance-Headed Pit Viper": {
+                                    "common": "Omkoi Lance-Headed Pit Viper",
+                                    "scientific": "Protobothrops kelomohy",
+                                    "info": "One of the rarest vipers in the world, the Omkoi lance-headed pit viper is endemic to the Omkoi district of northern Thailand. They are well-known for their elusiveness, only being seen in situ once after being described in 2020.",
+                                    "type": "Reptile",
+                                    "order": "Squamata",
+                                    "family": "Viperidae",
+                                    "genus": "Protobothrops",
+                                    "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkNUZ_xwrA_D0SGEBtDMeUb3VtE7h9bYFqx43Y0AteAn5re4icyJ9cWlQjnhyphenhyphenaMj2XNdXVsawrwNd7j_1vsnJXfuwO2JSmsy5L8K-3GSI5yHEI2-AUk1TtyCa0WJYHIALBqd82vkd-X1nS/s1600/Protobothrops_kelomohy-novataxa_2020-Sumontha_Vasaruchapong_Chomngam_Suntrarachun_et-al.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": 0,
+                                        "Europe": 0,
+                                        "Asia": "1.0 - Chiang Mai Serpentarium",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Chiang Mai Serpentarium": "1.0"
+
+                                    }
+                                    },
+                                    "Brown-Banded Cobra": {
+                                    "common": "Brown-Banded Cobra",
+                                    "scientific": "Naja fuxi",
+                                    "info": "Once thought to be subsumed under the monocled cobra, the brown-banded cobra is a genetically distinct yet morphologically identical species to the more common parent species. As juveniles they are distinct in coloration, which allows individuals to be determined to species level.",
+                                    "type": "Reptile",
+                                    "order": "Squamata",
+                                    "family": "Elapidae",
+                                    "genus": "Naja",
+                                    "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/ANI118/ANI118-00121.jpg",
+                                    "breeding": "Below Average",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": 0,
+                                        "Europe": 0,
+                                        "Asia": "2.0 - Chiang Mai Serpentarium",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Chiang Mai Serpentarium": "2.0"
+
+                                    }
+                                    },
+                                    "Siamese Spitting Cobra": {
+                                    "common": "Siamese Spitting Cobra",
+                                    "scientific": "Naja siamensis",
+                                    "info": "Found in mainland Southeast Asia, the Siamese spitting cobra is a highly venomous species regarded as potentially dangerous due to its temperament and commonality in human settlements. Feeding on rodents, the famous spitting behavior is a defensive and not an offensive one.",
+                                    "type": "Reptile",
+                                    "order": "Squamata",
+                                    "family": "Elapidae",
+                                    "genus": "Naja",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Naja-siamensis-indochinese-spitting-cobra-southwest-thailand.jpg/1920px-Naja-siamensis-indochinese-spitting-cobra-southwest-thailand.jpg",
+                                    "breeding": "Below Average",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": 0,
+                                        "Europe": 0,
+                                        "Asia": "0.1 - Chiang Mai Serpentarium",
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Chiang Mai Serpentarium": "0.1"
                                                 }
                                                 },
 }

@@ -4,6 +4,12 @@ This project is a Discord bot designed to manage a virtual zoo and token-based e
 
 # Recent Changes
 
+**2025-11-12**: Database expanded to 320 species:
+- Bot successfully restarted and recognizes all 320 species
+- Latest additions include: Siamese Spitting Cobra, Brown-Banded Cobra, Omkoi Lance-Headed Pit Viper, Phuket Pit Viper, Lanna Green Pit Viper, Guo's Green Pit Viper, Cryptic Green Pit Viper, African Fat-Tailed Gecko, San Francisco Brine Shrimp, American Tadpole Shrimp, Carolina Sphinx Moth, Argentine Horned Frog, Ball Python, Banggai Cardinalfish, Percula Clownfish
+- Species breakdown: 79 Invertebrates, 76 Mammals, 64 Fish, 51 Reptiles, 39 Birds, 11 Amphibians
+- All species data validated successfully
+
 **2025-11-11**: Added new zoo "Chiang Mai Serpentarium" to zoo directory:
 - Discovered zoo was referenced in species data but missing from zoo_progress.json directory
 - Added "Chiang Mai Serpentarium" entry to directory in zoo_progress.json
