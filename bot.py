@@ -8293,6 +8293,54 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "institutions": {
                                     "Essex County Zoo": "2.2"
 
+                                    }
+                                    },
+                                    "Gooty Sapphire Tarantula": {
+                                    "common": "Gooty Sapphire Tarantula",
+                                    "scientific": "Poecilotheria metallica",
+                                    "info": "A rare, critically endangered tarantula endemic to the tropical forests of southern India. This species is extremely popular in the invertebrate hobby for its bright coloration, but it is an aggressive and fast species that must be handled with care.",
+                                    "type": "Invertebrate",
+                                    "order": "Araneae",
+                                    "family": "Theraphosidae",
+                                    "genus": "Poecilotheria",
+                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/65568901/large.jpg",
+                                    "breeding": "Below Average",
+                                    "region": "Asia",
+                                    "holdings": {
+                                        "North America": "2.1 - Essex County Zoo",
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Essex County Zoo": "2.1"
+
+                                    }
+                                    },
+                                    "Ring-Tailed Lemur": {
+                                    "common": "Ring-Tailed Lemur",
+                                    "scientific": "Lemur catta",
+                                    "info": "The most well-known and common lemur species in captivity, the ring-tailed lemur resides in the dry forests of southwestern Madagascar. With a complex matriarchal social structure, ring-tailed lemurs are probably the most well-studied lemur species due to their ease of access and popularity amongst the general public.",
+                                    "type": "Mammal",
+                                    "order": "Primates",
+                                    "family": "Lemuridae",
+                                    "genus": "Lemur",
+                                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Lemur_catta_001.jpg/1024px-Lemur_catta_001.jpg",
+                                    "breeding": "Easy",
+                                    "region": "Africa",
+                                    "holdings": {
+                                        "North America": "2.2 - Essex County Zoo",
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Essex County Zoo": "2.2"
+
                                 }
                                 },
 }
