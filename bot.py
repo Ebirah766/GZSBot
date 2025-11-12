@@ -8268,8 +8268,33 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                     "New York Aquarium": "1 [Brown form], 1 [Pink form], 1 [Green form]"
+
                                     }
                                     },
+                                    "Bog Turtle": {
+                                    "common": "Bog Turtle",
+                                    "scientific": "Glyptemys muhlenbergii",
+                                    "info": "One of the most endangered species of turtles in the world, the bog turtle can be found in eastern North America, in a disjunct range from New York to Georgia. With a low reproduction rate, they are regarded as difficult to breed and are held in several zoos as a captive safety net population.",
+                                    "type": "Reptile",
+                                    "order": "Testudines",
+                                    "family": "Emydidae",
+                                    "genus": "Glyptemys",
+                                    "image_url": "https://dep.nj.gov/njfw/wp-content/uploads/njfw/bog_turtle_2_Zarate.jpg",
+                                    "breeding": "Difficult",
+                                    "region": "North America",
+                                    "holdings": {
+                                        "North America": "2.2 - Essex County Zoo",
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "Essex County Zoo": "2.2"
+
+                                }
+                                },
 }
 SPECIES = species_data
 
