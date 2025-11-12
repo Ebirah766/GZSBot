@@ -8187,8 +8187,32 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                     "New York Aquarium": "3.3 [Utete Red]"
-                                            }
-                                            },
+
+                                    }
+                                    },
+                                    "Featherfin Pearlfish": {
+                                    "common": "Featherfin Pearlfish",
+                                    "scientific": "Simpsonichthys constanciae",
+                                    "info": "A highly endangered killfish species endemic to Brazil, the featherfin pearlfish gets its name from the long fin extensions on its dorsal and anal fins. It can only be found in the São João river basin near Rio de Jainero. It grows up to 2.4 inches in total length.",
+                                    "type": "Fish",
+                                    "order": "Cyprinodontiformes",
+                                    "family": "Rivulidae",
+                                    "genus": "Simpsonichthys",
+                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/484162.jpg",
+                                    "breeding": "Average",
+                                    "region": "South America",
+                                    "holdings": {
+                                        "North America": "3.3 - New York Aquarium",
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                    "New York Aquarium": "3.3"
+                                        }
+                                        },
 }
 SPECIES = species_data
 
