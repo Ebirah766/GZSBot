@@ -8172,9 +8172,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Cyprinodontiformes",
                                     "family": "Nothobranchiidae",
                                     "genus": "Nothobranchius",
-                                    "images": [
-                                        {"label": "Utete Red locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Eggersi-Utete.jpg"}
-                                    ],
+                                        "images": [
+                                            {"label": "Utete Red locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Eggersi-Utete.jpg"},
                                     "breeding": "Average",
                                     "region": "Africa",
                                     "holdings": {
@@ -8211,6 +8210,34 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                     "New York Aquarium": "3.3"
+                                        }
+                                        },
+                                "Leaf Plate Montipora": {
+                                    "common": "Leaf Plate Montipora",
+                                    "scientific": "Montipora capricornis",
+                                    "info": "Also known as the vase coral, cap coral, or plating Montipora, the leaf plate Montipora is a common Indo-Pacific SPS coral. Forming flat, plating colonies, this species comes in several color variants, some of which are common in the aquarium industry. At night the polyps emerge from their coralites in the skeleton to feed on plankton.",
+                                    "type": "Invertebrate",
+                                    "order": "Scleractinia",
+                                    "family": "Acroporidae",
+                                    "genus": "Montipora",
+                                        "images": [                                                
+                                            {"label": "Brown form", "url": "https://i.imgur.com/rUBNLQf.png"},
+                                             {"label": "Pink form", "url": "https://www.coralsoftheworld.org/media/images/0268_C01_05.jpg"},
+                                            {"label": "Orange form", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Leaf_plate_montipora.gk.jpg/1280px-Leaf_plate_montipora.gk.jpg"},
+                                        ],
+                                    "image_url": "https://example.com/default.jpg",
+                                        "breeding": "Difficult",
+                                        "region": "Asia, Oceania",
+                                    "holdings": {
+                                        "North America": "1 [Brown form] 1 [Pink form] 1 [Orange form] - New York Aquarium",
+                                        "Europe": 0,
+                                        "Asia": 0,
+                                        "Africa": 0,
+                                        "South America": 0,
+                                        "Oceania": 0,
+                                    },
+                                    "institutions": {
+                                        "New York Aquarium": "1 [Brown form], 1 [Pink form], 1 [Orange form]"
                                         }
                                         },
 }
