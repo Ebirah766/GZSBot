@@ -8172,8 +8172,9 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Cyprinodontiformes",
                                     "family": "Nothobranchiidae",
                                     "genus": "Nothobranchius",
-                                        "images": [
-                                            {"label": "Utete Red locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Eggersi-Utete.jpg"},
+                                    "images": [
+                                        {"label": "Utete Red locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Eggersi-Utete.jpg"}
+                                    ],
                                     "breeding": "Average",
                                     "region": "Africa",
                                     "holdings": {
