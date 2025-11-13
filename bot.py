@@ -2582,11 +2582,10 @@ species_data: Dict[str, Dict[str, Any]] = {
                     },
                     "institutions": {
                         "New York Aquarium": "100 [Wild type]"
-
+                    }
                     },
-                    },
 
-                    "Bee Shrimp": {
+                                    "Bee Shrimp": {
                     "common": "Bee Shrimp",
                     "scientific": "Caridina cantonensis",
                     "info": "Like its cousin the cherry shrimp, the bee shrimp is immensely popular in the home aquarium trade. However, due to its limited distribution and habitat in its native Taiwan, it requires more specialized water conditions. Bee shrimp typically prefer softer and more acidic water with a low pH, otherwise their health will deteriorate.",
@@ -2595,18 +2594,17 @@ species_data: Dict[str, Dict[str, Any]] = {
                     "family": "Atyidae",
                     "genus": "Caridina",
                     "images": [
-                        {"label": "Wild type", "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/1981267/original.JPG"},
+                        {"label": "Wild type", "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/1981267/original.JPG"}
                     ],
-                        "image_url": "https://example.com/default.jpg",
-                        "breeding": "Average",
-                        "region": "Asia",
+                    "breeding": "Average",
+                    "region": "Asia",
                     "holdings": {
                         "North America": "50 [Wild type] - New York Aquarium",
                         "Europe": 0,
                         "Asia": 0,
                         "Africa": 0,
                         "South America": 0,
-                        "Oceania": 0,
+                        "Oceania": 0
                     },
                     "institutions": {
                         "New York Aquarium": "50 [Wild type]"
@@ -2614,69 +2612,60 @@ species_data: Dict[str, Dict[str, Any]] = {
                     },
 
                     "Bubble-Tip Anemone": {
-                                "common": "Bubble-Tip Anemone",
-                                "scientific": "Entacmaea quadricolor",
-                                "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
-                                "type": "Invertebrate",
-                                "order": "Actiniaria",
-                                "family": "Actiniidae",
-                                "genus": "Entacmaea",
-
-                                "images": [
-                                    {"label": "Rose form",   "url": "https://vividaquariums.com/cdn/shop/products/6453_660x369.jpeg?v=1647307856"},
-                                    {"label": "Green form",  "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
-                                    {"label": "Pink form",   "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
-                                    {"label": "Orange form", "url": "https://www.sealifebase.se/images/species/Enqua_uk.jpg"}
-                                ],
-
-                                "breeding": "Below Average",
-                                "region": "Asia, Africa, Oceania",
-
-                                "holdings": {
-                                    "North America": [
-                                        "4 [Rose form] - New York Aquarium",
-                                        "4 [Green form] - New York Aquarium",
-                                        "4 [Pink form] - New York Aquarium",
-                                        "4 [Orange form] - New York Aquarium"
-                                    ],
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                },
-
-                                "institutions": {
-                                    "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
-                                }
+                    "common": "Bubble-Tip Anemone",
+                    "scientific": "Entacmaea quadricolor",
+                    "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
+                    "type": "Invertebrate",
+                    "order": "Actiniaria",
+                    "family": "Actiniidae",
+                    "genus": "Entacmaea",
+                    "images": [
+                        {"label": "Rose form", "url": "https://vividaquariums.com/cdn/shop/products/6453_660x369.jpeg?v=1647307856"},
+                        {"label": "Green form", "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
+                        {"label": "Pink form", "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
+                        {"label": "Orange form", "url": "https://www.sealifebase.se/images/species/Enqua_uk.jpg"}
+                    ],
+                    "breeding": "Below Average",
+                    "region": "Asia, Africa, Oceania",
+                    "holdings": {
+                        "North America": "4 [Rose form] - New York Aquarium, 4 [Green form] - New York Aquarium, 4 [Pink form] - New York Aquarium, 4 [Orange form] - New York Aquarium",
+                        "Europe": 0,
+                        "Asia": 0,
+                        "Africa": 0,
+                        "South America": 0,
+                        "Oceania": 0
+                    },
+                    "institutions": {
+                        "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
+                    }
                     },
 
                     "Giant Green Anemone": {
-                        "common": "Giant Green Anemone",
-                        "scientific": "Anthopleura xanthogrammica",
-                        "info": "A large sea anemone native to the Eastern Pacific, the giant green anemone is found in the intertidal zone. Well adapted for its habitat, this species has a powerful foot that allows it to remain anchored while waves crash. The main food source seems to be detached mussels. but it eats a variety of animals, including juvenile seabirds.",
-                        "type": "Invertebrate",
-                        "order": "Actiniaria",
-                        "family": "Actiniidae",
-                        "genus": "Anthopleura",
-                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Anthopleura_xanthogrammica_1.jpg/1024px-Anthopleura_xanthogrammica_1.jpg",
-                            "breeding": "Impossible",
-                            "region": "North America",
-                        "holdings": {
+                    "common": "Giant Green Anemone",
+                    "scientific": "Anthopleura xanthogrammica",
+                    "info": "A large sea anemone native to the Eastern Pacific, the giant green anemone is found in the intertidal zone. Well adapted for its habitat, this species has a powerful foot that allows it to remain anchored while waves crash. The main food source seems to be detached mussels but it eats a variety of animals, including juvenile seabirds.",
+                    "type": "Invertebrate",
+                    "order": "Actiniaria",
+                    "family": "Actiniidae",
+                    "genus": "Anthopleura",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Anthopleura_xanthogrammica_1.jpg/1024px-Anthopleura_xanthogrammica_1.jpg",
+                    "breeding": "Impossible",
+                    "region": "North America",
+                    "holdings": {
                         "North America": "3 - New York Aquarium",
                         "Asia": 0,
                         "Europe": 0,
                         "Africa": 0,
                         "South America": 0,
-                        "Oceania": 0,
-                            },
-                        "institutions": {
-                            "New York Aquarium": "3"
-                        }
+                        "Oceania": 0
+                    },
+                    "institutions": {
+                        "New York Aquarium": "3"
+                    }
                     },
 
-                            "Flower Tube Anemone": {
-                            "common": "Flower Tube Anemone",
+                    "Flower Tube Anemone": {
+                    "common": "Flower Tube Anemone",
                             "scientific": "Cerianthus filiformis",
                             "info": "One of many species of tube-dwelling anemones, the flower tube anemone varies in color, making it difficult to identify to species level. They are filter feeders that excrete a mucus layer to surround their bases while they rest in the sand.",
                             "type": "Invertebrate",
