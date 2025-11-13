@@ -4,13 +4,17 @@ This project is a Discord bot designed to manage a virtual zoo and token-based e
 
 # Recent Changes
 
-**2025-11-12**: Database expanded to 326 species and fixed syntax error:
-- Fixed syntax error in Eggers's Killifish species data (line 8175-8180): Added missing closing bracket `]` for images array
-- Database now contains 326 species (up from 320)
-- Bot successfully restarted and recognizes all 326 species
+**2025-11-13**: Fixed multiple syntax errors from SSH sync issues:
+- Fixed Bee Shrimp entry (line ~2614): Missing closing braces for institutions and species objects
+- Fixed Bubble-Tip Anemone entry: Incorrect indentation and extra closing braces
+- Fixed Giant Green Anemone entry: Misaligned closing braces
+- Bot successfully restarted with all 326 species
+- **Known issue**: SSH sync from local Windows machine (C:\Users\sperm\Desktop\gzsbot) keeps overwriting Replit fixes with broken local file
+- Recommended solution: Use Git-based workflow instead of direct SSH sync to prevent overwrite issues
+
+**2025-11-12**: Database expanded to 326 species:
 - Latest additions include: Siamese Spitting Cobra, Brown-Banded Cobra, Omkoi Lance-Headed Pit Viper, Phuket Pit Viper, Lanna Green Pit Viper, Guo's Green Pit Viper, Cryptic Green Pit Viper, African Fat-Tailed Gecko, San Francisco Brine Shrimp, American Tadpole Shrimp, Carolina Sphinx Moth, Argentine Horned Frog, Ball Python, Banggai Cardinalfish, Percula Clownfish
 - Species breakdown: 79 Invertebrates, 76 Mammals, 64 Fish, 51 Reptiles, 39 Birds, 11 Amphibians
-- All species data validated successfully
 
 **2025-11-11**: Added new zoo "Chiang Mai Serpentarium" to zoo directory:
 - Discovered zoo was referenced in species data but missing from zoo_progress.json directory

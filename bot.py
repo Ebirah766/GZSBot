@@ -2610,43 +2610,48 @@ species_data: Dict[str, Dict[str, Any]] = {
                     },
                     "institutions": {
                         "New York Aquarium": "50 [Wild type]"
+                    }
+                    },
 
-                        },
-                        },
-                        
-                        "Bubble-Tip Anemone": {
-                        "common": "Bubble-Tip Anemone",
-                        "scientific": "Entacmaea quadricolor",
-                        "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
-                        "type": "Invertebrate",
-                        "order": "Actiniaria",
-                        "family": "Actiniidae",
-                        "genus": "Entacmaea",
-                            "images": [
-                                {"label": "Rose form", "url": "https://vividaquariums.com/cdn/shop/products/6453_660x369.jpeg?v=1647307856"},
-                                {"label": "Green form", "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
-                                {"label": "Pink form", "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
-                                {"label": "Orange form", "url": "https://www.sealifebase.se/images/species/Enqua_uk.jpg"},
+                    "Bubble-Tip Anemone": {
+                                "common": "Bubble-Tip Anemone",
+                                "scientific": "Entacmaea quadricolor",
+                                "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
+                                "type": "Invertebrate",
+                                "order": "Actiniaria",
+                                "family": "Actiniidae",
+                                "genus": "Entacmaea",
 
-                            ],
-                        "image_url": "https://example.com/default.jpg",
-                            "breeding": "Below Average",
-                            "region": "Asia, Africa, Oceania",
-                        "holdings": {
-                            "North America": "4 [Rose form] 4 [Green form] 4 [Pink form] 4 [Orange form] - New York Aquarium",
-                            "Europe": 0,
-                            "Asia": 0,
-                            "Africa": 0,
-                            "South America": 0,
-                            "Oceania": 0,
-                        },
-                        "institutions": {
-                            "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
+                                "images": [
+                                    {"label": "Rose form",   "url": "https://vividaquariums.com/cdn/shop/products/6453_660x369.jpeg?v=1647307856"},
+                                    {"label": "Green form",  "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
+                                    {"label": "Pink form",   "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
+                                    {"label": "Orange form", "url": "https://www.sealifebase.se/images/species/Enqua_uk.jpg"}
+                                ],
 
-                            }
-                            },
-                            
-                        "Giant Green Anemone": {
+                                "breeding": "Below Average",
+                                "region": "Asia, Africa, Oceania",
+
+                                "holdings": {
+                                    "North America": [
+                                        "4 [Rose form] - New York Aquarium",
+                                        "4 [Green form] - New York Aquarium",
+                                        "4 [Pink form] - New York Aquarium",
+                                        "4 [Orange form] - New York Aquarium"
+                                    ],
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0
+                                },
+
+                                "institutions": {
+                                    "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
+                                }
+                    },
+
+                    "Giant Green Anemone": {
                         "common": "Giant Green Anemone",
                         "scientific": "Anthopleura xanthogrammica",
                         "info": "A large sea anemone native to the Eastern Pacific, the giant green anemone is found in the intertidal zone. Well adapted for its habitat, this species has a powerful foot that allows it to remain anchored while waves crash. The main food source seems to be detached mussels. but it eats a variety of animals, including juvenile seabirds.",
@@ -2666,10 +2671,9 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "Oceania": 0,
                             },
                         "institutions": {
-                        "New York Aquarium": "3"
-
-                            }
-                                },
+                            "New York Aquarium": "3"
+                        }
+                    },
 
                             "Flower Tube Anemone": {
                             "common": "Flower Tube Anemone",
@@ -8364,6 +8368,104 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     },
                                     "institutions": {
                                     "Essex County Zoo": "2.2"
+
+                                }
+                                },
+                                "American Burying Beetle": {
+                                "common": "American Burying Beetle",
+                                "scientific": "Nicrophorus americanus",
+                                "info": "One of the few beetles to exhibit parental care of its offspring, the American burying beetle is a species of carrion beetle that is native to North America. They bury their larvae in the soil, where they will feed on a carcass provided by the parents until they are adults.",
+                                "type": "Invertebrate",
+                                "order": "Coleoptera",
+                                "family": "Staphylinidae",
+                                "genus": "Nicrophorus",
+                                "image_url": "https://static.inaturalist.org/photos/57135673/large.jpg",
+                                "breeding": "Below Average",
+                                "region": "North America",
+                                "holdings": {
+                                    "North America": "20 - Cube Zoological Park",
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Cube Zoological Park": "20"
+
+                                }
+                                },
+                                "Dama Gazelle": {
+                                "common": "Dama Gazelle",
+                                "scientific": "Nanger dama",
+                                "info": "Divided into three subspecies, the dama gazelle is one of the most endangered large mammals on Earth. With less than 300 individuals in the wild, this species is part of a large captive breeding program dedicated towards preserving the species in captivity.",
+                                "type": "Mammal",
+                                "order": "Artiodactyla",
+                                "family": "Bovidae",
+                                "genus": "Nanger",
+                                    "images": [
+                                        {"label": "Addra gazelle (ruficollis)", "url": "https://www.biolib.cz/IMG/GAL/BIG/26744.jpg"}
+                                    ],
+                                "breeding": "Below Average",
+                                "region": "Africa",
+                                "holdings": {
+                                    "North America": "1.2 (ruficollis) - Cube Zoological Park",
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Cube Zoological Park": "1.2 [ruficollis]"
+
+                                }
+                                },
+                                "White-Lipped Deer": {
+                                "common": "White-Lipped Deer",
+                                "scientific": "Cervus albirostris",
+                                "info": "A large deer species endemic to the Tibetan Plateau and central China, the white-lipped deer is a rarely-encountered species both in captivity and the wild. They typically live in herds of at least 10 individuals, consisting of single-sex groups except for the breeding season.",
+                                "type": "Mammal",
+                                "order": "Artiodactyla",
+                                "family": "Cervidae",
+                                "genus": "Cervus",
+                                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/221390.jpg",
+                                "breeding": "Average",
+                                "region": "Asia",
+                                "holdings": {
+                                    "North America": "2.4 - Cube Zoological Park",
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Cube Zoological Park": "2.4"
+
+                                }
+                                },
+                                "Addax": {
+                                "common": "Addax",
+                                "scientific": "Addax nasomaculatus",
+                                "info": "Originally native to the Sahara Desert, overhunting has led the addax to become critically endangered in the wild. They are thankfully hardy and do well in captivity, so a large captive safety population has been formed. They are able to survive off very little water, getting most of their water from plants they eat.",
+                                "type": "Mammal",
+                                "order": "Artiodactyla",
+                                "family": "Bovidae",
+                                "genus": "Addax",
+                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/A_big_male_Addax_showing_as_the_power_of_his_horns.jpg/1280px-A_big_male_Addax_showing_as_the_power_of_his_horns.jpg",
+                                "breeding": "Average",
+                                "region": "Africa",
+                                "holdings": {
+                                    "North America": "3.0 - Cube Zoological Park",
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Cube Zoological Park": "3.0"
 
                                 }
                                 },

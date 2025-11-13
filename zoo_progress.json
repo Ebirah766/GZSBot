@@ -139,7 +139,11 @@
           "American Tadpole Shrimp",
           "Black Rat Snake",
           "Australian Green Tree Frog",
-          "Common Earwig"
+          "Common Earwig",
+          "Dama Gazelle",
+          "American Burying Beetle",
+          "Addax",
+          "White-Lipped Deer"
         ]
       }
     },
@@ -152,6 +156,13 @@
           "Indonesian Pit Viper",
           "Chinese Crocodile Lizard",
           "Blood Python"
+        ],
+        "Chiang Mai Serpentarium": [
+          "Cryptic Green Pit Viper",
+          "Lanna Green Pit Viper",
+          "Phuket Pit Viper",
+          "Guo's Green Pit Viper",
+          "Cox's Mud Snake"
         ]
       }
     },
