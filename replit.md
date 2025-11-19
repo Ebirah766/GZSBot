@@ -4,7 +4,16 @@ This project is a Discord bot designed to manage a virtual zoo and token-based e
 
 # Recent Changes
 
-**2025-11-19**: Fixed indentation errors and duplicate event handlers:
+**2025-11-19 (Latest)**: Fixed recurring SSH sync corruption (5th incident):
+- SSH sync from local Windows machine repeatedly corrupted entire bot.py file (12,369 lines)
+- All lines were indented with 4 extra spaces, causing IndentationError at line 2
+- Fixed by removing 4 leading spaces from all lines using Python script
+- Added missing imports: `from datetime import datetime` and `from zoneinfo import ZoneInfo`
+- Bot successfully restarted with all 326 species
+- **CRITICAL ISSUE**: Bidirectional SSH sync continuously overwrites Replit fixes with broken local file
+- **Solution implemented**: User instructed to disconnect SSH client and work directly on Replit until local file is properly synchronized
+
+**2025-11-19 (Earlier)**: Fixed indentation errors and duplicate event handlers:
 - Removed stray `return by_guild` line at line 11921 that caused IndentationError
 - Fixed duplicate `on_ready()` event handlers (had two defined at lines 11408 and 12211)
 - Merged both on_ready handlers into one, moving scheduled task starts (weekly_breeding and progress_role_sweeper) into the main on_ready event
