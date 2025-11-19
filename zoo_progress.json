@@ -51,7 +51,9 @@
           "Mafia Island Killifish",
           "Blue-Green Chromis",
           "Percula Clownfish",
-          "Orange Sea Pen"
+          "Orange Sea Pen",
+          "Bonefish",
+          "Eggers's Killifish"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -86,7 +88,11 @@
           "Western Pond Turtle",
           "Argentine Horned Frog",
           "Madagascar Giant Hognose Snake",
-          "Coyote"
+          "Coyote",
+          "Ring-Tailed Lemur",
+          "Gooty Sapphire Tarantula",
+          "Bog Turtle",
+          "Spotted Turtle"
         ]
       }
     },
@@ -162,7 +168,9 @@
           "Lanna Green Pit Viper",
           "Phuket Pit Viper",
           "Guo's Green Pit Viper",
-          "Cox's Mud Snake"
+          "Cox's Mud Snake",
+          "Burmese Python",
+          "Green Cat Snake"
         ]
       }
     },

@@ -396,13 +396,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": "2.4 - Cube Zoological Park",
             "Asia": 0,
-            "Europe": 0,
+            "Europe": "1.5 - Giardino Zoologico e Botanico La Sapienza",
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
-            "Cube Zoological Park": "2.4"
+            "Cube Zoological Park": "2.4",
+            "Giardino Zoologico e Botanico La Sapienza": "1.5"
         },
     },
     "Florida Bass": {
@@ -686,7 +687,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Carnivora",
         "family": "Felidae",
         "genus": "Felis",
-        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/309949.jpg",
+        "image_url": "https://i.imgur.com/VU6xnv0.jpeg",
         "breeding": "Average",
         "region": "Europe, Asia",
         "holdings": {
@@ -826,7 +827,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Pelecaniformes",
         "family": "Threskiornithidae",
         "genus": "Eudocimus",
-        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/395236.jpg",
+        "image_url": "https://i.imgur.com/4NO3q7H.jpeg",
         "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
@@ -849,7 +850,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Pelecaniformes",
         "family": "Threskiornithidae",
         "genus": "Platalea",
-        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/561817.jpg",
+        "image_url": "https://i.imgur.com/6h9LYhE.jpeg",
         "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
@@ -1298,7 +1299,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Squamata",
         "family": "Viperidae",
         "genus": "Mixcoatlus",
-        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/519384.jpg",
+        "image_url": "https://i.imgur.com/iIXFQhT.jpeg",
         "breeding": "Difficult",
         "region": "North America",
         "holdings": {
@@ -1446,7 +1447,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "region": "Africa",
         "holdings": {
-            "North America": 0,
+            "North America": "1.1 - Essex County Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1454,7 +1455,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Oceania": 0,
         },
         "institutions": {
-            
+            "Essex County Zoo": "1.1",
         }
     },
     "Western Mangrove Cat Snake": {
@@ -1830,7 +1831,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 "order": "Osteoglossiformes",
 "family": "Arapaimidae",
 "genus": "Arapaima",
-"image_url": "https://www.biolib.cz/IMG/GAL/BIG/493019.jpg",
+"image_url": "https://i.imgur.com/IDZg0RL.jpeg",
     "breeding": "Impossible",
     "region": "South America",
 "holdings": {
@@ -1930,7 +1931,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 "order": "Characiformes",
 "family": "Serrasalmidae",
 "genus": "Pygocentrus",
-"image_url": "https://www.biolib.cz/IMG/GAL/BIG/382042.jpg",
+"image_url": "https://i.imgur.com/l0XJYo8.jpeg",
     "breeding": "Impossible",
     "region": "South America",
 "holdings": {
@@ -2611,34 +2612,35 @@ species_data: Dict[str, Dict[str, Any]] = {
                     }
                     },
 
-                    "Bubble-Tip Anemone": {
-                    "common": "Bubble-Tip Anemone",
-                    "scientific": "Entacmaea quadricolor",
-                    "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
-                    "type": "Invertebrate",
-                    "order": "Actiniaria",
-                    "family": "Actiniidae",
-                    "genus": "Entacmaea",
-                    "images": [
-                        {"label": "Rose form", "url": "https://vividaquariums.com/cdn/shop/products/6453_660x369.jpeg?v=1647307856"},
-                        {"label": "Green form", "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
-                        {"label": "Pink form", "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
-                        {"label": "Orange form", "url": "https://www.sealifebase.se/images/species/Enqua_uk.jpg"}
-                    ],
-                    "breeding": "Below Average",
-                    "region": "Asia, Africa, Oceania",
-                    "holdings": {
-                        "North America": "4 [Rose form] - New York Aquarium, 4 [Green form] - New York Aquarium, 4 [Pink form] - New York Aquarium, 4 [Orange form] - New York Aquarium",
-                        "Europe": 0,
-                        "Asia": 0,
-                        "Africa": 0,
-                        "South America": 0,
-                        "Oceania": 0
-                    },
-                    "institutions": {
-                        "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
-                    }
-                    },
+    "Bubble-Tip Anemone": {
+        "common": "Bubble-Tip Anemone",
+        "scientific": "Entacmaea quadricolor",
+        "info": "A common Indo-Pacific anemone, the bubble-tip anemone has a large range and forms symbiotic relationships with 14 clownfish species, a damselfish species, and a commensal shrimp. Like many anemones they are photosynthetic, and appear in a variety of morphs, including rose, orange, pink, and green.",
+        "type": "Invertebrate",
+        "order": "Actiniaria",
+        "family": "Actiniidae",
+        "genus": "Entacmaea",
+        "images": [
+            {"label": "Rose form",   "url": "https://vividaquariums.com/cdn/shop/products/6453_660x369.jpeg?v=1647307856"},
+            {"label": "Green form",  "url": "https://www.waikikiaquarium.org/wp-content/uploads/2013/11/bulbtip-anemone_620.jpg"},
+            {"label": "Pink form",   "url": "https://fantaseaaquariums.com/wp-content/uploads/2021/09/Rose-bubble-tip-anemone.jpg"},
+            {"label": "Orange form", "url": "https://i.imgur.com/3LlGwfC.jpeg"}
+        ],
+        "breeding": "Below Average",
+        "region": "Asia, Africa, Oceania",
+        "holdings": {
+            "North America": "4 [Rose form] - New York Aquarium 4 [Green form] - New York Aquarium 4 [Pink form] - New York Aquarium 4 [Orange form] - New York Aquarium",
+            "Europe": 0,
+            "Asia": 0,
+            "Africa": 0,
+            "South America": 0,
+            "Oceania": 0
+        },
+        "institutions": {
+            "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
+        }
+    },
+
 
                     "Giant Green Anemone": {
                     "common": "Giant Green Anemone",
@@ -2700,7 +2702,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "order": "Siluriformes",
                                 "family": "Pimelodidae",
                                 "genus": "Phractocephalus",
-                                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/382034.jpg",
+                                "image_url": "https://i.imgur.com/uDWDJ7S.jpeg",
                                 "breeding": "Impossible",
                                 "region": "South America",
                                 "holdings": {
@@ -2825,7 +2827,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Siluriformes",
                                     "family": "Pangasiidae",
                                     "genus": "Pangasianodon",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/414070.jpg",
+                                    "image_url": "https://i.imgur.com/w5KOswU.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Asia",
                                     "holdings": {
@@ -2850,7 +2852,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Tetraodontiformes",
                                     "family": "Tetraodontidae",
                                     "genus": "Carinotetraodon",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/388538.jpg",
+                                    "image_url": "https://i.imgur.com/gLme9tR.jpeg",
                                     "breeding": "Difficult",
                                     "region": "Asia",
                                     "holdings": {
@@ -2926,7 +2928,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Acipenseriformes",
                                     "family": "Acipenseridae",
                                     "genus": "Huso",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/417067.jpg",
+                                    "image_url": "https://i.imgur.com/5pYbIKa.jpeg",
                                     "breeding": "Difficult",
                                     "region": "Asia",
                                     "holdings": {
@@ -3001,18 +3003,23 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Urodela",
                                     "family": "Salamandridae",
                                     "genus": "Salamandra",
-                                    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/159805189/large.jpg",
+                                    "images": [
+                                        {"label": "Central European fire salamander (salamandra)", "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/528552933/original.jpg"},
+                                        {"label": "Italian fire salamander (gigliolii)", "url": "https://i.imgur.com/mWS1Ob4.jpeg"},
+                                        {"label": "Central Spanish fire salamander (almanzoris)", "url": "https://static.inaturalist.org/photos/207341184/large.jpg"},
+                                        ],
                                     "breeding": "Below Average",
                                     "region": "Europe",
                                     "holdings": {
                                     "North America": 0,
                                     "Asia": 0,
-                                    "Europe": "7.7 - Wasser Wunder Welt",
+                                    "Europe": "2.2 (gigliolii) 2.2 (almanzoris) - Giardino Zoologico e Botanico La Sapienza, 7.7 (salamandra) - Wasser Wunder Welt",
                                     "Africa": 0,
                                     "South America": 0,
                                     "Oceania": 0,
                                     },
                                     "institutions": {
+                                    "Giardino Zoologico e Botanico La Sapienza": "2.2 [gigliolii] 2.2 [almanzoris]",
                                     "Wasser Wunder Welt": "7.7"
 
                                         }
@@ -3026,7 +3033,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Carnivora",
                                     "family": "Mustelidae",
                                     "genus": "Lutra",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/531466.jpg",
+                                    "image_url": "https://i.imgur.com/KmwWMsg.jpeg",
                                     "breeding": "Average",
                                     "region": "Europe, Asia, Africa",
                                     "holdings": {
@@ -3053,7 +3060,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Tetraodontiformes",
                                     "family": "Tetraodontidae",
                                     "genus": "Tetraodon",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/315960.jpg",
+                                    "image_url": "https://i.imgur.com/hKY3DXE.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Africa",
                                     "holdings": {
@@ -3078,7 +3085,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Ceratodontiformes",
                                     "family": "Protopteridae",
                                     "genus": "Protopterus",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/356962.jpg",
+                                    "image_url": "https://i.imgur.com/uvj68nP.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Africa",
                                     "holdings": {
@@ -3103,7 +3110,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Polypteriformes",
                                     "family": "Polypteridae",
                                     "genus": "Polypterus",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/237005.jpg",
+                                    "image_url": "https://i.imgur.com/9pms9UI.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Africa",
                                     "holdings": {
@@ -3352,7 +3359,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "order": "Scolopendromorpha",
                                             "family": "Scolopendridae",
                                             "genus": "Scolopendra",
-                                            "image_url": "https://www.biolib.cz/IMG/GAL/BIG/262860.jpg",
+                                            "image_url": "https://i.imgur.com/iMLj7MZ.jpeg",
                                             "breeding": "Below Average",
                                             "region": "Asia",
                                             "holdings": {
@@ -3427,7 +3434,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "family": "Felidae",
                                             "genus": "Panthera",
                                             "images": [
-                                                {"label": "Malayan tiger (jacksoni)", "url": "https://www.biolib.cz/IMG/GAL/BIG/178975.jpg"}
+                                                {"label": "Malayan tiger (jacksoni)", "url": "https://i.imgur.com/tL6DNMj.jpeg"}
                                             ],
                                             "breeding": "Difficult",
                                             "region": "Asia",
@@ -3573,7 +3580,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "order": "Diprotodontia",
                                             "family": "Macropodidae",
                                             "genus": "Notamacropus",
-                                            "image_url": "https://www.biolib.cz/IMG/GAL/BIG/28343.jpg",
+                                            "image_url": "https://i.imgur.com/OGXBCOE.jpeg",
                                             "breeding": "Easy",
                                             "region": "Oceania",
                                             "holdings": {
@@ -3696,7 +3703,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "family": "Felidae",
                                             "genus": "Otocolobus",
                                                 "images": [
-                                                    {"label": "Siberian Pallas's cat (manul)", "url": "https://www.biolib.cz/IMG/GAL/BIG/488446.jpg"}
+                                                    {"label": "Siberian Pallas's cat (manul)", "url": "https://i.imgur.com/1V0pfqe.jpeg"}
                                                 ],
                                             "breeding": "Below Average",
                                             "region": "Asia",
@@ -3963,18 +3970,20 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Gallus",
         "images": [
             {"label": "Silkie", "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Silky_bantam.jpg"},
+            {"label": "Italiana", "url": "https://i.imgur.com/THJldGX.jpeg"},
         ],
         "image_url": "https://example.com/default.jpg",
         "breeding": "Very Easy",
         "holdings": {
             "North America": ["0.3 (Silkie) - Glacier Zoo"],
-            "Europe": 0,
+            "Europe": ["2.8 (Italiana) - Giardino Zoologico e Botanico La Sapienza"],
             "Asia": 0,
             "Africa": 0,
             "South America": 0,
             "Oceania": 0,
         },
         "institutions": {
+            "Giardino Zoologico e Botanico La Sapienza": "2.8 [Italiana]",
             "Glacier Zoo": "0.3 [Silkie]"
 
         }
@@ -4547,7 +4556,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "order": "Centrarchiformes",
                         "family": "Centrarchidae",
                         "genus": "Lepomis",
-                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/391723.jpg",
+                        "image_url": "https://i.imgur.com/4apDvzz.jpeg",
                         "breeding": "Difficult",
                         "region": "North America",
                         "holdings": {
@@ -4822,7 +4831,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Centrarchiformes",
                                     "family": "Centrarchidae",
                                     "genus": "Micropterus",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/145390.jpg",
+                                    "image_url": "https://i.imgur.com/7oFLOlG.jpeg",
                                     "breeding": "Difficult",
                                     "region": "North America",
                                     "holdings": {
@@ -4847,7 +4856,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Decapoda",
                                     "family": "Cambaridae",
                                     "genus": "Procambarus",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/117069.jpg",
+                                    "image_url": "https://i.imgur.com/nnuVUIV.jpeg",
                                     "breeding": "Below Average",
                                     "region": "North America",
                                     "holdings": {
@@ -5146,7 +5155,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "family": "Strigidae",
                                         "genus": "Strix",
                                             "images": [
-                                                {"label": "Eurasian great gray owl (lapponica)", "url": "https://www.biolib.cz/IMG/GAL/BIG/310298.jpg"}
+                                                {"label": "Eurasian great gray owl (lapponica)", "url": "https://i.imgur.com/uOdw3m3.jpeg"}
                                             ],
                                         "breeding": "Below Average",
                                         "region": "North America, Europe, Asia,",
@@ -5173,7 +5182,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "family": "Accipitridae",
                                         "genus": "Buteo",
                                             "images": [
-                                                {"label": "Central European buzzard (buteo)", "url": "https://www.biolib.cz/IMG/GAL/BIG/417947.jpg"}
+                                                {"label": "Central European buzzard (buteo)", "url": "https://i.imgur.com/lE9Cq7c.jpeg"}
                                             ],
                                         "breeding": "Average",
                                         "region": "Europe, Asia, Africa",
@@ -5199,7 +5208,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "order": "Squamata",
                                         "family": "Pythonidae",
                                         "genus": "Malayopython",
-                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/466970.jpg",
+                                        "image_url": "https://i.imgur.com/TDLfid9.jpeg",
                                         "breeding": "Average",
                                         "region": "Asia",
                                         "holdings": {
@@ -5247,7 +5256,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "order": "Carnivora",
                                         "family": "Mustelidae",
                                         "genus": "Pteronura",
-                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/377926.jpg",
+                                        "image_url": "https://i.imgur.com/9sJDhiH.jpeg",
                                         "breeding": "Difficult",
                                         "region": "South America",
                                         "holdings": {
@@ -5367,7 +5376,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "order": "Cypriniformes",
                                         "family": "Leuciscidae",
                                         "genus": "Scardinius",
-                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/411297.jpg",
+                                        "image_url": "https://i.imgur.com/xpybKED.jpeg",
                                         "breeding": "Difficult",
                                         "region": "Europe",
                                         "holdings": {
@@ -5416,7 +5425,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "family": "Mustelidae",
                                             "genus": "Meles",
                                             "images": [
-                                                {"label": "Common badger (meles)", "url": "https://www.biolib.cz/IMG/GAL/BIG/172043.jpg"}
+                                                {"label": "Common badger (meles)", "url": "https://i.imgur.com/UuEFIBW.jpeg"}
                                             ],
                                             "breeding": "Below Average",
                                             "region": "Europe, Asia",
@@ -5442,7 +5451,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "family": "Strigidae",
                                                 "genus": "Bubo",
                                                 "images": [
-                                                    {"label": "European eagle-owl (bubo)", "url": "https://www.biolib.cz/IMG/GAL/BIG/456883.jpg"}
+                                                    {"label": "European eagle-owl (bubo)", "url": "https://i.imgur.com/gSPtnvU.jpeg"}
                                                 ],
                                                 "breeding": "Below Average",
                                                 "region": "Europe, Asia",
@@ -5468,7 +5477,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "family": "Strigidae",
                                                     "genus": "Asio",
                                                     "images": [
-                                                        {"label": "Eurasian long-eared owl (otus)", "url": "https://www.biolib.cz/IMG/GAL/BIG/199312.jpg"}
+                                                        {"label": "Eurasian long-eared owl (otus)", "url": "https://i.imgur.com/EPVt2Bt.jpeg"}
                                                     ],
                                                     "breeding": "Below Average",
                                                     "region": "North America, Europe, Asia, Africa",
@@ -5636,7 +5645,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 },
                                                                 "Mule Deer": {
                                                                 "common": "Mule Deer",
-                                                                "scientific": "Odocoileus hemionus ",
+                                                                "scientific": "Odocoileus hemionus",
                                                                 "info": "One of the two most common deer species in North America, the mule deer is restricted to habitat west of the Rocky Mountains. Adaptable and common, several subspecies exist spread across its range. The name 'mule deer' comes from the ears, which look similar to that of a mule.",
                                                                 "type": "Mammal",
                                                                 "order": "Artiodactyla",
@@ -5646,7 +5655,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "breeding": "Average",
                                                                 "region": "North America",
                                                                 "holdings": {
-                                                                    "North America": "1.2 - High Uintahs Zoo",
+                                                                    "North America": "1.1 - Glacier Zoo, 1.2 - High Uintahs Zoo",
                                                                     "Asia": 0,
                                                                     "Europe": 0,
                                                                     "Africa": 0,
@@ -5654,6 +5663,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                     "Oceania": 0,
                                                                 },
                                                                 "institutions": {
+                                                                    "Glacier Zoo": "1.1",
                                                                     "High Uintahs Zoo": "1.2"
 
                                                             }
@@ -5667,7 +5677,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "family": "Cervidae",
                                                             "genus": "Cervus",
                                                             "images": [
-                                                                    {"label": "Rocky Mountain elk (nelsoni)", "url": "https://www.biolib.cz/IMG/GAL/BIG/542297.jpg"}
+                                                                    {"label": "Rocky Mountain elk (nelsoni)", "url": "https://i.imgur.com/PBErPGm.jpeg"}
                                                                 ],
                                                             "breeding": "Average",
                                                             "region": "North America, Asia",
@@ -5766,7 +5776,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "order": "Blenniiformes",
                                                             "family": "Pomacentridae",
                                                             "genus": "Chrysiptera",
-                                                            "image_url": "https://www.biolib.cz/IMG/GAL/BIG/316449.jpg",
+                                                            "image_url": "https://i.imgur.com/Ww1TuFj.jpeg",
                                                             "breeding": "Impossible",
                                                             "region": "Asia, Oceania",
                                                             "holdings": {
@@ -5790,7 +5800,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "order": "Squamata",
                                                         "family": "Eublepharidae",
                                                         "genus": "Eublepharis",
-                                                        "image_url": "https://www.biolib.cz/IMG/GAL/18637.jpg",
+                                                        "image_url": "https://i.imgur.com/JycYDcG.jpeg",
                                                         "breeding": "Easy",
                                                         "region": "Asia",
                                                         "holdings": {
@@ -5990,7 +6000,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "order": "Osteoglossiformes",
                                                         "family": "Arapaimidae",
                                                         "genus": "Heterotis",
-                                                        "image_url": "https://www.biolib.cz/IMG/GAL/362453.jpg",
+                                                        "image_url": "https://i.imgur.com/z9CuoNf.jpeg",
                                                         "breeding": "Impossible",
                                                         "region": "Africa",
                                                         "holdings": {
@@ -6065,7 +6075,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "order": "Cyprinodontiformes",
                                                     "family": "Fundulidae",
                                                     "genus": "Fundulus",
-                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/373163.jpg",
+                                                    "image_url": "https://i.imgur.com/pgn24JS.jpeg",
                                                     "breeding": "Average",
                                                     "region": "North America",
                                                     "holdings": {
@@ -6209,7 +6219,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                         "order": "Hymenoptera",
                                                                         "family": "Ampulicidae",
                                                                         "genus": "Ampulex",
-                                                                        "image_url": "https://www.biolib.cz/IMG/GAL/484910.jpg",
+                                                                        "image_url": "https://i.imgur.com/xJKjj4w.jpeg",
                                                                         "breeding": "Difficult",
                                                                         "region": "Asia, Africa, Oceania",
                                                                         "holdings": {
@@ -6233,7 +6243,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                         "order": "Accipitriformes",
                                                                         "family": "Accipitridae",
                                                                         "genus": "Buteo",
-                                                                        "image_url": "https://www.biolib.cz/IMG/GAL/BIG/185705.jpg",
+                                                                        "image_url": "https://i.imgur.com/cOHq8jd.jpeg",
                                                                         "breeding": "Average",
                                                                         "region": "North America",
                                                                         "holdings": {
@@ -6378,7 +6388,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "family": "Anatidae",
                                                                 "genus": "Anser",
                                                                 "images": [
-                                                                    {"label": "Western greylag goose (anser)", "url": "https://www.biolib.cz/IMG/GAL/BIG/369978.jpg"},
+                                                                    {"label": "Western greylag goose (anser)", "url": "https://i.imgur.com/PBDM8E3.jpeg"},
                                                                 ],
                                                                 "breeding": "Easy",
                                                                 "region": "Europe, Asia, Africa",
@@ -6427,7 +6437,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "order": "Anseriformes",
                                                                 "family": "Anatidae",
                                                                 "genus": "Aythya",
-                                                                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/236995.jpg",
+                                                                "image_url": "https://i.imgur.com/V6lO4yD.jpeg",
                                                                 "breeding": "Average",
                                                                 "region": "Europe, Asia, Africa",
                                                                 "holdings": {
@@ -6526,7 +6536,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "family": "Ardeidae",
                                                             "genus": "Ardea",
                                                             "images": [
-                                                                {"label": "Eurasian gray heron (cinerea)", "url": "https://www.biolib.cz/IMG/GAL/200369.jpg"},
+                                                                {"label": "Eurasian gray heron (cinerea)", "url": "https://i.imgur.com/s6VAY1y.jpeg"},
                                                             ],
                                                             "breeding": "Below Average",
                                                             "region": "Europe, Asia, Africa",
@@ -6719,7 +6729,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "order": "Albuliformes",
                                                             "family": "Albulidae",
                                                             "genus": "Albula",
-                                                            "image_url": "https://www.biolib.cz/IMG/GAL/324560.jpg",
+                                                            "image_url": "https://i.imgur.com/vyjN9OZ.jpeg",
                                                             "breeding": "Impossible",
                                                             "region": "North America, South America",
                                                             "holdings": {
@@ -7057,7 +7067,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "order": "Rodentia",
                                                     "family": "Sciuridae",
                                                     "genus": "Glaucomys",
-                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/463699.jpg",
+                                                    "image_url": "https://i.imgur.com/hkY7q0D.jpeg",
                                                     "breeding": "Difficult",
                                                     "region": "North America",
                                                     "holdings": {
@@ -7201,7 +7211,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "order": "Anura",
                                                     "family": "Pipidae",
                                                     "genus": "Xenopus",
-                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/433739.jpg",
+                                                    "image_url": "https://i.imgur.com/FPErRK0.jpeg",
                                                     "breeding": "Average",
                                                     "region": "Africa",
                                                     "holdings": {
@@ -7779,7 +7789,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "order": "Squamata",
                                                     "family": "Pythonidae",
                                                     "genus": "Python",
-                                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/222323.jpg",
+                                                    "image_url": "https://i.imgur.com/b2G7noH.jpeg",
                                                     "breeding": "Easy",
                                                     "region": "Africa",
                                                     "holdings": {
@@ -8191,7 +8201,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "order": "Cyprinodontiformes",
                                     "family": "Rivulidae",
                                     "genus": "Simpsonichthys",
-                                    "image_url": "https://www.biolib.cz/IMG/GAL/BIG/484162.jpg",
+                                    "image_url": "https://i.imgur.com/mol9w0S.jpeg",
                                     "breeding": "Average",
                                     "region": "South America",
                                     "holdings": {
@@ -8393,7 +8403,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "family": "Bovidae",
                                 "genus": "Nanger",
                                     "images": [
-                                        {"label": "Addra gazelle (ruficollis)", "url": "https://www.biolib.cz/IMG/GAL/BIG/26744.jpg"}
+                                        {"label": "Addra gazelle (ruficollis)", "url": "https://i.imgur.com/s0nkxoD.jpeg"}
                                     ],
                                 "breeding": "Below Average",
                                 "region": "Africa",
@@ -8418,7 +8428,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "order": "Artiodactyla",
                                 "family": "Cervidae",
                                 "genus": "Cervus",
-                                "image_url": "https://www.biolib.cz/IMG/GAL/BIG/221390.jpg",
+                                "image_url": "https://i.imgur.com/Au3bG5e.jpeg",
                                 "breeding": "Average",
                                 "region": "Asia",
                                 "holdings": {
@@ -8456,6 +8466,182 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "institutions": {
                                 "Cube Zoological Park": "3.0"
 
+                                }
+                                },
+                                "Scimitar-Horned Oryx": {
+                                "common": "Scimitar-Horned Oryx",
+                                "scientific": "Oryx dammah",
+                                "info": "Also known as the scimitar oryx and the Sahara oryx, the scimitar-horned oryx was originally native to wide swathes of the northern half of Africa, though it was made extinct in the wild due to overhunting. Captive breeding programs keep the species alive, and reintroduction programs have met with success.",
+                                "type": "Mammal",
+                                "order": "Artiodactyla",
+                                "family": "Bovidae",
+                                "genus": "Oryx",
+                                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/67404875/original.jpg",
+                                "breeding": "Average",
+                                "region": "Africa",
+                                "holdings": {
+                                    "North America": "0.1 - Cube Zoological Park",
+                                    "Europe": 0,
+                                    "Asia": 0,
+                                    "Africa": 0,
+                                    "South America": 0,
+                                    "Oceania": 0,
+                                },
+                                "institutions": {
+                                "Cube Zoological Park": "0.1"
+
+                                    },
+                                    },
+                                    
+                                    "Mountain Zebra": {
+                                        "common": "Mountain Zebra",
+                                        "scientific": "Equus zebra",
+                                        "info": "One of three extant zebra species, the mountain zebra is endemic to southern Africa. It has a disjunct and small range, and is listed by the IUCN Red List as a vulnerable species. They can be distinguished from the other two zebra species with their distinctive dewlap.",
+                                        "type": "Mammal",
+                                        "order": "Perissodactyla",
+                                        "family": "Equidae",
+                                        "genus": "Equus",
+                                        "images": [
+                                            {"label": "Hartmann's mountain zebra (hartmannae)", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Equus_zebra_hartmannae_-_Etosha_2015.jpg/1280px-Equus_zebra_hartmannae_-_Etosha_2015.jpg"},
+                                        ],
+                                        "image_url": "https://example.com/default.jpg",
+                                        "breeding": "Average",
+                                        "region": "Africa",
+                                        "holdings": {
+                                            "North America": "1.0 (hartmannae) - Cube Zoological Park",
+                                            "Europe": 0,
+                                            "Asia": 0,
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                            "Cube Zoological Park": "1.0 [hartmannae]"
+
+                                        }
+                                        },
+                                        "Sardinian Brook Salamander": {
+                                        "common": "Sardinian Brook Salamander",
+                                        "scientific": "Euproctus platycephalus",
+                                        "info": "This endangered salmander is endemic to Sardinia, an island off the coast of Italy. It is endangered due to habitat fragmentation, pollution, and habitat loss on the island. Mostly aquatic, they are known to aestivate on land to escape high temperatures and dryness.",
+                                        "type": "Amphibian",
+                                        "order": "Urodela",
+                                        "family": "Salamandridae",
+                                        "genus": "Euproctus",
+                                        "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/07/Euproctus-platycephalus-2.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "Europe",
+                                        "holdings": {
+                                            "North America": 0,
+                                            "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
+                                            "Asia": 0,
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "Giardino Zoologico e Botanico La Sapienza": "2.2"
+
+                                        },
+                                        },
+                                          "Alpine Newt": {
+                                            "common": "Alpine Newt",
+                                            "scientific": "Mesotriton alpestris",
+                                            "info": "A common and widespread species of newt endemic to Europe, the alpine newt is well known for the males' bright coloration and its presence in the private trade. Juveniles start life on land and eventually move into water where they live the rest of their lives.",
+                                            "type": "Amphibian",
+                                            "order": "Urodela",
+                                            "family": "Salamandridae",
+                                            "genus": "Mesotriton",
+                                            "images": [
+                                                {"label": "Southern Italian alpine newt (inexpectatus)", "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Question-mark-grey.jpg"},
+                                            ],
+                                            "image_url": "https://example.com/default.jpg",
+                                            "breeding": "Average",
+                                            "region": "Europe",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Europe": "2.2 (inexpectatus) - Giardino Zoologico e Botanico La Sapienza",
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Giardino Zoologico e Botanico La Sapienza": "2.2 [inexpectatus]"
+
+                                            }
+                                            },
+                                            "Dark-Eyed Junco": {
+                                            "common": "Dark-Eyed Junco",
+                                            "scientific": "Junco hyemalis",
+                                            "info": "A common and well-known North American passerine, the dark-eyed junco has a wide range depending on the time of year. It has been recorded from far northern Alaska to northern Mexico, showing its adaptability. They feed mostly on insects, seeds, and berries.",
+                                            "type": "Bird",
+                                            "order": "Passeriformes",
+                                            "family": "Passerellidae",
+                                            "genus": "Junco",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Junco_hyemalis_hyemalis_CT1_%28cropped%29.jpg/1280px-Junco_hyemalis_hyemalis_CT1_%28cropped%29.jpg",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "0.1 - Glacier Zoo",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Glacier Zoo": "0.1"
+
+                                            }
+                                            },
+                                            "Northwestern Garter Snake": {
+                                            "common": "Northwestern Garter Snake",
+                                            "scientific": "Thamnophis ordinoides",
+                                            "info": "Endemic to the northwestern part of North America from British Columbia to California, the northwestern garter snake is a common colubrid within its range. Preying on slugs, salamanders, and frogs, they can mostly be found on the edges of meadows near forests, making them an edge specialist species.",
+                                            "type": "Reptile",
+                                            "order": "Squamata",
+                                            "family": "Colubridae",
+                                            "genus": "Thamnophis",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/33871044/original.jpeg",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": "1.0 - Glacier Zoo",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Glacier Zoo": "1.0"
+
+                                            },
+                                            },
+                                              "Domestic Goose": {
+                                                "common": "Domestic Goose",
+                                                "scientific": "Anser anser domesticus",
+                                                "info": "Descending from the greylag goose, the domestic goose has been bred into a variety of different forms, either for food or personal petkeeping. They are culturally relevant animals especially in Europe, where they were first domesticated.",
+                                                "type": "Bird",
+                                                "order": "Anseriformes",
+                                                "family": "Anatidae",
+                                                "genus": "Anser",
+                                                "images": [
+                                                    {"label": "Roman", "url": "https://livestockconservancy.org/wp-content/uploads/2022/08/Roman-Geese.jpg"},
+                                                ],
+                                                "image_url": "https://example.com/default.jpg",
+                                                "breeding": "Very Easy",
+                                                "holdings": {
+                                                    "North America": "1.3 (Roman) - Giardino Zoologico e Botanico La Sapienza",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                    "Giardino Zoologico e Botanico La Sapienza": "1.3 [Roman]"
                                 }
                                 },
 }
@@ -11222,6 +11408,12 @@ async def on_command_error(ctx: commands.Context, error: Exception):
 async def on_ready():
     log.info("Logged in as %s (%s)", bot.user, bot.user.id)
     log.info("Bot is ready.")
+    
+    # Start scheduled tasks
+    if not weekly_breeding.is_running():
+        weekly_breeding.start()
+    if not progress_role_sweeper.is_running():
+        progress_role_sweeper.start()
 
     # --- Token System (per-user, per-zoo) ---------------------------------------
     TOKENS_FILE = pathlib.Path("tokens.json")
@@ -11628,75 +11820,109 @@ async def zooremove_cmd(ctx, *, name: str):
 
 
 # ---------------- Weekly Breeding Engine ----------------
-import random  # >>> ADDED: ensure random is available in this block
+import random
+from datetime import time as dtime
+from zoneinfo import ZoneInfo
+from discord.ext import tasks
 
 def _nyc_time(hour: int, minute: int = 0) -> dtime:
-    tz = ZoneInfo("America/New_York") if ZoneInfo else None
+    """
+    Helper: returns a datetime.time object in New York timezone.
+    """
+    tz = ZoneInfo("America/New_York")
     return dtime(hour=hour, minute=minute, tzinfo=tz)
 
 def _iter_housed_by_user_and_zoo():
     """
-    Yields (user_id:int, zoo_name:str, species_list:List[str]) for all housed species.
+    Yields (user_id:int, zoo_name:str, species_list:List[str])
+    for every housed species in every zoo.
     """
     data = _load_zoo_data()
     for uid, urec in data.get("users", {}).items():
-        zoos = urec.get("zoos", {})
-        for zoo_name, species_list in zoos.items():
+        for zoo_name, species_list in (urec.get("zoos") or {}).items():
             yield int(uid), zoo_name, list(species_list or [])
 
-    async def _run_breeding_once() -> dict[int, list[str]]:
-        """
-        Core roll. Returns {guild_id: [lines...]} but we’ll broadcast to every configured guild.
-        Since your data isn’t tied to guilds, we build one global set of lines
-        then fan it out to all guilds with a configured channel.
-        """
-        lines: list[str] = []
+async def _run_breeding_once() -> list[str]:
+    """
+    Runs ONE breeding cycle and returns a list of log lines.
+    """
+    lines: list[str] = []
 
-        for user_id, zoo_name, species_list in _iter_housed_by_user_and_zoo():
-            if not species_list:
+    for user_id, zoo_name, species_list in _iter_housed_by_user_and_zoo():
+        if not species_list:
+            continue
+
+        lines.append(f"👤 <@{user_id}> — {zoo_name}")
+        housed_count = len(species_list)
+        total_catalog = housed_count  # (optional – adjust if you track catalog differently)
+        lines.append(f"• Housed: {housed_count} | Catalog: {total_catalog}")
+
+        for sp in species_list:
+            entry, msg = get_entry_or_message(sp)
+            if msg or not entry:
                 continue
-            for sp in species_list:
-                entry, msg = get_entry_or_message(sp)
-                if msg or not entry:
-                    continue
-                entry = get_species_with_overrides(entry)
 
-                # contracept check
-                if is_contracepted(user_id, zoo_name, entry.get("common") or sp):
-                    continue
+            entry = get_species_with_overrides(entry)
 
-                # >>> NEW: require 1.1 or 3+ unsexed at THIS institution
-                if not _has_breeding_pair_or_group(zoo_name, entry):
-                    continue
+            # contracept check
+            if is_contracepted(user_id, zoo_name, entry.get("common") or sp):
+                lines.append(f"  🚫 {entry.get('common', sp)} is contracepted → skipped.")
+                continue
 
-                # >>> CHANGED: Prefer per-species override if present
-                override_label = (entry.get("breeding") or "").strip()
-                if override_label:
-                    label = override_label
-                else:
-                    label = get_breeding_label(entry)  # existing logic (fallback)
-                    if not label:
-                        label = DEFAULT_BREEDING_LABEL
+            # breeding pair/group requirement
+            if not _has_breeding_pair_or_group(zoo_name, entry):
+                lines.append(f"  ⛔ {entry.get('common', sp)} lacks 1.1 or 3+ unsexed at {zoo_name} → skipped.")
+                continue
 
-                prob = BREEDING_PROB.get(label, BREEDING_PROB[DEFAULT_BREEDING_LABEL])
-                if prob <= 0:
-                    continue
+            # difficulty override
+            override_label = (entry.get("breeding") or "").strip().lower()
+            p = BREEDING_PROBABILITIES.get(override_label, 0.0)
 
-                if random.random() <= prob:
-                    mention = f"<@{user_id}>"
-                    # include whether it was overridden for clarity
-                    suffix = " (override)" if override_label else ""
-                    lines.append(
-                        f"🍼 **Birth!** `{entry.get('common', sp)}` at **{zoo_name}** (owner {mention}) — difficulty **{label}**{suffix}"
-                    )
+            # impossible
+            if p <= 0:
+                lines.append(f"  0️⃣ {entry.get('common', sp)} difficulty Impossible (p=0) → skipped.")
+                continue
 
-        # Build per-guild map: broadcast same list to every guild that set a channel
-        by_guild: dict[int, list[str]] = {}
-        data = _load_zoo_data()
-        for gid_str, cid in data.get("breeding_channels", {}).items():
-            gid = int(gid_str)
-            by_guild[gid] = list(lines)
-        return by_guild
+            # RNG roll
+            roll = random.random()
+            if roll <= p:
+                lines.append(f"  🎉 {entry.get('common', sp)} → **BIRTH!** (p={p:.2f}, roll={roll:.3f})")
+                _apply_birth(user_id, zoo_name, entry)
+            else:
+                lines.append(f"  🎲 {entry.get('common', sp)} diff {entry.get('breeding')} (p={p:.2f}) roll={roll:.3f} → no")
+
+        lines.append("")  # spacer between zoos
+
+    return lines
+
+
+# ---------------- Task Scheduler ----------------
+
+@tasks.loop(time=_nyc_time(12, 0))  # runs every week at 12:00 PM EST
+async def weekly_breeding():
+    """
+    Weekly scheduled breeding cycle.
+    """
+    lines = await _run_breeding_once()
+    msg = "\n".join(lines)
+
+    # send to every guild with a configured breeding channel
+    for guild in bot.guilds:
+        ch_id = get_breeding_channel_for_guild(guild.id)
+        if not ch_id:
+            continue
+        ch = guild.get_channel(ch_id)
+        if ch:
+            # Discord has a 2000-char limit → chunk output
+            chunks = [msg[i:i+1900] for i in range(0, len(msg), 1900)]
+            for ck in chunks:
+                await ch.send(f"📣 **Weekly Breeding Report**\n{ck}")
+
+@weekly_breeding.before_loop
+async def before_weekly():
+    await bot.wait_until_ready()
+
+# NOTE: weekly_breeding.start() is now called inside on_ready() event
 
 
 @bot.command(name="breeddebug")
@@ -11984,9 +12210,3 @@ async def cmd_progressrole_refresh(ctx: commands.Context):
     """Force a full recompute now."""
     await recompute_progress_role_for_guild(ctx.guild)
     await ctx.send("🔄 Refreshed role assignments.")
-
-
-@bot.event
-async def on_ready():
-    if not progress_role_sweeper.is_running():
-        progress_role_sweeper.start()
