@@ -4,10 +4,11 @@ This project is a Discord bot designed to manage a virtual zoo and token-based e
 
 # Recent Changes
 
-**2025-11-19**: Fixed indentation error and duplicate on_ready() event handlers:
+**2025-11-19**: Fixed indentation errors and duplicate event handlers:
 - Removed stray `return by_guild` line at line 11921 that caused IndentationError
 - Fixed duplicate `on_ready()` event handlers (had two defined at lines 11408 and 12211)
 - Merged both on_ready handlers into one, moving scheduled task starts (weekly_breeding and progress_role_sweeper) into the main on_ready event
+- Fixed incorrectly indented `@tasks.loop` decorator at line 11996 (weekly_breeding task had 16 spaces instead of module-level indentation)
 - Bot successfully restarted with all 326 species
 
 **2025-11-13**: Fixed multiple syntax errors from SSH sync issues:

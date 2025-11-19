@@ -10229,12 +10229,12 @@ except Exception:
 
 # Probability per label (tweak as you like)
 BREEDING_PROB = {
-    "Very Easy": 0.30,
-    "Easy": 0.20,
-    "Average": 0.10,
-    "Below Average": 0.06,
-    "Difficult": 0.01,
-    "Impossible": 0.00,
+    "very easy": 0.30,
+    "easy": 0.20,
+    "average": 0.10,
+    "below average": 0.06,
+    "difficult": 0.01,
+    "impossible": 0.00,
 }
 DEFAULT_BREEDING_LABEL = "Average"
 
@@ -11826,11 +11826,9 @@ from zoneinfo import ZoneInfo
 from discord.ext import tasks
 
 def _nyc_time(hour: int, minute: int = 0) -> dtime:
-    """
-    Helper: returns a datetime.time object in New York timezone.
-    """
     tz = ZoneInfo("America/New_York")
     return dtime(hour=hour, minute=minute, tzinfo=tz)
+
 
 def _iter_housed_by_user_and_zoo():
     """
@@ -11841,6 +11839,104 @@ def _iter_housed_by_user_and_zoo():
     for uid, urec in data.get("users", {}).items():
         for zoo_name, species_list in (urec.get("zoos") or {}).items():
             yield int(uid), zoo_name, list(species_list or [])
+
+import random
+
+def _apply_birth(user_id: int, zoo_name: str, entry: dict):
+    """
+    Adds ONE birth to the correct zoo inside the species' holdings.
+    Births receive a RANDOM sex (50/50 male or female).
+
+    Supported formats:
+      - "1.1 - Zoo"
+      - "0.3 - ZooA, 1.2 - ZooB"
+      - ["1.1 - Zoo", "0.3 - Other Zoo"]
+      - Zero values: 0, "0"
+    """
+    species_name = entry.get("common")
+    if not species_name:
+        return
+
+    data = _load_zoo_data()
+    cat = data.get("species") or {}
+    raw = cat.get(species_name)  # species block
+    if not raw:
+        return
+
+    holdings = raw.get("holdings") or {}
+    changed = False
+
+    # choose sex: True = male, False = female
+    is_male = (random.random() < 0.5)
+
+    def update_line(line: str) -> str:
+        """
+        Update a single 'a.b - Zoo' entry for this birth.
+        """
+        nonlocal changed, is_male
+
+        line = line.strip()
+        if " - " not in line:
+            return line
+
+        count_str, inst = line.split(" - ", 1)
+        if inst.strip().lower() != zoo_name.lower():
+            return line
+
+        # must be "a.b" format
+        if "." not in count_str:
+            return line
+        try:
+            male, female = map(int, count_str.split("."))
+        except Exception:
+            return line
+
+        # apply random sex
+        if is_male:
+            male += 1
+        else:
+            female += 1
+
+        changed = True
+        return f"{male}.{female} - {inst}"
+
+    # loop all regions
+    for region, v in holdings.items():
+
+        # Zero/null case
+        if v in (0, "0", None, 0.0):
+            continue
+
+        # list format
+        if isinstance(v, (list, tuple, set)):
+            new_list = []
+            for line in v:
+                before = line
+                after = update_line(line)
+                new_list.append(after)
+            holdings[region] = new_list
+            continue
+
+        # string format (possibly multiple entries)
+        if isinstance(v, str):
+            parts = [p.strip() for p in v.split(",") if p.strip()]
+            new_parts = []
+            for part in parts:
+                after = update_line(part)
+                new_parts.append(after)
+
+            holdings[region] = ", ".join(new_parts) if new_parts else "0"
+            continue
+
+        # anything else → skip
+        continue
+
+    if changed:
+        raw["holdings"] = holdings
+        data["species"] = cat
+        _save_zoo_data(data)
+
+
 
 async def _run_breeding_once() -> list[str]:
     """
@@ -11854,8 +11950,7 @@ async def _run_breeding_once() -> list[str]:
 
         lines.append(f"👤 <@{user_id}> — {zoo_name}")
         housed_count = len(species_list)
-        total_catalog = housed_count  # (optional – adjust if you track catalog differently)
-        lines.append(f"• Housed: {housed_count} | Catalog: {total_catalog}")
+        lines.append(f"• Housed: {housed_count}")
 
         for sp in species_list:
             entry, msg = get_entry_or_message(sp)
@@ -11863,33 +11958,33 @@ async def _run_breeding_once() -> list[str]:
                 continue
 
             entry = get_species_with_overrides(entry)
+            common = entry.get("common", sp)
 
-            # contracept check
-            if is_contracepted(user_id, zoo_name, entry.get("common") or sp):
-                lines.append(f"  🚫 {entry.get('common', sp)} is contracepted → skipped.")
+            # contraception
+            if is_contracepted(user_id, zoo_name, common):
+                lines.append(f"  🚫 {common} is contracepted → skipped.")
                 continue
 
-            # breeding pair/group requirement
+            # 1.1 or 3+ unsexed requirement
             if not _has_breeding_pair_or_group(zoo_name, entry):
-                lines.append(f"  ⛔ {entry.get('common', sp)} lacks 1.1 or 3+ unsexed at {zoo_name} → skipped.")
+                lines.append(f"  ⛔ {common} lacks 1.1 or 3+ unsexed → skipped.")
                 continue
 
             # difficulty override
             override_label = (entry.get("breeding") or "").strip().lower()
-            p = BREEDING_PROBABILITIES.get(override_label, 0.0)
+            p = BREEDING_PROB.get(override_label, 0.0)
 
-            # impossible
             if p <= 0:
-                lines.append(f"  0️⃣ {entry.get('common', sp)} difficulty Impossible (p=0) → skipped.")
+                lines.append(f"  0️⃣ {common} difficulty Impossible (p=0) → skipped.")
                 continue
 
-            # RNG roll
+            # roll RNG
             roll = random.random()
             if roll <= p:
-                lines.append(f"  🎉 {entry.get('common', sp)} → **BIRTH!** (p={p:.2f}, roll={roll:.3f})")
+                lines.append(f"  🎉 {common} → **BIRTH!** (p={p:.2f}, roll={roll:.3f})")
                 _apply_birth(user_id, zoo_name, entry)
             else:
-                lines.append(f"  🎲 {entry.get('common', sp)} diff {entry.get('breeding')} (p={p:.2f}) roll={roll:.3f} → no")
+                lines.append(f"  🎲 {common} diff {entry.get('breeding')} (p={p:.2f}) roll={roll:.3f} → no")
 
         lines.append("")  # spacer between zoos
 
@@ -11898,22 +11993,26 @@ async def _run_breeding_once() -> list[str]:
 
 # ---------------- Task Scheduler ----------------
 
-@tasks.loop(time=_nyc_time(12, 0))  # runs every week at 12:00 PM EST
+@tasks.loop(time=_nyc_time(14, 0))  # 14:00 = 2 PM NY time
 async def weekly_breeding():
     """
-    Weekly scheduled breeding cycle.
+    Runs the breeding cycle automatically.
+    This fires every day at 2 PM NY time, but only *does work* on Fridays.
     """
+    now_ny = datetime.now(ZoneInfo("America/New_York"))
+    # Monday = 0, Tuesday = 1, ..., Friday = 4, Sunday = 6
+    if now_ny.weekday() != 4:  # 4 = Friday
+        return  # Not Friday → skip
+
     lines = await _run_breeding_once()
     msg = "\n".join(lines)
 
-    # send to every guild with a configured breeding channel
     for guild in bot.guilds:
         ch_id = get_breeding_channel_for_guild(guild.id)
         if not ch_id:
             continue
         ch = guild.get_channel(ch_id)
         if ch:
-            # Discord has a 2000-char limit → chunk output
             chunks = [msg[i:i+1900] for i in range(0, len(msg), 1900)]
             for ck in chunks:
                 await ch.send(f"📣 **Weekly Breeding Report**\n{ck}")
@@ -11922,7 +12021,39 @@ async def weekly_breeding():
 async def before_weekly():
     await bot.wait_until_ready()
 
-# NOTE: weekly_breeding.start() is now called inside on_ready() event
+@bot.command(name="breedrun")
+@commands.has_permissions(administrator=True)
+async def breedrun_cmd(ctx):
+    """
+    Run a manual breeding cycle now.
+    Produces the same output format as the weekly breeding report.
+    """
+    await ctx.send("⏳ Running breeding simulation…")
+
+    try:
+        lines = await _run_breeding_once()
+
+        if not lines:
+            await ctx.send(
+                "⚠️ Breeding ran, but no output was produced.\n"
+                "Use `;breeddebug` to see why no species qualified."
+            )
+            return
+
+        msg = "\n".join(lines)
+
+        # chunk for Discord limit
+        chunks = [msg[i:i+1900] for i in range(0, len(msg), 1900)]
+
+        for i, ck in enumerate(chunks, start=1):
+            header = "📣 **Manual Breeding Report**"
+            if len(chunks) > 1:
+                header += f" (Part {i}/{len(chunks)})"
+            await ctx.send(f"{header}\n{ck}")
+
+    except Exception as e:
+        log.exception("Error in ;breedrun")
+        await ctx.send(f"❌ Error during breeding run: `{e}`")
 
 
 @bot.command(name="breeddebug")
