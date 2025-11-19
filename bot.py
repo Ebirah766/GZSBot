@@ -586,7 +586,7 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Shropshire Hills Zoo": "1.3",
             "Air Terjun Zoo": "3.0",
             "Glacier Zoo": "0.3"
-            
+
         },
     },
     "Red Deer": {
@@ -1267,7 +1267,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Giardino Zoologico e Botanico La Sapienza": "1.1 [ridleyi]"
-           
+
         }
     },
     "Eastern Indigo Snake": {
@@ -1603,7 +1603,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
         "institutions": {
             "Essex County Zoo": "1.2"
-            
+
         }
     },
     "Bighorn Sheep": {
@@ -1725,7 +1725,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
             }
             },
-    
+
     "Turkey Vulture": {
     "common": "Turkey Vulture",
     "scientific": "Cathartes aura",
@@ -1775,7 +1775,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
         }
         },
-        
+
     "Domestic Donkey": {
     "common": "Domestic Donkey",
     "scientific": "Equus africanus asinus",
@@ -1849,7 +1849,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
     }
     },
-    
+
 "Japanese Eagle Ray": {
 "common": "Japanese Eagle Ray",
 "scientific": "Myliobatis tobijei",
@@ -1924,7 +1924,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
 }
 },
-    
+
 "Red-Bellied Piranha": {
 "common": "Red-Bellied Piranha",
 "scientific": "Pygocentrus nattereri",
@@ -1974,7 +1974,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 "Sapporo Reptile Center and National Aquarium": "1.0"
 }
 },
-    
+
 "American Alligator": {
 "common": "American Alligator",
 "scientific": "Alligator mississippiensis",
@@ -2100,7 +2100,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
     }
     },
-    
+
 "Green Iguana": {
 "common": "Green Iguana",
 "scientific": "Iguana iguana",
@@ -2226,7 +2226,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
     }
     },
-    
+
     "Bluefin Nothobranchius": {
         "common": "Bluefin Nothobranchius",
         "scientific": "Nothobranchius rachovii",
@@ -2253,7 +2253,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
             }
             },
-            
+
     "Redtail Nothobranchius": {
         "common": "Redtail Nothobranchius",
         "scientific": "Nothobranchius guentheri",
@@ -2280,7 +2280,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                 }
                 },
-                
+
         "Common Carp": {
         "common": "Common Carp",
         "scientific": "Cyprinus carpio",
@@ -2305,7 +2305,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "Wasser Wunder Welt": "15"
             }
             },
-            
+
         "Brook Trout": {
         "common": "Brook Trout",
         "scientific": "Salvelinus fontinalis",
@@ -2355,7 +2355,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
         }
         },
-        
+
         "Rainbow Trout": {
         "common": "Rainbow Trout",
         "scientific": "Oncorhynchus mykiss",
@@ -2557,10 +2557,10 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
                 "institutions": {
                     "New York Aquarium": "1 [Green form]"
-                    
+
                     },
                     },
-    
+
                 "Cherry Shrimp": {
                     "common": "Cherry Shrimp",
                     "scientific": "Neocaridina davidi",
@@ -2745,7 +2745,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Ripsaw Catfish": {
                                     "common": "Ripsaw Catfish",
                                     "scientific": "Oxydoras niger",
@@ -2795,7 +2795,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                         "Tambaqui": {
                                         "common": "Tambaqui",
                                         "scientific": "Colossoma macropomum",
@@ -2820,7 +2820,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                             }
                                             },
-                                            
+
                                     "Iridescent Shark": {
                                     "common": "Iridescent Shark",
                                     "scientific": "Pangasianodon hypophthalmus",
@@ -2870,7 +2870,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Banded Archerfish": {
                                     "common": "Banded Archerfish",
                                     "scientific": "Toxotes jaculatrix",
@@ -2893,7 +2893,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "institutions": {
                                     "Wasser Wunder Welt": "20"
 
-                                        
+
                                            }
                                             },
 
@@ -2921,7 +2921,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Siberian Sturgeon": {
                                     "common": "Siberian Sturgeon",
                                     "scientific": "Huso baerii",
@@ -2946,7 +2946,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Wels Catfish": {
                                     "common": "Wels Catfish",
                                     "scientific": "Silurus glanis",
@@ -2971,11 +2971,11 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Northern Pike": {
                                     "common": "Northern Pike",
                                     "scientific": "Esox lucius",
-                                    "info": "A large pike species, the northern pike is famed in its large Palearctic range for its large size and aggressive fight when caught by fishermen. They are aggressive predators and feed upon many types of animals, even occasionally swans larger than they are.",
+                                    "info": "A large pike species, the northern pike is famed in its massive Palearctic range for its large size and aggressive fight when caught by fishermen. They are aggressive predators and feed upon many types of animals, even occasionally swans larger than they are.",
                                     "type": "Fish",
                                     "order": "Salmoniformes",
                                     "family": "Esocidae",
@@ -2996,7 +2996,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Fire Salamander": {
                                     "common": "Fire Salamander",
                                     "scientific": "Salamandra salamandra",
@@ -3026,7 +3026,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Eurasian Otter": {
                                     "common": "Eurasian Otter",
                                     "scientific": "Lutra lutra",
@@ -3053,7 +3053,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Fahaka Pufferfish": {
                                     "common": "Fahaka Pufferfish",
                                     "scientific": "Tetraodon lineatus",
@@ -3078,7 +3078,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "West African Lungfish": {
                                     "common": "West African Lungfish",
                                     "scientific": "Protopterus annectens",
@@ -3228,7 +3228,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                     }
                                     },
-                                    
+
                                 "Eastern Gray Squirrel": {
                                 "common": "Eastern Gray Squirrel",
                                 "scientific": "Sciurus carolinensis",
@@ -3253,7 +3253,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                     }
                                     },
-                                    
+
                                 "Canada Goose": {
                                 "common": "Canada Goose",
                                 "scientific": "Branta canadensis",
@@ -4324,7 +4324,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                 }
                 },
-                
+
             "Pom Pom Crab": {
             "common": "Pom Pom Crab",
             "scientific": "Lybia tessellata",
@@ -4349,7 +4349,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                 }
                 },
-                
+
             "Emerald Crab": {
             "common": "Emerald Crab",
             "scientific": "Mithraculus sculptus",
@@ -4624,7 +4624,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                 }
                                 },
-                                
+
                             "Monarch": {
                                 "common": "Monarch",
                                 "scientific": "Danaus plexippus",
@@ -4699,7 +4699,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                         }
                                         },
-                                        
+
                                     "Eastern Honeybee": {
                                     "common": "Eastern Honeybee",
                                     "scientific": "Apis cerana",
@@ -8494,7 +8494,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 
                                     },
                                     },
-                                    
+
                                     "Mountain Zebra": {
                                         "common": "Mountain Zebra",
                                         "scientific": "Equus zebra",
@@ -8644,6 +8644,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 },
                                                 "institutions": {
                                                     "Giardino Zoologico e Botanico La Sapienza": "1.3 [Roman]"
+
+                                                }
+                                                },
+                                                "Atlantic Needlefish": {
+                                                "common": "Atlantic Needlefish",
+                                                "scientific": "Strongylura marina",
+                                                "info": "A common demersal needlefish found in the western Atlantic, this species is also able to inhabit freshwater and has been introduced to the Tennessee River. They have been known to jump out of the water and impale people out at sea.",
+                                                "type": "Fish",
+                                                "order": "Beloniformes",
+                                                "family": "Belonidae",
+                                                "genus": "Strongylura",
+                                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Fish4485_-_Flickr_-_NOAA_Photo_Library.jpg/2560px-Fish4485_-_Flickr_-_NOAA_Photo_Library.jpg",
+                                                "breeding": "Impossible",
+                                                "region": "North America, South America",
+                                                "holdings": {
+                                                    "North America": "6 - Cube Zoological Park",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Cube Zoological Park": "6"
                                 }
                                 },
 }
@@ -10321,7 +10345,7 @@ async def zoo_cmd(ctx, subcommand: str = None, *, rest: str = None):
     ownership = _get_user_ownership(data, ctx.author.id)
 
 
-    
+
     def _auto_pick_owned_or_msg(owned_list, provided: str | None, need_ownership: bool = True):
         """Return (zoo_name, err_msg). If provided is given, validate (and ownership if need_ownership)."""
         if provided and provided.strip():
@@ -10746,21 +10770,21 @@ async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
         if not name or not str(name).strip():
             await ctx.send("Usage: `;species <name>` — e.g., `;species Whale Shark`")
             return
-        
+
         entry, msg = get_entry_or_message(name)
         if msg:
             await ctx.send(msg)
             return
-        
+
         images = entry.get("images") or []
         embed = build_species_embed(entry, image_index=0)
-        
+
         if isinstance(images, list) and len(images) > 1:
             view = SpeciesPager(entry=entry, start_index=0)
             await ctx.send(embed=embed, view=view)
         else:
             await ctx.send(embed=embed)
-        
+
     except Exception:
         log.exception("Error in ;species")
         await ctx.send(f"Sorry, something went wrong building the card for **{name or 'that species'}**.")
@@ -11240,7 +11264,7 @@ async def breedchannel_cmd(ctx, sub: str = None):
         return
     await ctx.send("Usage: `;breedchannel set` or `;breedchannel show`")
 
-    
+
 # --- Region helpers ----------------------------------------------------------
 _REGION_ALIASES = {
     # canonical: lower-case
@@ -11410,7 +11434,7 @@ async def on_command_error(ctx: commands.Context, error: Exception):
 async def on_ready():
     log.info("Logged in as %s (%s)", bot.user, bot.user.id)
     log.info("Bot is ready.")
-    
+
     # Start scheduled tasks
     if not weekly_breeding.is_running():
         weekly_breeding.start()
