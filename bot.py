@@ -3784,7 +3784,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "breeding": "Average",
                                             "region": "North America",
                                             "holdings": {
-                                                "North America": "1.2 - North Star Zoo",
+                                                "North America": "2.0 - Essex County Zoo, 1.2 - North Star Zoo",
                                                 "Asia": 0,
                                                 "Europe": 0,
                                                 "Africa": 0,
@@ -3792,6 +3792,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
+                                                "Essex County Zoo": "2.0",
                                                 "North Star Zoo": "1.2"
 
                                             }
