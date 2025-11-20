@@ -1962,7 +1962,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "breeding": "Below Average",
     "region": "North America",
 "holdings": {
-"North America": 0,
+"North America": "1.1 - Essex County Zoo ",
 "Asia": "2.2 - Kings of the Jungle, 1.0 - Sapporo Reptile Center and National Aquarium ",
 "Europe": 0,
 "Africa": 0,
@@ -1970,6 +1970,7 @@ species_data: Dict[str, Dict[str, Any]] = {
 "Oceania": 0,
                 },
 "institutions": {
+"Essex County Zoo": "1.1",
 "Kings of the Jungle": "2.2",
 "Sapporo Reptile Center and National Aquarium": "1.0"
 }
