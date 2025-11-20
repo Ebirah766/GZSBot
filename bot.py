@@ -8864,6 +8864,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 },
                                                 "institutions": {
                                                 "New York Aquarium": "1.0"
+
+                                                }
+                                                },
+                                                "Horn Shark": {
+                                                "common": "Horn Shark",
+                                                "scientific": "Heterodontus francisci",
+                                                "info": "A common bullhead shark endemic to the northeastern Pacific, the horn shark gets its name from the spine on its first dorsal fin. A hardy and adaptable species, it is commonly found in aquaria due to this, and it is an approachable species even in its natural habitat.",
+                                                "type": "Fish",
+                                                "order": "Heterodontiformes",
+                                                "family": "Heterodontidae",
+                                                "genus": "Heterodontus",
+                                                "image_url": "https://www.sharksandrays.com/wp-content/uploads/2020/11/Horn-Shark-006.jpg",
+                                                "breeding": "Below Average",
+                                                "region": "North America",
+                                                    "holdings": {
+                                                    "North America": "2.2 - New York Aquarium",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "New York Aquarium": "2.2"
                                 }
                                 },
 }
