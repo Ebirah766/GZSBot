@@ -10310,7 +10310,7 @@ def get_species_with_overrides(entry: dict) -> dict:
 
 def get_breeding_label(entry: dict) -> str:
     label = (entry or {}).get("breeding") or DEFAULT_BREEDING_LABEL
-    return label if label in BREEDING_PROB else DEFAULT_BREEDING_LABEL
+    return label if label.lower() in BREEDING_PROB else DEFAULT_BREEDING_LABEL
 
 
 # ------------- ;zoo command with ownership -------------

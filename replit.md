@@ -4,7 +4,14 @@ This project is a Discord bot designed to manage a virtual zoo and token-based e
 
 # Recent Changes
 
-**2025-11-19 (Latest)**: Fixed recurring SSH sync corruption (5th incident):
+**2025-11-20 (Latest)**: Fixed breeding difficulty case sensitivity bug:
+- Species with breeding difficulty "Impossible" (capital I) were showing as "Average" in Discord cards
+- Root cause: `get_breeding_label` function checked exact case match against lowercase BREEDING_PROB keys
+- Fixed by normalizing label to lowercase before validation: `label.lower() in BREEDING_PROB`
+- All species with any capitalization of breeding difficulty now display correctly
+- Bot restarted successfully with fix applied
+
+**2025-11-19**: Fixed recurring SSH sync corruption (5th incident):
 - SSH sync from local Windows machine repeatedly corrupted entire bot.py file (12,369 lines)
 - All lines were indented with 4 extra spaces, causing IndentationError at line 2
 - Fixed by removing 4 leading spaces from all lines using Python script
