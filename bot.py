@@ -8888,6 +8888,30 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 },
                                                 "institutions": {
                                                 "New York Aquarium": "2.2"
+
+                                                }
+                                                },
+                                                "Snakehead Betta": {
+                                                "common": "Snakehead Betta",
+                                                "scientific": "Betta channoides",
+                                                "info": "Endemic to Borneo, the snakehead betta is one of the most common and popular wild bettas in the aquarium trade. Typically a cryptic brown, this species will color up to bright red, black, and white when displaying. They are endemic to blackwater streams with acidic pH.",
+                                                "type": "Fish",
+                                                "order": "Anabantiformes",
+                                                "family": "Osphronemidae",
+                                                "genus": "Betta",
+                                                "image_url": "https://i.imgur.com/lhUXwvn.png",
+                                                "breeding": "Average",
+                                                "region": "Asia",
+                                                    "holdings": {
+                                                    "North America": "2.2 - New York Aquarium",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "New York Aquarium": "2.2"
                                 }
                                 },
 }
