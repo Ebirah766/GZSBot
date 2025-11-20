@@ -3192,14 +3192,15 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "region": "Asia",
                                     "holdings": {
                                     "North America": 0,
-                                    "Asia": 0,
+                                    "Asia": "1.1 - Chiang Mai Serpentarium",
                                     "Europe": "3.3 - Wasser Wunder Welt",
                                     "Africa": 0,
                                     "South America": 0,
                                     "Oceania": 0,
                                     },
                                     "institutions": {
-                                    "Wasser Wunder Welt": "3.3"
+                                    "Wasser Wunder Welt": "3.3",
+                                    "Chiang Mai Serpentarium": "1.1"
 
                                     }
                                         },
@@ -3926,7 +3927,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "breeding": "Impossible",
                                             "region": "North America",
                                             "holdings": {
-                                                "North America": "1.0 - North Star Zoo",
+                                                "North America": "1.0 - New York Aquarium, 1.0 - North Star Zoo",
                                                 "Asia": 0,
                                                 "Europe": 0,
                                                 "Africa": 0,
@@ -3934,6 +3935,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "Oceania": 0,
                                             },
                                             "institutions": {
+                                                "New York Aquarium": "1.0",
                                                 "North Star Zoo": "1.0"
 
                                             }
@@ -6081,7 +6083,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "breeding": "Average",
                                                     "region": "North America",
                                                     "holdings": {
-                                                        "North America": "10 - New York Aquarium",
+                                                        "North America": "8 - Cube Zoological Park, 10 - New York Aquarium",
                                                         "Europe": 0,
                                                         "Asia": 0,
                                                         "Africa": 0,
@@ -6089,6 +6091,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "Oceania": 0,
                                                     },
                                                     "institutions": {
+                                                    "Cube Zoological Park": "8",
                                                     "New York Aquarium": "10",
 
                                                 },
@@ -8178,12 +8181,13 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "family": "Nothobranchiidae",
                                     "genus": "Nothobranchius",
                                     "images": [
-                                        {"label": "Utete Red locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Eggersi-Utete.jpg"}
+                                        {"label": "Utete Red locality", "url": "https://www.seriouslyfish.com/wp-content/uploads/2012/05/Nothobranchius-Eggersi-Utete.jpg"},
+                                        {"label": "Makurunge locality", "url": "https://killis.org.uk/wp-content/uploads/2021/04/Nothobranchius-eggersi-Makurunge-TAN-19-19-%C2%A9-Kiril-kardashev-Text-x-2048x1247.jpg"}
                                     ],
                                     "breeding": "Average",
                                     "region": "Africa",
                                     "holdings": {
-                                        "North America": "3.3 (Utete Red) - New York Aquarium",
+                                        "North America": "3.3 (Utete Red) 3.3 (Makurunge) - New York Aquarium",
                                         "Europe": 0,
                                         "Asia": 0,
                                         "Africa": 0,
@@ -8191,7 +8195,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "Oceania": 0,
                                     },
                                     "institutions": {
-                                    "New York Aquarium": "3.3 [Utete Red]"
+                                    "New York Aquarium": "3.3 [Utete Red], 3.3 [Makurunge]"
 
                                     }
                                     },
@@ -8668,6 +8672,198 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 },
                                                 "institutions": {
                                                 "Cube Zoological Park": "6"
+
+                                                }
+                                                },
+                                                "Eastern Oyster": {
+                                                "common": "Eastern Oyster",
+                                                "scientific": "Crassostrea virginica",
+                                                "info": "One of the most well-known oyster species, the eastern oyster is native to the eastern coast of North and South America. They are heavily impacted by climate change; a population survey of the Chesapeake Bay estimates less than 1% of the population remains. They are considered Vulnerable on the IUCN Red List.",
+                                                "type": "Invertebrate",
+                                                "order": "Ostreida",
+                                                "family": "Ostreidae",
+                                                "genus": "Crassostrea",
+                                                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/9292868/original.png",
+                                                "breeding": "Difficult",
+                                                "region": "North America, South America",
+                                                "holdings": {
+                                                    "North America": "12 - Cube Zoological Park",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Cube Zoological Park": "12"
+
+                                                }
+                                                },
+                                                "Northern Puffer": {
+                                                "common": "Northern Puffer",
+                                                "scientific": "Sphoeroides maculatus",
+                                                "info": "Endemic to the Atlantic coast of North America, the northern puffer can be found in both brackish and saltwater environments. With their sharp beak, they are able to extract shellfish from their shells and crush them. Unlike many other pufferfish species, their flesh is not poisonous.",
+                                                "type": "Fish",
+                                                "order": "Tetraodontiformes",
+                                                "family": "Tetraodontidae",
+                                                "genus": "Sphoeroides",
+                                                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/65346027/large.jpg",
+                                                "breeding": "Impossible",
+                                                "region": "North America",
+                                                "holdings": {
+                                                    "North America": "3 - Cube Zoological Park",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Cube Zoological Park": "3"
+
+                                                }
+                                                },
+                                                "Spot Croaker": {
+                                                "common": "Spot Croaker",
+                                                "scientific": "Leiostomus xanthurus",
+                                                "info": "A small croaker species that can be found from the Gulf of Maine to the Caribbean, the spot croaker is a culturally and commercially important species within its range. Growing from 9-14 inches in max size, they are frequently caught by sport anglers and fishermen, and are considered desirable quarry.",
+                                                "type": "Fish",
+                                                "order": "Acanthuriformes",
+                                                "family": "Sciaenidae",
+                                                "genus": "Leiostomus",
+                                                "image_url": "https://static.inaturalist.org/photos/163271805/large.jpg",
+                                                "breeding": "Impossible",
+                                                "region": "North America",
+                                                "holdings": {
+                                                    "North America": "5 - Cube Zoological Park",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Cube Zoological Park": "5"
+
+                                                }
+                                                },
+                                                "Bocourt's Mud Snake": {
+                                                "common": "Bocourt's Mud Snake",
+                                                "scientific": "Subsessor bocourti",
+                                                "info": "A semi-aquatic snake species endemic to mainland Southeast Asia, the Bocourt's mud snake is sometimes persecuted for food and for its scales. Feeding on frogs, fish and crustaceans, they are common despite the aforementioned persecution, and are listed as Least Concern on the IUCN Red List.",
+                                                "type": "Reptile",
+                                                "order": "Squamata",
+                                                "family": "Homalopsidae",
+                                                "genus": "Subsessor",
+                                                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/103705161/original.jpg",
+                                                "breeding": "Below Average",
+                                                "region": "Asia",
+                                                "holdings": {
+                                                    "North America": 0,
+                                                    "Europe": 0,
+                                                    "Asia": "1.0 - Chiang Mai Serpentarium",
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Chiang Mai Serpentarium": "1.0"
+
+                                                }
+                                                },
+                                                "Checkered Keelback": {
+                                                "common": "Checkered Keelback",
+                                                "scientific": "Fowlea piscator",
+                                                "info": "Despite sharing a name with the venomous keelbacks, the checkered keelback is a non-venomous and totally harmless species of snake native to a wide swathe of south, east, and southeast Asia. They feed primarily on fish, amphibians, and aquatic invertebrates, and are active at day and night.",
+                                                "type": "Reptile",
+                                                "order": "Squamata",
+                                                "family": "Colubridae",
+                                                "genus": "Fowlea",
+                                                "image_url": "https://indiabiodiversity.org/files-api/api/get/raw/img//Xenochrophis%20piscator/174.jpg",
+                                                "breeding": "Below Average",
+                                                "region": "Asia",
+                                                "holdings": {
+                                                    "North America": 0,
+                                                    "Europe": 0,
+                                                    "Asia": "0.2 - Chiang Mai Serpentarium",
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Chiang Mai Serpentarium": "0.2"
+
+                                                }
+                                                },
+                                                "Rainbow Water Snake": {
+                                                "common": "Rainbow Water Snake",
+                                                "scientific": "Enhydris enhydris",
+                                                "info": "A mildly venomous colubrid with a large range spanning tropical Asia, the rainbow water snake is mainly piscivorous, relying on water-based habitats for its survival. They are adaptable and can be found in human-disturbed areas such as rice paddies and garden ponds.",
+                                                "type": "Reptile",
+                                                "order": "Squamata",
+                                                "family": "Homalopsidae",
+                                                "genus": "Enhydris",
+                                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Enhydris_enhydris.jpg",
+                                                "breeding": "Below Average",
+                                                "region": "Asia",
+                                                    "holdings": {
+                                                    "North America": 0,
+                                                    "Europe": 0,
+                                                    "Asia": "1.1 - Chiang Mai Serpentarium",
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Chiang Mai Serpentarium": "1.1"
+
+                                                }
+                                                },
+                                                "Bonnethead Shark": {
+                                                "common": "Bonnethead Shark",
+                                                "scientific": "Sphyrna tiburo",
+                                                "info": "The smallest hammerhead shark species, the bonnethead shark was originally thought to have a wide pan-American distribution, but a recent split isolated the original species to the Caribbean and the Mid-Atlantic. They are one of the few omnivorous sharks, consuming abundant seagrass in an apparent attempt to help in digestion of their food.",
+                                                "type": "Fish",
+                                                "order": "Carcharhiniformes",
+                                                "family": "Sphyrnidae",
+                                                "genus": "Sphyrna",
+                                                "image_url": "https://i.imgur.com/qiKPzmO.jpeg",
+                                                "breeding": "Difficult",
+                                                "region": "North America",
+                                                    "holdings": {
+                                                    "North America": "1.2 - New York Aquarium",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "New York Aquarium": "1.2"
+
+                                                }
+                                                },
+                                                "Eastern Crayfish": {
+                                                "common": "Eastern Crayfish",
+                                                "scientific": "Cambarus bartonii",
+                                                "info": "One of the most well-known and abundant crayfish within its range, the eastern crayfish can be found from eastern Canada all the way down south to Alabama and Georgia. Preferring fast-flowing, cool rocky streams and shallow lakes, they are considered Least Concern on the IUCN Red List.",
+                                                "type": "Invertebrate",
+                                                "order": "Decapoda",
+                                                "family": "Cambaridae",
+                                                "genus": "Cambarus",
+                                                "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/180992668/original.jpg",
+                                                "breeding": "Below Average",
+                                                "region": "North America",
+                                                    "holdings": {
+                                                    "North America": "1.0 - New York Aquarium",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "New York Aquarium": "1.0"
                                 }
                                 },
 }
