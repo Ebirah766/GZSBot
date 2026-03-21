@@ -893,7 +893,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "White-Faced Saki": {
         "common": "White-Faced Saki",
         "scientific": "Pithecia pithecia",
-        "info": "The white-faced saki is a distinctive species of New World Monkey native to a small area of South America. The male possesses the distinctive white face, while the female has uniformly black-silver fur.",
+        "info": "The white-faced saki is a distinctive species of New World monkey native to a small area of South America. The male possesses the distinctive white face, while the female has uniformly black-silver fur.",
         "type": "Mammal",
         "order": "Primates",
         "family": "Pitheciidae",
@@ -1689,7 +1689,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "North America",
         "holdings": {
-            "North America": "1.0 - Cube Zoological Park, 1.1 - High Uintahs Zoo",
+            "North America": "1.0 - Cube Zoological Park, 0.1 - Essex County Zoo, 1.1 - High Uintahs Zoo",
             "Asia": 0,
             "Europe": 0,
             "Africa": 0,
@@ -1698,6 +1698,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                         },
         "institutions": {
             "Cube Zoological Park": "1.0",
+            "Essex County Zoo": "0.1",
             "High Uintahs Zoo": "1.1"
             }
             },
@@ -2038,7 +2039,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "breeding": "Below Average",
     "region": "Asia",
 "holdings": {
-"North America": "0.1 - Glacier Zoo",
+"North America": "1.0 - Cube Zoological Park, 0.1 - Glacier Zoo",
 "Asia": "1.2 - Sapporo Reptile Center and National Aquarium",
 "Europe": 0,
 "Africa": 0,
@@ -2047,7 +2048,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                 },
 "institutions": {
 "Sapporo Reptile Center and National Aquarium": "1.2",
-"Glacier Zoo": "0.1"
+"Glacier Zoo": "0.1",
+"Cube Zoological Park": "1.0",
 
 }
 },
@@ -3239,7 +3241,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "order": "Rodentia",
                                 "family": "Sciuridae",
                                 "genus": "Sciurus",
-                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/EasternGraySquirrel_GAm.jpg/1024px-EasternGraySquirrel_GAm.jpg",
+                                "image_url": "https://www.nyc.gov/assets/wildlifenyc/images/content/pages/iStock-1127369499-resized.jpg",
                                 "breeding": "Easy",
                                 "region": "North America",
                                 "holdings": {
@@ -5310,7 +5312,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "order": "Semaeostomeae",
                                         "family": "Ulmaridae",
                                         "genus": "Aurelia",
-                                        "image_url": "https://jellyfish-farm.com/cdn/shop/products/jellyfish-farm-ohrenquallen-moon-jellyfish.jpg?v=1624697052",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Aurelia_aurita_1.jpg",
                                         "breeding": "Difficult",
                                         "region": "North America, South America, Europe, Asia, Africa, Oceania, Antarctica",
                                         "holdings": {
@@ -8227,7 +8229,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "Leaf Plate Montipora": {
                                     "common": "Leaf Plate Montipora",
                                     "scientific": "Montipora capricornis",
-                                    "info": "Also known as the vase coral, cap coral, or plating Montipora, the leaf plate Montipora is a common Indo-Pacific SPS coral. Forming flat, plating colonies, this species comes in several color variants, some of which are common in the aquarium industry. At night the polyps emerge from their coralites in the skeleton to feed on plankton.",
+                                    "info": "Also known as the vase coral, cap coral, or plating montipora, the leaf plate montipora is a common Indo-Pacific SPS coral. Forming flat, plating colonies, this species comes in several color variants, some of which are common in the aquarium industry. At night the polyps emerge from their coralites in the skeleton to feed on plankton.",
                                     "type": "Invertebrate",
                                     "order": "Scleractinia",
                                     "family": "Acroporidae",
@@ -8914,6 +8916,445 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 },
                                                 "institutions": {
                                                 "New York Aquarium": "2.2"
+
+                                                }
+                                                },
+                                                "Painted Turtle": {
+                                                "common": "Painted Turtle",
+                                                "scientific": "Chrysemys picta",
+                                                "info": "The most widespread native turtle in North America, the painted turtle can be found from western Canada all the way down to Mexico and Alabama. There are 3 distinct subspecies, which were formerly their own species. Their bright coloration allows them to be differentiated from other native turtles.",
+                                                "type": "Reptile",
+                                                "order": "Testudines",
+                                                "family": "Emydidae",
+                                                "genus": "Chrysemys",
+                                                "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Painted_turtle_%28Chrysemys_picta%29_Madden_Haag.jpg/1280px-Painted_turtle_%28Chrysemys_picta%29_Madden_Haag.jpg",
+                                                "breeding": "Average",
+                                                "region": "North America",
+                                                    "holdings": {
+                                                    "North America": "1.2 - Essex County Zoo",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Essex County Zoo": "1.2"
+
+                                            }
+                                            },
+                                            "Blue Surgeonfish": {
+                                            "common": "Blue Surgeonfish",
+                                            "scientific": "Paracanthurus hepatus",
+                                            "info": "One of the most iconic and well-known saltwater fish, the blue surgeonfish goes by a litany of other common names, including hippo tang, palette tang, and hepatus tang. They can be found in a huge swathe of ocean from the east coast of Africa to the central Pacific.",
+                                            "type": "Fish",
+                                            "order": "Acanthuriformes",
+                                            "family": "Acanthuridae",
+                                            "genus": "Paracanthurus",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Paletten-Doktorfisch_M%C3%BCnster.JPG/1280px-Paletten-Doktorfisch_M%C3%BCnster.JPG",
+                                            "breeding": "Average",
+                                            "region": "Asia, Africa, Oceania",
+                                                "holdings": {
+                                                "North America": "8 - New York Aquarium",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "New York Aquarium": "8"
+
+                                            }
+                                            },
+                                            "Orchid Dottyback": {
+                                            "common": "Orchid Dottyback",
+                                            "scientific": "Pseudochromis fridmani",
+                                            "info": "Probably the most well-known and commonly kept dottyback species, the orchid dottyback is endemic to the Red Sea. They shelter in holes and under overhangs on the reef, and can be distinguished from similar species from the black stripe on their face.",
+                                            "type": "Fish",
+                                            "order": "Blenniiformes",
+                                            "family": "Pseudochromidae",
+                                            "genus": "Pseudochromis",
+                                            "image_url": "https://i.imgur.com/mwpIIOV.jpeg",
+                                            "breeding": "Impossible",
+                                            "region": "Asia, Africa",
+                                                "holdings": {
+                                                "North America": "6 - New York Aquarium",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "New York Aquarium": "6"
+
+                                        }
+                                        },
+                                        "Blue Damselfish": {
+                                        "common": "Blue Damselfish",
+                                        "scientific": "Chrysiptera cyanea",
+                                        "info": "A popular aquarium species, the blue damselfish is a significantly more aggressive species than several others in its genus. They inhabit reefs and lagoons and feed on algae, tunicates, and copepods, which gives them their bright blue coloration.",
+                                        "type": "Fish",
+                                        "order": "Blenniiformes",
+                                        "family": "Pomacentridae",
+                                        "genus": "Chrysiptera",
+                                        "image_url": "https://fishesofaustralia.net.au/Images/Image/ChrysiptCyaneaMAGNT.jpg",
+                                        "breeding": "Impossible",
+                                        "region": "Asia, Oceania",
+                                            "holdings": {
+                                            "North America": "15 - New York Aquarium",
+                                            "Europe": 0,
+                                            "Asia": 0,
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "New York Aquarium": "15"
+                                            
+                                        }
+                                        },
+                                        "Western Hognose Snake": {
+                                        "common": "Western Hognose Snake",
+                                        "scientific": "Heterodon nasicus",
+                                        "info": "One of the most common and popular snakes in captivity, the western hognose snake can be found natively in the western part of North America, from Canada to Mexico. They primarily feed on amphibians in the wild, using their fangs to immobilize their prey.",
+                                        "type": "Reptile",
+                                        "order": "Squamata",
+                                        "family": "Colubridae",
+                                        "genus": "Heterodon",
+                                        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/4199357/large.jpg",
+                                        "breeding": "Average",
+                                        "region": "North America",
+                                            "holdings": {
+                                            "North America": "1.0 - Essex County Zoo",
+                                            "Europe": 0,
+                                            "Asia": 0,
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "Essex County Zoo": "1.0"
+
+                                        }
+                                        },
+                                        "Madagascar Hissing Cockroach": {
+                                        "common": "Madagascar Hissing Cockroach",
+                                        "scientific": "Gromphadorhina portentosa",
+                                        "info": "A large cockroach that is endemic to Madagascar, this species is known for its defensive behavior where it presses air through its body in order to make a hissing sound. They are hardy and popular in the pet trade. Their natural diet is mostly rotting fruits and plant matter.",
+                                        "type": "Invertebrate",
+                                        "order": "Blattodea",
+                                        "family": "Blaberidae",
+                                        "genus": "Gromphadorhina",
+                                        "image_url": "https://static.inaturalist.org/photos/108698566/large.jpg",
+                                        "breeding": "Very Easy",
+                                        "region": "Africa",
+                                            "holdings": {
+                                            "North America": "100 - Essex County Zoo",
+                                            "Europe": 0,
+                                            "Asia": 0,
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "Essex County Zoo": "100"
+
+                                        }
+                                        },
+                                        "Asian Forest Scorpion": {
+                                        "common": "Asian Forest Scorpion",
+                                        "scientific": "Heterometrus spinifer",
+                                        "info": "A medium-sized scorpion reaching 4.7 inches in length, the Asian forest scorpion is native to the tropical rainforests of south and southeast Asia. They have become more popular in the pet trade recently due to their coloration and ease of care, as well as their size.",
+                                        "type": "Invertebrate",
+                                        "order": "Scorpiones",
+                                        "family": "Scorpionidae",
+                                        "genus": "Heterometrus",
+                                        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Heterometrus_spinifer_%28Ehrenberg%2C_1828%29_Asian_Forest_Scorpion_%286246043808%29.jpg/1280px-Heterometrus_spinifer_%28Ehrenberg%2C_1828%29_Asian_Forest_Scorpion_%286246043808%29.jpg",
+                                        "breeding": "Below Average",
+                                        "region": "Asia",
+                                            "holdings": {
+                                            "North America": "0.1 - Essex County Zoo",
+                                            "Europe": 0,
+                                            "Asia": 0,
+                                            "Africa": 0,
+                                            "South America": 0,
+                                            "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                        "Essex County Zoo": "0.1"
+
+                                        }
+                                        },
+                                        "Tokay Gecko": {
+                                        "common": "Tokay Gecko",
+                                        "scientific": "Gekko gecko",
+                                        "info": "One of the largest gecko species in the world, the tokay gecko is a large, nocturnal species native to Asia and Oceania. They are aggressive and have been known to attack people, and they are voracious predators, feeding on invertebrates and small vertebrates.",
+                                        "type": "Reptile",
+                                        "order": "Squamata",
+                                        "family": "Gekkonidae",
+                                        "genus": "Gekko",
+                                            "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/ANI115/ANI115-00252-1920x1279.jpg",
+                                            "breeding": "Average",
+                                            "region": "Asia, Oceania",
+                                                "holdings": {
+                                                "North America": "1.0 - Cube Zoological Park",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Cube Zoological Park": "1.0"
+
+                                        }
+                                        },
+                                        "Northern Curly-Tailed Lizard": {
+                                        "common": "Northern Curly-Tailed Lizard",
+                                        "scientific": "Leiocephalus carinatus",
+                                        "info": "This species is also known as the saw-scaled curlytail. Originally native to the Caribbean, it is one of the most well-known invasive species in Florida. They are a small lizard, typically growing to 4 inches but in exceptional cases they will grow up to 10 inches.",
+                                        "type": "Reptile",
+                                        "order": "Squamata",
+                                        "family": "Leiocephalidae",
+                                        "genus": "Leiocephalus",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Cuban_curly-tailed_lizard_%28Leiocephalus_carinatus_labrossytus%29.JPG/1280px-Cuban_curly-tailed_lizard_%28Leiocephalus_carinatus_labrossytus%29.JPG",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                                "holdings": {
+                                                "North America": "1.1 - Cube Zoological Park",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Cube Zoological Park": "1.1"
+
+                                            }
+                                            },
+                                            "Northern Pipefish": {
+                                            "common": "Northern Pipefish",
+                                            "scientific": "Syngnathus fuscus",
+                                            "info": "A temperate-water pipefish that can be found from eastern Canada to the Gulf of Mexico, the northern pipefish is probably the most abundant pipefish within its range. They migrate seasonally and feed primarily on zooplankton in their coastal habitats.",
+                                            "type": "Fish",
+                                            "order": "Syngnathiformes",
+                                            "family": "Syngnathidae",
+                                            "genus": "Syngnathus",
+                                                "image_url": "https://i.imgur.com/vcprtHG.jpeg",
+                                                "breeding": "Below Average",
+                                                "region": "North America",
+                                                    "holdings": {
+                                                    "North America": "6 - Cube Zoological Park",
+                                                    "Europe": 0,
+                                                    "Asia": 0,
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                                },
+                                                "institutions": {
+                                                "Cube Zoological Park": "6"
+
+                                                    }
+                                                    },
+                                                    
+                                        "Eastern Newt": {
+                                            "common": "Eastern Newt",
+                                            "scientific": "Notophthalmus viridescens",
+                                            "info": "A common newt found in eastern North America, the bright orange juvenile of this species is probably more well known than the more muted adults. These juveniles are called red efts, and their coloration advertises their poisonous nature to potential predators.",
+                                            "type": "Amphibian",
+                                            "order": "Urodela",
+                                            "family": "Salamandridae",
+                                            "genus": "Notophthalmus",
+                                            "images": [
+                                                {"label": "Red-spotted newt (viridescens)", "url": "https://i.imgur.com/9YvmnNd.jpeg"},
+                                            ],
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                            "holdings": {
+                                                "North America": 0,
+                                                "Asia": 0,
+                                                "Europe": "2.2 (viridescens) - Giardino Zoologico e Botanico La Sapienza",
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                        },
+                                        "institutions": {
+                                            "Giardino Zoologico e Botanico La Sapienza": "2.2 [viridescens]"
+                                    }
+                                    },
+                                        "Eastern Tiger Swallowtail": {
+                                        "common": "Eastern Tiger Swallowtail",
+                                        "scientific": "Papilio glaucus",
+                                        "info": "One of the most common and recognizable butterflies of the eastern United States, the eastern tiger swallowtail ranges throughout the eastern and central part of the continent. There is both a yellow variant and a black variant, which can make it difficult to identify.",
+                                        "type": "Invertebrate",
+                                        "order": "Lepidoptera",
+                                        "family": "Papilionidae",
+                                        "genus": "Papilio",
+                                            "images": [
+                                                {"label": "Yellow variant", "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Pristine_Eastern_Tiger_Swallowtail.jpg/1280px-Pristine_Eastern_Tiger_Swallowtail.jpg"},
+                                            ],
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                                "holdings": {
+                                                "North America": "25 (Yellow) - Cube Zoological Park",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Cube Zoological Park": "25 [Yellow]"
+
+                                        }
+                                        },
+                                        "Uinta Ground Squirrel": {
+                                        "common": "Uinta Ground Squirrel",
+                                        "scientific": "Urocitellus armatus",
+                                        "info": "A moderately sized ground squirrel endemic to the western United States, the Uinta ground squirrel prefers grassland habitats, living in loosely-associated colonies. They are active only a few times a year, spending the rest of the year hibernating.",
+                                        "type": "Mammal",
+                                        "order": "Rodentia",
+                                        "family": "Sciuridae",
+                                        "genus": "Urocitellus",
+                                            "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/264824325/large.jpg",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                                "holdings": {
+                                                "North America": "0.2 - High Uintahs Zoo",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "High Uintahs Zoo": "0.2"
+
+                                        }
+                                        },
+                                        "Texas Blind Salamander": {
+                                        "common": "Texas Blind Salamander",
+                                        "scientific": "Eurycea rathbuni",
+                                        "info": "A highly endangered salamander endemic to the underground Edwards Aquifer of Texas. They are endangered due to habitat loss and pollution of their limited cave habitat, and are the center of a large captive breeding program throughout various zoos.",
+                                        "type": "Amphibian",
+                                        "order": "Urodela",
+                                        "family": "Plethodontidae",
+                                        "genus": "Eurycea",
+                                            "image_url": "https://i.imgur.com/V4ukLvG.jpeg",
+                                            "breeding": "Difficult",
+                                            "region": "North America",
+                                                "holdings": {
+                                                "North America": "1.0 - New York Aquarium",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "New York Aquarium": "1.0"
+
+                                        }
+                                        },
+                                        "Steller's Jay": {
+                                        "common": "Steller's Jay",
+                                        "scientific": "Cyanocitta stelleri",
+                                        "info": "This jay is endemic to the western part of the United States from southern Alaska to Nicaragua. They are a common and well-known bird in this part of the world, being adaptable omnivores that can survive in a wide variety of habitats.",
+                                        "type": "Bird",
+                                        "order": "Passeriformes",
+                                        "family": "Corvidae",
+                                        "genus": "Cyanocitta",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyanocitta_stelleri_macrolopha_%28Steller%27s_jay%29_%28Rocky_Mountains_National_Park%2C_Colorado%2C_USA%29_2.jpg/962px-Cyanocitta_stelleri_macrolopha_%28Steller%27s_jay%29_%28Rocky_Mountains_National_Park%2C_Colorado%2C_USA%29_2.jpg",
+                                            "breeding": "Average",
+                                            "region": "North America",
+                                                "holdings": {
+                                                "North America": "1.0 - Glacier Zoo",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Glacier Zoo": "1.0"
+                                                
+                                                }
+                                                },
+                                            "Common Box Turtle": {
+                                                "common": "Common Box Turtle",
+                                                "scientific": "Terrapene carolina",
+                                                "info": "A species of box turtle with five distinct subspecies, the common box turtle can be found natively from Maine to southern Mexico. They are listed as Vulnerable on the IUCN Red List due to overcollection for the pet trade. They are the state reptile of North Carolina and Tennessee.",
+                                                "type": "Reptile",
+                                                "order": "Testudines",
+                                                "family": "Emydidae",
+                                                "genus": "Terrapene",
+                                                "images": [
+                                                    {"label": "Eastern box turtle (carolina)", "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Eastern_Box_Turtle%2C_North_Carolina%2C_US_imported_from_iNaturalist_photo_71168521_%28cropped%29.jpg"},
+                                                ],
+                                                "breeding": "Below Average",
+                                                "region": "North America",
+                                                "holdings": {
+                                                    "North America": 0,
+                                                    "Asia": 0,
+                                                    "Europe": "1.0 (carolina) - Shropshire Hills Zoo",
+                                                    "Africa": 0,
+                                                    "South America": 0,
+                                                    "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                                "Shropshire Hills Zoo": "1.0 [carolina]"
+
+                                                }
+                                                },
+                                        "Black Lion Tamarin": {
+                                        "common": "Black Lion Tamarin",
+                                        "scientific": "Leontopithecus chrysopygus",
+                                        "info": "An endangered and rare tamarin endemic exclusively to the Brazilian state of São Paulo. They are a somewhat migratory species, alternating between different habitats. Their main threat is massive habitat loss in their native range, and a captive breeding program has been set up to safeguard the species.",
+                                        "type": "Mammal",
+                                        "order": "Primates",
+                                        "family": "Callitrichidae",
+                                        "genus": "Leontopithecus",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Black_Lion_Tamarin_4.jpg",
+                                            "breeding": "Below Average",
+                                            "region": "South America",
+                                                "holdings": {
+                                                "North America": "1.1 - Essex County Zoo",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Essex County Zoo": "1.1"
+
+                                                }
+                                                },
+                                        "Guianan Squirrel Monkey": {
+                                        "common": "Guianan Squirrel Monkey",
+                                        "scientific": "Saimiri sciureus",
+                                        "info": "Once part of a large, continent-spanning species, a recent split has elevated the Guianan squirrel monkey of northeastern South America into its own species. Often moving in large, mixed-species groups with capuchin monkeys, the Guianan squirrel monkey is a highly social species of monkey with a complex social structure, with females cooperating to raise offspring.",
+                                        "type": "Mammal",
+                                        "order": "Primates",
+                                        "family": "Cebidae",
+                                        "genus": "Saimiri",
+                                            "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Saimiri_sciureus_%286337874822%29.jpg",
+                                            "breeding": "Average",
+                                            "region": "South America",
+                                                "holdings": {
+                                                "North America": "2.4 - Cube Zoological Park",
+                                                "Europe": 0,
+                                                "Asia": 0,
+                                                "Africa": 0,
+                                                "South America": 0,
+                                                "Oceania": 0,
+                                            },
+                                            "institutions": {
+                                            "Cube Zoological Park": "2.4"
+                                            
                                 }
                                 },
 }

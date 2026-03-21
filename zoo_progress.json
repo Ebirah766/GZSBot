@@ -53,7 +53,9 @@
           "Percula Clownfish",
           "Orange Sea Pen",
           "Bonefish",
-          "Eggers's Killifish"
+          "Eggers's Killifish",
+          "Eastern Crayfish",
+          "American Lobster"
         ],
         "Essex County Zoo": [
           "Turkey Vulture",
@@ -92,7 +94,15 @@
           "Ring-Tailed Lemur",
           "Gooty Sapphire Tarantula",
           "Bog Turtle",
-          "Spotted Turtle"
+          "Spotted Turtle",
+          "Axolotl",
+          "Painted Turtle",
+          "North American River Otter",
+          "Chinese Crocodile Lizard",
+          "Mangrove Pit Viper",
+          "Black-Tailed Horned Pit Viper",
+          "Western Hognose Snake",
+          "Madagascar Hissing Cockroach"
         ]
       }
     },
@@ -151,7 +161,12 @@
           "Addax",
           "White-Lipped Deer",
           "Atlantic Needlefish",
-          "Scimitar-Horned Oryx"
+          "Scimitar-Horned Oryx",
+          "Eastern Oyster",
+          "Spot Croaker",
+          "Northern Puffer",
+          "Mummichog",
+          "Northern Pipefish"
         ]
       }
     },
@@ -278,7 +293,15 @@
           "Raft Spider",
           "Reticulated Glass Frog",
           "Tufted Duck",
-          "Wasp Spider"
+          "Wasp Spider",
+          "Domestic Chicken",
+          "Domestic Goose",
+          "Water Buffalo",
+          "European Badger",
+          "Beauty Rat Snake",
+          "Western Mangrove Cat Snake",
+          "Pygmy Rattlesnake",
+          "Flat-Nosed Pit Viper"
         ]
       }
     }
