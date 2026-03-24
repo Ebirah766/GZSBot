@@ -13010,18 +13010,6 @@ def _has_breeding_pair_or_group(zoo_name: str, entry: dict) -> bool:
             return True
     return False
 
-
-
-if __name__ == "__main__":
-    # >>> ADDED: start keep-alive web server before running the bot <<<
-    keep_alive()
-
-    token = os.getenv("DISCORD_TOKEN")
-    if not token:
-        log.error("DISCORD_TOKEN not set in environment or .env")
-        sys.exit(1)
-    bot.run(token)
-
 @bot.command(name="progressrole.set")
 @PROGRESS_CMD_PERMS
 async def cmd_progressrole_set(ctx: commands.Context, role: discord.Role):
@@ -13054,3 +13042,13 @@ async def cmd_progressrole_refresh(ctx: commands.Context):
     """Force a full recompute now."""
     await recompute_progress_role_for_guild(ctx.guild)
     await ctx.send("🔄 Refreshed role assignments.")
+
+if __name__ == "__main__":
+    # >>> ADDED: start keep-alive web server before running the bot <<<
+    keep_alive()
+
+    token = os.getenv("DISCORD_TOKEN")
+    if not token:
+        log.error("DISCORD_TOKEN not set in environment or .env")
+        sys.exit(1)
+    bot.run(token)
