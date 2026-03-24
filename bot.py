@@ -238,14 +238,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Felidae",
         "genus": "Panthera",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
-        "holdings": {
-            "Africa": "Widespread in zoos",
-            "Europe": "Many major zoos",
-            "North America": "Common in AZA",
-            "Asia": "Common",
-            "South America": "Several zoos",
-            "Oceania": "A few zoos",
-        },
     },
     "Whale Shark": {
         "common": "Whale Shark",
@@ -257,14 +249,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Rhincodon",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Whale_shark_Georgia_aquarium.jpg/1200px-Whale_shark_Georgia_aquarium.jpg",
         "breeding": "Impossible",
-        "holdings": {
-            "North America": "Georgia Aquarium (notable)",
-            "Asia": "Okinawa Churaumi (notable)",
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
         # "images": [...]
     },
     "Mango Stem Borer": {
@@ -278,17 +262,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Batocera_maculata_%2833312343742%29.jpg/1200px-Batocera_maculata_%2833312343742%29.jpg",
         "breeding": "Difficult",
         "region": "Asia",
-        "holdings": {
-            "North America": "2 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": 2
-        },
     },
     "Rhesus Macaque": {
         "common": "Rhesus Macaque",
@@ -301,17 +274,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Rhesus_macaque_%28Macaca_mulatta_mulatta%29%2C_male%2C_Gokarna.jpg",
         "breeding": "Average",
         "region": "Asia",
-        "holdings": {
-            "North America": "2.4 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "2.4"
-        },
     },
     "Housefly": {
         "common": "Housefly",
@@ -324,17 +286,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/79611144/original.jpeg",
         "breeding": "Very Easy",
         "region": "North America, South America, Europe, Asia, Africa, Oceania",
-        "holdings": {
-            "North America": "100 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "100"
-        },
     },
     "Wild Boar": {
         "common": "Wild Boar",
@@ -349,18 +300,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Average",
         "region": "Europe, Asia",
-        "holdings": {
-            "North America": "1.1 [scrofa] - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": "0.3 [scrofa] - Giardino Zoologico e Botanico La Sapienza",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.1",
-            "Giardino Zoologico e Botanico La Sapienza": "0.3 [scrofa]"
-        },
     },
     "American Mink": {
         "common": "American Mink",
@@ -373,17 +312,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/American_Mink.jpg/1280px-American_Mink.jpg",
         "breeding": "Difficult",
         "region": "North America",
-        "holdings": {
-            "North America": "1.0 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.0"
-        },
     },
     "Water Buffalo": {
         "common": "Water Buffalo",
@@ -395,18 +323,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Bubalus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Water_buffalo_at_Rinca.jpg/1280px-Water_buffalo_at_Rinca.jpg",
         "breeding": "Easy",
-        "holdings": {
-            "North America": "2.4 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": "1.5 - Giardino Zoologico e Botanico La Sapienza",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "2.4",
-            "Giardino Zoologico e Botanico La Sapienza": "1.5"
-        },
     },
     "Florida Bass": {
         "common": "Florida Bass",
@@ -419,17 +335,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88108052/original.jpg",
         "breeding": "Difficult",
         "region": "North America",
-        "holdings": {
-            "North America": "5 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "5"
-        },
     },
     "Burmese Python": {
         "common": "Burmese Python",
@@ -445,19 +350,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-            "North America": "0.1 (Wild type) - Cube Zoological Park",
-            "Asia": "0.1 (Wild type) - Chiang Mai Serpentarium, 1.0 (Piebald) - Sapporo Reptile Center and National Aquarium",
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Chiang Mai Serpentarium": "0.1 [Wild type]",
-            "Cube Zoological Park": "0.1 [Wild type]",
-            "Sapporo Reptile Center and National Aquarium": "1.0 [Piebald]"
-        },
     },
     "Burrowing Owl": {
         "common": "Burrowing Owl",
@@ -470,18 +362,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/205515041/1200",
         "breeding": "Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": "1.1 - Cube Zoological Park, 0.3 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.1",
-            "High Uintahs Zoo": "0.3"
-        },
     },
     "Eastern Diamondback Rattlesnake": {
         "common": "Eastern Diamondback Rattlesnake",
@@ -494,17 +374,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Adult_Crotalus_adamanteus.jpg/1280px-Adult_Crotalus_adamanteus.jpg",
         "breeding": "Average",
         "region": "North America",
-        "holdings": {
-            "North America": "1.0 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.0"
-        },
     },
     "Cheetah": {
         "common": "Cheetah",
@@ -522,17 +391,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://example.com/default.jpg",
         "breeding": "Difficult",
         "region": "Asia, Africa",
-        "holdings": {
-            "North America": 0,
-            "Europe": ["0.0.1.0 (jubatus) - Shropshire Hills Zoo"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "0.0.1.0 [jubatus]"
-        },
     },
     "Domestic Horse": {
         "common": "Domestic Horse",
@@ -549,19 +407,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "image_url": "https://example.com/default.jpg",
         "breeding": "Average",
-        "holdings": {
-            "North America": ["2.4 (Chincoteague Pony) - Cube Zoological Park", "1.1 (American Mustang) - Glacier Zoo"],
-            "Europe": ["1.3 (Fjord) - Shropshire Hills Zoo"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "1.3 [Fjord]",
-            "Cube Zoological Park": "2.4 [Chincoteague Pony]",
-            "Glacier Zoo": "1.1 [American Mustang]"
-        },
     },
     "Common Fallow Deer": {
         "common": "Common Fallow Deer",
@@ -574,20 +419,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Fallow_deer_in_field.jpg/1280px-Fallow_deer_in_field.jpg",
         "breeding": "Easy",
         "region": "Europe, Asia",
-        "holdings": {
-            "North America": "0.3 - Glacier Zoo",
-            "Asia": "3.0 - Air Terjun Zoo",
-            "Europe": "1.3 - Shropshire Hills Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "1.3",
-            "Air Terjun Zoo": "3.0",
-            "Glacier Zoo": "0.3"
-
-        },
     },
     "Red Deer": {
         "common": "Red Deer",
@@ -600,17 +431,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/68001185/large.jpg",
         "breeding": "Average",
         "region": "Europe, Asia, Africa",
-        "holdings": {
-            "North America": "0",
-            "Asia": 0,
-            "Europe": "2.0 - Shropshire Hills Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "2.0"
-        },
     },
     "Golden Lion Tamarin": {
         "common": "Golden Lion Tamarin",
@@ -623,17 +443,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://nationalzoo.si.edu/sites/default/files/animals/golden-lion-tamarin-001.jpg",
         "breeding": "Easy",
         "region": "South America",
-        "holdings": {
-            "North America": "0",
-            "Asia": 0,
-            "Europe": "1.1 - Shropshire Hills Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "1.1"
-        },
     },
     "Przewalski's Horse": {
         "common": "Przewalski's Horse",
@@ -646,17 +455,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/398125195/large.jpg",
         "breeding": "Average",
         "region": "Asia",
-        "holdings": {
-            "North America": "0",
-            "Asia": 0,
-            "Europe": "0.1.0.1 - Shropshire Hills Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "0.1.0.1"
-        },
     },
     "Red-Eyed Crocodile Skink": {
         "common": "Red-Eyed Crocodile Skink",
@@ -669,17 +467,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Red-Eyed_Crocodile_Skink.jpg",
         "breeding": "Below Average",
         "region": "Oceania",
-        "holdings": {
-            "North America": "0",
-            "Asia": 0,
-            "Europe": "1.1 - Shropshire Hills Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "1.1"
-        },
     },
     "European Wildcat": {
         "common": "European Wildcat",
@@ -692,18 +479,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/VU6xnv0.jpeg",
         "breeding": "Average",
         "region": "Europe, Asia",
-        "holdings": {
-            "North America": "0",
-            "Asia": 0,
-            "Europe": "0.1 - Shropshire Hills Zoo, 1.1 - Wildkatzenpark Tatzenfels",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "0.1",
-            "Wildkatzenpark Tatzenfels": "1.1"
-        },
     },
     "Arctic Fox": {
         "common": "Arctic Fox",
@@ -716,17 +491,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/388749029/original.jpg",
         "breeding": "Average",
         "region": "North America, Europe, Asia",
-        "holdings": {
-            "North America": "0",
-            "Asia": 0,
-            "Europe": "1.0 - Shropshire Hills Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "1.0"
-        },
     },
     "Asian Small-Clawed Otter": {
         "common": "Asian Small-Clawed Otter",
@@ -739,18 +503,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Otter_-_melbourne_zoo.jpg/1280px-Otter_-_melbourne_zoo.jpg",
         "breeding": "Easy",
         "region": "Asia",
-        "holdings": {
-            "North America": 0,
-            "Asia": "1.1 - Air Terjun Zoo",
-            "Europe": "1.1 - Shropshire Hills Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Shropshire Hills Zoo": "1.1",
-            "Air Terjun Zoo": "1.1"
-        },
     },
     "Elegant Crested Tinamou": {
         "common": "Elegant Crested Tinamou",
@@ -763,17 +515,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://static.inaturalist.org/photos/28265534/large.jpg",
         "breeding": "Below Average",
         "region": "South America",
-        "holdings": {
-            "North America": "2.2 - Credit River Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "2.2"
-        },
     },
     "American Flamingo": {
         "common": "American Flamingo",
@@ -786,17 +527,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/258687300/large.jpg",
         "breeding": "Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": "5.5 - Credit River Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "5.5"
-        },
     },
     "Southern Screamer": {
         "common": "Southern Screamer",
@@ -809,17 +539,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.ecoregistros.org/site/images/dataimages/2018/10/02/289707/chaja-1.jpg",
         "breeding": "Below Average",
         "region": "South America",
-        "holdings": {
-            "North America": "1.0 - Credit River Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "1.0"
-        },
     },
     "American White Ibis": {
         "common": "American White Ibis",
@@ -832,17 +551,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/4NO3q7H.jpeg",
         "breeding": "Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": "3.0 - Credit River Zoo",
-            "Asia": 0,
-             "Europe": 0,
-             "Africa": 0,
-             "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "3.0"
-        },
     },
     "Roseate Spoonbill": {
         "common": "Roseate Spoonbill",
@@ -855,17 +563,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/6h9LYhE.jpeg",
         "breeding": "Average",
         "region": "North America, South America",
-        "holdings": {
-             "North America": "0.2 - Credit River Zoo",
-            "Asia": 0,
-                "Europe": 0,
-             "Africa": 0,
-                "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "0.2"
-        },
     },
     "Linnaeus's Two-Toed Sloth": {
         "common": "Linnaeus's Two-Toed Sloth",
@@ -878,17 +575,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cholepus_didactylus_-_Flickr_-_Dick_Culbert.jpg",
         "breeding": "Average",
         "region": "South America",
-        "holdings": {
-            "North America": "0.1 - Credit River Zoo",
-              "Asia": 0,
-            "Europe": 0,
-                "Africa": 0,
-                "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "0.1"
-        },
     },
     "White-Faced Saki": {
         "common": "White-Faced Saki",
@@ -901,17 +587,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.marwell.org.uk/wp-content/uploads/2021/07/White-faced-saki-Pithecia-pithecia-Marwell-Zoo.jpg",
         "breeding": "Average",
         "region": "South America",
-        "holdings": {
-            "North America": "1.1 - Credit River Zoo",
-                "Asia": 0,
-                "Europe": 0,
-                "Africa": 0,
-                "South America": 0,
-                "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "1.1"
-        },
     },
     "Cotton-Top Tamarin": {
         "common": "Cotton-Top Tamarin",
@@ -924,18 +599,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://dwazoo.com/wp-content/uploads/2023/01/cotton2-scaled.jpg",
         "breeding": "Easy",
         "region": "South America",
-        "holdings": {
-            "North America": "1.3 - Credit River Zoo",
-            "Asia": "1.2 - Air Terjun Zoo",
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "1.3",
-            "Air Terjun Zoo": "1.2"
-        },
     },
     "Black-Bellied Whistling Duck": {
         "common": "Black-Bellied Whistling Duck",
@@ -948,17 +611,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/03/Dendrocygna-autumnalis-fulgens-2.jpg",
         "breeding": "Easy",
         "region": "North America, South America",
-        "holdings": {
-            "North America": "0.4 - Credit River Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Credit River Zoo": "0.4"
-        },
     },
     "Red-Rumped Agouti": {
         "common": "Red-Rumped Agouti",
@@ -971,17 +623,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Red-rumped_Agouti_%2817380318590%29.jpg",
         "breeding": "Easy",
         "region": "South America",
-        "holdings": {
-            "North America": "0.2 - Credit River Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-                },
-        "institutions": {
-            "Credit River Zoo": "0.2"
-        },
     },
     "Yellow-Naped Amazon": {
         "common": "Yellow-Naped Amazon",
@@ -994,17 +635,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/44406711/1200",
         "breeding": "Below Average",
         "region": "North America",
-        "holdings": {
-            "North America": "2.0 - Credit River Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-                        },
-        "institutions": {
-            "Credit River Zoo": "2.0"
-        },
     },
     "Jaguar": {
         "common": "Jaguar",
@@ -1017,17 +647,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Jaguar_%28Panthera_onca_palustris%29_male_Three_Brothers_River_2_%28cropped%29.jpg",
         "region": "North America, South America",
         "breeding": "Difficult",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "1.1 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Mint Park Zoo": "1.1"
-        },
     },
     "White-Nosed Coati": {
         "common": "White-Nosed Coati",
@@ -1040,17 +659,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.zoochat.com/community/media/white-nosed-coati-nasua-narica.228154/full",
         "breeding": "Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "1.3 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Mint Park Zoo": "1.3"
-        }
     },
     "Chacoan Peccary": {
         "common": "Chacoan Peccary",
@@ -1063,17 +671,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Catagonus_wagneri_1_-_Phoenix_Zoo.jpg/1280px-Catagonus_wagneri_1_-_Phoenix_Zoo.jpg",
         "breeding": "Below Average",
         "region": "South America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "2.2 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Mint Park Zoo": "2.2"
-        }
     },
     "Geoffroy's Spider Monkey": {
         "common": "Geoffroy's Spider Monkey",
@@ -1088,17 +685,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Below Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "1.2 (vellerosus) - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Mint Park Zoo": "1.2 [vellerosus]"
-        }
     },
     "Seba's Short-Tailed Bat": {
         "common": "Seba's Short-Tailed Bat",
@@ -1111,18 +697,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.marylandzoo.org/wp-content/uploads/2017/10/bat_web.jpg",
         "breeding": "Below Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": ["25 - Mint Park Zoo", "20 - Shropshire Hills Zoo"],
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Mint Park Zoo": "25",
-            "Shropshire Hills Zoo": "20"
-    }
     },
     "Nine-Banded Armadillo": {
         "common": "Nine-Banded Armadillo",
@@ -1135,18 +709,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/88373350/original.jpeg",
         "breeding": "Below Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": "1.0 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": "1.1 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.0",
-            "Mint Park Zoo": "1.1"
-        }
     },
     "South American Tapir": {
         "common": "South American Tapir",
@@ -1159,17 +721,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/73961577/original.jpeg",
         "breeding": "Difficult",
         "region": "South America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "2.0 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Mint Park Zoo": "2.0"
-        }
     },
     "Tayra": {
         "common": "Tayra",
@@ -1182,17 +733,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tayra_-_Male%2C_Brazil_%28cropped%29.jpg/1280px-Tayra_-_Male%2C_Brazil_%28cropped%29.jpg",
         "breeding": "Difficult",
         "region": "North America, South America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "1.1 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Mint Park Zoo": "1.1"
-        }
     },
     "Raccoon": {
         "common": "Raccoon",
@@ -1205,20 +745,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/1280px-Raccoon_in_Central_Park_%2835264%29.jpg",
         "breeding": "Easy",
         "region": "North America",
-        "holdings": {
-            "North America": "1.1 - Essex County Zoo, 0.1 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": "3.0 - Giardino Zoologico e Botanico La Sapienza, 2.2 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Essex County Zoo": "1.1",
-            "High Uintahs Zoo": "0.1",
-            "Giardino Zoologico e Botanico La Sapienza": "3.0",
-            "Mint Park Zoo": "2.2"
-        }
     },
     "Striped Skunk": {
         "common": "Striped Skunk",
@@ -1231,18 +757,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/61292683/large.jpg",
         "breeding": "Easy",
         "region": "North America",
-        "holdings": {
-            "North America": "1.0 - Essex County Zoo",
-            "Asia": 0,
-            "Europe": "0.1 - Mint Park Zoo",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Essex County Zoo": "1.0",
-            "Mint Park Zoo": "0.1"
-        }
     },
     "Beauty Rat Snake": {
         "common": "Beauty Rat Snake",
@@ -1257,18 +771,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Average",
         "region": "Asia",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "1.1 (ridleyi) - Giardino Zoologico e Botanico La Sapienza",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Giardino Zoologico e Botanico La Sapienza": "1.1 [ridleyi]"
-
-        }
     },
     "Eastern Indigo Snake": {
         "common": "Eastern Indigo Snake",
@@ -1281,17 +783,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.fws.gov/sites/default/files/styles/facebook_1200x630/public/banner_images/2022-07/eastern-indigo-snake.jpg?h=f7c62170&itok=2StGVxab",
         "breeding": "Average",
         "region": "North America",
-        "holdings": {
-            "North America": "1.1 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.1"
-        }
     },
     "Black-Tailed Horned Pit Viper": {
         "common": "Black-Tailed Horned Pit Viper",
@@ -1304,17 +795,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/iIXFQhT.jpeg",
         "breeding": "Difficult",
         "region": "North America",
-        "holdings": {
-            "North America": "0.2 - Essex County Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Essex County Zoo": "0.2"
-        }
     },
     "Indonesian Pit Viper": {
         "common": "Indonesian Pit Viper",
@@ -1330,18 +810,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-            "North America": "1.1 (Blue) 0.1 (Yellow) - Essex County Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-             "Essex County Zoo": "1.1 [Blue], 0.1 [Yellow]"
-
-            }
             },
     "Mangrove Pit Viper": {
         "common": "Mangrove Pit Viper",
@@ -1354,17 +822,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://static.thainationalparks.com/img/species/2017/07/05/317565/trimeresurus-purpureomaculatus-w-1500.jpg",
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-            "North America": "0.3 - Essex County Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-            "institutions": {
-                "Essex County Zoo": "0.3"           
-    }
     },
     "Wagler's Pit Viper": {
         "common": "Wagler's Pit Viper",
@@ -1377,17 +834,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg/1280px-Tropidolaemus_wagleri%2C_Wagler%27s_palm_pit_viper_-_Takua_Pa_District%2C_Phang-nga_Province_%2848238132136%29.jpg",
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-            "North America": "0.1 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "0.1"
-        }
     },
     "Pygmy Rattlesnake": {
         "common": "Pygmy Rattlesnake",
@@ -1402,17 +848,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Below Average",
         "region": "North America",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "1.2 (barbouri) - Giardino Zoologico e Botanico La Sapienza",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Giardino Zoologico e Botanico La Sapienza": "1.2 [barbouri]"
-        }
     },
     "Sri Lankan Pit Viper": {
         "common": "Sri Lankan Pit Viper",
@@ -1425,17 +860,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Below Average",
         "image_url": "https://static.inaturalist.org/photos/352173492/large.jpg",
         "region": "Asia",
-        "holdings": {
-            "North America": "1.1 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.1",
-        }
     },
     "Egyptian Cobra": {
         "common": "Egyptian Cobra",
@@ -1448,17 +872,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://static.inaturalist.org/photos/12833129/large.jpg",
         "breeding": "Below Average",
         "region": "Africa",
-        "holdings": {
-            "North America": "1.1 - Essex County Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Essex County Zoo": "1.1",
-        }
     },
     "Western Mangrove Cat Snake": {
         "common": "Western Mangrove Cat Snake",
@@ -1471,18 +884,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://static.thainationalparks.com/img/species/2016/09/24/207594/boiga-melanota-w-1500.jpg",
         "breeding": "Average",
         "region": "Asia",
-        "holdings": {
-            "North America": 0,
-            "Asia": "0.2 - Chiang Mai Serpentarium",
-            "Europe": "2.0 - Giardino Zoologico e Botanico La Sapienza",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-        "Chiang Mai Serpentarium": "0.2",
-        "Giardino Zoologico e Botanico La Sapienza": "2.0",
-            }
     },
     "Flat-Nosed Pit Viper": {
         "common": "Flat-Nosed Pit Viper",
@@ -1497,18 +898,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-            "North America": 0,
-            "Asia": 0,
-            "Europe": "1.1 (Java) - Giardino Zoologico e Botanico La Sapienza",
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Giardino Zoologico e Botanico La Sapienza": "1.1 [Java]",
-
-    }
     },
     "Monocled Cobra": {
         "common": "Monocled Cobra",
@@ -1524,17 +913,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-            "North America": "1.0 (Wild type) 0.1 (Leucistic) - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.0 [Wild type], 0.1 [Leucistic]"
-        }
     },
     "Eastern Coral Snake": {
         "common": "Eastern Coral Snake",
@@ -1547,17 +925,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/105813097/large.jpeg",
         "breeding": "Below Average",
         "region": "North America",
-        "holdings": {
-            "North America": "1.1 - Cube Zoological Park",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Cube Zoological Park": "1.1"
-        }
     },
     "Blood Python": {
         "common": "Blood Python",
@@ -1570,17 +937,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg/1200px-Python_brongersmai%2C_Brongersma%27s_short-tailed_python.jpg",
         "breeding": "Difficult",
         "region": "Asia",
-        "holdings": {
-            "North America": "0.1 - Essex County Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Essex County Zoo": "0.1"
-        }
     },
     "Chinese Crocodile Lizard": {
         "common": "Chinese Crocodile Lizard",
@@ -1593,18 +949,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Shinisaurus_crocodilurus_10.jpg/1280px-Shinisaurus_crocodilurus_10.jpg",
         "breeding": "Difficult",
         "region": "Asia",
-        "holdings": {
-            "North America": "1.2 - Essex County Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Essex County Zoo": "1.2"
-
-        }
     },
     "Bighorn Sheep": {
         "common": "Bighorn Sheep",
@@ -1617,17 +961,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/New_Mexico_Bighorn_Sheep.JPG/1280px-New_Mexico_Bighorn_Sheep.JPG",
         "breeding": "Below Average",
         "region": "North America",
-        "holdings": {
-            "North America": "0.4 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "High Uintahs Zoo": "0.4"
-        }
     },
     "Mountain Lion": {
         "common": "Mountain Lion",
@@ -1640,18 +973,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/9834553/original.jpg",
         "breeding": "Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": "0.0.2.0 - Essex County Zoo, 0.1 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-                },
-        "institutions": {
-            "Essex County Zoo": "0.0.2.0",
-            "High Uintahs Zoo": "0.1"
-        }
     },
     "North American Porcupine": {
          "common": "North American Porcupine",
@@ -1664,18 +985,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Erethizon_dorsatum_-_Prince_Rupert.jpg",
         "breeding": "Easy",
         "region": "North America",
-        "holdings": {
-            "North America": "1.1 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-                        },
-        "institutions": {
-            "High Uintahs Zoo": "1.1"
-
-            }
             },
     "Bobcat": {
         "common": "Bobcat",
@@ -1688,19 +997,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/60028871/original.jpg",
         "breeding": "Difficult",
         "region": "North America",
-        "holdings": {
-            "North America": "1.0 - Cube Zoological Park, 0.1 - Essex County Zoo, 1.1 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-                        },
-        "institutions": {
-            "Cube Zoological Park": "1.0",
-            "Essex County Zoo": "0.1",
-            "High Uintahs Zoo": "1.1"
-            }
             },
     "Gray Fox": {
         "common": "Gray Fox",
@@ -1713,18 +1009,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Gray_fox.jpg/1280px-Gray_fox.jpg",
         "breeding": "Below Average",
         "region": "North America, South America",
-        "holdings": {
-            "North America": "1.1 - High Uintahs Zoo",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-                        },
-        "institutions": {
-            "High Uintahs Zoo": "1.1"
-
-            }
             },
 
     "Turkey Vulture": {
@@ -1738,18 +1022,6 @@ species_data: Dict[str, Dict[str, Any]] = {
     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/171981785/original.jpg",
         "breeding": "Below Average",
         "region": "North America, South America",
-    "holdings": {
-        "North America": "3.0 - Essex County Zoo, 2.0 - High Uintahs Zoo",
-        "Asia": 0,
-        "Europe": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-                        },
-    "institutions": {
-            "Essex County Zoo": "3.0",
-            "High Uintahs Zoo": "2.0"
-        }
     },
 
     "Northern Flying Squirrel": {
@@ -1763,18 +1035,6 @@ species_data: Dict[str, Dict[str, Any]] = {
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg/1280px-Northern_Flying_Squirrel%2C_D%27Alembert%2C_6400_Route_d%27Aiguebelle%2C_Rouyn-Noranda%2C_QC%2C_Canada_imported_from_iNaturalist_photo_41110662.jpg",
         "breeding": "Difficult",
         "region": "North America",
-    "holdings": {
-        "North America": "1.1 - High Uintahs Zoo",
-        "Asia": 0,
-        "Europe": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-                    },
-    "institutions": {
-        "High Uintahs Zoo": "1.1"
-
-        }
         },
 
     "Domestic Donkey": {
@@ -1787,18 +1047,6 @@ species_data: Dict[str, Dict[str, Any]] = {
     "genus": "Equus",
     "image_url": "https://static.wikia.nocookie.net/project-zoo/images/9/90/Perry-miniature-donkey-in-Palo-Alto-CA-2016.jpg/revision/latest/scale-to-width-down/4559?cb=20200320040740",
         "breeding": "Easy",
-        "holdings": {
-        "North America": "4.0 - High Uintahs Zoo",
-        "Asia": 0,
-        "Europe": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-                        },
-    "institutions": {
-        "High Uintahs Zoo": "4.0"
-
-        }
         },
 
 "Common Raven": {
@@ -1812,18 +1060,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://media-animals.earth.com/images/2022/08/17/6615221388313479/corvuscorax_31777344837356836.jpg",
     "breeding": "Average",
     "region": "North America, Europe, Asia, Africa",
-"holdings": {
-"North America": "1.0 - High Uintahs Zoo",
-"Asia": 0,
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"High Uintahs Zoo": "1.0"
-
-}
 },
 
 "Arapaima": {
@@ -1837,18 +1073,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://i.imgur.com/IDZg0RL.jpeg",
     "breeding": "Impossible",
     "region": "South America",
-"holdings": {
-"North America": 0,
-"Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-        },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "0.1"
-
-    }
     },
 
 "Japanese Eagle Ray": {
@@ -1862,18 +1086,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://www.marinepia.or.jp/picturebook/public/image/upload/594/main01.jpg",
     "breeding": "Difficult",
     "region": "Asia",
-"holdings": {
-"North America": 0,
-"Asia": "0.3 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-            },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "0.3"
-
-}
 },
 
 "Spotted Garden Eel": {
@@ -1887,18 +1099,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://images.reeflifesurvey.com/0/species_f4_57f745ed20d77.w1000.h666.jpg",
     "breeding": "Impossible",
     "region": "Asia, Africa, Oceania",
-"holdings": {
-"North America": 0,
-"Asia": "2.4 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "2.4"
-
-}
 },
 
 "Silver Arowana": {
@@ -1912,18 +1112,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Osteoglossum_bicirrhosum_in_Minsk_Zoo.jpg",
     "breeding": "Impossible",
     "region": "South America",
-"holdings": {
-"North America": 0,
-"Asia": "1.1 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "1.1"
-
-}
 },
 
 "Red-Bellied Piranha": {
@@ -1937,18 +1125,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://i.imgur.com/l0XJYo8.jpeg",
     "breeding": "Impossible",
     "region": "South America",
-"holdings": {
-"North America": 0,
-"Asia": "2.2 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "2.2"
-
-}
 },
 
 "Axolotl": {
@@ -1962,19 +1138,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/1920px-Axolotl_ganz.jpg",
     "breeding": "Below Average",
     "region": "North America",
-"holdings": {
-"North America": "1.1 - Essex County Zoo ",
-"Asia": "2.2 - Kings of the Jungle, 1.0 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Essex County Zoo": "1.1",
-"Kings of the Jungle": "2.2",
-"Sapporo Reptile Center and National Aquarium": "1.0"
-}
 },
 
 "American Alligator": {
@@ -1988,18 +1151,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://a-z-animals.com/media/animals/images/original/Alligator_mississippiensis_1-1.jpg",
     "breeding": "Average",
     "region": "North America",
-"holdings": {
-"North America": "1.1 - Essex County Zoo",
-"Asia": "0.1 - Sapporo Reptile Center and National Aquarium",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Essex County Zoo": "1.1",
-"Sapporo Reptile Center and National Aquarium": "0.1"
-}
 },
 
 "Chinese Alligator": {
@@ -2013,18 +1164,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/ChineseAlligator15.JPG/1280px-ChineseAlligator15.JPG",
     "breeding": "Below Average",
     "region": "Asia",
-"holdings": {
-"North America": 0,
-"Asia": "0.1 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "0.1"
-
-}
 },
 
 "Veiled Chameleon": {
@@ -2038,20 +1177,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Yemen_Chameleon.jpg/1280px-Yemen_Chameleon.jpg",
     "breeding": "Below Average",
     "region": "Asia",
-"holdings": {
-"North America": "1.0 - Cube Zoological Park, 0.1 - Glacier Zoo",
-"Asia": "1.2 - Sapporo Reptile Center and National Aquarium",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "1.2",
-"Glacier Zoo": "0.1",
-"Cube Zoological Park": "1.0",
-
-}
 },
 
 "Fly River Turtle": {
@@ -2065,18 +1190,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Carettochelys_insculpta_01.JPG/1920px-Carettochelys_insculpta_01.JPG",
     "breeding": "Difficult",
     "region": "Oceania",
-"holdings": {
-"North America": 0,
-"Asia": "2.2 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "2.2"
-
-}
 },
 
 "Argentine Black and White Tegu": {
@@ -2090,18 +1203,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Black_and_White_Tegu.jpg/1920px-Black_and_White_Tegu.jpg",
     "breeding": "Average",
     "region": "South America",
-"holdings": {
-"North America": 0,
-"Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "1.0"
-
-    }
     },
 
 "Green Iguana": {
@@ -2115,18 +1216,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/356025444/original.jpg",
     "breeding": "Below Average",
     "region": "North America, South America",
-"holdings": {
-"North America": 0,
-"Asia": "1.2 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "1.2"
-
-        }
         },
 
 "Alligator Snapping Turtle": {
@@ -2140,18 +1229,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/12726192/original.jpg",
     "breeding": "Difficult",
     "region": "North America",
-"holdings": {
-"North America": 0,
-"Asia": "1.0 - Sapporo Reptile Center and National Aquarium ",
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-                },
-"institutions": {
-"Sapporo Reptile Center and National Aquarium": "1.0"
-
-    }
     },
     "Green Tree Python": {
         "common": "Green Tree Python",
@@ -2166,18 +1243,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Difficult",
         "region": "Oceania",
-        "holdings": {
-            "North America": 0,
-            "Asia": "1.1 (High Blue) - Sapporo Reptile Center and National Aquarium",
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Sapporo Reptile Center and National Aquarium": "1.1 [High Blue]"
-
-            }
             },
 
 "Spotfin Betta": {
@@ -2191,18 +1256,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://www.fishi-pedia.com/wp-content/uploads/2016/09/1781411_793531127324260_5255704950338882941_o.jpg",
     "breeding": "Difficult",
     "region": "Asia",
-"holdings": {
-"North America": "1.1 - New York Aquarium ",
-"Asia": 0,
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-        },
-"institutions": {
-"New York Aquarium": "1.1"
-
-    }
     },
 
 "Krabi Mouth-Brooding Betta": {
@@ -2216,18 +1269,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://media-animals.earth.com/images/2018/12/18/15475565562648463/bettasimplex.jpg",
     "breeding": "Below Average",
     "region": "Asia",
-"holdings": {
-"North America": "3.3 - New York Aquarium ",
-"Asia": 0,
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-        },
-"institutions": {
-"New York Aquarium": "3.3"
-
-    }
     },
 
     "Bluefin Nothobranchius": {
@@ -2243,18 +1284,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Average",
         "region": "Africa",
-        "holdings": {
-            "North America": "3.3 (Beira) - New York Aquarium",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "New York Aquarium": "3.3 [Beira]"
-
-            }
             },
 
     "Redtail Nothobranchius": {
@@ -2270,18 +1299,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Average",
         "region": "Africa",
-        "holdings": {
-            "North America": "3.3 (Zanzibar) - New York Aquarium",
-            "Asia": 0,
-            "Europe": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-            "institutions": {
-            "New York Aquarium": "3.3 [Zanzibar]"
-
-                }
                 },
 
         "Common Carp": {
@@ -2295,18 +1312,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://cdn.britannica.com/34/199834-050-ACEB68C7/Carp.jpg",
             "breeding": "Difficult",
             "region": "Europe, Asia",
-        "holdings": {
-        "North America": "10 - New York Aquarium ",
-        "Asia": 0,
-        "Europe": "15 - Wasser Wunder Welt ",
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-                },
-        "institutions": {
-        "New York Aquarium": "10",
-        "Wasser Wunder Welt": "15"
-            }
             },
 
         "Brook Trout": {
@@ -2320,18 +1325,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://media-animals.earth.com/images/2022/08/17/9385017317518864/salvelinusfontinalis_6479630421282603.jpg",
             "breeding": "Difficult",
             "region": "North America",
-        "holdings": {
-        "North America": "20 - New York Aquarium ",
-        "Asia": 0,
-        "Europe": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-                },
-        "institutions": {
-        "New York Aquarium": "20"
-
-            }
             },
 
     "Brown Trout": {
@@ -2345,18 +1338,6 @@ species_data: Dict[str, Dict[str, Any]] = {
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Salmo_trutta_Ozeaneum_Stralsund_HBP_2010-07-02.jpg/1280px-Salmo_trutta_Ozeaneum_Stralsund_HBP_2010-07-02.jpg",
         "breeding": "Difficult",
         "region": "Europe, Asia, Africa",
-    "holdings": {
-    "North America": "20 - New York Aquarium ",
-    "Asia": 0,
-    "Europe": 0,
-    "Africa": 0,
-    "South America": 0,
-    "Oceania": 0,
-        },
-    "institutions": {
-    "New York Aquarium": "20"
-
-        }
         },
 
         "Rainbow Trout": {
@@ -2369,18 +1350,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Oncorhynchus",
         "image_url": "https://www.fishi-pedia.com/wp-content/uploads/2024/12/Oncorhynchus-mykiss-BCH-FISHI-Aquarium-scaled.jpg",
         "region": "North America, Asia",
-        "holdings": {
-        "North America": "20 - New York Aquarium ",
-        "Asia": 0,
-        "Europe": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-            },
-        "institutions": {
-        "New York Aquarium": "20"
-
-            }
             },
 
     "China Rockfish": {
@@ -2394,18 +1363,6 @@ species_data: Dict[str, Dict[str, Any]] = {
     "image_url": "https://www.oceanlight.com/stock-photo/china-rockfish-picture-14041-900602.jpg",
         "breeding": "Impossible",
         "region": "North America",
-    "holdings": {
-    "North America": "6 - New York Aquarium ",
-    "Asia": 0,
-    "Europe": 0,
-    "Africa": 0,
-    "South America": 0,
-    "Oceania": 0,
-        },
-    "institutions": {
-    "New York Aquarium": "6"
-
-        }
         },
 
 "Copper Rockfish": {
@@ -2419,18 +1376,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://images.reeflifesurvey.com/0/species_08_59db3e38ba0e4.w1000.h666.jpg",
     "breeding": "Impossible",
     "region": "North America",
-"holdings": {
-"North America": "6 - New York Aquarium ",
-"Asia": 0,
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-},
-"institutions": {
-    "New York Aquarium": "6"
-
-    }
     },
 
 "Swell Shark": {
@@ -2444,18 +1389,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://www.sharksandrays.com/wp-content/uploads/2020/11/California-Swellshark-020.jpg",
     "breeding": "Average",
 "region": "North America, South America",
-"holdings": {
-"North America": "1.1 - New York Aquarium ",
-"Asia": 0,
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-    },
-"institutions": {
-"New York Aquarium": "1.1"
-
-        }
         },
 
 "Ocellaris Clownfish": {
@@ -2469,18 +1402,6 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg/1280px-Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg",
     "breeding": "Easy",
     "region": "Asia, Oceania",
-"holdings": {
-"North America": "16.16 - New York Aquarium ",
-"Asia": 0,
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-    },
-"institutions": {
-"New York Aquarium": "16.16"
-
-    }
     },
 
 "Giant Pacific Octopus": {
@@ -2494,18 +1415,6 @@ species_data: Dict[str, Dict[str, Any]] = {
     "breeding": "Difficult",
     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/357027043/original.jpg",
 "region": "North America, Asia",
-"holdings": {
-"North America": "1.0 - New York Aquarium ",
-"Asia": 0,
-"Europe": 0,
-"Africa": 0,
-"South America": 0,
-"Oceania": 0,
-    },
-"institutions": {
-"New York Aquarium": "1.0"
-
-        },
     },
     "Pore Coral": {
         "common": "Pore Coral",
@@ -2523,18 +1432,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://example.com/default.jpg",
         "breeding": "Difficult",
         "region": "Asia, Africa, Oceania",
-        "holdings": {
-            "North America": "1 [Brown form] 1 [Green form] 1 [Pink form] - New York Aquarium",
-            "Europe": 0,
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "New York Aquarium": "1 [Brown form], 1 [Green form], 1 [Pink form]"
-
-                },
             },
             "Milli Staghorn Coral": {
                 "common": "Milli Staghorn Coral",
@@ -2550,18 +1447,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                 "image_url": "https://example.com/default.jpg",
                 "breeding": "Difficult",
                 "region": "Asia, Africa, Oceania",
-                "holdings": {
-                    "North America": "1 [Green form] - New York Aquarium",
-                    "Europe": 0,
-                    "Asia": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0,
-                },
-                "institutions": {
-                    "New York Aquarium": "1 [Green form]"
-
-                    },
                     },
 
                 "Cherry Shrimp": {
@@ -2578,17 +1463,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                     "image_url": "https://example.com/default.jpg",
                     "breeding": "Very Easy",
                     "region": "Asia",
-                    "holdings": {
-                        "North America": "100 [Wild type] - New York Aquarium",
-                        "Europe": 0,
-                        "Asia": 0,
-                        "Africa": 0,
-                        "South America": 0,
-                        "Oceania": 0,
-                    },
-                    "institutions": {
-                        "New York Aquarium": "100 [Wild type]"
-                    }
                     },
 
                                     "Bee Shrimp": {
@@ -2604,17 +1478,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                     ],
                     "breeding": "Average",
                     "region": "Asia",
-                    "holdings": {
-                        "North America": "50 [Wild type] - New York Aquarium",
-                        "Europe": 0,
-                        "Asia": 0,
-                        "Africa": 0,
-                        "South America": 0,
-                        "Oceania": 0
-                    },
-                    "institutions": {
-                        "New York Aquarium": "50 [Wild type]"
-                    }
                     },
 
     "Bubble-Tip Anemone": {
@@ -2633,17 +1496,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Below Average",
         "region": "Asia, Africa, Oceania",
-        "holdings": {
-            "North America": "4 [Rose form] - New York Aquarium 4 [Green form] - New York Aquarium 4 [Pink form] - New York Aquarium 4 [Orange form] - New York Aquarium",
-            "Europe": 0,
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0
-        },
-        "institutions": {
-            "New York Aquarium": "4 [Rose form], 4 [Green form], 4 [Pink form], 4 [Orange form]"
-        }
     },
 
 
@@ -2658,17 +1510,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Anthopleura_xanthogrammica_1.jpg/1024px-Anthopleura_xanthogrammica_1.jpg",
                     "breeding": "Impossible",
                     "region": "North America",
-                    "holdings": {
-                        "North America": "3 - New York Aquarium",
-                        "Asia": 0,
-                        "Europe": 0,
-                        "Africa": 0,
-                        "South America": 0,
-                        "Oceania": 0
-                    },
-                    "institutions": {
-                        "New York Aquarium": "3"
-                    }
                     },
 
                     "Flower Tube Anemone": {
@@ -2685,18 +1526,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 ],
                                 "breeding": "Impossible",
                                 "region": "Asia, Oceania",
-                            "holdings": {
-                            "North America": "3 [White form] 3 [Purple form] - New York Aquarium",
-                            "Asia": 0,
-                            "Europe": 0,
-                            "Africa": 0,
-                            "South America": 0,
-                            "Oceania": 0,
-                                },
-                            "institutions": {
-                            "New York Aquarium": "3 [White form], 3 [Purple form] - New York Aquarium"
-
-                                }
                                 },
 
                                 "Red-Tailed Catfish": {
@@ -2710,18 +1539,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://i.imgur.com/uDWDJ7S.jpeg",
                                 "breeding": "Impossible",
                                 "region": "South America",
-                                "holdings": {
-                                "North America": 0,
-                                "Asia": 0,
-                                "Europe": "4.0 - Wasser Wunder Welt",
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Wasser Wunder Welt": "4.0"
-
-                                    }
                                     },
 
                                     "White-Blotched River Ray": {
@@ -2735,18 +1552,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://www.zoochat.com/community/media/leopolds-freshwater-ray-potamotrygon-leopoldi.342983/full?d=1480003013",
                                     "breeding": "Difficult",
                                     "region": "South America",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "3.3 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "3.3"
-
-                                        }
                                         },
 
                                     "Ripsaw Catfish": {
@@ -2760,18 +1565,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Oxydoras_niger_-_Porte_doree_-_0178.jpg/1280px-Oxydoras_niger_-_Porte_doree_-_0178.jpg",
                                     "breeding": "Impossible",
                                     "region": "South America",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "2.0 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "2.0"
-
-                                        }
                                         },
 
                                     "Electric Eel": {
@@ -2785,18 +1578,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://www.monaconatureencyclopedia.com/wp-content/uploads/2020/06/6-Electrophorus-electricus.jpg",
                                     "breeding": "Impossible",
                                     "region": "South America",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "0.3 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "0.3"
-
-                                        }
                                         },
 
                                         "Tambaqui": {
@@ -2810,18 +1591,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Colossoma_macropomum_01.jpg/1920px-Colossoma_macropomum_01.jpg",
                                         "breeding": "Impossible",
                                         "region": "South America",
-                                        "holdings": {
-                                        "North America": 0,
-                                        "Asia": 0,
-                                        "Europe": "6.0 - Wasser Wunder Welt",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "Wasser Wunder Welt": "6.0"
-
-                                            }
                                             },
 
                                     "Iridescent Shark": {
@@ -2835,18 +1604,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/w5KOswU.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Asia",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "1.1 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "1.1"
-
-                                        }
                                         },
 
                                     "Dwarf Pufferfish": {
@@ -2860,18 +1617,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/gLme9tR.jpeg",
                                     "breeding": "Difficult",
                                     "region": "Asia",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "16 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "16"
-
-                                        }
                                         },
 
                                     "Banded Archerfish": {
@@ -2885,19 +1630,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Toxotes_jaculatrix.jpg/1280px-Toxotes_jaculatrix.jpg",
                                     "breeding": "Impossible",
                                     "region": "Asia, Oceania",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "20 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "20"
-
-
-                                           }
                                             },
 
                                     "Giant Gourami": {
@@ -2911,18 +1643,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Osphronemus_Gourami_%28better%29.png/1280px-Osphronemus_Gourami_%28better%29.png",
                                     "breeding": "Impossible",
                                     "region": "Asia",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "3 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "3"
-
-                                        }
                                         },
 
                                     "Siberian Sturgeon": {
@@ -2936,18 +1656,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/5pYbIKa.jpeg",
                                     "breeding": "Difficult",
                                     "region": "Asia",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "2.2 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "2.2"
-
-                                        }
                                         },
 
                                     "Wels Catfish": {
@@ -2961,18 +1669,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://www.monaconatureencyclopedia.com/wp-content/uploads/2018/01/1_silurus_glanis.jpg",
                                     "breeding": "Impossible",
                                     "region": "Europe, Asia",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "1.1 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "1.1"
-
-                                        }
                                         },
 
                                     "Northern Pike": {
@@ -2986,18 +1682,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Esox_lucius_ZOO_1.jpg/1280px-Esox_lucius_ZOO_1.jpg",
                                     "breeding": "Impossible",
                                     "region": "North America, Europe",
-                                "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "8 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "8"
-
-                                        }
                                         },
 
                                     "Fire Salamander": {
@@ -3015,19 +1699,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         ],
                                     "breeding": "Below Average",
                                     "region": "Europe",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "2.2 (gigliolii) 2.2 (almanzoris) - Giardino Zoologico e Botanico La Sapienza, 7.7 (salamandra) - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Giardino Zoologico e Botanico La Sapienza": "2.2 [gigliolii] 2.2 [almanzoris]",
-                                    "Wasser Wunder Welt": "7.7"
-
-                                        }
                                         },
 
                                     "Eurasian Otter": {
@@ -3041,20 +1712,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/KmwWMsg.jpeg",
                                     "breeding": "Average",
                                     "region": "Europe, Asia, Africa",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza, 1.2 - Shropshire Hills Zoo, 1.2 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Giardino Zoologico e Botanico La Sapienza": "1.1",
-                                    "Shropshire Hills Zoo": "1.2",
-                                    "Wasser Wunder Welt": "1.2"
-
-                                        }
                                         },
 
                                     "Fahaka Pufferfish": {
@@ -3068,18 +1725,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/hKY3DXE.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Africa",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "2 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "2"
-
-                                        }
                                         },
 
                                     "West African Lungfish": {
@@ -3093,18 +1738,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/uvj68nP.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Africa",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "0.1 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "0.1"
-
-                                        }
                                         },
 
                                     "Ornate Bichir": {
@@ -3118,18 +1751,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/9pms9UI.jpeg",
                                     "breeding": "Impossible",
                                     "region": "Africa",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "6 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "6"
-
-                                        }
                                         },
 
                                     "Nile Crocodile": {
@@ -3143,18 +1764,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Nile_Crocodile_Kafue_River_Bank_Zambia_Jul23_A7C_05542.jpg/1920px-Nile_Crocodile_Kafue_River_Bank_Zambia_Jul23_A7C_05542.jpg",
                                     "breeding": "Below Average",
                                     "region": "Africa",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "1.1 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "1.1"
-
-                                        }
                                         },
 
                                     "Spotted Gar": {
@@ -3168,18 +1777,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Lepisosteus_oculatus1.jpg/1280px-Lepisosteus_oculatus1.jpg",
                                     "breeding": "Impossible",
                                     "region": "North America",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": 0,
-                                    "Europe": "6 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "6"
-
-                                        }
                                             },
 
                                      "Tentacled Snake": {
@@ -3193,19 +1790,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/335960148/original.jpg",
                                     "breeding": "Impossible",
                                     "region": "Asia",
-                                    "holdings": {
-                                    "North America": 0,
-                                    "Asia": "1.1 - Chiang Mai Serpentarium",
-                                    "Europe": "3.3 - Wasser Wunder Welt",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "3.3",
-                                    "Chiang Mai Serpentarium": "1.1"
-
-                                    }
                                         },
 
                                 "Amazonian Giant Centipede": {
@@ -3219,18 +1803,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://i0.wp.com/adlayasanimals.wordpress.com/wp-content/uploads/2021/01/1920px-spiders_genova_-_scolopendra_gigantea-e1610739899911.jpg?fit=1200%2C675&ssl=1",
                                 "breeding": "Difficult",
                                 "region": "North America, South America",
-                                "holdings": {
-                                "North America": "1.1 - Essex County Zoo",
-                                "Asia": 0,
-                                "Europe": 0,
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Essex County Zoo": "1.1"
-
-                                    }
                                     },
 
                                 "Eastern Gray Squirrel": {
@@ -3244,18 +1816,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://www.nyc.gov/assets/wildlifenyc/images/content/pages/iStock-1127369499-resized.jpg",
                                 "breeding": "Easy",
                                 "region": "North America",
-                                "holdings": {
-                                "North America": "1.0 - Essex County Zoo",
-                                "Asia": 0,
-                                "Europe": 0,
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Essex County Zoo": "1.0"
-
-                                    }
                                     },
 
                                 "Canada Goose": {
@@ -3269,18 +1829,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://static.inaturalist.org/photos/229398131/large.jpg",
                                 "breeding": "Easy",
                                 "region": "North America",
-                                "holdings": {
-                                "North America": "0.2 - Essex County Zoo",
-                                "Asia": 0,
-                                "Europe": 0,
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Essex County Zoo": "0.2"
-
-                                }
                                 },
 
                                 "Corn Snake": {
@@ -3294,18 +1842,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://static.inaturalist.org/photos/457255500/large.jpg",
                                 "breeding": "Easy",
                                 "region": "North America",
-                                "holdings": {
-                                    "North America": "0.2 - Essex County Zoo",
-                                "Asia": 0,
-                                "Europe": 0,
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Essex County Zoo": "0.2"
-
-                                }
                                 },
                                 "White-Lipped Pit Viper": {
                                     "common": "White-Lipped Pit Viper",
@@ -3320,18 +1856,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     ],
                                     "breeding": "Below Average",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": "1.0 [Green] - Essex County Zoo",
-                                        "Asia": 0,
-                                        "Europe": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                        "Essex County Zoo": "1.0 [Green variant]"
-
-                                    }
                                     },
                                     "Mediterranean Banded Centipede": {
                                         "common": "Mediterranean Banded Centipede",
@@ -3344,18 +1868,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Scolopendra_cingulata_-_D7-08-2291.JPG",
                                         "breeding": "Below Average",
                                         "region": "Europe, Asia, Africa",
-                                        "holdings": {
-                                            "North America": "1.0 - Essex County Zoo",
-                                            "Asia": 0,
-                                            "Europe": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                            "Essex County Zoo": "1.0"
-
-                                            }
                                             },
                                         "Vietnamese Giant Centipede": {
                                             "common": "Vietnamese Giant Centipede",
@@ -3368,18 +1880,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://i.imgur.com/iMLj7MZ.jpeg",
                                             "breeding": "Below Average",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": "1.1 - Essex County Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Essex County Zoo": "1.1"
-
-                                            }
                                             },
                                             "Regal Jumper": {
                                             "common": "Regal Jumper",
@@ -3394,18 +1894,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 ],
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "1.1 [Black] - Essex County Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Essex County Zoo": "1.1 [Black variant]"
-
-                                            }
                                             },
                                             "Common Pillbug": {
                                             "common": "Common Pillbug",
@@ -3418,18 +1906,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Armadillidium_vulgare_001.jpg",
                                             "breeding": "Very Easy",
                                             "region": "Europe",
-                                            "holdings": {
-                                                "North America": "20 - Essex County Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Essex County Zoo": "20"
-
-                                            }
                                             },
                                             "Tiger": {
                                             "common": "Tiger",
@@ -3444,18 +1920,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             ],
                                             "breeding": "Difficult",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": "0.1 (jacksoni) - Air Terjun Zoo",
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Air Terjun Zoo": "0.1 [jacksoni]"
-
-                                            }
                                             },
                                             "Lar Gibbon": {
                                             "common": "Lar Gibbon",
@@ -3468,19 +1932,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Hylobates_lar_pair_of_white_and_black_01.jpg/1280px-Hylobates_lar_pair_of_white_and_black_01.jpg",
                                             "breeding": "Below Average",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": "1.1 - North Star Zoo",
-                                                "Asia": "1.1 - Air Terjun Zoo",
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Air Terjun Zoo": "1.1",
-                                                "North Star Zoo": "1.1"
-
-                                            }
                                             },
                                             "Common Eland": {
                                             "common": "Common Eland",
@@ -3493,18 +1944,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Eland_%28Taurotragus_oryx%29_male_%2832708655016%29.jpg/1280px-Eland_%28Taurotragus_oryx%29_male_%2832708655016%29.jpg",
                                             "breeding": "Average",
                                             "region": "Africa",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": "1.2 - Air Terjun Zoo",
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Air Terjun Zoo": "1.2"
-
-                                            }
                                             },
                                             "Sika Deer": {
                                             "common": "Sika Deer",
@@ -3517,18 +1956,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Cervus_nippon_002.jpg/1280px-Cervus_nippon_002.jpg",
                                             "breeding": "Easy",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": "1.3 - Air Terjun Zoo",
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Air Terjun Zoo": "1.3"
-
-                                            }
                                             },
                                             "Bactrian Camel": {
                                             "common": "Bactrian Camel",
@@ -3540,18 +1967,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "genus": "Camelus",
                                             "image_url": "https://pictureanimal.com/wiki-image/1080/152345814335750145.jpeg",
                                             "breeding": "Easy",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": "1.3 - Air Terjun Zoo",
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Air Terjun Zoo": "1.3"
-
-                                            }
                                             },
                                             "Serval": {
                                             "common": "Serval",
@@ -3564,19 +1979,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg/1024px-Serval_at_Auckland_Zoo_-_Flickr_-_111_Emergency.jpg",
                                             "breeding": "Average",
                                             "region": "Africa",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": "1.1 - Air Terjun Zoo",
-                                                "Europe": "0.2 - Wildkatzenpark Tatzenfels",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "0.2",
-                                                "Air Terjun Zoo": "1.1"
-
-                                            }
                                             },
                                             "Bennett's Wallaby": {
                                             "common": "Bennett's Wallaby",
@@ -3589,18 +1991,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://i.imgur.com/OGXBCOE.jpeg",
                                             "breeding": "Easy",
                                             "region": "Oceania",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": "0.4 - Air Terjun Zoo",
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Air Terjun Zoo": "0.4"
-
-                                            }
                                             },
                                             "Rusty-Spotted Cat": {
                                             "common": "Rusty-Spotted Cat",
@@ -3615,18 +2005,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             ],
                                             "breeding": "Difficult",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "1.1 (phillipsi) - Wildkatzenpark Tatzenfels",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "1.1 [phillipsi]"
-
-                                            }
                                             },
                                             "Eurasian Lynx": {
                                             "common": "Eurasian Lynx",
@@ -3639,18 +2017,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://www.euronatur.org/fileadmin/_processed_/4/c/csm_Luchs_sitzt_auf_Fels-Christof_Wermter__869aa2a067.jpg",
                                             "breeding": "Difficult",
                                             "region": "Europe, Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "1.0 - Wildkatzenpark Tatzenfels",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "1.0"
-
-                                            }
                                             },
                                             "Fishing Cat": {
                                             "common": "Fishing Cat",
@@ -3663,18 +2029,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://animals.sandiegozoo.org/sites/default/files/inline-images/fishing_cat02.jpg",
                                             "breeding": "Difficult",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "1.1 - Wildkatzenpark Tatzenfels",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "1.1"
-
-                                            }
                                             },
                                             "Ocelot": {
                                             "common": "Ocelot",
@@ -3687,18 +2041,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/518453211/original.jpg",
                                             "breeding": "Below Average",
                                             "region": "North America, South America",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "0.1 - Wildkatzenpark Tatzenfels",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "0.1"
-
-                                            }
                                             },
                                             "Pallas's Cat": {
                                             "common": "Pallas's Cat",
@@ -3713,18 +2055,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 ],
                                             "breeding": "Below Average",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "1.1 (manul) - Wildkatzenpark Tatzenfels",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "1.1 [manul]"
-
-                                            }
                                             },
                                             "Caracal": {
                                             "common": "Caracal",
@@ -3737,18 +2067,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://cdn.britannica.com/28/122928-050-9569D57F/Caracal.jpg",
                                             "breeding": "Below Average",
                                             "region": "Asia, Africa",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "1.0 - Wildkatzenpark Tatzenfels",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Wildkatzenpark Tatzenfels": "1.0"
-
-                                            }
                                             },
                                             "Atlantic Puffin": {
                                             "common": "Atlantic Puffin",
@@ -3761,18 +2079,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Papageitaucher_Fratercula_arctica.jpg",
                                             "breeding": "Difficult",
                                             "region": "North America, Europe, Africa",
-                                            "holdings": {
-                                                "North America": "2.2 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "North Star Zoo": "2.2"
-
-                                            }
                                             },
                                             "North American River Otter": {
                                             "common": "North American River Otter",
@@ -3785,19 +2091,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://www.ndow.org/wp-content/uploads/2021/10/lontra_canadensis.jpeg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "2.0 - Essex County Zoo, 1.2 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Essex County Zoo": "2.0",
-                                                "North Star Zoo": "1.2"
-
-                                            }
                                             },
                                             "Common Snapping Turtle": {
                                             "common": "Common Snapping Turtle",
@@ -3810,18 +2103,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/72712185/original.jpeg",
                                             "breeding": "Below Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "1.0 - Essex County Zoo, 0.1 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Essex County Zoo": "1.0",
-                                                "North Star Zoo": "0.1"
-                                            }
                                             },
                                             "African Penguin": {
                                             "common": "African Penguin",
@@ -3834,18 +2115,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://www.ecoregistros.org/site/images/dataimages/2016/11/19/175994/pinguino-del-cabo--8-.JPG",
                                             "breeding": "Average",
                                             "region": "Africa",
-                                            "holdings": {
-                                                "North America": "6.6 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "North Star Zoo": "6.6"
-
-                                            }
                                             },
                                             "Mandarin Duck": {
                                             "common": "Mandarin Duck",
@@ -3858,18 +2127,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Mandarin_duck_%28Aix_galericulata%29_Franconville_03.jpg",
                                             "breeding": "Easy",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": "6.0 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "North Star Zoo": "6.0"
-
-                                            }
                                             },
                                             "American Toad": {
                                             "common": "American Toad",
@@ -3882,18 +2139,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Bufo_americanus_PJC1.jpg/1280px-Bufo_americanus_PJC1.jpg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "1.2 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "North Star Zoo": "1.2"
-
-                                            }
                                             },
                                             "American Bullfrog": {
                                             "common": "American Bullfrog",
@@ -3906,18 +2151,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://www.citizenscience.lu/images/content/Bioindicator_Species/invasive_species/invasive_animals/Ochsenfrosch.jpg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "1.0 - Essex County Zoo, 1.0 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Essex County Zoo": "1.0",
-                                                "North Star Zoo": "1.0"
-                                            }
                                             },
                                             "American Lobster": {
                                             "common": "American Lobster",
@@ -3930,19 +2163,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/75691769/original.jpg",
                                             "breeding": "Impossible",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "1.0 - New York Aquarium, 1.0 - North Star Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "New York Aquarium": "1.0",
-                                                "North Star Zoo": "1.0"
-
-                                            }
                                             },
                                             "Demoiselle Crane": {
                                             "common": "Demoiselle Crane",
@@ -3955,17 +2175,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Demoiselle_Crane_%28Grus_virgo%29_%2851169667074%29.jpg",
                                             "breeding": "Below Average",
                                             "region": "Asia, Africa",
-                                            "holdings": {
-                                                "North America": "1.1 - Glacier Zoo",
-                                                "Asia": 0,
-                                                "Europe": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Glacier Zoo": "1.1"
-                                        }
                                         },
 
     "Domestic Chicken": {
@@ -3982,19 +2191,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "image_url": "https://example.com/default.jpg",
         "breeding": "Very Easy",
-        "holdings": {
-            "North America": ["0.3 (Silkie) - Glacier Zoo"],
-            "Europe": ["2.8 (Italiana) - Giardino Zoologico e Botanico La Sapienza"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-        },
-        "institutions": {
-            "Giardino Zoologico e Botanico La Sapienza": "2.8 [Italiana]",
-            "Glacier Zoo": "0.3 [Silkie]"
-
-        }
         },
 
         "Domestic Sheep": {
@@ -4010,18 +2206,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "image_url": "https://example.com/default.jpg",
         "breeding": "Very Easy",
-        "holdings": {
-        "North America": ["1.2 (Jacob's Sheep) - Glacier Zoo"],
-        "Europe": 0,
-        "Asia": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Glacier Zoo": "1.2 [Jacob's Sheep]"
-
-            }
             },
 
         "Virginia Opossum": {
@@ -4035,19 +2219,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://nhpbs.org/wild/images/virginiaopossumforestrydavidcapeaert.jpg",
         "breeding": "Below Average",
         "region": "North America",
-        "holdings": {
-        "North America": ["0.1 - Essex County Zoo", "1.1 - Glacier Zoo"],
-        "Europe": 0,
-        "Asia": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Essex County Zoo": "0.1",
-        "Glacier Zoo": "1.1"
-
-        }
         },
 
         "Fancy Rat": {
@@ -4060,18 +2231,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Rattus",
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Lyonblackandwhitehoodedrat.jpg/1920px-Lyonblackandwhitehoodedrat.jpg",
         "breeding": "Very Easy",
-        "holdings": {
-        "North America": ["3.0 - Glacier Zoo"],
-        "Europe": 0,
-        "Asia": 0,
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Glacier Zoo": "3.0"
-
-        }
         },
 
         "Gladiator Stag Beetle": {
@@ -4085,18 +2244,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://thespidershop.co.uk/wp-content/uploads/2018/06/H_gladiator.jpg",
         "breeding": "Difficult",
         "region": "Africa",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["1.1 - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "1.1"
-
-            }
             },
 
         "Japanese Stag Beetle": {
@@ -4112,18 +2259,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             ],
         "breeding": "Difficult",
         "region": "Asia",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["1.1 (binodulosus) - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "1.1 [binodulosus]"
-
-            }
             },
 
         "Taiwanese Stag Beetle": {
@@ -4137,18 +2272,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://richardsinverts-store.com/cdn/shop/products/i-img1200x1200-1624245649b8hpbb29980.jpg?v=1642870614&width=1445",
         "breeding": "Average",
         "region": "Asia",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["1.1 - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "1.1"
-
-        }
         },
 
         "Titan Stag Beetle": {
@@ -4165,18 +2288,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             ],
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["1.1 [palawanicus], 0.1 [titanus] - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "1.1 [palawanicus], 0.1 [titanus]"
-
-        }
         },
 
         "Japanese Rhinoceros Beetle": {
@@ -4190,18 +2301,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Male_rhinoceros_beetle_on_concrete_-_3.jpg/1280px-Male_rhinoceros_beetle_on_concrete_-_3.jpg",
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["0.1 - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "0.1"
-
-            }
             },
 
         "Metallic Stag Beetle": {
@@ -4217,18 +2316,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "breeding": "Difficult",
         "region": "Asia",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["0.1 (Supernova) - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "0.1 [Supernova]"
-
-        }
         },
 
         "Godzilla Isopod": {
@@ -4242,18 +2329,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/1BQ5HNo.jpeg",
         "breeding": "Difficult",
         "region": "Asia",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["20 - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "20"
-
-        }
         },
 
         "Javan Leaf Insect": {
@@ -4267,18 +2342,6 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.phasmatodea.com/sites/default/files/speciesgallery/phyllium/bioculatum-gray-1832/mixed/idbioculatum-gray-1832.jpg",
         "breeding": "Below Average",
         "region": "Asia",
-        "holdings": {
-        "North America": 0,
-        "Europe": 0,
-        "Asia": ["0.1 - Kings of the Jungle"],
-        "Africa": 0,
-        "South America": 0,
-        "Oceania": 0,
-        },
-        "institutions": {
-        "Kings of the Jungle": "0.1"
-
-            }
             },
 
             "Camoflauge Isopod": {
@@ -4292,18 +2355,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://cdn.isopod.site/2022/02/P9279477x.jpg",
             "breeding": "Difficult",
             "region": "Asia",
-            "holdings": {
-            "North America": 0,
-            "Europe": 0,
-            "Asia": ["20 - Kings of the Jungle"],
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Kings of the Jungle": "20"
-
-            }
             },
 
             "Yellowline Arrow Crab": {
@@ -4317,18 +2368,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS006/FIS006-00083-1920x1278.jpg",
             "breeding": "Impossible",
             "region": "North America, South America",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["3 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "3"
-
-                }
                 },
 
             "Pom Pom Crab": {
@@ -4342,18 +2381,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://static.inaturalist.org/photos/30267880/large.jpg",
             "breeding": "Impossible",
             "region": "Asia, Africa, Oceania",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["4 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "4"
-
-                }
                 },
 
             "Emerald Crab": {
@@ -4367,18 +2394,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://www.animalspot.net/wp-content/uploads/2018/10/Green-Emerald-Crab.jpg",
             "breeding": "Impossible",
             "region": "North America, South America",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["3 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "3"
-
-                }
                 },
 
             "Strawberry Crab": {
@@ -4392,18 +2407,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://media.masterfisch.com/81203-thickbox_default/strawberry-crab.jpg",
             "breeding": "Impossible",
             "region": "Asia, Africa, Oceania",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["2 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "2"
-
-            }
             },
 
             "Blue Leg Hermit Crab": {
@@ -4417,18 +2420,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://tropicalfishplus.com/cdn/shop/products/Clibanarius_tricolor_9_BG_800x.jpg?v=1605659918",
             "breeding": "Impossible",
             "region": "North America, South America",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["2 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "2"
-
-                }
                 },
 
             "Blue Line Hermit Crab": {
@@ -4442,18 +2433,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://www.thereefexperience.com/cdn/shop/products/blue_let_hermit_1024x1024_1024x_fbd6fd40-8845-4034-b05a-180889df77d2.jpg?v=1670618337",
             "breeding": "Impossible",
             "region": "Africa, Asia, Oceania",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["2 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "2"
-
-            }
             },
 
             "Halloween Hermit Crab": {
@@ -4467,18 +2446,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://aquariumbreeder.com/wp-content/uploads/2020/01/Halloween-hermit-crabs-Ciliopagurus-strigatus-logo.jpg",
             "breeding": "Impossible",
             "region": "Africa, Asia, Oceania",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["3 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "3"
-
-            }
             },
 
             "Scarlet Hermit Crab": {
@@ -4492,18 +2459,6 @@ species_data: Dict[str, Dict[str, Any]] = {
             "image_url": "https://tropicalfishplus.com/cdn/shop/products/scarlet_hermit_c_4e7f2b6dbf345_1000x.jpg?v=1605661053",
             "breeding": "Impossible",
             "region": "North America, South America",
-            "holdings": {
-            "North America": 0,
-            "Europe": ["2 - Species Watch"],
-            "Asia": 0,
-            "Africa": 0,
-            "South America": 0,
-            "Oceania": 0,
-            },
-            "institutions": {
-            "Species Watch": "2"
-
-            }
             },
 
             "Common Grackle": {
@@ -4517,18 +2472,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Grackle_IMG_3972.jpg/1280px-Grackle_IMG_3972.jpg",
                 "breeding": "Average",
                 "region": ["North America"],  # list, not string
-                "holdings": {
-                    "North America": "2.0 - Cube Zoological Park",  # string, not list
-                    "Europe": 0,
-                    "Asia": 0,
-                    "Africa": 0,
-                    "South America": 0,
-                    "Oceania": 0
-                },
-                "institutions": {
-                    "Cube Zoological Park": "2.0"
-
-                }
                 },
 
                 "Painted Lady": {
@@ -4542,18 +2485,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/0_Belle-dame_%28Vanessa_cardui%29_-_Echinacea_purpurea_-_Havr%C3%A9_%283%29.jpg/1280px-0_Belle-dame_%28Vanessa_cardui%29_-_Echinacea_purpurea_-_Havr%C3%A9_%283%29.jpg",
                     "breeding": "Average",
                     "region": "North America, Europe, Asia, Africa",
-                    "holdings": {
-                        "North America": "25 - Cube Zoological Park",  # string, not list
-                        "Europe": 0,
-                        "Asia": 0,
-                        "Africa": 0,
-                        "South America": 0,
-                        "Oceania": 0
-                    },
-                    "institutions": {
-                        "Cube Zoological Park": "25"
-
-                    }
                     },
 
                     "Pumpkinseed": {
@@ -4567,18 +2498,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                         "image_url": "https://i.imgur.com/4apDvzz.jpeg",
                         "breeding": "Difficult",
                         "region": "North America",
-                        "holdings": {
-                            "North America": "3 - Cube Zoological Park, 3 - New York Aquarium",  
-                            "Europe": 0,
-                            "Asia": 0,
-                            "Africa": 0,
-                            "South America": 0,
-                            "Oceania": 0
-                        },
-                        "institutions": {
-                            "Cube Zoological Park": "3",
-                            "New York Aquarium": "3"
-                            }
                             },
 
                         "Yellow-Crowned Night Heron": {
@@ -4592,18 +2511,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Nyctanassa_violacea_in_La_Manzanilla.jpg",
                             "breeding": "Average",
                             "region": "North America, South America",
-                            "holdings": {
-                                "North America": "2.2 - Cube Zoological Park",  
-                                "Europe": 0,
-                                "Asia": 0,
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0
-                            },
-                            "institutions": {
-                                "Cube Zoological Park": "2.2"
-
-                                }
                                 },
 
                             "Black Swallowtail": {
@@ -4617,18 +2524,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                             "image_url": "https://objects.liquidweb.services/images/201703/kevin_heffernan_15477106887_2516850b08_b.jpg",
                             "breeding": "Average",
                             "region": "North America, South America",
-                            "holdings": {
-                                "North America": "25 - Cube Zoological Park",  
-                                "Europe": 0,
-                                "Asia": 0,
-                                "Africa": 0,
-                                "South America": 0,
-                                "Oceania": 0
-                            },
-                            "institutions": {
-                                "Cube Zoological Park": "25"
-
-                                }
                                 },
 
                             "Monarch": {
@@ -4642,18 +2537,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Monarch_In_May.jpg/1280px-Monarch_In_May.jpg",
                                 "breeding": "Average",
                                 "region": "North America, South America",
-                                "holdings": {
-                                    "North America": "25 - Cube Zoological Park",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                },
-                                "institutions": {
-                                       "Cube Zoological Park": "25"
-
-                                    }
                                     },
 
                                 "Common Mormon": {
@@ -4667,18 +2550,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Papilio_polytes-Thekkady-2016-12-03-001.jpg/2560px-Papilio_polytes-Thekkady-2016-12-03-001.jpg",
                                     "breeding": "Average",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": 0,  
-                                        "Europe": 0,
-                                        "Asia": "25 - Kings of the Jungle",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                    },
-                                    "institutions": {
-                                           "Kings of the Jungle": "25"
-
-                                    }
                                     },
 
                                     "Common Tiger": {
@@ -4692,18 +2563,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/219936/original.jpg",
                                     "breeding": "Average",
                                     "region": "Asia, Oceania",
-                                    "holdings": {
-                                        "North America": 0,  
-                                        "Europe": 0,
-                                        "Asia": "25 - Kings of the Jungle",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                    },
-                                    "institutions": {
-                                           "Kings of the Jungle": "25"
-
-                                        }
                                         },
 
                                     "Eastern Honeybee": {
@@ -4717,18 +2576,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://static.inaturalist.org/photos/2033079/large.jpg",
                                     "breeding": "Very Easy",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": 0,  
-                                        "Europe": 0,
-                                        "Asia": "200 - Kings of the Jungle",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                    },
-                                    "institutions": {
-                                           "Kings of the Jungle": "200"
-
-                                    }
                                     },
 
                                     "Plain Tiger": {
@@ -4742,18 +2589,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Danaus_chrysippus_Female_by_kadavoor.jpg/1280px-Danaus_chrysippus_Female_by_kadavoor.jpg",
                                     "breeding": "Average",
                                     "region": "Asia, Africa, Oceania",
-                                    "holdings": {
-                                    "North America": 0,  
-                                    "Europe": 0,
-                                    "Asia": "25 - Kings of the Jungle",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                       "Kings of the Jungle": "25"
-
-                                    }
                                     },
 
                                     "Tropical Leatherleaf Slug": {
@@ -4767,18 +2602,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/47874316/original.jpg",
                                     "breeding": "Average",
                                     "region": "Africa",
-                                    "holdings": {
-                                    "North America": 0,  
-                                    "Europe": 0,
-                                    "Asia": "3 - Kings of the Jungle",
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                       "Kings of the Jungle": "3"
-
-                                    }
                                     },
 
                                     "Florida Gar": {
@@ -4792,18 +2615,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/104542990/original.jpg",
                                     "breeding": "Impossible",
                                     "region": "North America",
-                                    "holdings": {
-                                    "North America": "3 - New York Aquarium",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                       "New York Aquarium": "3"
-
-                                    }
                                     },
 
                                     "Knobbed Whelk": {
@@ -4817,18 +2628,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://static.inaturalist.org/photos/16337478/original.jpg",
                                     "breeding": "Impossible",
                                     "region": "North America",
-                                    "holdings": {
-                                    "North America": "2 - New York Aquarium",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                       "New York Aquarium": "2"
-
-                                        }
                                         },
 
                                     "Largemouth Bass": {
@@ -4842,18 +2641,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/7oFLOlG.jpeg",
                                     "breeding": "Difficult",
                                     "region": "North America",
-                                    "holdings": {
-                                    "North America": "3 - New York Aquarium",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                       "New York Aquarium": "3"
-
-                                    }
                                     },
 
                                     "Red Swamp Crayfish": {
@@ -4867,18 +2654,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/nnuVUIV.jpeg",
                                     "breeding": "Below Average",
                                     "region": "North America",
-                                    "holdings": {
-                                    "North America": "1.0 - New York Aquarium",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                    "New York Aquarium": "1.0"
-
-                                    }
                                     },
 
                                     "Seminole Ramshorn Snail": {
@@ -4892,18 +2667,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://www.garnelio.de/media/image/33/b1/52/garnelio-schnecke-braune-posthornschnecke-planorbella-duryi-duryi-2_430x430@2x.jpg",
                                     "breeding": "Very Easy",
                                     "region": "North America",
-                                    "holdings": {
-                                    "North America": "10 - New York Aquarium",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                    "New York Aquarium": "10"
-
-                                    }
                                     },
 
                                     "Arizona Blonde Tarantula": {
@@ -4917,18 +2680,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://bugcagecompany.com/wp-content/uploads/2025/08/1000003618.jpg",
                                     "breeding": "Below Average",
                                     "region": "North America",
-                                    "holdings": {
-                                    "North America": "0.1 - Essex County Zoo",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                    "Essex County Zoo": "0.1"
-
-                                    }
                                     },
 
                                     "Mallard": {
@@ -4942,18 +2693,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anas_platyrhynchos_male_female_quadrat.jpg/1024px-Anas_platyrhynchos_male_female_quadrat.jpg",
                                     "breeding": "Easy",
                                     "region": "North America, Europe, Asia, Africa",
-                                    "holdings": {
-                                    "North America": "2.2 - Essex County Zoo",  
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                    "Essex County Zoo": "2.2"
-
-                                        }
                                         },
 
                                     "Zander": {
@@ -4967,18 +2706,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rousse_Ecomuseum_-_Sander_lucioperca.jpg",
                                     "breeding": "Difficult",
                                     "region": "Europe",
-                                    "holdings": {
-                                    "North America": 0, 
-                                    "Europe": "4 - Wasser Wunder Welt", 
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "4"
-
-                                    }
                                     },
 
                                     "Stone Loach": {
@@ -4992,18 +2719,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://media-animals.earth.com/images/2022/08/17/626539844685148/barbatulabarbatula_31451673516346723.jpg",
                                     "breeding": "Difficult",
                                     "region": "Europe",
-                                    "holdings": {
-                                    "North America": 0, 
-                                    "Europe": "6 - Wasser Wunder Welt", 
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "6"
-
-                                    }
                                 },
 
                                     "European Sea Sturgeon": {
@@ -5017,18 +2732,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://cdn.britannica.com/75/140975-050-719AEA44/Atlantic-sturgeon-species-Baltic-International-Union-for-1996.jpg",
                                     "breeding": "Difficult",
                                     "region": "Europe, Asia",
-                                    "holdings": {
-                                    "North America": 0, 
-                                    "Europe": "1.2 - Wasser Wunder Welt", 
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0
-                                    },
-                                    "institutions": {
-                                    "Wasser Wunder Welt": "1.2"
-
-                                            }
                                         },
 
                                         "Burbot": {
@@ -5042,18 +2745,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://www.hlasek.com/foto/lota_lota_hf0194.jpg",
                                         "breeding": "Impossible",
                                         "region": "Europe, Asia",
-                                        "holdings": {
-                                        "North America": 0, 
-                                        "Europe": "1 - Wasser Wunder Welt", 
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Wasser Wunder Welt": "1"
-
-                                                }
                                             },
 
                                         "Black Rat Snake": {
@@ -5067,18 +2758,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://www.vtherpatlas.org/wp2016/wp-content/uploads/2017/08/P.-alleghaniensis-1-Nick-Arms.jpg",
                                         "breeding": "Below Average",
                                         "region": "North America",
-                                        "holdings": {
-                                        "North America": "0.0.2.2 - Cube Zoological Park",  
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Cube Zoological Park": "0.0.2.2"
-
-                                            }
                                             },
 
                                         "Red-Eyed Devil Katydid": {
@@ -5092,18 +2771,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://static.inaturalist.org/photos/2267006/large.jpg",
                                         "breeding": "Below Average",
                                         "region": "North America",
-                                        "holdings": {
-                                        "North America": "1.1 - Cube Zoological Park",  
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Cube Zoological Park": "1.1"
-
-                                            }
                                             },
 
                                         "Eastern Screech Owl": {
@@ -5117,18 +2784,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://cdn.britannica.com/14/220114-050-99FD6748/Screech-Owl-Bird-Gray-Morph.jpg",
                                         "breeding": "Below Average",
                                         "region": "North America",
-                                        "holdings": {
-                                        "North America": "1.0 - Cube Zoological Park",  
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Cube Zoological Park": "1.0"
-
-                                        }
                                         },
                                         "Brown Rat": {
                                         "common": "Brown Rat",
@@ -5141,18 +2796,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://cdn.britannica.com/26/65326-050-53232216/Norway-rat.jpg",
                                         "breeding": "Very Easy",
                                         "region": "North America, South America, Europe, Asia, Africa",
-                                        "holdings": {
-                                        "North America": 0,  
-                                        "Europe": "3.3 - Shropshire Hills Zoo",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Shropshire Hills Zoo": "3.3"
-
-                                        }
                                         },
                                         "Great Gray Owl": {
                                         "common": "Great Gray Owl",
@@ -5167,19 +2810,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             ],
                                         "breeding": "Below Average",
                                         "region": "North America, Europe, Asia,",
-                                        "holdings": {
-                                        "North America": 0,  
-                                        "Europe": "1.0 (lapponica) - Giardino Zoologico e Botanico La Sapienza, 1.1 (lapponica) - Shropshire Hills Zoo",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Giardino Zoologico e Botanico La Sapienza": "1.0 [lapponica]",
-                                        "Shropshire Hills Zoo": "1.1 [lapponica]"
-
-                                        }
                                         },
                                         "Common Buzzard": {
                                         "common": "Common Buzzard",
@@ -5194,19 +2824,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             ],
                                         "breeding": "Average",
                                         "region": "Europe, Asia, Africa",
-                                        "holdings": {
-                                        "North America": 0,  
-                                        "Europe": "0.2 (buteo) - Giardino Zoologico e Botanico La Sapienza, 2.0 (buteo) - Shropshire Hills Zoo",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Giardino Zoologico e Botanico La Sapienza": "0.2 [buteo]",
-                                        "Shropshire Hills Zoo": "2.0 [buteo]" 
-
-                                        }
                                         },
                                         "Reticulated Python": {
                                         "common": "Reticulated Python",
@@ -5219,18 +2836,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://i.imgur.com/TDLfid9.jpeg",
                                         "breeding": "Average",
                                         "region": "Asia",
-                                        "holdings": {
-                                        "North America": 0,  
-                                        "Europe": 0,
-                                        "Asia": "0.1 - Kings of the Jungle",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Kings of the Jungle": "0.1"
-
-                                        }
                                         },
                                         "Brown Wood Owl": {
                                         "common": "Brown Wood Owl",
@@ -5243,18 +2848,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Brown_Wood_Owl1.jpg/1280px-Brown_Wood_Owl1.jpg",
                                         "breeding": "Below Average",
                                         "region": "Asia",
-                                        "holdings": {
-                                        "North America": 0,  
-                                        "Europe": 0,
-                                        "Asia": "1.0 - Kings of the Jungle",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Kings of the Jungle": "1.0"
-
-                                        }
                                         },
                                         "Giant Otter": {
                                         "common": "Giant Otter",
@@ -5267,18 +2860,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://i.imgur.com/9sJDhiH.jpeg",
                                         "breeding": "Difficult",
                                         "region": "South America",
-                                        "holdings": {
-                                        "North America": "0.2 - New York Aquarium", 
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "New York Aquarium": "0.2"
-
-                                        }
                                         },
                                         "Blackback Land Crab": {
                                         "common": "Blackback Land Crab",
@@ -5291,18 +2872,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Gecarcinus_lateralis_2.jpg",
                                         "breeding": "Impossible",
                                         "region": "North America, South America",
-                                        "holdings": {
-                                        "North America": "2.2 - New York Aquarium", 
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "New York Aquarium": "2.2"
-
-                                        }
                                         },
                                         "Common Moon Jelly": {
                                         "common": "Common Moon Jelly",
@@ -5315,18 +2884,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Aurelia_aurita_1.jpg",
                                         "breeding": "Difficult",
                                         "region": "North America, South America, Europe, Asia, Africa, Oceania, Antarctica",
-                                        "holdings": {
-                                        "North America": 0, 
-                                        "Europe": "20 - Species Watch",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Species Watch": "20"
-
-                                        }
                                         },
                                         "Textile Cone": {
                                         "common": "Textile Cone",
@@ -5339,18 +2896,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Textile_cone.JPG/1200px-Textile_cone.JPG",
                                         "breeding": "Impossible",
                                         "region": "Asia, Africa, Oceania",
-                                        "holdings": {
-                                        "North America": 0, 
-                                        "Europe": "2 - Species Watch",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Species Watch": "2"
-
-                                        }
                                         },
                                         "European Medicinal Leech": {
                                         "common": "European Medicinal Leech",
@@ -5363,18 +2908,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://i0.wp.com/adlayasanimals.wordpress.com/wp-content/uploads/2021/02/hirudo_medicinalis.jpg?fit=1200%2C820&ssl=1",
                                         "breeding": "Impossible",
                                         "region": "Europe, Asia",
-                                        "holdings": {
-                                        "North America": 0, 
-                                        "Europe": "10 - Species Watch",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Species Watch": "10"
-
-                                        }
                                         },
                                         "Racovitza's Rudd": {
                                         "common": "Racovitza's Rudd",
@@ -5387,18 +2920,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://i.imgur.com/xpybKED.jpeg",
                                         "breeding": "Difficult",
                                         "region": "Europe",
-                                        "holdings": {
-                                        "North America": 0, 
-                                        "Europe": "20 - Giardino Zoologico e Botanico La Sapienza",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Giardino Zoologico e Botanico La Sapienza": "20"
-
-                                        }
                                         },
                                         "Eurasian Beaver": {
                                         "common": "Eurasian Beaver",
@@ -5411,18 +2932,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Castoridae_Castor_fiber_1.jpg",
                                         "breeding": "Average",
                                         "region": "Europe, Asia",
-                                        "holdings": {
-                                        "North America": 0, 
-                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0
-                                        },
-                                        "institutions": {
-                                        "Giardino Zoologico e Botanico La Sapienza": "1.1"
-
-                                        }
                                         },
                                         "European Badger": {
                                             "common": "European Badger",
@@ -5437,18 +2946,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             ],
                                             "breeding": "Below Average",
                                             "region": "Europe, Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "0.1 (meles) - Giardino Zoologico e Botanico La Sapienza",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Giardino Zoologico e Botanico La Sapienza": "0.1 [meles]"
-
-                                            }
                                             },
                                             "Eurasian Eagle-Owl": {
                                                 "common": "Eurasian Eagle-Owl",
@@ -5463,18 +2960,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 ],
                                                 "breeding": "Below Average",
                                                 "region": "Europe, Asia",
-                                                "holdings": {
-                                                    "North America": 0,
-                                                    "Asia": 0,
-                                                    "Europe": "1.0 (bubo) - Giardino Zoologico e Botanico La Sapienza",
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.0 [bubo]"
-
-                                                }
                                                 },
                                                 "Long-Eared Owl": {
                                                     "common": "Long-Eared Owl",
@@ -5489,18 +2974,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     ],
                                                     "breeding": "Below Average",
                                                     "region": "North America, Europe, Asia, Africa",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Asia": 0,
-                                                        "Europe": "3.0 (otus) - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "Giardino Zoologico e Botanico La Sapienza": "3.0 [otus]"
-
-                                                    }
                                                     },
                                                     "Western Barn Owl": {
                                                         "common": "Western Barn Owl",
@@ -5515,18 +2988,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         ],
                                                         "breeding": "Below Average",
                                                         "region": "Europe, Asia, Africa",
-                                                        "holdings": {
-                                                            "North America": 0,
-                                                            "Asia": 0,
-                                                            "Europe": "0.4 (alba) - Giardino Zoologico e Botanico La Sapienza",
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                            "Giardino Zoologico e Botanico La Sapienza": "0.4 [alba]"
-
-                                                        }
                                                         },
                                                         "Great Crested Newt": {
                                                             "common": "Great Crested Newt",
@@ -5539,18 +3000,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Kammmolchmaennchen.jpg",
                                                             "breeding": "Average",
                                                             "region": "Europe",
-                                                            "holdings": {
-                                                                "North America": 0,
-                                                                "Asia": 0,
-                                                                "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                                "Giardino Zoologico e Botanico La Sapienza": "2.2"
-
-                                                            }
                                                             },
                                                             "Radiated Wolf Spider": {
                                                                 "common": "Radiated Wolf Spider",
@@ -5565,18 +3014,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 ],
                                                                 "breeding": "Average",
                                                                 "region": "Europe, Asia, Africa",
-                                                                "holdings": {
-                                                                    "North America": 0,
-                                                                    "Asia": 0,
-                                                                    "Europe": "1.1 (minor) - Giardino Zoologico e Botanico La Sapienza",
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1 [minor]"
-
-                                                        }
                                                         },
                                                         "Barred Owl": {
                                                             "common": "Barred Owl",
@@ -5589,18 +3026,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/359094470/large.jpg",
                                                             "breeding": "Below Average",
                                                             "region": "North America",
-                                                            "holdings": {
-                                                                "North America": "1.1 - Essex County Zoo",
-                                                                "Asia": 0,
-                                                                "Europe": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                                "Essex County Zoo": "1.1"
-
-                                                            }
                                                             },
                                                             "European Mouflon": {
                                                                 "common": "European Mouflon",
@@ -5612,18 +3037,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "genus": "Ovis",
                                                                 "image_url": "https://static.inaturalist.org/photos/45828139/large.jpeg",
                                                                 "breeding": "Average",
-                                                                "holdings": {
-                                                                    "North America": 0,
-                                                                    "Asia": 0,
-                                                                    "Europe": "1.5 - Giardino Zoologico e Botanico La Sapienza",
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                    "Giardino Zoologico e Botanico La Sapienza": "1.5"
-
-                                                                }
                                                                 },
                                                             "Wild Turkey": {
                                                                 "common": "Wild Turkey",
@@ -5638,18 +3051,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 ],
                                                                 "breeding": "Average",
                                                                 "region": "North America",
-                                                                "holdings": {
-                                                                    "North America": "1.1 (merriami) - High Uintahs Zoo",
-                                                                    "Asia": 0,
-                                                                    "Europe": 0,
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                            },
-                                                                "institutions": {
-                                                                    "High Uintahs Zoo": "1.1 [merriami]"
-
-                                                                }
                                                                 },
                                                                 "Mule Deer": {
                                                                 "common": "Mule Deer",
@@ -5662,19 +3063,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mule_buck_elk_creek_m_myatt_%285489214303%29.jpg/1280px-Mule_buck_elk_creek_m_myatt_%285489214303%29.jpg",
                                                                 "breeding": "Average",
                                                                 "region": "North America",
-                                                                "holdings": {
-                                                                    "North America": "1.1 - Glacier Zoo, 1.2 - High Uintahs Zoo",
-                                                                    "Asia": 0,
-                                                                    "Europe": 0,
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                    "Glacier Zoo": "1.1",
-                                                                    "High Uintahs Zoo": "1.2"
-
-                                                            }
                                                             },
                                                             "Elk": {
                                                             "common": "Elk",
@@ -5689,18 +3077,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 ],
                                                             "breeding": "Average",
                                                             "region": "North America, Asia",
-                                                            "holdings": {
-                                                                "North America": "2.0 (nelsoni) - High Uintahs Zoo",
-                                                                "Asia": 0,
-                                                                "Europe": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                                "High Uintahs Zoo": "2.0 [nelsoni]"
-
-                                                            }
                                                             },
                                                             "Sockeye Salmon": {
                                                             "common": "Sockeye Salmon",
@@ -5715,18 +3091,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 ],
                                                             "breeding": "Impossible",
                                                             "region": "North America, Asia",
-                                                            "holdings": {
-                                                                "North America": "10 (Kokanee) - High Uintahs Zoo",
-                                                                "Asia": 0,
-                                                                "Europe": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                                "High Uintahs Zoo": "10 [Kokanee]"
-
-                                                            }
                                                             },
                                                             "Magenta Dottyback": {
                                                             "common": "Magenta Dottyback",
@@ -5739,18 +3103,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Magenta_dottyback_%28Pictichromis_porphyrea%29_%2846422564495%29.jpg",
                                                             "breeding": "Impossible",
                                                             "region": "Asia, Oceania",
-                                                            "holdings": {
-                                                                "North America": "6 - New York Aquarium",
-                                                                "Asia": 0,
-                                                                "Europe": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                                "New York Aquarium": "6"
-
-                                                            }
                                                             },
                                                             "Azure Damselfish": {
                                                             "common": "Azure Damselfish",
@@ -5763,18 +3115,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://ultramarinemagazine.co.uk/wp-content/uploads/2023/02/Chrysiptera-hemicyanea.jpg",
                                                             "breeding": "Impossible",
                                                             "region": "Asia, Oceania",
-                                                            "holdings": {
-                                                                "North America": "30 - New York Aquarium",
-                                                                "Asia": 0,
-                                                                "Europe": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                                "New York Aquarium": "30"
-
-                                                            }
                                                             },
                                                             "Yellowtail Damselfish": {
                                                             "common": "Yellowtail Damselfish",
@@ -5787,18 +3127,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://i.imgur.com/Ww1TuFj.jpeg",
                                                             "breeding": "Impossible",
                                                             "region": "Asia, Oceania",
-                                                            "holdings": {
-                                                                "North America": "30 - New York Aquarium",
-                                                                "Asia": 0,
-                                                                "Europe": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                                "New York Aquarium": "30"
-
-                                                        }
                                                         },
                                                         "Common Leopard Gecko": {
                                                         "common": "Common Leopard Gecko",
@@ -5811,18 +3139,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://i.imgur.com/JycYDcG.jpeg",
                                                         "breeding": "Easy",
                                                         "region": "Asia",
-                                                        "holdings": {
-                                                            "North America": "1.0 - Essex County Zoo",
-                                                            "Asia": 0,
-                                                            "Europe": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                            "Essex County Zoo": "1.0"
-
-                                                    }
                                                     },
                                                     "Central Bearded Dragon": {
                                                     "common": "Central Bearded Dragon",
@@ -5835,18 +3151,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Bartagame_%28fcm%29.jpg/1280px-Bartagame_%28fcm%29.jpg",
                                                     "breeding": "Easy",
                                                     "region": "Oceania",
-                                                    "holdings": {
-                                                        "North America": "1.1 - Essex County Zoo",
-                                                        "Asia": 0,
-                                                        "Europe": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "Essex County Zoo": "1.1"
-
-                                                    }
                                                     },
                                                     "Crested Gecko": {
                                                     "common": "Crested Gecko",
@@ -5859,18 +3163,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/06/Correlophus-cristatus.jpg",
                                                     "breeding": "Easy",
                                                     "region": "Oceania",
-                                                    "holdings": {
-                                                        "North America": "1.0 - Essex County Zoo",
-                                                        "Asia": 0,
-                                                        "Europe": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "Essex County Zoo": "1.0"
-
-                                                    }
                                                     },
                                                     "Big Brown Bat": {
                                                     "common": "Big Brown Bat",
@@ -5883,18 +3175,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/11370649/large.jpg",
                                                     "breeding": "Difficult",
                                                     "region": "North America, South America",
-                                                    "holdings": {
-                                                        "North America": "2.0 - High Uintahs Zoo",
-                                                        "Asia": 0,
-                                                        "Europe": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "High Uintahs Zoo": "2.0"
-
-                                                    }
                                                     },
                                                     "American Crow": {
                                                     "common": "American Crow",
@@ -5907,18 +3187,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/97752362/large.jpg",
                                                     "breeding": "Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "0.1 - High Uintahs Zoo",
-                                                        "Asia": 0,
-                                                        "Europe": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "High Uintahs Zoo": "0.1"  
-
-                                                    }
                                                     },
                                                     "Western Black Widow": {
                                                     "common": "Western Black Widow",
@@ -5931,18 +3199,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Latrodectus_hesperus_Berkeley%2C_California.jpg/1280px-Latrodectus_hesperus_Berkeley%2C_California.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "0.1 - High Uintahs Zoo",
-                                                        "Asia": 0,
-                                                        "Europe": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "High Uintahs Zoo": "0.1"  
-
-                                                    },
                                                     },
                                                     "Zebra Isopod": {
                                                         "common": "Zebra Isopod",
@@ -5960,18 +3216,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://example.com/default.jpg",
                                                         "breeding": "Very Easy",
                                                         "region": "Europe",
-                                                        "holdings": {
-                                                            "North America": 0,
-                                                            "Europe": 0,
-                                                            "Asia": ["20 (Wild type), 20 (Champagne) 20 (Yellow zebra) - Kings of the Jungle"],
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                            "Kings of the Jungle": "20 [Wild type], 20 [Champagne] 20 [Yellow zebra]",
-
-                                                    },
                                                     },
                                                     "Domestic Cow": {
                                                         "common": "Domestic Cow",
@@ -5987,18 +3231,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         ],
                                                         "image_url": "https://example.com/default.jpg",
                                                         "breeding": "Easy",
-                                                        "holdings": {
-                                                            "North America": ["1.1 (Florida Cracker Cow), 1.1 (Ankole-Watusi) - Cube Zoological Park"],
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "Cube Zoological Park": "1.1 [Florida Cracker Cow], 1.1 [Ankole-Watusi]",
-
-                                                    },
                                                     },
                                                     "African Arowana": {
                                                         "common": "African Arowana",
@@ -6011,18 +3243,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://i.imgur.com/z9CuoNf.jpeg",
                                                         "breeding": "Impossible",
                                                         "region": "Africa",
-                                                        "holdings": {
-                                                            "North America": 0,
-                                                            "Europe": "1 - Wasser Wunder Welt",
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "Wasser Wunder Welt": "1",
-
-                                                    },
                                                     },
                                                     "Plains Zebra": {
                                                         "common": "Plains Zebra",
@@ -6038,18 +3258,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://example.com/default.jpg",
                                                         "breeding": "Average",
                                                         "region": "Africa",
-                                                        "holdings": {
-                                                            "North America": 0,
-                                                            "Europe": ["1.2 (burchelli) - Shropshire Hills Zoo"],
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "Shropshire Hills Zoo": "1.2 [burchelli]",
-
-                                                    },
                                                     },
                                                     "Striped Burrfish": {
                                                         "common": "Striped Burrfish",
@@ -6062,18 +3270,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://aqua.org/assets/animals/_open_graph_1x/70174/2020-04-01_animal_striped-burrfish_center-center_001.webp",
                                                         "breeding": "Impossible",
                                                         "region": "North America, South America",
-                                                        "holdings": {
-                                                            "North America": "1 - New York Aquarium",
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "New York Aquarium": "1",
-
-                                                },
                                                 },
                                                 "Mummichog": {
                                                     "common": "Mummichog",
@@ -6086,19 +3282,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://i.imgur.com/pgn24JS.jpeg",
                                                     "breeding": "Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "8 - Cube Zoological Park, 10 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Cube Zoological Park": "8",
-                                                    "New York Aquarium": "10",
-
-                                                },
                                                 },
                                                 "Banded Killifish": {
                                                     "common": "Banded Killifish",
@@ -6111,18 +3294,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://lh4.googleusercontent.com/proxy/lyZoiFAss2Lf93ynhK2QAT4pXamktBe7o5d5cGyupXF9MeUxhWCGo1QFAvL7iKl9T9C0oRFivPE88qSraYO1QWwDxuF-XHftVf0C",
                                                     "breeding": "Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "10 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "10",
-
-                                                    },
                                                     },
                                                     "Eastern Mudsnail": {
                                                         "common": "Eastern Mudsnail",
@@ -6135,18 +3306,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://www.exoticsguide.org/sites/default/files/species_images/i_obsoleta_lg_b.jpg",
                                                         "breeding": "Impossible",
                                                         "region": "North America",
-                                                        "holdings": {
-                                                            "North America": "20 - New York Aquarium",
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "New York Aquarium": "20",
-
-                                                        },
                                                         },
                                                         "Atlantic Blue Crab": {
                                                             "common": "Atlantic Blue Crab",
@@ -6159,18 +3318,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/134165478/original.jpg",
                                                             "breeding": "Impossible",
                                                             "region": "North America, South America",
-                                                            "holdings": {
-                                                                "North America": "2 - New York Aquarium",
-                                                                "Europe": 0,
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "New York Aquarium": "2",
-
-                                                            },
                                                             },
                                                             "Portly Spider Crab": {
                                                                 "common": "Portly Spider Crab",
@@ -6183,18 +3330,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "image_url": "https://mote.org/wp-content/uploads/2024/11/3e851bd7-7fd2-47a1-9399-32036a1f69dc_lg-1024x683.jpg",
                                                                 "breeding": "Impossible",
                                                                 "region": "North America, South America",
-                                                                "holdings": {
-                                                                    "North America": "3 - New York Aquarium",
-                                                                    "Europe": 0,
-                                                                    "Asia": 0,
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                "New York Aquarium": "3",
-
-                                                                },
                                                                 },
                                                                 "Australian Water Dragon": {
                                                                     "common": "Australian Water Dragon",
@@ -6207,18 +3342,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Intellagama_lesueurii_lesueurii%2C_Eastern_Water_Dragon%2C_Manly%2C_Australia.jpg",
                                                                     "breeding": "Below Average",
                                                                     "region": "Oceania",
-                                                                    "holdings": {
-                                                                        "North America": "1.0 - Essex County Zoo",
-                                                                        "Europe": 0,
-                                                                        "Asia": 0,
-                                                                        "Africa": 0,
-                                                                        "South America": 0,
-                                                                        "Oceania": 0,
-                                                                    },
-                                                                    "institutions": {
-                                                                    "Essex County Zoo": "1.0",
-
-                                                                    },
                                                                     },
                                                                     "Emerald Cockroach Wasp": {
                                                                         "common": "Emerald Cockroach Wasp",
@@ -6231,18 +3354,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                         "image_url": "https://i.imgur.com/xJKjj4w.jpeg",
                                                                         "breeding": "Difficult",
                                                                         "region": "Asia, Africa, Oceania",
-                                                                        "holdings": {
-                                                                            "North America": "12 - Cube Zoological Park",
-                                                                            "Europe": 0,
-                                                                            "Asia": 0,
-                                                                            "Africa": 0,
-                                                                            "South America": 0,
-                                                                            "Oceania": 0,
-                                                                        },
-                                                                        "institutions": {
-                                                                        "Cube Zoological Park": "12",
-
-                                                                    },
                                                                     },
                                                                     "Red-Tailed Hawk": {
                                                                         "common": "Red-Tailed Hawk",
@@ -6255,18 +3366,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                         "image_url": "https://i.imgur.com/cOHq8jd.jpeg",
                                                                         "breeding": "Average",
                                                                         "region": "North America",
-                                                                        "holdings": {
-                                                                            "North America": "1.0 - High Uintahs Zoo",
-                                                                            "Europe": 0,
-                                                                            "Asia": 0,
-                                                                            "Africa": 0,
-                                                                            "South America": 0,
-                                                                            "Oceania": 0,
-                                                                        },
-                                                                        "institutions": {
-                                                                        "High Uintahs Zoo": "1.0",
-
-                                                                    },
                                                                     },
                                                                     "Cooper's Hawk": {
                                                                         "common": "Cooper's Hawk",
@@ -6279,18 +3378,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/170370008/original.jpg",
                                                                         "breeding": "Average",
                                                                         "region": "North America",
-                                                                        "holdings": {
-                                                                            "North America": "0.1 - High Uintahs Zoo",
-                                                                            "Europe": 0,
-                                                                            "Asia": 0,
-                                                                            "Africa": 0,
-                                                                            "South America": 0,
-                                                                            "Oceania": 0,
-                                                                        },
-                                                                        "institutions": {
-                                                                        "High Uintahs Zoo": "0.1",
-
-                                                                    },
                                                                     },
                                                                     "Western Tiger Swallowtail": {
                                                                         "common": "Western Tiger Swallowtail",
@@ -6303,18 +3390,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Wtigerswallowtail.JPG/1280px-Wtigerswallowtail.JPG",
                                                                         "breeding": "Average",
                                                                         "region": "North America",
-                                                                        "holdings": {
-                                                                            "North America": 0,
-                                                                            "Europe": 0,
-                                                                            "Asia": "25 - Kings of the Jungle",
-                                                                            "Africa": 0,
-                                                                            "South America": 0,
-                                                                            "Oceania": 0,
-                                                                        },
-                                                                        "institutions": {
-                                                                        "Kings of the Jungle": "25",
-
-                                                                    },
                                                                     },
                                                                     "Orange Sulphur": {
                                                                         "common": "Orange Sulphur",
@@ -6327,18 +3402,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/27553205/original.jpeg",
                                                                         "breeding": "Average",
                                                                         "region": "North America",
-                                                                        "holdings": {
-                                                                            "North America": 0,
-                                                                            "Europe": 0,
-                                                                            "Asia": "25 - Kings of the Jungle",
-                                                                            "Africa": 0,
-                                                                            "South America": 0,
-                                                                            "Oceania": 0,
-                                                                        },
-                                                                        "institutions": {
-                                                                        "Kings of the Jungle": "25",
-
-                                                            },
                                                             },
                                                             "Red Admiral": {
                                                                 "common": "Red Admiral",
@@ -6351,18 +3414,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Red_admiral_%28Vanessa_atalanta%29_Hungary.jpg/1280px-Red_admiral_%28Vanessa_atalanta%29_Hungary.jpg",
                                                                 "breeding": "Average",
                                                                 "region": "North America, Europe, Asia, Africa",
-                                                                "holdings": {
-                                                                    "North America": 0,
-                                                                    "Europe": 0,
-                                                                    "Asia": "25 - Kings of the Jungle",
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                "Kings of the Jungle": "25",
-
-                                                            },
                                                             },
                                                             "Northern Crescent": {
                                                                 "common": "Northern Crescent",
@@ -6375,18 +3426,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Phyciodes_cocyta.jpg",
                                                                 "breeding": "Average",
                                                                 "region": "North America",
-                                                                "holdings": {
-                                                                    "North America": 0,
-                                                                    "Europe": 0,
-                                                                    "Asia": "25 - Kings of the Jungle",
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                "Kings of the Jungle": "25",
-
-                                                            },
                                                             },
                                                             "Greylag Goose": {
                                                                 "common": "Greylag Goose",
@@ -6401,18 +3440,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 ],
                                                                 "breeding": "Easy",
                                                                 "region": "Europe, Asia, Africa",
-                                                                "holdings": {
-                                                                    "North America": 0,
-                                                                    "Europe": "2.2 (anser) - Giardino Zoologico e Botanico La Sapienza",
-                                                                    "Asia": 0,
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                "Giardino Zoologico e Botanico La Sapienza": "2.2 [anser]",
-
-                                                            },
                                                             },
                                                             "Mute Swan": {
                                                                 "common": "Mute Swan",
@@ -6425,18 +3452,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/CygneVaires.jpg/1280px-CygneVaires.jpg",
                                                                 "breeding": "Average",
                                                                 "region": "Europe, Asia, Africa",
-                                                                "holdings": {
-                                                                    "North America": 0,
-                                                                    "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
-                                                                    "Asia": 0,
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                "Giardino Zoologico e Botanico La Sapienza": "1.1",
-
-                                                            },
                                                             },
                                                             "Tufted Duck": {
                                                                 "common": "Tufted Duck",
@@ -6449,18 +3464,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "image_url": "https://i.imgur.com/V6lO4yD.jpeg",
                                                                 "breeding": "Average",
                                                                 "region": "Europe, Asia, Africa",
-                                                                "holdings": {
-                                                                    "North America": 0,
-                                                                    "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
-                                                                    "Asia": 0,
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                "Giardino Zoologico e Botanico La Sapienza": "2.2",
-
-                                                            },
                                                             },
                                                             "Hart's Rivulus": {
                                                                 "common": "Hart's Rivulus",
@@ -6473,18 +3476,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                                 "image_url": "https://www.itrainsfishes.net/content/species/rivulus_hartii_gr05.jpg",
                                                                 "breeding": "Average",
                                                                 "region": "South America",
-                                                                "holdings": {
-                                                                    "North America": "3.3 - New York Aquarium",
-                                                                    "Europe": 0,
-                                                                    "Asia": 0,
-                                                                    "Africa": 0,
-                                                                    "South America": 0,
-                                                                    "Oceania": 0,
-                                                                },
-                                                                "institutions": {
-                                                                "New York Aquarium": "3.3",
-
-                                                        },
                                                         },
                                                         "Mafia Island Killifish": {
                                                             "common": "Mafia Island Killifish",
@@ -6499,18 +3490,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             ],
                                                             "breeding": "Average",
                                                             "region": "Africa",
-                                                            "holdings": {
-                                                                "North America": "3.3 - New York Aquarium (Mafia Island yellow)",
-                                                                "Europe": 0,
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "New York Aquarium": "3.3 [Mafia Island yellow]",
-
-                                                    },
                                                     },
                                                     "Madagascar Giant Hognose Snake": {
                                                         "common": "Madagascar Giant Hognose Snake",
@@ -6523,18 +3502,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://static.inaturalist.org/photos/41718069/large.jpg",
                                                         "breeding": "Below Average",
                                                         "region": "Africa",
-                                                        "holdings": {
-                                                            "North America": "1.1 - Essex County Zoo",
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "Essex County Zoo": "1.1",
-
-                                                        },
                                                         },
                                                         "Gray Heron": {
                                                             "common": "Gray Heron",
@@ -6549,18 +3516,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             ],
                                                             "breeding": "Below Average",
                                                             "region": "Europe, Asia, Africa",
-                                                            "holdings": {
-                                                                "North America": 0,
-                                                                "Europe": "1.0 (cinerea) - Giardino Zoologico e Botanico La Sapienza",
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Giardino Zoologico e Botanico La Sapienza": "1.0 [cinerea]",
-
-                                                        },
                                                         },
                                                         "Leopard Cat": {
                                                             "common": "Leopard Cat",
@@ -6573,18 +3528,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://live.staticflickr.com/5639/23228593825_66c649d951_b.jpg",
                                                             "breeding": "Below Average",
                                                             "region": "Asia",
-                                                            "holdings": {
-                                                                "North America": "1.1 - Cube Zoological Park",
-                                                                "Europe": 0,
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Cube Zoological Park": "1.1",
-
-                                                    },
                                                     },
                                                     "Gambel's Quail": {
                                                         "common": "Gambel's Quail",
@@ -6597,18 +3540,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Callipepla_gambelii_-Indianapolis_Zoo-8a.jpg",
                                                         "breeding": "Average",
                                                         "region": "North America",
-                                                        "holdings": {
-                                                            "North America": "1.1 - High Uintahs Zoo",
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "High Uintahs Zoo": "1.1",
-
-                                                        },
                                                         },
                                                         "Toe Biter": {
                                                             "common": "Toe Biter",
@@ -6621,18 +3552,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/243949774/original.jpg",
                                                             "breeding": "Below Average",
                                                             "region": "North America",
-                                                            "holdings": {
-                                                                "North America": 0,
-                                                                "Europe": 0,
-                                                                "Asia": "2 - Kings of the Jungle",
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Kings of the Jungle": "2",
-
-                                                        },
                                                         },
                                                         "Sunburst Diving Beetle": {
                                                             "common": "Sunburst Diving Beetle",
@@ -6645,18 +3564,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/205177664/original.jpg",
                                                             "breeding": "Below Average",
                                                             "region": "North America",
-                                                            "holdings": {
-                                                                "North America": 0,
-                                                                "Europe": 0,
-                                                                "Asia": "10 - Kings of the Jungle",
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Kings of the Jungle": "10",
-
-                                                        },
                                                         },
                                                         "Impala": {
                                                             "common": "Impala",
@@ -6669,18 +3576,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Impala_%28Aepyceros_melampus%29_male_Kruger.jpg",
                                                             "breeding": "Average",
                                                             "region": "Africa",
-                                                            "holdings": {
-                                                                "North America": 0,
-                                                                "Europe": "2.4 - Shropshire Hills Zoo",
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Shropshire Hills Zoo": "2.4",
-
-                                                        },
                                                         },
                                                         "Silvered Leaf Monkey": {
                                                             "common": "Silvered Leaf Monkey",
@@ -6693,18 +3588,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://www.zoochat.com/community/media/silvered-leaf-monkey-trachypithecus-cristatus.395228/full?d=1524602526",
                                                             "breeding": "Below Average",
                                                             "region": "Asia",
-                                                            "holdings": {
-                                                                "North America": "1.3 - Essex County Zoo",
-                                                                "Europe": 0,
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Essex County Zoo": "1.3",
-
-                                                        },
                                                         },
                                                         "Southern Cassowary": {
                                                             "common": "Southern Cassowary",
@@ -6717,18 +3600,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Southern_Cassowary_7071.jpg/1280px-Southern_Cassowary_7071.jpg",
                                                             "breeding": "Below Average",
                                                             "region": "Oceania",
-                                                            "holdings": {
-                                                                "North America": 0,
-                                                                "Europe": 0,
-                                                                "Asia": "0.1 - Kings of the Jungle",
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Kings of the Jungle": "0.1",
-
-                                                        },
                                                         },
                                                         "Bonefish": {
                                                             "common": "Bonefish",
@@ -6741,18 +3612,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://i.imgur.com/vyjN9OZ.jpeg",
                                                             "breeding": "Impossible",
                                                             "region": "North America, South America",
-                                                            "holdings": {
-                                                                "North America": "6 - New York Aquarium",
-                                                                "Europe": 0,
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "New York Aquarium": "6",
-
-                                                        },
                                                         },
                                                         "Anderson's Crocodile Newt": {
                                                             "common": "Anderson's Crocodile Newt",
@@ -6765,18 +3624,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Echinotriton_andersoni_from_iNaturalist_photo_462469057.jpg/1200px-Echinotriton_andersoni_from_iNaturalist_photo_462469057.jpg",
                                                             "breeding": "Difficult",
                                                             "region": "Asia",
-                                                            "holdings": {
-                                                                "North America": 0,
-                                                                "Europe": "1.1 - Shropshire Hills Zoo",
-                                                                "Asia": 0,
-                                                                "Africa": 0,
-                                                                "South America": 0,
-                                                                "Oceania": 0,
-                                                            },
-                                                            "institutions": {
-                                                            "Shropshire Hills Zoo": "1.1",
-
-                                                    },
                                                     },
                                                     "Cameroon Ogre-Faced Spider": {
                                                         "common": "Cameroon Ogre-Faced Spider",
@@ -6789,18 +3636,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://www.zoochat.com/community/media/ncmns-asianopis-aspectans.676715/full",
                                                         "breeding": "Below Average",
                                                         "region": "Africa",
-                                                        "holdings": {
-                                                            "North America": "2.2 - Cube Zoological Park",
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "Cube Zoological Park": "2.2",
-
-                                                    },
                                                     },
                                                     "Hispid Cotton Rat": {
                                                         "common": "Hispid Cotton Rat",
@@ -6813,18 +3648,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/600318/large.jpg",
                                                         "breeding": "Average",
                                                         "region": "North America",
-                                                        "holdings": {
-                                                            "North America": "0.3 - Cube Zoological Park",
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "Cube Zoological Park": "0.3",
-
-                                                    },
                                                     },
                                                     "Little Brown Bat": {
                                                         "common": "Little Brown Bat",
@@ -6837,18 +3660,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                         "image_url": "https://fieldguide.wyndd.org/fgImages/AMACC01010_absfig1_keinath.jpg",
                                                         "breeding": "Difficult",
                                                         "region": "North America",
-                                                        "holdings": {
-                                                            "North America": "12 - Cube Zoological Park",
-                                                            "Europe": 0,
-                                                            "Asia": 0,
-                                                            "Africa": 0,
-                                                            "South America": 0,
-                                                            "Oceania": 0,
-                                                        },
-                                                        "institutions": {
-                                                        "Cube Zoological Park": "12",
-
-                                                },
                                                 },
                                                 "Oldfield Mouse": {
                                                     "common": "Oldfield Mouse",
@@ -6863,18 +3674,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     ],
                                                     "breeding": "Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "3.3 (trissyllepsis) - Cube Zoological Park",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Cube Zoological Park": "3.3 [trissyllepsis]",
-
-                                                },
                                                 },
                                                 "Black Bullhead": {
                                                     "common": "Black Bullhead",
@@ -6887,18 +3686,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS017/FIS017-00009-1920x1278.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "3 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "3",
-
-                                                },
                                                 },
                                                 "Black Ghost Knifefish": {
                                                     "common": "Black Ghost Knifefish",
@@ -6911,18 +3698,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://biotopeaquariumproject.com/wp-content/uploads/2019/11/marajo-apteronotus-albifrons-jrichter.jpg",
                                                     "breeding": "Diffiuclt",
                                                     "region": "South America",
-                                                    "holdings": {
-                                                        "North America": "1 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "1",
-
-                                                },
                                                 },
                                                 "Dungeness Crab": {
                                                     "common": "Dungeness Crab",
@@ -6935,18 +3710,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/446850127/large.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "3 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "3",
-
-                                                },
                                                 },
                                                 "Orange Sea Pen": {
                                                     "common": "Orange Sea Pen",
@@ -6959,18 +3722,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/113028683/large.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "5 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "5",
-
-                                                },
                                                 },
                                                 "Sea Walnut": {
                                                     "common": "Sea Walnut",
@@ -6983,18 +3734,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Comb_jelly.tif/lossy-page1-1280px-Comb_jelly.tif.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "North America, South America",
-                                                    "holdings": {
-                                                        "North America": "10 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "10",
-
-                                                },
                                                 },
                                                 "American Barn Owl": {
                                                     "common": "American Barn Owl",
@@ -7007,18 +3746,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://ecoregistros.org/site/images/dataimages/2022/04/09/489008/DSC_0926.jpg",
                                                     "breeding": "Average",
                                                     "region": "North America, South America",
-                                                    "holdings": {
-                                                        "North America": "1.0 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.0",
-
-                                                },
                                                 },
                                                 "Cuvier's Dwarf Caiman": {
                                                     "common": "Cuvier's Dwarf Caiman",
@@ -7031,18 +3758,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://cdn.britannica.com/20/256820-050-C718F747/Cuviers-dwarf-caiman-Paleosuchus-palpebrosus.jpg",
                                                     "breeding": "Average",
                                                     "region": "South America",
-                                                    "holdings": {
-                                                        "North America": "1.1 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.1",
-
-                                                },
                                                 },
                                                 "Pacific Giant Centipede": {
                                                     "common": "Pacific Giant Centipede",
@@ -7055,18 +3770,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/254287959/large.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "Asia, Oceania",
-                                                    "holdings": {
-                                                        "North America": "1.1 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.1",
-
-                                                },
                                                 },
                                                 "Southern Flying Squirrel": {
                                                     "common": "Southern Flying Squirrel",
@@ -7079,18 +3782,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://i.imgur.com/hkY7q0D.jpeg",
                                                     "breeding": "Difficult",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "1.0 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.0",
-
-                                                },
                                                 },
                                                 "European Bombardier Beetle": {
                                                     "common": "European Bombardier Beetle",
@@ -7103,18 +3794,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://static.inaturalist.org/photos/114151390/large.jpg",
                                                     "breeding": "Average",
                                                     "region": "Europe, Asia, Africa",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "10 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "10",
-
-                                                },
                                                 },
                                                 "Western Pond Turtle": {
                                                     "common": "Western Pond Turtle",
@@ -7127,18 +3806,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/5198277/large.jpeg",
                                                     "breeding": "Below Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "3.3 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "3.3",
-
-                                                },
                                                 },
                                                 "Rock Hyrax": {
                                                     "common": "Rock Hyrax",
@@ -7151,18 +3818,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://static.inaturalist.org/photos/131657139/large.jpeg",
                                                     "breeding": "Average",
                                                     "region": "Africa",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "2.2 - Shropshire Hills Zoo",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Shropshire Hills Zoo": "2.2",
-
-                                                },
                                                 },
                                                 "Reticulated Glass Frog": {
                                                     "common": "Reticulated Glass Frog",
@@ -7175,18 +3830,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://static.inaturalist.org/photos/374495/large.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "North America, South America",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1",
-
-                                                },
                                                 },
                                                 "Green Frog": {
                                                     "common": "Green Frog",
@@ -7199,18 +3842,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Male_Green_Frog_-_Hunterdon_County%2C_NJ.jpg/1280px-Male_Green_Frog_-_Hunterdon_County%2C_NJ.jpg",
                                                     "breeding": "Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "1.0 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.0",
-
-                                                },
                                                 },
                                                 "African Clawed Frog": {
                                                     "common": "African Clawed Frog",
@@ -7223,18 +3854,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://i.imgur.com/FPErRK0.jpeg",
                                                     "breeding": "Average",
                                                     "region": "Africa",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "2.2",
-
-                                                },
                                                 },
                                                 "Australian Green Tree Frog": {
                                                     "common": "Australian Green Tree Frog",
@@ -7247,19 +3866,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.zoochat.com/community/media/australian-green-tree-frog-ranoidea-caerulea.500144/full?d=1599502223",
                                                     "breeding": "Average",
                                                     "region": "Oceania",
-                                                    "holdings": {
-                                                        "North America": "1.0 - Cube Zoological Park",
-                                                        "Europe": "0.1 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Cube Zoological Park": "1.0",
-                                                    "Giardino Zoologico e Botanico La Sapienza": "0.1",
-
-                                                },
                                                 },
                                                 "Bear Lake Sculpin": {
                                                     "common": "Bear Lake Sculpin",
@@ -7272,17 +3878,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://static.inaturalist.org/photos/248862981/original.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "3 - High Uintahs Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "High Uintahs Zoo": "3"
-                                                }
                                                 },
                                                 "Mottled Sculpin": {
                                                     "common": "Mottled Sculpin",
@@ -7295,18 +3890,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://i.troutnut.com/im_regspec/pic_3150_800.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "3 - High Uintahs Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "High Uintahs Zoo": "3"
-
-                                                }
                                                 },
                                                 "Paiute Sculpin": {
                                                     "common": "Paiute Sculpin",
@@ -7319,18 +3902,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/18337097/original.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "3 - High Uintahs Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "High Uintahs Zoo": "3"
-
-                                                }
                                                 },
                                                 "Egyptian Fruit Bat": {
                                                     "common": "Egyptian Fruit Bat",
@@ -7343,18 +3914,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://live.staticflickr.com/3473/3186245424_ebb367a628_b.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "Asia, Africa",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "15 - Shropshire Hills Zoo",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Shropshire Hills Zoo": "15"
-
-                                                }
                                                 },
                                                 "Rodrigues Flying Fox": {
                                                     "common": "Rodrigues Flying Fox",
@@ -7367,18 +3926,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.kiezebrink.eu/public/data/image/extrafields/44b3db3194ceb3de192c36123e885cfbdd48534f-animals-g646cd5b4c-1920.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "Africa",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "6 - Shropshire Hills Zoo",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Shropshire Hills Zoo": "6"
-
-                                                }
                                                 },
                                                 "California Skeleton Shrimp": {
                                                     "common": "California Skeleton Shrimp",
@@ -7391,18 +3938,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/INV006/INV006-00336-1920x1279.jpg",
                                                     "breeding": "Difficult",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "10 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "10"
-
-                                                }
                                                 },
                                                 "Common Basket Star": {
                                                     "common": "Common Basket Star",
@@ -7415,18 +3950,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/166133850/original.jpeg",
                                                     "breeding": "Impossible",
                                                     "region": "North America, Asia",
-                                                    "holdings": {
-                                                        "North America": "1 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "1"
-
-                                                }
                                                 },
                                                 "Everglades Crayfish": {
                                                     "common": "Everglades Crayfish",
@@ -7439,18 +3962,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://static.inaturalist.org/photos/67827087/original.jpeg",
                                                     "breeding": "Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "1.0 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "1.0"
-
-                                                }
                                                 },
                                                 "Sarcastic Fringehead": {
                                                     "common": "Sarcastic Fringehead",
@@ -7463,18 +3974,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS011/FIS011-00563-1920x1278.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "1 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "1"
-
-                                                }
                                                 },
                                                 "Coyote": {
                                                     "common": "Coyote",
@@ -7487,18 +3986,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://cdn.britannica.com/18/7818-050-46C6BE48/Coyote.jpg",
                                                     "breeding": "Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "4.0 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "4.0"
-
-                                                }
                                                 },
                                                 "Giant Desert Centipede": {
                                                     "common": "Giant Desert Centipede",
@@ -7513,18 +4000,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     ],
                                                     "breeding": "Below Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "1.1 (black-headed) - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.1 [black-headed]"
-
-                                                }
                                                 },
                                                 "Timber Rattlesnake": {
                                                     "common": "Timber Rattlesnake",
@@ -7537,18 +4012,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/ZollmanTimberRattlesnake.jpg/1920px-ZollmanTimberRattlesnake.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "1.0 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.0"
-
-                                                }
                                                 },
                                                 "Common Pipistrelle": {
                                                     "common": "Common Pipistrelle",
@@ -7561,18 +4024,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://batslife.eu/wp-content/uploads/2019/11/Vilda_36091_Rollin_Verlinde__Common_Pipistrelle-1160x741.jpg",
                                                     "breeding": "Difficult",
                                                     "region": "Europe, Asia",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "3 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "3"
-
-                                                }
                                                 },
                                                 "Raft Spider": {
                                                     "common": "Raft Spider",
@@ -7585,18 +4036,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AttackPosition.jpg/1280px-AttackPosition.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "Europe, Asia",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1"
-
-                                                }
                                                 },
                                                 "Wasp Spider": {
                                                     "common": "Wasp Spider",
@@ -7609,18 +4048,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://live.staticflickr.com/65535/51891449875_2ca7876e01_b.jpg",
                                                     "breeding": "Average",
                                                     "region": "Europe, Asia, Africa",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1"
-
-                                                }
                                                 },
                                                 "Indian White-Eye": {
                                                     "common": "Indian White-Eye",
@@ -7633,18 +4060,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/126366191/900",
                                                     "breeding": "Average",
                                                     "region": "Asia",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "1.1 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.1"
-
-                                                }
                                                 },
                                                 "New Caledonian Giant Gecko": {
                                                     "common": "New Caledonian Giant Gecko",
@@ -7657,18 +4072,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://a-z-animals.com/media/2024/03/shutterstock-2338755981-huge-licensed-scaled-1024x682.jpg",
                                                     "breeding": "Difficult",
                                                     "region": "Oceania",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "1.0 - Giardino Zoologico e Botanico La Sapienza",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.0"
-
-                                                }
                                                 },
                                                 "Common Earwig": {
                                                     "common": "Common Earwig",
@@ -7681,18 +4084,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/15939/large.jpg",
                                                     "breeding": "Average",
                                                     "region": "Europe, Asia",
-                                                    "holdings": {
-                                                        "North America": "6 - Cube Zoological Park",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Cube Zoological Park": "6"
-
-                                                }
                                                 },
                                                 "American Paddlefish": {
                                                     "common": "American Paddlefish",
@@ -7705,18 +4096,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Paddlefish-USFWS-Fish-and-Aquatic-Conservation-2160x1440.jpg/1280px-Paddlefish-USFWS-Fish-and-Aquatic-Conservation-2160x1440.jpg",
                                                     "breeding": "Difficult",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": "3 - Wasser Wunder Welt",
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Wasser Wunder Welt": "3"
-
-                                                }
                                                 },
                                                 "Blue-Green Chromis": {
                                                     "common": "Blue-Green Chromis",
@@ -7729,18 +4108,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.fishi-pedia.com/wp-content/uploads/2023/05/Chromis_viridis_1-scaled.jpg",
                                                     "breeding": "Impossible",
                                                     "region": "Asia, Africa, Oceania",
-                                                    "holdings": {
-                                                        "North America": "200 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "200"
-
-                                                }
                                                 },
                                                 "Percula Clownfish": {
                                                     "common": "Percula Clownfish",
@@ -7753,18 +4120,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/FIS046/FIS046-00345-1920x1279.jpg",
                                                     "breeding": "Easy",
                                                     "region": "Oceania",
-                                                    "holdings": {
-                                                        "North America": "8.8 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "8.8"
-
-                                                }
                                                 },
                                                 "Banggai Cardinalfish": {
                                                     "common": "Banggai Cardinalfish",
@@ -7777,18 +4132,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Banggai-Kardinalbarsch_%28Pterapogon_kauderni%29_-_5340.jpg",
                                                     "breeding": "Average",
                                                     "region": "Asia",
-                                                    "holdings": {
-                                                        "North America": "12 - New York Aquarium",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "New York Aquarium": "12"
-
-                                                }
                                                 },
                                                 "Ball Python": {
                                                     "common": "Ball Python",
@@ -7801,18 +4144,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://i.imgur.com/b2G7noH.jpeg",
                                                     "breeding": "Easy",
                                                     "region": "Africa",
-                                                    "holdings": {
-                                                        "North America": "0.1 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "0.1"
-
-                                                }
                                                 },
                                                 "Argentine Horned Frog": {
                                                     "common": "Argentine Horned Frog",
@@ -7825,18 +4156,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/106327834/original.jpeg",
                                                     "breeding": "Average",
                                                     "region": "South America",
-                                                    "holdings": {
-                                                        "North America": "1.0 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.0"
-
-                                                }
                                                 },
                                                 "Carolina Sphinx Moth": {
                                                     "common": "Carolina Sphinx Moth",
@@ -7852,18 +4171,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     ],
                                                     "breeding": "Very Easy",
                                                     "region": "North America",
-                                                    "holdings": {
-                                                        "North America": "12 - Cube Zoological Park",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Cube Zoological Park": "12"
-
-                                                }
                                                 },
                                                 "American Tadpole Shrimp": {
                                                     "common": "American Tadpole Shrimp",
@@ -7876,17 +4183,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Triops_longicaudatus.jpg",
                                                     "breeding": "Easy",
                                                     "region": "North America, South America, Asia, Oceania",
-                                                    "holdings": {
-                                                        "North America": "20 - Cube Zoological Park",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                        "Cube Zoological Park": "20"
-                                                    }
                                                 },
                                                 "San Francisco Brine Shrimp": {
                                                     "common": "San Francisco Brine Shrimp",
@@ -7899,18 +4195,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://microscopy.org/get/files/image/galleries/Artemia_FINAL.jpg",
                                                     "breeding": "Very Easy",
                                                     "region": "North America, South America",
-                                                    "holdings": {
-                                                        "North America": "200 - Cube Zoological Park",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Cube Zoological Park": "200"
-
-                                                    }
                                                 },
                                                 "African Fat-Tailed Gecko": {
                                                     "common": "African Fat-Tailed Gecko",
@@ -7923,18 +4207,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Hemitheconyx_caudicinctus.jpg",
                                                     "breeding": "Average",
                                                     "region": "Africa",
-                                                    "holdings": {
-                                                        "North America": "1.1 - Essex County Zoo",
-                                                        "Europe": 0,
-                                                        "Asia": 0,
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Essex County Zoo": "1.1"
-
-                                                    }
                                                     },
                                                 "Cryptic Green Pit Viper": {
                                                     "common": "Cryptic Green Pit Viper",
@@ -7947,18 +4219,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://static.thainationalparks.com/img/species/2025/04/26/398196/trimeresurus-cryptographicus-w-1500.jpg",
                                                     "breeding": "Below Average",
                                                     "region": "Asia",
-                                                    "holdings": {
-                                                        "North America": 0,
-                                                        "Europe": 0,
-                                                        "Asia": "1.1 - Chiang Mai Serpentarium",
-                                                        "Africa": 0,
-                                                        "South America": 0,
-                                                        "Oceania": 0,
-                                                    },
-                                                    "institutions": {
-                                                    "Chiang Mai Serpentarium": "1.1"
-
-                                                }
                                                 },
                                                 "Guo's Green Pit Viper": {
                                                 "common": "Guo's Green Pit Viper",
@@ -7971,18 +4231,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://static.thainationalparks.com/img/species/2020/12/03/397103/trimeresurus-albolabris-guoi-w-1500.jpg",
                                                 "breeding": "Below Average",
                                                 "region": "Asia",
-                                                "holdings": {
-                                                    "North America": 0,
-                                                    "Europe": 0,
-                                                    "Asia": "1.2 - Chiang Mai Serpentarium",
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Chiang Mai Serpentarium": "1.2"
-
-                                            }
                                             },
                                             "Lanna Green Pit Viper": {
                                             "common": "Lanna Green Pit Viper",
@@ -7995,18 +4243,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://static.thainationalparks.com/img/species/2024/04/05/398115/trimeresurus-lanna-w-1500.jpg",
                                             "breeding": "Below Average",
                                             "region": "Asia",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Europe": 0,
-                                                "Asia": "0.2 - Chiang Mai Serpentarium",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Chiang Mai Serpentarium": "0.2"
-
-                                        }
                                         },
                                         "Phuket Pit Viper": {
                                         "common": "Phuket Pit Viper",
@@ -8019,18 +4255,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://www.thainationalparks.com/img/species/2021/11/28/397697/trimeresurus-phuketensis-w-1500.jpg",
                                         "breeding": "Below Average",
                                         "region": "Asia",
-                                        "holdings": {
-                                            "North America": 0,
-                                            "Europe": 0,
-                                            "Asia": "1.2 - Chiang Mai Serpentarium",
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "Chiang Mai Serpentarium": "1.2"
-
-                                    }
                                     },
                                     "Omkoi Lance-Headed Pit Viper": {
                                     "common": "Omkoi Lance-Headed Pit Viper",
@@ -8043,18 +4267,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkNUZ_xwrA_D0SGEBtDMeUb3VtE7h9bYFqx43Y0AteAn5re4icyJ9cWlQjnhyphenhyphenaMj2XNdXVsawrwNd7j_1vsnJXfuwO2JSmsy5L8K-3GSI5yHEI2-AUk1TtyCa0WJYHIALBqd82vkd-X1nS/s1600/Protobothrops_kelomohy-novataxa_2020-Sumontha_Vasaruchapong_Chomngam_Suntrarachun_et-al.jpg",
                                     "breeding": "Difficult",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": 0,
-                                        "Europe": 0,
-                                        "Asia": "1.0 - Chiang Mai Serpentarium",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Chiang Mai Serpentarium": "1.0"
-
-                                    }
                                     },
                                     "Brown-Banded Cobra": {
                                     "common": "Brown-Banded Cobra",
@@ -8067,18 +4279,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/ANI118/ANI118-00121.jpg",
                                     "breeding": "Below Average",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": 0,
-                                        "Europe": 0,
-                                        "Asia": "2.0 - Chiang Mai Serpentarium",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Chiang Mai Serpentarium": "2.0"
-
-                                    }
                                     },
                                     "Siamese Spitting Cobra": {
                                     "common": "Siamese Spitting Cobra",
@@ -8091,18 +4291,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Naja-siamensis-indochinese-spitting-cobra-southwest-thailand.jpg/1920px-Naja-siamensis-indochinese-spitting-cobra-southwest-thailand.jpg",
                                     "breeding": "Below Average",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": 0,
-                                        "Europe": 0,
-                                        "Asia": "0.1 - Chiang Mai Serpentarium",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Chiang Mai Serpentarium": "0.1"
-
-                                        }
                                         },
                                         "Wanghaoting's Krait": {
                                         "common": "Wanghaoting's Krait",
@@ -8115,18 +4303,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://images.squarespace-cdn.com/content/v1/5b4b10e19d5abb222d2069fe/1617092002655-MDPCXWMDX073CX6L3Y23/Many+Banded+Krait+-+Bungarus+multicinctus.jpg",
                                         "breeding": "Below Average",
                                         "region": "Asia",
-                                        "holdings": {
-                                            "North America": 0,
-                                            "Europe": 0,
-                                            "Asia": "0.1 - Chiang Mai Serpentarium",
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "Chiang Mai Serpentarium": "0.1"
-
-                                    }
                                     },
                                     "Cox's Mud Snake": {
                                     "common": "Cox's Mud Snake",
@@ -8139,18 +4315,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://www.thainationalparks.com/img/species/2020/09/03/397029/homalopsis-mereljcoxi-w-1500.jpg",
                                     "breeding": "Below Average",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": 0,
-                                        "Europe": 0,
-                                        "Asia": "2.4 - Chiang Mai Serpentarium",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Chiang Mai Serpentarium": "2.4"
-
-                                    }
                                     },
                                     "Green Cat Snake": {
                                     "common": "Green Cat Snake",
@@ -8163,18 +4327,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://static.thainationalparks.com/img/species/2017/08/10/319997/boiga-cyanea-w-1500.jpg",
                                     "breeding": "Average",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": 0,
-                                        "Europe": 0,
-                                        "Asia": "0.1 (cf.) - Chiang Mai Serpentarium",
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Chiang Mai Serpentarium": "0.1 [cf.]"
-
-                                    }
                                     },
                                     "Eggers's Killifish": {
                                     "common": "Eggers's Killifish",
@@ -8190,18 +4342,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     ],
                                     "breeding": "Average",
                                     "region": "Africa",
-                                    "holdings": {
-                                        "North America": "3.3 (Utete Red) 3.3 (Makurunge) - New York Aquarium",
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "New York Aquarium": "3.3 [Utete Red], 3.3 [Makurunge]"
-
-                                    }
                                     },
                                     "Featherfin Pearlfish": {
                                     "common": "Featherfin Pearlfish",
@@ -8214,17 +4354,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://i.imgur.com/mol9w0S.jpeg",
                                     "breeding": "Average",
                                     "region": "South America",
-                                    "holdings": {
-                                        "North America": "3.3 - New York Aquarium",
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "New York Aquarium": "3.3"
-                                        }
                                         },
                                 "Leaf Plate Montipora": {
                                     "common": "Leaf Plate Montipora",
@@ -8242,18 +4371,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://example.com/default.jpg",
                                         "breeding": "Difficult",
                                         "region": "Asia, Oceania",
-                                    "holdings": {
-                                        "North America": "1 [Brown form] 1 [Pink form] 1 [Orange form] - New York Aquarium",
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                        "New York Aquarium": "1 [Brown form], 1 [Pink form], 1 [Orange form]"
-
-                                    }
                                     },
                                     "Thin Staghorn Coral": {
                                     "common": "Thin Staghorn Coral",
@@ -8271,18 +4388,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://example.com/default.jpg",
                                 "breeding": "Difficult",
                                 "region": "Asia, Africa, Oceania",
-                                "holdings": {
-                                    "North America": "1 [Brown form] 1 [Pink form] 1 [Green form] - New York Aquarium",
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "New York Aquarium": "1 [Brown form], 1 [Pink form], 1 [Green form]"
-
-                                    }
                                     },
                                     "Bog Turtle": {
                                     "common": "Bog Turtle",
@@ -8295,18 +4400,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://dep.nj.gov/njfw/wp-content/uploads/njfw/bog_turtle_2_Zarate.jpg",
                                     "breeding": "Difficult",
                                     "region": "North America",
-                                    "holdings": {
-                                        "North America": "2.2 - Essex County Zoo",
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Essex County Zoo": "2.2"
-
-                                    }
                                     },
                                     "Gooty Sapphire Tarantula": {
                                     "common": "Gooty Sapphire Tarantula",
@@ -8319,18 +4412,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/65568901/large.jpg",
                                     "breeding": "Below Average",
                                     "region": "Asia",
-                                    "holdings": {
-                                        "North America": "2.1 - Essex County Zoo",
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Essex County Zoo": "2.1"
-
-                                    }
                                     },
                                     "Ring-Tailed Lemur": {
                                     "common": "Ring-Tailed Lemur",
@@ -8343,18 +4424,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Lemur_catta_001.jpg/1024px-Lemur_catta_001.jpg",
                                     "breeding": "Easy",
                                     "region": "Africa",
-                                    "holdings": {
-                                        "North America": "2.2 - Essex County Zoo",
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Essex County Zoo": "2.2"
-
-                                    }
                                     },
                                     "Spotted Turtle": {
                                     "common": "Spotted Turtle",
@@ -8367,18 +4436,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Spotted_Turtle_Virginia_March_2023.jpg/1920px-Spotted_Turtle_Virginia_March_2023.jpg",
                                     "breeding": "Below Average",
                                     "region": "North America",
-                                    "holdings": {
-                                        "North America": "2.2 - Essex County Zoo",
-                                        "Europe": 0,
-                                        "Asia": 0,
-                                        "Africa": 0,
-                                        "South America": 0,
-                                        "Oceania": 0,
-                                    },
-                                    "institutions": {
-                                    "Essex County Zoo": "2.2"
-
-                                }
                                 },
                                 "American Burying Beetle": {
                                 "common": "American Burying Beetle",
@@ -8391,18 +4448,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://static.inaturalist.org/photos/57135673/large.jpg",
                                 "breeding": "Below Average",
                                 "region": "North America",
-                                "holdings": {
-                                    "North America": "20 - Cube Zoological Park",
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Cube Zoological Park": "20"
-
-                                }
                                 },
                                 "Dama Gazelle": {
                                 "common": "Dama Gazelle",
@@ -8417,18 +4462,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     ],
                                 "breeding": "Below Average",
                                 "region": "Africa",
-                                "holdings": {
-                                    "North America": "1.2 (ruficollis) - Cube Zoological Park",
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Cube Zoological Park": "1.2 [ruficollis]"
-
-                                }
                                 },
                                 "White-Lipped Deer": {
                                 "common": "White-Lipped Deer",
@@ -8441,18 +4474,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://i.imgur.com/Au3bG5e.jpeg",
                                 "breeding": "Average",
                                 "region": "Asia",
-                                "holdings": {
-                                    "North America": "2.4 - Cube Zoological Park",
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Cube Zoological Park": "2.4"
-
-                                }
                                 },
                                 "Addax": {
                                 "common": "Addax",
@@ -8465,18 +4486,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/A_big_male_Addax_showing_as_the_power_of_his_horns.jpg/1280px-A_big_male_Addax_showing_as_the_power_of_his_horns.jpg",
                                 "breeding": "Average",
                                 "region": "Africa",
-                                "holdings": {
-                                    "North America": "3.0 - Cube Zoological Park",
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Cube Zoological Park": "3.0"
-
-                                }
                                 },
                                 "Scimitar-Horned Oryx": {
                                 "common": "Scimitar-Horned Oryx",
@@ -8489,18 +4498,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/67404875/original.jpg",
                                 "breeding": "Average",
                                 "region": "Africa",
-                                "holdings": {
-                                    "North America": "0.1 - Cube Zoological Park",
-                                    "Europe": 0,
-                                    "Asia": 0,
-                                    "Africa": 0,
-                                    "South America": 0,
-                                    "Oceania": 0,
-                                },
-                                "institutions": {
-                                "Cube Zoological Park": "0.1"
-
-                                    },
                                     },
 
                                     "Mountain Zebra": {
@@ -8517,18 +4514,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://example.com/default.jpg",
                                         "breeding": "Average",
                                         "region": "Africa",
-                                        "holdings": {
-                                            "North America": "1.0 (hartmannae) - Cube Zoological Park",
-                                            "Europe": 0,
-                                            "Asia": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                            "Cube Zoological Park": "1.0 [hartmannae]"
-
-                                        }
                                         },
                                         "Sardinian Brook Salamander": {
                                         "common": "Sardinian Brook Salamander",
@@ -8541,18 +4526,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://www.pierrewildlife.com/wp-content/uploads/2024/07/Euproctus-platycephalus-2.jpg",
                                         "breeding": "Below Average",
                                         "region": "Europe",
-                                        "holdings": {
-                                            "North America": 0,
-                                            "Europe": "2.2 - Giardino Zoologico e Botanico La Sapienza",
-                                            "Asia": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "Giardino Zoologico e Botanico La Sapienza": "2.2"
-
-                                        },
                                         },
                                           "Alpine Newt": {
                                             "common": "Alpine Newt",
@@ -8568,18 +4541,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://example.com/default.jpg",
                                             "breeding": "Average",
                                             "region": "Europe",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Europe": "2.2 (inexpectatus) - Giardino Zoologico e Botanico La Sapienza",
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Giardino Zoologico e Botanico La Sapienza": "2.2 [inexpectatus]"
-
-                                            }
                                             },
                                             "Dark-Eyed Junco": {
                                             "common": "Dark-Eyed Junco",
@@ -8592,18 +4553,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Junco_hyemalis_hyemalis_CT1_%28cropped%29.jpg/1280px-Junco_hyemalis_hyemalis_CT1_%28cropped%29.jpg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "0.1 - Glacier Zoo",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Glacier Zoo": "0.1"
-
-                                            }
                                             },
                                             "Northwestern Garter Snake": {
                                             "common": "Northwestern Garter Snake",
@@ -8616,18 +4565,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/33871044/original.jpeg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": "1.0 - Glacier Zoo",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Glacier Zoo": "1.0"
-
-                                            },
                                             },
                                               "Domestic Goose": {
                                                 "common": "Domestic Goose",
@@ -8642,18 +4579,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 ],
                                                 "image_url": "https://example.com/default.jpg",
                                                 "breeding": "Very Easy",
-                                                "holdings": {
-                                                    "North America": "1.3 (Roman) - Giardino Zoologico e Botanico La Sapienza",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                    "Giardino Zoologico e Botanico La Sapienza": "1.3 [Roman]"
-
-                                                }
                                                 },
                                                 "Atlantic Needlefish": {
                                                 "common": "Atlantic Needlefish",
@@ -8666,18 +4591,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Fish4485_-_Flickr_-_NOAA_Photo_Library.jpg/2560px-Fish4485_-_Flickr_-_NOAA_Photo_Library.jpg",
                                                 "breeding": "Impossible",
                                                 "region": "North America, South America",
-                                                "holdings": {
-                                                    "North America": "6 - Cube Zoological Park",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Cube Zoological Park": "6"
-
-                                                }
                                                 },
                                                 "Eastern Oyster": {
                                                 "common": "Eastern Oyster",
@@ -8690,18 +4603,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/9292868/original.png",
                                                 "breeding": "Difficult",
                                                 "region": "North America, South America",
-                                                "holdings": {
-                                                    "North America": "12 - Cube Zoological Park",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Cube Zoological Park": "12"
-
-                                                }
                                                 },
                                                 "Northern Puffer": {
                                                 "common": "Northern Puffer",
@@ -8714,18 +4615,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/65346027/large.jpg",
                                                 "breeding": "Impossible",
                                                 "region": "North America",
-                                                "holdings": {
-                                                    "North America": "3 - Cube Zoological Park",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Cube Zoological Park": "3"
-
-                                                }
                                                 },
                                                 "Spot Croaker": {
                                                 "common": "Spot Croaker",
@@ -8738,18 +4627,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://static.inaturalist.org/photos/163271805/large.jpg",
                                                 "breeding": "Impossible",
                                                 "region": "North America",
-                                                "holdings": {
-                                                    "North America": "5 - Cube Zoological Park",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Cube Zoological Park": "5"
-
-                                                }
                                                 },
                                                 "Bocourt's Mud Snake": {
                                                 "common": "Bocourt's Mud Snake",
@@ -8762,18 +4639,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/103705161/original.jpg",
                                                 "breeding": "Below Average",
                                                 "region": "Asia",
-                                                "holdings": {
-                                                    "North America": 0,
-                                                    "Europe": 0,
-                                                    "Asia": "1.0 - Chiang Mai Serpentarium",
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Chiang Mai Serpentarium": "1.0"
-
-                                                }
                                                 },
                                                 "Checkered Keelback": {
                                                 "common": "Checkered Keelback",
@@ -8786,18 +4651,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://indiabiodiversity.org/files-api/api/get/raw/img//Xenochrophis%20piscator/174.jpg",
                                                 "breeding": "Below Average",
                                                 "region": "Asia",
-                                                "holdings": {
-                                                    "North America": 0,
-                                                    "Europe": 0,
-                                                    "Asia": "0.2 - Chiang Mai Serpentarium",
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Chiang Mai Serpentarium": "0.2"
-
-                                                }
                                                 },
                                                 "Rainbow Water Snake": {
                                                 "common": "Rainbow Water Snake",
@@ -8810,18 +4663,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Enhydris_enhydris.jpg",
                                                 "breeding": "Below Average",
                                                 "region": "Asia",
-                                                    "holdings": {
-                                                    "North America": 0,
-                                                    "Europe": 0,
-                                                    "Asia": "1.1 - Chiang Mai Serpentarium",
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Chiang Mai Serpentarium": "1.1"
-
-                                                }
                                                 },
                                                 "Bonnethead Shark": {
                                                 "common": "Bonnethead Shark",
@@ -8834,18 +4675,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://i.imgur.com/qiKPzmO.jpeg",
                                                 "breeding": "Difficult",
                                                 "region": "North America",
-                                                    "holdings": {
-                                                    "North America": "1.2 - New York Aquarium",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "New York Aquarium": "1.2"
-
-                                                }
                                                 },
                                                 "Eastern Crayfish": {
                                                 "common": "Eastern Crayfish",
@@ -8858,18 +4687,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/180992668/original.jpg",
                                                 "breeding": "Below Average",
                                                 "region": "North America",
-                                                    "holdings": {
-                                                    "North America": "1.0 - New York Aquarium",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "New York Aquarium": "1.0"
-
-                                                }
                                                 },
                                                 "Horn Shark": {
                                                 "common": "Horn Shark",
@@ -8882,18 +4699,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://www.sharksandrays.com/wp-content/uploads/2020/11/Horn-Shark-006.jpg",
                                                 "breeding": "Below Average",
                                                 "region": "North America",
-                                                    "holdings": {
-                                                    "North America": "2.2 - New York Aquarium",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "New York Aquarium": "2.2"
-
-                                                }
                                                 },
                                                 "Snakehead Betta": {
                                                 "common": "Snakehead Betta",
@@ -8906,18 +4711,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://i.imgur.com/lhUXwvn.png",
                                                 "breeding": "Average",
                                                 "region": "Asia",
-                                                    "holdings": {
-                                                    "North America": "2.2 - New York Aquarium",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "New York Aquarium": "2.2"
-
-                                                }
                                                 },
                                                 "Painted Turtle": {
                                                 "common": "Painted Turtle",
@@ -8930,18 +4723,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Painted_turtle_%28Chrysemys_picta%29_Madden_Haag.jpg/1280px-Painted_turtle_%28Chrysemys_picta%29_Madden_Haag.jpg",
                                                 "breeding": "Average",
                                                 "region": "North America",
-                                                    "holdings": {
-                                                    "North America": "1.2 - Essex County Zoo",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Essex County Zoo": "1.2"
-
-                                            }
                                             },
                                             "Blue Surgeonfish": {
                                             "common": "Blue Surgeonfish",
@@ -8954,18 +4735,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Paletten-Doktorfisch_M%C3%BCnster.JPG/1280px-Paletten-Doktorfisch_M%C3%BCnster.JPG",
                                             "breeding": "Average",
                                             "region": "Asia, Africa, Oceania",
-                                                "holdings": {
-                                                "North America": "8 - New York Aquarium",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "New York Aquarium": "8"
-
-                                            }
                                             },
                                             "Orchid Dottyback": {
                                             "common": "Orchid Dottyback",
@@ -8978,18 +4747,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://i.imgur.com/mwpIIOV.jpeg",
                                             "breeding": "Impossible",
                                             "region": "Asia, Africa",
-                                                "holdings": {
-                                                "North America": "6 - New York Aquarium",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "New York Aquarium": "6"
-
-                                        }
                                         },
                                         "Blue Damselfish": {
                                         "common": "Blue Damselfish",
@@ -9002,18 +4759,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://fishesofaustralia.net.au/Images/Image/ChrysiptCyaneaMAGNT.jpg",
                                         "breeding": "Impossible",
                                         "region": "Asia, Oceania",
-                                            "holdings": {
-                                            "North America": "15 - New York Aquarium",
-                                            "Europe": 0,
-                                            "Asia": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "New York Aquarium": "15"
-                                            
-                                        }
                                         },
                                         "Western Hognose Snake": {
                                         "common": "Western Hognose Snake",
@@ -9026,18 +4771,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/4199357/large.jpg",
                                         "breeding": "Average",
                                         "region": "North America",
-                                            "holdings": {
-                                            "North America": "1.0 - Essex County Zoo",
-                                            "Europe": 0,
-                                            "Asia": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "Essex County Zoo": "1.0"
-
-                                        }
                                         },
                                         "Madagascar Hissing Cockroach": {
                                         "common": "Madagascar Hissing Cockroach",
@@ -9050,18 +4783,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://static.inaturalist.org/photos/108698566/large.jpg",
                                         "breeding": "Very Easy",
                                         "region": "Africa",
-                                            "holdings": {
-                                            "North America": "100 - Essex County Zoo",
-                                            "Europe": 0,
-                                            "Asia": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "Essex County Zoo": "100"
-
-                                        }
                                         },
                                         "Asian Forest Scorpion": {
                                         "common": "Asian Forest Scorpion",
@@ -9074,18 +4795,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Heterometrus_spinifer_%28Ehrenberg%2C_1828%29_Asian_Forest_Scorpion_%286246043808%29.jpg/1280px-Heterometrus_spinifer_%28Ehrenberg%2C_1828%29_Asian_Forest_Scorpion_%286246043808%29.jpg",
                                         "breeding": "Below Average",
                                         "region": "Asia",
-                                            "holdings": {
-                                            "North America": "0.1 - Essex County Zoo",
-                                            "Europe": 0,
-                                            "Asia": 0,
-                                            "Africa": 0,
-                                            "South America": 0,
-                                            "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                        "Essex County Zoo": "0.1"
-
-                                        }
                                         },
                                         "Tokay Gecko": {
                                         "common": "Tokay Gecko",
@@ -9098,18 +4807,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://www.joelsartore.com/wp-content/uploads/stock/ANI115/ANI115-00252-1920x1279.jpg",
                                             "breeding": "Average",
                                             "region": "Asia, Oceania",
-                                                "holdings": {
-                                                "North America": "1.0 - Cube Zoological Park",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Cube Zoological Park": "1.0"
-
-                                        }
                                         },
                                         "Northern Curly-Tailed Lizard": {
                                         "common": "Northern Curly-Tailed Lizard",
@@ -9122,18 +4819,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Cuban_curly-tailed_lizard_%28Leiocephalus_carinatus_labrossytus%29.JPG/1280px-Cuban_curly-tailed_lizard_%28Leiocephalus_carinatus_labrossytus%29.JPG",
                                             "breeding": "Average",
                                             "region": "North America",
-                                                "holdings": {
-                                                "North America": "1.1 - Cube Zoological Park",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Cube Zoological Park": "1.1"
-
-                                            }
                                             },
                                             "Northern Pipefish": {
                                             "common": "Northern Pipefish",
@@ -9146,18 +4831,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 "image_url": "https://i.imgur.com/vcprtHG.jpeg",
                                                 "breeding": "Below Average",
                                                 "region": "North America",
-                                                    "holdings": {
-                                                    "North America": "6 - Cube Zoological Park",
-                                                    "Europe": 0,
-                                                    "Asia": 0,
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                                },
-                                                "institutions": {
-                                                "Cube Zoological Park": "6"
-
-                                                    }
                                                     },
                                                     
                                         "Eastern Newt": {
@@ -9173,17 +4846,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             ],
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {
-                                                "North America": 0,
-                                                "Asia": 0,
-                                                "Europe": "2.2 (viridescens) - Giardino Zoologico e Botanico La Sapienza",
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                        },
-                                        "institutions": {
-                                            "Giardino Zoologico e Botanico La Sapienza": "2.2 [viridescens]"
-                                    }
                                     },
                                         "Eastern Tiger Swallowtail": {
                                         "common": "Eastern Tiger Swallowtail",
@@ -9198,18 +4860,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             ],
                                             "breeding": "Average",
                                             "region": "North America",
-                                                "holdings": {
-                                                "North America": "25 (Yellow) - Cube Zoological Park",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Cube Zoological Park": "25 [Yellow]"
-
-                                        }
                                         },
                                         "Uinta Ground Squirrel": {
                                         "common": "Uinta Ground Squirrel",
@@ -9222,18 +4872,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/264824325/large.jpg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                                "holdings": {
-                                                "North America": "0.2 - High Uintahs Zoo",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "High Uintahs Zoo": "0.2"
-
-                                        }
                                         },
                                         "Texas Blind Salamander": {
                                         "common": "Texas Blind Salamander",
@@ -9246,18 +4884,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://i.imgur.com/V4ukLvG.jpeg",
                                             "breeding": "Difficult",
                                             "region": "North America",
-                                                "holdings": {
-                                                "North America": "1.0 - New York Aquarium",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "New York Aquarium": "1.0"
-
-                                        }
                                         },
                                         "Steller's Jay": {
                                         "common": "Steller's Jay",
@@ -9270,18 +4896,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyanocitta_stelleri_macrolopha_%28Steller%27s_jay%29_%28Rocky_Mountains_National_Park%2C_Colorado%2C_USA%29_2.jpg/962px-Cyanocitta_stelleri_macrolopha_%28Steller%27s_jay%29_%28Rocky_Mountains_National_Park%2C_Colorado%2C_USA%29_2.jpg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                                "holdings": {
-                                                "North America": "1.0 - Glacier Zoo",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Glacier Zoo": "1.0"
-                                                
-                                                }
                                                 },
                                             "Common Box Turtle": {
                                                 "common": "Common Box Turtle",
@@ -9296,18 +4910,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                 ],
                                                 "breeding": "Below Average",
                                                 "region": "North America",
-                                                "holdings": {
-                                                    "North America": 0,
-                                                    "Asia": 0,
-                                                    "Europe": "1.0 (carolina) - Shropshire Hills Zoo",
-                                                    "Africa": 0,
-                                                    "South America": 0,
-                                                    "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                                "Shropshire Hills Zoo": "1.0 [carolina]"
-
-                                                }
                                                 },
                                         "Black Lion Tamarin": {
                                         "common": "Black Lion Tamarin",
@@ -9320,18 +4922,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Black_Lion_Tamarin_4.jpg",
                                             "breeding": "Below Average",
                                             "region": "South America",
-                                                "holdings": {
-                                                "North America": "1.1 - Essex County Zoo",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Essex County Zoo": "1.1"
-
-                                                }
                                                 },
                                         "Guianan Squirrel Monkey": {
                                         "common": "Guianan Squirrel Monkey",
@@ -9344,18 +4934,6 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Saimiri_sciureus_%286337874822%29.jpg",
                                             "breeding": "Average",
                                             "region": "South America",
-                                                "holdings": {
-                                                "North America": "2.4 - Cube Zoological Park",
-                                                "Europe": 0,
-                                                "Asia": 0,
-                                                "Africa": 0,
-                                                "South America": 0,
-                                                "Oceania": 0,
-                                            },
-                                            "institutions": {
-                                            "Cube Zoological Park": "2.4"
-                                            
-                                }
                                 },
 }
 SPECIES = species_data
