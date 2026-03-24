@@ -13047,6 +13047,10 @@ if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
     keep_alive()
 
+    @bot.command()
+    async def test(ctx):
+        await ctx.send("I am alive 👁️")
+    
     token = os.getenv("DISCORD_TOKEN")
     if not token:
         log.error("DISCORD_TOKEN not set in environment or .env")
