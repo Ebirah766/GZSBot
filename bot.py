@@ -13043,14 +13043,20 @@ async def cmd_progressrole_refresh(ctx: commands.Context):
     await recompute_progress_role_for_guild(ctx.guild)
     await ctx.send("🔄 Refreshed role assignments.")
 
+@bot.event
+async def on_ready():
+    log.info("Logged in as %s (%s)", bot.user, bot.user.id)
+    log.info("Bot is ready.")
+
+    if not weekly_breeding.is_running():
+        weekly_breeding.start()
+    if not progress_role_sweeper.is_running():
+        progress_role_sweeper.start()
+
 if __name__ == "__main__":
     # >>> ADDED: start keep-alive web server before running the bot <<<
     keep_alive()
 
-    @bot.command()
-    async def test(ctx):
-        await ctx.send("I am alive 👁️")
-    
     token = os.getenv("DISCORD_TOKEN")
     if not token:
         log.error("DISCORD_TOKEN not set in environment or .env")
