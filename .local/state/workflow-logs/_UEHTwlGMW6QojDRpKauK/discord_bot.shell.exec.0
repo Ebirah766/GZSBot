@@ -1,0 +1,87 @@
+2026-03-24 21:39:35,787 | INFO | wotbp-bot | Loaded environment from .env
+2026-03-24 21:39:36,091 | INFO | wotbp-bot | Python exe: /home/runner/workspace/.pythonlibs/bin/python
+2026-03-24 21:39:36,092 | INFO | wotbp-bot | CWD: /home/runner/workspace
+2026-03-24 21:39:36,092 | INFO | wotbp-bot | DISCORD_TOKEN present? Yes
+[30;1m2026-03-24 21:39:36[0m [34;1mINFO    [0m [35mdiscord.client[0m logging in using static token
+2026-03-24 21:39:36,121 | INFO | discord.client | logging in using static token
+ * Serving Flask app 'keep_alive'
+ * Debug mode: off
+2026-03-24 21:39:36,133 | INFO | werkzeug | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.31.102.226:8080
+2026-03-24 21:39:36,133 | INFO | werkzeug | [33mPress CTRL+C to quit[0m
+[30;1m2026-03-24 21:39:37[0m [34;1mINFO    [0m [35mdiscord.gateway[0m Shard ID None has connected to Gateway (Session ID: aaf8709dedace783f0bee5bbfcf3c482).
+2026-03-24 21:39:37,087 | INFO | discord.gateway | Shard ID None has connected to Gateway (Session ID: aaf8709dedace783f0bee5bbfcf3c482).
+2026-03-24 21:39:39,091 | INFO | wotbp-bot | Logged in as GZS Central Command Bot#8172 (1423006395871268894)
+2026-03-24 21:39:39,091 | INFO | wotbp-bot | Bot is ready.
+2026-03-24 21:40:43,212 | ERROR | wotbp-bot | Error in ;species
+Traceback (most recent call last):
+  File "/home/runner/workspace/bot.py", line 11473, in cmd_card
+    await ctx.send(embed=embed)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/ext/commands/context.py", line 1024, in send
+    return await super().send(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/abc.py", line 1561, in send
+    data = await state.http.send_message(channel.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/http.py", line 739, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50013): Missing Permissions
+2026-03-24 21:40:43,379 | ERROR | wotbp-bot | Command error: Command raised an exception: Forbidden: 403 Forbidden (error code: 50013): Missing Permissions
+NoneType: None
+[30;1m2026-03-24 21:40:43[0m [31mERROR   [0m [35mdiscord.client[0m Ignoring exception in on_command_error
+[31mTraceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "/home/runner/workspace/bot.py", line 12117, in on_command_error
+    await ctx.send("An error occurred while processing that command.")
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/ext/commands/context.py", line 1024, in send
+    return await super().send(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/abc.py", line 1561, in send
+    data = await state.http.send_message(channel.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/http.py", line 739, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50013): Missing Permissions[0m
+2026-03-24 21:40:43,587 | ERROR | discord.client | Ignoring exception in on_command_error
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/client.py", line 441, in _run_event
+    await coro(*args, **kwargs)
+  File "/home/runner/workspace/bot.py", line 12117, in on_command_error
+    await ctx.send("An error occurred while processing that command.")
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/ext/commands/context.py", line 1024, in send
+    return await super().send(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/abc.py", line 1561, in send
+    data = await state.http.send_message(channel.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/http.py", line 739, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50013): Missing Permissions
+[30;1m2026-03-24 21:45:18[0m [34;1mINFO    [0m [35mdiscord.gateway[0m Shard ID None session has been invalidated.
+2026-03-24 21:45:18,200 | INFO | discord.gateway | Shard ID None session has been invalidated.
+Traceback (most recent call last):
+  File "/home/runner/workspace/bot.py", line 13054, in <module>
+    bot.run(token)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/client.py", line 860, in run
+    asyncio.run(runner())
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/6334pjf6w2q623rgvwi499qaiym1p6yv-python3-3.11.14/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/client.py", line 849, in runner
+    await self.start(token, reconnect=reconnect)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/client.py", line 778, in start
+    await self.connect(reconnect=reconnect)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/client.py", line 659, in connect
+    await self.ws.poll_event()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/discord/gateway.py", line 646, in poll_event
+    raise ConnectionClosed(self.socket, shard_id=self.shard_id, code=code) from None
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 4004

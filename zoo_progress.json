@@ -1,48 +1,103 @@
 {
-  "users": {},
+  "users": {
+    "YOUR_USER_ID": {
+      "zoos": {
+        "Aquarium of the East Pacific": [],
+        "Karl Eberhard's Pine Lake Zoo": [],
+        "Riverside Zoo": [],
+        "Brussels Zoo": [],
+        "Parque Zoologico de Clear Coast": [],
+        "Essex County Zoo": [],
+        "Tri-State Zoo & Aquarium": []
+      }
+    },
+    "1015052273195421786": {
+      "active_zoo": null,
+      "zoos": {
+        "Parque Zoologico de Clear Coast": [
+          "Greater Flamingo",
+          "Scarlet Ibis",
+          "Roseate Spoonbill",
+          "Little Egret",
+          "White-Faced Ibis",
+          "Fishing Cat"
+        ]
+      }
+    },
+    "701972811920703558": {
+      "active_zoo": null,
+      "zoos": {
+        "Aquarium of the East Pacific": [
+          "Cortez Angelfish",
+          "King Angelfish",
+          "Clarion Angelfish",
+          "Panama Porkfish",
+          "Snowflake Moray",
+          "Black Durgon",
+          "Paddlefin Wrasse"
+        ]
+      }
+    },
+    "806245088216743956": {
+      "active_zoo": null,
+      "zoos": {
+        "Brussels Zoo": [
+          "Bennett's Wallaby",
+          "Tammar Wallaby",
+          "Red Kangaroo",
+          "Masked Lapwing",
+          "Laughing Kookaburra",
+          "Major Mitchell's Cockatoo"
+        ]
+      }
+    },
+    "385221957550866443": {
+      "active_zoo": null,
+      "zoos": {
+        "Essex County Zoo": [
+          "Amazonian Giant Centipede",
+          "American Alligator",
+          "Arizona Blonde Tarantula",
+          "Mallard",
+          "Canada Goose",
+          "Central Bearded Dragon",
+          "Common Leopard Gecko",
+          "Common Pillbug",
+          "Crested Gecko",
+          "Cuvier's Dwarf Caiman",
+          "Eastern Gray Squirrel",
+          "Gooty Sapphire Tarantula",
+          "Mediterranean Banded Centipede",
+          "Vietnamese Giant Centipede",
+          "Turkey Vulture",
+          "White-Lipped Pit Viper"
+        ]
+      }
+    }
+  },
   "directory": {
-    "credit river zoo": {
-      "name": "Credit River Zoo",
+    "aquarium of the east pacific": {
+      "name": "Aquarium of the East Pacific",
       "location": null,
       "image": null
     },
-    "cube zoological park": {
-      "name": "Cube Zoological Park",
+    "karl eberhard's pine lake zoo": {
+      "name": "Karl Eberhard's Pine Lake Zoo",
       "location": null,
       "image": null
     },
-    "high uintahs zoo": {
-      "name": "High Uintahs Zoo",
+    "riverside zoo": {
+      "name": "Riverside Zoo",
       "location": null,
       "image": null
     },
-    "jupiter reptile zoo": {
-      "name": "Jupiter Reptile Zoo",
+    "brussels zoo": {
+      "name": "Brussels Zoo",
       "location": null,
       "image": null
     },
-    "new york aquarium": {
-      "name": "New York Aquarium",
-      "location": null,
-      "image": null
-    },
-    "mint park zoo": {
-      "name": "Mint Park Zoo",
-      "location": null,
-      "image": null
-    },
-    "shropshire hills zoo": {
-      "name": "Shropshire Hills Zoo",
-      "location": null,
-      "image": null
-    },
-    "sapporo reptile center and national aquarium": {
-      "name": "Sapporo Reptile Center and National Aquarium",
-      "location": null,
-      "image": null
-    },
-    "wasser wunder welt": {
-      "name": "Wasser Wunder Welt",
+    "parque zoologico de clear coast": {
+      "name": "Parque Zoologico de Clear Coast",
       "location": null,
       "image": null
     },
@@ -51,48 +106,66 @@
       "location": null,
       "image": null
     },
-    "air terjun zoo": {
-      "name": "Air Terjun Zoo",
-      "location": null,
-      "image": null
-    },
-    "wildkatzenpark tatzenfels": {
-      "name": "Wildkatzenpark Tatzenfels",
-      "location": null,
-      "image": null
-    },
-    "north star zoo": {
-      "name": "North Star Zoo",
-      "location": null,
-      "image": null
-    },
-    "glacier zoo": {
-      "name": "Glacier Zoo",
-      "location": null,
-      "image": null
-    },
-    "kings of the jungle": {
-      "name": "Kings of the Jungle",
-      "location": null,
-      "image": null
-    },
-    "species watch": {
-      "name": "Species Watch",
-      "location": null,
-      "image": null
-    },
-    "giardino zoologico e botanico la sapienza": {
-      "name": "Giardino Zoologico e Botanico La Sapienza",
-      "location": null,
-      "image": null
-    },
-    "chiang mai serpentarium": {
-      "name": "Chiang Mai Serpentarium",
+    "tri-state zoo & aquarium": {
+      "name": "Tri-State Zoo & Aquarium",
       "location": null,
       "image": null
     }
   },
+  "ownership": {
+    "YOUR_USER_ID": {
+      "zoos": [
+        "Aquarium of the East Pacific",
+        "Karl Eberhard's Pine Lake Zoo",
+        "Riverside Zoo",
+        "Brussels Zoo",
+        "Parque Zoologico de Clear Coast",
+        "Essex County Zoo",
+        "Tri-State Zoo & Aquarium"
+      ],
+      "limit": 10
+    },
+    "1015052273195421786": {
+      "limit": 2,
+      "zoos": [
+        "Parque Zoologico de Clear Coast"
+      ]
+    },
+    "701972811920703558": {
+      "limit": 2,
+      "zoos": [
+        "Aquarium of the East Pacific"
+      ]
+    },
+    "1381408149667319838": {
+      "limit": 2,
+      "zoos": [
+        "Riverside Zoo"
+      ]
+    },
+    "1060010291473170482": {
+      "limit": 2,
+      "zoos": [
+        "Karl Eberhard's Pine Lake Zoo"
+      ]
+    },
+    "806245088216743956": {
+      "limit": 2,
+      "zoos": [
+        "Brussels Zoo"
+      ]
+    },
+    "385221957550866443": {
+      "limit": 2,
+      "zoos": [
+        "",
+        "Essex County Zoo"
+      ]
+    }
+  },
   "contracept": {},
   "breed_log": [],
-  "species_overrides": {}
+  "species_overrides": {},
+  "breeding_channels": {},
+  "birth_log": []
 }

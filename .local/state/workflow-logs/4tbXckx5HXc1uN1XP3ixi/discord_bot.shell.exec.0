@@ -1,0 +1,4 @@
+  File "/home/runner/workspace/bot.py", line 13057
+    async def tokens_cmd(...):
+                         ^^^
+SyntaxError: invalid syntax

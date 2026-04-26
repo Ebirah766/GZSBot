@@ -1,0 +1,17 @@
+2026-03-24 21:56:24,346 | INFO | wotbp-bot | Loaded environment from .env
+2026-03-24 21:56:24,458 | INFO | wotbp-bot | Python exe: /home/runner/workspace/.pythonlibs/bin/python
+2026-03-24 21:56:24,458 | INFO | wotbp-bot | CWD: /home/runner/workspace
+2026-03-24 21:56:24,458 | INFO | wotbp-bot | DISCORD_TOKEN present? Yes
+[30;1m2026-03-24 21:56:24[0m [34;1mINFO    [0m [35mdiscord.client[0m logging in using static token
+ * Serving Flask app 'keep_alive'
+ * Debug mode: off
+2026-03-24 21:56:24,468 | INFO | discord.client | logging in using static token
+2026-03-24 21:56:24,512 | INFO | werkzeug | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.31.102.226:8080
+2026-03-24 21:56:24,512 | INFO | werkzeug | [33mPress CTRL+C to quit[0m
+[30;1m2026-03-24 21:56:25[0m [34;1mINFO    [0m [35mdiscord.gateway[0m Shard ID None has connected to Gateway (Session ID: 45aaff4a48a4af88093eda05a85eb41a).
+2026-03-24 21:56:25,460 | INFO | discord.gateway | Shard ID None has connected to Gateway (Session ID: 45aaff4a48a4af88093eda05a85eb41a).
+2026-03-24 21:56:27,467 | INFO | wotbp-bot | Logged in as GZS Central Command Bot#8172 (1423006395871268894)
+2026-03-24 21:56:27,467 | INFO | wotbp-bot | Bot is ready.
