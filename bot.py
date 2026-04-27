@@ -5,33 +5,52 @@ import logging
 import pathlib
 import difflib
 import re
-import json  # <<< ADDED
-from typing import Dict, Any, Tuple, Optional, List, Set  # <<< ADDED Set
-import io  # <<< ADDED
+import json
+from typing import Dict, Any, Tuple, Optional, List, Set
+import io
 import builtins
 from datetime import datetime
 from zoneinfo import ZoneInfo
+import time
+_seen_messages = {}
 
-# --- Discord imports (moved to top to fix NameError in type annotations) ---
 import discord
 from discord.ext import commands, tasks
-import json
-import re
-import logging
 
-# --- Intents setup (this is Step 1) ---
-intents = discord.Intents.default()
-intents.message_content = True  # keep this so normal commands work
-intents.members = True          # 👈 REQUIRED so the bot can see all members
-
-# --- Bot creation ---
-bot = commands.Bot(command_prefix=";", intents=intents)
+# --- Logging setup -----------------------------------------------------------
+LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        logging.StreamHandler(sys.stdout),
+    ],
+)
 log = logging.getLogger("wotbp-bot")
 
-# --- Constants ---------------------------------------------------------------
-# Render holdings with one line per holder (split comma-separated values into bullets)
-REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
+# --- Optional dotenv ---------------------------------------------------------
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    log.info("Loaded environment from .env")
+except Exception:
+    log.info("python-dotenv not installed; skipping .env loader")
 
+# --- Discord intents ---------------------------------------------------------
+intents = discord.Intents.default()
+intents.message_content = True
+intents.members = True
+
+# --- Bot ---------------------------------------------------------------------
+bot = commands.Bot(command_prefix=";", intents=intents)
+
+log.info("Python exe: %s", sys.executable)
+log.info("CWD: %s", os.getcwd())
+log.info("DISCORD_TOKEN present? %s", "Yes" if os.getenv("DISCORD_TOKEN") else "No")
+
+# --- Constants ---------------------------------------------------------------
+REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
 
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
@@ -791,21 +810,29 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Easy",
         "region": "North America",
         "holdings": {
-            "North America": "1.1 - Riverside Zoo", },
+            "North America": [
+                "1.1 - Riverside Zoo",
+                "1.1 - Tri-State Zoo & Aquarium"
+            ]
+        }
 },
-    "Striped Skunk": {
-        "common": "Striped Skunk",
-        "scientific": "Mephitis mephitis",
-        "info": "The striped skunk is the most well-known and widespread skunk species. A skittish nocturnal mesopredator, the striped skunk is known for its defense mechanism, where it sprays a foul-smelling liquid at threats.",
-        "type": "Mammal",
-        "order": "Carnivora",
-        "family": "Mephitidae",
-        "genus": "Mephitis",
-        "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/61292683/large.jpg",
-        "breeding": "Easy",
-        "region": "North America",
-        "holdings": {
-            "North America": "1.1 - Karl Eberhard's Pine Lake Zoo", },
+"Striped Skunk": {
+    "common": "Striped Skunk",
+    "scientific": "Mephitis mephitis",
+    "info": "The striped skunk is the most well-known and widespread skunk species. A skittish nocturnal mesopredator, the striped skunk is known for its defense mechanism, where it sprays a foul-smelling liquid at threats.",
+    "type": "Mammal",
+    "order": "Carnivora",
+    "family": "Mephitidae",
+    "genus": "Mephitis",
+    "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/61292683/large.jpg",
+    "breeding": "Easy",
+    "region": "North America",
+    "holdings": {
+        "North America": [
+            "1.1 - Karl Eberhard's Pine Lake Zoo",
+            "0.2 - Tri-State Zoo & Aquarium"
+        ]
+},
     },
     "Beauty Rat Snake": {
         "common": "Beauty Rat Snake",
@@ -1320,8 +1347,9 @@ species_data: Dict[str, Dict[str, Any]] = {
 "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/12726192/original.jpg",
     "breeding": "Difficult",
     "region": "North America",
-    "holdings": {},
-    },
+    "holdings": {
+        "North America": "1.0 - Tri-State Zoo & Aquarium", },
+},
     "Green Tree Python": {
         "common": "Green Tree Python",
         "scientific": "Morelia viridis",
@@ -2265,7 +2293,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://www.ndow.org/wp-content/uploads/2021/10/lontra_canadensis.jpeg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {},
+                                                "holdings": {
+                                                    "North America": "1.2 - Tri-State Zoo & Aquarium ", },
                                             },
                                             "Common Snapping Turtle": {
                                             "common": "Common Snapping Turtle",
@@ -2330,7 +2359,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://www.citizenscience.lu/images/content/Bioindicator_Species/invasive_species/invasive_animals/Ochsenfrosch.jpg",
                                             "breeding": "Average",
                                             "region": "North America",
-                                            "holdings": {},
+                                                "holdings": {
+                                                    "North America": "1.1 - Tri-State Zoo & Aquarium ", },
                                             },
                                             "American Lobster": {
                                             "common": "American Lobster",
@@ -2388,9 +2418,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         ],
         "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/241466812/large.jpeg",
         "breeding": "Very Easy",
-            },
+        },
 
-        "Virginia Opossum": {
+    "Virginia Opossum": {
         "common": "Virginia Opossum",
         "scientific": "Didelphis virginiana",
         "info": "The only marsupial found in the United States, the Virginia opossum is a solitary nocturnal species well-known for its habit of 'playing possum', where when attacked by a predator it pretends to be dead in order to dissuade predation. They are devoted parents, with mother opossums caring for their young for 4-5 months.",
@@ -2401,13 +2431,14 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://nhpbs.org/wild/images/virginiaopossumforestrydavidcapeaert.jpg",
         "breeding": "Below Average",
         "region": "North America",
-            "holdings": {
-                "North America": [
-                    "1.1 - Karl Eberhard's Pine Lake Zoo",
-                    "1.0 - Riverside Zoo"
-                ]
-            }
-        },
+        "holdings": {
+            "North America": [
+                "1.1 - Karl Eberhard's Pine Lake Zoo",
+                "1.0 - Riverside Zoo",
+                "1.0.2.0 - Tri-State Zoo & Aquarium"
+            ]
+        }
+    },
         "Fancy Rat": {
         "common": "Fancy Rat",
         "scientific": "Rattus norvegicus domestica",
@@ -5374,18 +5405,22 @@ species_data: Dict[str, Dict[str, Any]] = {
             "North America": "0.1 - Karl Eberhard's Pine Lake Zoo",},
 },
 "Red Fox": {
-        "common": "Red Fox",
-        "scientific": "Vulpes vulpes",
-        "info": "A large, iconic fox, the red fox is one of the most recognizable species of the Northern Hemisphere. An important mesopredator, they are highly adaptable and can be found in habitat ranging from untapped wilderness to developed areas.",
-        "type": "Mammal",
-        "order": "Carnivora",
-        "family": "Canidae",
-        "genus": "Vulpes",
-        "image_url": "https://www.nrcm.org/wp-content/uploads/2018/12/Red-fox-winter-South-China-4-Hal-Winters.jpg",
-        "breeding": "Average",
-        "region": "North America, Europe, Asia, Africa",
-        "holdings": {
-            "North America": "1.0 - Karl Eberhard's Pine Lake Zoo",},
+    "common": "Red Fox",
+    "scientific": "Vulpes vulpes",
+    "info": "A large, iconic fox, the red fox is one of the most recognizable species of the Northern Hemisphere. An important mesopredator, they are highly adaptable and can be found in habitat ranging from untapped wilderness to developed areas.",
+    "type": "Mammal",
+    "order": "Carnivora",
+    "family": "Canidae",
+    "genus": "Vulpes",
+    "image_url": "https://www.nrcm.org/wp-content/uploads/2018/12/Red-fox-winter-South-China-4-Hal-Winters.jpg",
+    "breeding": "Average",
+    "region": "North America, Europe, Asia, Africa",
+    "holdings": {
+        "North America": [
+            "1.0 - Karl Eberhard's Pine Lake Zoo",
+            "1.1 - Tri-State Zoo & Aquarium"
+        ]
+    }
 },
 "Peregrine Falcon": {
         "common": "Peregrine Falcon",
@@ -6056,6 +6091,118 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America, South America",
         "holdings": {
             "Europe": "2.2 - Parque Zoologico de Clear Coast",},
+},
+"Green Moray": {
+        "common": "Green Moray",
+        "scientific": "Gymnothorax funebris",
+        "info": "One of the largest moray eel species, the green moray can be found in the western Atlantic ocean from New York to Brazil, at depths of down to 130ft. This species's common name comes from its mucus coating, which if removed, actually makes it appear more dark, rather than green.",
+        "type": "Fish",
+        "order": "Anguilliformes",
+        "family": "Muraenidae",
+        "genus": "Gymnothorax",
+        "image_url": "https://i.imgur.com/JKR8vCn.png",
+        "breeding": "Impossible",
+        "region": "North America, South America",
+        "holdings": {
+            "North America": "1 - Tri-State Zoo & Aquarium",},
+},
+"Blackbar Soldierfish": {
+        "common": "Blackbar Soldierfish",
+        "scientific": "Myripristis jacobus",
+        "info": "A soldierfish from the West Atlantic, the blackbar soldierfish is a nocturnal mesopredator that schools for protection from other predators. They feed mainly on plankton and shrimp, and are sometimes found in the aquarium trade and public aquariums as display fish.",
+        "type": "Fish",
+        "order": "Beryciformes",
+        "family": "Holocentridae",
+        "genus": "Myripristis",
+        "image_url": "https://i.imgur.com/RY7f5ix.jpeg",
+        "breeding": "Impossible",
+        "region": "North America, South America",
+        "holdings": {
+            "North America": "6 - Tri-State Zoo & Aquarium",},
+},
+"Spanish Hogfish": {
+        "common": "Spanish Hogfish",
+        "scientific": "Bodianus rufus",
+        "info": "A medium-sized wrasse native to the Caribbean, the Spanish hogfish starts out its life as a brightly-colored juvenile, but as it matures, the colors dull. While some reach up to 16 inches, most do not exceed 11 inches. It is commonly collected for the aquarium trade and for public aquariums.",
+        "type": "Fish",
+        "order": "Labriformes",
+        "family": "Labridae",
+        "genus": "Bodianus",
+        "image_url": "https://i.imgur.com/nJY8Tq1.jpeg",
+        "breeding": "Impossible",
+        "region": "North America, South America",
+        "holdings": {
+            "North America": "4 - Tri-State Zoo & Aquarium",},
+},
+"Bluegill": {
+        "common": "Bluegill",
+        "scientific": "Lepomis macrochirus",
+        "info": "Perhaps the most well known of the sunfish, the bluegill is a common and popular sport fish throughout North America and its introduced range, which includes Europe and Japan. They have a complex mating system for a fish, which includes 'sleeper males' who try to mate with females outside of the watch of the dominant male.",
+        "type": "Fish",
+        "order": "Centrarchiformes",
+        "family": "Centrarchidae",
+        "genus": "Lepomis",
+        "image_url": "https://i.imgur.com/tzR2Ofj.jpeg",
+        "breeding": "Difficult",
+        "region": "North America",
+        "holdings": {
+            "North America": "6 - Tri-State Zoo & Aquarium",},
+},
+"Gopher Tortoise": {
+        "common": "Gopher Tortoise",
+        "scientific": "Gopherus polyphemus",
+        "info": "A species of tortoise native to the southeastern United States, the gopher tortoise is an excellent example of a keystone species. Its burrows are used by a variety of species, whether the tortoise is in there or not, and can provide shelter during natural disasters such as wildfires.",
+        "type": "Reptile",
+        "order": "Testudines",
+        "family": "Testudinidae",
+        "genus": "Gopherus",
+        "image_url": "https://i.imgur.com/ijW4cJG.jpeg",
+        "breeding": "Below Average",
+        "region": "North America",
+        "holdings": {
+            "North America": "2.2 - Tri-State Zoo & Aquarium",},
+},
+"Spiny Softshell Turtle": {
+        "common": "Spiny Softshell Turtle",
+        "scientific": "Apalone spinifera",
+        "info": "One of the largest freshwater turtles in North America, the spiny softshell turtle is a fast-moving carnivorous species that can be found from Canada to Mexico. They are divided into six subspecies, some of which are quite rare or endangered.",
+        "type": "Reptile",
+        "order": "Testudines",
+        "family": "Trionychidae",
+        "genus": "Apalone",
+        "image_url": "https://i.imgur.com/IjmLk11.jpeg",
+        "breeding": "Below Average",
+        "region": "North America",
+        "holdings": {
+            "North America": "0.2 - Tri-State Zoo & Aquarium",},
+},
+"Smallmouth Bass": {
+        "common": "Smallmouth Bass",
+        "scientific": "Micropterus dolomieu",
+        "info": "A common and widely distributed centrarchid, the smallmouth bass is a popular gamefish wherever it is found, famed for its outsized strength. They live in rocky environments with plentiful prey, and feed mainly on small animals such as tadpoles, crayfish, and smaller fish.",
+        "type": "Fish",
+        "order": "Centrarchiformes",
+        "family": "Centrarchidae",
+        "genus": "Micropterus",
+        "image_url": "https://i.imgur.com/aatHbau.jpeg",
+        "breeding": "Difficult",
+        "region": "North America",
+        "holdings": {
+            "North America": "2 - Tri-State Zoo & Aquarium",},
+},
+"Cottonmouth": {
+        "common": "Cottonmouth",
+        "scientific": "Agkistrodon piscivorus",
+        "info": "The cottonmouth is a semi-aquatic pit viper species native to temperate and subtropical North America. Its common names comes from its distinctive white mouth, which is used for threat displays against potential predators.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Viperidae",
+        "genus": "Agkistrodon",
+        "image_url": "https://i.imgur.com/l5rLbH8.jpeg",
+        "breeding": "Below Average",
+        "region": "North America",
+        "holdings": {
+            "North America": "0.1 - Tri-State Zoo & Aquarium",},
                                 },
 }
 
@@ -8269,6 +8416,14 @@ async def unhouse_cmd(ctx, *, species_name: str = None):
 # --- Commands ----------------------------------------------------------------
 @bot.command(name="species", aliases=["card"])
 async def cmd_card(ctx: commands.Context, *, name: Optional[str] = None):
+    key = (ctx.command.name, ctx.message.id)
+    now = time.time()
+
+    if key in _seen_messages and now - _seen_messages[key] < 10:
+        return
+
+    _seen_messages[key] = now
+    print(f"COMMAND FIRED: {ctx.command.name} message_id={ctx.message.id}")
     """
     Render a rich embed UI card for a species with image, taxonomy, description,
     and holdings by region.
@@ -9860,15 +10015,16 @@ async def cmd_progressrole_set(ctx: commands.Context, role: discord.Role):
         """
         m = member or ctx.author
         ok = any_zoo_over_50_for_user(m.id)
-        await ctx.send(f"{m.mention} {'✅ qualifies' if ok else '❌ does not qualify'} (≥50% in any owned zoo).")
+        await ctx.send(
+            f"{m.mention} {'✅ qualifies' if ok else '❌ does not qualify'} (≥50% in any owned zoo)."
+        )
 
-
-@bot.command(name="progressrole.refresh")
-@commands.has_permissions(manage_roles=True)
-async def cmd_progressrole_refresh(ctx: commands.Context):
-    """Force a full recompute now."""
-    await recompute_progress_role_for_guild(ctx.guild)
-    await ctx.send("🔄 Refreshed role assignments.")
+    @bot.command(name="progressrole.refresh")
+    @commands.has_permissions(manage_roles=True)
+    async def cmd_progressrole_refresh(ctx: commands.Context):
+        """Force a full recompute now."""
+        await recompute_progress_role_for_guild(ctx.guild)
+        await ctx.send("🔄 Refreshed role assignments.")
 
 @bot.event
 async def on_ready():
