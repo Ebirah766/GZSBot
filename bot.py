@@ -2017,9 +2017,11 @@ species_data: Dict[str, Dict[str, Any]] = {
                                 "image_url": "https://static.inaturalist.org/photos/457255500/large.jpg",
                                 "breeding": "Easy",
                                 "region": "North America",
-                                "holdings": {},
+                                    "holdings": {
+                                        "North America": "0.3 - Tri-State Zoo & Aquarium", },
                                 },
-                                "White-Lipped Pit Viper": {
+
+                                    "White-Lipped Pit Viper": {
                                     "common": "White-Lipped Pit Viper",
                                     "scientific": "Trimeresurus albolabris",
                                     "info": "One of the most well-known species in its genus, the white-lipped pit viper has highly variable coloration. These variants include green, mint, and striped. They are found in east, southeast, and south Asia, making them one of the most widely distributed Trimeresurus species.",
@@ -2377,7 +2379,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/75691769/original.jpg",
                                             "breeding": "Impossible",
                                             "region": "North America",
-                                            "holdings": {},
+                                                "holdings": {
+                                                    "North America": "3 - Tri-State Zoo & Aquarium", },
                                             },
                                             "Demoiselle Crane": {
                                             "common": "Demoiselle Crane",
@@ -2865,10 +2868,11 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/104542990/original.jpg",
                                     "breeding": "Impossible",
                                     "region": "North America",
-                                    "holdings": {},
+                                        "holdings": {
+                                            "North America": "3 - Tri-State Zoo & Aquarium", },
                                     },
 
-                                    "Knobbed Whelk": {
+    "Knobbed Whelk": {
                                     "common": "Knobbed Whelk",
                                     "scientific": "Busycon carica",
                                     "info": "A large, predatory sea snail native to the eastern coast of North America, the knobbed whelk feeds on oysters, clams, and other marine invertebrates. It migrates between deep and shallow water depending on the time of year. They have an excellent sense of smell and use it to look for prey.",
@@ -4381,9 +4385,11 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "image_url": "https://i.imgur.com/3X7bUvC.jpeg",
                                                     "breeding": "Below Average",
                                                     "region": "North America",
-                                                    "holdings": {},
+                                                    "holdings": {
+                                                        "North America": "1.1 - Tri-State Zoo & Aquarium", },
                                                 },
-                                                "Common Pipistrelle": {
+
+                                                    "Common Pipistrelle": {
                                                     "common": "Common Pipistrelle",
                                                     "scientific": "Pipistrellus pipistrellus",
                                                     "info": "This small insectivorous bat can be found in a huge range from the British Isles to Korea. Preferring mosquitoes, midges, and gnats, they are an edge specialist, which means that they feed primarily on the edges of woodlands.",
@@ -6235,6 +6241,22 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America",
         "holdings": {
             "North America": "2.2 - Tri-State Zoo & Aquarium",},
+},
+"Pond Slider": {
+        "common": "Pond Slider",
+        "scientific": "Trachemys scripta",
+        "info": "One of the most well-known turtles in the world, the pond slider is infamous for its large size and easy obtainability, leading to a large number of dumped or released pets. They are native to the southern United States and northern Mexico, but have spread globally and become a highly problematic invasive species in many locales.",
+        "type": "Reptile",
+        "order": "Testudines",
+        "family": "Emydidae",
+        "genus": "Trachemys",
+    "images": [
+        {"label": "Red-eared slider (elegans)", "url": "https://i.imgur.com/9JIk6A0.jpeg"},
+    ],
+    "breeding": "Average",
+        "region": "North America",
+        "holdings": {
+            "North America": "1.2 [elegans] - Tri-State Zoo & Aquarium",},
                                 },
 }
 
