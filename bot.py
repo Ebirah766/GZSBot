@@ -1252,18 +1252,22 @@ species_data: Dict[str, Dict[str, Any]] = {
 },
 
 "American Alligator": {
-"common": "American Alligator",
-"scientific": "Alligator mississippiensis",
-"info": "One of the world's charismatic megafauna, the American alligator is found exclusively in the subtropical parts of North America. It was thought to be endemic to the United States, but there are unconfirmed sightings in northern Mexico.",
-"type": "Reptile",
-"order": "Crocodilia",
-"family": "Alligatoridae",
-"genus": "Alligator",
-"image_url": "https://a-z-animals.com/media/animals/images/original/Alligator_mississippiensis_1-1.jpg",
+    "common": "American Alligator",
+    "scientific": "Alligator mississippiensis",
+    "info": "One of the world's charismatic megafauna, the American alligator is found exclusively in the subtropical parts of North America. It was thought to be endemic to the United States, but there are unconfirmed sightings in northern Mexico.",
+    "type": "Reptile",
+    "order": "Crocodilia",
+    "family": "Alligatoridae",
+    "genus": "Alligator",
+    "image_url": "https://a-z-animals.com/media/animals/images/original/Alligator_mississippiensis_1-1.jpg",
     "breeding": "Average",
     "region": "North America",
     "holdings": {
-        "North America": "1.1 - Essex County Zoo", },
+        "North America": [
+            "1.1 - Essex County Zoo",
+            "1.0 - Tri-State Zoo & Aquarium"
+        ]
+    }
 },
 
 "Chinese Alligator": {
@@ -6203,6 +6207,34 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America",
         "holdings": {
             "North America": "0.1 - Tri-State Zoo & Aquarium",},
+},
+"American Red Squirrel": {
+        "common": "American Red Squirrel",
+        "scientific": "Tamiasciurus hudsonicus",
+        "info": "One of the most common squirrel species in North America, the American red squirrel resides in a large swath of land from Alaska to Mexico and the Eastern Seaboard. They are adaptable and their range is expanding into non-prime habitat.",
+        "type": "Mammal",
+        "order": "Rodentia",
+        "family": "Sciuridae",
+        "genus": "Tamiasciurus",
+        "image_url": "https://i.imgur.com/vMiaFan.jpeg",
+        "breeding": "Average",
+        "region": "North America",
+        "holdings": {
+            "North America": "1.1 - Tri-State Zoo & Aquarium",},
+},
+"Green Anole": {
+        "common": "Green Anole",
+        "scientific": "Anolis carolinensis",
+        "info": "A common, widespread, and adaptable tree-dwelling lizard, the green anole is native to the southeastern United States but has been introduced to the Caribbean and Oceania. Able to change color, it is sometimes referred to as the American chameleon in the pet trade because of this.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Dactyloidae",
+        "genus": "Anolis",
+        "image_url": "https://i.imgur.com/bL0wm5d.jpeg",
+        "breeding": "Easy",
+        "region": "North America",
+        "holdings": {
+            "North America": "2.2 - Tri-State Zoo & Aquarium",},
                                 },
 }
 
