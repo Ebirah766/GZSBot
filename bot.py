@@ -5461,18 +5461,22 @@ species_data: Dict[str, Dict[str, Any]] = {
             "North America": "4.4 - Karl Eberhard's Pine Lake Zoo",},
 },
 "Klipspringer": {
-        "common": "Klipspringer",
-        "scientific": "Oreotragus oreotragus",
-        "info": "The klipspringer is a small, distinctive rock-climbing antelope native to southern and eastern Africa. They are abundant and common, and occur in several protected areas. They can live in a variety of habitats including savannahs and deserts.",
-        "type": "Mammal",
-        "order": "Artiodactyla",
-        "family": "Bovidae",
-        "genus": "Oreotragus",
-        "image_url": "https://i.imgur.com/Hrp9mOg.jpeg",
-        "breeding": "Below Average",
-        "region": "Africa",
-        "holdings": {
-            "North America": "1.2 - Riverside Zoo",},
+    "common": "Klipspringer",
+    "scientific": "Oreotragus oreotragus",
+    "info": "The klipspringer is a small, distinctive rock-climbing antelope native to southern and eastern Africa. They are abundant and common, and occur in several protected areas. They can live in a variety of habitats including savannahs and deserts.",
+    "type": "Mammal",
+    "order": "Artiodactyla",
+    "family": "Bovidae",
+    "genus": "Oreotragus",
+    "image_url": "https://i.imgur.com/Hrp9mOg.jpeg",
+    "breeding": "Below Average",
+    "region": "Africa",
+    "holdings": {
+        "North America": [
+            "1.2 - Riverside Zoo",
+            "1.1 - Tri-State Zoo & Aquarium"
+        ]
+    }
 },
 "Emu": {
         "common": "Emu",
@@ -5543,22 +5547,25 @@ species_data: Dict[str, Dict[str, Any]] = {
         },
                                 },
 "Capybara": {
-        "common": "Capybara",
-        "scientific": "Hydrochoerus hydrochaeris",
-        "info": "The capybara is the largest rodent species alive today, and is one of the most famous animals of South America. Having become recently internet famous, these large caviids are well-known for their social nature and mellow temperament.",
-        "type": "Mammal",
-        "order": "Rodentia",
-        "family": "Caviidae",
-        "genus": "Hydrochoerus",
-        "image_url": "https://i.imgur.com/RPxqT9I.jpeg",
-        "breeding": "Easy",
-        "region": "South America",
-        "holdings": {
-            "North America": "1.2 - Riverside Zoo",
-            "Europe": [
-                "5.5 - Parque Zoologico de Clear Coast",
-            ]
-        },
+    "common": "Capybara",
+    "scientific": "Hydrochoerus hydrochaeris",
+    "info": "The capybara is the largest rodent species alive today, and is one of the most famous animals of South America. Having become recently internet famous, these large caviids are well-known for their social nature and mellow temperament.",
+    "type": "Mammal",
+    "order": "Rodentia",
+    "family": "Caviidae",
+    "genus": "Hydrochoerus",
+    "image_url": "https://i.imgur.com/RPxqT9I.jpeg",
+    "breeding": "Easy",
+    "region": "South America",
+    "holdings": {
+        "North America": [
+            "1.2 - Riverside Zoo",
+            "3.5 - Tri-State Zoo & Aquarium"
+        ],
+        "Europe": [
+            "5.5 - Parque Zoologico de Clear Coast"
+        ]
+    }
 },
 "Common Warthog": {
         "common": "Common Warthog",
@@ -6257,6 +6264,51 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America",
         "holdings": {
             "North America": "1.2 [elegans] - Tri-State Zoo & Aquarium",},
+
+},
+"Golden Trevally": {
+        "common": "Golden Trevally",
+        "scientific": "Gnathanodon speciosus",
+        "info": "A medium-sized and well-known trevally species of the Indo-Pacific, the golden trevally is commonly displayed in public aquaria due to its size, color, and speed, and is sometimes found in the home aquarium trade, but requires extremely large tanks. As they grow older they become more grayish and less golden.",
+        "type": "Fish",
+        "order": "Carangiformes",
+        "family": "Carangidae",
+        "genus": "Gnathanodon",
+        "image_url": "https://i.imgur.com/TDrypCW.jpeg",
+        "breeding": "Impossible",
+        "region": "Asia, Africa, Oceania, South America",
+        "holdings": {
+            "North America": "17 - Tri-State Zoo & Aquarium",},
+
+},
+"Red River Hog": {
+        "common": "Red River Hog",
+        "scientific": "Potamochoerus porcus",
+        "info": "Rarely seen in the wild but common in captivity, the red river hog is a unique pig species native to tropical Africa, specifically west and central Africa. They are social animals, and breed very well in captivity, leading to a rapid expansion in their captive population in recent years.",
+        "type": "Mammal",
+        "order": "Artiodactyla",
+        "family": "Suidae",
+        "genus": "Potamochoerus",
+        "image_url": "https://i.imgur.com/cgCItCX.png",
+        "breeding": "Easy",
+        "region": "Africa",
+        "holdings": {
+            "North America": "1.3 - Tri-State Zoo & Aquarium",},
+
+},
+"Lookdown": {
+        "common": "Lookdown",
+        "scientific": "Selene vomer",
+        "info": "A small carangid native to the greater Caribbean ecosystem, the lookdown is known for its distinctive compressed appearance and large forehead. A schooling species, they are extremely sensitive in captivity and are regarded as a challening yet rewarding species to keep.",
+        "type": "Fish",
+        "order": "Carangiformes",
+        "family": "Carangidae",
+        "genus": "Selene",
+        "image_url": "https://i.imgur.com/0vzqJP8.jpeg",
+        "breeding": "Impossible",
+        "region": "North America, South America",
+        "holdings": {
+            "North America": "14 - Tri-State Zoo & Aquarium",},
                                 },
 }
 
