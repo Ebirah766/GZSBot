@@ -6399,6 +6399,66 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Africa ",
         "holdings": {
             "North America": "1.1 - Tri-State Zoo & Aquarium",},
+
+},
+"Rosy-Faced Lovebird": {
+        "common": "Rosy-Faced Lovebird",
+        "scientific": "Agapornis roseicollis",
+        "info": "The rosy-faced lovebird is a common and well-studied species of lovebird that is often kept in aviculture and in zoological facilities. They have very variable coloration in captivity due to selective breeding, and have been studied as a model of bird genetics.",
+        "type": "Bird",
+        "order": "Psittaciformes",
+        "family": "Psittaculidae",
+        "genus": "Agapornis",
+        "image_url": "https://i.imgur.com/7iqnKKD.jpeg",
+        "breeding": "Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "6.6 - Tri-State Zoo & Aquarium",},
+
+},
+"Senegal Parrot": {
+        "common": "Senegal Parrot",
+        "scientific": "Poicephalus senegalus",
+        "info": "A common species in aviculture, the Senegal parrot is native to west and central Africa, and is regarded as a pest there, but is popular amongst bird enthusiasts for its relative quietness and friendliness compared to other parrot species.",
+        "type": "Bird",
+        "order": "Psittaciformes",
+        "family": "Psittacidae",
+        "genus": "Poicephalus",
+        "image_url": "https://i.imgur.com/4nNKoz4.jpeg",
+        "breeding": "Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "4.4 - Tri-State Zoo & Aquarium",},
+
+},
+"African Pygmy Falcon": {
+        "common": "African Pygmy Falcon",
+        "scientific": "Polihierax semitorquatus",
+        "info": "The African pygmy falcon is one of the smallest birds of prey on Earth, and the smallest in Africa. They feed primarily on reptiles and insects due to their small size, and are known for their interesting relationships with weaver birds, as they live in their nests and occasionally feed on them.",
+        "type": "Bird",
+        "order": "Falconiformes",
+        "family": "Falconidae",
+        "genus": "Polihierax",
+        "image_url": "https://i.imgur.com/HZ0lmhD.jpeg",
+        "breeding": "Below Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "1.1 - Tri-State Zoo & Aquarium",},
+
+},
+"Gray Crowned Crane": {
+        "common": "Gray Crowned Crane",
+        "scientific": "Balearica regulorum",
+        "info": "One of the most well-known cranes, the gray crowned crane is native to sub-Saharan Africa, residing in savannah and wetlands habitats. They are endangered due to habitat loss and pesticide pollution, and is the national bird of Uganda, where it is held in great respect.",
+        "type": "Bird",
+        "order": "Gruiformes",
+        "family": "Gruidae",
+        "genus": "Balearica",
+        "image_url": "https://i.imgur.com/yYP5Orb.jpeg",
+        "breeding": "Below Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "1.2 - Tri-State Zoo & Aquarium",},
                                 },
 }
 
