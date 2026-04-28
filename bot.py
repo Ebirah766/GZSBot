@@ -6309,6 +6309,96 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America, South America",
         "holdings": {
             "North America": "14 - Tri-State Zoo & Aquarium",},
+
+},
+"Allen's Swamp Monkey": {
+        "common": "Allen's Swamp Monkey",
+        "scientific": "Allenopithecus nigroviridis",
+        "info": "The Allen's swamp monkey is a distinctive type of guenon native to central Africa, in swampy, water-rich environments. They feed mainly on fruits, leaves, and insects. Little is known about the species in the wild, and most knowledge comes from captive specimens.",
+        "type": "Mammal",
+        "order": "Primates",
+        "family": "Cercopithecidae",
+        "genus": "Allenopithecus",
+        "image_url": "https://i.imgur.com/v3qLlO8.jpeg",
+        "breeding": "Below Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "2.3 - Tri-State Zoo & Aquarium",},
+
+},
+"Jackson's Hornbill": {
+        "common": "Jackson's Hornbill",
+        "scientific": "Tockus jacksoni",
+        "info": "The Jackson's hornbill is a small hornbill closely related to and often synonymized with the more well-known Von der Decken's hornbill. It is distinguished by the white spots on its wings, and typically feeds on insects and seeds.",
+        "type": "Bird",
+        "order": "Bucerotiformes",
+        "family": "Bucerotidae",
+        "genus": "Tockus",
+        "image_url": "https://i.imgur.com/sH7sIUX.jpeg",
+        "breeding": "Below Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "1.0 - Tri-State Zoo & Aquarium",},
+
+},
+"Violet-Backed Starling": {
+        "common": "Violet-Backed Starling",
+        "scientific": "Cinnyricinclus leucogaster",
+        "info": "A smallish starling native to sub-Saharan Africa, the violet-backed starling has intense sexual dimorphism, with the males a bright purple, while the females are cryptically colored. It is an edge specialist that also inhabits woodlands, and is rarely seen on the ground.",
+        "type": "Bird",
+        "order": "Passeriformes",
+        "family": "Sturnidae",
+        "genus": "Cinnyricinclus",
+        "image_url": "https://i.imgur.com/yDJNw3Q.jpeg",
+        "breeding": "Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "2.2 - Tri-State Zoo & Aquarium",},
+
+},
+"Superb Starling": {
+        "common": "Superb Starling",
+        "scientific": "Lamprotornis superbus",
+        "info": "Native to east Africa, the superb starling has distinctive, striking coloration. This is a hardy and long-lived species that lives for 15+ years in the correct conditions, and primarily rely on insects as their main source of food.",
+        "type": "Bird",
+        "order": "Passeriformes",
+        "family": "Sturnidae",
+        "genus": "Lamprotornis",
+        "image_url": "https://i.imgur.com/2fhLet3.jpeg",
+        "breeding": "Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "2.3 - Tri-State Zoo & Aquarium",},
+
+},
+"Golden-Breasted Starling": {
+        "common": "Golden-Breasted Starling",
+        "scientific": "Lamprotornis regius",
+        "info": "The golden-breasted starling is found throughout northeastern Africa, and has a distinctive long pair of tail feathers that allows for easy identification. Feeding on insects and other small animals, they are an adaptable species, inhabiting savannahs, dry forests, and scrubland.",
+        "type": "Bird",
+        "order": "Passeriformes",
+        "family": "Sturnidae",
+        "genus": "Lamprotornis",
+        "image_url": "https://i.imgur.com/ugZPTzy.jpeg",
+        "breeding": "Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "2.2 - Tri-State Zoo & Aquarium",},
+
+},
+"Blue-Bellied Roller": {
+        "common": "Blue-Bellied Roller",
+        "scientific": "Coracias cyanogaster",
+        "info": "The blue-bellied roller is a common and somewhat widespread species of roller that can be found in a thin range stretching from Senegal to South Sudan. They have good eyesight and are known to watch for large insects such as grasshoppers, swooping down to attack and eat them when they are seen.",
+        "type": "Bird",
+        "order": "Coraciiformes",
+        "family": "Coraciidae",
+        "genus": "Coracias",
+        "image_url": "https://i.imgur.com/O0VXIaN.jpeg",
+        "breeding": "Below Average",
+        "region": "Africa ",
+        "holdings": {
+            "North America": "1.1 - Tri-State Zoo & Aquarium",},
                                 },
 }
 
