@@ -1,16 +1,5 @@
 {
   "users": {
-    "YOUR_USER_ID": {
-      "zoos": {
-        "Aquarium of the East Pacific": [],
-        "Karl Eberhard's Pine Lake Zoo": [],
-        "Riverside Zoo": [],
-        "Brussels Zoo": [],
-        "Parque Zoologico de Clear Coast": [],
-        "Essex County Zoo": [],
-        "Tri-State Zoo & Aquarium": []
-      }
-    },
     "1015052273195421786": {
       "active_zoo": null,
       "zoos": {
@@ -73,6 +62,18 @@
           "White-Lipped Pit Viper"
         ]
       }
+    },
+    "1381408149667319838": {
+      "active_zoo": null,
+      "zoos": {
+        "Riverside Zoo": []
+      }
+    },
+    "1060010291473170482": {
+      "active_zoo": null,
+      "zoos": {
+        "Karl Eberhard's Pine Lake Zoo": []
+      }
     }
   },
   "directory": {
@@ -113,18 +114,6 @@
     }
   },
   "ownership": {
-    "YOUR_USER_ID": {
-      "zoos": [
-        "Aquarium of the East Pacific",
-        "Karl Eberhard's Pine Lake Zoo",
-        "Riverside Zoo",
-        "Brussels Zoo",
-        "Parque Zoologico de Clear Coast",
-        "Essex County Zoo",
-        "Tri-State Zoo & Aquarium"
-      ],
-      "limit": 10
-    },
     "1015052273195421786": {
       "limit": 2,
       "zoos": [
@@ -158,7 +147,6 @@
     "385221957550866443": {
       "limit": 2,
       "zoos": [
-        "",
         "Essex County Zoo"
       ]
     }

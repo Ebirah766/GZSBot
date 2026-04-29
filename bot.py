@@ -17,6 +17,10 @@ _seen_messages = {}
 import discord
 from discord.ext import commands, tasks
 
+import pathlib
+
+_ZOO_DATA_PATH = pathlib.Path(__file__).with_name("zoo_progress.json")
+
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
 logging.basicConfig(
@@ -6459,6 +6463,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Africa ",
         "holdings": {
             "North America": "1.2 - Tri-State Zoo & Aquarium",},
+
+},
+"African Pygmy Goose": {
+        "common": "African Pygmy Goose",
+        "scientific": "Nettapus auritus",
+        "info": "One of the world's smallest waterfowl, the African pygmy goose is not actually a true goose, but rather a perching duck. They are regarded as difficult to breed in captivity and feed mostly on the seeds of water lilies. They can be found in sub-Saharan Africa and Madagascar.",
+        "type": "Bird",
+        "order": "Anseriformes",
+        "family": "Anatidae",
+        "genus": "Nettapus",
+        "image_url": "https://i.imgur.com/MZ5xEWy.jpeg",
+        "breeding": "Below Average",
+        "region": "Africa ",
+        "holdings": {
+            "Europe": "1.3 - Parque Zoologico de Clear Coast",},
                                 },
 }
 
@@ -6568,6 +6587,26 @@ def _norm_zoo(name: str) -> str:
 def _load_zoo_data() -> dict:
     # you already have this in your codebase; this is just here to show calls
     ...
+
+def _save_zoo_data(data: dict) -> None:
+    tmp_path = _ZOO_DATA_PATH.with_suffix(".tmp")
+    backup_path = _ZOO_DATA_PATH.with_suffix(".bak")
+
+    # Backup existing file
+    if _ZOO_DATA_PATH.exists():
+        backup_path.write_text(
+            _ZOO_DATA_PATH.read_text(encoding="utf-8"),
+            encoding="utf-8"
+        )
+
+    # Write temp file
+    tmp_path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+
+    # Replace original
+    tmp_path.replace(_ZOO_DATA_PATH)
 
 def _get_directory_species_for_zoo(zoo_name: str, data: dict) -> list[str]:
     """Prefer canonical directory collection; fallback to owner's collections."""
@@ -7546,30 +7585,7 @@ class SpeciesPager(discord.ui.View):
 
 # ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
 # ---------- Persistence ----------
-_ZOO_DATA_PATH = pathlib.Path(__file__).with_name("zoo_progress.json")
-
-def _load_zoo_data() -> dict:
-    if _ZOO_DATA_PATH.exists():
-        try:
-            data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
-        except Exception:
-            data = {}
-    else:
-        data = {}
-
-    # Ensure buckets exist
-    data.setdefault("users", {})                # {uid: {"active_zoo":..., "zoos": {zoo: [species...]}}}
-    data.setdefault("ownership", {})            # {uid: {"limit": n, "zoos": [names...]}}
-    data.setdefault("directory", {})            # zoo directory (name->meta)
-    data.setdefault("contracept", {})           # NEW: {uid: {zoo: {species: True}}}
-    data.setdefault("breeding_channels", {})    # NEW: {guild_id: channel_id}
-    data.setdefault("birth_log", [])            # NEW: rolling birth feed
-    data.setdefault("species_overrides", {})    # NEW: per-species overrides (e.g., breeding label)
-    return data
-
-
-def _save_zoo_data(data: dict) -> None:
-    _ZOO_DATA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+# ---------- Persistence ----------
 
 # ---------- Canonical species name ----------
 def _canonical_species_name(user_input: str) -> Optional[str]:
