@@ -17,6 +17,9 @@ _seen_messages = {}
 import discord
 from discord.ext import commands, tasks
 
+import os
+print("TOKEN:", os.getenv("DISCORD_TOKEN"))
+
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
 logging.basicConfig(
@@ -29,13 +32,40 @@ logging.basicConfig(
 )
 log = logging.getLogger("wotbp-bot")
 
+# --- Imports needed for setup ------------------------------------------------
+import os
+import sys
+import pathlib
+import logging
+
+# --- Logging setup -----------------------------------------------------------
+LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        logging.StreamHandler(sys.stdout),
+    ],
+)
+
+log = logging.getLogger("wotbp-bot")
+
 # --- Optional dotenv ---------------------------------------------------------
 try:
-    from dotenv import load_dotenv
-    load_dotenv()
-    log.info("Loaded environment from .env")
-except Exception:
-    log.info("python-dotenv not installed; skipping .env loader")
+    from dotenv import load_dotenv  # type: ignore
+
+    ENV_FILE = pathlib.Path(__file__).with_name(".env")
+    loaded = load_dotenv(dotenv_path=ENV_FILE)
+
+    if loaded:
+        log.info("Loaded environment from %s", ENV_FILE)
+    else:
+        log.warning("No .env file loaded from %s", ENV_FILE)
+
+except Exception as e:
+    log.warning("python-dotenv not installed or failed to load .env: %s", e)
 
 # --- Discord intents ---------------------------------------------------------
 intents = discord.Intents.default()
@@ -50,27 +80,15 @@ log.info("CWD: %s", os.getcwd())
 log.info("DISCORD_TOKEN present? %s", "Yes" if os.getenv("DISCORD_TOKEN") else "No")
 
 # --- Constants ---------------------------------------------------------------
-REGION_ORDER = ["North America", "South America", "Europe", "Asia", "Africa", "Oceania", "Antarctica"]
-
-# --- Logging setup -----------------------------------------------------------
-LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-    handlers=[
-        logging.FileHandler(LOG_FILE, encoding="utf-8"),
-        logging.StreamHandler(sys.stdout),
-    ],
-)
-log = logging.getLogger("wotbp-bot")
-
-# --- Optional dotenv (safe if not installed) --------------------------------
-try:
-    from dotenv import load_dotenv  # type: ignore
-    load_dotenv()
-    log.info("Loaded environment from .env")
-except Exception:
-    log.info("python-dotenv not installed; skipping .env loader")
+REGION_ORDER = [
+    "North America",
+    "South America",
+    "Europe",
+    "Asia",
+    "Africa",
+    "Oceania",
+    "Antarctica",
+]
 
 # >>> ADDED: keep_alive import <<<
 # --- Intents -----------------------------------------------------------------
@@ -6459,6 +6477,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Africa ",
         "holdings": {
             "North America": "1.2 - Tri-State Zoo & Aquarium",},
+
+},
+"African Pygmy Goose": {
+        "common": "African Pygmy Goose",
+        "scientific": "Nettapus auritus",
+        "info": "The African pygmy goose is one of the world's smallest waterfowl and the smallest in Africa. Native to both the mainland of the continent and Madagascar, the species is regarded as somewhat difficult to breed in captivity, unlike most waterfowl.",
+        "type": "Bird",
+        "order": "Anseriformes",
+        "family": "Anatidae",
+        "genus": "Nettapus",
+        "image_url": "https://i.imgur.com/MZ5xEWy.jpeg",
+        "breeding": "Below Average",
+        "region": "Africa ",
+        "holdings": {
+            "Europe": "1.3 - Parque Zoologico de Clear Coast",},
                                 },
 }
 
