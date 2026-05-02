@@ -14,11 +14,37 @@ from zoneinfo import ZoneInfo
 import time
 _seen_messages = {}
 
+from pathlib import Path
+
 import discord
 from discord.ext import commands, tasks
 
 import os
 print("TOKEN:", os.getenv("DISCORD_TOKEN"))
+
+BASE_DIR = Path(__file__).resolve().parent
+_ZOO_DATA_PATH = BASE_DIR / "zoo_progress.json"
+
+def _load_zoo_data() -> dict:
+    if _ZOO_DATA_PATH.exists():
+        try:
+            with open(_ZOO_DATA_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            data.setdefault("users", {})
+            data.setdefault("directory", {})
+            return data
+
+        except json.JSONDecodeError:
+            print("ERROR: zoo_progress.json is invalid JSON.")
+            return {"users": {}, "directory": {}}
+
+    return {"users": {}, "directory": {}}
+
+
+def _save_zoo_data(data: dict) -> None:
+    with open(_ZOO_DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 # --- Logging setup -----------------------------------------------------------
 LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
@@ -6689,6 +6715,96 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "Oceania": "1.1 - Auckland Conservation Zoo and Aquarium",},
 
+},
+"Grand Skink": {
+        "common": "Grand Skink",
+        "scientific": "Oligosoma grande",
+        "info": "A large, endangered skink endemic to two small areas of the South Island of New Zealand, the grand skink is at the center of a national conservation effort in the country. Feeding on insects and fruits, their wild population has decline to about 2,000-5,000 individuals.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Scincidae",
+        "genus": "Oligosoma",
+        "image_url": "https://i.imgur.com/VyHED1L.jpeg",
+        "breeding": "Below Average",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "1.1 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Copper Skink": {
+        "common": "Copper Skink",
+        "scientific": "Oligosoma aeneum",
+        "info": "The copper skink is New Zealand's smallest native skink species, growing to 3 inches at the absolute maximum. Despite most New Zealand skinks being endangered, the copper skink seems to have adapted better and is somewhat common in human-inhabited areas.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Scincidae",
+        "genus": "Oligosoma",
+        "image_url": "https://i.imgur.com/zwAFEVd.jpeg",
+        "breeding": "Below Average",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "1.1 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"South Island Takahē": {
+        "common": "South Island Takahē",
+        "scientific": "Porphyrio hochstetteri",
+        "info": "A flightless and multicolored swamphen endemic to New Zealand, the South Island takahē is the only remaining takahē species, as its relative from the North Island was wiped out in modern times. It is known to use its wings to help it climb slopes in its natural habitat.",
+        "type": "Bird",
+        "order": "Gruiformes",
+        "family": "Rallidae",
+        "genus": "Porphyrio",
+        "image_url": "http://i.imgur.com/bvdto7o.jpeg",
+        "breeding": "Difficult",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "2.3 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Kea": {
+        "common": "Kea",
+        "scientific": "Nestor notabilis",
+        "info": "A large parrot, the kea is the only species of its entire order to be found in alpine environments. Renowned for their playful, intelligent, and sometimes aggressive nature, keas are endangered in the wild due to persecution and poisoning.",
+        "type": "Bird",
+        "order": "Psittaciformes",
+        "family": "Strigopidae",
+        "genus": "Nestor",
+        "image_url": "https://i.imgur.com/zTHyOcv.jpeg",
+        "breeding": "Difficult",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "2.3 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"New Zealand Fantail": {
+        "common": "New Zealand Fantail",
+        "scientific": "Rhipidura fuliginosa",
+        "info": "The New Zealand fantail is endemic to New Zealand and nearby islands, and is the only fantail found there. An active, almost frenetic bird, the New Zealand fantail feeds primarily on insects and are not scared of people, living often in urban environments.",
+        "type": "Bird",
+        "order": "Passeriformes",
+        "family": "Rhipiduridae",
+        "genus": "Rhipidura",
+        "image_url": "https://i.imgur.com/cV5TUIx.jpeg",
+        "breeding": "Below Average",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "4.3 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Tūī": {
+        "common": "Tūī",
+        "scientific": "Prosthemadera novaeseelandiae",
+        "info": "The only member of its genus, the tūī is a distinctive honeyeater known for the tufts on the neck of the male. Females are much more cryptically colored, which allows them to blend into the nest.",
+        "type": "Bird",
+        "order": "Passeriformes",
+        "family": "Meliphagidae",
+        "genus": "Prosthemadera",
+        "image_url": "https://i.imgur.com/0Blsesv.jpeg",
+        "breeding": "Difficult",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "2.3 - Auckland Conservation Zoo and Aquarium",},
+
                                 },
 }
 
@@ -7782,24 +7898,36 @@ def _load_zoo_data() -> dict:
     if _ZOO_DATA_PATH.exists():
         try:
             data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                data = {}
+        except json.JSONDecodeError:
+            log.exception("zoo_progress.json is invalid JSON. NOT overwriting it.")
+            data = {}
         except Exception:
+            log.exception("Could not load zoo_progress.json. NOT overwriting it.")
             data = {}
     else:
         data = {}
 
-    # Ensure buckets exist
-    data.setdefault("users", {})                # {uid: {"active_zoo":..., "zoos": {zoo: [species...]}}}
-    data.setdefault("ownership", {})            # {uid: {"limit": n, "zoos": [names...]}}
-    data.setdefault("directory", {})            # zoo directory (name->meta)
-    data.setdefault("contracept", {})           # NEW: {uid: {zoo: {species: True}}}
-    data.setdefault("breeding_channels", {})    # NEW: {guild_id: channel_id}
-    data.setdefault("birth_log", [])            # NEW: rolling birth feed
-    data.setdefault("species_overrides", {})    # NEW: per-species overrides (e.g., breeding label)
+    # Ensure buckets exist without wiping existing contents
+    data.setdefault("users", {})
+    data.setdefault("ownership", {})
+    data.setdefault("directory", {})
+    data.setdefault("contracept", {})
+    data.setdefault("breeding_channels", {})
+    data.setdefault("birth_log", [])
+    data.setdefault("species_overrides", {})
+
     return data
 
 
 def _save_zoo_data(data: dict) -> None:
-    _ZOO_DATA_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp_path = _ZOO_DATA_PATH.with_suffix(".json.tmp")
+    tmp_path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    tmp_path.replace(_ZOO_DATA_PATH)
 
 # ---------- Canonical species name ----------
 def _canonical_species_name(user_input: str) -> Optional[str]:
