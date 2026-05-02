@@ -4067,8 +4067,8 @@ species_data: Dict[str, Dict[str, Any]] = {
                                                     "order": "Gymnotiformes",
                                                     "family": "Apteronotidae",
                                                     "genus": "Apteronotus",
-                                                    "image_url": "https://biotopeaquariumproject.com/wp-content/uploads/2019/11/marajo-apteronotus-albifrons-jrichter.jpg",
-                                                    "breeding": "Diffiuclt",
+                                                    "image_url": "https://i.imgur.com/C88TduB.jpeg",
+                                                    "breeding": "Impossible",
                                                     "region": "South America",
                                                     "holdings": {},
                                                 },
@@ -6685,7 +6685,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Oligosoma",
         "image_url": "https://i.imgur.com/k3S5QsE.jpeg",
         "breeding": "Below Average",
-        "region": "North America, South America",
+        "region": "Oceania",
         "holdings": {
             "Oceania": "1.1 - Auckland Conservation Zoo and Aquarium",},
 
