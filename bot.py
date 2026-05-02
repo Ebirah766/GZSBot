@@ -602,7 +602,11 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://www.ecoregistros.org/site/images/dataimages/2018/10/02/289707/chaja-1.jpg",
         "breeding": "Below Average",
         "region": "South America",
-        "holdings": {},
+        "holdings": {
+            "Europe": [
+                "1.2 - Parque Zoologico de Clear Coast"
+            ]
+        }
     },
     "American White Ibis": {
         "common": "American White Ibis",
@@ -629,7 +633,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
-            "Europe": "4.4 - Parque Zoologico de Clear Coast",},
+            "Europe": "8.8 - Parque Zoologico de Clear Coast",},
                                 },
     "Linnaeus's Two-Toed Sloth": {
         "common": "Linnaeus's Two-Toed Sloth",
@@ -2333,18 +2337,22 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "region": "North America",
                                             "holdings": {},
                                             },
-                                            "African Penguin": {
-                                            "common": "African Penguin",
-                                            "scientific": "Spheniscus demersus",
-                                            "info": "The African penguin is critically endangered due to oil spills, poaching, and overfishing of its preferred prey. A large worldwide captive breeding program has been initiated for this species, which is endemic to the southern coast of Africa.",
-                                            "type": "Bird",
-                                            "order": "Sphenisciformes",
-                                            "family": "Spheniscidae",
-                                            "genus": "Spheniscus",
-                                            "image_url": "https://www.ecoregistros.org/site/images/dataimages/2016/11/19/175994/pinguino-del-cabo--8-.JPG",
-                                            "breeding": "Average",
-                                            "region": "Africa",
-                                            "holdings": {},
+    "African Penguin": {
+        "common": "African Penguin",
+        "scientific": "Spheniscus demersus",
+        "info": "The African penguin is critically endangered due to oil spills, poaching, and overfishing of its preferred prey. A large worldwide captive breeding program has been initiated for this species, which is endemic to the southern coast of Africa.",
+        "type": "Bird",
+        "order": "Sphenisciformes",
+        "family": "Spheniscidae",
+        "genus": "Spheniscus",
+        "image_url": "https://www.ecoregistros.org/site/images/dataimages/2016/11/19/175994/pinguino-del-cabo--8-.JPG",
+        "breeding": "Average",
+        "region": "Africa",
+        "holdings": {
+            "Europe": [
+                "6.6 - Parque Zoologico de Clear Coast"
+            ]
+        }
                                             },
                                             "Mandarin Duck": {
                                             "common": "Mandarin Duck",
@@ -5497,18 +5505,22 @@ species_data: Dict[str, Dict[str, Any]] = {
     }
 },
 "Emu": {
-        "common": "Emu",
-        "scientific": "Dromaius novaehollandiae",
-        "info": "The third-largest of living birds, the emu is native to mainland Australia. Remarkably hardy and adaptable, it is a species with a complex, loose social structure. They are one of Australia's most well-known and beloved animals.",
-        "type": "Bird",
-        "order": "Casuariiformes",
-        "family": "Casuariidae",
-        "genus": "Dromaius",
-        "image_url": "https://i.imgur.com/IACeQul.jpeg",
-        "breeding": "Average",
-        "region": "Oceania",
-        "holdings": {
-            "North America": "1.1 - Riverside Zoo",},
+    "common": "Emu",
+    "scientific": "Dromaius novaehollandiae",
+    "info": "The third-largest of living birds, the emu is native to mainland Australia. Remarkably hardy and adaptable, it is a species with a complex, loose social structure. They are one of Australia's most well-known and beloved animals.",
+    "type": "Bird",
+    "order": "Casuariiformes",
+    "family": "Casuariidae",
+    "genus": "Dromaius",
+    "image_url": "https://i.imgur.com/IACeQul.jpeg",
+    "breeding": "Average",
+    "region": "Oceania",
+    "holdings": {
+        "North America": "1.1 - Riverside Zoo",
+        "Europe": [
+            "1.1 - Parque Zoologico de Clear Coast"
+        ]
+    }
 },
 "Red Kangaroo": {
         "common": "Red Kangaroo",
@@ -5677,18 +5689,22 @@ species_data: Dict[str, Dict[str, Any]] = {
             "Europe": "1.2 - Brussels Zoo",},
 },
 "Aardvark": {
-        "common": "Aardvark",
-        "scientific": "Orycteropus afer",
-        "info": "This unique mammal is one of the closest living relatives of modern elephants. Native to most of Africa, the aardvark is a nocturnal insectivore, renowned for its digging ability and sense of smell. Its common name is the Afrikaans word 'earth pig'.",
-        "type": "Mammal",
-        "order": "Tubulidentata",
-        "family": "Orycteropodidae",
-        "genus": "Orycteropus",
-        "image_url": "https://i.imgur.com/LQZkwJK.jpeg",
-        "breeding": "Below Average",
-        "region": "Africa",
-        "holdings": {
-            "Europe": "1.1 - Brussels Zoo",},
+    "common": "Aardvark",
+    "scientific": "Orycteropus afer",
+    "info": "This unique mammal is one of the closest living relatives of modern elephants. Native to most of Africa, the aardvark is a nocturnal insectivore, renowned for its digging ability and sense of smell. Its common name is the Afrikaans word 'earth pig'.",
+    "type": "Mammal",
+    "order": "Tubulidentata",
+    "family": "Orycteropodidae",
+    "genus": "Orycteropus",
+    "image_url": "https://i.imgur.com/LQZkwJK.jpeg",
+    "breeding": "Below Average",
+    "region": "Africa",
+    "holdings": {
+        "Europe": [
+            "1.1 - Brussels Zoo",
+            "1.1.2.0 - Parque Zoologico de Clear Coast"
+        ]
+    }
 },
 "Tammar Wallaby": {
         "common": "Tammar Wallaby",
@@ -5772,7 +5788,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
-            "Europe": "4.4 - Parque Zoologico de Clear Coast",},
+            "Europe": "7.7 - Parque Zoologico de Clear Coast",},
 },
 "Common Kingfisher": {
         "common": "Common Kingfisher",
@@ -6339,7 +6355,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Allenopithecus",
         "image_url": "https://i.imgur.com/v3qLlO8.jpeg",
         "breeding": "Below Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "2.3 - Tri-State Zoo & Aquarium",},
 
@@ -6354,7 +6370,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Tockus",
         "image_url": "https://i.imgur.com/sH7sIUX.jpeg",
         "breeding": "Below Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "1.0 - Tri-State Zoo & Aquarium",},
 
@@ -6369,7 +6385,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Cinnyricinclus",
         "image_url": "https://i.imgur.com/yDJNw3Q.jpeg",
         "breeding": "Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "2.2 - Tri-State Zoo & Aquarium",},
 
@@ -6384,7 +6400,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Lamprotornis",
         "image_url": "https://i.imgur.com/2fhLet3.jpeg",
         "breeding": "Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "2.3 - Tri-State Zoo & Aquarium",},
 
@@ -6399,7 +6415,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Lamprotornis",
         "image_url": "https://i.imgur.com/ugZPTzy.jpeg",
         "breeding": "Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "2.2 - Tri-State Zoo & Aquarium",},
 
@@ -6414,7 +6430,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Coracias",
         "image_url": "https://i.imgur.com/O0VXIaN.jpeg",
         "breeding": "Below Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "1.1 - Tri-State Zoo & Aquarium",},
 
@@ -6429,7 +6445,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Agapornis",
         "image_url": "https://i.imgur.com/7iqnKKD.jpeg",
         "breeding": "Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "6.6 - Tri-State Zoo & Aquarium",},
 
@@ -6444,7 +6460,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Poicephalus",
         "image_url": "https://i.imgur.com/4nNKoz4.jpeg",
         "breeding": "Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "4.4 - Tri-State Zoo & Aquarium",},
 
@@ -6459,7 +6475,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Polihierax",
         "image_url": "https://i.imgur.com/HZ0lmhD.jpeg",
         "breeding": "Below Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "1.1 - Tri-State Zoo & Aquarium",},
 
@@ -6474,7 +6490,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Balearica",
         "image_url": "https://i.imgur.com/yYP5Orb.jpeg",
         "breeding": "Below Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "North America": "1.2 - Tri-State Zoo & Aquarium",},
 
@@ -6489,9 +6505,175 @@ species_data: Dict[str, Dict[str, Any]] = {
         "genus": "Nettapus",
         "image_url": "https://i.imgur.com/MZ5xEWy.jpeg",
         "breeding": "Below Average",
-        "region": "Africa ",
+        "region": "Africa",
         "holdings": {
             "Europe": "1.3 - Parque Zoologico de Clear Coast",},
+
+},
+"Great Blue Turaco": {
+        "common": "Great Blue Turaco",
+        "scientific": "Corythaeola cristata",
+        "info": "The largest turaco species, the great blue turaco is a fairly typical member of its order in terms of behavior. With poor flying ability, they jump from branch to branch to find their preferred food, which is primarily leaves and flowers.",
+        "type": "Bird",
+        "order": "Musophagiformes",
+        "family": "Musophagidae",
+        "genus": "Corythaeola",
+        "image_url": "https://i.imgur.com/k4JsoUu.jpeg",
+        "breeding": "Difficult",
+        "region": "Africa",
+        "holdings": {
+            "Europe": "2.2 - Parque Zoologico de Clear Coast",},
+
+},
+"Fennec Fox": {
+        "common": "Fennec Fox",
+        "scientific": "Vulpes zerda",
+        "info": "The fennec fox is the smallest fox and smallest canid overall, only getting to 15 inches in length and 3 lbs in weight. Its large ears allow for increased hearing ability in the desert and heat dissipation, a necessity in its range.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Vulpes",
+        "image_url": "https://i.imgur.com/XbwYPID.jpeg",
+        "breeding": "Average",
+        "region": "Asia, Africa",
+        "holdings": {
+            "Europe": "0.1.2.0 - Parque Zoologico de Clear Coast",},
+
+},
+"Crab-Eating Fox": {
+        "common": "Crab-Eating Fox",
+        "scientific": "Cerdocyon thous",
+        "info": "Despite its common name, the crab-eating fox of South America is not closely related to true foxes, as are all fox-like canids in South America. As its name suggests, it feeds primarily on crabs and other invertebrates in wetland environments.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Cerdocyon",
+        "image_url": "https://i.imgur.com/yDMQZ5j.jpeg",
+        "breeding": "Below Average",
+        "region": "South America",
+        "holdings": {
+            "Europe": "2.0 - Parque Zoologico de Clear Coast",},
+
+},
+"Bat-Eared Fox": {
+        "common": "Bat-Eared Fox",
+        "scientific": "Otocyon megalotis",
+        "info": "Named for its large ears, which help both with thermoregulation and prey detection, the bat-eared fox is unique amongst canids as it has a primarily insectivorous diet. Native to sub-Saharan Africa, it can be found in two disjunct ranges in east and southern Africa.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Otocyon",
+        "image_url": "https://i.imgur.com/jeIscAo.jpeg",
+        "breeding": "Average",
+        "region": "Africa",
+        "holdings": {
+            "Europe": "1.1 - Parque Zoologico de Clear Coast",},
+
+},
+"Toco Toucan": {
+        "common": "Toco Toucan",
+        "scientific": "Ramphastos toco",
+        "info": "The largest toucan and the most well-known, the toco toucan is primarily distributed in grasslands, wetlands, and secondary forest. They primarily feed on fruit but opportunistically take other food as well, such as insects and small birds.",
+        "type": "Bird",
+        "order": "Piciformes",
+        "family": "Ramphastidae",
+        "genus": "Ramphastos",
+        "image_url": "https://i.imgur.com/u1pRDX2.jpeg",
+        "breeding": "Difficult",
+        "region": "South America",
+        "holdings": {
+            "Europe": "2.2 - Parque Zoologico de Clear Coast",},
+
+},
+"Green Jay": {
+        "common": "Green Jay",
+        "scientific": "Cyanocorax luxuosus",
+        "info": "A brightly colored corvid found from Texas to Honduras, the green jay is variable in color, and in different parts of its range will have different plumage. Feeding primarily on insects and seeds, they will cache food for later when times are lean.",
+        "type": "Bird",
+        "order": "Passeriformes",
+        "family": "Corvidae",
+        "genus": "Cyanocorax",
+        "image_url": "https://i.imgur.com/KMLyCHn.jpeg",
+        "breeding": "Average",
+        "region": "North America",
+        "holdings": {
+            "Europe": "2.2 - Parque Zoologico de Clear Coast",},
+
+},
+"African Jacana": {
+        "common": "African Jacana",
+        "scientific": "Actophilornis africanus",
+        "info": "Widely distributed in African wetlands from coast to coast, the African jacana's distinctive large feet help it walk on sturdy water vegetation such as water lilies. They are probably the largest jacana species in weight.",
+        "type": "Bird",
+        "order": "Charadriiformes",
+        "family": "Jacanidae",
+        "genus": "Actophilornis",
+        "image_url": "https://i.imgur.com/oxsjtXY.jpeg",
+        "breeding": "Average",
+        "region": "Africa",
+        "holdings": {
+            "Europe": "1.3 - Parque Zoologico de Clear Coast",},
+
+},
+"Black-Backed Jackal": {
+        "common": "Black-Backed Jackal",
+        "scientific": "Lupulella mesomelas",
+        "info": "A medium-sized canid native to sub-Saharan Africa, the black-backed jackal is a prominent species in its ecosystem. An omnivore, it will feed on a variety of food both alive and dead, but is regarded as a pest in some of its range due to its propensity for livestock predation.",
+        "type": "Mammal",
+        "order": "Carnivora",
+        "family": "Canidae",
+        "genus": "Lupulella",
+        "image_url": "https://i.imgur.com/q6LZNnk.jpeg",
+        "breeding": "Average",
+        "region": "Africa",
+        "holdings": {
+            "Europe": "1.1 - Parque Zoologico de Clear Coast",},
+
+},
+"Yellow Oriole": {
+        "common": "Yellow Oriole",
+        "scientific": "Icterus nigrogularis",
+        "info": "Native to northern South America along the coast, the yellow oriole prefers open habitats, such as scrubland and disturbed areas. Their nest is a hanging basket, typically yielding three eggs. They feed primarily on insects, nectar, and fruit.",
+        "type": "Bird",
+        "order": "Passeriformes",
+        "family": "Icteridae",
+        "genus": "Icterus",
+        "image_url": "https://i.imgur.com/06J2DgH.jpeg",
+        "breeding": "Average",
+        "region": "South America",
+        "holdings": {
+            "Europe": "1.2 - Parque Zoologico de Clear Coast",},
+
+},
+"Boat-Billed Heron": {
+        "common": "Boat-Billed Heron",
+        "scientific": "Cochlearius cochlearius",
+        "info": "A distinctive Neotropical heron, the boat-billed heron resides primarily in mangrove swamps along the coasts and rivers. A predatory species, their large bill allows them to capture preferred prey such as fish and shrimp.",
+        "type": "Bird",
+        "order": "Pelecaniformes",
+        "family": "Ardeidae",
+        "genus": "Cochlearius",
+        "image_url": "https://i.imgur.com/7v8NeDq.jpeg",
+        "breeding": "Below Average",
+        "region": "North America, South America",
+        "holdings": {
+            "Europe": "1.2 - Parque Zoologico de Clear Coast",},
+
+},
+"Wattled Jacana": {
+        "common": "Wattled Jacana",
+        "scientific": "Jacana jacana",
+        "info": "One of the more well-known jancanas, the wattled jacana is found in Central and South America, from Panama down to Argentina. With its large, wide feet, it is able to walk across sturdy wetland vegetation quite easily.",
+        "type": "Bird",
+        "order": "Charadriiformes",
+        "family": "Jacanidae",
+        "genus": "Jacana",
+        "image_url": "https://i.imgur.com/kVsDJR6.jpeg",
+        "breeding": "Average",
+        "region": "North America, South America",
+        "holdings": {
+            "Europe": "1.1 - Parque Zoologico de Clear Coast",},
+
                                 },
 }
 
