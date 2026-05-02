@@ -6805,6 +6805,51 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "Oceania": "2.3 - Auckland Conservation Zoo and Aquarium",},
 
+},
+"New Zealand Longfin Eel": {
+        "common": "New Zealand Longfin Eel",
+        "scientific": "Anguilla dieffenbachii",
+        "info": "One of the largest true eels in the world, the New Zealand longfin eel is one of the few remaining large animals endemic to the islands. Endangered due to overfishing and incidental killings, it is an apex predator throughout its range, and the species attracts tourists who watch and feed them.",
+        "type": "Fish",
+        "order": "Anguilliformes",
+        "family": "Anguillidae",
+        "genus": "Anguilla",
+        "image_url": "https://i.imgur.com/vUGisyA.jpeg",
+        "breeding": "Impossible",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "3 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Shortfin Eel": {
+        "common": "Shortfin Eel",
+        "scientific": "Anguilla australis",
+        "info": "This eel species is found in temperate and tropical freshwater environments throughout Oceania, including in Australia, New Zealand, and Fiji. They have been aquacultured for thousands of years but are regarded as difficult to breed in captivity.",
+        "type": "Fish",
+        "order": "Anguilliformes",
+        "family": "Anguillidae",
+        "genus": "Anguilla",
+        "image_url": "https://i.imgur.com/3emunmi.jpeg",
+        "breeding": "Impossible",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "4 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Giant Kōkopu": {
+        "common": "Giant Kōkopu",
+        "scientific": "Galaxias argenteus",
+        "info": "The giant kōkopu is the largest of all the galaxias, growing up to almost 2 feet long and 6 lbs in weight. A nocturnal predator, they feed on a range of freshwater invertebrates and small fish.",
+        "type": "Fish",
+        "order": "Galaxiiformes",
+        "family": "Galaxiidae",
+        "genus": "Galaxias",
+        "image_url": "https://i.imgur.com/Mv4Twfd.jpeg",
+        "breeding": "Impossible",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "4 - Auckland Conservation Zoo and Aquarium",},
+
                                 },
 }
 
