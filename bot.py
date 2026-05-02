@@ -988,7 +988,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Squamata",
         "family": "Colubridae",
         "genus": "Boiga",
-        "image_url": "https://static.thainationalparks.com/img/species/2016/09/24/207594/boiga-melanota-w-1500.jpg",
+        "image_url": "https://i.imgur.com/E2Ueb9u.jpeg",
         "breeding": "Average",
         "region": "Asia",
         "holdings": {},
@@ -4673,7 +4673,7 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "order": "Squamata",
                                         "family": "Viperidae",
                                         "genus": "Trimeresurus",
-                                        "image_url": "https://www.thainationalparks.com/img/species/2021/11/28/397697/trimeresurus-phuketensis-w-1500.jpg",
+                                        "image_url": "https://i.imgur.com/OiAHhh8.jpeg",
                                         "breeding": "Below Average",
                                         "region": "Asia",
                                         "holdings": {},
@@ -6673,6 +6673,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America, South America",
         "holdings": {
             "Europe": "1.1 - Parque Zoologico de Clear Coast",},
+
+},
+"Otago Skink": {
+        "common": "Otago Skink",
+        "scientific": "Oligosoma otagense",
+        "info": "A large, endangered skink, the Otago skink is endemic to the South Island of New Zealand, specifically in the Otago region. Its precipitous decline has been caused by the introduction of non-native species like cats and weasels.",
+        "type": "Reptile",
+        "order": "Squamata",
+        "family": "Scincidae",
+        "genus": "Oligosoma",
+        "image_url": "https://i.imgur.com/k3S5QsE.jpeg",
+        "breeding": "Below Average",
+        "region": "North America, South America",
+        "holdings": {
+            "Oceania": "1.1 - Auckland Conservation Zoo and Aquarium",},
 
                                 },
 }

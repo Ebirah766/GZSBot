@@ -111,7 +111,14 @@
       "name": "Tri-State Zoo & Aquarium",
       "location": null,
       "image": null
-    }
+    },
+
+    "auckland conservation zoo and aquarium": {
+  "name": "Auckland Conservation Zoo and Aquarium",
+  "location": "Oceania",
+  "image": null
+}
+
   },
   "ownership": {
     "1015052273195421786": {
