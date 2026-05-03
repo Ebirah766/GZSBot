@@ -74,6 +74,12 @@
       "zoos": {
         "Karl Eberhard's Pine Lake Zoo": []
       }
+    },
+    "858685154268807219": {
+      "active_zoo": null,
+      "zoos": {
+        "Blue Seas Aquarium": []
+      }
     }
   },
   "directory": {
@@ -112,13 +118,16 @@
       "location": null,
       "image": null
     },
-
+    "blue seas aquarium": {
+      "name": "Blue Seas Aquarium",
+      "location": "Europe",
+      "image": null
+    },
     "auckland conservation zoo and aquarium": {
-  "name": "Auckland Conservation Zoo and Aquarium",
-  "location": "Oceania",
-  "image": null
-}
-
+      "name": "Auckland Conservation Zoo and Aquarium",
+      "location": "Oceania",
+      "image": null
+    }
   },
   "ownership": {
     "1015052273195421786": {
@@ -155,6 +164,12 @@
       "limit": 2,
       "zoos": [
         "Essex County Zoo"
+      ]
+    },
+    "858685154268807219": {
+      "limit": 2,
+      "zoos": [
+        "Blue Seas Aquarium"
       ]
     }
   },
