@@ -6850,6 +6850,66 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "Oceania": "4 - Auckland Conservation Zoo and Aquarium",},
 
+},
+"Redfin Bully": {
+        "common": "Redfin Bully",
+        "scientific": "Gobiomorphus huttoni",
+        "info": "A generally cryptic amphidromous goby, the redfin bully is endemic to New Zealand. Males can be distinguished from females due to their bright red fins and distinctive brown stripes. Males and females have different prey preferences, a behavior rarely seen in fish.",
+        "type": "Fish",
+        "order": "Gobiiformes",
+        "family": "Eleotridae",
+        "genus": "Gobiomorphus",
+        "image_url": "https://i.imgur.com/yaGmQLQ.jpeg",
+        "breeding": "Impossible",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "4 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Giant Bully": {
+        "common": "Giant Bully",
+        "scientific": "Gobiomorphus gobioides",
+        "info": "The largest species in its genus, the giant bully is endemic to New Zealand and can grow to 10 inches in length. Residing in rivers and estuaries, it is believed that the larvae need saltwater to develop properly.",
+        "type": "Fish",
+        "order": "Gobiiformes",
+        "family": "Eleotridae",
+        "genus": "Gobiomorphus",
+        "image_url": "https://i.imgur.com/ehSb3i4.jpeg",
+        "breeding": "Impossible",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "4 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Eldon's Galaxias": {
+        "common": "Eldon's Galaxias",
+        "scientific": "Galaxias eldoni",
+        "info": "A endangered microendemic galaxias, the Eldon's galaxias is found only in the eastern part of Otago on the South Island of New Zealand. They are endangered due to introduced trout preying on them.",
+        "type": "Fish",
+        "order": "Galaxiiformes",
+        "family": "Galaxiidae",
+        "genus": "Galaxias",
+        "image_url": "https://i.imgur.com/unAkUJ6.jpeg",
+        "breeding": "Impossible",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "5 - Auckland Conservation Zoo and Aquarium",},
+
+},
+"Lowland Longjaw Galaxias": {
+        "common": "Lowland Longjaw Galaxias",
+        "scientific": "Galaxias cobitinis",
+        "info": "The lowland longjaw galaxias is a highly endangered galaxias found only in the Kauru River on the South Island of New Zealand. Like all galaxias they lack scales and have a thick, mucus-based slime coat.",
+        "type": "Fish",
+        "order": "Galaxiiformes",
+        "family": "Galaxiidae",
+        "genus": "Galaxias",
+        "image_url": "https://i.imgur.com/8j0PRTf.jpeg",
+        "breeding": "Impossible",
+        "region": "Oceania",
+        "holdings": {
+            "Oceania": "5 - Auckland Conservation Zoo and Aquarium",},
+
                                 },
 }
 
