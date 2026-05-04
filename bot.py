@@ -8050,7 +8050,6 @@ def _percent(numerator: int, denominator: int) -> float:
 # (Optional) One-time seed list you can customize. If directory is empty,
 # we’ll auto-seed from this the first time you call get_all_zoo_names().
 ZOO_DIRECTORY_SEED: list[str] = [
-    "Aquarium of the East Pacific",
     "Karl Eberhard's Pine Lake Zoo",
     "Riverside Zoo",
     "Brussels Zoo",
