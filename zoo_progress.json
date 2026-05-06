@@ -13,7 +13,6 @@
         ]
       }
     },
-
     "806245088216743956": {
       "active_zoo": null,
       "zoos": {
@@ -70,11 +69,6 @@
     }
   },
   "directory": {
-    "aquarium of the east pacific": {
-      "name": "Aquarium of the East Pacific",
-      "location": null,
-      "image": null
-    },
     "karl eberhard's pine lake zoo": {
       "name": "Karl Eberhard's Pine Lake Zoo",
       "location": null,
@@ -121,12 +115,6 @@
       "limit": 2,
       "zoos": [
         "Parque Zoologico de Clear Coast"
-      ]
-    },
-    "701972811920703558": {
-      "limit": 2,
-      "zoos": [
-        "Aquarium of the East Pacific"
       ]
     },
     "1381408149667319838": {

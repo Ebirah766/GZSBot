@@ -6891,6 +6891,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "Oceania": "5 - Auckland Conservation Zoo and Aquarium",},
 
+},
+"Black Goby": {
+        "common": "Black Goby",
+        "scientific": "Gobius niger",
+        "info": "Native to the northeastern Atlantic and the Mediterranean Sea, the black goby is a large species of goby found commonly in shallow areas such as tidepools. They have been known to occasionally enter freshwater, but not for long periods of time.",
+        "type": "Fish",
+        "order": "Gobiiformes",
+        "family": "Gobiidae",
+        "genus": "Gobius",
+        "image_url": "https://i.imgur.com/vA0MEu3.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe, Asia, Africa",
+        "holdings": {
+            "Europe": "2 - Blue Seas Aquarium",},
+
                                 },
 }
 
