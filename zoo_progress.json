@@ -46,7 +46,8 @@
           "Vietnamese Giant Centipede",
           "Turkey Vulture",
           "White-Lipped Pit Viper"
-        ]
+        ],
+        "Chicago City Aquarium": []
       }
     },
     "1381408149667319838": {
@@ -108,6 +109,11 @@
       "name": "Auckland Conservation Zoo and Aquarium",
       "location": "Oceania",
       "image": null
+    },
+    "chicago city aquarium": {
+      "name": "Chicago City Aquarium",
+      "location": null,
+      "image": null
     }
   },
   "ownership": {
@@ -138,7 +144,8 @@
     "385221957550866443": {
       "limit": 2,
       "zoos": [
-        "Essex County Zoo"
+        "Essex County Zoo",
+        "Chicago City Aquarium"
       ]
     },
     "858685154268807219": {
