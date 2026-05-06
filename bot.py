@@ -6926,6 +6926,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "Europe": "2 - Blue Seas Aquarium",},
 
+},
+"Broadnosed Pipefish": {
+        "common": "Broadnosed Pipefish",
+        "scientific": "Syngnathus typhle",
+        "info": "The broadnosed pipefish has a large, thick snout which is as thick as its body, lending it is common name. It is a temperate species native to the eastern Atlantic from Norway to Morocco. It is found at shallow depths no deeper than 66ft.",
+        "type": "Fish",
+        "order": "Syngnathiformes",
+        "family": "Syngnathidae",
+        "genus": "Syngnathus",
+        "image_url": "https://i.imgur.com/nLcMLNn.jpeg",
+        "breeding": "Difficult",
+        "region": "Europe, Asia, Africa",
+        "holdings": {
+            "Europe": "6 - Blue Seas Aquarium",},
+
                                 },
 }
 
