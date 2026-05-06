@@ -6,67 +6,25 @@ import pathlib
 import difflib
 import re
 import json
-from typing import Dict, Any, Tuple, Optional, List, Set
 import io
 import builtins
-from datetime import datetime
-from zoneinfo import ZoneInfo
 import time
-_seen_messages = {}
-
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
+from typing import Dict, Any, Tuple, Optional, List, Set
 
 import discord
 from discord.ext import commands, tasks
 
-import os
-print("TOKEN:", os.getenv("DISCORD_TOKEN"))
+_seen_messages = {}
 
+# --- Paths -------------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent
 _ZOO_DATA_PATH = BASE_DIR / "zoo_progress.json"
-
-def _load_zoo_data() -> dict:
-    if _ZOO_DATA_PATH.exists():
-        try:
-            with open(_ZOO_DATA_PATH, "r", encoding="utf-8") as f:
-                data = json.load(f)
-
-            data.setdefault("users", {})
-            data.setdefault("directory", {})
-            return data
-
-        except json.JSONDecodeError:
-            print("ERROR: zoo_progress.json is invalid JSON.")
-            return {"users": {}, "directory": {}}
-
-    return {"users": {}, "directory": {}}
-
-
-def _save_zoo_data(data: dict) -> None:
-    with open(_ZOO_DATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+LOG_FILE = BASE_DIR / "bot.log"
 
 # --- Logging setup -----------------------------------------------------------
-LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-    handlers=[
-        logging.FileHandler(LOG_FILE, encoding="utf-8"),
-        logging.StreamHandler(sys.stdout),
-    ],
-)
-log = logging.getLogger("wotbp-bot")
-
-# --- Imports needed for setup ------------------------------------------------
-import os
-import sys
-import pathlib
-import logging
-
-# --- Logging setup -----------------------------------------------------------
-LOG_FILE = pathlib.Path(__file__).with_name("bot.log")
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
@@ -82,7 +40,7 @@ log = logging.getLogger("wotbp-bot")
 try:
     from dotenv import load_dotenv  # type: ignore
 
-    ENV_FILE = pathlib.Path(__file__).with_name(".env")
+    ENV_FILE = BASE_DIR / ".env"
     loaded = load_dotenv(dotenv_path=ENV_FILE)
 
     if loaded:
@@ -92,6 +50,70 @@ try:
 
 except Exception as e:
     log.warning("python-dotenv not installed or failed to load .env: %s", e)
+
+# --- Zoo data persistence ----------------------------------------------------
+
+def _load_zoo_data() -> dict:
+    if not _ZOO_DATA_PATH.exists():
+        log.warning("zoo_progress.json does not exist. Creating new datastore.")
+        return {
+            "users": {},
+            "ownership": {},
+            "directory": {},
+            "contracept": {},
+            "breeding_channels": {},
+            "birth_log": [],
+        }
+
+    try:
+        data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
+
+    except json.JSONDecodeError as e:
+        log.error("INVALID JSON in zoo_progress.json: %s", e)
+
+        backup = _ZOO_DATA_PATH.with_suffix(".broken.json")
+        _ZOO_DATA_PATH.replace(backup)
+
+        log.error("Broken file moved to: %s", backup)
+
+        return {
+            "users": {},
+            "ownership": {},
+            "directory": {},
+            "contracept": {},
+            "breeding_channels": {},
+            "birth_log": [],
+        }
+
+    except Exception as e:
+        log.error("Failed to load zoo_progress.json: %s", e)
+
+        return {
+            "users": {},
+            "ownership": {},
+            "directory": {},
+            "contracept": {},
+            "breeding_channels": {},
+            "birth_log": [],
+        }
+
+    data.setdefault("users", {})
+    data.setdefault("ownership", {})
+    data.setdefault("directory", {})
+    data.setdefault("contracept", {})
+    data.setdefault("breeding_channels", {})
+    data.setdefault("birth_log", [])
+
+    return data
+
+
+def _save_zoo_data(data: dict) -> None:
+    tmp_path = _ZOO_DATA_PATH.with_suffix(".json.tmp")
+    tmp_path.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    tmp_path.replace(_ZOO_DATA_PATH)
 
 # --- Discord intents ---------------------------------------------------------
 intents = discord.Intents.default()
@@ -118,8 +140,6 @@ REGION_ORDER = [
 
 # >>> ADDED: keep_alive import <<<
 # --- Intents -----------------------------------------------------------------
-intents = discord.Intents.default()
-intents.message_content = True
 
 # --- Bot ---------------------------------------------------------------------
 bot = commands.Bot(command_prefix=";", intents=intents)
