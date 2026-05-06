@@ -3222,18 +3222,20 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "region": "North America, South America",
                                         "holdings": {},
                                         },
-                                        "Common Moon Jelly": {
-                                        "common": "Common Moon Jelly",
-                                        "scientific": "Aurelia aurita",
-                                        "info": "Probably the most common jellyfish species in the world, the common moon jelly is found circumglobally and is often displayed in public aquariums. It is a micropredator, feeding on small animals in the water column with its mild venom, which can be painful to humans.",
-                                        "type": "Invertebrate",
-                                        "order": "Semaeostomeae",
-                                        "family": "Ulmaridae",
-                                        "genus": "Aurelia",
-                                        "image_url": "https://i.imgur.com/h9leK9t.jpeg",
-                                        "breeding": "Difficult",
-                                        "region": "North America, South America, Europe, Asia, Africa, Oceania, Antarctica",
-                                        "holdings": {},
+    "Common Moon Jelly": {
+        "common": "Common Moon Jelly",
+        "scientific": "Aurelia aurita",
+        "info": "Probably the most common jellyfish species in the world, the common moon jelly is found circumglobally and is often displayed in public aquariums. It is a micropredator, feeding on small animals in the water column with its mild venom, which can be painful to humans.",
+        "type": "Invertebrate",
+        "order": "Semaeostomeae",
+        "family": "Ulmaridae",
+        "genus": "Aurelia",
+        "image_url": "https://i.imgur.com/h9leK9t.jpeg",
+        "breeding": "Difficult",
+        "region": "North America, South America, Europe, Asia, Africa, Oceania, Antarctica",
+        "holdings": {
+            "Europe": "8 - Blue Seas Aquarium"
+        }
                                         },
                                         "Textile Cone": {
                                         "common": "Textile Cone",
@@ -6940,6 +6942,171 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Europe, Asia, Africa",
         "holdings": {
             "Europe": "6 - Blue Seas Aquarium",},
+
+},
+"Common Hermit Crab": {
+        "common": "Common Hermit Crab",
+        "scientific": "Pagurus bernhardus",
+        "info": "As the name implies, the common hermit crab is the most abundant hermit crab in the northeast Atlantic. An omnivorous detritivore, it is unique amongst hermit crabs in the sense that it can also filter feed to gain food when necessary.",
+        "type": "Invertebrate",
+        "order": "Decapoda",
+        "family": "Paguridae",
+        "genus": "Pagurus",
+        "image_url": "https://i.imgur.com/aFektJA.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe",
+        "holdings": {
+            "Europe": "8 - Blue Seas Aquarium",},
+
+},
+"European Green Crab": {
+        "common": "European Green Crab",
+        "scientific": "Carcinus maenas",
+        "info": "Originally native to the northeast Atlantic and the Baltic Sea, the European green crab is now an infamous invasive species globally. They reside in both marine and estuarine habitats and are highly adaptable, able to feed on a variety of invertebrates.",
+        "type": "Invertebrate",
+        "order": "Decapoda",
+        "family": "Carcinidae",
+        "genus": "Carcinus",
+        "image_url": "https://i.imgur.com/MeZFzwk.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe",
+        "holdings": {
+            "Europe": "3 - Blue Seas Aquarium",},
+
+},
+"Two-Spotted Goby": {
+        "common": "Two-Spotted Goby",
+        "scientific": "Pomatoschistus flavescens",
+        "info": "A small goby reaching 2.4 inches in length, the two-spotted goby is a common sight in the North Atlantic and Mediterranean Sea. Unlike most gobies it inhabits heavily vegetated areas filled with seagrass and seaweed.",
+        "type": "Fish",
+        "order": "Gobiiformes",
+        "family": "Oxudercidae",
+        "genus": "Pomatoschistus",
+        "image_url": "https://i.imgur.com/zTAEhC8.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe",
+        "holdings": {
+            "Europe": "14 - Blue Seas Aquarium",},
+
+},
+"Lion's Mane Jellyfish": {
+        "common": "Lion's Mane Jellyfish",
+        "scientific": "Cyanea capillata",
+        "info": "The lion's mane jellyfish is the largest species of jellyfish in the world. Exceptional specimens can grow to 7 feet in bell diameter and over 120 feet in length, but most specimens are much smaller. Regardless, this jellyfish species is large and bulky on average, and has few natural predators.",
+        "type": "Invertebrate",
+        "order": "Semaeostomeae",
+        "family": "Cyaneidae",
+        "genus": "Cyanea",
+        "image_url": "https://i.imgur.com/zTAEhC8.jpeg",
+        "breeding": "Impossible",
+        "region": "North America, Europe, Asia",
+        "holdings": {
+            "Europe": "2 - Blue Seas Aquarium",},
+
+},
+"Common Blenny": {
+        "common": "Common Blenny",
+        "scientific": "Lipophrys pholis",
+        "info": "Also known as the shanny or smooth blenny, the common blenny occurs in rocky areas of the northeastern Atlantic, and typically stay to one area their whole lives, except to find mates. They feed primarily on snails, barnacles, and amphipods.",
+        "type": "Fish",
+        "order": "Blenniiformes",
+        "family": "Blenniidae",
+        "genus": "Lipophrys",
+        "image_url": "https://i.imgur.com/X9ZX0cn.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe, Africa",
+        "holdings": {
+            "Europe": "4 - Blue Seas Aquarium",},
+
+},
+"Tompot Blenny": {
+        "common": "Tompot Blenny",
+        "scientific": "Parablennius gattorugine",
+        "info": "A somewhat large blenny, the tompot blenny is native to the northeastern Atlantic and Mediterranean Sea. Utilizing their comb-like teeth, they scrape their food from the subtrate surrounding them in their tide pool habitats. Like many blennies, they rarely leave their home territory once established.",
+        "type": "Fish",
+        "order": "Blenniiformes",
+        "family": "Blenniidae",
+        "genus": "Parablennius",
+        "image_url": "https://i.imgur.com/8ySC7fR.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe, Asia, Africa",
+        "holdings": {
+            "Europe": "4 - Blue Seas Aquarium",},
+
+},
+"Beadlet Anemone": {
+        "common": "Beadlet Anemone",
+        "scientific": "Actinia equina",
+        "info": "The beadlet anemone is a very widespread species of anemone found in cold water environments on multiple continents. They are somewhat variable in coloration, most commonly being a bright red. They are a long-lived species, with one individual (named Granny) living for 66 years.",
+        "type": "Invertebrate",
+        "order": "Actiniaria",
+        "family": "Actiniidae",
+        "genus": "Actinia",
+        "image_url": "https://i.imgur.com/wZlhpt6.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe, Asia, Africa",
+        "holdings": {
+            "Europe": "23 - Blue Seas Aquarium",},
+
+},
+"Strawberry Anemone": {
+        "common": "Strawberry Anemone",
+        "scientific": "Actinia fragacea",
+        "info": "A shallow-water anemone native to the northeastern Atlantic, the strawberry anemone gets its common name from the red and green coloration of its foot. Little is known about its reproduction, but it is oviparous and has separate sexes.",
+        "type": "Invertebrate",
+        "order": "Actiniaria",
+        "family": "Actiniidae",
+        "genus": "Actinia",
+        "image_url": "https://i.imgur.com/hmtRL0p.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe, Africa",
+        "holdings": {
+            "Europe": "5 - Blue Seas Aquarium",},
+
+},
+"Clonal Plumose Anemone": {
+        "common": "Clonal Plumose Anemone",
+        "scientific": "Metridium senile",
+        "info": "The clonal plumose anemone is a common North Atlantic anemone that has been described as 'the most beautiful anemone in the world'. They grow incredibly quickly, increasing to 2 inches in diameter in just 5 months, an unprecedented growth rate for cnidarians.",
+        "type": "Invertebrate",
+        "order": "Actiniaria",
+        "family": "Metridiidae",
+        "genus": "Metridium",
+        "image_url": "https://i.imgur.com/RnSfKP4.jpeg",
+        "breeding": "Impossible",
+        "region": "North America, South America, Europe, Asia, Oceania",
+        "holdings": {
+            "Europe": "25 - Blue Seas Aquarium",},
+
+},
+"Common Cuttlefish": {
+        "common": "Common Cuttlefish",
+        "scientific": "Sepia officinalis",
+        "info": "One of the largest and best-known cuttlefish, the common cuttlefish is a temperate-water species native to the northeastern Atlantic. With their color-changing chromatophores, they are known to change color incredibly quickly for various purposes, such as communication and camoflauge.",
+        "type": "Invertebrate",
+        "order": "Sepiida",
+        "family": "Sepiidae",
+        "genus": "Sepia",
+        "image_url": "https://i.imgur.com/RANo632.jpeg",
+        "breeding": "Difficult",
+        "region": "Europe, Asia, Africa",
+        "holdings": {
+            "Europe": "4 - Blue Seas Aquarium",},
+
+},
+"Compass Jellyfish": {
+        "common": "Compass Jellyfish",
+        "scientific": "Chrysaora hysoscella",
+        "info": "A common North Atlantic jellyfish, the compass jellyfish is a carnivorous species that feeds on a variety of pelagic invertebrates. They utilize both sexual and asexual reproduction, choosing the reproductive strategy that works best for them in the moment.",
+        "type": "Invertebrate",
+        "order": "Semaeostomeae",
+        "family": "Pelagiidae",
+        "genus": "Chrysaora",
+        "image_url": "https://i.imgur.com/7LaLac3.jpeg",
+        "breeding": "Difficult",
+        "region": "Europe, Africa",
+        "holdings": {
+            "Europe": "5 - Blue Seas Aquarium",},
 
                                 },
 }
