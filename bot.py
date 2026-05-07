@@ -6215,18 +6215,22 @@ species_data: Dict[str, Dict[str, Any]] = {
             "North America": "4 - Tri-State Zoo & Aquarium",},
 },
 "Bluegill": {
-        "common": "Bluegill",
-        "scientific": "Lepomis macrochirus",
-        "info": "Perhaps the most well known of the sunfish, the bluegill is a common and popular sport fish throughout North America and its introduced range, which includes Europe and Japan. They have a complex mating system for a fish, which includes 'sleeper males' who try to mate with females outside of the watch of the dominant male.",
-        "type": "Fish",
-        "order": "Centrarchiformes",
-        "family": "Centrarchidae",
-        "genus": "Lepomis",
-        "image_url": "https://i.imgur.com/tzR2Ofj.jpeg",
-        "breeding": "Difficult",
-        "region": "North America",
-        "holdings": {
-            "North America": "6 - Tri-State Zoo & Aquarium",},
+    "common": "Bluegill",
+    "scientific": "Lepomis macrochirus",
+    "info": "Perhaps the most well known of the sunfish, the bluegill is a common and popular sport fish throughout North America and its introduced range, which includes Europe and Japan. They have a complex mating system for a fish, which includes 'sleeper males' who try to mate with females outside of the watch of the dominant male.",
+    "type": "Fish",
+    "order": "Centrarchiformes",
+    "family": "Centrarchidae",
+    "genus": "Lepomis",
+    "image_url": "https://i.imgur.com/tzR2Ofj.jpeg",
+    "breeding": "Difficult",
+    "region": "North America",
+    "holdings": {
+        "North America": [
+            "6 - Chicago City Aquarium",
+            "6 - Tri-State Zoo & Aquarium"
+        ]
+    }
 },
 "Gopher Tortoise": {
         "common": "Gopher Tortoise",
@@ -7107,6 +7111,36 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Europe, Africa",
         "holdings": {
             "Europe": "5 - Blue Seas Aquarium",},
+
+},
+"Amur Carp": {
+        "common": "Amur Carp",
+        "scientific": "Cyprinus rubrofuscus",
+        "info": "The wild ancestor of koi carp, the Amur carp originates in north, east, and southeast Asia and is a fairly rare and uncommonly encountered species in its native range. Outside of their native range they have been introduced to various areas, either intentionally or accidentally, and have become a prized sport fish.",
+        "type": "Fish",
+        "order": "Cypriniformes",
+        "family": "Cyprinidae",
+        "genus": "Cyprinus",
+        "image_url": "https://i.imgur.com/CrW6WF9.jpeg",
+        "breeding": "Difficult",
+        "region": "Asia",
+        "holdings": {
+            "North America": "6 - Chicago City Aquarium",},
+
+},
+"Black Crappie": {
+        "common": "Black Crappie",
+        "scientific": "Pomoxis nigromaculatus",
+        "info": "The black crappie is a distinctive centrarchid whose original distribution is somewhat unclear. It is believed to originally come from eastern North America, but has been transplanted to many locations for sport fishing purposes. They are a hardy, adaptable species that can be found in a variety of habitats.",
+        "type": "Fish",
+        "order": "Centrarchiformes",
+        "family": "Centrarchidae",
+        "genus": "Pomoxis",
+        "image_url": "https://i.imgur.com/bxq0GGs.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "5 - Chicago City Aquarium",},
 
                                 },
 }
