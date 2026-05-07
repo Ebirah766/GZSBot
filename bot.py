@@ -1496,9 +1496,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "Africa",
         "holdings": {},
-                },
+    },
 
-        "Common Carp": {
+    "Common Carp": {
         "common": "Common Carp",
         "scientific": "Cyprinus carpio",
         "info": "An extremely hardy cyprinid, the common carp is famous (or infamous) for its adaptability. A generalist, common carp will eat just about anything, and can survive adverse conditions so well that they are one of the most notorious invasive species globally.",
@@ -1507,12 +1507,16 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Cyprinidae",
         "genus": "Cyprinus",
         "image_url": "https://i.imgur.com/n2piEb4.jpeg",
-            "breeding": "Difficult",
-            "region": "Europe, Asia",
-            "holdings": {},
-            },
+        "breeding": "Difficult",
+        "region": "Europe, Asia",
+        "holdings": {
+            "North America": [
+                "8 - Chicago City Aquarium"
+            ]
+        }
+    },
 
-        "Brook Trout": {
+    "Brook Trout": {
         "common": "Brook Trout",
         "scientific": "Salvelinus fontinalis",
         "info": "Technically a char and not a trout, the brook trout can be found natively in eastern North America, in the United States and Canada. They have been introduced to various locations outside of their native, and are paradoxically threatened in their native range due to pollution, habitat loss, invasive species, and damming.",
@@ -1521,9 +1525,13 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Salmonidae",
         "genus": "Salvelinus",
         "image_url": "https://media-animals.earth.com/images/2022/08/17/9385017317518864/salvelinusfontinalis_6479630421282603.jpg",
-            "breeding": "Difficult",
-            "region": "North America",
-            "holdings": {},
+        "breeding": "Difficult",
+        "region": "North America",
+        "holdings": {
+            "North America": [
+                "16 - Chicago City Aquarium"
+            ]
+        }
             },
 
     "Brown Trout": {
@@ -1855,21 +1863,25 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "breeding": "Impossible",
                                     "region": "Asia, Oceania",
                                     "holdings": {},
-                                            },
+                                    },
 
-                                    "Giant Gourami": {
-                                    "common": "Giant Gourami",
-                                    "scientific": "Osphronemus goramy",
-                                    "info": "The giant gourami is one of the largest gourami species. Native to Southeast Asia, it is a voracious herbivore, feeding on aquatic plants relentlessly. They are popular in aquaria but caution is advised due to their large adult size and aggression towards tankmates.",
-                                    "type": "Fish",
-                                    "order": "Anabantiformes",
-                                    "family": "Osphronemidae",
-                                    "genus": "Osphronemus",
-                                    "image_url": "https://i.imgur.com/8TvkN0g.png",
-                                    "breeding": "Impossible",
-                                    "region": "Asia",
-                                    "holdings": {},
-                                        },
+    "Giant Gourami": {
+        "common": "Giant Gourami",
+        "scientific": "Osphronemus goramy",
+        "info": "The giant gourami is one of the largest gourami species. Native to Southeast Asia, it is a voracious herbivore, feeding on aquatic plants relentlessly. They are popular in aquaria but caution is advised due to their large adult size and aggression towards tankmates.",
+        "type": "Fish",
+        "order": "Anabantiformes",
+        "family": "Osphronemidae",
+        "genus": "Osphronemus",
+        "image_url": "https://i.imgur.com/8TvkN0g.png",
+        "breeding": "Impossible",
+        "region": "Asia",
+        "holdings": {
+            "North America": [
+                "1 - Chicago City Aquarium"
+            ]
+        }
+    },
 
                                     "Siberian Sturgeon": {
                                     "common": "Siberian Sturgeon",
@@ -7141,6 +7153,36 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America",
         "holdings": {
             "North America": "5 - Chicago City Aquarium",},
+
+},
+"Clown Loach": {
+        "common": "Clown Loach",
+        "scientific": "Chromobotia macracanthus",
+        "info": "The clown loach is a large botia native to southeast Asia, specifically Indonesia on the islands of Sumatra and Borneo. They are one of the most popular botiid loaches in the aquarium trade, prized for their mellow demeanor, large size, and bright color.",
+        "type": "Fish",
+        "order": "Cypriniformes",
+        "family": "Botiidae",
+        "genus": "Chromobotia",
+        "image_url": "https://i.imgur.com/XEawRQ8.jpeg",
+        "breeding": "Impossible",
+        "region": "Asia",
+        "holdings": {
+            "North America": "8 - Chicago City Aquarium",},
+
+},
+"Golden Redhorse": {
+        "common": "Golden Redhorse",
+        "scientific": "Moxostoma erythrurum",
+        "info": "The golden redhorse is found in the central and eastern regions of North America in the United States and Canada. They are a bottom-feeding carnivore, feeding on small benthic animals such as snails and crustaceans. A popular game fish, they are commonly stocked for this purpose.",
+        "type": "Fish",
+        "order": "Cypriniformes",
+        "family": "Catostomidae",
+        "genus": "Moxostoma",
+        "image_url": "https://i.imgur.com/S4Vd1uK.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "3 - Chicago City Aquarium",},
 
                                 },
 }
