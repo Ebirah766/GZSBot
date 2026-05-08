@@ -1546,9 +1546,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Difficult",
         "region": "Europe, Asia, Africa",
         "holdings": {},
-        },
+    },
 
-        "Rainbow Trout": {
+    "Rainbow Trout": {
         "common": "Rainbow Trout",
         "scientific": "Oncorhynchus mykiss",
         "info": "One of the most renowned gamefish in the world, the rainbow trout, like many of its cousins, has been introduced to areas outside of its native range, such as Europe, South America, and New Zealand. They are an intensely studied species with several ecotypes, including the endangered steelhead.",
@@ -1556,13 +1556,16 @@ species_data: Dict[str, Dict[str, Any]] = {
         "order": "Salmoniformes",
         "family": "Salmonidae",
         "genus": "Oncorhynchus",
-            "images": [
-                {"label": "Coastal rainbow trout (irideus)",
-                 "url": "https://i.imgur.com/sZBQZDr.png"}
-            ],
-            "region": "North America, Asia",
-            "holdings": {
-                 },
+        "images": [
+            {
+                "label": "Coastal rainbow trout (irideus)",
+                "url": "https://i.imgur.com/sZBQZDr.png"
+            }
+        ],
+        "region": "North America, Asia",
+        "holdings": {
+            "North America": "16 [irideus] - Chicago City Aquarium"
+        },
         },
 
     "China Rockfish": {
@@ -6277,18 +6280,22 @@ species_data: Dict[str, Dict[str, Any]] = {
             "North America": "0.2 - Tri-State Zoo & Aquarium",},
 },
 "Smallmouth Bass": {
-        "common": "Smallmouth Bass",
-        "scientific": "Micropterus dolomieu",
-        "info": "A common and widely distributed centrarchid, the smallmouth bass is a popular gamefish wherever it is found, famed for its outsized strength. They live in rocky environments with plentiful prey, and feed mainly on small animals such as tadpoles, crayfish, and smaller fish.",
-        "type": "Fish",
-        "order": "Centrarchiformes",
-        "family": "Centrarchidae",
-        "genus": "Micropterus",
-        "image_url": "https://i.imgur.com/aatHbau.jpeg",
-        "breeding": "Difficult",
-        "region": "North America",
-        "holdings": {
-            "North America": "2 - Tri-State Zoo & Aquarium",},
+    "common": "Smallmouth Bass",
+    "scientific": "Micropterus dolomieu",
+    "info": "A common and widely distributed centrarchid, the smallmouth bass is a popular gamefish wherever it is found, famed for its outsized strength. They live in rocky environments with plentiful prey, and feed mainly on small animals such as tadpoles, crayfish, and smaller fish.",
+    "type": "Fish",
+    "order": "Centrarchiformes",
+    "family": "Centrarchidae",
+    "genus": "Micropterus",
+    "image_url": "https://i.imgur.com/aatHbau.jpeg",
+    "breeding": "Difficult",
+    "region": "North America",
+    "holdings": {
+        "North America": [
+            "4 - Chicago City Aquarium",
+            "2 - Tri-State Zoo & Aquarium"
+        ]
+    },
 },
 "Cottonmouth": {
         "common": "Cottonmouth",
@@ -7202,6 +7209,66 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America",
         "holdings": {
             "North America": "3 - Chicago City Aquarium",},
+
+},
+"Northern Hogsucker": {
+        "common": "Northern Hogsucker",
+        "scientific": "Hypentelium nigricans",
+        "info": "The northern hogsucker is a medium-sized catostomid that can be found in clear, fast-flowing freshwater environments in the eastern and southern parts of North America. They are an indicator species, as they do not tolerate adverse water conditions readily.",
+        "type": "Fish",
+        "order": "Cypriniformes",
+        "family": "Catostomidae",
+        "genus": "Hypentelium",
+        "image_url": "https://i.imgur.com/GNQTp4c.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "5 - Chicago City Aquarium",},
+
+},
+"Northern Snakehead": {
+        "common": "Northern Snakehead",
+        "scientific": "Channa argus",
+        "info": "The northern snakehead is a temperate species of snakehead native to north and east Asia, from Russia to China. A facultative air-breather, they are able to use a primitive labyrinth organ to intake air in addition to their gills in order to intake supplementary oxygen in poor water conditions.",
+        "type": "Fish",
+        "order": "Anabantiformes",
+        "family": "Channidae",
+        "genus": "Channa",
+        "image_url": "https://i.imgur.com/bkSgabZ.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "2 - Chicago City Aquarium",},
+
+},
+"Rainbow Darter": {
+        "common": "Rainbow Darter",
+        "scientific": "Etheostoma caeruleum",
+        "info": "One of the most well-known darters, the rainbow darter can be found in central, southern, and eastern North America in the United States and Canada. Typical of darters, they live in fast-flowing, cool, clean rivers.",
+        "type": "Fish",
+        "order": "Perciformes",
+        "family": "Percidae",
+        "genus": "Etheostoma",
+        "image_url": "https://i.imgur.com/FxAlyNU.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "6 - Chicago City Aquarium",},
+
+},
+"Round Goby": {
+        "common": "Round Goby",
+        "scientific": "Neogobius melanostomus",
+        "info": "A common goby in its native Eurasian range, the round goby has been introduced accidentally to the Great Lakes through ballast water discharge. They are an incredibly destructive species there, and measures are being taken to control the species.",
+        "type": "Fish",
+        "order": "Gobiiformes",
+        "family": "Gobiidae",
+        "genus": "Neogobius",
+        "image_url": "https://i.imgur.com/m9uSsU1.jpeg",
+        "breeding": "Impossible",
+        "region": "Europe, Asia",
+        "holdings": {
+            "North America": "4 - Chicago City Aquarium",},
 
                                 },
 }
