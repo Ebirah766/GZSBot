@@ -67,6 +67,12 @@
       "zoos": {
         "Blue Seas Aquarium": []
       }
+    },
+    "701972811920703558": {
+      "active_zoo": null,
+      "zoos": {
+        "Las Vegas Zoo": []
+      }
     }
   },
   "directory": {
@@ -114,6 +120,11 @@
       "name": "Chicago City Aquarium",
       "location": null,
       "image": null
+    },
+    "las vegas zoo": {
+      "name": "Las Vegas Zoo",
+      "location": null,
+      "image": null
     }
   },
   "ownership": {
@@ -152,6 +163,12 @@
       "limit": 2,
       "zoos": [
         "Blue Seas Aquarium"
+      ]
+    },
+    "701972811920703558": {
+      "limit": 2,
+      "zoos": [
+        "Las Vegas Zoo"
       ]
     }
   },
