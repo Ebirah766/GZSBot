@@ -2813,21 +2813,23 @@ species_data: Dict[str, Dict[str, Any]] = {
                     "breeding": "Average",
                     "region": "North America, Europe, Asia, Africa",
                     "holdings": {},
-                    },
+                },
 
-                    "Pumpkinseed": {
-                        "common": "Pumpkinseed",
-                        "scientific": "Lepomis gibbosus",
-                        "info": "One of the most well known of the freshwater sunfish, the pumpkinseed is native to the eastern and central parts of North America, but has been introduced to various locations globally and has become invasive in certain places. It is a very popular species for recreational fishermen.",
-                        "type": "Fish",
-                        "order": "Centrarchiformes",
-                        "family": "Centrarchidae",
-                        "genus": "Lepomis",
-                        "image_url": "https://i.imgur.com/4apDvzz.jpeg",
-                        "breeding": "Difficult",
-                        "region": "North America",
-                        "holdings": {},
-                            },
+    "Pumpkinseed": {
+        "common": "Pumpkinseed",
+        "scientific": "Lepomis gibbosus",
+        "info": "One of the most well known of the freshwater sunfish, the pumpkinseed is native to the eastern and central parts of North America, but has been introduced to various locations globally and has become invasive in certain places. It is a very popular species for recreational fishermen.",
+        "type": "Fish",
+        "order": "Centrarchiformes",
+        "family": "Centrarchidae",
+        "genus": "Lepomis",
+        "image_url": "https://i.imgur.com/4apDvzz.jpeg",
+        "breeding": "Difficult",
+        "region": "North America",
+        "holdings": {
+            "North America": "6 - Chicago City Aquarium"
+        }
+    },
 
                         "Yellow-Crowned Night Heron": {
                             "common": "Yellow-Crowned Night Heron",
@@ -2968,21 +2970,23 @@ species_data: Dict[str, Dict[str, Any]] = {
                                     "breeding": "Impossible",
                                     "region": "North America",
                                     "holdings": {},
-                                        },
+    },
 
-                                    "Largemouth Bass": {
-                                    "common": "Largemouth Bass",
-                                    "scientific": "Micropterus nigricans",
-                                    "info": "An iconic freshwater fish native to North America, the largemouth bass has become one of the most notorious invasive species globally, being introduced to places like Central America, Africa, Japan, and Canada. Largemouth bass are predators that feed on pretty much anything they can eat, preferring to live in heavily planted areas.",
-                                    "type": "Fish",
-                                    "order": "Centrarchiformes",
-                                    "family": "Centrarchidae",
-                                    "genus": "Micropterus",
-                                    "image_url": "https://i.imgur.com/7oFLOlG.jpeg",
-                                    "breeding": "Difficult",
-                                    "region": "North America",
-                                    "holdings": {},
-                                    },
+    "Largemouth Bass": {
+        "common": "Largemouth Bass",
+        "scientific": "Micropterus nigricans",
+        "info": "An iconic freshwater fish native to North America, the largemouth bass has become one of the most notorious invasive species globally, being introduced to places like Central America, Africa, Japan, and Canada. Largemouth bass are predators that feed on pretty much anything they can eat, preferring to live in heavily planted areas.",
+        "type": "Fish",
+        "order": "Centrarchiformes",
+        "family": "Centrarchidae",
+        "genus": "Micropterus",
+        "image_url": "https://i.imgur.com/7oFLOlG.jpeg",
+        "breeding": "Difficult",
+        "region": "North America",
+        "holdings": {
+            "North America": "1 - Chicago City Aquarium"
+        }
+    },
 
                                     "Red Swamp Crayfish": {
                                     "common": "Red Swamp Crayfish",
@@ -7179,6 +7183,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Catostomidae",
         "genus": "Moxostoma",
         "image_url": "https://i.imgur.com/S4Vd1uK.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "3 - Chicago City Aquarium",},
+
+},
+"Quillback Carpsucker": {
+        "common": "Quillback Carpsucker",
+        "scientific": "Carpiodes cyprinus",
+        "info": "Also known simply as the quillback, this distinctive catostomid found throughout North America. They are long-lived fish, typically living 30-50 years, and are sometimes utilized as game fish.",
+        "type": "Fish",
+        "order": "Cypriniformes",
+        "family": "Catostomidae",
+        "genus": "Carpiodes",
+        "image_url": "https://i.imgur.com/viPGmB7.png",
         "breeding": "Impossible",
         "region": "North America",
         "holdings": {
