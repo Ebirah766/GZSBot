@@ -7270,6 +7270,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": "4 - Chicago City Aquarium",},
 
+},
+"Yellow Perch": {
+        "common": "Yellow Perch",
+        "scientific": "Perca flavescens",
+        "info": "The yellow perch is one of the most common, widespread, and well-known members of its family. A popular gamefish, the yellow perch is a mesopredatory species that feeds primarily on invertebrates and small fish. They are commonly stocked for sport fishing purposes.",
+        "type": "Fish",
+        "order": "Perciformes",
+        "family": "Percidae",
+        "genus": "Perca",
+        "image_url": "https://i.imgur.com/svpG3dV.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "6 - Chicago City Aquarium",},
+
                                 },
 }
 
