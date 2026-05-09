@@ -2410,6 +2410,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "Africa",
         "holdings": {
+            "North America": [
+                "5.5 - Las Vegas Zoo"
+            ],
             "Europe": [
                 "6.6 - Parque Zoologico de Clear Coast"
             ]
@@ -4915,19 +4918,21 @@ species_data: Dict[str, Dict[str, Any]] = {
                                         "holdings": {
                                             "North America": "2.1 - Essex County Zoo", },
                                     },
-                                    "Ring-Tailed Lemur": {
-                                    "common": "Ring-Tailed Lemur",
-                                    "scientific": "Lemur catta",
-                                    "info": "The most well-known and common lemur species in captivity, the ring-tailed lemur resides in the dry forests of southwestern Madagascar. With a complex matriarchal social structure, ring-tailed lemurs are probably the most well-studied lemur species due to their ease of access and popularity amongst the general public.",
-                                    "type": "Mammal",
-                                    "order": "Primates",
-                                    "family": "Lemuridae",
-                                    "genus": "Lemur",
-                                    "image_url": "https://i.imgur.com/kWwTlWA.jpeg",
-                                    "breeding": "Easy",
-                                    "region": "Africa",
-                                        "holdings": {
-                                            "Europe": "2.2 - Brussels Zoo", },
+    "Ring-Tailed Lemur": {
+        "common": "Ring-Tailed Lemur",
+        "scientific": "Lemur catta",
+        "info": "The most well-known and common lemur species in captivity, the ring-tailed lemur resides in the dry forests of southwestern Madagascar. With a complex matriarchal social structure, ring-tailed lemurs are probably the most well-studied lemur species due to their ease of access and popularity amongst the general public.",
+        "type": "Mammal",
+        "order": "Primates",
+        "family": "Lemuridae",
+        "genus": "Lemur",
+        "image_url": "https://i.imgur.com/kWwTlWA.jpeg",
+        "breeding": "Easy",
+        "region": "Africa",
+        "holdings": {
+            "North America": "2.2 - Las Vegas Zoo",
+            "Europe": "2.2 - Brussels Zoo"
+        }
 },
                                     "Spotted Turtle": {
                                     "common": "Spotted Turtle",
@@ -5709,24 +5714,27 @@ species_data: Dict[str, Dict[str, Any]] = {
         "holdings": {
             "North America": "1.2 - Riverside Zoo",},
 },
-    "Greater Flamingo": {
-        "common": "Greater Flamingo",
-        "scientific": "Phoenicopterus roseus",
-        "info": "The largest and most widespread flamingo species, the greater flamingo is native to the Old World, from southern Europe all the way east to the Indian subcontinent and into sub-Saharan Africa. They feed on plankton using their specialized beaks, with their pinkish color coming from the astaxanthin in the food they eat.",
-        "type": "Bird",
-        "order": "Phoenicopteriformes",
-        "family": "Phoenicopteridae",
-        "genus": "Phoenicopterus",
-        "image_url": "https://i.imgur.com/ligKWZZ.jpeg",
-        "breeding": "Average",
-        "region": "Europe, Asia, Africa",
-        "holdings": {
-            "Europe": [
-                "5.5 - Brussels Zoo",
-                "10.10 - Parque Zoologico de Clear Coast"
-            ]
-        }
-    },
+"Greater Flamingo": {
+    "common": "Greater Flamingo",
+    "scientific": "Phoenicopterus roseus",
+    "info": "The largest and most widespread flamingo species, the greater flamingo is native to the Old World, from southern Europe all the way east to the Indian subcontinent and into sub-Saharan Africa. They feed on plankton using their specialized beaks, with their pinkish color coming from the astaxanthin in the food they eat.",
+    "type": "Bird",
+    "order": "Phoenicopteriformes",
+    "family": "Phoenicopteridae",
+    "genus": "Phoenicopterus",
+    "image_url": "https://i.imgur.com/ligKWZZ.jpeg",
+    "breeding": "Average",
+    "region": "Europe, Asia, Africa",
+    "holdings": {
+        "North America": [
+            "5.5 - Las Vegas Zoo"
+        ],
+        "Europe": [
+            "5.5 - Brussels Zoo",
+            "10.10 - Parque Zoologico de Clear Coast"
+        ]
+    }
+},
 "African Crested Porcupine": {
         "common": "African Crested Porcupine",
         "scientific": "Hystrix cristata",
@@ -7284,6 +7292,21 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "North America",
         "holdings": {
             "North America": "6 - Chicago City Aquarium",},
+
+},
+"Black-and-White Ruffed Lemur": {
+        "common": "Black-and-White Ruffed Lemur",
+        "scientific": "Varecia variegata",
+        "info": "The black-and-white ruffed lemur is a critically endangered lemur native to the tropical rainforests of Madagascar. They are frugivorous, with fruit making up 92% of their diet. They have a complex social structure and unique reproductive biology, such as large litters and short gestation periods.",
+        "type": "Mammal",
+        "order": "Primates",
+        "family": "Lemuridae",
+        "genus": "Varecia",
+        "image_url": "https://i.imgur.com/3jAoTFw.jpeg",
+        "breeding": "Above Average",
+        "region": "Africa",
+        "holdings": {
+            "North America": "1.1 - Las Vegas Zoo",},
 
                                 },
 }
