@@ -679,7 +679,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "breeding": "Average",
         "region": "North America, South America",
         "holdings": {
-            "Europe": "8.8 - Parque Zoologico de Clear Coast",},
+            "North America": "1.3 - Las Vegas Zoo",
+            "Europe": "8.8 - Parque Zoologico de Clear Coast"
+        },
                                 },
     "Linnaeus's Two-Toed Sloth": {
         "common": "Linnaeus's Two-Toed Sloth",
@@ -2254,7 +2256,11 @@ species_data: Dict[str, Dict[str, Any]] = {
                                             "breeding": "Average",
                                             "region": "Africa",
                                                 "holdings": {
-                                                    "North America": "1.0 - Riverside Zoo", },
+                                                    "North America": [
+                                                        "1.0 - Las Vegas Zoo",
+                                                        "1.0 - Riverside Zoo"
+                                                    ]
+                                                },
                                             },
                                             "Bennett's Wallaby": {
                                             "common": "Bennett's Wallaby",
@@ -5775,6 +5781,7 @@ species_data: Dict[str, Dict[str, Any]] = {
     "breeding": "Below Average",
     "region": "Africa",
     "holdings": {
+        "North America": "0.1 - Las Vegas Zoo",
         "Europe": [
             "1.1 - Brussels Zoo",
             "1.1.2.0 - Parque Zoologico de Clear Coast"
@@ -7303,7 +7310,52 @@ species_data: Dict[str, Dict[str, Any]] = {
         "family": "Lemuridae",
         "genus": "Varecia",
         "image_url": "https://i.imgur.com/3jAoTFw.jpeg",
-        "breeding": "Above Average",
+        "breeding": "Easy",
+        "region": "Africa",
+        "holdings": {
+            "North America": "1.1 - Las Vegas Zoo",},
+
+},
+"African Spurred Tortoise": {
+        "common": "African Spurred Tortoise",
+        "scientific": "Centrochelys sulcata",
+        "info": "The African spurred tortoise is the third-largest tortoise species in the world. Native to sub-Saharan Africa, it is a common species in captivity despite being endangered in the wild. An herbivorous species, captive specimens are often fed fresh vegetables as a staple diet.",
+        "type": "Reptile",
+        "order": "Testudines",
+        "family": "Testudinidae",
+        "genus": "Centrochelys",
+        "image_url": "https://i.imgur.com/G90rRvF.jpeg",
+        "breeding": "Average",
+        "region": "Africa",
+        "holdings": {
+            "North America": "1.2 - Las Vegas Zoo",},
+
+},
+"Scarlet Macaw": {
+        "common": "Scarlet Macaw",
+        "scientific": "Ara macao",
+        "info": "An iconic parrot native to the tropical rainforests of the Americas, the scarlet macaw is well-recognized as a symbol of the tropics. An intelligent, gregarious, and colorful species, it is sometimes found in the pet trade, but makes a demanding companion due to its aforementioned intelligence and its propensity to be very loud.",
+        "type": "Bird",
+        "order": "Psittaciformes",
+        "family": "Psittacidae",
+        "genus": "Ara",
+        "image_url": "https://i.imgur.com/zGnb9ak.jpeg",
+        "breeding": "Average",
+        "region": "North America, South America",
+        "holdings": {
+            "North America": "1.1 - Las Vegas Zoo",},
+
+},
+"Red Ruffed Lemur": {
+        "common": "Red Ruffed Lemur",
+        "scientific": "Varecia rubra",
+        "info": "The red ruffed lemur is a critically endangered lemur endemic to Masoala, a tropical rainforest peninsula on the northeastern part of Madagascar. A frugivorous species, they are known to particularly enjoy the taste of figs. They are common in zoos and a global captive breeding program exists for them.",
+        "type": "Mammal",
+        "order": "Primates",
+        "family": "Lemuridae",
+        "genus": "Varecia",
+        "image_url": "https://i.imgur.com/L7ssZF0.jpeg",
+        "breeding": "Easy",
         "region": "Africa",
         "holdings": {
             "North America": "1.1 - Las Vegas Zoo",},
