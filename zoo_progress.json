@@ -73,6 +73,12 @@
       "zoos": {
         "Las Vegas Zoo": []
       }
+    },
+    "1005275113417093120": {
+      "active_zoo": null,
+      "zoos": {
+        "Marine Discovery Center": []
+      }
     }
   },
   "directory": {
@@ -125,6 +131,11 @@
       "name": "Las Vegas Zoo",
       "location": null,
       "image": null
+    },
+    "marine discovery center": {
+      "name": "Marine Discovery Center",
+      "location": null,
+      "image": null
     }
   },
   "ownership": {
@@ -169,6 +180,12 @@
       "limit": 2,
       "zoos": [
         "Las Vegas Zoo"
+      ]
+    },
+    "1005275113417093120": {
+      "limit": 2,
+      "zoos": [
+        "Marine Discovery Center"
       ]
     }
   },
