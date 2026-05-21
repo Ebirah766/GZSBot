@@ -23,6 +23,11 @@
           "Masked Lapwing",
           "Laughing Kookaburra",
           "Major Mitchell's Cockatoo"
+        ],
+        "Tri-State Zoo & Aquarium": [
+          "Jackson's Hornbill",
+          "Red River Hog",
+          "Gray Crowned Crane"
         ]
       }
     },
@@ -53,7 +58,13 @@
     "1381408149667319838": {
       "active_zoo": null,
       "zoos": {
-        "Riverside Zoo": []
+        "Riverside Zoo": [
+          "Klipspringer",
+          "American Flamingo",
+          "Common Warthog",
+          "Grévy's Zebra",
+          "Green Araçari"
+        ]
       }
     },
     "1060010291473170482": {
@@ -66,7 +77,29 @@
     "701972811920703558": {
       "active_zoo": null,
       "zoos": {
-        "Las Vegas Zoo": []
+        "Las Vegas Zoo": [
+          "Greater Flamingo",
+          "African Penguin",
+          "Ring-Tailed Lemur",
+          "Black-and-White Ruffed Lemur",
+          "Aardvark",
+          "African Spurred Tortoise",
+          "Red Ruffed Lemur",
+          "Serval"
+        ]
+      }
+    },
+    "1496815039984832512": {
+      "active_zoo": null,
+      "zoos": {
+        "Karl Eberhard's Pine Lake Zoo": [
+          "Red Fox",
+          "Turkey Vulture",
+          "Black-Tailed Prairie Dog",
+          "Peregrine Falcon",
+          "Red-Tailed Hawk",
+          "Virginia Opossum"
+        ]
       }
     },
     "1005275113417093120": {
@@ -126,7 +159,24 @@
       "name": "Las Vegas Zoo",
       "location": null,
       "image": null
+     "1005275113417093120": {
+      "limit": 2,
+      "zoos": [
+        "Marine Discovery Center"
+      ]
     },
+    "1496815039984832512": {
+      "limit": 2,
+      "zoos": [
+        "Karl Eberhard's Pine Lake Zoo"
+      ]
+    },
+    "1348379296502251532": {
+      "limit": 2,
+      "zoos": [
+        "Leipzig Zoological Park"
+      ]
+    }   },
     "marine discovery center": {
       "name": "Marine Discovery Center",
       "location": null,
@@ -155,7 +205,8 @@
     "806245088216743956": {
       "limit": 2,
       "zoos": [
-        "Brussels Zoo"
+        "Brussels Zoo",
+        "Tri-State Zoo & Aquarium"
       ]
     },
     "385221957550866443": {
@@ -177,10 +228,40 @@
         "Las Vegas Zoo"
       ]
     },
-    "1005275113417093120": {
+<<<<<<< Updated upstream
+       "1005275113417093120": {
       "limit": 2,
       "zoos": [
         "Marine Discovery Center"
+      ]
+    },
+    "1496815039984832512": {
+      "limit": 2,
+      "zoos": [
+        "Karl Eberhard's Pine Lake Zoo"
+      ]
+    },
+    "1348379296502251532": {
+      "limit": 2,
+      "zoos": [
+        "Leipzig Zoological Park"
+      ]
+    } "1005275113417093120": {
+      "limit": 2,
+      "zoos": [
+        "Marine Discovery Center"
+=======
+    "1496815039984832512": {
+      "limit": 2,
+      "zoos": [
+        "Karl Eberhard's Pine Lake Zoo"
+      ]
+    },
+    "1348379296502251532": {
+      "limit": 2,
+      "zoos": [
+        "Leipzig Zoological Park"
+>>>>>>> Stashed changes
       ]
     }
   },
