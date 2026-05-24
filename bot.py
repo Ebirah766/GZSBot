@@ -17,6 +17,8 @@ from typing import Dict, Any, Tuple, Optional, List, Set
 import discord
 from discord.ext import commands, tasks
 
+from utils.image_utils import get_display_image_url
+
 _seen_messages = {}
 
 # --- Paths -------------------------------------------------------------------
@@ -48,54 +50,25 @@ try:
     else:
         log.warning("No .env file loaded from %s", ENV_FILE)
 
-except Exception as e:
-    log.warning("python-dotenv not installed or failed to load .env: %s", e)
-
-# --- Zoo data persistence ----------------------------------------------------
+except Exception:
+    log.exception("Could not load .env file.")
+    raise
 
 def _load_zoo_data() -> dict:
     if not _ZOO_DATA_PATH.exists():
-        log.warning("zoo_progress.json does not exist. Creating new datastore.")
-        return {
-            "users": {},
-            "ownership": {},
-            "directory": {},
-            "contracept": {},
-            "breeding_channels": {},
-            "birth_log": [],
-        }
+        data = {}
+    else:
+        try:
+            data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
 
-    try:
-        data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                raise ValueError("zoo_progress.json root is not a dict")
 
-    except json.JSONDecodeError as e:
-        log.error("INVALID JSON in zoo_progress.json: %s", e)
-
-        backup = _ZOO_DATA_PATH.with_suffix(".broken.json")
-        _ZOO_DATA_PATH.replace(backup)
-
-        log.error("Broken file moved to: %s", backup)
-
-        return {
-            "users": {},
-            "ownership": {},
-            "directory": {},
-            "contracept": {},
-            "breeding_channels": {},
-            "birth_log": [],
-        }
-
-    except Exception as e:
-        log.error("Failed to load zoo_progress.json: %s", e)
-
-        return {
-            "users": {},
-            "ownership": {},
-            "directory": {},
-            "contracept": {},
-            "breeding_channels": {},
-            "birth_log": [],
-        }
+        except Exception:
+            log.exception(
+                "Could not load zoo_progress.json. Refusing to start to avoid wiping data."
+            )
+            raise
 
     data.setdefault("users", {})
     data.setdefault("ownership", {})
@@ -103,6 +76,7 @@ def _load_zoo_data() -> dict:
     data.setdefault("contracept", {})
     data.setdefault("breeding_channels", {})
     data.setdefault("birth_log", [])
+    data.setdefault("species_overrides", {})
 
     return data
 
@@ -127,6 +101,7 @@ log.info("Python exe: %s", sys.executable)
 log.info("CWD: %s", os.getcwd())
 log.info("DISCORD_TOKEN present? %s", "Yes" if os.getenv("DISCORD_TOKEN") else "No")
 
+
 # --- Constants ---------------------------------------------------------------
 REGION_ORDER = [
     "North America",
@@ -138,14 +113,6 @@ REGION_ORDER = [
     "Antarctica",
 ]
 
-# >>> ADDED: keep_alive import <<<
-# --- Intents -----------------------------------------------------------------
-
-# --- Bot ---------------------------------------------------------------------
-bot = commands.Bot(command_prefix=";", intents=intents)
-log.info("Python exe: %s", sys.executable)
-log.info("CWD: %s", os.getcwd())
-log.info("DISCORD_TOKEN present? %s", "Yes" if os.getenv("DISCORD_TOKEN") else "No")
 
 def format_holdings_lines(holdings: Dict[str, Any]) -> str:
     """
@@ -159,12 +126,10 @@ def format_holdings_lines(holdings: Dict[str, Any]) -> str:
     for region in REGION_ORDER:
         v = holdings.get(region, 0)
 
-        # Normalize simple zeros
         if v in (0, "0", 0.0, None):
             lines.append(f"**{region}:** 0")
             continue
 
-        # If it's a list/tuple/set, show one per line
         if isinstance(v, (list, tuple, set)):
             items = [str(x).strip() for x in v if str(x).strip()]
             if not items:
@@ -176,7 +141,6 @@ def format_holdings_lines(holdings: Dict[str, Any]) -> str:
                 lines.extend([f"• {it}" for it in items])
             continue
 
-        # If it's a string, split by commas into items
         if isinstance(v, str):
             items = [s.strip() for s in v.split(",") if s.strip()]
             if not items:
@@ -188,123 +152,138 @@ def format_holdings_lines(holdings: Dict[str, Any]) -> str:
                 lines.extend([f"• {it}" for it in items])
             continue
 
-        # Fallback: just print whatever it is
         lines.append(f"**{region}:** {v}")
 
     return "\n".join(lines)
 
+
 # --- Token System (per-user, per-zoo) ---------------------------------------
-TOKENS_FILE = pathlib.Path("tokens.json")
+TOKENS_FILE = BASE_DIR / "tokens.json"
 TOKENS_START = 10
-_GLOBAL_KEY = "__global__"   # fallback while you migrate; optional
+_GLOBAL_KEY = "__global__"
 
-def _read_json(path: pathlib.Path) -> dict:
-    if path.exists():
-        with open(path, "r", encoding="utf-8") as f:
-            try:
-                return json.load(f)
-            except Exception:
-                return {}
-    return {}
 
-from utils.image_utils import get_display_image_url
+def _read_json(path: Path) -> dict:
+    if not path.exists():
+        return {}
 
-def _write_json(path: pathlib.Path, data: dict):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        log.exception("Could not read %s", path)
+        return {}
+
+
+def _write_json(path: Path, data: dict) -> None:
+    tmp_path = path.with_suffix(path.suffix + ".tmp")
+    tmp_path.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    tmp_path.replace(path)
+
 
 def _ensure_structure(data: dict) -> dict:
     """
-    Accepts your current shape:
-      {"balances": {"334...": 10, "385...": 10}}
-    and normalizes to:
-      {"balances": {"334...": {"__global__": 10}, "385...": {"__global__": 10}}}
-    while preserving any already-per-zoo dicts.
+    Accepts:
+      {"balances": {"334...": 10}}
+
+    Normalizes to:
+      {"balances": {"334...": {"__global__": 10}}}
     """
     if not isinstance(data, dict):
         data = {}
+
     balances = data.get("balances") or {}
     if not isinstance(balances, dict):
         balances = {}
+
     normalized: dict = {}
+
     for uid, val in balances.items():
         if isinstance(val, dict):
-            # already per-zoo
             normalized[str(uid)] = val
         elif isinstance(val, int):
-            # migrate flat int -> per-zoo dict with a global fallback key
             normalized[str(uid)] = {_GLOBAL_KEY: int(val)}
         else:
-            # unknown content -> start clean
             normalized[str(uid)] = {_GLOBAL_KEY: TOKENS_START}
+
     data["balances"] = normalized
     return data
+
 
 def _load_tokens() -> dict:
     data = _read_json(TOKENS_FILE)
     return _ensure_structure(data)
 
-def _save_tokens(data: dict):
+
+def _save_tokens(data: dict) -> None:
     data = _ensure_structure(data)
     _write_json(TOKENS_FILE, data)
 
+
 def _get_user_dict(data: dict, uid: int) -> dict:
     uid_s = str(uid)
-    if "balances" not in data:
-        data["balances"] = {}
+
+    data.setdefault("balances", {})
+
     if uid_s not in data["balances"] or not isinstance(data["balances"][uid_s], dict):
         data["balances"][uid_s] = {_GLOBAL_KEY: TOKENS_START}
+
     return data["balances"][uid_s]
 
+
 def get_user_zoo_tokens(uid: int, zoo: str | None) -> int:
-    """
-    If zoo is provided, return that zoo balance.
-    If not provided, return the global/default (for display & fallback).
-    When a zoo has no explicit balance yet, fall back to the user's global (or TOKENS_START).
-    """
     data = _load_tokens()
     u = _get_user_dict(data, uid)
+
     if zoo:
         return int(u.get(zoo, u.get(_GLOBAL_KEY, TOKENS_START)))
+
     return int(u.get(_GLOBAL_KEY, TOKENS_START))
 
-def set_user_zoo_tokens(uid: int, zoo: str, amount: int):
+
+def set_user_zoo_tokens(uid: int, zoo: str, amount: int) -> None:
     data = _load_tokens()
     u = _get_user_dict(data, uid)
     u[zoo] = max(0, int(amount))
     _save_tokens(data)
 
-def add_user_zoo_tokens(uid: int, zoo: str, delta: int):
+
+def add_user_zoo_tokens(uid: int, zoo: str, delta: int) -> None:
     current = get_user_zoo_tokens(uid, zoo)
     set_user_zoo_tokens(uid, zoo, current + int(delta))
 
+
 def spend_user_zoo_tokens(uid: int, zoo: str, amount: int) -> bool:
-    """
-    Atomically attempt to spend `amount` tokens from (uid, zoo).
-    If sufficient, deduct and return True. Otherwise, no change and return False.
-    """
     current = get_user_zoo_tokens(uid, zoo)
+
     if amount <= 0:
         return True
+
     if current < amount:
         return False
+
     set_user_zoo_tokens(uid, zoo, current - amount)
     return True
 
+
 def list_user_zoos_with_balances(uid: int) -> list[tuple[str, int]]:
-    """
-    Returns a list of (zoo_name, tokens) excluding the __global__ key.
-    """
     data = _load_tokens()
     u = _get_user_dict(data, uid)
+
     out = []
+
     for k, v in u.items():
         if k == _GLOBAL_KEY:
             continue
+
         try:
             out.append((k, int(v)))
         except Exception:
             pass
+
     return sorted(out, key=lambda kv: kv[0].lower())
 
 
@@ -7466,10 +7445,6 @@ _ZOO_NORMALIZER = re.compile(r"\s+")
 def _norm_zoo(name: str) -> str:
     return _ZOO_NORMALIZER.sub(" ", (name or "").strip()).lower()
 
-def _load_zoo_data() -> dict:
-    # you already have this in your codebase; this is just here to show calls
-    ...
-
 def _get_directory_species_for_zoo(zoo_name: str, data: dict) -> list[str]:
     """Prefer canonical directory collection; fallback to owner's collections."""
     directory = data.get("directory", {}) or {}
@@ -8443,46 +8418,6 @@ class SpeciesPager(discord.ui.View):
             return await interaction.response.defer()
         self.index = (self.index + 1) % len(self.images)
         await self._update_embed(interaction)
-
-
-# ==============================  ADDED: ZOO PROGRESS + OWNERSHIP  ==============================
-# ---------- Persistence ----------
-_ZOO_DATA_PATH = pathlib.Path(__file__).with_name("zoo_progress.json")
-
-def _load_zoo_data() -> dict:
-    if _ZOO_DATA_PATH.exists():
-        try:
-            data = json.loads(_ZOO_DATA_PATH.read_text(encoding="utf-8"))
-            if not isinstance(data, dict):
-                data = {}
-        except json.JSONDecodeError:
-            log.exception("zoo_progress.json is invalid JSON. NOT overwriting it.")
-            data = {}
-        except Exception:
-            log.exception("Could not load zoo_progress.json. NOT overwriting it.")
-            data = {}
-    else:
-        data = {}
-
-    # Ensure buckets exist without wiping existing contents
-    data.setdefault("users", {})
-    data.setdefault("ownership", {})
-    data.setdefault("directory", {})
-    data.setdefault("contracept", {})
-    data.setdefault("breeding_channels", {})
-    data.setdefault("birth_log", [])
-    data.setdefault("species_overrides", {})
-
-    return data
-
-
-def _save_zoo_data(data: dict) -> None:
-    tmp_path = _ZOO_DATA_PATH.with_suffix(".json.tmp")
-    tmp_path.write_text(
-        json.dumps(data, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-    tmp_path.replace(_ZOO_DATA_PATH)
 
 # ---------- Canonical species name ----------
 def _canonical_species_name(user_input: str) -> Optional[str]:
@@ -10283,10 +10218,6 @@ async def on_command_error(ctx: commands.Context, error: Exception):
     await ctx.send("An error occurred while processing that command.")
 
 # --- Ready / Run -------------------------------------------------------------
-@bot.event
-async def on_ready():
-    log.info("Logged in as %s (%s)", bot.user, bot.user.id)
-    log.info("Bot is ready.")
 
     # Start scheduled tasks
     if not weekly_breeding.is_running():
@@ -11182,33 +11113,28 @@ async def cmd_progressrole_set(ctx: commands.Context, role: discord.Role):
     """Bind the '≥50% housed' role for this server."""
     await _set_progress_role(ctx.guild, role)
     await ctx.send(f"✅ Set the progress role to {role.mention} for this server.")
-    # Optional: immediate reconcile
     await recompute_progress_role_for_guild(ctx.guild)
     await ctx.send("🔄 Recomputed current assignments.")
 
-    @bot.command(
-        name="progressrole.check",
-        aliases=["progressrolecheck", "progresscheck", "prcheck"]
-    )
-    async def cmd_progressrole_check(ctx: commands.Context, member: Optional[discord.Member] = None):
-        """
-        Check if you (or a specified member) currently qualify (≥50% housed in any owned zoo).
-        Usage:
-          ;progressrole.check
-          ;progressrole.check @someone
-        """
-        m = member or ctx.author
-        ok = any_zoo_over_50_for_user(m.id)
-        await ctx.send(
-            f"{m.mention} {'✅ qualifies' if ok else '❌ does not qualify'} (≥50% in any owned zoo)."
-        )
 
-    @bot.command(name="progressrole.refresh")
-    @commands.has_permissions(manage_roles=True)
-    async def cmd_progressrole_refresh(ctx: commands.Context):
-        """Force a full recompute now."""
-        await recompute_progress_role_for_guild(ctx.guild)
-        await ctx.send("🔄 Refreshed role assignments.")
+@bot.command(
+    name="progressrole.check",
+    aliases=["progressrolecheck", "progresscheck", "prcheck"]
+)
+async def cmd_progressrole_check(ctx: commands.Context, member: Optional[discord.Member] = None):
+    m = member or ctx.author
+    ok = any_zoo_over_50_for_user(m.id)
+    await ctx.send(
+        f"{m.mention} {'✅ qualifies' if ok else '❌ does not qualify'} (≥50% in any owned zoo)."
+    )
+
+
+@bot.command(name="progressrole.refresh")
+@commands.has_permissions(manage_roles=True)
+async def cmd_progressrole_refresh(ctx: commands.Context):
+    await recompute_progress_role_for_guild(ctx.guild)
+    await ctx.send("🔄 Refreshed role assignments.")
+
 
 @bot.event
 async def on_ready():
@@ -11217,14 +11143,15 @@ async def on_ready():
 
     if not weekly_breeding.is_running():
         weekly_breeding.start()
+
     if not progress_role_sweeper.is_running():
         progress_role_sweeper.start()
 
-if __name__ == "__main__":
-    # >>> ADDED: start keep-alive web server before running the bot <<<
 
+if __name__ == "__main__":
     token = os.getenv("DISCORD_TOKEN")
     if not token:
         log.error("DISCORD_TOKEN not set in environment or .env")
         sys.exit(1)
+
     bot.run(token)
