@@ -6946,10 +6946,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/vA0MEu3.jpeg",
         "breeding": "Impossible",
         "region": "Europe, Asia, Africa",
-        "holdings": {
-            "Europe": "2 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Broadnosed Pipefish": {
         "common": "Broadnosed Pipefish",
         "scientific": "Syngnathus typhle",
@@ -6961,10 +6960,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/nLcMLNn.jpeg",
         "breeding": "Difficult",
         "region": "Europe, Asia, Africa",
-        "holdings": {
-            "Europe": "6 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Common Hermit Crab": {
         "common": "Common Hermit Crab",
         "scientific": "Pagurus bernhardus",
@@ -6976,10 +6974,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/aFektJA.jpeg",
         "breeding": "Impossible",
         "region": "Europe",
-        "holdings": {
-            "Europe": "8 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "European Green Crab": {
         "common": "European Green Crab",
         "scientific": "Carcinus maenas",
@@ -6991,10 +6988,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/MeZFzwk.jpeg",
         "breeding": "Impossible",
         "region": "Europe",
-        "holdings": {
-            "Europe": "3 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Two-Spotted Goby": {
         "common": "Two-Spotted Goby",
         "scientific": "Pomatoschistus flavescens",
@@ -7006,10 +7002,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/zTAEhC8.jpeg",
         "breeding": "Impossible",
         "region": "Europe",
-        "holdings": {
-            "Europe": "14 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Lion's Mane Jellyfish": {
         "common": "Lion's Mane Jellyfish",
         "scientific": "Cyanea capillata",
@@ -7021,10 +7016,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/zTAEhC8.jpeg",
         "breeding": "Impossible",
         "region": "North America, Europe, Asia",
-        "holdings": {
-            "Europe": "2 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Common Blenny": {
         "common": "Common Blenny",
         "scientific": "Lipophrys pholis",
@@ -7036,10 +7030,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/X9ZX0cn.jpeg",
         "breeding": "Impossible",
         "region": "Europe, Africa",
-        "holdings": {
-            "Europe": "4 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Tompot Blenny": {
         "common": "Tompot Blenny",
         "scientific": "Parablennius gattorugine",
@@ -7051,10 +7044,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/8ySC7fR.jpeg",
         "breeding": "Impossible",
         "region": "Europe, Asia, Africa",
-        "holdings": {
-            "Europe": "4 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Beadlet Anemone": {
         "common": "Beadlet Anemone",
         "scientific": "Actinia equina",
@@ -7066,10 +7058,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/wZlhpt6.jpeg",
         "breeding": "Impossible",
         "region": "Europe, Asia, Africa",
-        "holdings": {
-            "Europe": "23 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Strawberry Anemone": {
         "common": "Strawberry Anemone",
         "scientific": "Actinia fragacea",
@@ -7081,10 +7072,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/hmtRL0p.jpeg",
         "breeding": "Impossible",
         "region": "Europe, Africa",
-        "holdings": {
-            "Europe": "5 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Clonal Plumose Anemone": {
         "common": "Clonal Plumose Anemone",
         "scientific": "Metridium senile",
@@ -7096,10 +7086,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/RnSfKP4.jpeg",
         "breeding": "Impossible",
         "region": "North America, South America, Europe, Asia, Oceania",
-        "holdings": {
-            "Europe": "25 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Common Cuttlefish": {
         "common": "Common Cuttlefish",
         "scientific": "Sepia officinalis",
@@ -7111,10 +7100,9 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/RANo632.jpeg",
         "breeding": "Difficult",
         "region": "Europe, Asia, Africa",
-        "holdings": {
-            "Europe": "4 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
+
 "Compass Jellyfish": {
         "common": "Compass Jellyfish",
         "scientific": "Chrysaora hysoscella",
@@ -7126,9 +7114,7 @@ species_data: Dict[str, Dict[str, Any]] = {
         "image_url": "https://i.imgur.com/7LaLac3.jpeg",
         "breeding": "Difficult",
         "region": "Europe, Africa",
-        "holdings": {
-            "Europe": "5 - Blue Seas Aquarium",},
-
+        "holdings": {}
 },
 "Amur Carp": {
         "common": "Amur Carp",

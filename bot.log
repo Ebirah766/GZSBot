@@ -20390,3 +20390,9 @@ OSError: [Errno 22] Invalid argument
 2026-05-01 16:12:05,427 | INFO | wotbp-bot | CWD: C:\Users\sperm\Desktop\GZSBot (1)\GZSBot
 2026-05-01 16:12:05,427 | INFO | wotbp-bot | DISCORD_TOKEN present? Yes
 2026-05-01 16:12:05,437 | INFO | discord.client | logging in using static token
+2026-05-24 18:59:48,417 | INFO | wotbp-bot | Loaded environment from C:\Users\sperm\Desktop\GZSBot (1)\GZSBot\.env
+2026-05-24 18:59:48,417 | WARNING | discord.client | PyNaCl is not installed, voice will NOT be supported
+2026-05-24 18:59:48,417 | WARNING | discord.client | davey is not installed, voice will NOT be supported
+2026-05-24 18:59:48,417 | INFO | wotbp-bot | Python exe: C:\Users\sperm\Desktop\GZSBot (1)\GZSBot\.venv\Scripts\python.exe
+2026-05-24 18:59:48,417 | INFO | wotbp-bot | CWD: C:\Users\sperm\Desktop\GZSBot (1)\GZSBot
+2026-05-24 18:59:48,417 | INFO | wotbp-bot | DISCORD_TOKEN present? Yes
