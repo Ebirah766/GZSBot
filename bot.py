@@ -5946,7 +5946,11 @@ species_data: Dict[str, Dict[str, Any]] = {
     "image_url": "https://i.imgur.com/VKUsf3U.jpeg",
     "breeding": "Difficult",
     "region": "North America",
-    "holdings": {}
+    "holdings": {
+        "North America": [
+            "1.1 - Marine Discovery Center"
+        ]
+    }
 },
 "Garibaldi": {
     "common": "Garibaldi",
@@ -5959,7 +5963,11 @@ species_data: Dict[str, Dict[str, Any]] = {
     "image_url": "https://i.imgur.com/DkPKxmL.jpeg",
     "breeding": "Impossible",
     "region": "North America",
-    "holdings": {}
+    "holdings": {
+        "North America": [
+            "4 - Marine Discovery Center"
+        ]
+    }
 },
 "Cortez Angelfish": {
     "common": "Cortez Angelfish",
@@ -7324,6 +7332,36 @@ species_data: Dict[str, Dict[str, Any]] = {
         "region": "Africa",
         "holdings": {
             "North America": "1.1 - Las Vegas Zoo",},
+
+},
+"Kelp Bass": {
+        "common": "Kelp Bass",
+        "scientific": "Paralabrax clathratus",
+        "info": "The kelp bass is a seabass species native to the eastern Pacific, from central California to northern Mexico. It is a common, gregarious species that resides in kelp forests and other coldwater coastal habitats. It has variable color morphs, including brown, yellow, and white.",
+        "type": "Fish",
+        "order": "Perciformes",
+        "family": "Serranidae",
+        "genus": "Paralabrax",
+        "image_url": "https://i.imgur.com/48PF2hT.jpeg",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "3 - Marine Discovery Center",},
+
+},
+"California Sheepshead": {
+        "common": "California Sheepshead",
+        "scientific": "Bodianus pulcher",
+        "info": "The California sheepshead is a large wrasse native to the eastern Pacific, from Monterey Bay to the Gulf of California. One of the most well-known species in its habitat, the males and females display pronounced sexual dimorphism. All sheepsheads are born as females, but some will eventually transition to males and reproduce with females.",
+        "type": "Fish",
+        "order": "Labriformes",
+        "family": "Labridae",
+        "genus": "Bodianus",
+        "image_url": "https://i.imgur.com/FNCteRR.png",
+        "breeding": "Impossible",
+        "region": "North America",
+        "holdings": {
+            "North America": "3 - Marine Discovery Center",},
 
                                 },
 }
