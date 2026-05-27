@@ -23,11 +23,6 @@
           "Masked Lapwing",
           "Laughing Kookaburra",
           "Major Mitchell's Cockatoo"
-        ],
-        "Tri-State Zoo & Aquarium": [
-          "Jackson's Hornbill",
-          "Red River Hog",
-          "Gray Crowned Crane"
         ]
       }
     },
@@ -58,13 +53,7 @@
     "1381408149667319838": {
       "active_zoo": null,
       "zoos": {
-        "Riverside Zoo": [
-          "Klipspringer",
-          "American Flamingo",
-          "Common Warthog",
-          "Grévy's Zebra",
-          "Green Araçari"
-        ]
+        "Riverside Zoo": []
       }
     },
     "1060010291473170482": {
@@ -73,38 +62,16 @@
         "Karl Eberhard's Pine Lake Zoo": []
       }
     },
-    "858685154268807219": {
-      "active_zoo": null,
-      "zoos": {
-        "Blue Seas Aquarium": []
-      }
-    },
     "701972811920703558": {
       "active_zoo": null,
       "zoos": {
-        "Las Vegas Zoo": [
-          "Greater Flamingo",
-          "African Penguin",
-          "Ring-Tailed Lemur",
-          "Black-and-White Ruffed Lemur",
-          "Aardvark",
-          "African Spurred Tortoise",
-          "Red Ruffed Lemur",
-          "Serval"
-        ]
+        "Las Vegas Zoo": []
       }
     },
-    "1496815039984832512": {
+    "1005275113417093120": {
       "active_zoo": null,
       "zoos": {
-        "Karl Eberhard's Pine Lake Zoo": [
-          "Red Fox",
-          "Turkey Vulture",
-          "Black-Tailed Prairie Dog",
-          "Peregrine Falcon",
-          "Red-Tailed Hawk",
-          "Virginia Opossum"
-        ]
+        "Marine Discovery Center": []
       }
     }
   },
@@ -139,11 +106,6 @@
       "location": null,
       "image": null
     },
-    "blue seas aquarium": {
-      "name": "Blue Seas Aquarium",
-      "location": "Europe",
-      "image": null
-    },
     "auckland conservation zoo and aquarium": {
       "name": "Auckland Conservation Zoo and Aquarium",
       "location": "Oceania",
@@ -156,6 +118,11 @@
     },
     "las vegas zoo": {
       "name": "Las Vegas Zoo",
+      "location": null,
+      "image": null
+    },
+    "marine discovery center": {
+      "name": "Marine Discovery Center",
       "location": null,
       "image": null
     }
@@ -182,8 +149,7 @@
     "806245088216743956": {
       "limit": 2,
       "zoos": [
-        "Brussels Zoo",
-        "Tri-State Zoo & Aquarium"
+        "Brussels Zoo"
       ]
     },
     "385221957550866443": {
@@ -193,28 +159,16 @@
         "Chicago City Aquarium"
       ]
     },
-    "858685154268807219": {
-      "limit": 2,
-      "zoos": [
-        "Blue Seas Aquarium"
-      ]
-    },
     "701972811920703558": {
       "limit": 2,
       "zoos": [
         "Las Vegas Zoo"
       ]
     },
-    "1496815039984832512": {
+    "1005275113417093120": {
       "limit": 2,
       "zoos": [
-        "Karl Eberhard's Pine Lake Zoo"
-      ]
-    },
-    "1348379296502251532": {
-      "limit": 2,
-      "zoos": [
-        "Leipzig Zoological Park"
+        "Marine Discovery Center"
       ]
     }
   },
